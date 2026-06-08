@@ -1,0 +1,500 @@
+---
+title: "<span style = 'font-size: 100%;'> QM 6700: Business Analytics </span>"
+subtitle: "<span style = 'font-size: 150%;'> Hyp. Testing Rvw. 01</span>"
+# author: "Professor<br>Davi Moreira<br>"
+# date: "2024-08-01"
+date-format: "MMMM DD, YYYY"
+format:
+  revealjs: 
+    transition: slide
+    background-transition: fade
+    width: 1600
+    height: 900
+    center: true
+    slide-number: true
+    incremental: true
+    chalkboard: 
+      buttons: false
+    preview-links: auto
+    #logo: images/quarto.png
+    footer: "Business Analytics"
+    theme: [simple,custom.scss]
+html-math-method:
+  method: mathjax
+  url: "https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"
+---
+
+## Overview
+
+:::::: nonincremental
+::::: columns
+::: {.column width="40%" style="text-align: center; justify-content: center; align-items: center;"}
+-   Introduction to Hypothesis Testing
+-   Framework of Hypothesis Testing
+-   Type I and Type II Errors
+:::
+
+::: {.column width="60%" style="text-align: center; justify-content: center; align-items: center;"}
+-   Hypothesis Testing for Means
+-   Hypothesis Testing for Proportions
+-   Using Excel for Hypothesis Testing
+:::
+:::::
+::::::
+
+# Hypothesis Testing for Means and Proportions {background-color="#cfb991"}
+
+# Statistical Inference {background-color="#cfb991"}
+
+## Statistical Inference
+
+<br>
+
+:::::::: columns
+:::: {.column width="50%"}
+::: nonincremental
+<center>**Interval Estimation**</center>
+
+-   Confidence level: 95% $(1-\alpha)$ (Middle area; Confidence level)
+-   Confidence multipliers
+-   Upper/lower tail areas
+-   One- or 2-sided intervals
+-   Sampling errors and Margin of Error (MOE)
+-   Find range of all reasonable parameter values
+:::
+::::
+
+::::: {.column width="50%"}
+:::: fragment
+::: nonincremental
+<center>**Hypothesis Testing**</center>
+
+-   Significance level: 5% $(\alpha)$ (Tail area(s); Risk)
+-   Critical values
+-   p-values
+-   Which side $(H_a)$ depends mostly on data
+-   Test a specific hypothesized parameter value
+-   Strength of sample evidence against the hypothesized value of the null hypothesis
+:::
+::::
+:::::
+::::::::
+
+# Hypothesis testing framework {background-color="#cfb991"}
+
+## Hypothesis testing framework
+
+-   [Hypothesis testing](https://en.wikipedia.org/wiki/Statistical_hypothesis_testing) can be used to determine whether a statement about the population or a hypothesized value of the population parameter should or should not be rejected.
+
+-   We start with a [*null hypothesis*](https://en.wikipedia.org/wiki/Null_hypothesis) *(*$H_0$) that represents the status quo.
+
+-   We also have an [*alternative hypothesis*](https://en.wikipedia.org/wiki/Alternative_hypothesis) *(*$H_A$) that represents our research question, i.e. what we're testing for.
+
+-   We conduct a hypothesis test under the assumption that the null hypothesis is true.
+
+-   If the test results suggest that the data do not provide convincing evidence for the alternative hypothesis, we stick with the null hypothesis. If they do, then we reject the null hypothesis in favor of the alternative.
+
+-   We will never know which hypothesis is true, unless we sample the entire population.
+
+## Null and Alternative Hypotheses about a Population Mean
+
+The equality part of the hypotheses always appears in the null hypothesis.
+
+In general, a hypothesis test about the value of a population mean $\mu$ takes one of the following three forms (where $\mu_0$ is the hypothesized value of the population mean).
+
+<br>
+
+| Test Type | Null Hypothesis ($H_0$) | Alternative Hypothesis ($H_A$) |
+|----|----|----|
+| One-tailed (lower-tail) | $H_0$: $\mu \geq \mu_0$ | $H_A$: $\mu < \mu_0$ |
+| One-tailed (upper-tail) | $H_0$: $\mu \leq \mu_0$ | $H_A$: $\mu > \mu_0$ |
+| Two-tailed | $H_0$: $\mu = \mu_0$ | $H_A$: $\mu \neq \mu_0$ |
+
+## Building a Null Hypothesis
+
+-   Formulate the null hypothesis by stating that there is no effect, no difference, or that the effect is equal to a specific value. The null hypothesis is often a statement of equality (e.g., no difference or no association).
+
+-   **Key Phrases for Null Hypothesis:**
+
+    -   "There is no difference..."
+    -   "There is no effect..."
+    -   "The population mean is equal to..."
+    -   "The proportion is equal to..."
+
+-   **Examples:**
+
+    -   **Single-Sample Test (Mean):**\
+        $H_0: \mu = \mu_0$\
+        (The mean blood pressure reduction with the new drug is equal to a standard value.)
+
+    -   **Proportion Test:**\
+        $H_0: p = p_0$\
+        (The proportion of patients responding to the treatment is equal to 50%.)
+
+```{=html}
+<!---
+    - **Two-Sample Test (Comparison of Means):**  
+      $H_0: \mu_1 = \mu_2$  
+      (There is no difference in mean blood pressure reduction between the two drugs.)
+
+    - **Correlation Test:**  
+      $H_0: \rho = 0$  
+      (There is no correlation between hours studied and test scores.)
+--->
+```
+
+# Type I and Type II Errors {background-color="#cfb991"}
+
+## Type I Error
+
+-   Because hypothesis tests are based on sample data, we must allow for the possibility of errors.
+-   A [Type I error](https://en.wikipedia.org/wiki/Type_I_and_type_II_errors#Type_I_error) is rejecting $H_0$ when $H_0$ is true (but in the one-tailed tests, we still don’t know exactly the value of $\mu$).
+-   The probability of making a Type I error when the null hypothesis is true as an equality is called the level of significance $(\alpha)$, which is (likely) the maximum value of the Type I probability.
+-   Level of significance $(\alpha)$ is predetermined by the user (normally, 1%, 5%, or 10%) to control the probability of making a Type I error: [Significance tests](https://en.wikipedia.org/wiki/Statistical_significance).
+
+## Type II Error
+
+-   A [Type II error](https://en.wikipedia.org/wiki/Type_I_and_type_II_errors#Type_II_error) is an error of accepting $H_0$ when $H_0$ is false. (Or, rejecting $H_A$ when $H_A$ is true.)
+-   Normally, we don’t control the probability of making a Type II error.
+-   Statisticians avoid the risk of making a Type II error by using “do not reject $H_0$” instead of “accept $H_0$”.
+
+## Type I and Type II Errors
+
+::: nonincremental
+**Example:** A researcher sets out to test whether a new teaching method increases students' average scores above the previous benchmark of 12 ($H_A$), challenging the long-held belief that the average score remains at or below 12 ($H_0$).
+
+Hypotheses:
+
+-   $H_0$: $\mu \leq 12$
+-   $H_A$: $\mu > 12$
+
+```{r  echo=FALSE, out.width = "70%",fig.align="center"}
+knitr::include_graphics("figs/type_I_II_errors.png") 
+```
+:::
+
+<br>
+
+<br>
+
+## $p$-values
+
+-   The [$p-value$](https://en.wikipedia.org/wiki/P-value) is the probability computed using the test statistic, that provides the probability of obtaining test results at least as extreme as the results actually observed, assuming that the null hypothesis is true.
+
+-   If the $p-value$ is *low* (lower than the significance level, $\alpha$, which is usually 5%) we say that it would be very unlikely to observe the data if the null hypothesis were true, and hence **reject** $H_0$.
+
+-   If the $p-value$ is *high* (higher than $\alpha$) we say that it is likely to observe the data even if the null hypothesis were true, and hence **do not reject** $H_0$.
+
+# Population Mean: $\sigma$ Unknown {background-color="#cfb991"}
+
+# Tests About a Population Mean: $\sigma$ Unknown
+
+The $t-statistic$ is used to determine how far the sample mean is from the population mean under the null hypothesis, in terms of the standard error. It follows a t-distribution with $n-1$ degrees of freedom when the null hypothesis is true.
+
+$$
+t = \frac{\bar{X} - \mu_0}{S / \sqrt{n}}
+$$
+
+1.  $\bar{X}$: The sample mean, representing the average value of the sample data.
+
+2.  $\mu_0$: The population mean under the null hypothesis. This is the value we are testing against.
+
+3.  $S$: The sample standard deviation, which measures the spread of the sample data.
+
+4.  $n$: The sample size, indicating the number of observations in the sample.
+
+5.  $\sqrt{n}$: The square root of the sample size, used to adjust the sample standard deviation for the number of observations.
+
+## Tests about a Population Mean: $\sigma$ Unknown
+
+::: nonincremental
+**Two approaches to decide about the Null Hypothesis (**$H_0$).
+
+1.  **Critical Value Approach**:
+
+It uses critical values from the $t-distribution$ to determine whether to reject the null hypothesis ($H_0$). Depending on the direction of the test (one-tailed or two-tailed), the critical value is compared to the calculated t-statistic.
+
+**Decision Rule:**
+
+$$
+\begin{aligned}
+H_0 &: \mu \geq \mu_0; \quad H_a: \mu < \mu_0 \quad \text{(left/lower-tail)} \quad &\text{Reject } H_0 \text{ if } t \leq -t_{\alpha, n-1} \\
+H_0 &: \mu \leq \mu_0; \quad H_a: \mu > \mu_0 \quad \text{(right/upper-tail)} \quad &\text{Reject } H_0 \text{ if } t \geq t_{\alpha, n-1} \\
+H_0 &: \mu = \mu_0; \quad H_a: \mu \neq \mu_0 \quad \text{(two-tail)} \quad &\text{Reject } H_0 \text{ if } t \leq -t_{\alpha/2, n-1} \text{ or } t \geq t_{\alpha/2, n-1}
+\end{aligned}
+$$
+:::
+
+## Tests about a Population Mean: $\sigma$ Unknown
+
+::: nonincremental
+2.  $p-value$ Approach:
+
+-   Calculate the p-value, which is the probability of obtaining a test statistic at least as extreme as the one observed, assuming the null hypothesis is true.
+
+**Decision Rule:**
+
+$$
+\text{Reject } H_0 \text{ if } p\text{-value} \leq \alpha
+$$
+
+-   If the p-value is less than or equal to the significance level ($\alpha$), reject the null hypothesis.
+:::
+
+## $p-values$ and Critical Value - Excel
+
+<br>
+
+**EXCEL functions:**
+
+-   p-value is a probability: `=T.DIST`
+
+-   Critical value is a point or value on the horizontal or $t$ axis: `=T.INV`
+
+## Tests about a Population Mean: $\sigma$ Unknown - Example
+
+A business travel magazine wants to classify transatlantic gateway airports according to the mean rating for the population of business travelers. A rating scale with a low score of 0 and a high score of 10 will be used, and airports with a population mean rating greater than 7 will be designated as superior service airports.
+
+A sample of 60 business travelers were surveyed at London’s Heathrow Airport, which provided a sample mean rating of $\bar{x} = 7.25$ and a sample standard deviation of $s = 1.052$.
+
+**Question**: Do the data indicate that Heathrow should be designated as a superior service airport?
+
+## One-Tailed Test about a Population Mean: $\sigma$ Unknown - Example
+
+::: nonincremental
+1.  Determine the hypotheses.
+
+$$
+\begin{aligned}
+H_0 &: \mu \leq 7 \\
+H_a &: \mu > 7 \quad \text{(upper tail)}
+\end{aligned}
+$$
+
+2.  Specify the level of significance.
+
+$$
+\alpha = 0.05
+$$
+
+3.  Compute the value of the test statistic.
+
+$$
+t = \frac{\bar{X} - \mu_0}{s / \sqrt{n}} = \frac{7.25 - 7}{1.052 / \sqrt{60}} = 1.84
+$$
+:::
+
+## Critical Value Approach Visualization (Upper-tailed) - Example
+
+<br>
+
+```{r  echo=FALSE, out.width = "80%",fig.align="center"}
+knitr::include_graphics("figs/t_distribution_plot.png") 
+```
+
+# One-Tailed Test about a Population Mean: $\sigma$ Unknown - Example
+
+::: nonincremental
+**Critical Value Approach**
+
+4.  Determine the critical value and rejection rule.
+
+$$
+\begin{aligned}
+\text{For } \alpha = 0.05 \text{ and d.f.} = 60 - 1 = 59, t_{0.05, 59} = 1.671 \\
+\text{Reject } H_0 \text{ if } t \geq 1.671
+\end{aligned}
+$$
+
+5.  Because $1.84 > 1.669$, we reject $H_0$. Heathrow should be classified as a superior service airport. **The significance level is 5%.**
+:::
+
+## $p-value$ Approach Visualization (Upper-tailed) - Example
+
+::: nonincremental
+<br>
+
+```{r  echo=FALSE, out.width = "80%",fig.align="center"}
+knitr::include_graphics("figs/t_distribution_pvalue_plot.png") 
+```
+:::
+
+## One-Tailed Test about a Population Mean: $\sigma$ Unknown - Example
+
+::: nonincremental
+**p-value Approach**
+
+4.  Compute the p-value = 0.0354.
+
+5.  Because p-value $\leq \alpha = 0.05$, we reject $H_0$.
+
+Based on the current sample, we have significant statistical evidence to reject the null hypothesis and conclude that Heathrow should be classified as a superior service airport. The significance level is 5%. The sample evidence against $H_0$ is strong.
+:::
+
+# Tests about a Population Proportion {background-color="#cfb991"}
+
+## Null and Alternative Hypotheses about a Population Proportion
+
+::: nonincremental
+-   The equality part of the hypotheses always appears in the null hypothesis.
+
+-   In general, a hypothesis test about the value of a population proportion $p$ must take one of the following three forms (where $p_0$ is the hypothesized value of the population proportion).
+
+$$
+\begin{aligned}
+\text{One-tailed (lower tail)} & \quad H_0: p \geq p_0 \quad H_a: p < p_0 \\
+\text{One-tailed (upper tail)} & \quad H_0: p \leq p_0 \quad H_a: p > p_0 \\
+\text{Two-tailed} & \quad H_0: p = p_0 \quad H_a: p \neq p_0
+\end{aligned}
+$$
+:::
+
+## Tests about a Population Proportion
+
+:::: nonincremental
+::: r-fit-text
+**Test Statistic:**
+
+The Z-test for a population proportion is used to determine whether the observed sample proportion ($\bar{p}$) is significantly different from the hypothesized population proportion ($p_0$). By calculating the z-value, we can compare it to critical values from the standard normal distribution to decide whether to reject the null hypothesis.
+
+$$
+z = \frac{\bar{p} - p_0}{\sigma_{\bar{p}}}
+$$
+
+where:
+
+$$
+\sigma_{\bar{p}} = \sqrt{\frac{p_0 (1 - p_0)}{n}}
+$$
+
+assuming $np_0 \geq 5$ and $n(1 - p_0) \geq 5$.
+
+-   $\bar{p}$: Sample proportion
+-   $p_0$: Hypothesized population proportion
+-   $\sigma_{\bar{p}}$: Standard error of the sample proportion
+-   $p_0$: Hypothesized population proportion
+-   $n$: Sample size
+:::
+::::
+
+# Tests about a Population Proportion
+
+::: nonincremental
+-   **p-value Approach**
+
+$$
+\text{Reject } H_0 \text{ if } p\text{-value} \leq \alpha
+$$
+
+-   **Critical Value Approach**
+
+$$
+\begin{aligned}
+H_0 &: p \leq p_0 &\text{Reject } H_0 \text{ if } z \geq z_{\alpha} \\
+H_0 &: p \geq p_0 &\text{Reject } H_0 \text{ if } z \leq -z_{\alpha} \\
+H_0 &: p = p_0 &\text{Reject } H_0 \text{ if } z \leq -z_{\alpha/2} \text{ or } z \geq z_{\alpha/2}
+\end{aligned}
+$$
+:::
+
+## Tests About a Population Proportion - Example
+
+<br>
+
+**Example: Pine Creek Golf Course**
+
+<br>
+
+Over the past year, 20% of the players at Pine Creek were women. *In an effort to increase the proportion of women players*, Pine Creek implemented a special promotion design to attract women golfers. The manager now wants to determine if the proportion of women players has increased.
+
+<br>
+
+A random sample of 400 players were selected and 100 of the players were women. The level of significance is $\alpha = .05$.
+
+## Tests About a Population Proportion - Example
+
+::: nonincremental
+1.  Determine the hypotheses
+
+    -   $H_0: p \le .20$ and $H_a: p > .20$ (upper tail)
+
+<br>
+
+2.  Specify the level of significance. $\alpha = .05$
+
+<br>
+
+3.  Compute the value of the z test statistic.
+
+    -   $\sigma_{\bar{p}} = \sqrt{\frac{p_0(1-p_0)}{n}} = \sqrt{\frac{.2(1-.2)}{400}} = .02$
+    -   $z = \frac{\bar{p} - p_0}{\sigma_{\bar{p}}} = \frac{(.25) - .20}{.02} = 2.50$
+:::
+
+## Tests About a Population Proportion - Example
+
+::: nonincremental
+**Critical Value Approach**
+
+4.  Determine the critical values and rejection rule.
+
+    -   $z_{0.05} = \text{NORM.S.INV}(0.95) = 1.645$
+    -   Decision Rule: Reject $H_0$ if $z \ge 1.645$
+
+<br>
+
+5.  Determine whether to reject $H_0$ because $z = 2.5 > 1.645$, we reject $H_0$.
+:::
+
+## Tests About a Population Proportion - Example
+
+::: nonincremental
+**p-value Approach**
+
+4.  Compute the p-value for $z = 2.50$ (an upper tail problem).
+
+    -   $p$-value $= 1 - \text{NORM.S.DIST}(2.50, \text{TRUE}) = 1 - .9938 = .0062$
+
+<br>
+
+5.  Because $p$-value $= .0062 < \alpha = .05$, we reject $H_0$.
+
+**Based on the current sample, we have significant statistical evidence to conclude that the proportion of women players has increased from 20%. The significance level is 5%. The evidence against** $H_0$ is overwhelming.
+:::
+
+# One-sided and Two-sided {background-color="#cfb991"}
+
+## One-sided and Two-sided
+
+-   For a left/lower-tailed test, we calculate the tail area and critical value on the left side.
+
+-   For a two-tailed test,
+
+    -   Double the tail area to obtain the $p$-value (*Note: p-value is a probability and, hence, must be between 0 and 1, inclusively.*)
+
+    -   Divide the significance level $\alpha$ and assign to each side to obtain two critical values.
+
+# Using Excel to Determine $p-values$ {background-color="#cfb991"}
+
+## Using Excel to Determine $p-values$
+
+<br>
+
+```{r  echo=FALSE, out.width = "80%",fig.align="center"}
+knitr::include_graphics("figs/p_value_excel.png") 
+```
+
+# Summary
+
+## Summary
+
+::: nonincremental
+Some key takeaways from this session:
+
+-   Developing a null hypothesis involves stating the parameter of interest, its hypothesized value, and forming $H_0$ to reflect no change or effect.
+-   The critical value approach and p-value approach are two fundamental methods in hypothesis testing.
+-   Critical values are determined based on the significance level and the test statistic's distribution.
+-   The p-value approach provides a probability measure to assess the evidence against $H_0$.
+-   Both approaches lead to the same conclusion but offer different perspectives on the data.
+:::
+
+# Thank you! {background-color="#cfb991"}

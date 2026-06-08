@@ -1,0 +1,1003 @@
+---
+title: "<span style = 'font-size: 100%;'> MGMT 30500: Business Statistics </span>"
+subtitle: "<span style = 'font-size: 150%;'> Logistic Regression</span>"
+author: "Professor<br>Davi Moreira<br>"
+# date: "2024-08-01"
+# date-format: "MMMM DD, YYYY"
+format:
+  revealjs: 
+    transition: slide
+    background-transition: fade
+    width: 1600
+    height: 900
+    center: true
+    slide-number: true
+    incremental: true
+    chalkboard: 
+      buttons: false
+    preview-links: auto
+    #logo: images/quarto.png
+    footer: "Business Statistics"
+    theme: [simple,custom.scss]
+html-math-method:
+  method: mathjax
+  url: "https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"
+---
+
+## Overview
+
+<!--- Very interesting package for equations: https://datalorax.github.io/equatiomatic/ --->
+
+```{r message=FALSE, warning=FALSE, include=FALSE, results='hide'}
+
+library(tidyverse)
+library(infer)
+library(jtools)
+library(ggstance)
+library(readxl)
+library(broom.mixed)
+library(ggcorrplot)
+library(ggplot2)
+library(MASS)
+library(car)
+library(fields)
+library(skimr) 
+library(moderndive)
+library(readr)
+library(ggpubr)
+library(GGally)
+library(sjPlot)
+library(sjmisc)
+library(sjlabelled)
+library(emmeans) 
+library(Rmisc)
+library(faraway)
+library(foreign)
+library(rio)
+library(haven)
+library(kableExtra)
+library(cowplot)
+library(vtable)
+library(extrafont)
+library(modelsummary)
+library(lubridate)
+library(ggpubr)
+library(jtools)
+library(aod)
+library(foreign)
+library(nnet)
+library(reshape2)
+library(MASS)
+if(require(effects) == F) install.packages('effects'); require(effects)
+library(here)
+
+```
+
+:::::: nonincremental
+::::: columns
+::: {.column width="50%" style="text-align: center; justify-content: center; align-items: center;"}
+- Logistic Regression Model.
+:::
+
+::: {.column width="50%" style="text-align: center; justify-content: center; align-items: center;"}
+:::
+:::::
+::::::
+
+# Motivation {background-color="#cfb991"}
+
+## Motivation
+
+::: nonincremental
+- What is the probability of success of a candidate based on the data below?
+
+```{r, echo=FALSE, message=FALSE, warning=FALSE}
+
+mydata <- read.csv("https://stats.idre.ucla.edu/stat/data/binary.csv")
+
+head(mydata) %>% kable() %>% kable_styling()
+
+```
+
+- `gre`: Graduate Record Exam scores
+- `gpa`: Grade Point Average
+- `rank`: prestige of undergraduate institution
+- `admit`: admission to graduate school
+:::
+
+## Review of Linear Estimation
+
+<br>
+
+<center>$Y = \beta_{0} + \beta_{1}X + \beta_{2}Z + \epsilon$</center>
+
+<br>
+
+- We could transform or add variables to achieve model linearity:
+
+  - Taking logarithms of Y and/or X's;
+  - Adding quadratic terms;
+  - Adding interactions.
+
+<br>
+
+- Then we run our estimation, check model quality, visualize results, etc.
+
+## Review of Linear Estimation
+
+<br>
+
+<center>$Y = \beta_{0} + \beta_{1}X + \beta_{2}Z + \epsilon$</center>
+
+<br>
+
+In all linear models we have covered, the dependent variable ($Y$) was numerical/continuous.
+
+<br>
+
+<center>**What do we do when it is not numerical/continuous?**</center>
+
+# General Linear Model {background-color="#cfb991"}
+
+## General Linear Model
+
+- Models in which the parameters $(\beta_0, \beta_1, \ldots, \beta_p)$ all have exponents of one are called **linear models**.
+
+- A **general linear model** involving $p$ independent variables ($z_i$’s) is:
+
+::: fragment
+
+$$y = \beta_0 + \beta_1 z_1 + \beta_2 z_2 + \ldots + \beta_p z_p + \epsilon$$
+
+where each independent variable $z_i$ is a (linear or nonlinear) function of $x_1, x_2, \ldots, x_k$ (the variables for which data have been collected).
+
+- Here, $y$ can be a function of the original response variable as well.
+:::
+
+## General Linear Model
+
+<br>
+
+:::: nonincremental
+The **General Linear Model** can be used to relate the dependent variable $Y$ to the systematic part of the model (linear predictors) through a link function.
+
+- From:
+
+<center>$Y = \beta_{0} + \beta_{1}X + \beta_{2}Z + \epsilon$</center>
+
+<br>
+
+::: fragment
+- To:
+
+<center>$P_{i} = P (Y = 1) = \Lambda(\beta_{0} + \beta_{1}X_{1i} + \beta_{2}Z_{2i} + \epsilon) = \Lambda(XB + \epsilon)$,</center>
+
+<br>
+
+where $\Lambda$ (lambda) represents the link function that strictly assumes values between 0 and 1.
+
+<br>
+:::
+
+<font size="3">**Source**: [Wikipedia - Generalized linear model.](https://en.wikipedia.org/wiki/Generalized_linear_model)</font>
+::::
+
+## Binary Dependent Variable
+
+<br>
+
+Therefore, the predicted probabilities of a binary dependent variable model can be given by:
+
+<br>
+
+<center>$\hat{P}_{i} = \hat{P} (Y = 1) = \Lambda (\hat{\beta}_{0} + \hat{\beta}_{1}X_{1i} + \hat{\beta}_{2}Z_{2i}) = \Lambda(\hat{X}_{i}B)$ ,</center>
+
+<br>
+
+where $\Lambda(\hat{X}_{i}B)$ is the systematic (linear) component of the model.
+
+# Understanding the Link Function {background-color="#cfb991"}
+
+## Understanding the Link Function
+
+<br>
+
+<center>How to solve this problem?</center>
+
+```{r, echo=FALSE, message=FALSE, warning=FALSE, fig.align="center", fig.dim = c(6, 4)}
+set.seed(200)
+
+tib <- tibble(X = runif(250)*8) %>%
+  mutate(Y = ((X - 4)/4 + rnorm(250)*.5 > 0)*1)
+
+ols_logit1 <- ggplot(tib, aes(x = X, y = Y)) + 
+  geom_point() + theme_pubr()
+
+ols_logit1
+
+```
+
+## Understanding the Link Function
+
+<br>
+
+<center>How to solve this problem?</center>
+
+- We need to transform $Y$ (dichotomous) into a continuous variable $Y'$ ($-\infty$, $\infty$);
+
+- To do this, we need a link function that performs this transformation.
+
+```{r, echo=FALSE, message=FALSE, warning=FALSE, fig.align="center", fig.dim = c(6, 4)}
+set.seed(200)
+
+tib <- tibble(X = runif(250)*8) %>%
+  mutate(Y = ((X - 4)/4 + rnorm(250)*.5 > 0)*1)
+
+ols_logit1 <- ggplot(tib, aes(x = X, y = Y)) + 
+  geom_point() + theme_pubr()
+
+ols_logit1
+
+```
+
+## Solution:
+
+```{r, echo=FALSE, message=FALSE, warning=FALSE, fig.align="center", fig.dim = c(6, 4)}
+set.seed(200)
+tib <- tibble(X = runif(250)*8) %>%
+  mutate(Y = ((X - 4)/4 + rnorm(250)*.5 > 0)*1)
+
+logit1 <- ggplot(tib, aes(x = X, y = Y)) + 
+  geom_point() + 
+  geom_smooth(method = "glm", method.args = list(family = binomial(link = 'logit')), 
+              se = FALSE, color = 'black') +
+  theme_pubr() + 
+  scale_y_continuous(breaks = c(0,1)) + 
+  annotate(geom = 'text', x = 3.75, y = .35, color = 'black', label = 'Logit',
+           size = 13/.pt) +
+  theme(text         = element_text(size = 13),
+        axis.title.x = element_text(size = 13),
+        axis.title.y = element_text(size = 13))
+
+logit1
+
+```
+
+## Understanding the Link Function
+
+<br>
+
+Let's remember the log-level model transformation:
+
+<center>
+$$\log(\hat{Y}_{i}) = \beta_{0} + \beta X$$
+</center>
+
+<br>
+
+- A variation of one unit in $X_i$ implies a $\beta\%$ variation in $Y_i$;
+- The link function is: $F(Y) = \log(Y)$;
+
+## The Role of the Link Function
+
+::::::::: columns
+:::: {.column width="50%" style="text-align: center; justify-content: center; align-items: center;"}
+![](figs/image12.png){width="95%"}
+
+::: {style="font-size: 60%;"}
+- The logistic function transforms the linear prediction $\beta_0 + \beta X$ into a probability that $Y = 1$, denoted as $\Pr(Y = 1|X)$.
+- This function is sigmoidal (S-shaped), which is why the probability smoothly transitions between 0 and 1.
+- The line $E(y^*|X)$ represents the expected value of the latent variable for a given value of $X$.
+:::
+::::
+
+:::::: {.column width="50%" style="text-align: center; justify-content: center; align-items: center;"}
+::::: fragment
+:::: {style="font-size: 70%;"}
+
+$$Y =
+  \begin{cases}
+    1       & \quad \text{if } y^{*}_{i} > 0 \\
+    0  & \quad \text{if } y^{*}_{i} \leq 0 
+  \end{cases}$$
+
+- $y^{*}$: is a latent (unobserved) variable, which represents an underlying continuous measure that influences the binary outcome. It drives the observed binary outcome $Y$.
+
+::: fragment
+
+$$y^{*}_{i} = \beta_{0} + \beta X + \epsilon$$
+
+- The binary variable $Y$ is determined by a threshold applied to the latent variable $y^{*}$.
+
+- The plot illustrates the role of the logistic function in converting the continuous latent variable into probabilities that $Y = 1$ or $Y = 0$. As $X$ increases past a certain threshold (denoted $\tau = 0$ on the graph), the probability that $Y = 1$ rises above 0.5, indicating a higher likelihood of observing $Y = 1$.
+
+- **In summary**: The logistic model maps a linear predictor ($\beta_0 + \beta X$) to a binary outcome, using the latent variable $y^*$ to link the continuous world with the binary outcome via a threshold and the logistic function.
+:::
+::::
+:::::
+::::::
+:::::::::
+
+```{=html}
+<!---
+
+## The Role of the Link Function
+
+::::: columns
+::: {.column width="50%" style="text-align: center; justify-content: center; align-items: center;"}
+
+<br>
+
+<br>
+
+<center>
+
+![](figs/image12.png){width=95%}
+
+</center>
+
+:::
+
+::: {.column width="50%" style="text-align: center; justify-content: center; align-items: center;"}
+
+::: {.nonincremental}
+
+- Latent Variable Model
+
+
+$$
+y^{*}_{i} = \beta_{0} + \beta X + \epsilon
+$$
+
+:::
+
+::: fragment
+::: {.nonincremental}
+
+- Binary Outcome Based on Latent Variable
+
+$$
+\text{Pr}(y = 1|x) = \text{Pr}(y^* > 0|x)\\
+$$
+
+:::
+
+::: {.nonincremental}
+
+::: fragment
+
+- The Probability in Terms of the Error Term
+
+$$
+\text{Pr}(y = 1|x) = \text{Pr}(\epsilon > - [\beta_{0} + \beta x]|x)
+$$
+
+The probability depends on the distribution of $\epsilon$.
+
+::: 
+
+::: 
+:::
+:::
+:::::
+
+
+--->
+```
+
+```{=html}
+<!---
+## Logit and Probit Models
+--->
+```
+
+## Logit Models
+
+```{=html}
+<!---
+Two distributions of $\epsilon$ are considered:
+--->
+```
+
+::: nonincremental
+- **Logistic distribution**: In the Logit model, $\epsilon$ has a logistic distribution, $\mu = 0$ and variance given by: $\sigma^2(u) = \pi^2/3$
+
+$$ 
+\text{Pr}(y = 1|x) = \frac{\exp(\beta_{0} + \beta x)}{1 + \exp(\beta_{0} + \beta x)} \quad \text{or} \quad \frac{e^{\beta_0 + \beta_1 x_i}}{1 + e^{\beta_0 + \beta_1 x_i}}$$
+
+```{=html}
+<!---
+::: {.fragment}
+
+- **Normal distribution**: In the Probit model, $\epsilon$ has a normal distribution and variance given by: $\sigma^2(u) = 1$
+
+$$ 
+\text{Pr}(y = 1|x) = \int_{-\infty}^{\beta_{0} + \beta x} \frac{1}{\sqrt{2\pi}} \exp\Bigg(-\frac{t^2}{2}\Bigg)dt
+$$
+
+:::
+--->
+```
+:::
+
+## Logistic Function vs Normal Distribution
+
+```{r, echo=FALSE, message=FALSE, warning=FALSE, fig.align="center", fig.dim = c(6, 4)}
+
+x=seq(700,2300,length=200)  
+
+dat2 <- data.frame(x=x)
+dat2$value <- dnorm(x,mean=1500,sd=200)
+dat2$type <- "Normal"
+
+dat1 <- data.frame(x=x)
+dat1$value <- dlogis(x,location=1500,scale=200)       
+dat1$type <- "Logistic"
+
+# Append extra points at the top/bottom to complete the polygon
+dat1 <- rbind(data.frame(x=700,value=0,type = "Logistic"),dat1,
+                data.frame(x=2300,value=0,type = "Logistic"))
+
+dat <- rbind(dat1, dat2)
+
+ggplot(data=dat, aes(x=x, y=value, colour=type, fill=type)) + 
+  geom_polygon(alpha=0.6) + 
+  scale_y_continuous(expand = c(0, 0)) + 
+  theme_pubr() + 
+  guides(colour = guide_legend(title = NULL), fill = guide_legend(title = NULL))
+
+# ggplot(data=dat, aes(x=x, y=value, colour=type, fill=type)) + 
+#        geom_polygon(alpha=0.6) + 
+#        scale_y_continuous(expand = c(0, 0)) + 
+#   theme_pubr()
+
+```
+
+# The Logit Link Function {background-color="#cfb991"}
+
+## The Logit Link Function
+
+<center>![](figs/Image16.png){width="70%"}</center>
+
+## The Logit Link Function
+
+```{r, echo=FALSE, message=FALSE, warning=FALSE, fig.align="center", fig.dim = c(6, 4)}
+
+set.seed(200)
+tib <- tibble(X = runif(250)*8) %>%
+  mutate(Y = ((X - 4)/4 + rnorm(250)*.5 > 0)*1)
+
+ols_logit1 <- ggplot(tib, aes(x = X, y = Y)) + 
+  geom_point() + 
+  geom_smooth(method = "lm", se = FALSE, color = 'black', linetype = "dashed") + 
+  geom_smooth(method = "glm", method.args = list(family = binomial(link = 'logit')), 
+              se = FALSE, color = 'black') +
+  scale_y_continuous(breaks = c(0,1)) + 
+  annotate(geom = 'text', x = 1.75, y = .35, color = 'black', label = 'OLS Prediction',
+           size = 13/.pt) +
+  annotate(geom = 'text', x = 3.75, y = .35, color = 'black', label = 'Logit',
+           size = 13/.pt) +
+  theme(text         = element_text(size = 13),
+        axis.title.x = element_text(size = 13),
+        axis.title.y = element_text(size = 13)) +
+    theme_pubr() 
+
+ols_logit1
+
+```
+
+- The probability of the event occurring is the cumulative density function of $\epsilon$ evaluated at values determined by the independent variables
+
+## Estimating the Event Probability
+
+$$P(Y_i = 1) = \frac{e^{\beta_0 + \beta_1 x_i}}{1 + e^{\beta_0 + \beta_1 x_i}}$$
+
+**Logit link function**
+
+$$\hat{Y}_i = \frac{e^{b_0 + b_1 x_i}}{1 + e^{b_0 + b_1 x_i}}$$
+
+**Prediction equation**
+
+A common estimation method to obtain $b_0$ and $b_1$ is called the Maximum Likelihood Method. It finds the values of $\beta_0$ and $\beta_1$ that maximize the probability (or likelihood) of observing the data.
+
+## Interpretation of $\beta_1$ via Ln(Odds)
+
+Define the odds for the event:
+
+$$\text{Odds}(x) \equiv \frac{\text{Event probability}}{\text{Non-event probability}} = \frac{P(Y = 1)}{1 - P(Y = 1)} = e^{\beta_0 + \beta_1 x}$$
+
+$$\ln(\text{Odds}(x)) = \beta_0 + \beta_1 x$$
+
+- $b_1$ is the predicted change in the $\ln(\text{Odds}(x))$ per-unit increase in $x$.
+- $b_1$ is the predicted difference:
+  $$\ln(\text{Odds}(x+1)) - \ln(\text{Odds}(x)).$$
+- This relationship is true for all $x$.
+
+## Interpretation of $e^{\beta_1}$ via Odds Ratio
+
+::: nonincremental
+Define the odds ratio:
+
+$$\text{Odds Ratio}(x) \equiv \frac{\text{Odds}(x+1)}{\text{Odds}(x)} = e^{\beta_1}$$
+
+By increasing $x$ by one unit, the odds of the event change by a factor of $e^{\beta_1}$.
+:::
+
+## Interpretation of $e^{\beta_1}$ (Continuous Predictor, $x$)
+
+::: nonincremental
+
+$$\frac{\text{Odds}(x+1)}{\text{Odds}(x)} = e^{\beta_1}$$
+
+- The odds for the event will change by a factor of $e^{\beta_1}$ per unit increase in $x$, where $\beta_1$ is the population slope of $x$.
+
+- If $\beta_1 = 0$ or $e^{\beta_1} = 1$, there is no change in odds.
+
+- If $\beta_1 > 0$ or $e^{\beta_1} > 1$, the odds increase.
+
+- If $\beta_1 < 0$ or $e^{\beta_1} < 1$, the odds decrease.
+
+If $\beta_1$ is estimated by $b_1$, then the odds for the event are predicted to change by a factor of $e^{b_1}$ per unit increase in $x$.
+:::
+
+# Motivation: Binomial Logit Model {background-color="#cfb991"}
+
+## Motivation: Binomial Logit Model
+
+A researcher is interested in how variables such as GRE (Graduate Record Exam scores), GPA (Grade Point Average), and the prestige of the undergraduate institution affect admission into graduate school. The response variable, admit/don't admit, is binary. What is the probability of success of a candidate based on these data?
+
+```{r, echo=FALSE, message=FALSE, warning=FALSE}
+
+mydata <- read.csv("https://stats.idre.ucla.edu/stat/data/binary.csv")
+
+head(mydata) %>% kable() %>% kable_styling()
+
+```
+
+<br> <font size="3">**Source**: [LOGIT REGRESSION - R DATA ANALYSIS EXAMPLES](https://stats.oarc.ucla.edu/r/dae/logit-regression/)</font>
+
+## Estimating the Model: `R` Output
+
+::: {style="font-size: 65%;"}
+```{r, echo=FALSE, message=FALSE, warning=FALSE, out.width="50%", out.height="50%"}
+
+mydata$rank <- factor(mydata$rank)
+
+mylogit <- glm(admit ~ gre + gpa + rank, data = mydata, family = "binomial")
+
+summ(mylogit)
+
+# tab_model(mylogit, auto.label = FALSE, 
+#           # collapse.ci = TRUE,
+#           # dv.labels = c("additive_model", "interactive_model"),
+#           # pred.labels = c("Intercept", "Female", "Women's Movement Thermometer", "Women's Movement Thermometer X Female"), 
+#           show.ci = FALSE)
+
+```
+:::
+
+## Output: Model Summary
+
+::::::: columns
+:::: {.column width="50%" style="text-align: center; justify-content: center; align-items: center;"}
+::: {style="font-size: 65%;"}
+```{r, echo=FALSE, message=FALSE, warning=FALSE, out.width="50%", out.height="50%"}
+
+mydata$rank <- factor(mydata$rank)
+
+mylogit <- glm(admit ~ gre + gpa + rank, data = mydata, family = "binomial")
+
+summ(mylogit)
+
+# tab_model(mylogit, auto.label = FALSE, 
+#           # collapse.ci = TRUE,
+#           # dv.labels = c("additive_model", "interactive_model"),
+#           # pred.labels = c("Intercept", "Female", "Women's Movement Thermometer", "Women's Movement Thermometer X Female"), 
+#           show.ci = FALSE)
+
+```
+:::
+::::
+
+:::: {.column width="50%" style="text-align: center; justify-content: center; align-items: center;"}
+::: {style="font-size: 80%;"}
+- **Observations**: 400
+
+  - The number of data points used in the model (400 observations).
+
+- **Dependent Variable**: `admit`
+
+  - The binary outcome variable being predicted (in this case, admission to a school).
+
+- **Type**: Generalized linear model
+
+  - The model used is a generalized linear model (GLM).
+
+- **Family**: binomial
+
+  - The binomial family is appropriate for binary outcomes.
+
+- **Link**: logit
+
+  - The logit link function is used to model the log-odds of the probability of success.
+:::
+::::
+:::::::
+
+## Output: Model Fit Statistics
+
+::::::: columns
+:::: {.column width="50%" style="text-align: center; justify-content: center; align-items: center;"}
+::: {style="font-size: 65%;"}
+```{r, echo=FALSE, message=FALSE, warning=FALSE, out.width="50%", out.height="50%"}
+
+mydata$rank <- factor(mydata$rank)
+
+mylogit <- glm(admit ~ gre + gpa + rank, data = mydata, family = "binomial")
+
+summ(mylogit)
+
+# tab_model(mylogit, auto.label = FALSE, 
+#           # collapse.ci = TRUE,
+#           # dv.labels = c("additive_model", "interactive_model"),
+#           # pred.labels = c("Intercept", "Female", "Women's Movement Thermometer", "Women's Movement Thermometer X Female"), 
+#           show.ci = FALSE)
+
+```
+:::
+::::
+
+:::: {.column width="50%" style="text-align: center; justify-content: center; align-items: center;"}
+::: {style="font-size: 75%;"}
+- **χ²(5) = 41.46**:
+
+  - The chi-squared test statistic for the overall model fit.
+
+- **p = 0.00**:
+
+  - The p-value for the model, indicating that the model is statistically significant (p \< 0.05).
+
+- **Pseudo-R² (Cragg-Uhler) = 0.14**:
+
+  - The pseudo-R², similar to the R² in linear regression, but interpreted more loosely. Indicates that 14% of the variation in the outcome is explained by the model.
+
+- **Pseudo-R² (McFadden) = 0.08**:
+
+  - Another form of pseudo-R², typically smaller than Cragg-Uhler's.
+
+- **AIC = 470.52**:
+
+  - The Akaike Information Criterion, a measure of model fit that penalizes for complexity. Lower values indicate a better fit.
+
+- **BIC = 494.47**:
+
+  - The Bayesian Information Criterion, similar to AIC but with a stronger penalty for complexity.
+:::
+::::
+:::::::
+
+## Output: Coefficients
+
+::::::: columns
+:::: {.column width="50%" style="text-align: center; justify-content: center; align-items: center;"}
+::: {style="font-size: 65%;"}
+```{r, echo=FALSE, message=FALSE, warning=FALSE, out.width="50%", out.height="50%"}
+
+mydata$rank <- factor(mydata$rank)
+
+mylogit <- glm(admit ~ gre + gpa + rank, data = mydata, family = "binomial")
+
+summ(mylogit)
+
+# tab_model(mylogit, auto.label = FALSE, 
+#           # collapse.ci = TRUE,
+#           # dv.labels = c("additive_model", "interactive_model"),
+#           # pred.labels = c("Intercept", "Female", "Women's Movement Thermometer", "Women's Movement Thermometer X Female"), 
+#           show.ci = FALSE)
+
+```
+:::
+::::
+
+:::: {.column width="50%" style="text-align: center; justify-content: center; align-items: center;"}
+::: {style="font-size: 70%;"}
+- **Intercept (Est. = -3.99, p = 0.00)**:
+
+  - The log-odds of being admitted when all predictors are zero. The negative value indicates a low baseline probability of admission.
+
+- **GRE (Est. = 0.00, p = 0.04)**:
+
+  - The coefficient for GRE is positive and statistically significant (p \< 0.05), but the value is very close to zero. This means GRE has a very small positive effect on the log-odds of admission.
+
+- **GPA (Est. = 0.80, p = 0.02)**:
+
+  - A positive coefficient indicates that higher GPA increases the likelihood of admission. It is statistically significant (p \< 0.05).
+
+- **Rank 2 (Est. = -0.68, p = 0.03)**:
+
+  - Being in rank 2 (relative to rank 1) decreases the odds of admission. This is statistically significant.
+
+- **Rank 3 (Est. = -1.34, p = 0.00)**:
+
+  - A strong negative effect on the log-odds of admission for rank 3. It is statistically significant.
+
+- **Rank 4 (Est. = -1.55, p = 0.00)**:
+
+  - Being in rank 4 strongly reduces the chances of admission, statistically significant with a very low p-value.
+:::
+::::
+:::::::
+
+# From Log-Odds to Odds and Probabilities {background-color="#cfb991"}
+
+## From Log-Odds to Odds and Probabilities
+
+::: nonincremental
+- **Log-Odds (Linear Equation)**
+
+The log-odds (logit) from a logistic regression model can be written as:
+
+$$\text{Log-Odds}(Y = 1) = \beta_0 + \beta_1 \times X_1 + \beta_2 \times X_2 + \dots + \beta_k \times X_k$$
+
+Where:
+
+- $\beta_0$ is the intercept,
+
+- $\beta_1, \beta_2, \dots, \beta_k$ are the coefficients for predictors $X_1, X_2, \dots, X_k$.
+:::
+
+## From Log-Odds to Odds
+
+::: nonincremental
+- **Converting Log-Odds to Odds**
+
+To convert the log-odds to odds, use the exponential function:
+
+$$\text{Odds} = e^{\text{Log-Odds}} = e^{\beta_0 + \beta_1 X_1 + \dots + \beta_k X_k}$$
+
+The odds represent the ratio of the probability of the event happening to the probability of the event not happening.
+:::
+
+## From Log-Odds to Probabilities
+
+::: nonincremental
+- **Computing the Probability**
+
+To compute the probability from the log-odds, use the logistic function:
+
+$$P(Y = 1) = \frac{1}{1 + e^{-\text{Log-Odds}}}$$
+
+Or equivalently:
+
+$$P(Y = 1) = \frac{e^{\text{Log-Odds}}}{1 + e^{\text{Log-Odds}}}$$
+
+This formula converts the log-odds into a probability value between 0 and 1.
+:::
+
+## Interpretation of Results: Log-Odds
+
+:::::: columns
+:::: {.column width="50%" style="text-align: center; justify-content: center; align-items: center;"}
+::: {style="font-size: 65%;"}
+```{r, echo=FALSE, message=FALSE, warning=FALSE, out.width="50%", out.height="50%"}
+
+mydata$rank <- factor(mydata$rank)
+
+mylogit <- glm(admit ~ gre + gpa + rank, data = mydata, family = "binomial")
+
+summ(mylogit)
+
+# tab_model(mylogit, auto.label = FALSE, 
+#           # collapse.ci = TRUE,
+#           # dv.labels = c("additive_model", "interactive_model"),
+#           # pred.labels = c("Intercept", "Female", "Women's Movement Thermometer", "Women's Movement Thermometer X Female"), 
+#           show.ci = FALSE)
+
+```
+:::
+::::
+
+::: {.column width="50%" style="text-align: center; justify-content: center; align-items: center;"}
+- **GRE**: For a one-unit increase in `gre`, the log-odds of the dependent variable (`admit`) increase by 0.002;
+
+- **GPA**: For a one-unit increase in `gpa`, the log-odds of the DV increase by 0.804;
+
+- **Rank**: In the case of the variable `rank`, being a graduate of an institution with `rank`$=2$ changes the log-odds by $-0.675$ compared to an institution with `rank`$=1$.
+:::
+::::::
+
+<font size="3">**Source**: [How do I interpret Odds Ratios in Logistic Regression?](https://stats.oarc.ucla.edu/other/mult-pkg/faq/general/faq-how-do-i-interpret-odds-ratios-in-logistic-regression/)</font>
+
+## Interpretation of Results: Odds
+
+::::::: columns
+:::: {.column width="50%" style="text-align: center; justify-content: center; align-items: center;"}
+::: {style="font-size: 65%;"}
+```{r, echo=FALSE, message=FALSE, warning=FALSE, out.width="50%", out.height="50%"}
+
+mydata$rank <- factor(mydata$rank)
+
+mylogit <- glm(admit ~ gre + gpa + rank, data = mydata, family = "binomial")
+
+summ(mylogit)
+
+# tab_model(mylogit, auto.label = FALSE, 
+#           # collapse.ci = TRUE,
+#           # dv.labels = c("additive_model", "interactive_model"),
+#           # pred.labels = c("Intercept", "Female", "Women's Movement Thermometer", "Women's Movement Thermometer X Female"), 
+#           show.ci = FALSE)
+
+```
+:::
+::::
+
+:::: {.column width="50%" style="text-align: center; justify-content: center; align-items: center;"}
+::: {style="font-size: 70%;"}
+- **GRE**: For a one-unit increase in GRE, the odds of being admitted increase by a factor of:
+  $$e^{0.002} \approx 1.002$$
+  This means that for every additional point in GRE, the odds of admission increase by 0.2%.
+
+- **GPA**: For a one-unit increase in GPA, the odds of being admitted increase by a factor of:
+  $$e^{0.804} \approx 2.23$$
+  This means that for each additional GPA point, the odds of admission more than double (2.23 times higher).
+
+- **Rank (Rank 2)**: For being in Rank 2 compared to Rank 1, the odds of admission decrease by a factor of:
+  $$e^{-0.675} \approx 0.51$$
+  This means that students from Rank 2 institutions have approximately half the odds of being admitted compared to those from Rank 1 institutions.
+:::
+::::
+:::::::
+
+## Interpretation of Results: Probability
+
+::::::: columns
+:::: {.column width="50%" style="text-align: center; justify-content: center; align-items: center;"}
+::: {style="font-size: 65%;"}
+```{r, echo=FALSE, message=FALSE, warning=FALSE, out.width="50%", out.height="50%"}
+
+mydata$rank <- factor(mydata$rank)
+
+mylogit <- glm(admit ~ gre + gpa + rank, data = mydata, family = "binomial")
+
+summ(mylogit)
+
+# tab_model(mylogit, auto.label = FALSE, 
+#           # collapse.ci = TRUE,
+#           # dv.labels = c("additive_model", "interactive_model"),
+#           # pred.labels = c("Intercept", "Female", "Women's Movement Thermometer", "Women's Movement Thermometer X Female"), 
+#           show.ci = FALSE)
+
+```
+:::
+::::
+
+:::: {.column width="50%" style="text-align: center; justify-content: center; align-items: center;"}
+::: {style="font-size: 80%;"}
+To convert log-odds into probabilities:
+
+$$P(Y = 1) = \frac{1}{1 + e^{-(\text{log-odds})}}$$
+
+- **GRE**: The change in probability for a one-unit increase in GRE is minimal, given the very small log-odds coefficient (0.002). The probability increases slightly for each GRE point.
+
+- **GPA**: A one-unit increase in GPA substantially increases the probability of admission, as the log-odds increase by 0.804. This leads to a noticeable jump in the probability of being admitted.
+
+- **Rank (Rank 2)**: Being in Rank 2 compared to Rank 1 decreases the probability of admission due to the reduction in log-odds by 0.675. This results in a lower probability of being admitted for Rank 2 graduates.
+:::
+::::
+:::::::
+
+## Interpretation of Results: Predicted Probability
+
+$$ 
+p = \frac{\exp(\beta x)}{1 + \exp(\beta x)}$$
+
+```{r, echo=FALSE, message=FALSE, warning=FALSE, fig.align="center", fig.dim = c(6, 4)}
+
+newdata1 <- with(mydata, data.frame(gre = mean(gre), gpa = mean(gpa), rank = factor(1:4)))
+
+newdata1$rankP <- predict(mylogit, newdata = newdata1, type = "response")
+
+newdata2 <- with(mydata, data.frame(gre = rep(seq(from = 200, to = 800, length.out = 100),
+    4), gpa = mean(gpa), rank = factor(rep(1:4, each = 100))))
+
+newdata3 <- cbind(newdata2, predict(mylogit, newdata = newdata2, type = "link",
+    se = TRUE))
+
+newdata3 <- within(newdata3, {
+    PredictedProb <- plogis(fit)
+    LL <- plogis(fit - (1.96 * se.fit))
+    UL <- plogis(fit + (1.96 * se.fit))
+})
+
+ggplot(newdata3, aes(x = gre, y = PredictedProb)) + 
+  geom_ribbon(aes(ymin = LL,
+    ymax = UL, fill = rank), alpha = 0.2) + 
+  geom_line(aes(colour = rank),
+    size = 1)+
+  theme_pubr()
+
+```
+
+## Example Output: Conclusion
+
+<br>
+
+This model indicates that GPA, GRE, and rank significantly influence the likelihood of admission, with lower ranks (higher numerical values) significantly decreasing the chances of admission.
+
+## Additional Material
+
+- [Binomial Logistic Regression](https://stats.oarc.ucla.edu/r/dae/logit-regression/).
+- [How do I interpret Odds Ratios in Logistic Regression?](https://stats.oarc.ucla.edu/other/mult-pkg/faq/general/faq-how-do-i-interpret-odds-ratios-in-logistic-regression/).
+- [Multinomial Logistic Regression](https://stats.oarc.ucla.edu/r/dae/multinomial-logistic-regression/).
+- [Tutorial: Leveraging Labelled Data in R](https://www.pipinghotdata.com/posts/2020-12-23-leveraging-labelled-data-in-r/).
+- [UCLA: Data Analysis Examples](https://stats.oarc.ucla.edu/other/dae/).
+- [Introduction to Econometrics with R](https://www.econometrics-with-r.org/).
+- [Beyond Multiple Linear Regression: Applied Generalized Linear Models and Multilevel Models in R](https://bookdown.org/roback/bookdown-BeyondMLR/)
+
+# Summary {background-color="#cfb991"}
+
+## Summary
+
+:::: {style="font-size: 70%;"}
+::: nonincremental
+Some key takeaways from this session:
+
+- **When to Use Logistic Regression**: Use logistic regression when the dependent variable is binary (e.g., success/failure).
+
+- **Probabilistic Interpretation**: Models the probability of an event occurring based on predictor variables.
+
+- **Interpretation of Coefficients: Log-Odds**:
+
+  $$\ln\left(\frac{P(Y = 1)}{1 - P(Y = 1)}\right) = \beta_0 + \beta_1 X_1 + \ldots + \beta_p X_p$$
+
+  - Coefficients represent the change in log-odds for a one-unit increase in the predictor.
+
+- **Interpretation of Coefficients: Odds Ratio**:
+
+  $$\text{Odds Ratio} = e^{\beta_i}$$
+
+  - An odds ratio \> 1 indicates increased odds of the event occurring with a one-unit increase in $X_i$.
+
+  - An odds ratio \< 1 indicates decreased odds.
+:::
+::::
+
+## Summary
+
+::: nonincremental
+Some key takeaways from this session:
+
+- **Log-Odds to Odds**:
+
+  $$\text{Odds} = e^{\text{Log-Odds}}$$
+
+- **Odds to Probability**:
+
+  $$P(Y = 1) = \frac{\text{Odds}}{1 + \text{Odds}}$$
+
+- **Direct Conversion**:
+
+  $$P(Y = 1) = \frac{e^{\beta_0 + \beta_1 X_1 + \ldots + \beta_p X_p}}{1 + e^{\beta_0 + \beta_1 X_1 + \ldots + \beta_p X_p}}$$
+:::
+
+## Summary
+
+:::: {style="font-size: 70%;"}
+::: nonincremental
+Some key takeaways from this session:
+
+- **Maximum Likelihood Estimation (MLE)**: Estimates the parameters that maximize the likelihood of observing the given data.
+
+- **Model Assessment: AIC (Akaike Information Criterion) and BIC (Bayesian Information Criterion)**: Lower values indicate a better balance between model fit and complexity.
+
+- The logistic function ensures predicted probabilities are between 0 and 1.
+
+- Coefficients can be interpreted in terms of log-odds and odds ratios.
+
+- Model fit and predictor significance can be evaluated using pseudo R-squared, AIC, BIC, and statistical tests.
+
+- Understanding how to convert between log-odds, odds, and probabilities is crucial for interpretation.
+:::
+::::
+
+# Thank you! {background-color="#cfb991"}

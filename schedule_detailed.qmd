@@ -1,0 +1,15 @@
+---
+title: "Detailed Schedule"
+author: "Davi Moreira"
+editor: visual
+---
+
+<br>
+
+<center>
+
+*Placeholder — a session-by-session detailed schedule will be developed during the course redesign.*
+
+*For the current draft timeline, see the [Schedule](schedule.qmd) page.*
+
+</center>

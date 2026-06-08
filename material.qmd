@@ -1,0 +1,64 @@
+---
+title: "Materials"
+author: "Davi Moreira"
+# title: "Materials: QM 6700: Business Analytics"
+# subtitle: "Mitch. Daniels School of Business, Purdue University"
+---
+
+```{=html}
+<style>
+  .overflow-table {
+    font-size: 0.85rem; /* Smaller font for compact display */
+    width: 100%; /* Ensure the table fits within page width */
+    table-layout: fixed; /* Fix column widths */
+    line-height: 1.2; /* Tighter line spacing */
+  }
+  .overflow-table th, .overflow-table td {
+    padding: 0.3rem; /* Reduce padding for compact layout */
+    text-align: left; /* Left-align for readability */
+    word-wrap: break-word; /* Wrap long text within cells */
+    vertical-align: top; /* Align cell content to the top */
+  }
+  .overflow-table th:nth-child(1), .overflow-table td:nth-child(1) {
+    width: 20%; /* Increase width of the first column */
+  }
+  .overflow-table th:nth-child(3), .overflow-table td:nth-child(3) {
+    width: 8%; /* Increase width of the first column */
+  }
+  .below-table {
+    font-size: 0.85rem; /* Match the font size of the table */
+    line-height: 1.2; /* Match line height */
+    margin-top: 1rem; /* Add spacing above the text */
+  }
+</style>
+```
+
+<center>
+
+*DRAFT — slide decks carried over from previous editions and stubs created for new topics. Content will be revised for QM 6700 during the course redesign.*
+
+</center>
+
+<br>
+
+::: overflow-table
+| Topic | Book Chapter\* | Slides | Data | Supplementary Materials |
+|---------|---------|-----------------|---------|---------------------------------|
+| **Descriptive Statistics 01** | 1 | [slides](/lecture_slides/01_chapter_data_statistics/01_chapter_data_statistics.html){target="_blank"} | . | . |
+| **Descriptive Statistics 02** | 3 | [slides](/lecture_slides/03_chapter_descriptive_statistics/03_chapter_descriptive_statistics.html){target="_blank"} | . | . |
+| **Probability** | 4 | [slides](/lecture_slides/04_chapter_probability/04_chapter_probability.html){target="_blank"} *(stub)* | . | . |
+| **Decision Analysis** | 20 | [slides](/lecture_slides/20_chapter_decision_analysis/20_chapter_decision_analysis.html){target="_blank"} | . | . |
+| **Discrete Probability Distributions** | 5 | [slides](/lecture_slides/05_chapter_discrete_probability_distributions/05_chapter_discrete_probability_distributions.html){target="_blank"} *(stub)* | . | . |
+| **Continuous Probability Distributions** | 6 | [slides](/lecture_slides/06_chapter_continuous_probability_distributions/06_chapter_continuous_probability_distributions.html){target="_blank"} | . | . |
+| **Sampling Distributions & Interval Estimation** | 7, 8 | [slides](/lecture_slides/08_chapter_interval_estimation/08_chapter_interval_estimation.html){target="_blank"} | . | . |
+| **Hypothesis Testing I** | 9 | [slides](/lecture_slides/09_chapter_hypothesis_tests/09_chapter_hypothesis_tests.html){target="_blank"} | . | . |
+| **Hypothesis Testing II — Two Populations** | 10 | [slides](/lecture_slides/10_chapter_hypothesis_tests_two_populations/10_chapter_hypothesis_tests_two_populations.html){target="_blank"} *(stub)* | . | . |
+| **Simple Regression** | 14 | [slides](/lecture_slides/14_chapter_simple_regression/14_chapter_simple_regression.html){target="_blank"} | . | . |
+| **Multiple Regression** | 15 | [slides](/lecture_slides/15_chapter_multiple_regression/15_chapter_multiple_regression.html){target="_blank"} | . | . |
+:::
+
+::: below-table
+\* Chapter numbers refer to the course textbook (to be confirmed during the redesign).
+
+Slide decks were adapted from the textbook and previous course editions. *(stub)* marks decks newly created for QM 6700 whose content is still to be developed. Additional decks from earlier editions (population-variance inference, ANOVA, model building, logistic regression, time series, quality control) are parked in `lecture_slides/_parked/` and can be reintroduced if the scope expands.
+:::

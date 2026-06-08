@@ -1,0 +1,776 @@
+---
+title: "<span style = 'font-size: 100%;'> QM 6700: Business Analytics </span>"
+subtitle: "<span style = 'font-size: 150%;'> Basic Stat. & Prob. Rvw. 02 </span>"
+author: "Professor<br>Davi Moreira<br>"
+# date: "2024-08-01"
+# date-format: "MMMM DD, YYYY"
+format:
+  revealjs: 
+    transition: slide
+    background-transition: fade
+    width: 1600
+    height: 900
+    center: true
+    slide-number: true
+    incremental: true
+    chalkboard: 
+      buttons: false
+    preview-links: auto
+    #logo: images/quarto.png
+    footer: "Business Analytics"
+    theme: [simple,custom.scss]
+html-math-method:
+  method: mathjax
+  url: "https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"
+---
+
+## Overview
+
+:::::: nonincremental
+::::: columns
+::: {.column width="40%" style="text-align: center; justify-content: center; align-items: center;"}
+- Descriptive Statistics
+
+- Measures of Central Location and Variability
+
+- Distribution Shape
+
+  - Skewness
+  - Symmetry
+
+- Relative Location and z-Scores
+
+  - Calculation and Interpretation
+  - Examples
+
+- Empirical Rule
+
+  - 68-95-99.7 Rule
+  - Detecting Outliers
+:::
+
+::: {.column width="60%" style="text-align: center; justify-content: center; align-items: center;"}
+- Five-Number Summaries and Boxplots
+
+- Measures of Association Between Two Variables
+
+  - Covariance
+  - Correlation
+:::
+:::::
+::::::
+
+# Descriptive Statistics {background-color="#cfb991"}
+
+# Measures of Central Location and Variability {background-color="#cfb991"}
+
+## Central Location {.smaller}
+
+| **Statistic** | **Definition** | **Formula** |
+|------------------------|------------------------|------------------------|
+| **Mean** | The average of all values of a variable | $\bar{x} = \frac{\sum_{i=1}^{n} x_i}{n}$ |
+| **Mode** | The most frequently occurring value |  |
+| **k**<sup>th</sup> Percentile | Roughly k% of the data is at or below this value |  |
+| **Quartile** | The first, second, and third quartiles are 25<sup>th</sup>, 50<sup>th</sup>, and 75<sup>th</sup> percentiles | $Q1, Q2, Q3$ |
+| **Median** | The "middle" observation when the data are listed from smallest to largest | $Q2$ |
+| **Maximum** | The largest value |  |
+| **Minimum** | The smallest value |  |
+| **Midrange** | The middle of the maximum and minimum | $\frac{Max + Min}{2}$ |
+| **Midhinge** | The middle of the first and third quartiles | $\frac{Q3 + Q1}{2}$ |
+
+## Variability (Sampling Variation)
+
+- **Sample Variance**: "Average" squared deviation of observations from the mean of all observations ($n-1$ is called the **degrees of freedom, df**):
+
+  $$S^2 = \frac{\sum (x_i - \bar{x})^2}{n - 1}$$
+
+  - Why do we compute the sample variance using $n-1$ instead of $n$?
+  - To not underestimate the True Population Variance $\sigma^2$
+  - What is an unbiased estimator? [Video](https://www.youtube.com/watch?v=xJlwSkyeP0k)
+  - [Video](https://www.khanacademy.org/math/ap-statistics/summarizing-quantitative-data-ap/more-standard-deviation/v/review-and-intuition-why-we-divide-by-n-1-for-the-unbiased-sample-variance) and [Simulation](https://www.khanacademy.org/computer-programming/unbiased-variance-visualization/1167453164)
+
+- **Sample Standard Deviation**:
+
+  $$S = \sqrt{S^2}$$
+
+- **Range** = Maximum – Minimum.
+
+- **Interquartile Range (IQR)** = 3rd Quartile – 1st Quartile\
+  (Range of the middle 50% of data.)
+
+# Distribution Shape
+
+## Distribution Shape: Skewness
+
+- An important measure of the shape of a distribution is called [**skewness**](https://en.wikipedia.org/wiki/Skewness).
+
+- The formula for the skewness of sample data is:
+
+  $$\text{Skewness} = \frac{n}{(n - 1)(n - 2)} \sum \left(\frac{x_i - \bar{x}}{s}\right)^3$$
+
+- Skewness can be easily computed using statistical software.
+
+## Distribution Shape: Skewness
+
+::::: columns
+::: {.column width="40%" style="text-align: center; justify-content: center; align-items: center;"}
+```{r  echo=FALSE, out.width = "80%",fig.align="center"}
+knitr::include_graphics("figs/01_skewness.png") 
+```
+
+<br>
+:::
+
+::: {.column width="60%" style="text-align: center; justify-content: center; align-items: center;"}
+<br> <br>
+
+- Symmetric (not skewed)
+
+  - Skewness is zero.
+  - Mean and median are equal.
+:::
+:::::
+
+## Distribution Shape: Skewness
+
+::::: columns
+::: {.column width="40%" style="text-align: center; justify-content: center; align-items: center;"}
+```{r  echo=FALSE, out.width = "80%",fig.align="center"}
+knitr::include_graphics("figs/02_skewness.png") 
+```
+
+<br>
+:::
+
+::: {.column width="60%" style="text-align: center; justify-content: center; align-items: center;"}
+<br> <br>
+
+- Moderately Skewed Left
+
+  - Skewness is negative.
+  - Mean will usually be less than the median.
+:::
+:::::
+
+## Distribution Shape: Skewness
+
+::::: columns
+::: {.column width="40%" style="text-align: center; justify-content: center; align-items: center;"}
+```{r  echo=FALSE, out.width = "80%",fig.align="center"}
+knitr::include_graphics("figs/03_skewness.png") 
+```
+
+<br>
+:::
+
+::: {.column width="60%" style="text-align: center; justify-content: center; align-items: center;"}
+<br> <br>
+
+- Moderately Skewed Right
+
+  - Skewness is positive.
+  - Mean will usually be more than the median.
+:::
+:::::
+
+## Distribution Shape: Skewness
+
+::::: columns
+::: {.column width="40%" style="text-align: center; justify-content: center; align-items: center;"}
+```{r  echo=FALSE, out.width = "80%",fig.align="center"}
+knitr::include_graphics("figs/04_skewness.png") 
+```
+
+<br>
+:::
+
+::: {.column width="60%" style="text-align: center; justify-content: center; align-items: center;"}
+<br> <br>
+
+- Highly Skewed Right
+
+  - Skewness is positive (often above 1.0).
+  - Mean will usually be more than the median.
+:::
+:::::
+
+# Relative Location - z-Scores {background-color="#cfb991"}
+
+## z-Scores
+
+- The [**z-score**](https://en.wikipedia.org/wiki/Standard_score) is often called the standardized value.
+
+- It describes the relative location of a data value relative to the mean.
+
+- It denotes the number of standard deviations a data value $x_i$ is from the mean.
+
+  $$Z_i = \frac{x_i - \bar{x}}{s}$$
+
+- `=STANDARDIZE(x, mean, standard deviation)`
+
+## z-Scores
+
+- An observation’s z-score is a measure of the relative location of the observation in a data set.
+- A data value less than the sample mean will have a z-score less than zero.
+- A data value greater than the sample mean will have a z-score greater than zero.
+- A data value equal to the sample mean will have a z-score of zero.
+
+## z-Scores
+
+<br>
+
+**Example:** `class_size_data.xlsx`
+
+$$Z_i = \frac{x_i - \bar{x}}{s}$$
+
+| Number of students in class | Deviation about the Mean | Z score |
+|----|----|----|
+| 46 | 2 | $\frac{2}{8} = 0.25$ |
+| 54 | 10 | $\frac{10}{8} = 1.25$ |
+| 42 | -2 | $\frac{-2}{8} = -0.25$ |
+| 46 | 2 | $\frac{2}{8} = 0.25$ |
+| 32 | -12 | $\frac{-12}{8} = -1.5$ |
+
+<br>
+
+::: aside
+**Note:** $\bar{x} = 44$ and $s = 8$ for the given data.
+:::
+
+# z-Scores - Example
+
+<br> <br>
+
+```{r  echo=FALSE, out.width = "80%",fig.align="center"}
+knitr::include_graphics("figs/zscore_excel.png") 
+```
+
+<br>
+
+<center>
+
+- `=STANDARDIZE(x, mean, standard deviation)`
+
+</center>
+
+# Empirical Rule - 68-95-99.7 Rule {background-color="#cfb991"}
+
+## Empirical Rule - 68-95-99.7 Rule
+
+<br>
+
+::::: columns
+::: {.column width="40%" style="text-align: center; justify-content: center; align-items: center;"}
+```{r  echo=FALSE, out.width = "80%",fig.align="center"}
+knitr::include_graphics("figs/empirical_rule.png")
+```
+:::
+
+::: {.column width="60%" style="text-align: center; justify-content: center; align-items: center;"}
+- When the data are believed to approximate a bell-shaped (normal) distribution:
+
+  - The empirical rule can be used to determine the percentage of data values that must be within a specified number of standard deviations of the mean.
+:::
+:::::
+
+## Empirical Rule - 68-95-99.7 Rule
+
+<br>
+
+::::: columns
+::: {.column width="40%" style="text-align: center; justify-content: center; align-items: center;"}
+```{r  echo=FALSE, out.width = "80%",fig.align="center"}
+knitr::include_graphics("figs/empirical_rule.png")
+```
+:::
+
+::: {.column width="60%" style="text-align: center; justify-content: center; align-items: center;"}
+- For nearly normally distributed data,
+
+  - about 68% falls within 1 SD of the mean,
+  - about 95% falls within 2 SD of the mean,
+  - about 99.7% falls within 3 SD of the mean.
+
+- It is possible for observations to fall 4, 5, or more standard deviations away from the mean, but these occurrences are very rare if the data are nearly normal.
+:::
+:::::
+
+## Empirical Rule - 68-95-99.7 Rule - Example
+
+<br>
+
+::::: columns
+::: {.column width="40%" style="text-align: center; justify-content: center; align-items: center;"}
+```{r  echo=FALSE, out.width = "80%",fig.align="center"}
+knitr::include_graphics("figs/empirical_rule.png")
+```
+:::
+
+::: {.column width="60%" style="text-align: center; justify-content: center; align-items: center;"}
+- SAT scores are distributed nearly normally with mean 1500 and standard deviation 300.
+
+  - \~68% of students score between 1200 and 1800 on the SAT.
+  - \~95% of students score between 900 and 2100 on the SAT.
+  - \~\$99.7% of students score between 600 and 2400 on the SAT.
+:::
+:::::
+
+# Detecting Outliers {background-color="#cfb991"}
+
+## Detecting Outliers
+
+- An outlier is an unusually small or unusually large value in a data set.
+
+- A data value with a z-score less than −3 or greater than +3 might be considered an outlier.
+
+- It might be:
+
+  - an incorrectly recorded data value
+  - a data value that was incorrectly included in the data set
+  - a correctly recorded unusual data value that belongs in the data set
+
+## Detecting Outliers - Example
+
+**Example:** `class_size_data.xlsx`
+
+$$Z_i = \frac{x_i - \bar{x}}{s}$$
+
+| Number of students in class | Deviation about the Mean | Z score |
+|----|----|----|
+| 46 | 2 | $\frac{2}{8} = 0.25$ |
+| 54 | 10 | $\frac{10}{8} = 1.25$ |
+| 42 | -2 | $\frac{-2}{8} = -0.25$ |
+| 46 | 2 | $\frac{2}{8} = 0.25$ |
+| 32 | -12 | $\frac{-12}{8} = -1.5$ |
+
+- **Note:** $-1.5$ shows the fifth class size is farthest from the mean.
+- No outliers are present as the z values are within the $\pm 3$ guideline.
+
+# Five-Number Summaries and Boxplots {background-color="#cfb991"}
+
+## Five-Number Summaries
+
+<br>
+
+- Smallest Value
+
+- First Quartile (25th percentile)
+
+- Median (50th percentile)
+
+- Third Quartile (75th percentile)
+
+- Largest Value
+
+:::: aside
+::: fragment
+**Note:** $k-th$ percentile = `percentile.EXC(Data Array, k)`, where 0 ≤ k ≤ 1.
+:::
+::::
+
+## Five-Number Summaries - Example
+
+**Example:** Monthly starting salary
+
+::::: columns
+::: {.column width="40%" style="text-align: center; justify-content: center; align-items: center;"}
+| Monthly Starting Salary (\$) |
+|------------------------------|
+| 5,710                        |
+| 5,755                        |
+| 5,850                        |
+| 5,880                        |
+| 5,890                        |
+| 5,920                        |
+| 5,940                        |
+| 5,950                        |
+| 6,050                        |
+| 6,130                        |
+| 6,325                        |
+
+<br>
+:::
+
+::: {.column width="60%" style="text-align: center; justify-content: center; align-items: center;"}
+<br> <br>
+
+- **Lowest Value** = 5,710
+- **Third Quartile** = 6,025
+- **Median** = 5,905
+- **First Quartile** = 5,857.5
+- **Largest Value** = 6,325
+:::
+:::::
+
+## Boxplot
+
+<br>
+
+:::::: columns
+:::: {.column width="40%" style="text-align: center; justify-content: center; align-items: center;"}
+```{r  echo=FALSE, out.width = "80%",fig.align="center"}
+knitr::include_graphics("figs/boxplot_michelsonmorley.png")
+```
+
+::: {style="font-size: 70%;"}
+<center>[Michelson–Morley experiment - Wiki](https://en.wikipedia.org/wiki/Michelson%E2%80%93Morley_experiment#Michelson_experiment_(1881))</center>
+:::
+::::
+
+::: {.column width="60%" style="text-align: center; justify-content: center; align-items: center;"}
+- A [**boxplot**](https://en.wikipedia.org/wiki/Box_plot) is a graphical summary of data that is based on a five-number summary.
+
+- A key to the development of a boxplot is the computation of the median and the quartiles, $Q_1$ and $Q_3$.
+
+- Boxplots provide another way to identify outliers.
+:::
+::::::
+
+## Boxplot
+
+**Example:** `monthly_starting_salary.xlsx`
+
+<br>
+
+```{r  echo=FALSE, out.width = "70%",fig.align="center"}
+knitr::include_graphics("figs/boxplot.png")
+```
+
+<br>
+
+- A box is drawn with its ends located at the first and third quartiles.
+- A vertical line is drawn in the box at the location of the median (second quartile).
+
+<br>
+
+## Boxplot
+
+<br>
+
+- Limits are located using the interquartile range (IQR).
+- Data outside these limits are considered outliers.
+- The locations of each outlier are shown with the symbol.
+- The limits are not shown in a Boxplot.
+
+## Boxplot
+
+::: {style="font-size: 80%;"}
+**Example:** `monthly_starting_salary.xlsx`
+:::
+
+<br>
+
+```{r  echo=FALSE, out.width = "70%",fig.align="center"}
+knitr::include_graphics("figs/boxplot.png")
+```
+
+<br>
+
+::: {style="font-size: 80%;"}
+- The lower limit is located 1.5(IQR) below $Q_1$.
+
+  - Lower Limit: $Q_1 - 1.5(\text{IQR}) = 5,857.5 - 1.5(167.5) = 5,606.25$
+
+- The upper limit is located 1.5(IQR) above $Q_3$.
+
+  - Upper Limit: $Q_3 + 1.5(\text{IQR}) = 6,025 + 1.5(167.5) = 6,276.25$
+
+- There is one outlier: 6,325.
+:::
+
+## Boxplot
+
+<br>
+
+<center>**Distribution and Boxplot**</center>
+
+<br>
+
+```{r  echo=FALSE, out.width = "70%",fig.align="center"}
+knitr::include_graphics("figs/boxplot_distribution.png")
+```
+
+<br>
+
+# Measures of Association Between Two Variables {background-color="#cfb991"}
+
+## Covariance
+
+<br>
+
+```{r  echo=FALSE, out.width = "50%",fig.align="center"}
+knitr::include_graphics("figs/scatter_plot.png")
+```
+
+<br>
+
+- The covariance is a measure of the linear association between two variables.
+- Positive values indicate a positive relationship.
+- Negative values indicate a negative relationship.
+
+<br>
+
+<br>
+
+## Covariance
+
+<br>
+
+- The covariance is computed as follows:
+
+  **For population:**
+
+  $$\sigma_{xy} = \frac{\sum (x_i - \mu_x)(y_i - \mu_y)}{N}$$
+
+  **For samples:**
+
+  $$s_{xy} = \frac{\sum (x_i - \bar{x})(y_i - \bar{y})}{n - 1}$$
+
+- **EXCEL for Sample covariance:** `=COVARIANCE.S(array1, array2)`
+
+## Correlation Coefficient
+
+<br>
+
+```{r  echo=FALSE, out.width = "50%",fig.align="center"}
+knitr::include_graphics("figs/xkcd.png")
+```
+
+<br>
+
+- Correlation is a unit-free measure of linear association and not necessarily causation.
+
+<br>
+
+<br>
+
+<br>
+
+## Correlation Coefficient
+
+<br>
+
+```{r  echo=FALSE, out.width = "30%",fig.align="center"}
+knitr::include_graphics("figs/spurious_correlations.png")
+```
+
+<center>[Spurious Correlations!](https://www.tylervigen.com/spurious-correlations)</center>
+
+<br>
+
+- Just because two variables are highly correlated, it does not mean that one variable is the cause of the other.
+
+<br> <br> <br>
+
+## Correlation Coefficient
+
+- The correlation coefficient is computed as follows:
+
+  **For population:**
+
+  $$\rho_{xy} = \frac{\sigma_{xy}}{\sigma_x \sigma_y}$$
+
+  **For samples:**
+
+  $$r_{xy} = \frac{s_{xy}}{s_x s_y}$$
+
+- **EXCEL:** `=correl(array1, array2)`
+
+## Correlation Coefficient
+
+<br>
+
+- The coefficient can take on values between −1 and +1.
+
+  - Values near −1 indicate a strong negative linear relationship.
+  - Values near +1 indicate a strong positive linear relationship.
+
+- The closer the correlation is to zero, the weaker the relationship.
+
+<br>
+
+<center>
+
+::: fragment
+[Guess the correlation!](https://www.guessthecorrelation.com/)
+:::
+
+</center>
+
+## Correlation Coefficient
+
+<br>
+
+```{r  echo=FALSE, out.width = "40%",fig.align="center"}
+knitr::include_graphics("figs/correlation_estimates.png")
+```
+
+**Rules of thumb:**
+
+- ( 0.0 \< \|r\| \< 0.3 ) — *weak correlation*
+- ( 0.3 \< \|r\| \< 0.7 ) — *moderate correlation*
+- ( 0.7 \< \|r\| \< 1.0 ) — *strong correlation*
+
+<br>
+
+## Correlation Coefficient
+
+<br>
+
+```{r  echo=FALSE, out.width = "80%",fig.align="center"}
+knitr::include_graphics("figs/correlation_linear.png")
+```
+
+<br>
+
+::::: nonincremental
+:::: fragment
+::: {style="font-size: 70%;"}
+- The correlation reflects the strength and direction of a linear relationship (top row)
+- The correlation does not reflect the slope of that relationship (middle)
+- Nor many aspects of nonlinear relationships (bottom).
+- N.B.: the figure in the center has a slope of 0 but in that case the correlation coefficient is undefined because the variance of Y is zero.
+
+<center>[Wiki](https://en.wikipedia.org/wiki/Pearson_correlation_coefficient)</center>
+:::
+::::
+:::::
+
+<br>
+
+## Covariance and Correlation Coefficient - Example
+
+<br>
+
+::: {style="font-size: 80%;"}
+**Example:** `san_francisco_electronics_store.xlsx`
+:::
+
+<br>
+
+::::: columns
+::: {.column width="40%" style="text-align: center; justify-content: center; align-items: center;"}
+| Week | Number of Commercials | Sales (\$100s) |
+|------|-----------------------|----------------|
+| 1    | 2                     | 50             |
+| 2    | 5                     | 57             |
+| 3    | 1                     | 41             |
+| 4    | 3                     | 54             |
+| 5    | 4                     | 54             |
+| 6    | 1                     | 38             |
+| 7    | 5                     | 63             |
+| 8    | 3                     | 48             |
+| 9    | 4                     | 59             |
+| 10   | 2                     | 46             |
+:::
+
+::: {.column width="60%" style="text-align: center; justify-content: center; align-items: center;"}
+<br>
+
+<br>
+
+<br>
+
+- The store’s manager wants to determine the relationship between the number of weekend television commercials shown and the sales at the store during the following week.
+:::
+:::::
+
+## Covariance and Correlation Coefficient - Example
+
+<br>
+
+::: {style="font-size: 80%;"}
+**Example:** `san_francisco_electronics_store.xlsx`
+:::
+
+<br>
+
+::::: columns
+::: {.column width="40%" style="text-align: center; justify-content: center; align-items: center;"}
+| $x_i$ | $y_i$ | $x_i - \bar{x}$ | $y_i - \bar{y}$ | $(x_i - \bar{x})(y_i - \bar{y})$ |
+|:-------------:|:-------------:|:-------------:|:-------------:|:-------------:|
+| 2 | 50 | -1 | -1 | 1 |
+| 5 | 57 | 2 | 6 | 12 |
+| 1 | 41 | -2 | -10 | 20 |
+| 3 | 54 | 0 | 3 | 0 |
+| 4 | 54 | 1 | 3 | 3 |
+| 1 | 38 | -2 | -13 | 26 |
+| 5 | 63 | 2 | 12 | 24 |
+| 3 | 48 | 0 | -3 | 0 |
+| 4 | 59 | 1 | 8 | 8 |
+| 2 | 46 | -1 | -5 | 5 |
+| **Totals** | **30** | **510** | **0** | **99** |
+:::
+
+::: {.column width="60%" style="text-align: center; justify-content: center; align-items: center;"}
+<br>
+
+<br>
+
+<br>
+
+$$s_{xy} = \frac{\sum (x_i - \bar{x})(y_i - \bar{y})}{n - 1} = \frac{99}{10 - 1} = 11$$
+:::
+:::::
+
+## Covariance and Correlation Coefficient - Example
+
+<br>
+
+::: {style="font-size: 80%;"}
+**Example:** `san_francisco_electronics_store.xlsx`
+:::
+
+<br>
+
+**Sample Covariance**
+
+$$s_{xy} = \frac{\sum (x_i - \bar{x})(y_i - \bar{y})}{n - 1} = \frac{99}{10 - 1} = 11$$
+
+**Sample Correlation Coefficient**
+
+$$r_{xy} = \frac{s_{xy}}{s_x s_y} = \frac{11}{1.49 \times 7.93} = 0.93$$
+
+## Correlation Coefficient
+
+<br>
+
+$$r_{xy} = \frac{s_{xy}}{s_x s_y} = \frac{1}{n-1} \sum \left(\frac{x_i - \bar{x}}{s_x}\right) \left(\frac{y_i - \bar{y}}{s_y}\right)$$
+<br>
+
+- Correlation is a unit-free measure of linear relationship.
+- Correlation is unchanged if one or both variables are linearly transformed.
+
+# Using Excel to Compute Covariance and Correlation coefficient
+
+## Using Excel to Compute Covariance and Correlation coefficient
+
+Example: San Francisco Electronics Store
+
+Excel Formula and Value Worksheets
+
+```{r  echo=FALSE, out.width = "80%",fig.align="center"}
+knitr::include_graphics("figs/covariance_excel.png")
+```
+
+# Summary {background-color="#cfb991"}
+
+## Summary
+
+::: nonincremental
+Some key takeaways from this session:
+
+- **Descriptive Statistics**: help us to understand the data we have.
+
+- **Measures of Central Location and Variability**: Central location and variability metrics help us to summarize the data.
+
+- **Distribution Shape**: skewness can be used to understand the shape of a distribution.
+
+- **Relative Location and z-Scores**: z-scores to determine the relative position of data points within a distribution.
+
+- **Empirical Rule**: The 68-95-99.7 Rule for understanding data distribution in relation to the mean and standard deviation. Good for symetric distrubutions!
+
+- **Covariance and Correlation**: to understand the relationship between two numerical variables.
+:::
+
+# Thank you! {background-color="#cfb991"}

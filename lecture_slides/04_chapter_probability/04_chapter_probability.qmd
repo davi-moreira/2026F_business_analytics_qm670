@@ -1,0 +1,56 @@
+---
+title: "<span style = 'font-size: 100%;'> QM 6700: Business Analytics </span>"
+subtitle: "<span style = 'font-size: 150%;'> Probability </span>"
+author: "Professor<br>Davi Moreira<br>"
+# date: "2026-08-28"
+# date-format: "MMMM DD, YYYY"
+format:
+  revealjs:
+    transition: slide
+    background-transition: fade
+    width: 1600
+    height: 900
+    center: true
+    slide-number: true
+    incremental: true
+    chalkboard:
+      buttons: false
+    preview-links: auto
+    #logo: images/quarto.png
+    footer: "Business Analytics"
+    theme: [simple,custom.scss]
+html-math-method:
+  method: mathjax
+  url: "https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"
+---
+
+## Overview
+
+:::::: nonincremental
+::::: columns
+::: {.column width="50%" style="text-align: center; justify-content: center; align-items: center;"}
+- Experiments, Sample Spaces, and Events
+
+- Assigning Probabilities
+
+- Events and Their Probabilities
+
+- Some Basic Relationships of Probability
+  - Complement, Addition, Conditional, Multiplication
+:::
+
+::: {.column width="50%" style="text-align: center; justify-content: center; align-items: center;"}
+- Conditional Probability and Independence
+
+- Bayes' Theorem
+
+- *(TBD — content to be developed for QM 6700)*
+:::
+:::::
+::::::
+
+# Section placeholder {background-color="#2C3E50"}
+
+## TBD
+
+Content to be developed.

@@ -1,0 +1,687 @@
+---
+title: "<span style = 'font-size: 100%;'> QM 6700: Business Analytics </span>"
+subtitle: "<span style = 'font-size: 150%;'> Intro. & Basic Stat. & Prob. Rvw. 01 </span>"
+author: "Professor: Davi Moreira"
+#date: "2024-08-01"
+#date-format: "MMMM DD, YYYY"
+format:
+  revealjs: 
+    transition: slide
+    background-transition: fade
+    width: 1600
+    height: 900
+    center: true
+    slide-number: true
+    incremental: true
+    chalkboard: 
+      buttons: false
+    preview-links: auto
+    #logo: images/quarto.png
+    footer: "Business Analytics"
+    theme: [simple,custom.scss]
+html-math-method:
+  method: mathjax
+  url: "https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"
+---
+
+# Welcome! {background-color="#cfb991"}
+
+## Overview
+
+:::::: nonincremental
+::::: columns
+::: {.column width="40%" style="text-align: center; justify-content: center; align-items: center;"}
+-   Introductions
+-   Course Overview and Logistics
+-   Motivation
+-   Course Objectives
+    -   Understand basic statistical concepts
+    -   Apply statistical methods to business problems
+:::
+
+::: {.column width="60%" style="text-align: center; justify-content: center; align-items: center;"}
+-   Key Topics
+    -   Descriptive Statistics
+    -   Inferential Statistics
+    -   `Excel4stats`
+:::
+:::::
+::::::
+
+# Introductions
+
+## Instructor
+
+::::: columns
+::: {.column width="40%" style="text-align: center; justify-content: center; align-items: center;"}
+```{r  echo=FALSE, out.width = "60%",fig.align="center"}
+knitr::include_graphics("figs/davi_moreira_photo.JPG") 
+```
+
+[dcordeir\@purdue.edu](dcordeir@purdue.edu)
+
+<https://davi-moreira.github.io/>
+:::
+
+::: {.column width="60%" style="text-align: center; justify-content: center; align-items: center;"}
+-   Clinical Assistant Professor in the Management Department at Purdue University;
+
+<br>
+
+-   My academic work addresses Political Communication, Data Science, Text as Data, Artificial Intelligence, and Comparative Politics.
+
+<br>
+
+-   [M&E Specialist consultant - World Bank (Brazil, Mozambique, Angola, and DRC)](https://blogs.worldbank.org/opendata/improving-how-we-measure-progress-community-biodiversity-conservation-projects-mozambique)
+:::
+:::::
+
+## Instructor's Passions
+
+```{r  echo=FALSE, out.width = "15%", fig.align="center"}
+knitr::include_graphics("figs/palmeiras_logo.png") 
+```
+
+```{r  echo=FALSE, out.width = "40%", fig.align="center"}
+knitr::include_graphics("figs/palmeiras_stadium.jpg") 
+```
+
+<center>
+
+::: {style="font-size: 80%;"}
+[The Most Exciting Game in History - Video](https://www.youtube.com/watch?v=FCebgeX_3hI&t=89s)
+:::
+
+</center>
+
+<br>
+
+<br>
+
+## Instructor's Passions
+
+```{r  echo=FALSE, out.width = "25%", fig.align="center"}
+knitr::include_graphics("figs/carnaval_olinda.jpg") 
+```
+
+<center>[NYT - How John Travolta Became the Star of Carnival](https://www.nytimes.com/2024/02/13/world/americas/brazil-carnival-john-travolta.html)[-Video.](https://www.nytimes.com/video/world/americas/100000009311331/the-star-of-this-carnival-is-a-giant-john-travolta-puppet.html?auth=login-google1tap&login=google1tap)</center>
+
+<br>
+
+## Students
+
+<br>
+
+- It is your turn! - 5 minutes
+
+<br>
+
+- Introduce yourself to the colleague on your left or right. Then ask them to rate, on a scale from 1 (not at all) to 5 (a lot), how much they like statistics.
+
+
+# Course Overview and Logistics {background-color="#cfb991"}
+
+## Course Overview and Logistics
+
+-   **Materials**:
+
+    -   Brightspace
+
+    -   [Course Webpage](https://davi-moreira.github.io/2026F_business_analytics_qm670){target="_blank"}
+
+-   **Syllabus**
+
+-   **Slides**
+
+-   **Podcast**
+
+-   **Videos**
+
+-   **Supplementary Material**
+
+-   **Schedule**
+
+# Business Analytics {background-color="#cfb991"}
+
+# Text Book
+
+<br>
+
+```{r  echo=FALSE, out.width = "50%",fig.align="center"}
+knitr::include_graphics("figs/mbs_book.png") 
+```
+
+# Survey {background-color="#cfb991"}
+
+## Survey {background-color="#cfb991"}
+
+```{r  echo=FALSE, out.width = "25%", fig.align="center"}
+knitr::include_graphics("figs/qrcode_review_survey.png") 
+```
+
+<center>[Attendance and Participation](https://forms.office.com/r/3R2VwPJAzA){target="_blank"}<br>10 min</center>
+
+# Motivation {background-color="#cfb991"}
+
+# What is Statistics?
+
+## What is Statistics?
+
+::::: columns
+::: {.column width="60%" style="text-align: center; justify-content: center; align-items: center;"}
+<!---Statistics can be defined as the science of collecting, analyzing, interpreting, presenting, and organizing data to make informed business decisions. It involves using mathematical theoriesto process numerical information and draw meaningful conclusions. The primary goal of statistics in business is to help managers and decision-makers understand data patterns, trends, and relationships, enabling them to make data-driven decisions, optimize operations, forecast future events, and reduce uncertainty. --->
+
+<br>
+
+<br>
+
+<br>
+
+> "Without data, you're just another person with an opinion." – W. Edwards Deming
+:::
+
+::: {.column width="40%" style="text-align: center; justify-content: center; align-items: center;"}
+```{r  echo=FALSE, out.width = "70%",fig.align="center"}
+knitr::include_graphics("figs/w_edwards_deming.jpg") 
+```
+
+W. Edwards Deming
+
+[Wiki](https://en.wikipedia.org/wiki/W._Edwards_Deming)
+:::
+:::::
+
+## What is Statistics?
+
+<br>
+
+Statistics can be defined as the **science of collecting, analyzing, interpreting, presenting, and organizing data to make informed decisions**.
+
+# Where is statistics applied in Business?
+
+## Where is statistics applied in Business?
+
+-   Accounting
+
+    -   To compare actual financial performance with budgeted amounts, identifying areas of inefficiency or unexpected costs.
+
+-   Economics
+
+    -   To analyze employment trends, wage distributions, and the impact of income on business opportunities, helping managers make informed decisions.
+
+-   Finance
+
+    -   Risk analysts to assess the probability of default on loans or bonds, aiding in the pricing of financial instruments and risk management strategies.
+
+# Data and Statistics {background-color="#cfb991"}
+
+## Data Sources and Scales of Measurement
+
+```{r  echo=FALSE, out.width = "30%",fig.align="center"}
+knitr::include_graphics("figs/variables_observations.png") 
+```
+
+-   Elements are the entities on which data are collected.
+
+-   A variable is a characteristic of interest for the elements.
+
+-   The set of measurements obtained for a particular element is called an observation.
+
+-   A data set with $n$ elements contains $n$ observations.
+
+-   The total number of data values in a complete data set is the number of elements multiplied by the number of variables.
+
+## Data Types
+
+::::::: columns
+:::: {.column width="50%" style="text-align: center; justify-content: center; align-items: center;"}
+::: nonincremental
+**Categorical Data**
+
+-   Labels or names used to identify an attribute of each element
+-   Often referred to as qualitative data
+-   Use either the nominal or ordinal scale of measurement
+-   Can be either numeric or nonnumeric
+-   Appropriate statistical analysis is rather limited
+:::
+::::
+
+:::: {.column width="50%" style="text-align: center; justify-content: center; align-items: center;"}
+::: nonincremental
+**Quantitative Data**
+
+-   Quantitative data indicate how many or how much:
+
+    ```         
+    -  discrete, if measuring how many
+    - continuous, if measuring how much
+    ```
+
+-   Quantitative data are always numeric.
+
+-   Ordinary arithmetic operations (+, -, ×, ÷) are meaningful for quantitative data
+:::
+::::
+:::::::
+
+## Data Types: Examples
+
+<br>
+
+<br>
+
+| Categorical: Nominal | Categorical: Ordinal | Quantitative: Continuous or Discrete |
+|---------------------|-------------------|--------------------------------|
+| Vehicle Type | Satisfaction Level | Temperature |
+| Beverage | Education Level | Number of Transactions |
+| Music Genre | Customer Feedback | Revenue |
+| Nationality | Job Position | Product Weight |
+| Relationship Status | Military Rank | Distance Traveled |
+| Operating System | Priority Level | Market Share |
+
+<br>
+
+::: r-fit-text
+-   Categorical: Nominal refers to variables that categorize data without a specific order.
+-   Categorical: Ordinal refers to variables that categorize data with a meaningful order but without a consistent difference between categories.
+-   Quantitative: Continuous or Discrete refers to variables that are numerical, where discrete variables are countable and continuous variables can take any value within a range.
+:::
+
+## Scales of Measurement
+
+```{r  echo=FALSE, out.width = "70%",fig.align="center"}
+knitr::include_graphics("figs/scale_measurement.png") 
+```
+
+## Scales of Measurement
+
+:::::::: columns
+::::: {.column width="50%" style="text-align: center; justify-content: center; align-items: center;"}
+:::: nonincremental
+::: r-fit-text
+1.  **Categorical Data**
+    -   **Definition**: Data that can be sorted into categories or groups.
+    -   **Subcategories**:
+        -   **Numeric**: Categorical data represented by numbers, but the numbers do not have inherent numerical value.
+            -   **Nominal**: Categories that have no inherent order. Examples include gender, type of car, and nationality.
+            -   **Ordinal**: Categories that have a specific order or ranking. Examples include satisfaction levels (e.g., satisfied, neutral, dissatisfied) and education levels (e.g., high school, bachelor's, master's).
+        -   **Non-numeric**: Categorical data not represented by numbers.
+            -   **Nominal**: Similar to numeric nominal data but represented with non-numeric labels. Examples include types of cuisine (e.g., Italian, Chinese, Indian).
+            -   **Ordinal**: Similar to numeric ordinal data but represented with non-numeric labels. Examples include rankings such as job positions (e.g., intern, junior, senior).
+:::
+::::
+:::::
+
+:::: {.column width="50%" style="text-align: center; justify-content: center; align-items: center;"}
+::: nonincremental
+2.  **Quantitative Data**
+    -   **Definition**: Data that can be measured and expressed numerically.
+    -   **Subcategories**:
+        -   **Numeric**: Quantitative data always represented by numbers.
+            -   **Interval**: Numerical data with meaningful differences between values but no true zero point. Examples include temperature in Celsius or Fahrenheit.
+            -   **Ratio**: Numerical data with meaningful differences between values and a true zero point. Examples include height, weight, and sales figures.
+:::
+::::
+::::::::
+
+## Cross-Sectional Data: Time Series
+
+<br>
+
+```{r  echo=FALSE, out.width = "50%",fig.align="center"}
+knitr::include_graphics("figs/time_series.png") 
+```
+
+<br>
+
+# Study Design {background-color="#cfb991"}
+
+## Study Design
+
+::::: columns
+::: {.column width="50%" style="text-align: center; justify-content: center; align-items: center;"}
+**Observational**
+
+In observational studies, no attempt is made to control or influence the variables of interest. A survey is a good example.
+
+<br> <br> <br>
+
+> An example of an observational study is researchers observing a randomly selected group of customers that enter a Walmart Supercenter to collect data on variables such as time spent in the store, gender of the customer, and the amount spent.
+:::
+
+::: {.column width="50%" style="text-align: center; justify-content: center; align-items: center;"}
+**Experimental** (Chapter 13)
+
+In experimental studies, the variable of interest is first identified. Then, the values or levels (categories) of the variable are identified and controlled so that data from the experimental units (subjects) can be obtained about how they influence the variable of interest. Can have multiple variables.
+
+> The largest experimental study ever conducted is believed to be the 1954 Public Health Service experiment for the Salk polio vaccine. Nearly two million U.S. children (grades 1 through 3) were selected.
+:::
+:::::
+
+## Study Design: Random Assignment vs. Random Sampling
+
+<br>
+
+<br>
+
+```{r  echo=FALSE, out.width = "50%",fig.align="center"}
+knitr::include_graphics("figs/random_assignment_sampling.png") 
+```
+
+<br>
+
+<br>
+
+## Study Design
+
+<br>
+
+<br>
+
+```{r  echo=FALSE, out.width = "2%",fig.align="center"}
+knitr::include_graphics("figs/xkcd.png") 
+```
+
+<br>
+
+<br>
+
+<br>
+
+# Descriptive Statistics {background-color="#cfb991"}
+
+## Summarizing and Presenting Data {.smaller}
+
+<br>
+
+```{r  echo=FALSE, out.width = "50%",fig.align="center"}
+knitr::include_graphics("figs/steve-jobs-pie.jpg") 
+```
+
+<br>
+
+<center>[June 9th Apple CEO Steve Jobs - Post](https://paragraft.wordpress.com/2008/06/03/the-chart-junk-of-steve-jobs/)</center>
+
+<br>
+
+## Summarizing and Presenting Data {.smaller}
+
+```{r  echo=FALSE, out.width = "70%",fig.align="center"}
+knitr::include_graphics("figs/pie-vs-bar.png") 
+```
+
+<br>
+
+<center>[Problems with pie charts - Post](https://stats.stackexchange.com/questions/8974/problems-with-pie-charts)</center>
+
+<br>
+
+## Summarizing and Presenting Data
+
+<br>
+
+```{r  echo=FALSE, out.width = "60%",fig.align="center"}
+knitr::include_graphics("figs/presenting_data.png") 
+```
+
+<br>
+
+## Example: Hudson Auto Repair
+
+The manager of Hudson Auto would like to have a better understanding of the cost of parts used in the engine tune-ups performed in her shop. She examines 50 customer invoices for tune-ups. The costs of parts, rounded to the nearest dollar, are listed on the next slide.
+
+<br>
+
+```{r  echo=FALSE, out.width = "20%",fig.align="center"}
+knitr::include_graphics("figs/hudson_auto_repair_data.png") 
+```
+
+<br>
+
+## Tabular Summary: Frequency and Percent Frequency - Example
+
+<br>
+
+| Parts Cost (\$) | Frequency | Percent Frequency |
+|:---------------:|:---------:|:-----------------:|
+|    50 to 59     |     2     |        4%         |
+|    60 to 69     |    13     |        26%        |
+|    70 to 79     |    16     |        32%        |
+|    80 to 89     |     7     |        14%        |
+|    90 to 99     |     7     |        14%        |
+|   100 to 109    |     5     |        10%        |
+|    **TOTAL**    |  **50**   |     **100%**      |
+
+</center>
+
+## Graphical Summary: Bar Chart or Histogram - Example
+
+<br>
+
+<!---`r fontawesome::fa("laptop-code")` Transiton: Let's Apply--->
+
+<br>
+
+```{r  echo=FALSE, out.width = "15%",fig.align="center"}
+knitr::include_graphics("figs/excel.png") 
+```
+
+<br>
+
+<center>`hudson_auto_repair.xlsx`</center>
+
+<br>
+
+File -\> Options -\> Add-ins -\> Select Analysis ToolPak and Analysis ToolPak-VBA (also select StatTools 7.5, if available) -\> Go -\> Data -\> Data Analysis (to conduct analyses)
+
+<br>
+
+</center>
+
+## Graphical Summary: Bar Chart or Histogram - Example
+
+<br> <br>
+
+:::::::: columns
+:::: {.column width="50%" style="text-align: center; justify-content: center; align-items: center;"}
+::: nonincremental
+1.  Open Data Analysis Add-in
+
+```{r  echo=FALSE, out.width = "100%",fig.align="center"}
+knitr::include_graphics("figs/01_hudson.png") 
+```
+:::
+::::
+
+::::: {.column width="50%" style="text-align: center; justify-content: center; align-items: center;"}
+:::: fragment
+::: nonincremental
+2.  Select Histogram
+
+```{r  echo=FALSE, out.width = "100%",fig.align="center"}
+knitr::include_graphics("figs/02_hudson.png") 
+```
+:::
+::::
+:::::
+::::::::
+
+## Graphical Summary: Bar Chart or Histogram - Example
+
+:::::::: columns
+:::: {.column width="50%" style="text-align: center; justify-content: center; align-items: center;"}
+::: nonincremental
+3.  Input the ranges (data, bin limits, output cell)
+
+```{r  echo=FALSE, out.width = "100%",fig.align="center"}
+knitr::include_graphics("figs/03_hudson.png") 
+```
+:::
+::::
+
+::::: {.column width="50%" style="text-align: center; justify-content: center; align-items: center;"}
+:::: fragment
+::: nonincremental
+4.  Result
+
+```{r  echo=FALSE, out.width = "100%",fig.align="center"}
+knitr::include_graphics("figs/04_hudson.png") 
+```
+:::
+::::
+:::::
+::::::::
+
+## Numerical Descriptive Statistics
+
+<br>
+
+-   The most common numerical descriptive statistic is the mean (or average).
+
+-   The mean demonstrates a measure of the central tendency, central location, or center of mass of the data for a variable.
+
+-   Hudson’s mean cost of parts, based on the 50 tune-ups studied, is \$79 (found by summing up the 50 cost values and then dividing by 50).
+
+-   There are other descriptive statistics (next chapter).
+
+## Numerical Descriptive Statistics - Example
+
+:::::::: columns
+:::: {.column width="50%" style="text-align: center; justify-content: center; align-items: center;"}
+::: nonincremental
+1.  Open Data Analysis Add-in and select the Descriptive Statistics analysis
+
+```{r  echo=FALSE, out.width = "100%",fig.align="center"}
+knitr::include_graphics("figs/01_hudson_desc.png") 
+```
+:::
+::::
+
+::::: {.column width="50%" style="text-align: center; justify-content: center; align-items: center;"}
+:::: fragment
+::: nonincremental
+2.  Input the ranges (data, bin limits, output cell) and options
+
+```{r  echo=FALSE, out.width = "100%",fig.align="center"}
+knitr::include_graphics("figs/02_hudson_desc.png") 
+```
+:::
+::::
+:::::
+::::::::
+
+## Numerical Descriptive Statistics - Example
+
+::::::::: columns
+:::: {.column width="50%" style="text-align: center; justify-content: center; align-items: center;"}
+::: nonincremental
+3.  Result
+
+```{r  echo=FALSE, out.width = "100%",fig.align="center"}
+knitr::include_graphics("figs/03_hudson_desc.png") 
+```
+:::
+::::
+
+:::::: {.column width="50%" style="text-align: center; justify-content: center; align-items: center;"}
+::::: fragment
+:::: nonincremental
+4.  Let's check the result
+
+```{r  echo=FALSE, out.width = "40%",fig.align="center"}
+knitr::include_graphics("figs/04_hudson_desc.png") 
+```
+
+::: {style="font-size: 50%;"}
+For percentiles: `= percentile.exc(Data Array, %)`
+:::
+::::
+:::::
+::::::
+:::::::::
+
+# Statistical Inference {background-color="#cfb991"}
+
+## Statistical Inference
+
+<br>
+
+<br>
+
+::::::: columns
+::: {.column width="40%" style="text-align: center; justify-content: center; align-items: center;"}
+```{r  echo=FALSE, out.width = "80%",fig.align="center"}
+knitr::include_graphics("figs/inference.svg") 
+```
+:::
+
+::::: {.column width="50%" style="text-align: left; justify-content: center; align-items: center;"}
+:::: fragment
+::: r-fit-text
+-   **Population**: the set of all elements of interest in a particular study.
+
+-   **Sample**: a subset of the population.
+
+-   **Descriptive Statistics**: Tabular, graphical, and numerical summaries of data.
+
+-   **Inferential Statistics**: The process of using data from the sample to make estimates or test hypotheses about the characteristics of a population
+
+-   **Estimation**: Using sample data to approximate population parameters.
+
+-   **Hypotheses Testing**: Determining if there is enough evidence in a sample to support a claim about a population.
+
+-   **Prediction**: Forecasting future events based on historical data.
+:::
+::::
+:::::
+:::::::
+
+# Data Science, Big Data, and Data Mining {background-color="#cfb991"}
+
+## Data Science, Big Data, and Data Mining - Definitions
+
+::: nonincremental
+-   **Data Science**:
+    -   The interdisciplinary field that uses scientific methods, processes, algorithms, and systems to extract knowledge and insights from structured and unstructured data.
+-   **Big Data**:
+    -   Extremely large datasets that may be analyzed computationally to reveal patterns, trends, and associations, especially relating to human behavior and interactions.
+-   **Data Mining**:
+    -   The practice of examining large databases to generate new information, involving methods at the intersection of machine learning, statistics, and database systems.
+:::
+
+## How Data Science, Big Data, and Data Mining are Used
+
+:::: nonincremental
+::: r-fit-text
+-   **Data Science**:
+    -   Personalizing marketing efforts by analyzing customer data to predict preferences and buying behavior.
+    -   Optimizing supply chain management through predictive analytics.
+-   **Big Data**:
+    -   Analyzing customer feedback and social media interactions to improve customer service and develop new products.
+    -   Enhancing risk management in financial institutions by monitoring transaction patterns and detecting fraudulent activities.
+-   **Data Mining**:
+    -   Identifying potential leads and sales opportunities by analyzing past sales data and customer demographics.
+    -   Enhancing customer retention by understanding churn patterns and developing targeted retention strategies.
+:::
+::::
+
+# Summary {background-color="#cfb991"}
+
+## Summary
+
+::: nonincremental
+Some key takeaways from this session:
+
+-   **Course Overview**:
+    -   Materials and resources available on Brightspace and the course webpage.
+    -   You are welcome to join virtual office hours!
+    -   If you need an individual appointment, e-mail me!
+-   **Key Concepts**:
+    -   Importance of statistics in business decision-making.
+    -   Study Design.
+    -   Data summary and visualization good practices.
+    -   Distinction between Descriptive and Inferential Statistics.
+    -   Data Science, Big Data, and Data Mining
+:::
+
+# Thank you! {background-color="#cfb991"}

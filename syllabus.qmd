@@ -1,0 +1,174 @@
+---
+title: "Syllabus"
+author: "Davi Moreira"
+# title: "Syllabus: QM 6700: Business Analytics"
+# subtitle: "Mitch. Daniels School of Business, Purdue University"
+# date-modified: "last-modified"
+# date: "2025-08-01"
+# date-format: "MMM D, YYYY"
+#listing:
+# - id: schedule
+#   contents:
+#      - topics/topic-*.qmd
+#    type: table
+#    fields: [title, subtitle, date]
+#    field-display-names:
+#      title: "Topic"
+#      description: "Dates"
+#      subtitle: "Topics"
+#    date-format: "MMMM DD, YYYY"
+#    sort: [filename]
+#    sort-ui: false
+#    filter-ui: false
+---
+
+<br>
+
+<center>
+
+*IMPORTANT*
+
+*This document does not replace the official syllabus in the course brightspace page*
+
+</center>
+
+<br>
+
+## Course Description and Objectives
+
+This course develops the quantitative and data-analysis skills managers need to make data-driven decisions. Coverage includes descriptive statistics, probability and probability distributions, decision analysis, sampling distributions and interval estimation, hypothesis testing, and applied regression analysis (simple and multiple). *(Scope to be finalized during the course redesign.)*
+
+Our primary goal is to instill in students the quantitative and data analysis skills essential in modern business, where Business Analytics and Data Science are increasingly important. These skills will empower managers to make data-based decisions, perform risk assessments, develop policies, and collaborate effectively with analytics teams to boost business performance.
+
+Because modern data analysis relies heavily on computers and software, we will emphasize practical applications using Microsoft Excel (with exposure to Minitab, R, or Python when relevant).
+
+**Course Website**: [https://davi-moreira.github.io/2026F_business_analytics_qm670/](https://davi-moreira.github.io/2026F_business_analytics_qm670/){target="_blank"}
+
+## Instructor
+
+### Instructor: [Professor Davi Moreira](https://davi-moreira.github.io)
+
+-   Office: Young Hall 1019
+-   Email: [dmoreira\@purdue.edu](mailto:dmoreira@purdue.edu)
+-   Virtual Office hours: Zoom link in your Course Brightspace Page
+-   Individual Appointments: Book time with me through the link in the course syllabus on your Course Brightspace Page or by appointment.
+
+## Learning Outcomes
+
+By the end of this course, students will be able to:
+
+1.  Understand the basic statistical principles and their applications in the area of management and business.\
+2.  Understand fundamental issues in business and management.\
+3.  Describe and use the commonly used statistical techniques for analyzing business data.\
+4.  Be proficient in using Excel to carry out statistical and analytics methods covered in the course.
+
+## Course Materials
+
+1.  **Textbook** *(to be confirmed during the course redesign)*
+    -   Anderson, Sweeney, Williams, Camm, and Cochran.\
+        *Statistics for Business and Economics*, 14th edition. Cengage Learning, Inc.\
+        – Used in the previous edition; the required textbook for QM 6700 will be confirmed.
+2.  **Handouts**
+    -   Presentation slides and supplementary materials posted on Brightspace:\
+        Brightspace → Content → Table of Contents → …
+3.  **Computing Requirements**
+    -   You must have access to a PC, Mac, or tablet equipped with a webcam to complete in-class quizzes and practice exercises.
+4.  **Software**
+    -   Microsoft Excel will be used for in-class demonstrations.\
+    -   To enable Excel’s “Data Analysis” ToolPak:
+        1.  File → Options → Add-ins\
+        2.  Select **Analysis ToolPak** and **Analysis ToolPak-VBA** (also **StatTools 7.5** if available) → Go\
+        3.  Return to **Data** tab → **Data Analysis**\
+            \## Course Infrastructure
+
+-   **Brightspace**: The Course Brightspace Page (<https://purdue.brightspace.com/>) should be checked on a regular basis for announcements and course material.
+-   **Software**: Microsoft Excel will be used for in-class demonstrations and instruction. The main tool is Data Analysis under Tools. If you don’t see this tool, follow these steps to add it in:
+    -   File \> Options \> Add-ins \> Select Analysis ToolPak and Analysis ToolPak-VBA (also select StatTools 7.5, if available) \> Go \> Data \> Data Analysis (to conduct analyses)
+-   **Course Website**: This class website will be used throughout the course, but it does not replace the Course Brightspace Page.
+
+## Assessments and Grading
+
+In compliance with the Business School’s Official Grading Policy for QM 6700, the overall class GPA cannot exceed 3.0. Final letter grades will be based on a curved distribution of final course percentages. While Brightspace will display your final percentage performance, specific grade thresholds will not be released prior to official submission.
+
+Below are the grading components and their respective weights:
+
+| **Assessment**                       | **Weight** |
+|--------------------------------------|:----------:|
+| **Attendance**                       |     5%     |
+| **Homework** (3 total, team-based)   |    30%     |
+| **Midterm** (in-class)               |    20%     |
+| **Final** (cumulative)               |    45%     |
+
+
+### Attendance 
+
+Attendance is essential for success in this course. If you do not attend class regularly, you are unlikely to succeed. According to the [University regulations](https://catalog.purdue.edu/content.php?catoid=15&navoid=18634#classes), “Scheduled courses allow students to avoid conflicts and reflect the University’s expectation that students should be present for every meeting of a class/laboratory for which they are registered.” Attendance will be recorded using iClicker, and these records will be reflected in your gradebook at the end of the semester. A minimum attendance rate of 85% is required to meet the expectations of this course.
+
+### Homework
+
+-   **Three** homework assignments, completed and submitted **as a team**; **none** are dropped.\
+-   Submit on Brightspace before the deadline as a **single** PDF or Word file named **HW_X_Team_Y** (X = homework number, Y = team number), with all relevant Excel (or other) outputs included and clearly referenced.\
+-   No late homework or email submissions are accepted without prior permission.\
+-   Each team member is expected to understand, for each assignment, the reason for choosing a particular technique, the mechanics of the solution, and the implications of the final recommendation.\
+-   If a team member does not contribute, their name should not appear on the submission and they may complete and submit the assignment separately. Teams may not cooperate with other teams; copying or duplicate submissions are considered cheating.
+
+### Midterm
+
+-   **One** in-class midterm exam (20%).\
+-   Exams test technical calculation skills and conceptual understanding similar to homework problems.\
+-   Calculators without internet or USB capabilities are allowed; cellphones, watches, and internet access are prohibited during the midterm and final.
+
+### Final
+
+-   **Cumulative** in-person exam.\
+-   Bring an approved calculator as described above.
+
+## Grade Challenges
+
+Grades and solutions will be posted soon after each assignment deadline. Students have **7 calendar days** from the grade posting to submit any challenge (3 days for the final two quizzes and homework assignments). Challenges must be based on legitimate discrepancies regarding data mining principles or grading accuracy.
+
+1.  **Review posted solutions** thoroughly.\
+2.  If you suspect an error, email Dr. Moreira with:
+    -   Course name, section, and lecture day/time\
+    -   Your name and Student ID\
+    -   Assignment/Exam Title or Number\
+    -   Specific deduction questioned\
+    -   Clear rationale referencing solutions or rubrics
+
+> *No grades will be discussed in-class. Please use office hours for clarifications. After the 7-day (or 3-day) window, grades are final.*
+
+## Course Policies and Additional Details
+
+### Extra Credit Opportunities
+
+-   Check the Course Syllabus document on Brightspace for details.
+
+### Keys to Success
+
+1.  **Consistent Effort** – Follow the course schedule regularly.\
+2.  **Pre-Class Preparation** – Read the assigned materials and review homework exercises.\
+3.  **Class Materials** – Print or digitally access slides/readings for note-taking.\
+4.  **Engage with Problems** – Practice is crucial; problems may be more challenging than they appear in lecture.\
+5.  **Active Learning** – Do not rely solely on class presentations. Work through exercises and reinforce your understanding.
+
+## Course Policies and Additional Details
+
+### Extra Credit Opportunities
+
+-   Check the Course Syllabus document on Brightspace for details.
+
+### AI Policy
+
+-   You may use AI tools to support your learning (e.g., clarifying concepts, generating examples), but:
+    1.  **Do not** use AI for homework, quizzes, or exams.\
+    2.  Practice refining prompts to get better AI outputs.\
+    3.  Verify all AI-generated content for accuracy.\
+    4.  Cite any AI usage in your documents.
+
+### Additional Information
+
+Refer to Brightspace for deadlines, academic integrity policies, accommodations, CAPS information, and non-discrimination statements.
+
+### Subject to Change Policy
+
+While we will endeavor to maintain the course schedule, the syllabus may be adjusted to accommodate the learning pace and needs of the class.
