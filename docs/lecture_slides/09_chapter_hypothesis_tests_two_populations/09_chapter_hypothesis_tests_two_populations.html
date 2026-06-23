@@ -192,7 +192,7 @@ Professor<br>Davi Moreira<br>
 </blockquote>
 <p><br></p>
 <ul>
-<li class="fragment"><p>In Deck 09 we tested <strong>one</strong> population against a benchmark (“is B’s mean eRPM above $3.30?”).</p></li>
+<li class="fragment"><p>In Deck 08 we tested <strong>one</strong> population against a benchmark (“is B’s mean eRPM above $3.30?”).</p></li>
 <li class="fragment"><p>Today’s question is the canonical business question: <strong>is B better than A?</strong> That requires comparing <strong>two</strong> populations.</p></li>
 <li class="fragment"><p>By the end of class, you will make the rollout recommendation — with the statistics to back it up.</p></li>
 </ul>
@@ -227,7 +227,7 @@ Professor<br>Davi Moreira<br>
 </tr>
 <tr class="even">
 <td>“Roll out or not?”</td>
-<td>Test results become <strong>decision signals</strong> (Decision Analysis, Deck 20)</td>
+<td>Test results become <strong>decision signals</strong> (Decision Analysis, Deck 04)</td>
 </tr>
 </tbody>
 </table>
@@ -284,7 +284,7 @@ Professor<br>Davi Moreira<br>
 <h2>The Hypotheses Are About a Difference</h2>
 <p><br></p>
 <ul>
-<li class="fragment">All of Chapter 10 reuses the Deck 09 logic — the only change is the <strong>parameter</strong>: it is now a <strong>difference</strong>.</li>
+<li class="fragment">All of Chapter 10 reuses the Deck 08 logic — the only change is the <strong>parameter</strong>: it is now a <strong>difference</strong>.</li>
 </ul>
 <div class="fragment">
 <p><span class="math display">\[
@@ -381,7 +381,7 @@ d_i = x_{1i} - x_{2i}
 \]</span></p>
 </div>
 <ul>
-<li class="fragment"><p>The two-sample problem becomes a <strong>one-sample</strong> problem about the mean difference <span class="math inline">\(\mu_d\)</span> — and we can apply <em>exactly</em> the single-population procedures from Deck 09.</p></li>
+<li class="fragment"><p>The two-sample problem becomes a <strong>one-sample</strong> problem about the mean difference <span class="math inline">\(\mu_d\)</span> — and we can apply <em>exactly</em> the single-population procedures from Deck 08.</p></li>
 <li class="fragment"><p>Point estimate of <span class="math inline">\(\mu_d\)</span>:</p></li>
 </ul>
 <div class="fragment">
@@ -1078,7 +1078,7 @@ z = \frac{\bar{p}_1 - \bar{p}_2}{SE_{pool}}
 \]</span></p>
 </div>
 <ul>
-<li class="fragment"><p>Decision rule and <span class="math inline">\(p\)</span>-value exactly as in the one-proportion <span class="math inline">\(z\)</span>-test (Deck 09); Excel: <code>=NORM.S.DIST</code>.</p></li>
+<li class="fragment"><p>Decision rule and <span class="math inline">\(p\)</span>-value exactly as in the one-proportion <span class="math inline">\(z\)</span>-test (Deck 08); Excel: <code>=NORM.S.DIST</code>.</p></li>
 <li class="fragment"><p><strong>Rule of thumb:</strong> pool under <span class="math inline">\(H_0\)</span> (testing); do <strong>not</strong> pool for confidence intervals.</p></li>
 </ul>
 </section>
@@ -1224,15 +1224,15 @@ z = \frac{0.003541 - 0.004025}{0.0000164} = \mathbf{-29.56}
 <h2>From Inference to Decision Analysis</h2>
 <p><br></p>
 <ul>
-<li class="fragment"><p>In Deck 20 you computed expected values for <em>roll out / keep A / test first</em>. Today’s output feeds straight into that framework:</p>
+<li class="fragment"><p>In Deck 04 you computed expected values for <em>roll out / keep A / test first</em>. Today’s output feeds straight into that framework:</p>
 <ul>
 <li class="fragment">The CI <span class="math inline">\((\$0.043, \$0.181)\)</span> per 1,000 impressions is the <strong>range of payoffs</strong> for the “roll out” branch.</li>
 <li class="fragment">The <span class="math inline">\(p\)</span>-value bounds the probability of the bad state (“B is not actually better”) — the input Bayesian revision needs.</li>
 </ul></li>
 <li class="fragment"><p>This is the division of labor in analytics:</p>
 <ul>
-<li class="fragment"><strong>Inference</strong> (Decks 08–10): <em>what is true, and how sure are we?</em></li>
-<li class="fragment"><strong>Decision analysis</strong> (Deck 20): <em>given that uncertainty, what should we do?</em></li>
+<li class="fragment"><strong>Inference</strong> (Decks 07–09): <em>what is true, and how sure are we?</em></li>
+<li class="fragment"><strong>Decision analysis</strong> (Deck 04): <em>given that uncertainty, what should we do?</em></li>
 </ul></li>
 </ul>
 </section>
@@ -1316,7 +1316,7 @@ z = \frac{0.003541 - 0.004025}{0.0000164} = \mathbf{-29.56}
 <p>Some key takeaways from this session:</p>
 <ul>
 <li><strong>Design comes first:</strong> matched (paired) samples reduce two-sample problems to one-sample problems on the differences — and remove extraneous unit-to-unit variation.</li>
-<li>The paired <span class="math inline">\(t\)</span>, pooled <span class="math inline">\(t\)</span>, Welch <span class="math inline">\(t\)</span>, two-sample <span class="math inline">\(z\)</span>, and two-proportion <span class="math inline">\(z\)</span> all reuse the Deck 09 logic; only the parameter (a <strong>difference</strong>) and the standard error change.</li>
+<li>The paired <span class="math inline">\(t\)</span>, pooled <span class="math inline">\(t\)</span>, Welch <span class="math inline">\(t\)</span>, two-sample <span class="math inline">\(z\)</span>, and two-proportion <span class="math inline">\(z\)</span> all reuse the Deck 08 logic; only the parameter (a <strong>difference</strong>) and the standard error change.</li>
 <li><strong>Default to Welch</strong> for independent means; <strong>pool only under <span class="math inline">\(H_0\)</span></strong> for proportion tests.</li>
 <li>Same data, different design → different conclusion: Vungle’s lift is decisive paired (<span class="math inline">\(t = 3.33\)</span>) and invisible unpaired (<span class="math inline">\(t = 1.51\)</span>).</li>
 <li>Statistical significance ≠ practical significance: with 252M impressions everything is “significant” — judge the <strong>effect size</strong>; with <span class="math inline">\(n = 15\)</span> per group, real effects can hide — mind the <strong>power</strong>.</li>

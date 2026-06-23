@@ -45,16 +45,16 @@ author: "Davi Moreira"
 | Topic | Book Chapter\* | Slides | Data | Supplementary Materials |
 |---------|---------|-----------------|---------|---------------------------------|
 | **Descriptive Statistics 01** | 1 | [slides](/lecture_slides/01_chapter_data_statistics/01_chapter_data_statistics.html){target="_blank"} | . | . |
-| **Descriptive Statistics 02** | 3 | [slides](/lecture_slides/03_chapter_descriptive_statistics/03_chapter_descriptive_statistics.html){target="_blank"} | . | . |
-| **Probability** | 4 | [slides](/lecture_slides/04_chapter_probability/04_chapter_probability.html){target="_blank"} *(stub)* | . | . |
-| **Decision Analysis** | 20 | [slides](/lecture_slides/20_chapter_decision_analysis/20_chapter_decision_analysis.html){target="_blank"} | . | . |
+| **Descriptive Statistics 02** | 3 | [slides](/lecture_slides/02_chapter_descriptive_statistics/02_chapter_descriptive_statistics.html){target="_blank"} | . | . |
+| **Probability** | 4 | [slides](/lecture_slides/03_chapter_probability/03_chapter_probability.html){target="_blank"} *(stub)* | . | . |
+| **Decision Analysis** | 19 | [slides](/lecture_slides/04_chapter_decision_analysis/04_chapter_decision_analysis.html){target="_blank"} | . | . |
 | **Discrete Probability Distributions** | 5 | [slides](/lecture_slides/05_chapter_discrete_probability_distributions/05_chapter_discrete_probability_distributions.html){target="_blank"} *(stub)* | . | . |
 | **Continuous Probability Distributions** | 6 | [slides](/lecture_slides/06_chapter_continuous_probability_distributions/06_chapter_continuous_probability_distributions.html){target="_blank"} | . | . |
-| **Sampling Distributions & Interval Estimation** | 7, 8 | [slides](/lecture_slides/08_chapter_interval_estimation/08_chapter_interval_estimation.html){target="_blank"} | . | . |
-| **Hypothesis Testing I** | 9 | [slides](/lecture_slides/09_chapter_hypothesis_tests/09_chapter_hypothesis_tests.html){target="_blank"} | . | . |
-| **Hypothesis Testing II — Two Populations** | 10 | [slides](/lecture_slides/10_chapter_hypothesis_tests_two_populations/10_chapter_hypothesis_tests_two_populations.html){target="_blank"} *(stub)* | . | . |
-| **Simple Regression** | 14 | [slides](/lecture_slides/14_chapter_simple_regression/14_chapter_simple_regression.html){target="_blank"} | . | . |
-| **Multiple Regression** | 15 | [slides](/lecture_slides/15_chapter_multiple_regression/15_chapter_multiple_regression.html){target="_blank"} | . | . |
+| **Sampling Distributions & Interval Estimation** | 7, 8 | [slides](/lecture_slides/07_chapter_interval_estimation/07_chapter_interval_estimation.html){target="_blank"} | . | . |
+| **Hypothesis Testing I** | 9 | [slides](/lecture_slides/08_chapter_hypothesis_tests/08_chapter_hypothesis_tests.html){target="_blank"} | . | . |
+| **Hypothesis Testing II — Two Populations** | 10 | [slides](/lecture_slides/09_chapter_hypothesis_tests_two_populations/09_chapter_hypothesis_tests_two_populations.html){target="_blank"} | . | . |
+| **Simple Regression** | 14 | [slides](/lecture_slides/10_chapter_simple_regression/10_chapter_simple_regression.html){target="_blank"} | . | . |
+| **Multiple Regression** | 15 | [slides](/lecture_slides/11_chapter_multiple_regression/11_chapter_multiple_regression.html){target="_blank"} | . | . |
 :::
 
 ::: below-table

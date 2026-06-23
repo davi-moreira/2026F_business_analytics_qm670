@@ -72,7 +72,7 @@ html-math-method:
 
 <br>
 
-- In Deck 09 we tested **one** population against a benchmark ("is B's mean eRPM above \$3.30?").
+- In Deck 08 we tested **one** population against a benchmark ("is B's mean eRPM above \$3.30?").
 
 - Today's question is the canonical business question: **is B better than A?** That requires comparing **two** populations.
 
@@ -89,7 +89,7 @@ Every tool in this chapter maps onto the Vungle dataset:
 | Same 30 days observed under both A and B | **Matched samples → paired $t$-test** |
 | What if we (wrongly) ignored the day pairing? | **Independent samples $t$-test** — a cautionary contrast |
 | Millions of impressions → installs (yes/no) | **Two-proportion $z$-test** |
-| "Roll out or not?" | Test results become **decision signals** (Decision Analysis, Deck 20) |
+| "Roll out or not?" | Test results become **decision signals** (Decision Analysis, Deck 04) |
 
 <br>
 
@@ -143,7 +143,7 @@ knitr::include_graphics("figs/ab_test_design_schematic.png")
 
 <br>
 
-- All of Chapter 10 reuses the Deck 09 logic — the only change is the **parameter**: it is now a **difference**.
+- All of Chapter 10 reuses the Deck 08 logic — the only change is the **parameter**: it is now a **difference**.
 
 ::: fragment
 
@@ -196,7 +196,7 @@ $$
 
 :::
 
-- The two-sample problem becomes a **one-sample** problem about the mean difference $\mu_d$ — and we can apply *exactly* the single-population procedures from Deck 09.
+- The two-sample problem becomes a **one-sample** problem about the mean difference $\mu_d$ — and we can apply *exactly* the single-population procedures from Deck 08.
 
 - Point estimate of $\mu_d$:
 
@@ -832,7 +832,7 @@ $$
 
 :::
 
-- Decision rule and $p$-value exactly as in the one-proportion $z$-test (Deck 09); Excel: `=NORM.S.DIST`.
+- Decision rule and $p$-value exactly as in the one-proportion $z$-test (Deck 08); Excel: `=NORM.S.DIST`.
 
 - **Rule of thumb:** pool under $H_0$ (testing); do **not** pool for confidence intervals.
 
@@ -944,15 +944,15 @@ $$
 
 <br>
 
-- In Deck 20 you computed expected values for *roll out / keep A / test first*. Today's output feeds straight into that framework:
+- In Deck 04 you computed expected values for *roll out / keep A / test first*. Today's output feeds straight into that framework:
 
   - The CI $(\$0.043, \$0.181)$ per 1,000 impressions is the **range of payoffs** for the "roll out" branch.
   - The $p$-value bounds the probability of the bad state ("B is not actually better") — the input Bayesian revision needs.
 
 - This is the division of labor in analytics:
 
-  - **Inference** (Decks 08–10): *what is true, and how sure are we?*
-  - **Decision analysis** (Deck 20): *given that uncertainty, what should we do?*
+  - **Inference** (Decks 07–09): *what is true, and how sure are we?*
+  - **Decision analysis** (Deck 04): *given that uncertainty, what should we do?*
 
 ## Chapter 10 on One Page — the Vungle Bridge Table
 
@@ -987,7 +987,7 @@ $$
 Some key takeaways from this session:
 
 - **Design comes first:** matched (paired) samples reduce two-sample problems to one-sample problems on the differences — and remove extraneous unit-to-unit variation.
-- The paired $t$, pooled $t$, Welch $t$, two-sample $z$, and two-proportion $z$ all reuse the Deck 09 logic; only the parameter (a **difference**) and the standard error change.
+- The paired $t$, pooled $t$, Welch $t$, two-sample $z$, and two-proportion $z$ all reuse the Deck 08 logic; only the parameter (a **difference**) and the standard error change.
 - **Default to Welch** for independent means; **pool only under $H_0$** for proportion tests.
 - Same data, different design → different conclusion: Vungle's lift is decisive paired ($t = 3.33$) and invisible unpaired ($t = 1.51$).
 - Statistical significance ≠ practical significance: with 252M impressions everything is "significant" — judge the **effect size**; with $n = 15$ per group, real effects can hide — mind the **power**.

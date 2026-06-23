@@ -49,25 +49,25 @@ editor: visual
 | **Week** | **Day** | **Date** | **Topic** | **Book Sections\*** | **Slides** | **Data** | **Supplementary Materials** |
 |--------|--------|--------|--------|--------|--------|--------|--------------------|
 | **1** | **M** | Aug 24 | Course Intro & Descriptive Statistics | Syl.; Ch. 1, 3 | [slides](/lecture_slides/01_chapter_data_statistics/01_chapter_data_statistics.html){target="_blank"} | . | . |
-| **1** | **W** | Aug 26 | Descriptive Statistics | Ch. 3 | [slides](/lecture_slides/03_chapter_descriptive_statistics/03_chapter_descriptive_statistics.html){target="_blank"} | . | . |
-| **1** | **F** | Aug 28 | Probability | Ch. 4 | [slides](/lecture_slides/04_chapter_probability/04_chapter_probability.html){target="_blank"} | . | . |
-| **2** | **M** | Aug 31 | Decision Analysis | Ch. 20 | [slides](/lecture_slides/20_chapter_decision_analysis/20_chapter_decision_analysis.html){target="_blank"} | . | **Homework 1 assigned** |
+| **1** | **W** | Aug 26 | Descriptive Statistics | Ch. 3 | [slides](/lecture_slides/02_chapter_descriptive_statistics/02_chapter_descriptive_statistics.html){target="_blank"} | . | . |
+| **1** | **F** | Aug 28 | Probability | Ch. 4 | [slides](/lecture_slides/03_chapter_probability/03_chapter_probability.html){target="_blank"} | . | . |
+| **2** | **M** | Aug 31 | Decision Analysis | Ch. 19 | [slides](/lecture_slides/04_chapter_decision_analysis/04_chapter_decision_analysis.html){target="_blank"} | . | **Homework 1 assigned** |
 | **2** | **W** | Sep 02 | Discrete Probability Distributions | Ch. 5 | [slides](/lecture_slides/05_chapter_discrete_probability_distributions/05_chapter_discrete_probability_distributions.html){target="_blank"} | . | . |
 | **2** | **F** | Sep 04 | Discrete Probability Distributions | Ch. 5 | [slides](/lecture_slides/05_chapter_discrete_probability_distributions/05_chapter_discrete_probability_distributions.html){target="_blank"} | . | . |
 | **3** | **M** | Sep 07 | **LABOR DAY — No Class** | — | . | . | . |
 | **3** | **W** | Sep 09 | Continuous Probability Distributions | Ch. 6 | [slides](/lecture_slides/06_chapter_continuous_probability_distributions/06_chapter_continuous_probability_distributions.html){target="_blank"} | . | . |
 | **3** | **F** | Sep 11 | Continuous Probability Distributions | Ch. 6 | [slides](/lecture_slides/06_chapter_continuous_probability_distributions/06_chapter_continuous_probability_distributions.html){target="_blank"} | . | . |
-| **4** | **M** | Sep 14 | Sampling Distributions & Interval Estimation | Ch. 7, 8 | [slides](/lecture_slides/08_chapter_interval_estimation/08_chapter_interval_estimation.html){target="_blank"} | . | **Homework 2 assigned** |
-| **4** | **W** | Sep 16 | Sampling Distributions & Interval Estimation | Ch. 7, 8 | [slides](/lecture_slides/08_chapter_interval_estimation/08_chapter_interval_estimation.html){target="_blank"} | . | . |
+| **4** | **M** | Sep 14 | Sampling Distributions & Interval Estimation | Ch. 7, 8 | [slides](/lecture_slides/07_chapter_interval_estimation/07_chapter_interval_estimation.html){target="_blank"} | . | **Homework 2 assigned** |
+| **4** | **W** | Sep 16 | Sampling Distributions & Interval Estimation | Ch. 7, 8 | [slides](/lecture_slides/07_chapter_interval_estimation/07_chapter_interval_estimation.html){target="_blank"} | . | . |
 | **4** | **F** | Sep 18 | **Midterm Review** | Cumulative (to date) | . | . | . |
 | **5** | **M** | Sep 21 | **In-Class Midterm** | — | . | . | **Midterm Exam** |
-| **5** | **W** | Sep 23 | Hypothesis Testing I | Ch. 9 | [slides](/lecture_slides/09_chapter_hypothesis_tests/09_chapter_hypothesis_tests.html){target="_blank"} | . | . |
-| **5** | **F** | Sep 25 | Hypothesis Testing I | Ch. 9 | [slides](/lecture_slides/09_chapter_hypothesis_tests/09_chapter_hypothesis_tests.html){target="_blank"} | . | . |
-| **6** | **M** | Sep 28 | Hypothesis Testing II — Two Populations | Ch. 10 | [slides](/lecture_slides/10_chapter_hypothesis_tests_two_populations/10_chapter_hypothesis_tests_two_populations.html){target="_blank"} | . | . |
-| **6** | **W** | Sep 30 | Simple Regression | Ch. 14 | [slides](/lecture_slides/14_chapter_simple_regression/14_chapter_simple_regression.html){target="_blank"} | . | . |
-| **6** | **F** | Oct 02 | Simple Regression | Ch. 14 | [slides](/lecture_slides/14_chapter_simple_regression/14_chapter_simple_regression.html){target="_blank"} | . | . |
-| **7** | **M** | Oct 05 | Multiple Regression | Ch. 15 | [slides](/lecture_slides/15_chapter_multiple_regression/15_chapter_multiple_regression.html){target="_blank"} | . | **Homework 3 assigned** |
-| **7** | **W** | Oct 07 | Multiple Regression | Ch. 15 | [slides](/lecture_slides/15_chapter_multiple_regression/15_chapter_multiple_regression.html){target="_blank"} | . | . |
+| **5** | **W** | Sep 23 | Hypothesis Testing I | Ch. 9 | [slides](/lecture_slides/08_chapter_hypothesis_tests/08_chapter_hypothesis_tests.html){target="_blank"} | . | . |
+| **5** | **F** | Sep 25 | Hypothesis Testing I | Ch. 9 | [slides](/lecture_slides/08_chapter_hypothesis_tests/08_chapter_hypothesis_tests.html){target="_blank"} | . | . |
+| **6** | **M** | Sep 28 | Hypothesis Testing II — Two Populations | Ch. 10 | [slides](/lecture_slides/09_chapter_hypothesis_tests_two_populations/09_chapter_hypothesis_tests_two_populations.html){target="_blank"} | . | . |
+| **6** | **W** | Sep 30 | Simple Regression | Ch. 14 | [slides](/lecture_slides/10_chapter_simple_regression/10_chapter_simple_regression.html){target="_blank"} | . | . |
+| **6** | **F** | Oct 02 | Simple Regression | Ch. 14 | [slides](/lecture_slides/10_chapter_simple_regression/10_chapter_simple_regression.html){target="_blank"} | . | . |
+| **7** | **M** | Oct 05 | Multiple Regression | Ch. 15 | [slides](/lecture_slides/11_chapter_multiple_regression/11_chapter_multiple_regression.html){target="_blank"} | . | **Homework 3 assigned** |
+| **7** | **W** | Oct 07 | Multiple Regression | Ch. 15 | [slides](/lecture_slides/11_chapter_multiple_regression/11_chapter_multiple_regression.html){target="_blank"} | . | . |
 | **7** | **F** | Oct 09 | **Final Review** | Cumulative | . | . | . |
 | **—** | — | TBD | **Final Exam (Details in the Course Syllabus)** | Cumulative | . | . | **Final Exam** |
 :::
