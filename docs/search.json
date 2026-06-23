@@ -1777,7 +1777,7 @@
     "href": "lecture_slides/10_chapter_hypothesis_tests_two_populations/10_chapter_hypothesis_tests_two_populations.html#overview",
     "title": " QM 6700: Business Analytics ",
     "section": "Overview",
-    "text": "Overview\n\n\n\nInferences About the Difference Between Two Population Means\n\n\\(\\sigma_1, \\sigma_2\\) Known\n\\(\\sigma_1, \\sigma_2\\) Unknown\n\nMatched Samples\n\n\n\nInferences About the Difference Between Two Population Proportions\n(TBD — content to be developed for QM 6700)"
+    "text": "Overview\n\n\n\nCase Spotlight: A/B Testing at Vungle\nTwo designs: matched (paired) vs. independent samples\nMatched samples: the paired \\(t\\)-test\nInferences About the Difference Between Two Population Means\n\n\\(\\sigma_1, \\sigma_2\\) Known\n\\(\\sigma_1, \\sigma_2\\) Unknown: pooled \\(t\\) and Welch \\(t\\)\n\n\n\n\nSame data, different design: why pairing matters\nInferences About the Difference Between Two Population Proportions\nStatistical vs. practical significance\nThe rollout decision: from test results to a recommendation"
   },
   {
     "objectID": "lecture_slides/10_chapter_hypothesis_tests_two_populations/10_chapter_hypothesis_tests_two_populations.html#tbd",
@@ -2796,5 +2796,341 @@
     "title": "Detailed Schedule",
     "section": "",
     "text": "Placeholder — a session-by-session detailed schedule will be developed during the course redesign.\nFor the current draft timeline, see the Schedule page."
+  },
+  {
+    "objectID": "lecture_slides/10_chapter_hypothesis_tests_two_populations/10_chapter_hypothesis_tests_two_populations.html#june-30-2014-two-analysts-and-one-month-of-data",
+    "href": "lecture_slides/10_chapter_hypothesis_tests_two_populations/10_chapter_hypothesis_tests_two_populations.html#june-30-2014-two-analysts-and-one-month-of-data",
+    "title": " QM 6700: Business Analytics ",
+    "section": "June 30, 2014 — Two Analysts and One Month of Data",
+    "text": "June 30, 2014 — Two Analysts and One Month of Data\n\n\nVungle is a mobile ad-tech startup: it serves 15-second video ads inside other companies’ apps and earns revenue mainly when viewers install the advertised app (cost-per-install).\nTwo Darden MBAs, Andrew Kritzer and Hammond Guerin, built a new ad-serving algorithm (B) and ran it head-to-head against the existing one (A) for the entire month of June 2014.\nThe split was random: an MD5 hash of each user ID sent 1/16 of traffic to B, the rest to A. Same market, same days, same apps — only the algorithm differs.\nThe metric that pays the bills is eRPM: effective revenue per 1,000 impressions.\nGuerin is about to become Vungle’s head of data science. His credibility — and his stock options — ride on this call."
+  },
+  {
+    "objectID": "lecture_slides/10_chapter_hypothesis_tests_two_populations/10_chapter_hypothesis_tests_two_populations.html#todays-managerial-question",
+    "href": "lecture_slides/10_chapter_hypothesis_tests_two_populations/10_chapter_hypothesis_tests_two_populations.html#todays-managerial-question",
+    "title": " QM 6700: Business Analytics ",
+    "section": "Today’s Managerial Question",
+    "text": "Today’s Managerial Question\n\n\n\n“B’s daily eRPM averaged about $0.11 higher than A’s. Is that a real improvement — or just month-to-month noise? Should Vungle roll out B to all traffic?”\n\n\n\nIn Deck 09 we tested one population against a benchmark (“is B’s mean eRPM above $3.30?”).\nToday’s question is the canonical business question: is B better than A? That requires comparing two populations.\nBy the end of class, you will make the rollout recommendation — with the statistics to back it up."
+  },
+  {
+    "objectID": "lecture_slides/10_chapter_hypothesis_tests_two_populations/10_chapter_hypothesis_tests_two_populations.html#how-chapter-10-answers-it",
+    "href": "lecture_slides/10_chapter_hypothesis_tests_two_populations/10_chapter_hypothesis_tests_two_populations.html#how-chapter-10-answers-it",
+    "title": " QM 6700: Business Analytics ",
+    "section": "How Chapter 10 Answers It",
+    "text": "How Chapter 10 Answers It\n\nEvery tool in this chapter maps onto the Vungle dataset:\n\n\n\n\n\n\n\nFeature of the Vungle test\nChapter 10 tool\n\n\n\n\nSame 30 days observed under both A and B\nMatched samples → paired \\(t\\)-test\n\n\nWhat if we (wrongly) ignored the day pairing?\nIndependent samples \\(t\\)-test — a cautionary contrast\n\n\nMillions of impressions → installs (yes/no)\nTwo-proportion \\(z\\)-test\n\n\n“Roll out or not?”\nTest results become decision signals (Decision Analysis, Deck 20)\n\n\n\n\n\nOne dataset, three tests — and they will not all point the same way. That tension is today’s managerial lesson."
+  },
+  {
+    "objectID": "lecture_slides/10_chapter_hypothesis_tests_two_populations/10_chapter_hypothesis_tests_two_populations.html#the-canonical-business-question",
+    "href": "lecture_slides/10_chapter_hypothesis_tests_two_populations/10_chapter_hypothesis_tests_two_populations.html#the-canonical-business-question",
+    "title": " QM 6700: Business Analytics ",
+    "section": "The Canonical Business Question",
+    "text": "The Canonical Business Question\n\n\n“Is treatment B systematically different from A?” appears everywhere in business:\n\nNew ad algorithm vs. current one (Vungle)\nNew web page layout vs. old (conversion A/B tests)\nDelivery carrier 1 vs. carrier 2 (cost, speed)\nTrained employees vs. untrained (productivity)\n\nThe null hypothesis is the skeptic’s position: any observed gap is just sampling noise.\nBefore any formula, you must answer a design question: how were the two samples collected?"
+  },
+  {
+    "objectID": "lecture_slides/10_chapter_hypothesis_tests_two_populations/10_chapter_hypothesis_tests_two_populations.html#two-ways-to-collect-the-comparison",
+    "href": "lecture_slides/10_chapter_hypothesis_tests_two_populations/10_chapter_hypothesis_tests_two_populations.html#two-ways-to-collect-the-comparison",
+    "title": " QM 6700: Business Analytics ",
+    "section": "Two Ways to Collect the Comparison",
+    "text": "Two Ways to Collect the Comparison\n\nSuppose you run a taste test of two flavors:\n\nPaired test (matched samples): select one random sample and let every person rate both flavors (in random order).\n\nEach sampled unit produces one pair of data values.\n\nUnpaired test (independent samples): select two random samples and let each group rate only one flavor.\n\nNo natural link between an observation in group 1 and any observation in group 2.\n\nWhich is better? The paired test tends to remove much of the extraneous variation — differences in people, days, and experimental conditions — so the flavor effect stands out."
+  },
+  {
+    "objectID": "lecture_slides/10_chapter_hypothesis_tests_two_populations/10_chapter_hypothesis_tests_two_populations.html#two-designs-in-pictures",
+    "href": "lecture_slides/10_chapter_hypothesis_tests_two_populations/10_chapter_hypothesis_tests_two_populations.html#two-designs-in-pictures",
+    "title": " QM 6700: Business Analytics ",
+    "section": "Two Designs, in Pictures",
+    "text": "Two Designs, in Pictures\n\n\nPaired is preferred when feasible — but it requires that every unit can be measured under both conditions.\nWhen the units come from genuinely separate populations (bankrupt vs. non-bankrupt firms), only the independent design exists."
+  },
+  {
+    "objectID": "lecture_slides/10_chapter_hypothesis_tests_two_populations/10_chapter_hypothesis_tests_two_populations.html#the-hypotheses-are-about-a-difference",
+    "href": "lecture_slides/10_chapter_hypothesis_tests_two_populations/10_chapter_hypothesis_tests_two_populations.html#the-hypotheses-are-about-a-difference",
+    "title": " QM 6700: Business Analytics ",
+    "section": "The Hypotheses Are About a Difference",
+    "text": "The Hypotheses Are About a Difference\n\n\nAll of Chapter 10 reuses the Deck 09 logic — the only change is the parameter: it is now a difference.\n\n\n\\[\n\\begin{aligned}\n\\text{Two means:} \\quad & H_0: \\mu_1 - \\mu_2 = 0 \\quad \\text{vs.} \\quad H_a: \\mu_1 - \\mu_2 \\neq 0 \\; (\\text{or } &gt;, &lt;) \\\\\n\\text{Two proportions:} \\quad & H_0: p_1 - p_2 = 0 \\quad \\text{vs.} \\quad H_a: p_1 - p_2 \\neq 0 \\; (\\text{or } &gt;, &lt;)\n\\end{aligned}\n\\]\n\n\nSame machinery as before: a test statistic, a rejection region, a \\(p\\)-value, and a decision at significance level \\(\\alpha\\).\nThe equality always lives in \\(H_0\\); the claim we seek evidence for lives in \\(H_a\\)."
+  },
+  {
+    "objectID": "lecture_slides/10_chapter_hypothesis_tests_two_populations/10_chapter_hypothesis_tests_two_populations.html#choosing-the-right-test",
+    "href": "lecture_slides/10_chapter_hypothesis_tests_two_populations/10_chapter_hypothesis_tests_two_populations.html#choosing-the-right-test",
+    "title": " QM 6700: Business Analytics ",
+    "section": "Choosing the Right Test",
+    "text": "Choosing the Right Test"
+  },
+  {
+    "objectID": "lecture_slides/10_chapter_hypothesis_tests_two_populations/10_chapter_hypothesis_tests_two_populations.html#test-selection-cheat-sheet",
+    "href": "lecture_slides/10_chapter_hypothesis_tests_two_populations/10_chapter_hypothesis_tests_two_populations.html#test-selection-cheat-sheet",
+    "title": " QM 6700: Business Analytics ",
+    "section": "Test Selection Cheat Sheet",
+    "text": "Test Selection Cheat Sheet\n\n\n\n\n\n\n\n\n\n\n\nSituation\nTest\nTest statistic\nDistribution\nExcel\n\n\n\n\nSame units, two conditions\nPaired \\(t\\)\n\\(t = \\dfrac{\\bar{d} - 0}{s_d/\\sqrt{n}}\\)\n\\(t\\), \\(df = n-1\\)\nToolPak: t-Test: Paired Two Sample for Means\n\n\nIndependent, \\(\\sigma_1,\\sigma_2\\) known\nTwo-sample \\(z\\)\n\\(z = \\dfrac{(\\bar{x}_1-\\bar{x}_2) - D_0}{\\sqrt{\\sigma_1^2/n_1 + \\sigma_2^2/n_2}}\\)\n\\(N(0,1)\\)\nToolPak: z-Test: Two Sample for Means\n\n\nIndependent, \\(\\sigma\\) unknown, assumed equal\nPooled \\(t\\)\n\\(t = \\dfrac{(\\bar{x}_1-\\bar{x}_2) - D_0}{s_p\\sqrt{1/n_1 + 1/n_2}}\\)\n\\(t\\), \\(df = n_1+n_2-2\\)\nToolPak: t-Test: Two-Sample Assuming Equal Variances\n\n\nIndependent, \\(\\sigma\\) unknown, not assumed equal\nWelch \\(t\\) (default)\n\\(t = \\dfrac{(\\bar{x}_1-\\bar{x}_2) - D_0}{\\sqrt{s_1^2/n_1 + s_2^2/n_2}}\\)\n\\(t\\), Satterthwaite \\(df\\)\nToolPak: t-Test: Two-Sample Assuming Unequal Variances\n\n\nTwo proportions (large samples)\nTwo-proportion \\(z\\)\n\\(z = \\dfrac{\\bar{p}_1-\\bar{p}_2}{\\sqrt{\\bar{p}(1-\\bar{p})(1/n_1+1/n_2)}}\\)\n\\(N(0,1)\\)\nNo built-in tool — formula cells"
+  },
+  {
+    "objectID": "lecture_slides/10_chapter_hypothesis_tests_two_populations/10_chapter_hypothesis_tests_two_populations.html#one-idea-reduce-two-samples-to-one",
+    "href": "lecture_slides/10_chapter_hypothesis_tests_two_populations/10_chapter_hypothesis_tests_two_populations.html#one-idea-reduce-two-samples-to-one",
+    "title": " QM 6700: Business Analytics ",
+    "section": "One Idea: Reduce Two Samples to One",
+    "text": "One Idea: Reduce Two Samples to One\n\n\nWith a matched-sample design, each sampled unit provides a pair of data values: \\((x_{1i}, x_{2i})\\).\nKey insight: work with the difference for each pair,\n\n\n\\[\nd_i = x_{1i} - x_{2i}\n\\]\n\n\nThe two-sample problem becomes a one-sample problem about the mean difference \\(\\mu_d\\) — and we can apply exactly the single-population procedures from Deck 09.\nPoint estimate of \\(\\mu_d\\):\n\n\n\\[\n\\bar{d} = \\frac{1}{n}\\sum_{i=1}^{n} d_i\n\\]"
+  },
+  {
+    "objectID": "lecture_slides/10_chapter_hypothesis_tests_two_populations/10_chapter_hypothesis_tests_two_populations.html#paired-t-mechanics",
+    "href": "lecture_slides/10_chapter_hypothesis_tests_two_populations/10_chapter_hypothesis_tests_two_populations.html#paired-t-mechanics",
+    "title": " QM 6700: Business Analytics ",
+    "section": "Paired \\(t\\) Mechanics",
+    "text": "Paired \\(t\\) Mechanics\n\n\n\nSample standard deviation of the differences:\n\n\n\\[\ns_d = \\sqrt{\\frac{\\sum_{i=1}^n (d_i - \\bar{d})^2}{n - 1}}\n\\]\n\n\nStandard error of \\(\\bar{d}\\):\n\n\n\\[\nSE(\\bar{d}) = \\frac{s_d}{\\sqrt{n}}\n\\]\n\n\nTest statistic (under \\(H_0: \\mu_d = 0\\)), with \\(df = n - 1\\):\n\n\n\\[\nt = \\frac{\\bar{d} - 0}{s_d / \\sqrt{n}}\n\\]"
+  },
+  {
+    "objectID": "lecture_slides/10_chapter_hypothesis_tests_two_populations/10_chapter_hypothesis_tests_two_populations.html#tests-intervals-and-decision-rules",
+    "href": "lecture_slides/10_chapter_hypothesis_tests_two_populations/10_chapter_hypothesis_tests_two_populations.html#tests-intervals-and-decision-rules",
+    "title": " QM 6700: Business Analytics ",
+    "section": "Tests, Intervals, and Decision Rules",
+    "text": "Tests, Intervals, and Decision Rules\n\n\nHypothesis forms: \\(H_0: \\mu_d = 0\\) vs. \\(H_a: \\mu_d \\neq 0\\) (two-tailed), or the one-sided versions \\(H_a: \\mu_d &gt; 0\\) / \\(H_a: \\mu_d &lt; 0\\).\nDecision rule (critical value): reject \\(H_0\\) if \\(|t| \\geq t_{\\alpha/2,\\,n-1}\\) (two-tailed) or \\(t \\geq t_{\\alpha,\\,n-1}\\) (upper-tail).\nConfidence interval for \\(\\mu_d\\):\n\n\n\\[\n\\bar{d} \\pm t_{\\alpha/2,\\,n-1} \\cdot \\frac{s_d}{\\sqrt{n}}\n\\]\n\n\n\\(p\\)-values in Excel:\n\nTwo-tailed: =T.DIST.2T(ABS(t), df)\nUpper-tail: =T.DIST.RT(t, df)"
+  },
+  {
+    "objectID": "lecture_slides/10_chapter_hypothesis_tests_two_populations/10_chapter_hypothesis_tests_two_populations.html#anchor-example-express-deliveries",
+    "href": "lecture_slides/10_chapter_hypothesis_tests_two_populations/10_chapter_hypothesis_tests_two_populations.html#anchor-example-express-deliveries",
+    "title": " QM 6700: Business Analytics ",
+    "section": "Anchor Example: Express Deliveries",
+    "text": "Anchor Example: Express Deliveries\n\nTo compare delivery times of two express services, UPX and INTEX, two reports were sent to each of ten district offices — one carried by UPX, the other by INTEX. Same origin, same destination, same day: a natural pair.\n\n\n\nDistrict Office\nUPX\nINTEX\nDifference \\(d_i\\)\n\n\n\n\nSeattle\n32\n25\n7\n\n\nLos Angeles\n30\n24\n6\n\n\nBoston\n19\n15\n4\n\n\nCleveland\n16\n15\n1\n\n\nNew York\n15\n13\n2\n\n\nHouston\n18\n15\n3\n\n\nAtlanta\n14\n15\n-1\n\n\nSt. Louis\n10\n8\n2\n\n\nMilwaukee\n7\n9\n-2\n\n\nDenver\n16\n11\n5\n\n\n\nQuestion: do the data indicate a difference in mean delivery times?"
+  },
+  {
+    "objectID": "lecture_slides/10_chapter_hypothesis_tests_two_populations/10_chapter_hypothesis_tests_two_populations.html#express-deliveries-the-five-steps",
+    "href": "lecture_slides/10_chapter_hypothesis_tests_two_populations/10_chapter_hypothesis_tests_two_populations.html#express-deliveries-the-five-steps",
+    "title": " QM 6700: Business Analytics ",
+    "section": "Express Deliveries — the Five Steps",
+    "text": "Express Deliveries — the Five Steps\n\n1. Business context. Choosing a carrier; the metric is delivery time (hours); slower deliveries cost client goodwill.\n2. Hypotheses (is there any difference? → two-tailed):\n\\[\nH_0: \\mu_d = 0 \\qquad H_a: \\mu_d \\neq 0 \\qquad \\alpha = 0.05\n\\]\n3. Test statistic. From the ten differences:\n\\[\n\\bar{d} = 2.70, \\quad s_d = 2.908, \\quad SE = \\frac{2.908}{\\sqrt{10}} = 0.920, \\quad t = \\frac{2.70}{0.920} = 2.94, \\quad df = 9\n\\]\n4. Decision. \\(p\\text{-value} = 0.017 \\leq \\alpha = 0.05\\) → reject \\(H_0\\). Also: 95% CI for \\(\\mu_d\\) = \\((0.620,\\; 4.780)\\) hours — zero is not a plausible mean difference.\n5. Manager’s Translation. UPX averages about 2.7 hours slower than INTEX on identical routes — a real difference, not noise. If speed matters, route the volume to INTEX (then negotiate with UPX)."
+  },
+  {
+    "objectID": "lecture_slides/10_chapter_hypothesis_tests_two_populations/10_chapter_hypothesis_tests_two_populations.html#express-deliveries-in-excel",
+    "href": "lecture_slides/10_chapter_hypothesis_tests_two_populations/10_chapter_hypothesis_tests_two_populations.html#express-deliveries-in-excel",
+    "title": " QM 6700: Business Analytics ",
+    "section": "Express Deliveries in Excel",
+    "text": "Express Deliveries in Excel\n\n\n\nData → Data Analysis → t-Test: Paired Two Sample for Means\n\nVariable 1 Range: UPX column\nVariable 2 Range: INTEX column\nHypothesized Mean Difference: 0\nAlpha: 0.05\n\n\nRead the output: t Stat = 2.936, P(T&lt;=t) two-tail = 0.017 \\(\\leq\\) 0.05 → reject \\(H_0\\)."
+  },
+  {
+    "objectID": "lecture_slides/10_chapter_hypothesis_tests_two_populations/10_chapter_hypothesis_tests_two_populations.html#step-1-business-context-why-a-paired-design",
+    "href": "lecture_slides/10_chapter_hypothesis_tests_two_populations/10_chapter_hypothesis_tests_two_populations.html#step-1-business-context-why-a-paired-design",
+    "title": " QM 6700: Business Analytics ",
+    "section": "Step 1 — Business Context: Why a Paired Design?",
+    "text": "Step 1 — Business Context: Why a Paired Design?\n\n\nEach of the 30 days of June 2014 is a natural experimental unit: on any given day, the same advertising market operates — same advertisers, same user pool, same day-of-week effects.\nUsers were randomly split within each day: A and B ran side by side.\nSo each day yields one pair: \\((\\text{eRPM}_A, \\text{eRPM}_B)\\) — and one difference\n\n\n\\[\nd_i = \\text{eRPM}_{B,i} - \\text{eRPM}_{A,i}\n\\]\n\n\nPairing subtracts out day-specific noise (weekend dips, late-June seasonality) and isolates the pure algorithm effect.\nData: data/vungle_erpm_paired.csv — 30 rows, columns erpm_A, erpm_B, diff_B_minus_A."
+  },
+  {
+    "objectID": "lecture_slides/10_chapter_hypothesis_tests_two_populations/10_chapter_hypothesis_tests_two_populations.html#the-data-30-days-of-erpm",
+    "href": "lecture_slides/10_chapter_hypothesis_tests_two_populations/10_chapter_hypothesis_tests_two_populations.html#the-data-30-days-of-erpm",
+    "title": " QM 6700: Business Analytics ",
+    "section": "The Data: 30 Days of eRPM",
+    "text": "The Data: 30 Days of eRPM\n\n\nB starts below A, then pulls ahead for most of the month. Eyeballing is suggestive — but Guerin needs more than an eyeball to bet his job on."
+  },
+  {
+    "objectID": "lecture_slides/10_chapter_hypothesis_tests_two_populations/10_chapter_hypothesis_tests_two_populations.html#the-differences-d-b---a",
+    "href": "lecture_slides/10_chapter_hypothesis_tests_two_populations/10_chapter_hypothesis_tests_two_populations.html#the-differences-d-b---a",
+    "title": " QM 6700: Business Analytics ",
+    "section": "The Differences: \\(d = B - A\\)",
+    "text": "The Differences: \\(d = B - A\\)\n\n\n26 of 30 days favor B; the mean difference is +$0.112 per 1,000 impressions.\nThe paired \\(t\\)-test asks: could a mean difference this large arise by chance if the true difference were zero?"
+  },
+  {
+    "objectID": "lecture_slides/10_chapter_hypothesis_tests_two_populations/10_chapter_hypothesis_tests_two_populations.html#step-2-hypotheses",
+    "href": "lecture_slides/10_chapter_hypothesis_tests_two_populations/10_chapter_hypothesis_tests_two_populations.html#step-2-hypotheses",
+    "title": " QM 6700: Business Analytics ",
+    "section": "Step 2 — Hypotheses",
+    "text": "Step 2 — Hypotheses\n\n\n\\[\nH_0: \\mu_d \\leq 0 \\qquad \\text{vs.} \\qquad H_a: \\mu_d &gt; 0 \\qquad \\text{(upper-tail)} \\qquad \\alpha = 0.05\n\\]\n\n\n\nWhy one-tailed? The business decision is asymmetric: Vungle rolls out B only if it is better. “B is worse” and “B is the same” lead to the identical action — keep A.\n\\(\\mu_d\\) = the true mean daily eRPM advantage of B over A.\nWe will also report the two-tailed \\(p\\)-value — the more conservative convention — and the conclusion will not change."
+  },
+  {
+    "objectID": "lecture_slides/10_chapter_hypothesis_tests_two_populations/10_chapter_hypothesis_tests_two_populations.html#step-3-test-statistic",
+    "href": "lecture_slides/10_chapter_hypothesis_tests_two_populations/10_chapter_hypothesis_tests_two_populations.html#step-3-test-statistic",
+    "title": " QM 6700: Business Analytics ",
+    "section": "Step 3 — Test Statistic",
+    "text": "Step 3 — Test Statistic\n\nFrom the 30 daily differences in vungle_erpm_paired.csv:\n\n\n\n\nQuantity\nValue\n\n\n\n\n\\(n\\) (days)\n30\n\n\n\\(\\bar{d}\\) (mean difference)\n$0.1119\n\n\n\\(s_d\\)\n0.1843\n\n\n\\(SE = s_d/\\sqrt{30}\\)\n0.0337\n\n\n\\(t = \\bar{d}/SE\\)\n3.325\n\n\n\\(df\\)\n29\n\n\n\n\n\n\n\\[\nt = \\frac{0.1119}{0.1843/\\sqrt{30}} = \\frac{0.1119}{0.0337} = 3.325\n\\]"
+  },
+  {
+    "objectID": "lecture_slides/10_chapter_hypothesis_tests_two_populations/10_chapter_hypothesis_tests_two_populations.html#excel-t-test-paired-two-sample-for-means",
+    "href": "lecture_slides/10_chapter_hypothesis_tests_two_populations/10_chapter_hypothesis_tests_two_populations.html#excel-t-test-paired-two-sample-for-means",
+    "title": " QM 6700: Business Analytics ",
+    "section": "Excel: t-Test Paired Two Sample for Means",
+    "text": "Excel: t-Test Paired Two Sample for Means\n\n\n\nData → Data Analysis → t-Test: Paired Two Sample for Means\n\nVariable 1 Range: erpm_B column\nVariable 2 Range: erpm_A column\nHypothesized Mean Difference: 0\nAlpha: 0.05\n\n\nKey rows:\n\nt Stat = 3.325\nP(T&lt;=t) one-tail = 0.0012\nt Critical one-tail = 1.699"
+  },
+  {
+    "objectID": "lecture_slides/10_chapter_hypothesis_tests_two_populations/10_chapter_hypothesis_tests_two_populations.html#step-4-decision",
+    "href": "lecture_slides/10_chapter_hypothesis_tests_two_populations/10_chapter_hypothesis_tests_two_populations.html#step-4-decision",
+    "title": " QM 6700: Business Analytics ",
+    "section": "Step 4 — Decision",
+    "text": "Step 4 — Decision\n\n\nCritical value: \\(t = 3.325 \\geq t_{0.05,29} = 1.699\\) → reject \\(H_0\\).\n\\(p\\)-value: one-tail \\(p \\approx 0.0012\\) (two-tail \\(\\approx 0.0024\\)) \\(\\leq \\alpha = 0.05\\) → reject \\(H_0\\).\nStrong evidence that algorithm B’s mean daily eRPM is higher than A’s."
+  },
+  {
+    "objectID": "lecture_slides/10_chapter_hypothesis_tests_two_populations/10_chapter_hypothesis_tests_two_populations.html#the-confidence-interval-tells-you-the-size",
+    "href": "lecture_slides/10_chapter_hypothesis_tests_two_populations/10_chapter_hypothesis_tests_two_populations.html#the-confidence-interval-tells-you-the-size",
+    "title": " QM 6700: Business Analytics ",
+    "section": "The Confidence Interval Tells You the Size",
+    "text": "The Confidence Interval Tells You the Size\n\n\nThe test says the lift is real; the confidence interval says how big it plausibly is:\n\n\n\\[\n\\bar{d} \\pm t_{0.025,29}\\frac{s_d}{\\sqrt{n}} = 0.1119 \\pm 2.045 \\times 0.0337 \\;=\\; (\\$0.043,\\; \\$0.181)\n\\]\n\n\nThe entire interval is above zero — consistent with rejecting \\(H_0\\).\nEven the lower bound ($0.043 per 1,000 impressions) is a meaningful lift at Vungle’s scale.\nIn Excel: =T.INV(0.975, 29) → 2.045; bounds with formula cells from \\(\\bar d\\) and \\(SE\\)."
+  },
+  {
+    "objectID": "lecture_slides/10_chapter_hypothesis_tests_two_populations/10_chapter_hypothesis_tests_two_populations.html#step-5-managers-translation-back-to-the-decision",
+    "href": "lecture_slides/10_chapter_hypothesis_tests_two_populations/10_chapter_hypothesis_tests_two_populations.html#step-5-managers-translation-back-to-the-decision",
+    "title": " QM 6700: Business Analytics ",
+    "section": "Step 5 — Manager’s Translation: Back to the Decision",
+    "text": "Step 5 — Manager’s Translation: Back to the Decision\n\n\n“A difference this large would arise by chance only about 1 in 1,000 times if B were no better than A — so we reject the ‘no difference’ story. On a typical day, B earns between $0.04 and $0.18 more per 1,000 impressions than A.”\nScale it: A served ≈ 236.5M impressions in June. Had B served that traffic:\n\n\n\\[\n\\frac{236{,}459{,}402}{1{,}000} \\times \\$0.112 \\approx \\$26{,}500 \\text{ per month} \\;\\approx\\; \\$318\\text{K per year}\n\\]\n\n\nEven at the CI lower bound ($0.043), the lift is ≈ $10K/month — material for a startup with $25.5M raised.\nDiscussion hook: the daily gap is noisy — the first week even favored A, and after two weeks B’s lead was only ≈ $0.04, still well below the full-month $0.11. Stopping the test early could have hidden the effect. (Sequential testing — beyond Ch. 10, but exactly what real A/B platforms wrestle with.)"
+  },
+  {
+    "objectID": "lecture_slides/10_chapter_hypothesis_tests_two_populations/10_chapter_hypothesis_tests_two_populations.html#setup-and-point-estimate",
+    "href": "lecture_slides/10_chapter_hypothesis_tests_two_populations/10_chapter_hypothesis_tests_two_populations.html#setup-and-point-estimate",
+    "title": " QM 6700: Business Analytics ",
+    "section": "Setup and Point Estimate",
+    "text": "Setup and Point Estimate\n\n\nTwo independent random samples: sizes \\(n_1, n_2\\) from populations with means \\(\\mu_1, \\mu_2\\).\nPoint estimate of \\(\\mu_1 - \\mu_2\\): \\(\\bar{x}_1 - \\bar{x}_2\\).\nSampling distribution of \\(\\bar{x}_1 - \\bar{x}_2\\): centered at \\(\\mu_1 - \\mu_2\\), with standard error built from both sampling variances:\n\n\n\\[\nSE(\\bar{x}_1 - \\bar{x}_2) = \\sqrt{\\frac{\\sigma_1^2}{n_1} + \\frac{\\sigma_2^2}{n_2}}\n\\]\n\n\nWhich test statistic you use depends on what you know about \\(\\sigma_1, \\sigma_2\\) — the three cases that follow."
+  },
+  {
+    "objectID": "lecture_slides/10_chapter_hypothesis_tests_two_populations/10_chapter_hypothesis_tests_two_populations.html#case-1-sigma_1-sigma_2-known-the-two-sample-z",
+    "href": "lecture_slides/10_chapter_hypothesis_tests_two_populations/10_chapter_hypothesis_tests_two_populations.html#case-1-sigma_1-sigma_2-known-the-two-sample-z",
+    "title": " QM 6700: Business Analytics ",
+    "section": "Case 1 — \\(\\sigma_1, \\sigma_2\\) Known: the Two-Sample \\(z\\)",
+    "text": "Case 1 — \\(\\sigma_1, \\sigma_2\\) Known: the Two-Sample \\(z\\)\n\n\nRare in practice (you seldom know population standard deviations), but conceptually clean:\n\n\n\\[\nz = \\frac{(\\bar{x}_1 - \\bar{x}_2) - D_0}{\\sqrt{\\sigma_1^2/n_1 + \\sigma_2^2/n_2}}\n\\qquad\\qquad\n\\text{CI:}\\;\\; (\\bar{x}_1 - \\bar{x}_2) \\pm z_{\\alpha/2}\\sqrt{\\frac{\\sigma_1^2}{n_1} + \\frac{\\sigma_2^2}{n_2}}\n\\]\n\n\n\\(D_0\\) = hypothesized difference, usually 0.\nExcel: Data Analysis → z-Test: Two Sample for Means (requires the two known variances as inputs); \\(p\\)-values via =NORM.S.DIST.\nNote: the worksheet function =Z.TEST is for one sample only — the two-sample version needs the ToolPak tool or formula cells."
+  },
+  {
+    "objectID": "lecture_slides/10_chapter_hypothesis_tests_two_populations/10_chapter_hypothesis_tests_two_populations.html#case-2-sigma-unknown-assumed-equal-the-pooled-t",
+    "href": "lecture_slides/10_chapter_hypothesis_tests_two_populations/10_chapter_hypothesis_tests_two_populations.html#case-2-sigma-unknown-assumed-equal-the-pooled-t",
+    "title": " QM 6700: Business Analytics ",
+    "section": "Case 2 — \\(\\sigma\\) Unknown, Assumed Equal: the Pooled \\(t\\)",
+    "text": "Case 2 — \\(\\sigma\\) Unknown, Assumed Equal: the Pooled \\(t\\)\n\n\nIf it is reasonable to assume \\(\\sigma_1 = \\sigma_2 = \\sigma\\), combine both samples into one pooled variance:\n\n\n\\[\ns_p^2 = \\frac{(n_1 - 1)s_1^2 + (n_2 - 1)s_2^2}{n_1 + n_2 - 2}\n\\]\n\n\n\\[\nt = \\frac{(\\bar{x}_1 - \\bar{x}_2) - D_0}{s_p\\sqrt{\\dfrac{1}{n_1} + \\dfrac{1}{n_2}}},\n\\qquad df = n_1 + n_2 - 2\n\\]\n\n\nCI: \\((\\bar{x}_1 - \\bar{x}_2) \\pm t_{\\alpha/2,\\,n_1+n_2-2}\\; s_p\\sqrt{1/n_1 + 1/n_2}\\)\nExcel: Data Analysis → t-Test: Two-Sample Assuming Equal Variances."
+  },
+  {
+    "objectID": "lecture_slides/10_chapter_hypothesis_tests_two_populations/10_chapter_hypothesis_tests_two_populations.html#case-3-sigma-unknown-not-assumed-equal-the-welch-t",
+    "href": "lecture_slides/10_chapter_hypothesis_tests_two_populations/10_chapter_hypothesis_tests_two_populations.html#case-3-sigma-unknown-not-assumed-equal-the-welch-t",
+    "title": " QM 6700: Business Analytics ",
+    "section": "Case 3 — \\(\\sigma\\) Unknown, Not Assumed Equal: the Welch \\(t\\)",
+    "text": "Case 3 — \\(\\sigma\\) Unknown, Not Assumed Equal: the Welch \\(t\\)\n\n\n\nDrop the equal-variance assumption — each sample keeps its own variance:\n\n\n\\[\nt = \\frac{(\\bar{x}_1 - \\bar{x}_2) - D_0}{\\sqrt{\\dfrac{s_1^2}{n_1} + \\dfrac{s_2^2}{n_2}}}\n\\]\n\n\nDegrees of freedom (Satterthwaite approximation; typically non-integer — round down):\n\n\n\\[\ndf = \\frac{\\left(\\dfrac{s_1^2}{n_1} + \\dfrac{s_2^2}{n_2}\\right)^2}{\\dfrac{(s_1^2/n_1)^2}{n_1 - 1} + \\dfrac{(s_2^2/n_2)^2}{n_2 - 1}}\n\\]\n\n\nCI: \\((\\bar{x}_1 - \\bar{x}_2) \\pm t_{\\alpha/2,\\,df}\\sqrt{s_1^2/n_1 + s_2^2/n_2}\\)"
+  },
+  {
+    "objectID": "lecture_slides/10_chapter_hypothesis_tests_two_populations/10_chapter_hypothesis_tests_two_populations.html#practical-guidance-default-to-welch",
+    "href": "lecture_slides/10_chapter_hypothesis_tests_two_populations/10_chapter_hypothesis_tests_two_populations.html#practical-guidance-default-to-welch",
+    "title": " QM 6700: Business Analytics ",
+    "section": "Practical Guidance: Default to Welch",
+    "text": "Practical Guidance: Default to Welch\n\n\nUnless you have a strong theoretical reason to assume equal variances, use Welch. It is the safe default: when variances are equal it loses almost nothing; when they differ it protects you.\nExcel: Data Analysis → t-Test: Two-Sample Assuming Unequal Variances.\nReading any ToolPak \\(t\\)-test output — the same rows every time:\n\nMean, Variance, Observations — the summary statistics per group\ndf — degrees of freedom used\nt Stat — the test statistic\nP(T&lt;=t) one-tail / two-tail — your \\(p\\)-values\nt Critical one-tail / two-tail — the cutoffs for \\(\\alpha\\)"
+  },
+  {
+    "objectID": "lecture_slides/10_chapter_hypothesis_tests_two_populations/10_chapter_hypothesis_tests_two_populations.html#anchor-example-start-up-owners-equity",
+    "href": "lecture_slides/10_chapter_hypothesis_tests_two_populations/10_chapter_hypothesis_tests_two_populations.html#anchor-example-start-up-owners-equity",
+    "title": " QM 6700: Business Analytics ",
+    "section": "Anchor Example: Start-up Owner’s Equity",
+    "text": "Anchor Example: Start-up Owner’s Equity\n\nTwo populations (no pairing is possible — a firm is either bankrupt or it isn’t):\n\nSmall business firms that went bankrupt within the first year\nFirms that are not bankrupt\n\nVariable of interest: owner’s equity ($K) at founding.\n\n\n\n\nGroup\n\\(n\\)\n\\(\\bar{x}\\)\n\\(s\\)\n\n\n\n\nBankrupt\n15\n5.73\n3.33\n\n\nNon-bankrupt\n15\n7.87\n2.61\n\n\n\n\nQuestion: is there a difference in average owner’s equity between bankrupt and non-bankrupt firms?"
+  },
+  {
+    "objectID": "lecture_slides/10_chapter_hypothesis_tests_two_populations/10_chapter_hypothesis_tests_two_populations.html#owners-equity-the-five-steps",
+    "href": "lecture_slides/10_chapter_hypothesis_tests_two_populations/10_chapter_hypothesis_tests_two_populations.html#owners-equity-the-five-steps",
+    "title": " QM 6700: Business Analytics ",
+    "section": "Owner’s Equity — the Five Steps",
+    "text": "Owner’s Equity — the Five Steps\n\n1. Business context. Does thin capitalization at founding predict first-year failure? (Lender screening, founder advice.)\n2. Hypotheses (two-tailed): \\(H_0: \\mu_1 - \\mu_2 = 0\\) vs. \\(H_a: \\mu_1 - \\mu_2 \\neq 0\\), \\(\\alpha = 0.05\\). Independent samples, \\(\\sigma\\) unknown, no reason to assume equal variances → Welch \\(t\\).\n3. Test statistic.\n\\[\nt = \\frac{(5.73 - 7.87) - 0}{\\sqrt{\\dfrac{3.33^2}{15} + \\dfrac{2.61^2}{15}}} = \\frac{-2.14}{1.093} = -1.96, \\qquad df \\approx 26\n\\]\n4. Decision. \\(p\\)-value (two-tail) \\(\\approx 0.061 &gt; \\alpha = 0.05\\) → fail to reject \\(H_0\\). 95% CI for \\(\\mu_1 - \\mu_2\\): \\((-4.4,\\; 0.1)\\) — barely includes zero.\n5. Manager’s Translation. Bankrupt firms started with about $2.1K less equity on average, but with only 15 firms per group we cannot rule out chance at the 5% level. A borderline result — worth a bigger sample before building lending policy on it."
+  },
+  {
+    "objectID": "lecture_slides/10_chapter_hypothesis_tests_two_populations/10_chapter_hypothesis_tests_two_populations.html#owners-equity-in-excel",
+    "href": "lecture_slides/10_chapter_hypothesis_tests_two_populations/10_chapter_hypothesis_tests_two_populations.html#owners-equity-in-excel",
+    "title": " QM 6700: Business Analytics ",
+    "section": "Owner’s Equity in Excel",
+    "text": "Owner’s Equity in Excel\n\n\n\nData → Data Analysis → t-Test: Two-Sample Assuming Unequal Variances\n\nVariable 1 Range: Bankrupt column\nVariable 2 Range: Non-bankrupt column\nHypothesized Mean Difference: 0\n\n\n“Fail to reject” ≠ “the means are equal.” With \\(n = 15\\) per group the test has low power; a $2K average gap may be economically real yet statistically undetectable here.\n(With equal \\(n\\), the pooled \\(t\\) gives the same \\(t\\)-statistic with \\(df = 28\\) — same conclusion.)"
+  },
+  {
+    "objectID": "lecture_slides/10_chapter_hypothesis_tests_two_populations/10_chapter_hypothesis_tests_two_populations.html#what-if-we-ignored-the-pairing",
+    "href": "lecture_slides/10_chapter_hypothesis_tests_two_populations/10_chapter_hypothesis_tests_two_populations.html#what-if-we-ignored-the-pairing",
+    "title": " QM 6700: Business Analytics ",
+    "section": "What If We Ignored the Pairing?",
+    "text": "What If We Ignored the Pairing?\n\n\n\nTreat the 30 A-days and 30 B-days as two independent samples (Welch) — wrong design, same data:\n\n\\(\\bar{x}_A = 3.347\\), \\(s_A = 0.217\\)\n\\(\\bar{x}_B = 3.459\\), \\(s_B = 0.344\\)\n\\(t = 1.51\\), \\(p\\) (two-tail) \\(\\approx 0.138\\)\n\n\nFail to reject \\(H_0\\) at \\(\\alpha = 0.05\\). The $0.11 lift “disappears.”\n(ToolPak: Variable 1 = erpm_B, Variable 2 = erpm_A — same order as the paired test, so \\(t\\) is positive.)"
+  },
+  {
+    "objectID": "lecture_slides/10_chapter_hypothesis_tests_two_populations/10_chapter_hypothesis_tests_two_populations.html#the-lesson-design-drives-conclusions",
+    "href": "lecture_slides/10_chapter_hypothesis_tests_two_populations/10_chapter_hypothesis_tests_two_populations.html#the-lesson-design-drives-conclusions",
+    "title": " QM 6700: Business Analytics ",
+    "section": "The Lesson: Design Drives Conclusions",
+    "text": "The Lesson: Design Drives Conclusions\n\n\n\n\n\nPaired \\(t\\) (correct)\nIndependent \\(t\\) (wrong)\n\n\n\n\nTest statistic\n3.33\n1.51\n\n\n\\(p\\)-value (two-tail)\n0.0024\n0.138\n\n\nDecision at \\(\\alpha = .05\\)\nReject \\(H_0\\) — B wins\nFail to reject\n\n\n\n\n\nSame data. Same question. Different design assumption → opposite conclusion.\nWhy: day-to-day market swings (weekends, seasonality) inflate the independent-samples noise (\\(s \\approx 0.22\\)–\\(0.34\\)), while pairing cancels them (\\(s_d = 0.18\\) on the differences, and the A/B series are correlated at \\(r = 0.88\\)).\nThe design decision was made before any data were collected — when Vungle chose to run A and B in parallel within each day. Good analysis starts at design, not at the formula sheet."
+  },
+  {
+    "objectID": "lecture_slides/10_chapter_hypothesis_tests_two_populations/10_chapter_hypothesis_tests_two_populations.html#vungles-other-metric-conversion-rate",
+    "href": "lecture_slides/10_chapter_hypothesis_tests_two_populations/10_chapter_hypothesis_tests_two_populations.html#vungles-other-metric-conversion-rate",
+    "title": " QM 6700: Business Analytics ",
+    "section": "Vungle’s Other Metric: Conversion Rate",
+    "text": "Vungle’s Other Metric: Conversion Rate\n\n\neRPM is revenue per impression. Advertisers also watch the conversion rate: installs ÷ impressions.\nThe case: “small improvements in the click-through or conversion rates could have a large effect on Vungle’s revenue.”\nJune 2014 totals (vungle_daily.csv):\n\n\n\n\n\nMetric\nAlgorithm A\nAlgorithm B\n\n\n\n\nImpressions\n236,459,402\n15,825,376\n\n\nInstalls\n951,666\n56,031\n\n\nConversion rate \\(\\bar{p}\\)\n0.4025%\n0.3541%\n\n\n\n\n\nQuestion: does B convert impressions to installs at a different rate than A?"
+  },
+  {
+    "objectID": "lecture_slides/10_chapter_hypothesis_tests_two_populations/10_chapter_hypothesis_tests_two_populations.html#unit-of-observation-days-vs.-impressions",
+    "href": "lecture_slides/10_chapter_hypothesis_tests_two_populations/10_chapter_hypothesis_tests_two_populations.html#unit-of-observation-days-vs.-impressions",
+    "title": " QM 6700: Business Analytics ",
+    "section": "Unit of Observation: Days vs. Impressions",
+    "text": "Unit of Observation: Days vs. Impressions\n\n\nCareful — the “sample size” just changed by seven orders of magnitude:\n\nFor eRPM, the unit was the day: \\(n = 30\\) paired days.\nFor conversion, the unit is the impression: each one is a Bernoulli trial (install / no install), so \\(n_1 \\approx 236\\)M and \\(n_2 \\approx 16\\)M.\n\nLarge-sample conditions easily satisfied: \\(n\\bar{p} \\geq 5\\) and \\(n(1-\\bar{p}) \\geq 5\\) for both groups (e.g., \\(n_2\\bar{p}_2 = 56{,}031 \\gg 5\\)).\nAlso note the traffic imbalance: A got ~15× B’s impressions (the 1/16 hash split). That is exactly why we compare rates, never raw counts — B’s 56K installs vs. A’s 952K says nothing by itself.\nHonest caveat: impressions within a day are not perfectly independent (time structure). Beyond Ch. 10 scope — but a good question to ask any A/B platform."
+  },
+  {
+    "objectID": "lecture_slides/10_chapter_hypothesis_tests_two_populations/10_chapter_hypothesis_tests_two_populations.html#estimating-p_1---p_2",
+    "href": "lecture_slides/10_chapter_hypothesis_tests_two_populations/10_chapter_hypothesis_tests_two_populations.html#estimating-p_1---p_2",
+    "title": " QM 6700: Business Analytics ",
+    "section": "Estimating \\(p_1 - p_2\\)",
+    "text": "Estimating \\(p_1 - p_2\\)\n\n\nTwo independent large samples; observe \\(\\bar{p}_1 = x_1/n_1\\) and \\(\\bar{p}_2 = x_2/n_2\\).\nPoint estimate: \\(\\bar{p}_1 - \\bar{p}_2\\).\nConfidence interval — each group keeps its own variance (do not pool for CIs):\n\n\n\\[\n(\\bar{p}_1 - \\bar{p}_2) \\pm z_{\\alpha/2}\\sqrt{\\frac{\\bar{p}_1(1-\\bar{p}_1)}{n_1} + \\frac{\\bar{p}_2(1-\\bar{p}_2)}{n_2}}\n\\]"
+  },
+  {
+    "objectID": "lecture_slides/10_chapter_hypothesis_tests_two_populations/10_chapter_hypothesis_tests_two_populations.html#testing-p_1---p_2-0-pool-under-h_0",
+    "href": "lecture_slides/10_chapter_hypothesis_tests_two_populations/10_chapter_hypothesis_tests_two_populations.html#testing-p_1---p_2-0-pool-under-h_0",
+    "title": " QM 6700: Business Analytics ",
+    "section": "Testing \\(p_1 - p_2 = 0\\): Pool Under \\(H_0\\)",
+    "text": "Testing \\(p_1 - p_2 = 0\\): Pool Under \\(H_0\\)\n\n\nUnder \\(H_0\\) the two proportions are the same \\(p\\) — so the best estimate of it uses all the data:\n\n\n\\[\n\\bar{p} = \\frac{x_1 + x_2}{n_1 + n_2}\n\\qquad\\qquad\nSE_{pool} = \\sqrt{\\bar{p}(1-\\bar{p})\\left(\\frac{1}{n_1} + \\frac{1}{n_2}\\right)}\n\\]\n\n\nTest statistic:\n\n\n\\[\nz = \\frac{\\bar{p}_1 - \\bar{p}_2}{SE_{pool}}\n\\]\n\n\nDecision rule and \\(p\\)-value exactly as in the one-proportion \\(z\\)-test (Deck 09); Excel: =NORM.S.DIST.\nRule of thumb: pool under \\(H_0\\) (testing); do not pool for confidence intervals."
+  },
+  {
+    "objectID": "lecture_slides/10_chapter_hypothesis_tests_two_populations/10_chapter_hypothesis_tests_two_populations.html#no-toolpak-tool-build-it-with-formulas",
+    "href": "lecture_slides/10_chapter_hypothesis_tests_two_populations/10_chapter_hypothesis_tests_two_populations.html#no-toolpak-tool-build-it-with-formulas",
+    "title": " QM 6700: Business Analytics ",
+    "section": "No ToolPak Tool: Build It with Formulas",
+    "text": "No ToolPak Tool: Build It with Formulas\n\n\n\nThe Data Analysis ToolPak has no two-proportion z tool — five formula cells do the job.\n\nThis is worth mastering: most real A/B testing metrics (click-through, conversion, churn) are proportions."
+  },
+  {
+    "objectID": "lecture_slides/10_chapter_hypothesis_tests_two_populations/10_chapter_hypothesis_tests_two_populations.html#vungle-conversion-the-five-steps",
+    "href": "lecture_slides/10_chapter_hypothesis_tests_two_populations/10_chapter_hypothesis_tests_two_populations.html#vungle-conversion-the-five-steps",
+    "title": " QM 6700: Business Analytics ",
+    "section": "Vungle Conversion — the Five Steps",
+    "text": "Vungle Conversion — the Five Steps\n\n1. Business context. Advertisers pay mostly per install; conversion rate signals how well ads match users.\n2. Hypotheses (two-tailed): \\(H_0: p_B - p_A = 0\\) vs. \\(H_a: p_B - p_A \\neq 0\\), \\(\\alpha = 0.05\\).\n3. Test statistic.\n\\[\n\\bar{p} = \\frac{951{,}666 + 56{,}031}{236{,}459{,}402 + 15{,}825{,}376} = 0.3994\\%,\n\\qquad SE_{pool} = 1.64 \\times 10^{-5}\n\\]\n\\[\nz = \\frac{0.003541 - 0.004025}{0.0000164} = \\mathbf{-29.56}\n\\]\n4. Decision. \\(|z| = 29.56 \\gg z_{0.025} = 1.96\\); \\(p\\)-value \\(&lt; 0.0001\\) → reject \\(H_0\\) overwhelmingly.\n5. Manager’s Translation. B converts impressions to installs at a genuinely lower rate than A — 0.354% vs. 0.403%, a 12% relative drop. This is not noise."
+  },
+  {
+    "objectID": "lecture_slides/10_chapter_hypothesis_tests_two_populations/10_chapter_hypothesis_tests_two_populations.html#the-surprise-b-converts-less-but-earns-more",
+    "href": "lecture_slides/10_chapter_hypothesis_tests_two_populations/10_chapter_hypothesis_tests_two_populations.html#the-surprise-b-converts-less-but-earns-more",
+    "title": " QM 6700: Business Analytics ",
+    "section": "The Surprise: B Converts Less but Earns More",
+    "text": "The Surprise: B Converts Less but Earns More\n\n\n\n\n\n\n\n\n\nMetric\nWinner\nEvidence\n\n\n\n\neRPM (revenue per 1,000 impressions)\nB\npaired \\(t = 3.33\\), \\(p = 0.0024\\)\n\n\nConversion rate (installs per impression)\nA\n\\(z = -29.56\\), \\(p &lt; 0.0001\\)\n\n\n\n\n\nBoth results are statistically decisive — and they point in opposite directions.\nThis is not a data error. It is the most realistic moment in this course: real decisions face multiple metrics that disagree.\nSo which metric should drive the rollout?"
+  },
+  {
+    "objectID": "lecture_slides/10_chapter_hypothesis_tests_two_populations/10_chapter_hypothesis_tests_two_populations.html#reconciling-the-two-metrics",
+    "href": "lecture_slides/10_chapter_hypothesis_tests_two_populations/10_chapter_hypothesis_tests_two_populations.html#reconciling-the-two-metrics",
+    "title": " QM 6700: Business Analytics ",
+    "section": "Reconciling the Two Metrics",
+    "text": "Reconciling the Two Metrics\n\n\neRPM rewards revenue per impression, not installs per impression.\nThe case tells us eRPM varied from $2 to $7 per campaign, and the vast majority of Vungle’s ads were CPI — advertisers pay per install, at very different prices.\nSo B apparently selects higher-value campaigns: fewer installs, but each install is worth more — a richer optimization target than raw conversion.\nAnalogy: a salesperson who closes fewer deals at much higher margins.\nThe metric must match the business model. Vungle is a revenue-maximizing platform → eRPM is the right north star; conversion is a health metric to monitor."
+  },
+  {
+    "objectID": "lecture_slides/10_chapter_hypothesis_tests_two_populations/10_chapter_hypothesis_tests_two_populations.html#statistical-vs.-practical-significance",
+    "href": "lecture_slides/10_chapter_hypothesis_tests_two_populations/10_chapter_hypothesis_tests_two_populations.html#statistical-vs.-practical-significance",
+    "title": " QM 6700: Business Analytics ",
+    "section": "Statistical vs. Practical Significance",
+    "text": "Statistical vs. Practical Significance\n\n\nWith \\(n\\) in the hundreds of millions, the conversion test was guaranteed to be “significant”: at this scale, even a microscopic difference produces a huge \\(z\\).\n\\(z = -29.56\\) tells you the difference is real; it does not tell you the difference matters.\nAlways pair the test with the effect size: -0.048 percentage points (a 12% relative drop in conversion) — that is the number a manager should debate.\nFlip side from the equity example: small samples can make real effects invisible (low power). Large \\(n\\): everything is significant. Small \\(n\\): nothing is. Neither replaces judgment about magnitude."
+  },
+  {
+    "objectID": "lecture_slides/10_chapter_hypothesis_tests_two_populations/10_chapter_hypothesis_tests_two_populations.html#three-tests-one-decision",
+    "href": "lecture_slides/10_chapter_hypothesis_tests_two_populations/10_chapter_hypothesis_tests_two_populations.html#three-tests-one-decision",
+    "title": " QM 6700: Business Analytics ",
+    "section": "Three Tests, One Decision",
+    "text": "Three Tests, One Decision\n\n\n\n\n\n\n\n\n\nTest\nResult\nDecision signal\n\n\n\n\nPaired \\(t\\) — eRPM (B vs. A)\n\\(t = 3.33\\), \\(p = 0.0024\\)\nB earns more per impression. Roll out.\n\n\nIndependent \\(t\\) — same data, wrong design\n\\(t = 1.51\\), \\(p = 0.138\\)\n(Cautionary: wrong design would have hidden the lift.)\n\n\nTwo-proportion \\(z\\) — conversion\n\\(z = -29.56\\), \\(p &lt; 0.0001\\)\nB converts less. Monitor.\n\n\n\n\n\nRecommendation to CEO Jaffer: roll out B — eRPM is the metric aligned with Vungle’s business model, the lift is statistically solid ($0.04–$0.18 per 1,000), and it is worth ≈ $26.5K/month on June’s traffic. Track the install funnel weekly post-rollout in case the lower conversion rate erodes advertiser satisfaction."
+  },
+  {
+    "objectID": "lecture_slides/10_chapter_hypothesis_tests_two_populations/10_chapter_hypothesis_tests_two_populations.html#from-inference-to-decision-analysis",
+    "href": "lecture_slides/10_chapter_hypothesis_tests_two_populations/10_chapter_hypothesis_tests_two_populations.html#from-inference-to-decision-analysis",
+    "title": " QM 6700: Business Analytics ",
+    "section": "From Inference to Decision Analysis",
+    "text": "From Inference to Decision Analysis\n\n\nIn Deck 20 you computed expected values for roll out / keep A / test first. Today’s output feeds straight into that framework:\n\nThe CI \\((\\$0.043, \\$0.181)\\) per 1,000 impressions is the range of payoffs for the “roll out” branch.\nThe \\(p\\)-value bounds the probability of the bad state (“B is not actually better”) — the input Bayesian revision needs.\n\nThis is the division of labor in analytics:\n\nInference (Decks 08–10): what is true, and how sure are we?\nDecision analysis (Deck 20): given that uncertainty, what should we do?"
+  },
+  {
+    "objectID": "lecture_slides/10_chapter_hypothesis_tests_two_populations/10_chapter_hypothesis_tests_two_populations.html#chapter-10-on-one-page-the-vungle-bridge-table",
+    "href": "lecture_slides/10_chapter_hypothesis_tests_two_populations/10_chapter_hypothesis_tests_two_populations.html#chapter-10-on-one-page-the-vungle-bridge-table",
+    "title": " QM 6700: Business Analytics ",
+    "section": "Chapter 10 on One Page — the Vungle Bridge Table",
+    "text": "Chapter 10 on One Page — the Vungle Bridge Table\n\n\n\n\n\n\n\n\n\n\n\nTest\n\\(H_0\\)\nApplied to Vungle\nStatistic\nConclusion\n\n\n\n\nPaired \\(t\\)\n\\(\\mu_d = 0\\)\nDaily eRPM, B - A, 30 paired days\n\\(t = 3.33\\), \\(p = .0024\\)\nReject — B earns more\n\n\nWelch \\(t\\) (independent)\n\\(\\mu_1 - \\mu_2 = 0\\)\nSame eRPM data, pairing ignored\n\\(t = 1.51\\), \\(p = .138\\)\nFail to reject — wrong design hides the lift\n\n\nPooled \\(t\\)\n\\(\\mu_1 - \\mu_2 = 0\\)\n(Owner’s-equity anchor; equal-variance variant)\n\\(t = -1.96\\), \\(p = .060\\)\nFail to reject — low power at \\(n = 15\\)\n\n\nTwo-sample \\(z\\) (\\(\\sigma\\) known)\n\\(\\mu_1 - \\mu_2 = 0\\)\nRare; completeness of the decision tree\n—\nUse when \\(\\sigma_1, \\sigma_2\\) truly known\n\n\nTwo-proportion \\(z\\)\n\\(p_1 - p_2 = 0\\)\nConversion: installs/impressions, 252M trials\n\\(z = -29.56\\), \\(p &lt; .0001\\)\nReject — B converts less"
+  },
+  {
+    "objectID": "lecture_slides/10_chapter_hypothesis_tests_two_populations/10_chapter_hypothesis_tests_two_populations.html#managers-takeaway",
+    "href": "lecture_slides/10_chapter_hypothesis_tests_two_populations/10_chapter_hypothesis_tests_two_populations.html#managers-takeaway",
+    "title": " QM 6700: Business Analytics ",
+    "section": "Manager’s Takeaway",
+    "text": "Manager’s Takeaway\n\n\nOne sentence: Algorithm B earns about $0.11 more per 1,000 impressions than A, and the paired test says that lift is real, not luck (\\(p &lt; 0.01\\)) — roll out B.\nOne number to remember: \\(t = 3.33\\) — and where it came from: \\(\\bar{d}/(s_d/\\sqrt{n})\\).\nOne caveat: B’s conversion rate is lower (\\(z = -29.6\\)); monitor the install funnel after rollout, because the eRPM advantage depends on high-value campaigns continuing to bid.\nPractice with the real data:\n\ndata/vungle_erpm_paired.csv + ToolPak → reproduce \\(t = 3.325\\) (paired) and \\(t = 1.51\\) (unequal variances).\ndata/vungle_daily.csv + five formula cells → reproduce \\(z = -29.56\\).\nWorked solutions: data/deck10_vungle_ab_analysis.xlsx."
+  },
+  {
+    "objectID": "lecture_slides/10_chapter_hypothesis_tests_two_populations/10_chapter_hypothesis_tests_two_populations.html#summary",
+    "href": "lecture_slides/10_chapter_hypothesis_tests_two_populations/10_chapter_hypothesis_tests_two_populations.html#summary",
+    "title": " QM 6700: Business Analytics ",
+    "section": "Summary",
+    "text": "Summary\nSome key takeaways from this session:\n\nDesign comes first: matched (paired) samples reduce two-sample problems to one-sample problems on the differences — and remove extraneous unit-to-unit variation.\nThe paired \\(t\\), pooled \\(t\\), Welch \\(t\\), two-sample \\(z\\), and two-proportion \\(z\\) all reuse the Deck 09 logic; only the parameter (a difference) and the standard error change.\nDefault to Welch for independent means; pool only under \\(H_0\\) for proportion tests.\nSame data, different design → different conclusion: Vungle’s lift is decisive paired (\\(t = 3.33\\)) and invisible unpaired (\\(t = 1.51\\)).\nStatistical significance ≠ practical significance: with 252M impressions everything is “significant” — judge the effect size; with \\(n = 15\\) per group, real effects can hide — mind the power.\nTest results are inputs to decisions, not decisions: the rollout call weighs the metric that matches the business model."
   }
 ]

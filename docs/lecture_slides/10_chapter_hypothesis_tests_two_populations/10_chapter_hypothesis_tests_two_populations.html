@@ -147,33 +147,1187 @@ Professor<br>Davi Moreira<br>
 <section id="overview" class="slide level2 center">
 <h2>Overview</h2>
 <div class="columns">
-<div class="column" style="text-align: center; justify-content: center; align-items: center;">
+<div class="column" style="width: 50%; text-align: center; justify-content: center; align-items: center;">
 <ul>
+<li>Case Spotlight: A/B Testing at Vungle</li>
+<li>Two designs: matched (paired) vs.&nbsp;independent samples</li>
+<li>Matched samples: the paired <span class="math inline">\(t\)</span>-test</li>
 <li>Inferences About the Difference Between Two Population Means
 <ul>
 <li><span class="math inline">\(\sigma_1, \sigma_2\)</span> Known</li>
-<li><span class="math inline">\(\sigma_1, \sigma_2\)</span> Unknown</li>
+<li><span class="math inline">\(\sigma_1, \sigma_2\)</span> Unknown: pooled <span class="math inline">\(t\)</span> and Welch <span class="math inline">\(t\)</span></li>
 </ul></li>
-<li>Matched Samples</li>
 </ul>
-</div><div class="column" style="text-align: center; justify-content: center; align-items: center;">
+</div><div class="column" style="width: 50%; text-align: center; justify-content: center; align-items: center;">
 <ul>
-<li><p>Inferences About the Difference Between Two Population Proportions</p></li>
-<li><p><em>(TBD — content to be developed for QM 6700)</em></p></li>
+<li>Same data, different design: why pairing matters</li>
+<li>Inferences About the Difference Between Two Population Proportions</li>
+<li>Statistical vs.&nbsp;practical significance</li>
+<li>The rollout decision: from test results to a recommendation</li>
 </ul>
 </div></div>
 </section>
 <section>
-<section id="section-placeholder" class="title-slide slide level1 center" data-background-color="#2C3E50">
-<h1>Section placeholder</h1>
+<section id="case-spotlight-ab-testing-at-vungle" class="title-slide slide level1 center" data-background-color="#cfb991">
+<h1>Case Spotlight: A/B Testing at Vungle</h1>
 
 </section>
-<section id="tbd" class="slide level2 center">
-<h2>TBD</h2>
-<p>Content to be developed.</p>
-
-
+<section id="june-30-2014-two-analysts-and-one-month-of-data" class="slide level2 center">
+<h2>June 30, 2014 — Two Analysts and One Month of Data</h2>
+<p><br></p>
+<ul>
+<li class="fragment"><p><a href="https://en.wikipedia.org/wiki/Liftoff_Mobile">Vungle</a> is a mobile ad-tech startup: it serves 15-second video ads inside other companies’ apps and earns revenue mainly when viewers <strong>install</strong> the advertised app (cost-per-install).</p></li>
+<li class="fragment"><p>Two Darden MBAs, <strong>Andrew Kritzer</strong> and <strong>Hammond Guerin</strong>, built a new ad-serving algorithm (<strong>B</strong>) and ran it head-to-head against the existing one (<strong>A</strong>) for the entire month of June 2014.</p></li>
+<li class="fragment"><p>The split was random: an MD5 hash of each user ID sent <strong>1/16 of traffic to B</strong>, the rest to A. Same market, same days, same apps — only the algorithm differs.</p></li>
+<li class="fragment"><p>The metric that pays the bills is <strong>eRPM</strong>: effective revenue per 1,000 impressions.</p></li>
+<li class="fragment"><p>Guerin is about to become Vungle’s <strong>head of data science</strong>. His credibility — and his stock options — ride on this call.</p></li>
+</ul>
+</section>
+<section id="todays-managerial-question" class="slide level2 center">
+<h2>Today’s Managerial Question</h2>
+<p><br></p>
+<p><br></p>
+<blockquote>
+<p>“B’s daily eRPM averaged about <strong>$0.11 higher</strong> than A’s. Is that a <strong>real improvement</strong> — or just month-to-month <strong>noise</strong>? Should Vungle <strong>roll out B</strong> to all traffic?”</p>
+</blockquote>
+<p><br></p>
+<ul>
+<li class="fragment"><p>In Deck 09 we tested <strong>one</strong> population against a benchmark (“is B’s mean eRPM above $3.30?”).</p></li>
+<li class="fragment"><p>Today’s question is the canonical business question: <strong>is B better than A?</strong> That requires comparing <strong>two</strong> populations.</p></li>
+<li class="fragment"><p>By the end of class, you will make the rollout recommendation — with the statistics to back it up.</p></li>
+</ul>
+</section>
+<section id="how-chapter-10-answers-it" class="slide level2 center">
+<h2>How Chapter 10 Answers It</h2>
+<p><br></p>
+<p>Every tool in this chapter maps onto the Vungle dataset:</p>
+<table class="caption-top">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Feature of the Vungle test</th>
+<th>Chapter 10 tool</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Same 30 days observed under both A and B</td>
+<td><strong>Matched samples → paired <span class="math inline">\(t\)</span>-test</strong></td>
+</tr>
+<tr class="even">
+<td>What if we (wrongly) ignored the day pairing?</td>
+<td><strong>Independent samples <span class="math inline">\(t\)</span>-test</strong> — a cautionary contrast</td>
+</tr>
+<tr class="odd">
+<td>Millions of impressions → installs (yes/no)</td>
+<td><strong>Two-proportion <span class="math inline">\(z\)</span>-test</strong></td>
+</tr>
+<tr class="even">
+<td>“Roll out or not?”</td>
+<td>Test results become <strong>decision signals</strong> (Decision Analysis, Deck 20)</td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+<ul>
+<li class="fragment">One dataset, three tests — and they will <strong>not</strong> all point the same way. That tension is today’s managerial lesson.</li>
+</ul>
 </section></section>
+<section>
+<section id="comparing-two-groups-design-first" class="title-slide slide level1 center" data-background-color="#cfb991">
+<h1>Comparing Two Groups: Design First</h1>
+
+</section>
+<section id="the-canonical-business-question" class="slide level2 center">
+<h2>The Canonical Business Question</h2>
+<p><br></p>
+<ul>
+<li class="fragment"><p>“Is treatment B systematically different from A?” appears everywhere in business:</p>
+<ul>
+<li class="fragment">New ad algorithm vs.&nbsp;current one (Vungle)</li>
+<li class="fragment">New web page layout vs.&nbsp;old (conversion A/B tests)</li>
+<li class="fragment">Delivery carrier 1 vs.&nbsp;carrier 2 (cost, speed)</li>
+<li class="fragment">Trained employees vs.&nbsp;untrained (productivity)</li>
+</ul></li>
+<li class="fragment"><p>The null hypothesis is the <strong>skeptic’s position</strong>: any observed gap is just sampling noise.</p></li>
+<li class="fragment"><p>Before any formula, you must answer a <strong>design</strong> question: <em>how were the two samples collected?</em></p></li>
+</ul>
+</section>
+<section id="two-ways-to-collect-the-comparison" class="slide level2 center">
+<h2>Two Ways to Collect the Comparison</h2>
+<p><br></p>
+<p><strong>Suppose you run a taste test of two flavors:</strong></p>
+<ul>
+<li class="fragment"><p><strong>Paired test (matched samples):</strong> select <strong>one</strong> random sample and let <strong>every person rate both flavors</strong> (in random order).</p>
+<ul>
+<li class="fragment">Each sampled unit produces <strong>one pair</strong> of data values.</li>
+</ul></li>
+<li class="fragment"><p><strong>Unpaired test (independent samples):</strong> select <strong>two</strong> random samples and let <strong>each group rate only one flavor</strong>.</p>
+<ul>
+<li class="fragment">No natural link between an observation in group 1 and any observation in group 2.</li>
+</ul></li>
+<li class="fragment"><p>Which is better? The <strong>paired test tends to remove much of the extraneous variation</strong> — differences in people, days, and experimental conditions — so the flavor effect stands out.</p></li>
+</ul>
+</section>
+<section id="two-designs-in-pictures" class="slide level2 center">
+<h2>Two Designs, in Pictures</h2>
+
+<img data-src="figs/ab_test_design_schematic.png" class="quarto-figure quarto-figure-center r-stretch" style="width:80.0%"><ul>
+<li><strong>Paired is preferred when feasible</strong> — but it requires that every unit <em>can</em> be measured under both conditions.</li>
+<li>When the units come from genuinely separate populations (bankrupt vs.&nbsp;non-bankrupt firms), only the <strong>independent</strong> design exists.</li>
+</ul>
+</section>
+<section id="the-hypotheses-are-about-a-difference" class="slide level2 center">
+<h2>The Hypotheses Are About a Difference</h2>
+<p><br></p>
+<ul>
+<li class="fragment">All of Chapter 10 reuses the Deck 09 logic — the only change is the <strong>parameter</strong>: it is now a <strong>difference</strong>.</li>
+</ul>
+<div class="fragment">
+<p><span class="math display">\[
+\begin{aligned}
+\text{Two means:} \quad &amp; H_0: \mu_1 - \mu_2 = 0 \quad \text{vs.} \quad H_a: \mu_1 - \mu_2 \neq 0 \; (\text{or } &gt;, &lt;) \\
+\text{Two proportions:} \quad &amp; H_0: p_1 - p_2 = 0 \quad \text{vs.} \quad H_a: p_1 - p_2 \neq 0 \; (\text{or } &gt;, &lt;)
+\end{aligned}
+\]</span></p>
+</div>
+<ul>
+<li class="fragment"><p>Same machinery as before: a test statistic, a rejection region, a <span class="math inline">\(p\)</span>-value, and a decision at significance level <span class="math inline">\(\alpha\)</span>.</p></li>
+<li class="fragment"><p>The equality always lives in <span class="math inline">\(H_0\)</span>; the claim we seek evidence <strong>for</strong> lives in <span class="math inline">\(H_a\)</span>.</p></li>
+</ul>
+</section>
+<section id="choosing-the-right-test" class="slide level2 center">
+<h2>Choosing the Right Test</h2>
+
+<img data-src="figs/decision_tree_test_selection.png" class="quarto-figure quarto-figure-center r-stretch" style="width:75.0%"></section>
+<section id="test-selection-cheat-sheet" class="slide level2 center">
+<h2>Test Selection Cheat Sheet</h2>
+<div class="r-fit-text">
+<table class="caption-top">
+<colgroup>
+<col style="width: 20%">
+<col style="width: 20%">
+<col style="width: 20%">
+<col style="width: 20%">
+<col style="width: 20%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Situation</th>
+<th>Test</th>
+<th>Test statistic</th>
+<th>Distribution</th>
+<th>Excel</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Same units, two conditions</td>
+<td><strong>Paired <span class="math inline">\(t\)</span></strong></td>
+<td><span class="math inline">\(t = \dfrac{\bar{d} - 0}{s_d/\sqrt{n}}\)</span></td>
+<td><span class="math inline">\(t\)</span>, <span class="math inline">\(df = n-1\)</span></td>
+<td>ToolPak: <em>t-Test: Paired Two Sample for Means</em></td>
+</tr>
+<tr class="even">
+<td>Independent, <span class="math inline">\(\sigma_1,\sigma_2\)</span> known</td>
+<td><strong>Two-sample <span class="math inline">\(z\)</span></strong></td>
+<td><span class="math inline">\(z = \dfrac{(\bar{x}_1-\bar{x}_2) - D_0}{\sqrt{\sigma_1^2/n_1 + \sigma_2^2/n_2}}\)</span></td>
+<td><span class="math inline">\(N(0,1)\)</span></td>
+<td>ToolPak: <em>z-Test: Two Sample for Means</em></td>
+</tr>
+<tr class="odd">
+<td>Independent, <span class="math inline">\(\sigma\)</span> unknown, assumed equal</td>
+<td><strong>Pooled <span class="math inline">\(t\)</span></strong></td>
+<td><span class="math inline">\(t = \dfrac{(\bar{x}_1-\bar{x}_2) - D_0}{s_p\sqrt{1/n_1 + 1/n_2}}\)</span></td>
+<td><span class="math inline">\(t\)</span>, <span class="math inline">\(df = n_1+n_2-2\)</span></td>
+<td>ToolPak: <em>t-Test: Two-Sample Assuming Equal Variances</em></td>
+</tr>
+<tr class="even">
+<td>Independent, <span class="math inline">\(\sigma\)</span> unknown, not assumed equal</td>
+<td><strong>Welch <span class="math inline">\(t\)</span></strong> <em>(default)</em></td>
+<td><span class="math inline">\(t = \dfrac{(\bar{x}_1-\bar{x}_2) - D_0}{\sqrt{s_1^2/n_1 + s_2^2/n_2}}\)</span></td>
+<td><span class="math inline">\(t\)</span>, Satterthwaite <span class="math inline">\(df\)</span></td>
+<td>ToolPak: <em>t-Test: Two-Sample Assuming Unequal Variances</em></td>
+</tr>
+<tr class="odd">
+<td>Two proportions (large samples)</td>
+<td><strong>Two-proportion <span class="math inline">\(z\)</span></strong></td>
+<td><span class="math inline">\(z = \dfrac{\bar{p}_1-\bar{p}_2}{\sqrt{\bar{p}(1-\bar{p})(1/n_1+1/n_2)}}\)</span></td>
+<td><span class="math inline">\(N(0,1)\)</span></td>
+<td>No built-in tool — formula cells</td>
+</tr>
+</tbody>
+</table>
+</div>
+</section></section>
+<section>
+<section id="matched-samples-the-paired-t-test" class="title-slide slide level1 center" data-background-color="#cfb991">
+<h1>Matched Samples: the Paired <span class="math inline">\(t\)</span>-Test</h1>
+
+</section>
+<section id="one-idea-reduce-two-samples-to-one" class="slide level2 center">
+<h2>One Idea: Reduce Two Samples to One</h2>
+<p><br></p>
+<ul>
+<li class="fragment"><p>With a matched-sample design, <strong>each sampled unit provides a pair of data values</strong>: <span class="math inline">\((x_{1i}, x_{2i})\)</span>.</p></li>
+<li class="fragment"><p><strong>Key insight:</strong> work with the <strong>difference</strong> for each pair,</p></li>
+</ul>
+<div class="fragment">
+<p><span class="math display">\[
+d_i = x_{1i} - x_{2i}
+\]</span></p>
+</div>
+<ul>
+<li class="fragment"><p>The two-sample problem becomes a <strong>one-sample</strong> problem about the mean difference <span class="math inline">\(\mu_d\)</span> — and we can apply <em>exactly</em> the single-population procedures from Deck 09.</p></li>
+<li class="fragment"><p>Point estimate of <span class="math inline">\(\mu_d\)</span>:</p></li>
+</ul>
+<div class="fragment">
+<p><span class="math display">\[
+\bar{d} = \frac{1}{n}\sum_{i=1}^{n} d_i
+\]</span></p>
+</div>
+</section>
+<section id="paired-t-mechanics" class="slide level2 center">
+<h2>Paired <span class="math inline">\(t\)</span> Mechanics</h2>
+<p><br></p>
+<div style="font-size: 84%;">
+<ul>
+<li class="fragment">Sample standard deviation of the differences:</li>
+</ul>
+<div class="fragment">
+<p><span class="math display">\[
+s_d = \sqrt{\frac{\sum_{i=1}^n (d_i - \bar{d})^2}{n - 1}}
+\]</span></p>
+</div>
+<ul>
+<li class="fragment">Standard error of <span class="math inline">\(\bar{d}\)</span>:</li>
+</ul>
+<div class="fragment">
+<p><span class="math display">\[
+SE(\bar{d}) = \frac{s_d}{\sqrt{n}}
+\]</span></p>
+</div>
+<ul>
+<li class="fragment">Test statistic (under <span class="math inline">\(H_0: \mu_d = 0\)</span>), with <span class="math inline">\(df = n - 1\)</span>:</li>
+</ul>
+<div class="fragment">
+<p><span class="math display">\[
+t = \frac{\bar{d} - 0}{s_d / \sqrt{n}}
+\]</span></p>
+</div>
+</div>
+</section>
+<section id="tests-intervals-and-decision-rules" class="slide level2 center">
+<h2>Tests, Intervals, and Decision Rules</h2>
+<p><br></p>
+<ul>
+<li class="fragment"><p><strong>Hypothesis forms:</strong> <span class="math inline">\(H_0: \mu_d = 0\)</span> vs.&nbsp;<span class="math inline">\(H_a: \mu_d \neq 0\)</span> (two-tailed), or the one-sided versions <span class="math inline">\(H_a: \mu_d &gt; 0\)</span> / <span class="math inline">\(H_a: \mu_d &lt; 0\)</span>.</p></li>
+<li class="fragment"><p><strong>Decision rule (critical value):</strong> reject <span class="math inline">\(H_0\)</span> if <span class="math inline">\(|t| \geq t_{\alpha/2,\,n-1}\)</span> (two-tailed) or <span class="math inline">\(t \geq t_{\alpha,\,n-1}\)</span> (upper-tail).</p></li>
+<li class="fragment"><p><strong>Confidence interval for <span class="math inline">\(\mu_d\)</span>:</strong></p></li>
+</ul>
+<div class="fragment">
+<p><span class="math display">\[
+\bar{d} \pm t_{\alpha/2,\,n-1} \cdot \frac{s_d}{\sqrt{n}}
+\]</span></p>
+</div>
+<ul>
+<li class="fragment"><p><strong><span class="math inline">\(p\)</span>-values in Excel:</strong></p>
+<ul>
+<li class="fragment">Two-tailed: <code>=T.DIST.2T(ABS(t), df)</code></li>
+<li class="fragment">Upper-tail: <code>=T.DIST.RT(t, df)</code></li>
+</ul></li>
+</ul>
+</section>
+<section id="anchor-example-express-deliveries" class="slide level2 center">
+<h2>Anchor Example: Express Deliveries</h2>
+<div class="r-fit-text">
+<p>To compare delivery times of two express services, <strong>UPX</strong> and <strong>INTEX</strong>, two reports were sent to each of <strong>ten district offices</strong> — one carried by UPX, the other by INTEX. <em>Same origin, same destination, same day: a natural pair.</em></p>
+<table class="caption-top">
+<thead>
+<tr class="header">
+<th>District Office</th>
+<th style="text-align: right;">UPX</th>
+<th style="text-align: right;">INTEX</th>
+<th style="text-align: right;">Difference <span class="math inline">\(d_i\)</span></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Seattle</td>
+<td style="text-align: right;">32</td>
+<td style="text-align: right;">25</td>
+<td style="text-align: right;">7</td>
+</tr>
+<tr class="even">
+<td>Los Angeles</td>
+<td style="text-align: right;">30</td>
+<td style="text-align: right;">24</td>
+<td style="text-align: right;">6</td>
+</tr>
+<tr class="odd">
+<td>Boston</td>
+<td style="text-align: right;">19</td>
+<td style="text-align: right;">15</td>
+<td style="text-align: right;">4</td>
+</tr>
+<tr class="even">
+<td>Cleveland</td>
+<td style="text-align: right;">16</td>
+<td style="text-align: right;">15</td>
+<td style="text-align: right;">1</td>
+</tr>
+<tr class="odd">
+<td>New York</td>
+<td style="text-align: right;">15</td>
+<td style="text-align: right;">13</td>
+<td style="text-align: right;">2</td>
+</tr>
+<tr class="even">
+<td>Houston</td>
+<td style="text-align: right;">18</td>
+<td style="text-align: right;">15</td>
+<td style="text-align: right;">3</td>
+</tr>
+<tr class="odd">
+<td>Atlanta</td>
+<td style="text-align: right;">14</td>
+<td style="text-align: right;">15</td>
+<td style="text-align: right;">-1</td>
+</tr>
+<tr class="even">
+<td>St.&nbsp;Louis</td>
+<td style="text-align: right;">10</td>
+<td style="text-align: right;">8</td>
+<td style="text-align: right;">2</td>
+</tr>
+<tr class="odd">
+<td>Milwaukee</td>
+<td style="text-align: right;">7</td>
+<td style="text-align: right;">9</td>
+<td style="text-align: right;">-2</td>
+</tr>
+<tr class="even">
+<td>Denver</td>
+<td style="text-align: right;">16</td>
+<td style="text-align: right;">11</td>
+<td style="text-align: right;">5</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Question:</strong> do the data indicate a difference in mean delivery times?</p>
+</div>
+</section>
+<section id="express-deliveries-the-five-steps" class="slide level2 center">
+<h2>Express Deliveries — the Five Steps</h2>
+<div class="r-fit-text">
+<p><strong>1. Business context.</strong> Choosing a carrier; the metric is delivery time (hours); slower deliveries cost client goodwill.</p>
+<p><strong>2. Hypotheses</strong> (is there <em>any</em> difference? → two-tailed):</p>
+<p><span class="math display">\[
+H_0: \mu_d = 0 \qquad H_a: \mu_d \neq 0 \qquad \alpha = 0.05
+\]</span></p>
+<p><strong>3. Test statistic.</strong> From the ten differences:</p>
+<p><span class="math display">\[
+\bar{d} = 2.70, \quad s_d = 2.908, \quad SE = \frac{2.908}{\sqrt{10}} = 0.920, \quad t = \frac{2.70}{0.920} = 2.94, \quad df = 9
+\]</span></p>
+<p><strong>4. Decision.</strong> <span class="math inline">\(p\text{-value} = 0.017 \leq \alpha = 0.05\)</span> → <strong>reject <span class="math inline">\(H_0\)</span></strong>. Also: 95% CI for <span class="math inline">\(\mu_d\)</span> = <span class="math inline">\((0.620,\; 4.780)\)</span> hours — zero is not a plausible mean difference.</p>
+<p><strong>5. Manager’s Translation.</strong> <em>UPX averages about 2.7 hours slower than INTEX on identical routes — a real difference, not noise. If speed matters, route the volume to INTEX (then negotiate with UPX).</em></p>
+</div>
+</section>
+<section id="express-deliveries-in-excel" class="slide level2 center">
+<h2>Express Deliveries in Excel</h2>
+<div class="columns">
+<div class="column" style="width:38%;">
+<p><br></p>
+<p><strong>Data → Data Analysis →<br> t-Test: Paired Two Sample for Means</strong></p>
+<ul>
+<li>Variable 1 Range: UPX column</li>
+<li>Variable 2 Range: INTEX column</li>
+<li>Hypothesized Mean Difference: <code>0</code></li>
+<li>Alpha: <code>0.05</code></li>
+</ul>
+<p><br></p>
+<p>Read the output: <code>t Stat = 2.936</code>, <code>P(T&lt;=t) two-tail = 0.017</code> <span class="math inline">\(\leq\)</span> 0.05 → reject <span class="math inline">\(H_0\)</span>.</p>
+</div><div class="column" style="width:62%;">
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="figs/excel_paired_express.png" class="quarto-figure quarto-figure-center" style="width:100.0%"></p>
+</figure>
+</div>
+</div>
+</div>
+</div></div>
+</section></section>
+<section>
+<section id="the-vungle-test-is-b-really-better" class="title-slide slide level1 center" data-background-color="#cfb991">
+<h1>The Vungle Test: Is B Really Better?</h1>
+
+</section>
+<section id="step-1-business-context-why-a-paired-design" class="slide level2 center">
+<h2>Step 1 — Business Context: Why a Paired Design?</h2>
+<p><br></p>
+<ul>
+<li class="fragment"><p>Each of the <strong>30 days of June 2014</strong> is a natural experimental unit: on any given day, <strong>the same advertising market</strong> operates — same advertisers, same user pool, same day-of-week effects.</p></li>
+<li class="fragment"><p>Users were randomly split <strong>within each day</strong>: A and B ran <strong>side by side</strong>.</p></li>
+<li class="fragment"><p>So each day yields <strong>one pair</strong>: <span class="math inline">\((\text{eRPM}_A, \text{eRPM}_B)\)</span> — and one difference</p></li>
+</ul>
+<div class="fragment">
+<p><span class="math display">\[
+d_i = \text{eRPM}_{B,i} - \text{eRPM}_{A,i}
+\]</span></p>
+</div>
+<ul>
+<li class="fragment"><p>Pairing <strong>subtracts out day-specific noise</strong> (weekend dips, late-June seasonality) and isolates the pure algorithm effect.</p></li>
+<li class="fragment"><p>Data: <code>data/vungle_erpm_paired.csv</code> — 30 rows, columns <code>erpm_A</code>, <code>erpm_B</code>, <code>diff_B_minus_A</code>.</p></li>
+</ul>
+</section>
+<section id="the-data-30-days-of-erpm" class="slide level2 center">
+<h2>The Data: 30 Days of eRPM</h2>
+
+<img data-src="figs/erpm_time_series.png" class="quarto-figure quarto-figure-center r-stretch" style="width:85.0%"><ul>
+<li>B starts <em>below</em> A, then pulls ahead for most of the month. Eyeballing is suggestive — but Guerin needs more than an eyeball to bet his job on.</li>
+</ul>
+</section>
+<section id="the-differences-d-b---a" class="slide level2 center">
+<h2>The Differences: <span class="math inline">\(d = B - A\)</span></h2>
+
+<img data-src="figs/erpm_diff_daily.png" class="quarto-figure quarto-figure-center r-stretch" style="width:85.0%"><ul>
+<li>26 of 30 days favor B; the mean difference is <strong>+$0.112</strong> per 1,000 impressions.</li>
+<li>The paired <span class="math inline">\(t\)</span>-test asks: <em>could a mean difference this large arise by chance if the true difference were zero?</em></li>
+</ul>
+</section>
+<section id="step-2-hypotheses" class="slide level2 center">
+<h2>Step 2 — Hypotheses</h2>
+<p><br></p>
+<div class="fragment">
+<p><span class="math display">\[
+H_0: \mu_d \leq 0 \qquad \text{vs.} \qquad H_a: \mu_d &gt; 0 \qquad \text{(upper-tail)} \qquad \alpha = 0.05
+\]</span></p>
+</div>
+<p><br></p>
+<ul>
+<li class="fragment"><p><strong>Why one-tailed?</strong> The business decision is asymmetric: Vungle rolls out B <strong>only if it is better</strong>. “B is worse” and “B is the same” lead to the identical action — keep A.</p></li>
+<li class="fragment"><p><span class="math inline">\(\mu_d\)</span> = the true mean daily eRPM advantage of B over A.</p></li>
+<li class="fragment"><p>We will also report the two-tailed <span class="math inline">\(p\)</span>-value — the more conservative convention — and the conclusion will not change.</p></li>
+</ul>
+</section>
+<section id="step-3-test-statistic" class="slide level2 center">
+<h2>Step 3 — Test Statistic</h2>
+<p><br></p>
+<p>From the 30 daily differences in <code>vungle_erpm_paired.csv</code>:</p>
+<div class="fragment">
+<table class="caption-top">
+<thead>
+<tr class="header">
+<th>Quantity</th>
+<th style="text-align: right;">Value</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><span class="math inline">\(n\)</span> (days)</td>
+<td style="text-align: right;">30</td>
+</tr>
+<tr class="even">
+<td><span class="math inline">\(\bar{d}\)</span> (mean difference)</td>
+<td style="text-align: right;"><strong>$0.1119</strong></td>
+</tr>
+<tr class="odd">
+<td><span class="math inline">\(s_d\)</span></td>
+<td style="text-align: right;">0.1843</td>
+</tr>
+<tr class="even">
+<td><span class="math inline">\(SE = s_d/\sqrt{30}\)</span></td>
+<td style="text-align: right;">0.0337</td>
+</tr>
+<tr class="odd">
+<td><span class="math inline">\(t = \bar{d}/SE\)</span></td>
+<td style="text-align: right;"><strong>3.325</strong></td>
+</tr>
+<tr class="even">
+<td><span class="math inline">\(df\)</span></td>
+<td style="text-align: right;">29</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p><br></p>
+<div class="fragment">
+<p><span class="math display">\[
+t = \frac{0.1119}{0.1843/\sqrt{30}} = \frac{0.1119}{0.0337} = 3.325
+\]</span></p>
+</div>
+</section>
+<section id="excel-t-test-paired-two-sample-for-means" class="slide level2 center">
+<h2>Excel: t-Test Paired Two Sample for Means</h2>
+<div class="columns">
+<div class="column" style="width:38%;">
+<p><br></p>
+<p><strong>Data → Data Analysis →<br> t-Test: Paired Two Sample for Means</strong></p>
+<ul>
+<li>Variable 1 Range: <code>erpm_B</code> column</li>
+<li>Variable 2 Range: <code>erpm_A</code> column</li>
+<li>Hypothesized Mean Difference: <code>0</code></li>
+<li>Alpha: <code>0.05</code></li>
+</ul>
+<p><br></p>
+<p>Key rows:</p>
+<ul>
+<li><code>t Stat = 3.325</code></li>
+<li><code>P(T&lt;=t) one-tail = 0.0012</code></li>
+<li><code>t Critical one-tail = 1.699</code></li>
+</ul>
+</div><div class="column" style="width:62%;">
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="figs/excel_paired_vungle.png" class="quarto-figure quarto-figure-center" style="width:100.0%"></p>
+</figure>
+</div>
+</div>
+</div>
+</div></div>
+</section>
+<section id="step-4-decision" class="slide level2 center">
+<h2>Step 4 — Decision</h2>
+
+<img data-src="figs/t_dist_paired_vungle.png" class="quarto-figure quarto-figure-center r-stretch" style="width:75.0%"><ul>
+<li><strong>Critical value:</strong> <span class="math inline">\(t = 3.325 \geq t_{0.05,29} = 1.699\)</span> → <strong>reject <span class="math inline">\(H_0\)</span></strong>.</li>
+<li><strong><span class="math inline">\(p\)</span>-value:</strong> one-tail <span class="math inline">\(p \approx 0.0012\)</span> (two-tail <span class="math inline">\(\approx 0.0024\)</span>) <span class="math inline">\(\leq \alpha = 0.05\)</span> → <strong>reject <span class="math inline">\(H_0\)</span></strong>.</li>
+<li>Strong evidence that algorithm B’s mean daily eRPM is higher than A’s.</li>
+</ul>
+</section>
+<section id="the-confidence-interval-tells-you-the-size" class="slide level2 center">
+<h2>The Confidence Interval Tells You the Size</h2>
+<p><br></p>
+<ul>
+<li class="fragment">The test says the lift is <strong>real</strong>; the confidence interval says <strong>how big</strong> it plausibly is:</li>
+</ul>
+<div class="fragment">
+<p><span class="math display">\[
+\bar{d} \pm t_{0.025,29}\frac{s_d}{\sqrt{n}} = 0.1119 \pm 2.045 \times 0.0337 \;=\; (\$0.043,\; \$0.181)
+\]</span></p>
+</div>
+<ul>
+<li class="fragment"><p>The entire interval is <strong>above zero</strong> — consistent with rejecting <span class="math inline">\(H_0\)</span>.</p></li>
+<li class="fragment"><p>Even the <strong>lower bound</strong> ($0.043 per 1,000 impressions) is a meaningful lift at Vungle’s scale.</p></li>
+<li class="fragment"><p>In Excel: <code>=T.INV(0.975, 29)</code> → 2.045; bounds with formula cells from <span class="math inline">\(\bar d\)</span> and <span class="math inline">\(SE\)</span>.</p></li>
+</ul>
+</section>
+<section id="step-5-managers-translation-back-to-the-decision" class="slide level2 center">
+<h2>Step 5 — Manager’s Translation: Back to the Decision</h2>
+<p><br></p>
+<ul>
+<li class="fragment"><p><em>“A difference this large would arise by chance only about 1 in 1,000 times if B were no better than A — so we reject the ‘no difference’ story. On a typical day, B earns between $0.04 and $0.18 more per 1,000 impressions than A.”</em></p></li>
+<li class="fragment"><p><strong>Scale it:</strong> A served ≈ 236.5M impressions in June. Had B served that traffic:</p></li>
+</ul>
+<div class="fragment">
+<p><span class="math display">\[
+\frac{236{,}459{,}402}{1{,}000} \times \$0.112 \approx \$26{,}500 \text{ per month} \;\approx\; \$318\text{K per year}
+\]</span></p>
+</div>
+<ul>
+<li class="fragment"><p>Even at the CI lower bound ($0.043), the lift is ≈ $10K/month — material for a startup with $25.5M raised.</p></li>
+<li class="fragment"><p><strong>Discussion hook:</strong> the daily gap is noisy — the first week even favored A, and after two weeks B’s lead was only ≈ $0.04, still well below the full-month $0.11. Stopping the test early could have hidden the effect. (Sequential testing — beyond Ch. 10, but exactly what real A/B platforms wrestle with.)</p></li>
+</ul>
+</section></section>
+<section>
+<section id="independent-samples-comparing-two-means" class="title-slide slide level1 center" data-background-color="#cfb991">
+<h1>Independent Samples: Comparing Two Means</h1>
+
+</section>
+<section id="setup-and-point-estimate" class="slide level2 center">
+<h2>Setup and Point Estimate</h2>
+<p><br></p>
+<ul>
+<li class="fragment"><p>Two <strong>independent</strong> random samples: sizes <span class="math inline">\(n_1, n_2\)</span> from populations with means <span class="math inline">\(\mu_1, \mu_2\)</span>.</p></li>
+<li class="fragment"><p>Point estimate of <span class="math inline">\(\mu_1 - \mu_2\)</span>: <span class="math inline">\(\bar{x}_1 - \bar{x}_2\)</span>.</p></li>
+<li class="fragment"><p>Sampling distribution of <span class="math inline">\(\bar{x}_1 - \bar{x}_2\)</span>: centered at <span class="math inline">\(\mu_1 - \mu_2\)</span>, with standard error built from <strong>both</strong> sampling variances:</p></li>
+</ul>
+<div class="fragment">
+<p><span class="math display">\[
+SE(\bar{x}_1 - \bar{x}_2) = \sqrt{\frac{\sigma_1^2}{n_1} + \frac{\sigma_2^2}{n_2}}
+\]</span></p>
+</div>
+<ul>
+<li class="fragment">Which test statistic you use depends on what you know about <span class="math inline">\(\sigma_1, \sigma_2\)</span> — the three cases that follow.</li>
+</ul>
+</section>
+<section id="case-1-sigma_1-sigma_2-known-the-two-sample-z" class="slide level2 center">
+<h2>Case 1 — <span class="math inline">\(\sigma_1, \sigma_2\)</span> Known: the Two-Sample <span class="math inline">\(z\)</span></h2>
+<p><br></p>
+<ul>
+<li class="fragment">Rare in practice (you seldom <em>know</em> population standard deviations), but conceptually clean:</li>
+</ul>
+<div class="fragment">
+<p><span class="math display">\[
+z = \frac{(\bar{x}_1 - \bar{x}_2) - D_0}{\sqrt{\sigma_1^2/n_1 + \sigma_2^2/n_2}}
+\qquad\qquad
+\text{CI:}\;\; (\bar{x}_1 - \bar{x}_2) \pm z_{\alpha/2}\sqrt{\frac{\sigma_1^2}{n_1} + \frac{\sigma_2^2}{n_2}}
+\]</span></p>
+</div>
+<ul>
+<li class="fragment"><p><span class="math inline">\(D_0\)</span> = hypothesized difference, usually 0.</p></li>
+<li class="fragment"><p><strong>Excel:</strong> Data Analysis → <em>z-Test: Two Sample for Means</em> (requires the two known variances as inputs); <span class="math inline">\(p\)</span>-values via <code>=NORM.S.DIST</code>.</p></li>
+<li class="fragment"><p>Note: the worksheet function <code>=Z.TEST</code> is for <strong>one</strong> sample only — the two-sample version needs the ToolPak tool or formula cells.</p></li>
+</ul>
+</section>
+<section id="case-2-sigma-unknown-assumed-equal-the-pooled-t" class="slide level2 center">
+<h2>Case 2 — <span class="math inline">\(\sigma\)</span> Unknown, Assumed Equal: the Pooled <span class="math inline">\(t\)</span></h2>
+<p><br></p>
+<ul>
+<li class="fragment">If it is reasonable to assume <span class="math inline">\(\sigma_1 = \sigma_2 = \sigma\)</span>, combine both samples into one <strong>pooled variance</strong>:</li>
+</ul>
+<div class="fragment">
+<p><span class="math display">\[
+s_p^2 = \frac{(n_1 - 1)s_1^2 + (n_2 - 1)s_2^2}{n_1 + n_2 - 2}
+\]</span></p>
+</div>
+<div class="fragment">
+<p><span class="math display">\[
+t = \frac{(\bar{x}_1 - \bar{x}_2) - D_0}{s_p\sqrt{\dfrac{1}{n_1} + \dfrac{1}{n_2}}},
+\qquad df = n_1 + n_2 - 2
+\]</span></p>
+</div>
+<ul>
+<li class="fragment"><p>CI: <span class="math inline">\((\bar{x}_1 - \bar{x}_2) \pm t_{\alpha/2,\,n_1+n_2-2}\; s_p\sqrt{1/n_1 + 1/n_2}\)</span></p></li>
+<li class="fragment"><p><strong>Excel:</strong> Data Analysis → <em>t-Test: Two-Sample Assuming Equal Variances</em>.</p></li>
+</ul>
+</section>
+<section id="case-3-sigma-unknown-not-assumed-equal-the-welch-t" class="slide level2 center">
+<h2>Case 3 — <span class="math inline">\(\sigma\)</span> Unknown, Not Assumed Equal: the Welch <span class="math inline">\(t\)</span></h2>
+<p><br></p>
+<div style="font-size: 80%;">
+<ul>
+<li class="fragment">Drop the equal-variance assumption — each sample keeps its own variance:</li>
+</ul>
+<div class="fragment">
+<p><span class="math display">\[
+t = \frac{(\bar{x}_1 - \bar{x}_2) - D_0}{\sqrt{\dfrac{s_1^2}{n_1} + \dfrac{s_2^2}{n_2}}}
+\]</span></p>
+</div>
+<ul>
+<li class="fragment">Degrees of freedom (Satterthwaite approximation; typically non-integer — round <strong>down</strong>):</li>
+</ul>
+<div class="fragment">
+<p><span class="math display">\[
+df = \frac{\left(\dfrac{s_1^2}{n_1} + \dfrac{s_2^2}{n_2}\right)^2}{\dfrac{(s_1^2/n_1)^2}{n_1 - 1} + \dfrac{(s_2^2/n_2)^2}{n_2 - 1}}
+\]</span></p>
+</div>
+<ul>
+<li class="fragment">CI: <span class="math inline">\((\bar{x}_1 - \bar{x}_2) \pm t_{\alpha/2,\,df}\sqrt{s_1^2/n_1 + s_2^2/n_2}\)</span></li>
+</ul>
+</div>
+</section>
+<section id="practical-guidance-default-to-welch" class="slide level2 center">
+<h2>Practical Guidance: Default to Welch</h2>
+<p><br></p>
+<ul>
+<li class="fragment"><p><strong>Unless you have a strong theoretical reason to assume equal variances, use Welch.</strong> It is the safe default: when variances <em>are</em> equal it loses almost nothing; when they differ it protects you.</p></li>
+<li class="fragment"><p><strong>Excel:</strong> Data Analysis → <em>t-Test: Two-Sample Assuming Unequal Variances</em>.</p></li>
+<li class="fragment"><p>Reading any ToolPak <span class="math inline">\(t\)</span>-test output — the same rows every time:</p>
+<ul>
+<li class="fragment"><code>Mean</code>, <code>Variance</code>, <code>Observations</code> — the summary statistics per group</li>
+<li class="fragment"><code>df</code> — degrees of freedom used</li>
+<li class="fragment"><code>t Stat</code> — the test statistic</li>
+<li class="fragment"><code>P(T&lt;=t) one-tail</code> / <code>two-tail</code> — your <span class="math inline">\(p\)</span>-values</li>
+<li class="fragment"><code>t Critical one-tail</code> / <code>two-tail</code> — the cutoffs for <span class="math inline">\(\alpha\)</span></li>
+</ul></li>
+</ul>
+</section>
+<section id="anchor-example-start-up-owners-equity" class="slide level2 center">
+<h2>Anchor Example: Start-up Owner’s Equity</h2>
+<p><br></p>
+<p><strong>Two populations</strong> (no pairing is possible — a firm is either bankrupt or it isn’t):</p>
+<ol type="1">
+<li>Small business firms that went <strong>bankrupt</strong> within the first year</li>
+<li>Firms that are <strong>not bankrupt</strong></li>
+</ol>
+<p><strong>Variable of interest:</strong> owner’s equity ($K) at founding.</p>
+<p><br></p>
+<table class="caption-top">
+<thead>
+<tr class="header">
+<th>Group</th>
+<th style="text-align: right;"><span class="math inline">\(n\)</span></th>
+<th style="text-align: right;"><span class="math inline">\(\bar{x}\)</span></th>
+<th style="text-align: right;"><span class="math inline">\(s\)</span></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Bankrupt</td>
+<td style="text-align: right;">15</td>
+<td style="text-align: right;">5.73</td>
+<td style="text-align: right;">3.33</td>
+</tr>
+<tr class="even">
+<td>Non-bankrupt</td>
+<td style="text-align: right;">15</td>
+<td style="text-align: right;">7.87</td>
+<td style="text-align: right;">2.61</td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+<p><strong>Question:</strong> is there a difference in average owner’s equity between bankrupt and non-bankrupt firms?</p>
+</section>
+<section id="owners-equity-the-five-steps" class="slide level2 center">
+<h2>Owner’s Equity — the Five Steps</h2>
+<div class="r-fit-text">
+<p><strong>1. Business context.</strong> Does thin capitalization at founding predict first-year failure? (Lender screening, founder advice.)</p>
+<p><strong>2. Hypotheses</strong> (two-tailed): <span class="math inline">\(H_0: \mu_1 - \mu_2 = 0\)</span> vs.&nbsp;<span class="math inline">\(H_a: \mu_1 - \mu_2 \neq 0\)</span>, <span class="math inline">\(\alpha = 0.05\)</span>. Independent samples, <span class="math inline">\(\sigma\)</span> unknown, no reason to assume equal variances → <strong>Welch <span class="math inline">\(t\)</span></strong>.</p>
+<p><strong>3. Test statistic.</strong></p>
+<p><span class="math display">\[
+t = \frac{(5.73 - 7.87) - 0}{\sqrt{\dfrac{3.33^2}{15} + \dfrac{2.61^2}{15}}} = \frac{-2.14}{1.093} = -1.96, \qquad df \approx 26
+\]</span></p>
+<p><strong>4. Decision.</strong> <span class="math inline">\(p\)</span>-value (two-tail) <span class="math inline">\(\approx 0.061 &gt; \alpha = 0.05\)</span> → <strong>fail to reject <span class="math inline">\(H_0\)</span></strong>. 95% CI for <span class="math inline">\(\mu_1 - \mu_2\)</span>: <span class="math inline">\((-4.4,\; 0.1)\)</span> — barely includes zero.</p>
+<p><strong>5. Manager’s Translation.</strong> <em>Bankrupt firms started with about $2.1K less equity on average, but with only 15 firms per group we cannot rule out chance at the 5% level. A borderline result — worth a bigger sample before building lending policy on it.</em></p>
+</div>
+</section>
+<section id="owners-equity-in-excel" class="slide level2 center">
+<h2>Owner’s Equity in Excel</h2>
+<div class="columns">
+<div class="column r-fit-text" style="width:38%;">
+<p><br></p>
+<p><strong>Data → Data Analysis →<br> t-Test: Two-Sample Assuming Unequal Variances</strong></p>
+<ul>
+<li>Variable 1 Range: Bankrupt column</li>
+<li>Variable 2 Range: Non-bankrupt column</li>
+<li>Hypothesized Mean Difference: <code>0</code></li>
+</ul>
+<p><br></p>
+<p><strong>“Fail to reject” ≠ “the means are equal.”</strong> With <span class="math inline">\(n = 15\)</span> per group the test has <strong>low power</strong>; a $2K average gap may be economically real yet statistically undetectable here.</p>
+<p>(With equal <span class="math inline">\(n\)</span>, the pooled <span class="math inline">\(t\)</span> gives the same <span class="math inline">\(t\)</span>-statistic with <span class="math inline">\(df = 28\)</span> — same conclusion.)</p>
+</div><div class="column" style="width:62%;">
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="figs/excel_equity_welch.png" class="quarto-figure quarto-figure-center" style="width:100.0%"></p>
+</figure>
+</div>
+</div>
+</div>
+</div></div>
+</section></section>
+<section>
+<section id="same-data-different-design" class="title-slide slide level1 center" data-background-color="#cfb991">
+<h1>Same Data, Different Design</h1>
+
+</section>
+<section id="what-if-we-ignored-the-pairing" class="slide level2 center">
+<h2>What If We Ignored the Pairing?</h2>
+<div class="columns">
+<div class="column" style="width:38%;">
+<p><br></p>
+<p>Treat the 30 A-days and 30 B-days as <strong>two independent samples</strong> (Welch) — <em>wrong design, same data</em>:</p>
+<ul>
+<li><span class="math inline">\(\bar{x}_A = 3.347\)</span>, <span class="math inline">\(s_A = 0.217\)</span></li>
+<li><span class="math inline">\(\bar{x}_B = 3.459\)</span>, <span class="math inline">\(s_B = 0.344\)</span></li>
+<li><span class="math inline">\(t = 1.51\)</span>, <span class="math inline">\(p\)</span> (two-tail) <span class="math inline">\(\approx 0.138\)</span></li>
+</ul>
+<p><br></p>
+<p><strong>Fail to reject <span class="math inline">\(H_0\)</span></strong> at <span class="math inline">\(\alpha = 0.05\)</span>. The $0.11 lift “disappears.”</p>
+<p><em>(ToolPak: Variable 1 = <code>erpm_B</code>, Variable 2 = <code>erpm_A</code> — same order as the paired test, so <span class="math inline">\(t\)</span> is positive.)</em></p>
+</div><div class="column" style="width:62%;">
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="figs/excel_welch_vungle.png" class="quarto-figure quarto-figure-center" style="width:100.0%"></p>
+</figure>
+</div>
+</div>
+</div>
+</div></div>
+</section>
+<section id="the-lesson-design-drives-conclusions" class="slide level2 center">
+<h2>The Lesson: Design Drives Conclusions</h2>
+<p><br></p>
+<table class="caption-top">
+<thead>
+<tr class="header">
+<th></th>
+<th style="text-align: right;">Paired <span class="math inline">\(t\)</span> (correct)</th>
+<th style="text-align: right;">Independent <span class="math inline">\(t\)</span> (wrong)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Test statistic</td>
+<td style="text-align: right;"><strong>3.33</strong></td>
+<td style="text-align: right;">1.51</td>
+</tr>
+<tr class="even">
+<td><span class="math inline">\(p\)</span>-value (two-tail)</td>
+<td style="text-align: right;"><strong>0.0024</strong></td>
+<td style="text-align: right;">0.138</td>
+</tr>
+<tr class="odd">
+<td>Decision at <span class="math inline">\(\alpha = .05\)</span></td>
+<td style="text-align: right;">Reject <span class="math inline">\(H_0\)</span> — B wins</td>
+<td style="text-align: right;">Fail to reject</td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+<ul>
+<li class="fragment"><p><strong>Same data. Same question. Different design assumption → opposite conclusion.</strong></p></li>
+<li class="fragment"><p>Why: day-to-day market swings (weekends, seasonality) inflate the independent-samples noise (<span class="math inline">\(s \approx 0.22\)</span>–<span class="math inline">\(0.34\)</span>), while pairing cancels them (<span class="math inline">\(s_d = 0.18\)</span> on the <em>differences</em>, and the A/B series are correlated at <span class="math inline">\(r = 0.88\)</span>).</p></li>
+<li class="fragment"><p>The design decision was made <strong>before any data were collected</strong> — when Vungle chose to run A and B <em>in parallel within each day</em>. Good analysis starts at design, not at the formula sheet.</p></li>
+</ul>
+</section></section>
+<section>
+<section id="comparing-two-proportions" class="title-slide slide level1 center" data-background-color="#cfb991">
+<h1>Comparing Two Proportions</h1>
+
+</section>
+<section id="vungles-other-metric-conversion-rate" class="slide level2 center">
+<h2>Vungle’s Other Metric: Conversion Rate</h2>
+<p><br></p>
+<ul>
+<li class="fragment"><p>eRPM is revenue per impression. Advertisers also watch the <strong>conversion rate</strong>: installs ÷ impressions.</p></li>
+<li class="fragment"><p>The case: <em>“small improvements in the click-through or conversion rates could have a large effect on Vungle’s revenue.”</em></p></li>
+<li class="fragment"><p>June 2014 totals (<code>vungle_daily.csv</code>):</p></li>
+</ul>
+<div class="fragment">
+<table class="caption-top">
+<thead>
+<tr class="header">
+<th>Metric</th>
+<th style="text-align: right;">Algorithm A</th>
+<th style="text-align: right;">Algorithm B</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Impressions</td>
+<td style="text-align: right;">236,459,402</td>
+<td style="text-align: right;">15,825,376</td>
+</tr>
+<tr class="even">
+<td>Installs</td>
+<td style="text-align: right;">951,666</td>
+<td style="text-align: right;">56,031</td>
+</tr>
+<tr class="odd">
+<td>Conversion rate <span class="math inline">\(\bar{p}\)</span></td>
+<td style="text-align: right;"><strong>0.4025%</strong></td>
+<td style="text-align: right;"><strong>0.3541%</strong></td>
+</tr>
+</tbody>
+</table>
+</div>
+<ul>
+<li class="fragment"><strong>Question:</strong> does B convert impressions to installs at a different rate than A?</li>
+</ul>
+</section>
+<section id="unit-of-observation-days-vs.-impressions" class="slide level2 center">
+<h2>Unit of Observation: Days vs.&nbsp;Impressions</h2>
+<p><br></p>
+<ul>
+<li class="fragment"><p>Careful — the “sample size” just changed by seven orders of magnitude:</p>
+<ul>
+<li class="fragment">For <strong>eRPM</strong>, the unit was the <strong>day</strong>: <span class="math inline">\(n = 30\)</span> paired days.</li>
+<li class="fragment">For <strong>conversion</strong>, the unit is the <strong>impression</strong>: each one is a Bernoulli trial (install / no install), so <span class="math inline">\(n_1 \approx 236\)</span>M and <span class="math inline">\(n_2 \approx 16\)</span>M.</li>
+</ul></li>
+<li class="fragment"><p>Large-sample conditions easily satisfied: <span class="math inline">\(n\bar{p} \geq 5\)</span> and <span class="math inline">\(n(1-\bar{p}) \geq 5\)</span> for both groups (e.g., <span class="math inline">\(n_2\bar{p}_2 = 56{,}031 \gg 5\)</span>).</p></li>
+<li class="fragment"><p>Also note the <strong>traffic imbalance</strong>: A got ~15× B’s impressions (the 1/16 hash split). That is exactly why we compare <strong>rates</strong>, never raw counts — B’s 56K installs vs.&nbsp;A’s 952K says nothing by itself.</p></li>
+<li class="fragment"><p><em>Honest caveat:</em> impressions within a day are not perfectly independent (time structure). Beyond Ch. 10 scope — but a good question to ask any A/B platform.</p></li>
+</ul>
+</section>
+<section id="estimating-p_1---p_2" class="slide level2 center">
+<h2>Estimating <span class="math inline">\(p_1 - p_2\)</span></h2>
+<p><br></p>
+<ul>
+<li class="fragment"><p>Two independent large samples; observe <span class="math inline">\(\bar{p}_1 = x_1/n_1\)</span> and <span class="math inline">\(\bar{p}_2 = x_2/n_2\)</span>.</p></li>
+<li class="fragment"><p>Point estimate: <span class="math inline">\(\bar{p}_1 - \bar{p}_2\)</span>.</p></li>
+<li class="fragment"><p>Confidence interval — each group keeps its <strong>own</strong> variance (do <strong>not</strong> pool for CIs):</p></li>
+</ul>
+<div class="fragment">
+<p><span class="math display">\[
+(\bar{p}_1 - \bar{p}_2) \pm z_{\alpha/2}\sqrt{\frac{\bar{p}_1(1-\bar{p}_1)}{n_1} + \frac{\bar{p}_2(1-\bar{p}_2)}{n_2}}
+\]</span></p>
+</div>
+</section>
+<section id="testing-p_1---p_2-0-pool-under-h_0" class="slide level2 center">
+<h2>Testing <span class="math inline">\(p_1 - p_2 = 0\)</span>: Pool Under <span class="math inline">\(H_0\)</span></h2>
+<p><br></p>
+<ul>
+<li class="fragment">Under <span class="math inline">\(H_0\)</span> the two proportions are the <strong>same</strong> <span class="math inline">\(p\)</span> — so the best estimate of it uses <strong>all</strong> the data:</li>
+</ul>
+<div class="fragment">
+<p><span class="math display">\[
+\bar{p} = \frac{x_1 + x_2}{n_1 + n_2}
+\qquad\qquad
+SE_{pool} = \sqrt{\bar{p}(1-\bar{p})\left(\frac{1}{n_1} + \frac{1}{n_2}\right)}
+\]</span></p>
+</div>
+<ul>
+<li class="fragment">Test statistic:</li>
+</ul>
+<div class="fragment">
+<p><span class="math display">\[
+z = \frac{\bar{p}_1 - \bar{p}_2}{SE_{pool}}
+\]</span></p>
+</div>
+<ul>
+<li class="fragment"><p>Decision rule and <span class="math inline">\(p\)</span>-value exactly as in the one-proportion <span class="math inline">\(z\)</span>-test (Deck 09); Excel: <code>=NORM.S.DIST</code>.</p></li>
+<li class="fragment"><p><strong>Rule of thumb:</strong> pool under <span class="math inline">\(H_0\)</span> (testing); do <strong>not</strong> pool for confidence intervals.</p></li>
+</ul>
+</section>
+<section id="no-toolpak-tool-build-it-with-formulas" class="slide level2 center">
+<h2>No ToolPak Tool: Build It with Formulas</h2>
+<div class="columns">
+<div class="column" style="width:34%;">
+<p><br></p>
+<p>The Data Analysis ToolPak has <strong>no two-proportion z tool</strong> — five formula cells do the job.</p>
+<p><br></p>
+<p>This is worth mastering: most real A/B testing metrics (click-through, conversion, churn) are <strong>proportions</strong>.</p>
+</div><div class="column" style="width:66%;">
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="figs/excel_prop_z.png" class="quarto-figure quarto-figure-center" style="width:100.0%"></p>
+</figure>
+</div>
+</div>
+</div>
+</div></div>
+</section>
+<section id="vungle-conversion-the-five-steps" class="slide level2 center">
+<h2>Vungle Conversion — the Five Steps</h2>
+<div class="r-fit-text">
+<p><strong>1. Business context.</strong> Advertisers pay mostly per install; conversion rate signals how well ads match users.</p>
+<p><strong>2. Hypotheses</strong> (two-tailed): <span class="math inline">\(H_0: p_B - p_A = 0\)</span> vs.&nbsp;<span class="math inline">\(H_a: p_B - p_A \neq 0\)</span>, <span class="math inline">\(\alpha = 0.05\)</span>.</p>
+<p><strong>3. Test statistic.</strong></p>
+<p><span class="math display">\[
+\bar{p} = \frac{951{,}666 + 56{,}031}{236{,}459{,}402 + 15{,}825{,}376} = 0.3994\%,
+\qquad SE_{pool} = 1.64 \times 10^{-5}
+\]</span></p>
+<p><span class="math display">\[
+z = \frac{0.003541 - 0.004025}{0.0000164} = \mathbf{-29.56}
+\]</span></p>
+<p><strong>4. Decision.</strong> <span class="math inline">\(|z| = 29.56 \gg z_{0.025} = 1.96\)</span>; <span class="math inline">\(p\)</span>-value <span class="math inline">\(&lt; 0.0001\)</span> → <strong>reject <span class="math inline">\(H_0\)</span></strong> overwhelmingly.</p>
+<p><strong>5. Manager’s Translation.</strong> <em>B converts impressions to installs at a genuinely lower rate than A — 0.354% vs.&nbsp;0.403%, a 12% relative drop. This is not noise.</em></p>
+</div>
+</section>
+<section id="the-surprise-b-converts-less-but-earns-more" class="slide level2 center">
+<h2>The Surprise: B Converts Less but Earns More</h2>
+<p><br></p>
+<table class="caption-top">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Metric</th>
+<th>Winner</th>
+<th>Evidence</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>eRPM (revenue per 1,000 impressions)</td>
+<td><strong>B</strong></td>
+<td>paired <span class="math inline">\(t = 3.33\)</span>, <span class="math inline">\(p = 0.0024\)</span></td>
+</tr>
+<tr class="even">
+<td>Conversion rate (installs per impression)</td>
+<td><strong>A</strong></td>
+<td><span class="math inline">\(z = -29.56\)</span>, <span class="math inline">\(p &lt; 0.0001\)</span></td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+<ul>
+<li class="fragment"><p>Both results are statistically decisive — and they <strong>point in opposite directions</strong>.</p></li>
+<li class="fragment"><p>This is not a data error. It is the most realistic moment in this course: <strong>real decisions face multiple metrics that disagree.</strong></p></li>
+<li class="fragment"><p>So which metric should drive the rollout?</p></li>
+</ul>
+</section>
+<section id="reconciling-the-two-metrics" class="slide level2 center">
+<h2>Reconciling the Two Metrics</h2>
+<p><br></p>
+<ul>
+<li class="fragment"><p>eRPM rewards <strong>revenue per impression</strong>, not installs per impression.</p></li>
+<li class="fragment"><p>The case tells us eRPM varied <strong>from $2 to $7 per campaign</strong>, and the vast majority of Vungle’s ads were <strong>CPI</strong> — advertisers pay per install, at very different prices.</p></li>
+<li class="fragment"><p>So B apparently <strong>selects higher-value campaigns</strong>: fewer installs, but each install is worth more — a richer optimization target than raw conversion.</p></li>
+<li class="fragment"><p>Analogy: a salesperson who closes fewer deals at much higher margins.</p></li>
+<li class="fragment"><p><strong>The metric must match the business model.</strong> Vungle is a revenue-maximizing platform → eRPM is the right north star; conversion is a <em>health metric</em> to monitor.</p></li>
+</ul>
+</section>
+<section id="statistical-vs.-practical-significance" class="slide level2 center">
+<h2>Statistical vs.&nbsp;Practical Significance</h2>
+<p><br></p>
+<ul>
+<li class="fragment"><p>With <span class="math inline">\(n\)</span> in the <strong>hundreds of millions</strong>, the conversion test was guaranteed to be “significant”: at this scale, even a microscopic difference produces a huge <span class="math inline">\(z\)</span>.</p></li>
+<li class="fragment"><p><span class="math inline">\(z = -29.56\)</span> tells you the difference is <em>real</em>; it does <strong>not</strong> tell you the difference <em>matters</em>.</p></li>
+<li class="fragment"><p>Always pair the test with the <strong>effect size</strong>: -0.048 percentage points (a 12% relative drop in conversion) — that is the number a manager should debate.</p></li>
+<li class="fragment"><p>Flip side from the equity example: small samples can make real effects invisible (low power). <strong>Large <span class="math inline">\(n\)</span>: everything is significant. Small <span class="math inline">\(n\)</span>: nothing is.</strong> Neither replaces judgment about magnitude.</p></li>
+</ul>
+</section></section>
+<section>
+<section id="the-rollout-decision" class="title-slide slide level1 center" data-background-color="#cfb991">
+<h1>The Rollout Decision</h1>
+
+</section>
+<section id="three-tests-one-decision" class="slide level2 center">
+<h2>Three Tests, One Decision</h2>
+<p><br></p>
+<table class="caption-top">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Test</th>
+<th>Result</th>
+<th>Decision signal</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Paired <span class="math inline">\(t\)</span> — eRPM (B vs.&nbsp;A)</td>
+<td><span class="math inline">\(t = 3.33\)</span>, <span class="math inline">\(p = 0.0024\)</span></td>
+<td>B earns more per impression. <strong>Roll out.</strong></td>
+</tr>
+<tr class="even">
+<td>Independent <span class="math inline">\(t\)</span> — same data, wrong design</td>
+<td><span class="math inline">\(t = 1.51\)</span>, <span class="math inline">\(p = 0.138\)</span></td>
+<td>(Cautionary: wrong design would have hidden the lift.)</td>
+</tr>
+<tr class="odd">
+<td>Two-proportion <span class="math inline">\(z\)</span> — conversion</td>
+<td><span class="math inline">\(z = -29.56\)</span>, <span class="math inline">\(p &lt; 0.0001\)</span></td>
+<td>B converts less. <strong>Monitor.</strong></td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+<ul>
+<li class="fragment"><strong>Recommendation to CEO Jaffer:</strong> roll out B — eRPM is the metric aligned with Vungle’s business model, the lift is statistically solid ($0.04–$0.18 per 1,000), and it is worth ≈ $26.5K/month on June’s traffic. Track the install funnel weekly post-rollout in case the lower conversion rate erodes advertiser satisfaction.</li>
+</ul>
+</section>
+<section id="from-inference-to-decision-analysis" class="slide level2 center">
+<h2>From Inference to Decision Analysis</h2>
+<p><br></p>
+<ul>
+<li class="fragment"><p>In Deck 20 you computed expected values for <em>roll out / keep A / test first</em>. Today’s output feeds straight into that framework:</p>
+<ul>
+<li class="fragment">The CI <span class="math inline">\((\$0.043, \$0.181)\)</span> per 1,000 impressions is the <strong>range of payoffs</strong> for the “roll out” branch.</li>
+<li class="fragment">The <span class="math inline">\(p\)</span>-value bounds the probability of the bad state (“B is not actually better”) — the input Bayesian revision needs.</li>
+</ul></li>
+<li class="fragment"><p>This is the division of labor in analytics:</p>
+<ul>
+<li class="fragment"><strong>Inference</strong> (Decks 08–10): <em>what is true, and how sure are we?</em></li>
+<li class="fragment"><strong>Decision analysis</strong> (Deck 20): <em>given that uncertainty, what should we do?</em></li>
+</ul></li>
+</ul>
+</section>
+<section id="chapter-10-on-one-page-the-vungle-bridge-table" class="slide level2 center">
+<h2>Chapter 10 on One Page — the Vungle Bridge Table</h2>
+<div class="r-fit-text">
+<table class="caption-top">
+<colgroup>
+<col style="width: 20%">
+<col style="width: 20%">
+<col style="width: 20%">
+<col style="width: 20%">
+<col style="width: 20%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Test</th>
+<th><span class="math inline">\(H_0\)</span></th>
+<th>Applied to Vungle</th>
+<th>Statistic</th>
+<th>Conclusion</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Paired <span class="math inline">\(t\)</span></td>
+<td><span class="math inline">\(\mu_d = 0\)</span></td>
+<td>Daily eRPM, B - A, 30 paired days</td>
+<td><span class="math inline">\(t = 3.33\)</span>, <span class="math inline">\(p = .0024\)</span></td>
+<td>Reject — B earns more</td>
+</tr>
+<tr class="even">
+<td>Welch <span class="math inline">\(t\)</span> (independent)</td>
+<td><span class="math inline">\(\mu_1 - \mu_2 = 0\)</span></td>
+<td>Same eRPM data, pairing ignored</td>
+<td><span class="math inline">\(t = 1.51\)</span>, <span class="math inline">\(p = .138\)</span></td>
+<td>Fail to reject — wrong design hides the lift</td>
+</tr>
+<tr class="odd">
+<td>Pooled <span class="math inline">\(t\)</span></td>
+<td><span class="math inline">\(\mu_1 - \mu_2 = 0\)</span></td>
+<td>(Owner’s-equity anchor; equal-variance variant)</td>
+<td><span class="math inline">\(t = -1.96\)</span>, <span class="math inline">\(p = .060\)</span></td>
+<td>Fail to reject — low power at <span class="math inline">\(n = 15\)</span></td>
+</tr>
+<tr class="even">
+<td>Two-sample <span class="math inline">\(z\)</span> (<span class="math inline">\(\sigma\)</span> known)</td>
+<td><span class="math inline">\(\mu_1 - \mu_2 = 0\)</span></td>
+<td>Rare; completeness of the decision tree</td>
+<td>—</td>
+<td>Use when <span class="math inline">\(\sigma_1, \sigma_2\)</span> truly known</td>
+</tr>
+<tr class="odd">
+<td>Two-proportion <span class="math inline">\(z\)</span></td>
+<td><span class="math inline">\(p_1 - p_2 = 0\)</span></td>
+<td>Conversion: installs/impressions, 252M trials</td>
+<td><span class="math inline">\(z = -29.56\)</span>, <span class="math inline">\(p &lt; .0001\)</span></td>
+<td>Reject — B converts less</td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="managers-takeaway" class="slide level2 center">
+<h2>Manager’s Takeaway</h2>
+<p><br></p>
+<ul>
+<li class="fragment"><p><strong>One sentence:</strong> Algorithm B earns about <strong>$0.11 more per 1,000 impressions</strong> than A, and the paired test says that lift is real, not luck (<span class="math inline">\(p &lt; 0.01\)</span>) — roll out B.</p></li>
+<li class="fragment"><p><strong>One number to remember:</strong> <span class="math inline">\(t = 3.33\)</span> — and where it came from: <span class="math inline">\(\bar{d}/(s_d/\sqrt{n})\)</span>.</p></li>
+<li class="fragment"><p><strong>One caveat:</strong> B’s conversion rate is <strong>lower</strong> (<span class="math inline">\(z = -29.6\)</span>); monitor the install funnel after rollout, because the eRPM advantage depends on high-value campaigns continuing to bid.</p></li>
+<li class="fragment"><p><strong>Practice with the real data:</strong></p>
+<ul>
+<li class="fragment"><code>data/vungle_erpm_paired.csv</code> + ToolPak → reproduce <span class="math inline">\(t = 3.325\)</span> (paired) and <span class="math inline">\(t = 1.51\)</span> (unequal variances).</li>
+<li class="fragment"><code>data/vungle_daily.csv</code> + five formula cells → reproduce <span class="math inline">\(z = -29.56\)</span>.</li>
+<li class="fragment">Worked solutions: <code>data/deck10_vungle_ab_analysis.xlsx</code>.</li>
+</ul></li>
+</ul>
+</section>
+<section id="summary" class="slide level2 center">
+<h2>Summary</h2>
+<p>Some key takeaways from this session:</p>
+<ul>
+<li><strong>Design comes first:</strong> matched (paired) samples reduce two-sample problems to one-sample problems on the differences — and remove extraneous unit-to-unit variation.</li>
+<li>The paired <span class="math inline">\(t\)</span>, pooled <span class="math inline">\(t\)</span>, Welch <span class="math inline">\(t\)</span>, two-sample <span class="math inline">\(z\)</span>, and two-proportion <span class="math inline">\(z\)</span> all reuse the Deck 09 logic; only the parameter (a <strong>difference</strong>) and the standard error change.</li>
+<li><strong>Default to Welch</strong> for independent means; <strong>pool only under <span class="math inline">\(H_0\)</span></strong> for proportion tests.</li>
+<li>Same data, different design → different conclusion: Vungle’s lift is decisive paired (<span class="math inline">\(t = 3.33\)</span>) and invisible unpaired (<span class="math inline">\(t = 1.51\)</span>).</li>
+<li>Statistical significance ≠ practical significance: with 252M impressions everything is “significant” — judge the <strong>effect size</strong>; with <span class="math inline">\(n = 15\)</span> per group, real effects can hide — mind the <strong>power</strong>.</li>
+<li>Test results are <strong>inputs to decisions</strong>, not decisions: the rollout call weighs the metric that matches the business model.</li>
+</ul>
+</section></section>
+<section id="thank-you" class="title-slide slide level1 center" data-background-color="#cfb991">
+<h1>Thank you!</h1>
+
+
+</section>
     </div>
   <div class="quarto-auto-generated-content" style="display: none;">
 <div class="footer footer-default">
@@ -391,6 +1545,44 @@ Professor<br>Davi Moreira<br>
         ]
       });
     </script>
+    
+    <script>
+      // htmlwidgets need to know to resize themselves when slides are shown/hidden.
+      // Fire the "slideenter" event (handled by htmlwidgets.js) when the current
+      // slide changes (different for each slide format).
+      (function () {
+        // dispatch for htmlwidgets
+        function fireSlideEnter() {
+          const event = window.document.createEvent("Event");
+          event.initEvent("slideenter", true, true);
+          window.document.dispatchEvent(event);
+        }
+
+        function fireSlideChanged(previousSlide, currentSlide) {
+          fireSlideEnter();
+
+          // dispatch for shiny
+          if (window.jQuery) {
+            if (previousSlide) {
+              window.jQuery(previousSlide).trigger("hidden");
+            }
+            if (currentSlide) {
+              window.jQuery(currentSlide).trigger("shown");
+            }
+          }
+        }
+
+        // hookup for slidy
+        if (window.w3c_slidy) {
+          window.w3c_slidy.add_observer(function (slide_num) {
+            // slide_num starts at position 1
+            fireSlideChanged(null, w3c_slidy.slides[slide_num - 1]);
+          });
+        }
+
+      })();
+    </script>
+
     <script id="quarto-html-after-body" type="application/javascript">
       window.document.addEventListener("DOMContentLoaded", function (event) {
         const tabsets =  window.document.querySelectorAll(".panel-tabset-tabby")
