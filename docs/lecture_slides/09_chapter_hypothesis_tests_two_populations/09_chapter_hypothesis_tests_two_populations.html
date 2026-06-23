@@ -32,7 +32,7 @@
       vertical-align: middle;
     }
   </style>
-  <link rel="stylesheet" href="../../site_libs/revealjs/dist/theme/quarto-5ef896889b6f6a61ee8a14a51d301bed.css">
+  <link rel="stylesheet" href="../../site_libs/revealjs/dist/theme/quarto-113b5beb2a57b2deea58feb1108e76b2.css">
   <link href="../../site_libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
   <link href="../../site_libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
   <link href="../../site_libs/revealjs/plugin/reveal-menu/quarto-menu.css" rel="stylesheet">
@@ -183,24 +183,23 @@ Professor<br>Davi Moreira<br>
 <li class="fragment"><p>Guerin is about to become Vungle’s <strong>head of data science</strong>. His credibility — and his stock options — ride on this call.</p></li>
 </ul>
 </section>
-<section id="todays-managerial-question" class="slide level2 center">
-<h2>Today’s Managerial Question</h2>
-<p><br></p>
+<section id="the-brief-todays-managerial-question" class="slide level2 center">
+<h2>The Brief — Today’s Managerial Question</h2>
 <p><br></p>
 <blockquote>
 <p>“B’s daily eRPM averaged about <strong>$0.11 higher</strong> than A’s. Is that a <strong>real improvement</strong> — or just month-to-month <strong>noise</strong>? Should Vungle <strong>roll out B</strong> to all traffic?”</p>
 </blockquote>
 <p><br></p>
 <ul>
-<li class="fragment"><p>In Deck 08 we tested <strong>one</strong> population against a benchmark (“is B’s mean eRPM above $3.30?”).</p></li>
-<li class="fragment"><p>Today’s question is the canonical business question: <strong>is B better than A?</strong> That requires comparing <strong>two</strong> populations.</p></li>
-<li class="fragment"><p>By the end of class, you will make the rollout recommendation — with the statistics to back it up.</p></li>
+<li class="fragment"><p>In Topic 8 we tested <strong>one</strong> population against a benchmark (“is B’s mean eRPM above $3.30?”). Today’s is the canonical business question: <strong>is B better than A?</strong> — comparing <strong>two</strong> populations.</p></li>
+<li class="fragment"><p><strong>How today’s studio runs:</strong> I demo each test on a textbook example → <strong>your team runs it on the Vungle data</strong> (two sprints) → we debrief the rollout call together.</p></li>
+<li class="fragment"><p>By the end of class, <strong>your team</strong> makes the rollout recommendation — with the statistics to back it up.</p></li>
 </ul>
 </section>
-<section id="how-chapter-10-answers-it" class="slide level2 center">
-<h2>How Chapter 10 Answers It</h2>
+<section id="how-todays-tools-answer-it" class="slide level2 center">
+<h2>How Today’s Tools Answer It</h2>
 <p><br></p>
-<p>Every tool in this chapter maps onto the Vungle dataset:</p>
+<p>Every tool today maps onto the Vungle dataset:</p>
 <table class="caption-top">
 <colgroup>
 <col style="width: 50%">
@@ -209,7 +208,7 @@ Professor<br>Davi Moreira<br>
 <thead>
 <tr class="header">
 <th>Feature of the Vungle test</th>
-<th>Chapter 10 tool</th>
+<th>The tool</th>
 </tr>
 </thead>
 <tbody>
@@ -227,7 +226,7 @@ Professor<br>Davi Moreira<br>
 </tr>
 <tr class="even">
 <td>“Roll out or not?”</td>
-<td>Test results become <strong>decision signals</strong> (Decision Analysis, Deck 04)</td>
+<td>Test results become <strong>decision signals</strong> (Decision Analysis, Topic 4)</td>
 </tr>
 </tbody>
 </table>
@@ -284,7 +283,7 @@ Professor<br>Davi Moreira<br>
 <h2>The Hypotheses Are About a Difference</h2>
 <p><br></p>
 <ul>
-<li class="fragment">All of Chapter 10 reuses the Deck 08 logic — the only change is the <strong>parameter</strong>: it is now a <strong>difference</strong>.</li>
+<li class="fragment">All of today’s tests reuse the Topic 8 logic — the only change is the <strong>parameter</strong>: it is now a <strong>difference</strong>.</li>
 </ul>
 <div class="fragment">
 <p><span class="math display">\[
@@ -381,7 +380,7 @@ d_i = x_{1i} - x_{2i}
 \]</span></p>
 </div>
 <ul>
-<li class="fragment"><p>The two-sample problem becomes a <strong>one-sample</strong> problem about the mean difference <span class="math inline">\(\mu_d\)</span> — and we can apply <em>exactly</em> the single-population procedures from Deck 08.</p></li>
+<li class="fragment"><p>The two-sample problem becomes a <strong>one-sample</strong> problem about the mean difference <span class="math inline">\(\mu_d\)</span> — and we can apply <em>exactly</em> the single-population procedures from Topic 8.</p></li>
 <li class="fragment"><p>Point estimate of <span class="math inline">\(\mu_d\)</span>:</p></li>
 </ul>
 <div class="fragment">
@@ -733,8 +732,21 @@ t = \frac{0.1119}{0.1843/\sqrt{30}} = \frac{0.1119}{0.0337} = 3.325
 </div>
 <ul>
 <li class="fragment"><p>Even at the CI lower bound ($0.043), the lift is ≈ $10K/month — material for a startup with $25.5M raised.</p></li>
-<li class="fragment"><p><strong>Discussion hook:</strong> the daily gap is noisy — the first week even favored A, and after two weeks B’s lead was only ≈ $0.04, still well below the full-month $0.11. Stopping the test early could have hidden the effect. (Sequential testing — beyond Ch. 10, but exactly what real A/B platforms wrestle with.)</p></li>
+<li class="fragment"><p><strong>Discussion hook:</strong> the daily gap is noisy — the first week even favored A, and after two weeks B’s lead was only ≈ $0.04, still well below the full-month $0.11. Stopping the test early could have hidden the effect. (Sequential testing — beyond today’s scope, but exactly what real A/B platforms wrestle with.)</p></li>
 </ul>
+</section>
+<section id="team-sprint-1-is-the-lift-real" class="slide level2 center">
+<h2>⏱️ Team Sprint 1 — Is the lift real?</h2>
+<div class="sprint">
+<p><strong>Decide:</strong> does algorithm B truly earn more per 1,000 impressions than A?</p>
+<p><strong>Data:</strong> <code>data/vungle_erpm_paired.csv</code> · <strong>Time:</strong> ~8 min</p>
+<ol type="1">
+<li>In Excel: <strong>Data → Data Analysis → t-Test: Paired Two Sample for Means</strong> (Variable 1 = <code>erpm_B</code>, Variable 2 = <code>erpm_A</code>, α = 0.05).</li>
+<li>Read off <code>t Stat</code> and <code>P(T&lt;=t) one-tail</code>; build the 95% CI for the mean difference.</li>
+<li>Decide at α = 0.05 — is the lift real?</li>
+</ol>
+<p><strong>Hand in (1 slide):</strong> your <span class="math inline">\(t\)</span>, <span class="math inline">\(p\)</span>, and CI, plus a one-line verdict for Guerin.</p>
+</div>
 </section></section>
 <section>
 <section id="independent-samples-comparing-two-means" class="title-slide slide level1 center" data-background-color="#cfb991">
@@ -1039,7 +1051,7 @@ t = \frac{(5.73 - 7.87) - 0}{\sqrt{\dfrac{3.33^2}{15} + \dfrac{2.61^2}{15}}} = \
 </ul></li>
 <li class="fragment"><p>Large-sample conditions easily satisfied: <span class="math inline">\(n\bar{p} \geq 5\)</span> and <span class="math inline">\(n(1-\bar{p}) \geq 5\)</span> for both groups (e.g., <span class="math inline">\(n_2\bar{p}_2 = 56{,}031 \gg 5\)</span>).</p></li>
 <li class="fragment"><p>Also note the <strong>traffic imbalance</strong>: A got ~15× B’s impressions (the 1/16 hash split). That is exactly why we compare <strong>rates</strong>, never raw counts — B’s 56K installs vs.&nbsp;A’s 952K says nothing by itself.</p></li>
-<li class="fragment"><p><em>Honest caveat:</em> impressions within a day are not perfectly independent (time structure). Beyond Ch. 10 scope — but a good question to ask any A/B platform.</p></li>
+<li class="fragment"><p><em>Honest caveat:</em> impressions within a day are not perfectly independent (time structure). Beyond today’s scope — but a good question to ask any A/B platform.</p></li>
 </ul>
 </section>
 <section id="estimating-p_1---p_2" class="slide level2 center">
@@ -1078,7 +1090,7 @@ z = \frac{\bar{p}_1 - \bar{p}_2}{SE_{pool}}
 \]</span></p>
 </div>
 <ul>
-<li class="fragment"><p>Decision rule and <span class="math inline">\(p\)</span>-value exactly as in the one-proportion <span class="math inline">\(z\)</span>-test (Deck 08); Excel: <code>=NORM.S.DIST</code>.</p></li>
+<li class="fragment"><p>Decision rule and <span class="math inline">\(p\)</span>-value exactly as in the one-proportion <span class="math inline">\(z\)</span>-test (Topic 8); Excel: <code>=NORM.S.DIST</code>.</p></li>
 <li class="fragment"><p><strong>Rule of thumb:</strong> pool under <span class="math inline">\(H_0\)</span> (testing); do <strong>not</strong> pool for confidence intervals.</p></li>
 </ul>
 </section>
@@ -1155,6 +1167,19 @@ z = \frac{0.003541 - 0.004025}{0.0000164} = \mathbf{-29.56}
 <li class="fragment"><p>So which metric should drive the rollout?</p></li>
 </ul>
 </section>
+<section id="team-sprint-2-make-the-call" class="slide level2 center">
+<h2>⏱️ Team Sprint 2 — Make the call</h2>
+<div class="sprint">
+<p><strong>The conflict:</strong> B <strong>earns more</strong> per impression (paired <span class="math inline">\(t = 3.33\)</span>) but <strong>converts fewer</strong> installs (<span class="math inline">\(z = -29.6\)</span>). Both results are statistically decisive.</p>
+<p><strong>Decide (≈12 min):</strong> write CEO Jaffer’s <strong>rollout recommendation</strong>.</p>
+<ol type="1">
+<li>Which metric should drive the decision for Vungle’s <strong>business model</strong> — and why?</li>
+<li>What would you <strong>monitor</strong> after rollout, and why?</li>
+<li>State it in <strong>three sentences</strong>: the call · the number · the caveat.</li>
+</ol>
+<p><strong>Hand in (1 slide):</strong> your rollout recommendation to the CEO.</p>
+</div>
+</section>
 <section id="reconciling-the-two-metrics" class="slide level2 center">
 <h2>Reconciling the Two Metrics</h2>
 <p><br></p>
@@ -1177,8 +1202,8 @@ z = \frac{0.003541 - 0.004025}{0.0000164} = \mathbf{-29.56}
 </ul>
 </section></section>
 <section>
-<section id="the-rollout-decision" class="title-slide slide level1 center" data-background-color="#cfb991">
-<h1>The Rollout Decision</h1>
+<section id="debrief-the-rollout-call" class="title-slide slide level1 center" data-background-color="#cfb991">
+<h1>Debrief — The Rollout Call</h1>
 
 </section>
 <section id="three-tests-one-decision" class="slide level2 center">
@@ -1224,20 +1249,20 @@ z = \frac{0.003541 - 0.004025}{0.0000164} = \mathbf{-29.56}
 <h2>From Inference to Decision Analysis</h2>
 <p><br></p>
 <ul>
-<li class="fragment"><p>In Deck 04 you computed expected values for <em>roll out / keep A / test first</em>. Today’s output feeds straight into that framework:</p>
+<li class="fragment"><p>In Topic 4 you computed expected values for <em>roll out / keep A / test first</em>. Today’s output feeds straight into that framework:</p>
 <ul>
 <li class="fragment">The CI <span class="math inline">\((\$0.043, \$0.181)\)</span> per 1,000 impressions is the <strong>range of payoffs</strong> for the “roll out” branch.</li>
 <li class="fragment">The <span class="math inline">\(p\)</span>-value bounds the probability of the bad state (“B is not actually better”) — the input Bayesian revision needs.</li>
 </ul></li>
 <li class="fragment"><p>This is the division of labor in analytics:</p>
 <ul>
-<li class="fragment"><strong>Inference</strong> (Decks 07–09): <em>what is true, and how sure are we?</em></li>
-<li class="fragment"><strong>Decision analysis</strong> (Deck 04): <em>given that uncertainty, what should we do?</em></li>
+<li class="fragment"><strong>Inference</strong> (Topics 7–9): <em>what is true, and how sure are we?</em></li>
+<li class="fragment"><strong>Decision analysis</strong> (Topic 4): <em>given that uncertainty, what should we do?</em></li>
 </ul></li>
 </ul>
 </section>
-<section id="chapter-10-on-one-page-the-vungle-bridge-table" class="slide level2 center">
-<h2>Chapter 10 on One Page — the Vungle Bridge Table</h2>
+<section id="two-population-tests-on-one-page-the-vungle-bridge-table" class="slide level2 center">
+<h2>Two-Population Tests on One Page — the Vungle Bridge Table</h2>
 <div class="r-fit-text">
 <table class="caption-top">
 <colgroup>
@@ -1307,7 +1332,7 @@ z = \frac{0.003541 - 0.004025}{0.0000164} = \mathbf{-29.56}
 <ul>
 <li class="fragment"><code>data/vungle_erpm_paired.csv</code> + ToolPak → reproduce <span class="math inline">\(t = 3.325\)</span> (paired) and <span class="math inline">\(t = 1.51\)</span> (unequal variances).</li>
 <li class="fragment"><code>data/vungle_daily.csv</code> + five formula cells → reproduce <span class="math inline">\(z = -29.56\)</span>.</li>
-<li class="fragment">Worked solutions: <code>data/deck10_vungle_ab_analysis.xlsx</code>.</li>
+<li class="fragment">Worked solutions: <code>data/vungle_ab_analysis.xlsx</code>.</li>
 </ul></li>
 </ul>
 </section>
@@ -1316,11 +1341,18 @@ z = \frac{0.003541 - 0.004025}{0.0000164} = \mathbf{-29.56}
 <p>Some key takeaways from this session:</p>
 <ul>
 <li><strong>Design comes first:</strong> matched (paired) samples reduce two-sample problems to one-sample problems on the differences — and remove extraneous unit-to-unit variation.</li>
-<li>The paired <span class="math inline">\(t\)</span>, pooled <span class="math inline">\(t\)</span>, Welch <span class="math inline">\(t\)</span>, two-sample <span class="math inline">\(z\)</span>, and two-proportion <span class="math inline">\(z\)</span> all reuse the Deck 08 logic; only the parameter (a <strong>difference</strong>) and the standard error change.</li>
+<li>The paired <span class="math inline">\(t\)</span>, pooled <span class="math inline">\(t\)</span>, Welch <span class="math inline">\(t\)</span>, two-sample <span class="math inline">\(z\)</span>, and two-proportion <span class="math inline">\(z\)</span> all reuse the Topic 8 logic; only the parameter (a <strong>difference</strong>) and the standard error change.</li>
 <li><strong>Default to Welch</strong> for independent means; <strong>pool only under <span class="math inline">\(H_0\)</span></strong> for proportion tests.</li>
 <li>Same data, different design → different conclusion: Vungle’s lift is decisive paired (<span class="math inline">\(t = 3.33\)</span>) and invisible unpaired (<span class="math inline">\(t = 1.51\)</span>).</li>
 <li>Statistical significance ≠ practical significance: with 252M impressions everything is “significant” — judge the <strong>effect size</strong>; with <span class="math inline">\(n = 15\)</span> per group, real effects can hide — mind the <strong>power</strong>.</li>
 <li>Test results are <strong>inputs to decisions</strong>, not decisions: the rollout call weighs the metric that matches the business model.</li>
+</ul>
+</section>
+<section id="carry-forward" class="slide level2 center">
+<h2>Carry-forward</h2>
+<ul>
+<li><p><strong>Your client (homework):</strong> find <strong>two groups</strong> in your team’s case — two segments, two periods, or treatment vs.&nbsp;control — and run the right two-sample test. <strong>Justify the design:</strong> paired or independent?</p></li>
+<li><p><strong>Next time:</strong> we stop <em>comparing</em> and start <em>predicting</em> — <strong>Simple Regression</strong> (a new client: an auto-parts retailer choosing store sites).</p></li>
 </ul>
 </section></section>
 <section id="thank-you" class="title-slide slide level1 center" data-background-color="#cfb991">

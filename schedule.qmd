@@ -75,5 +75,5 @@ editor: visual
 ::: below-table
 \* Section numbers refer to chapters in the course textbook (to be confirmed during the redesign).
 
-Slide decks were adapted from previous course editions and will be revised for QM 6700. Podcast/video and supplementary links will be added as materials are developed.
+Slides were adapted from previous course editions and will be revised for QM 6700. Podcast/video and supplementary links will be added as materials are developed.
 :::

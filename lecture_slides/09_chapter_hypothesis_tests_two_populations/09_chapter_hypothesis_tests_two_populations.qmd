@@ -62,9 +62,7 @@ html-math-method:
 
 - Guerin is about to become Vungle's **head of data science**. His credibility — and his stock options — ride on this call.
 
-## Today's Managerial Question
-
-<br>
+## The Brief — Today's Managerial Question
 
 <br>
 
@@ -72,24 +70,24 @@ html-math-method:
 
 <br>
 
-- In Deck 08 we tested **one** population against a benchmark ("is B's mean eRPM above \$3.30?").
+- In Topic 8 we tested **one** population against a benchmark ("is B's mean eRPM above \$3.30?"). Today's is the canonical business question: **is B better than A?** — comparing **two** populations.
 
-- Today's question is the canonical business question: **is B better than A?** That requires comparing **two** populations.
+- **How today's studio runs:** I demo each test on a textbook example → **your team runs it on the Vungle data** (two sprints) → we debrief the rollout call together.
 
-- By the end of class, you will make the rollout recommendation — with the statistics to back it up.
+- By the end of class, **your team** makes the rollout recommendation — with the statistics to back it up.
 
-## How Chapter 10 Answers It
+## How Today's Tools Answer It
 
 <br>
 
-Every tool in this chapter maps onto the Vungle dataset:
+Every tool today maps onto the Vungle dataset:
 
-| Feature of the Vungle test | Chapter 10 tool |
+| Feature of the Vungle test | The tool |
 |---|---|
 | Same 30 days observed under both A and B | **Matched samples → paired $t$-test** |
 | What if we (wrongly) ignored the day pairing? | **Independent samples $t$-test** — a cautionary contrast |
 | Millions of impressions → installs (yes/no) | **Two-proportion $z$-test** |
-| "Roll out or not?" | Test results become **decision signals** (Decision Analysis, Deck 04) |
+| "Roll out or not?" | Test results become **decision signals** (Decision Analysis, Topic 4) |
 
 <br>
 
@@ -143,7 +141,7 @@ knitr::include_graphics("figs/ab_test_design_schematic.png")
 
 <br>
 
-- All of Chapter 10 reuses the Deck 08 logic — the only change is the **parameter**: it is now a **difference**.
+- All of today's tests reuse the Topic 8 logic — the only change is the **parameter**: it is now a **difference**.
 
 ::: fragment
 
@@ -196,7 +194,7 @@ $$
 
 :::
 
-- The two-sample problem becomes a **one-sample** problem about the mean difference $\mu_d$ — and we can apply *exactly* the single-population procedures from Deck 08.
+- The two-sample problem becomes a **one-sample** problem about the mean difference $\mu_d$ — and we can apply *exactly* the single-population procedures from Topic 8.
 
 - Point estimate of $\mu_d$:
 
@@ -514,7 +512,21 @@ $$
 
 - Even at the CI lower bound (\$0.043), the lift is ≈ \$10K/month — material for a startup with \$25.5M raised.
 
-- **Discussion hook:** the daily gap is noisy — the first week even favored A, and after two weeks B's lead was only ≈ \$0.04, still well below the full-month \$0.11. Stopping the test early could have hidden the effect. (Sequential testing — beyond Ch. 10, but exactly what real A/B platforms wrestle with.)
+- **Discussion hook:** the daily gap is noisy — the first week even favored A, and after two weeks B's lead was only ≈ \$0.04, still well below the full-month \$0.11. Stopping the test early could have hidden the effect. (Sequential testing — beyond today's scope, but exactly what real A/B platforms wrestle with.)
+
+## ⏱️ Team Sprint 1 — Is the lift real?
+
+::: {.sprint .nonincremental}
+**Decide:** does algorithm B truly earn more per 1,000 impressions than A?
+
+**Data:** `data/vungle_erpm_paired.csv` · **Time:** ~8 min
+
+1. In Excel: **Data → Data Analysis → t-Test: Paired Two Sample for Means** (Variable 1 = `erpm_B`, Variable 2 = `erpm_A`, α = 0.05).
+2. Read off `t Stat` and `P(T<=t) one-tail`; build the 95% CI for the mean difference.
+3. Decide at α = 0.05 — is the lift real?
+
+**Hand in (1 slide):** your $t$, $p$, and CI, plus a one-line verdict for Guerin.
+:::
 
 # Independent Samples: Comparing Two Means {background-color="#cfb991"}
 
@@ -786,7 +798,7 @@ knitr::include_graphics("figs/excel_welch_vungle.png")
 
 - Also note the **traffic imbalance**: A got ~15× B's impressions (the 1/16 hash split). That is exactly why we compare **rates**, never raw counts — B's 56K installs vs. A's 952K says nothing by itself.
 
-- *Honest caveat:* impressions within a day are not perfectly independent (time structure). Beyond Ch. 10 scope — but a good question to ask any A/B platform.
+- *Honest caveat:* impressions within a day are not perfectly independent (time structure). Beyond today's scope — but a good question to ask any A/B platform.
 
 ## Estimating $p_1 - p_2$
 
@@ -832,7 +844,7 @@ $$
 
 :::
 
-- Decision rule and $p$-value exactly as in the one-proportion $z$-test (Deck 08); Excel: `=NORM.S.DIST`.
+- Decision rule and $p$-value exactly as in the one-proportion $z$-test (Topic 8); Excel: `=NORM.S.DIST`.
 
 - **Rule of thumb:** pool under $H_0$ (testing); do **not** pool for confidence intervals.
 
@@ -898,6 +910,20 @@ $$
 
 - So which metric should drive the rollout?
 
+## ⏱️ Team Sprint 2 — Make the call
+
+::: {.sprint .nonincremental}
+**The conflict:** B **earns more** per impression (paired $t = 3.33$) but **converts fewer** installs ($z = -29.6$). Both results are statistically decisive.
+
+**Decide (≈12 min):** write CEO Jaffer's **rollout recommendation**.
+
+1. Which metric should drive the decision for Vungle's **business model** — and why?
+2. What would you **monitor** after rollout, and why?
+3. State it in **three sentences**: the call · the number · the caveat.
+
+**Hand in (1 slide):** your rollout recommendation to the CEO.
+:::
+
 ## Reconciling the Two Metrics
 
 <br>
@@ -924,7 +950,7 @@ $$
 
 - Flip side from the equity example: small samples can make real effects invisible (low power). **Large $n$: everything is significant. Small $n$: nothing is.** Neither replaces judgment about magnitude.
 
-# The Rollout Decision {background-color="#cfb991"}
+# Debrief — The Rollout Call {background-color="#cfb991"}
 
 ## Three Tests, One Decision
 
@@ -944,17 +970,17 @@ $$
 
 <br>
 
-- In Deck 04 you computed expected values for *roll out / keep A / test first*. Today's output feeds straight into that framework:
+- In Topic 4 you computed expected values for *roll out / keep A / test first*. Today's output feeds straight into that framework:
 
   - The CI $(\$0.043, \$0.181)$ per 1,000 impressions is the **range of payoffs** for the "roll out" branch.
   - The $p$-value bounds the probability of the bad state ("B is not actually better") — the input Bayesian revision needs.
 
 - This is the division of labor in analytics:
 
-  - **Inference** (Decks 07–09): *what is true, and how sure are we?*
-  - **Decision analysis** (Deck 04): *given that uncertainty, what should we do?*
+  - **Inference** (Topics 7–9): *what is true, and how sure are we?*
+  - **Decision analysis** (Topic 4): *given that uncertainty, what should we do?*
 
-## Chapter 10 on One Page — the Vungle Bridge Table
+## Two-Population Tests on One Page — the Vungle Bridge Table
 
 ::: r-fit-text
 | Test | $H_0$ | Applied to Vungle | Statistic | Conclusion |
@@ -979,7 +1005,7 @@ $$
 - **Practice with the real data:**
   - `data/vungle_erpm_paired.csv` + ToolPak → reproduce $t = 3.325$ (paired) and $t = 1.51$ (unequal variances).
   - `data/vungle_daily.csv` + five formula cells → reproduce $z = -29.56$.
-  - Worked solutions: `data/deck10_vungle_ab_analysis.xlsx`.
+  - Worked solutions: `data/vungle_ab_analysis.xlsx`.
 
 ## Summary
 
@@ -987,11 +1013,19 @@ $$
 Some key takeaways from this session:
 
 - **Design comes first:** matched (paired) samples reduce two-sample problems to one-sample problems on the differences — and remove extraneous unit-to-unit variation.
-- The paired $t$, pooled $t$, Welch $t$, two-sample $z$, and two-proportion $z$ all reuse the Deck 08 logic; only the parameter (a **difference**) and the standard error change.
+- The paired $t$, pooled $t$, Welch $t$, two-sample $z$, and two-proportion $z$ all reuse the Topic 8 logic; only the parameter (a **difference**) and the standard error change.
 - **Default to Welch** for independent means; **pool only under $H_0$** for proportion tests.
 - Same data, different design → different conclusion: Vungle's lift is decisive paired ($t = 3.33$) and invisible unpaired ($t = 1.51$).
 - Statistical significance ≠ practical significance: with 252M impressions everything is "significant" — judge the **effect size**; with $n = 15$ per group, real effects can hide — mind the **power**.
 - Test results are **inputs to decisions**, not decisions: the rollout call weighs the metric that matches the business model.
+:::
+
+## Carry-forward
+
+::: nonincremental
+- **Your client (homework):** find **two groups** in your team's case — two segments, two periods, or treatment vs. control — and run the right two-sample test. **Justify the design:** paired or independent?
+
+- **Next time:** we stop *comparing* and start *predicting* — **Simple Regression** (a new client: an auto-parts retailer choosing store sites).
 :::
 
 # Thank you! {background-color="#cfb991"}
