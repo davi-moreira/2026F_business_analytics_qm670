@@ -9,6 +9,7 @@
 <link href="../../site_libs/quarto-html/quarto-syntax-highlighting-7f8f88aac4f3542376d5c11b86a4c14d.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
   <meta name="generator" content="quarto-1.9.37">
 
+  <meta name="author" content="Professor Davi Moreira ">
   <title>QM 6700: Business Analytics –  QM 6700: Business Analytics </title>
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
@@ -31,7 +32,7 @@
       vertical-align: middle;
     }
   </style>
-  <link rel="stylesheet" href="../../site_libs/revealjs/dist/theme/quarto-5ef896889b6f6a61ee8a14a51d301bed.css">
+  <link rel="stylesheet" href="../../site_libs/revealjs/dist/theme/quarto-113b5beb2a57b2deea58feb1108e76b2.css">
   <link href="../../site_libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
   <link href="../../site_libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
   <link href="../../site_libs/revealjs/plugin/reveal-menu/quarto-menu.css" rel="stylesheet">
@@ -132,92 +133,73 @@
 
 <section id="title-slide" class="quarto-title-block center">
   <h1 class="title"><span style="font-size: 100%;"> QM 6700: Business Analytics </span></h1>
-  <p class="subtitle"><span style="font-size: 150%;"> Hyp. Testing Rvw. 01</span></p>
+  <p class="subtitle"><span style="font-size: 150%;"> Hypothesis Testing I: Inference About One Population </span></p>
 
 <div class="quarto-title-authors">
+<div class="quarto-title-author">
+<div class="quarto-title-author-name">
+Professor<br>Davi Moreira<br> 
+</div>
+</div>
 </div>
 
 </section>
 <section id="overview" class="slide level2 center">
 <h2>Overview</h2>
 <div class="columns">
-<div class="column" style="text-align: center; justify-content: center; align-items: center;">
+<div class="column" style="width: 50%; text-align: center; justify-content: center; align-items: center;">
 <ul>
-<li>Introduction to Hypothesis Testing</li>
-<li>Framework of Hypothesis Testing</li>
-<li>Type I and Type II Errors</li>
+<li>Case Spotlight: A/B Testing at Vungle</li>
+<li>From estimating to <strong>testing</strong> a claim</li>
+<li>Developing <span class="math inline">\(H_0\)</span> and <span class="math inline">\(H_a\)</span>; the skeptic’s burden of proof</li>
+<li>Type I and Type II errors; the level of significance <span class="math inline">\(\alpha\)</span></li>
+<li>The <span class="math inline">\(p\)</span>-value and critical-value approaches</li>
 </ul>
-</div><div class="column" style="text-align: center; justify-content: center; align-items: center;">
+</div><div class="column" style="width: 50%; text-align: center; justify-content: center; align-items: center;">
 <ul>
-<li>Hypothesis Testing for Means</li>
-<li>Hypothesis Testing for Proportions</li>
-<li>Using Excel for Hypothesis Testing</li>
+<li><strong>Lecture 1:</strong> one-sample <span class="math inline">\(t\)</span> about a <strong>mean</strong> — is B’s eRPM above $3.30?</li>
+<li><strong>Lecture 2:</strong> one-sample <span class="math inline">\(z\)</span> about a <strong>proportion</strong> — does B clear the conversion target?</li>
+<li>Reading <span class="math inline">\(p\)</span>-values like a manager</li>
+<li>The rule that sets up Topic 9: testing <strong>two</strong> populations</li>
 </ul>
 </div></div>
 </section>
-<section id="hypothesis-testing-for-means-and-proportions" class="title-slide slide level1 center" data-background-color="#cfb991">
-<h1>Hypothesis Testing for Means and Proportions</h1>
-
-</section>
-
 <section>
-<section id="statistical-inference" class="title-slide slide level1 center" data-background-color="#cfb991">
-<h1>Statistical Inference</h1>
+<section id="case-spotlight-ab-testing-at-vungle" class="title-slide slide level1 center" data-background-color="#cfb991">
+<h1>Case Spotlight: A/B Testing at Vungle</h1>
 
 </section>
-<section id="statistical-inference-1" class="slide level2 center">
-<h2>Statistical Inference</h2>
+<section id="june-2014-one-month-of-data-one-funding-decision" class="slide level2 center">
+<h2>June 2014 — One Month of Data, One Funding Decision</h2>
 <p><br></p>
-<div class="columns">
-<div class="column" style="width:50%;">
-<center>
-<strong>Interval Estimation</strong>
-</center>
 <ul>
-<li>Confidence level: 95% <span class="math inline">\((1-\alpha)\)</span> (Middle area; Confidence level)</li>
-<li>Confidence multipliers</li>
-<li>Upper/lower tail areas</li>
-<li>One- or 2-sided intervals</li>
-<li>Sampling errors and Margin of Error (MOE)</li>
-<li>Find range of all reasonable parameter values</li>
+<li class="fragment"><p><a href="https://en.wikipedia.org/wiki/Liftoff_Mobile">Vungle</a> is a mobile ad-tech startup: it serves 15-second video ads inside other companies’ apps and earns revenue mainly when a viewer <strong>installs</strong> the advertised app (cost-per-install).</p></li>
+<li class="fragment"><p>Two analysts built a new ad-serving algorithm (<strong>B</strong>) and ran it head-to-head against the existing one (<strong>A</strong>) for the entire month of June 2014. The metric that pays the bills is <strong>eRPM</strong> — effective revenue per 1,000 impressions.</p></li>
+<li class="fragment"><p>We have already <strong>described</strong> the data (Topics 1–2) and <strong>estimated</strong> B’s true mean eRPM with a confidence interval (Topic 7). Now the CFO needs a <strong>yes/no decision</strong>.</p></li>
+<li class="fragment"><p>Up to now we asked <em>“what is B’s true eRPM?”</em> Today we ask a sharper question: <em>“is it above a line we care about?”</em> — and we answer with a <strong>test</strong>.</p></li>
 </ul>
-</div><div class="column" style="width:50%;">
+</section>
+<section id="the-brief-todays-managerial-question" class="slide level2 center">
+<h2>The Brief — Today’s Managerial Question</h2>
+<p><br></p>
+<blockquote>
+<p>“The CFO will <strong>fund algorithm B</strong> only if its mean eRPM clears the historical <strong>$3.30 benchmark</strong> that algorithm A has long delivered. B’s 30-day average looks like $3.46 — but is that <strong>really</strong> above $3.30, or could a sample of 30 noisy days land there by luck? <strong>Test it.</strong>”</p>
+</blockquote>
+<p><br></p>
+<ul>
+<li class="fragment"><p>This is the canonical one-population question in business: <strong>is a parameter on the right side of a line?</strong> — a benchmark, a target, a contractual threshold.</p></li>
+<li class="fragment"><p><strong>How today’s studio runs:</strong> I demo each test on a textbook example <span class="math inline">\(\rightarrow\)</span> <strong>your team runs it on the Vungle data</strong> <span class="math inline">\(\rightarrow\)</span> we debrief the funding call together. Two lectures, two tests.</p></li>
+<li class="fragment"><p>By the end, <strong>your team</strong> makes the funding recommendation — with the statistics to back it up.</p></li>
+</ul>
+</section>
+<section id="estimation-vs.-testing-two-jobs-for-the-same-sample" class="slide level2 center">
+<h2>Estimation vs.&nbsp;Testing — Two Jobs for the Same Sample</h2>
+<p><br></p>
+<ul>
+<li class="fragment"><p>In Topic 7 we <strong>estimated</strong>: built a confidence interval — a range of plausible values for B’s true mean eRPM.</p></li>
+<li class="fragment"><p>Today we <strong>test</strong>: weigh the evidence for a <strong>specific claim</strong> about that mean.</p></li>
+</ul>
 <div class="fragment">
-<center>
-<strong>Hypothesis Testing</strong>
-</center>
-<ul>
-<li>Significance level: 5% <span class="math inline">\((\alpha)\)</span> (Tail area(s); Risk)</li>
-<li>Critical values</li>
-<li>p-values</li>
-<li>Which side <span class="math inline">\((H_a)\)</span> depends mostly on data</li>
-<li>Test a specific hypothesized parameter value</li>
-<li>Strength of sample evidence against the hypothesized value of the null hypothesis</li>
-</ul>
-</div>
-</div></div>
-</section></section>
-<section>
-<section id="hypothesis-testing-framework" class="title-slide slide level1 center" data-background-color="#cfb991">
-<h1>Hypothesis testing framework</h1>
-
-</section>
-<section id="hypothesis-testing-framework-1" class="slide level2 center">
-<h2>Hypothesis testing framework</h2>
-<ul>
-<li class="fragment"><p><a href="https://en.wikipedia.org/wiki/Statistical_hypothesis_testing">Hypothesis testing</a> can be used to determine whether a statement about the population or a hypothesized value of the population parameter should or should not be rejected.</p></li>
-<li class="fragment"><p>We start with a <a href="https://en.wikipedia.org/wiki/Null_hypothesis"><em>null hypothesis</em></a> <em>(</em><span class="math inline">\(H_0\)</span>) that represents the status quo.</p></li>
-<li class="fragment"><p>We also have an <a href="https://en.wikipedia.org/wiki/Alternative_hypothesis"><em>alternative hypothesis</em></a> <em>(</em><span class="math inline">\(H_A\)</span>) that represents our research question, i.e.&nbsp;what we’re testing for.</p></li>
-<li class="fragment"><p>We conduct a hypothesis test under the assumption that the null hypothesis is true.</p></li>
-<li class="fragment"><p>If the test results suggest that the data do not provide convincing evidence for the alternative hypothesis, we stick with the null hypothesis. If they do, then we reject the null hypothesis in favor of the alternative.</p></li>
-<li class="fragment"><p>We will never know which hypothesis is true, unless we sample the entire population.</p></li>
-</ul>
-</section>
-<section id="null-and-alternative-hypotheses-about-a-population-mean" class="slide level2 center">
-<h2>Null and Alternative Hypotheses about a Population Mean</h2>
-<p>The equality part of the hypotheses always appears in the null hypothesis.</p>
-<p>In general, a hypothesis test about the value of a population mean <span class="math inline">\(\mu\)</span> takes one of the following three forms (where <span class="math inline">\(\mu_0\)</span> is the hypothesized value of the population mean).</p>
-<p><br></p>
 <table class="caption-top">
 <colgroup>
 <col style="width: 33%">
@@ -226,391 +208,795 @@
 </colgroup>
 <thead>
 <tr class="header">
-<th>Test Type</th>
-<th>Null Hypothesis (<span class="math inline">\(H_0\)</span>)</th>
-<th>Alternative Hypothesis (<span class="math inline">\(H_A\)</span>)</th>
+<th></th>
+<th>Interval estimation (Topic 7)</th>
+<th>Hypothesis testing (today)</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td>One-tailed (lower-tail)</td>
-<td><span class="math inline">\(H_0\)</span>: <span class="math inline">\(\mu \geq \mu_0\)</span></td>
-<td><span class="math inline">\(H_A\)</span>: <span class="math inline">\(\mu &lt; \mu_0\)</span></td>
+<td>Question</td>
+<td>What is the parameter?</td>
+<td>Is the parameter on one side of a line?</td>
 </tr>
 <tr class="even">
-<td>One-tailed (upper-tail)</td>
-<td><span class="math inline">\(H_0\)</span>: <span class="math inline">\(\mu \leq \mu_0\)</span></td>
-<td><span class="math inline">\(H_A\)</span>: <span class="math inline">\(\mu &gt; \mu_0\)</span></td>
+<td>Output</td>
+<td>A range (the CI)</td>
+<td>A decision: reject <span class="math inline">\(H_0\)</span> or not</td>
 </tr>
 <tr class="odd">
-<td>Two-tailed</td>
-<td><span class="math inline">\(H_0\)</span>: <span class="math inline">\(\mu = \mu_0\)</span></td>
-<td><span class="math inline">\(H_A\)</span>: <span class="math inline">\(\mu \neq \mu_0\)</span></td>
+<td>Knob you set</td>
+<td>Confidence level <span class="math inline">\(1-\alpha\)</span></td>
+<td>Significance level <span class="math inline">\(\alpha\)</span> (the risk you accept)</td>
+</tr>
+<tr class="even">
+<td>The “answer”</td>
+<td>Margin of error</td>
+<td><span class="math inline">\(p\)</span>-value / critical value</td>
 </tr>
 </tbody>
 </table>
-</section>
-<section id="building-a-null-hypothesis" class="slide level2 center">
-<h2>Building a Null Hypothesis</h2>
+</div>
 <ul>
-<li class="fragment"><p>Formulate the null hypothesis by stating that there is no effect, no difference, or that the effect is equal to a specific value. The null hypothesis is often a statement of equality (e.g., no difference or no association).</p></li>
-<li class="fragment"><p><strong>Key Phrases for Null Hypothesis:</strong></p>
-<ul>
-<li class="fragment">“There is no difference…”</li>
-<li class="fragment">“There is no effect…”</li>
-<li class="fragment">“The population mean is equal to…”</li>
-<li class="fragment">“The proportion is equal to…”</li>
-</ul></li>
-<li class="fragment"><p><strong>Examples:</strong></p>
-<ul>
-<li class="fragment"><p><strong>Single-Sample Test (Mean):</strong><br>
-<span class="math inline">\(H_0: \mu = \mu_0\)</span><br>
-(The mean blood pressure reduction with the new drug is equal to a standard value.)</p></li>
-<li class="fragment"><p><strong>Proportion Test:</strong><br>
-<span class="math inline">\(H_0: p = p_0\)</span><br>
-(The proportion of patients responding to the treatment is equal to 50%.)</p></li>
-</ul></li>
+<li class="fragment">They are two views of the <strong>same</strong> sampling logic — and we will see at the end they agree.</li>
 </ul>
-<!---
-    - **Two-Sample Test (Comparison of Means):**  
-      $H_0: \mu_1 = \mu_2$  
-      (There is no difference in mean blood pressure reduction between the two drugs.)
-
-    - **Correlation Test:**  
-      $H_0: \rho = 0$  
-      (There is no correlation between hours studied and test scores.)
---->
 </section></section>
 <section>
-<section id="type-i-and-type-ii-errors" class="title-slide slide level1 center" data-background-color="#cfb991">
-<h1>Type I and Type II Errors</h1>
+<section id="developing-the-hypotheses" class="title-slide slide level1 center" data-background-color="#cfb991">
+<h1>Developing the Hypotheses</h1>
 
 </section>
-<section id="type-i-error" class="slide level2 center">
-<h2>Type I Error</h2>
-<ul>
-<li class="fragment">Because hypothesis tests are based on sample data, we must allow for the possibility of errors.</li>
-<li class="fragment">A <a href="https://en.wikipedia.org/wiki/Type_I_and_type_II_errors#Type_I_error">Type I error</a> is rejecting <span class="math inline">\(H_0\)</span> when <span class="math inline">\(H_0\)</span> is true (but in the one-tailed tests, we still don’t know exactly the value of <span class="math inline">\(\mu\)</span>).</li>
-<li class="fragment">The probability of making a Type I error when the null hypothesis is true as an equality is called the level of significance <span class="math inline">\((\alpha)\)</span>, which is (likely) the maximum value of the Type I probability.</li>
-<li class="fragment">Level of significance <span class="math inline">\((\alpha)\)</span> is predetermined by the user (normally, 1%, 5%, or 10%) to control the probability of making a Type I error: <a href="https://en.wikipedia.org/wiki/Statistical_significance">Significance tests</a>.</li>
+<section id="h_0-is-on-trial-the-skeptics-position" class="slide level2 center">
+<h2><span class="math inline">\(H_0\)</span> Is on Trial — the Skeptic’s Position</h2>
+
+<img data-src="figs/h0_courtroom.png" class="quarto-figure quarto-figure-center r-stretch" style="width:72.0%"><ul>
+<li>The <strong>null hypothesis</strong> <span class="math inline">\(H_0\)</span> is the status quo — <em>“nothing new here, B is no better than the $3.30 line.”</em> It is assumed true until the data overturn it.</li>
+<li>The <strong>alternative</strong> <span class="math inline">\(H_a\)</span> is the research claim — <em>“B beats $3.30”</em> — accepted <strong>only</strong> with strong evidence. The data carry the burden of proof.</li>
 </ul>
 </section>
-<section id="type-ii-error" class="slide level2 center">
-<h2>Type II Error</h2>
+<section id="which-claim-goes-where" class="slide level2 center">
+<h2>Which Claim Goes Where?</h2>
+<p><br></p>
 <ul>
-<li class="fragment">A <a href="https://en.wikipedia.org/wiki/Type_I_and_type_II_errors#Type_II_error">Type II error</a> is an error of accepting <span class="math inline">\(H_0\)</span> when <span class="math inline">\(H_0\)</span> is false. (Or, rejecting <span class="math inline">\(H_A\)</span> when <span class="math inline">\(H_A\)</span> is true.)</li>
-<li class="fragment">Normally, we don’t control the probability of making a Type II error.</li>
-<li class="fragment">Statisticians avoid the risk of making a Type II error by using “do not reject <span class="math inline">\(H_0\)</span>” instead of “accept <span class="math inline">\(H_0\)</span>”.</li>
+<li class="fragment"><p><strong>Rule:</strong> put what you <strong>want to prove</strong> in <span class="math inline">\(H_a\)</span>; the equality always lives in <span class="math inline">\(H_0\)</span>.</p></li>
+<li class="fragment"><p>Two ways the question arrives in business:</p>
+<ul>
+<li class="fragment"><strong>Research hypothesis</strong> — gather evidence <em>for</em> something new (new algorithm, new bonus plan, new drug). Start with <span class="math inline">\(H_a\)</span>: <em>“the new thing works.”</em></li>
+<li class="fragment"><strong>Challenge an assumption</strong> — test whether a long-held claim still holds (a label says 67.6 oz; a goal is 12 minutes). Start with <span class="math inline">\(H_0\)</span>: <em>“the claim is true.”</em></li>
+</ul></li>
+<li class="fragment"><p>Vungle is a <strong>research</strong> case: we want evidence that B clears $3.30, so that claim is <span class="math inline">\(H_a\)</span>.</p></li>
+</ul>
+<div class="fragment">
+<p><span class="math display">\[
+H_0: \mu \leq 3.30 \qquad \text{vs.} \qquad H_a: \mu &gt; 3.30
+\]</span></p>
+</div>
+</section>
+<section id="three-forms-the-business-question-picks-the-tail" class="slide level2 center">
+<h2>Three Forms — the Business Question Picks the Tail</h2>
+
+<img data-src="figs/hypothesis_forms.png" class="quarto-figure quarto-figure-center r-stretch" style="width:80.0%"><ul>
+<li><strong>Upper-tail</strong> (Vungle): we only act if B is <strong>better</strong> — “worse” and “same” lead to the same decision (don’t fund).</li>
+<li><strong>Lower-tail</strong>: we act if the parameter falls <strong>below</strong> a line (a defect rate above a ceiling, response time over a goal).</li>
+<li><strong>Two-tailed</strong>: any <strong>difference</strong> matters (a fill weight that is too high <em>or</em> too low).</li>
 </ul>
 </section>
-<section id="type-i-and-type-ii-errors-1" class="slide level2 center">
+<section id="the-three-forms-in-symbols" class="slide level2 center">
+<h2>The Three Forms in Symbols</h2>
+<p><br></p>
+<ul>
+<li class="fragment">For a population <strong>mean</strong> <span class="math inline">\(\mu\)</span> against a hypothesized value <span class="math inline">\(\mu_0\)</span>:</li>
+</ul>
+<div class="fragment">
+<p><span class="math display">\[
+\begin{aligned}
+\text{Lower-tail:} \quad &amp; H_0: \mu \geq \mu_0 \quad &amp;&amp;H_a: \mu &lt; \mu_0 \\
+\text{Upper-tail:} \quad &amp; H_0: \mu \leq \mu_0 \quad &amp;&amp;H_a: \mu &gt; \mu_0 \\
+\text{Two-tailed:} \quad &amp; H_0: \mu = \mu_0 \quad &amp;&amp;H_a: \mu \neq \mu_0
+\end{aligned}
+\]</span></p>
+</div>
+<ul>
+<li class="fragment"><p>The <strong>equality</strong> (<span class="math inline">\(=\)</span>, <span class="math inline">\(\leq\)</span>, <span class="math inline">\(\geq\)</span>) is always part of <span class="math inline">\(H_0\)</span> — it is the value we compute the test statistic <em>against</em>.</p></li>
+<li class="fragment"><p>The direction of <span class="math inline">\(H_a\)</span> comes from the <strong>business decision</strong>, not from peeking at the data.</p></li>
+</ul>
+</section></section>
+<section>
+<section id="two-ways-to-be-wrong" class="title-slide slide level1 center" data-background-color="#cfb991">
+<h1>Two Ways to Be Wrong</h1>
+
+</section>
+<section id="type-i-and-type-ii-errors" class="slide level2 center">
 <h2>Type I and Type II Errors</h2>
-<p><strong>Example:</strong> A researcher sets out to test whether a new teaching method increases students’ average scores above the previous benchmark of 12 (<span class="math inline">\(H_A\)</span>), challenging the long-held belief that the average score remains at or below 12 (<span class="math inline">\(H_0\)</span>).</p>
-<p>Hypotheses:</p>
-<ul>
-<li><span class="math inline">\(H_0\)</span>: <span class="math inline">\(\mu \leq 12\)</span></li>
-<li><span class="math inline">\(H_A\)</span>: <span class="math inline">\(\mu &gt; 12\)</span></li>
-</ul>
 
-<img data-src="figs/type_I_II_errors.png" class="quarto-figure quarto-figure-center r-stretch" style="width:70.0%"><p><br></p>
-<p><br></p>
+<img data-src="figs/type_I_II_errors_studio.png" class="quarto-figure quarto-figure-center r-stretch" style="width:62.0%"><ul>
+<li><strong>Type I error:</strong> reject <span class="math inline">\(H_0\)</span> when it is true — fund B though it really <em>isn’t</em> above $3.30 (a costly false alarm).</li>
+<li><strong>Type II error:</strong> fail to reject <span class="math inline">\(H_0\)</span> when it is false — <em>miss</em> a genuinely better B (a missed opportunity).</li>
+</ul>
 </section>
-<section id="p-values" class="slide level2 center">
-<h2><span class="math inline">\(p\)</span>-values</h2>
+<section id="you-control-alpha-beta-follows" class="slide level2 center">
+<h2>You Control <span class="math inline">\(\alpha\)</span>; <span class="math inline">\(\beta\)</span> Follows</h2>
+<p><br></p>
 <ul>
-<li class="fragment"><p>The <a href="https://en.wikipedia.org/wiki/P-value"><span class="math inline">\(p-value\)</span></a> is the probability computed using the test statistic, that provides the probability of obtaining test results at least as extreme as the results actually observed, assuming that the null hypothesis is true.</p></li>
-<li class="fragment"><p>If the <span class="math inline">\(p-value\)</span> is <em>low</em> (lower than the significance level, <span class="math inline">\(\alpha\)</span>, which is usually 5%) we say that it would be very unlikely to observe the data if the null hypothesis were true, and hence <strong>reject</strong> <span class="math inline">\(H_0\)</span>.</p></li>
-<li class="fragment"><p>If the <span class="math inline">\(p-value\)</span> is <em>high</em> (higher than <span class="math inline">\(\alpha\)</span>) we say that it is likely to observe the data even if the null hypothesis were true, and hence <strong>do not reject</strong> <span class="math inline">\(H_0\)</span>.</p></li>
+<li class="fragment"><p>The <strong>level of significance</strong> <span class="math inline">\(\alpha\)</span> = the probability of a <strong>Type I error</strong> you are willing to tolerate. You set it <strong>before</strong> seeing the data — usually <span class="math inline">\(\alpha = 0.05\)</span> (sometimes <span class="math inline">\(0.01\)</span> or <span class="math inline">\(0.10\)</span>).</p></li>
+<li class="fragment"><p><span class="math inline">\(\beta\)</span> = the probability of a <strong>Type II error</strong>. You do <strong>not</strong> set it directly; it follows from <span class="math inline">\(\alpha\)</span>, the sample size, and how far the truth is from <span class="math inline">\(H_0\)</span>.</p></li>
+<li class="fragment"><p><strong>The trade-off:</strong> for a fixed sample, lowering <span class="math inline">\(\alpha\)</span> (fewer false alarms) <strong>raises</strong> <span class="math inline">\(\beta\)</span> (more missed effects). The only way to shrink both is a <strong>larger sample</strong>.</p></li>
+<li class="fragment"><p><strong>Language rule:</strong> when the evidence is weak we say <em>“fail to reject <span class="math inline">\(H_0\)</span>,”</em> never <em>“accept <span class="math inline">\(H_0\)</span>.”</em> Absence of proof is not proof of absence — we just did not gather enough evidence to overturn the skeptic.</p></li>
+</ul>
+</section>
+<section id="why-the-asymmetry-matters-for-vungle" class="slide level2 center">
+<h2>Why the Asymmetry Matters for Vungle</h2>
+<p><br></p>
+<ul>
+<li class="fragment"><p>A <strong>Type I error</strong> funds an algorithm that is not actually better — the company spends on a non-improvement and the analyst’s credibility takes the hit.</p></li>
+<li class="fragment"><p>A <strong>Type II error</strong> walks away from a real improvement — money left on the table, but no bad rollout.</p></li>
+<li class="fragment"><p>The CFO decides which mistake is worse and sets <span class="math inline">\(\alpha\)</span> accordingly. Here a false “fund it” is the headline risk, so we hold <span class="math inline">\(\alpha = 0.05\)</span>.</p></li>
+<li class="fragment"><p>This is why <span class="math inline">\(H_0\)</span> is conservative: the test protects the <strong>status quo</strong> until the evidence is strong enough to justify the change.</p></li>
 </ul>
 </section></section>
-<section id="population-mean-sigma-unknown" class="title-slide slide level1 center" data-background-color="#cfb991">
-<h1>Population Mean: <span class="math inline">\(\sigma\)</span> Unknown</h1>
-
-</section>
-
 <section>
-<section id="tests-about-a-population-mean-sigma-unknown" class="title-slide slide level1 center">
-<h1>Tests About a Population Mean: <span class="math inline">\(\sigma\)</span> Unknown</h1>
-<p>The <span class="math inline">\(t-statistic\)</span> is used to determine how far the sample mean is from the population mean under the null hypothesis, in terms of the standard error. It follows a t-distribution with <span class="math inline">\(n-1\)</span> degrees of freedom when the null hypothesis is true.</p>
-<p><span class="math display">\[
-t = \frac{\bar{X} - \mu_0}{S / \sqrt{n}}
-\]</span></p>
-<ol type="1">
-<li class="fragment"><p><span class="math inline">\(\bar{X}\)</span>: The sample mean, representing the average value of the sample data.</p></li>
-<li class="fragment"><p><span class="math inline">\(\mu_0\)</span>: The population mean under the null hypothesis. This is the value we are testing against.</p></li>
-<li class="fragment"><p><span class="math inline">\(S\)</span>: The sample standard deviation, which measures the spread of the sample data.</p></li>
-<li class="fragment"><p><span class="math inline">\(n\)</span>: The sample size, indicating the number of observations in the sample.</p></li>
-<li class="fragment"><p><span class="math inline">\(\sqrt{n}\)</span>: The square root of the sample size, used to adjust the sample standard deviation for the number of observations.</p></li>
-</ol>
-</section>
-<section id="tests-about-a-population-mean-sigma-unknown-1" class="slide level2 center">
-<h2>Tests about a Population Mean: <span class="math inline">\(\sigma\)</span> Unknown</h2>
-<p><strong>Two approaches to decide about the Null Hypothesis (</strong><span class="math inline">\(H_0\)</span>).</p>
-<ol type="1">
-<li><strong>Critical Value Approach</strong>:</li>
-</ol>
-<p>It uses critical values from the <span class="math inline">\(t-distribution\)</span> to determine whether to reject the null hypothesis (<span class="math inline">\(H_0\)</span>). Depending on the direction of the test (one-tailed or two-tailed), the critical value is compared to the calculated t-statistic.</p>
-<p><strong>Decision Rule:</strong></p>
-<p><span class="math display">\[
-\begin{aligned}
-H_0 &amp;: \mu \geq \mu_0; \quad H_a: \mu &lt; \mu_0 \quad \text{(left/lower-tail)} \quad &amp;\text{Reject } H_0 \text{ if } t \leq -t_{\alpha, n-1} \\
-H_0 &amp;: \mu \leq \mu_0; \quad H_a: \mu &gt; \mu_0 \quad \text{(right/upper-tail)} \quad &amp;\text{Reject } H_0 \text{ if } t \geq t_{\alpha, n-1} \\
-H_0 &amp;: \mu = \mu_0; \quad H_a: \mu \neq \mu_0 \quad \text{(two-tail)} \quad &amp;\text{Reject } H_0 \text{ if } t \leq -t_{\alpha/2, n-1} \text{ or } t \geq t_{\alpha/2, n-1}
-\end{aligned}
-\]</span></p>
-</section>
-<section id="tests-about-a-population-mean-sigma-unknown-2" class="slide level2 center">
-<h2>Tests about a Population Mean: <span class="math inline">\(\sigma\)</span> Unknown</h2>
-<ol start="2" type="1">
-<li><span class="math inline">\(p-value\)</span> Approach:</li>
-</ol>
-<ul>
-<li>Calculate the p-value, which is the probability of obtaining a test statistic at least as extreme as the one observed, assuming the null hypothesis is true.</li>
-</ul>
-<p><strong>Decision Rule:</strong></p>
-<p><span class="math display">\[
-\text{Reject } H_0 \text{ if } p\text{-value} \leq \alpha
-\]</span></p>
-<ul>
-<li>If the p-value is less than or equal to the significance level (<span class="math inline">\(\alpha\)</span>), reject the null hypothesis.</li>
-</ul>
-</section>
-<section id="p-values-and-critical-value---excel" class="slide level2 center">
-<h2><span class="math inline">\(p-values\)</span> and Critical Value - Excel</h2>
-<p><br></p>
-<p><strong>EXCEL functions:</strong></p>
-<ul>
-<li class="fragment"><p>p-value is a probability: <code>=T.DIST</code></p></li>
-<li class="fragment"><p>Critical value is a point or value on the horizontal or <span class="math inline">\(t\)</span> axis: <code>=T.INV</code></p></li>
-</ul>
-</section>
-<section id="tests-about-a-population-mean-sigma-unknown---example" class="slide level2 center">
-<h2>Tests about a Population Mean: <span class="math inline">\(\sigma\)</span> Unknown - Example</h2>
-<p>A business travel magazine wants to classify transatlantic gateway airports according to the mean rating for the population of business travelers. A rating scale with a low score of 0 and a high score of 10 will be used, and airports with a population mean rating greater than 7 will be designated as superior service airports.</p>
-<p>A sample of 60 business travelers were surveyed at London’s Heathrow Airport, which provided a sample mean rating of <span class="math inline">\(\bar{x} = 7.25\)</span> and a sample standard deviation of <span class="math inline">\(s = 1.052\)</span>.</p>
-<p><strong>Question</strong>: Do the data indicate that Heathrow should be designated as a superior service airport?</p>
-</section>
-<section id="one-tailed-test-about-a-population-mean-sigma-unknown---example" class="slide level2 center">
-<h2>One-Tailed Test about a Population Mean: <span class="math inline">\(\sigma\)</span> Unknown - Example</h2>
-<ol type="1">
-<li>Determine the hypotheses.</li>
-</ol>
-<p><span class="math display">\[
-\begin{aligned}
-H_0 &amp;: \mu \leq 7 \\
-H_a &amp;: \mu &gt; 7 \quad \text{(upper tail)}
-\end{aligned}
-\]</span></p>
-<ol start="2" type="1">
-<li>Specify the level of significance.</li>
-</ol>
-<p><span class="math display">\[
-\alpha = 0.05
-\]</span></p>
-<ol start="3" type="1">
-<li>Compute the value of the test statistic.</li>
-</ol>
-<p><span class="math display">\[
-t = \frac{\bar{X} - \mu_0}{s / \sqrt{n}} = \frac{7.25 - 7}{1.052 / \sqrt{60}} = 1.84
-\]</span></p>
-</section>
-<section id="critical-value-approach-visualization-upper-tailed---example" class="slide level2 center">
-<h2>Critical Value Approach Visualization (Upper-tailed) - Example</h2>
-<p><br></p>
-
-<img data-src="figs/t_distribution_plot.png" class="quarto-figure quarto-figure-center r-stretch" style="width:80.0%"></section></section>
-<section>
-<section id="one-tailed-test-about-a-population-mean-sigma-unknown---example-1" class="title-slide slide level1 center">
-<h1>One-Tailed Test about a Population Mean: <span class="math inline">\(\sigma\)</span> Unknown - Example</h1>
-<p><strong>Critical Value Approach</strong></p>
-<ol start="4" type="1">
-<li>Determine the critical value and rejection rule.</li>
-</ol>
-<p><span class="math display">\[
-\begin{aligned}
-\text{For } \alpha = 0.05 \text{ and d.f.} = 60 - 1 = 59, t_{0.05, 59} = 1.671 \\
-\text{Reject } H_0 \text{ if } t \geq 1.671
-\end{aligned}
-\]</span></p>
-<ol start="5" type="1">
-<li>Because <span class="math inline">\(1.84 &gt; 1.669\)</span>, we reject <span class="math inline">\(H_0\)</span>. Heathrow should be classified as a superior service airport. <strong>The significance level is 5%.</strong></li>
-</ol>
-</section>
-<section id="p-value-approach-visualization-upper-tailed---example" class="slide level2 center">
-<h2><span class="math inline">\(p-value\)</span> Approach Visualization (Upper-tailed) - Example</h2>
-<p><br></p>
-
-<img data-src="figs/t_distribution_pvalue_plot.png" class="quarto-figure quarto-figure-center r-stretch" style="width:80.0%"></section>
-<section id="one-tailed-test-about-a-population-mean-sigma-unknown---example-2" class="slide level2 center">
-<h2>One-Tailed Test about a Population Mean: <span class="math inline">\(\sigma\)</span> Unknown - Example</h2>
-<p><strong>p-value Approach</strong></p>
-<ol start="4" type="1">
-<li><p>Compute the p-value = 0.0354.</p></li>
-<li><p>Because p-value <span class="math inline">\(\leq \alpha = 0.05\)</span>, we reject <span class="math inline">\(H_0\)</span>.</p></li>
-</ol>
-<p>Based on the current sample, we have significant statistical evidence to reject the null hypothesis and conclude that Heathrow should be classified as a superior service airport. The significance level is 5%. The sample evidence against <span class="math inline">\(H_0\)</span> is strong.</p>
-</section></section>
-<section>
-<section id="tests-about-a-population-proportion" class="title-slide slide level1 center" data-background-color="#cfb991">
-<h1>Tests about a Population Proportion</h1>
+<section id="lecture-1-one-sample-test-about-a-mean" class="title-slide slide level1 center" data-background-color="#cfb991">
+<h1>Lecture 1 — One-Sample Test About a Mean</h1>
 
 </section>
-<section id="null-and-alternative-hypotheses-about-a-population-proportion" class="slide level2 center">
-<h2>Null and Alternative Hypotheses about a Population Proportion</h2>
+<section id="the-brief-is-bs-erpm-above-the-3.30-benchmark" class="slide level2 center">
+<h2>The Brief — Is B’s eRPM Above the $3.30 Benchmark?</h2>
+<p><br></p>
 <ul>
-<li><p>The equality part of the hypotheses always appears in the null hypothesis.</p></li>
-<li><p>In general, a hypothesis test about the value of a population proportion <span class="math inline">\(p\)</span> must take one of the following three forms (where <span class="math inline">\(p_0\)</span> is the hypothesized value of the population proportion).</p></li>
+<li class="fragment"><p>We do <strong>not</strong> know the true population standard deviation <span class="math inline">\(\sigma\)</span> of B’s daily eRPM — so we estimate it from the sample with <span class="math inline">\(s\)</span> and use the <strong><span class="math inline">\(t\)</span>-distribution</strong>.</p></li>
+<li class="fragment"><p>The decision is asymmetric (fund only if <strong>better</strong>), so it is an <strong>upper-tail</strong> test:</p></li>
 </ul>
+<div class="fragment">
+<p><span class="math display">\[
+H_0: \mu \leq 3.30 \qquad \text{vs.} \qquad H_a: \mu &gt; 3.30 \qquad \alpha = 0.05
+\]</span></p>
+</div>
+<ul>
+<li class="fragment"><p><span class="math inline">\(\mu\)</span> = the <strong>true</strong> mean daily eRPM B would deliver across <em>all</em> future traffic; the 30 June days are our sample.</p></li>
+<li class="fragment"><p><strong>Today’s plan:</strong> demo the mechanics on a textbook airport-rating case, then your team runs it on Vungle.</p></li>
+</ul>
+</section>
+<section id="the-test-statistic-how-many-standard-errors-above-the-line" class="slide level2 center">
+<h2>The Test Statistic: How Many Standard Errors Above the Line?</h2>
+<p><br></p>
+<ul>
+<li class="fragment">The <span class="math inline">\(t\)</span> statistic measures how far the sample mean sits from <span class="math inline">\(\mu_0\)</span>, in <strong>standard-error units</strong>:</li>
+</ul>
+<div class="fragment">
+<p><span class="math display">\[
+t = \frac{\bar{x} - \mu_0}{s / \sqrt{n}}, \qquad df = n - 1
+\]</span></p>
+</div>
+<ul>
+<li class="fragment"><p><span class="math inline">\(\bar{x}\)</span> = sample mean · <span class="math inline">\(\mu_0\)</span> = the benchmark in <span class="math inline">\(H_0\)</span> · <span class="math inline">\(s\)</span> = sample standard deviation · <span class="math inline">\(n\)</span> = sample size.</p></li>
+<li class="fragment"><p>A <strong>big</strong> <span class="math inline">\(t\)</span> means the sample mean is many standard errors above the line — hard to explain as luck if <span class="math inline">\(H_0\)</span> were true.</p></li>
+<li class="fragment"><p>Because <span class="math inline">\(\sigma\)</span> is unknown and replaced by <span class="math inline">\(s\)</span>, the statistic follows a <strong><span class="math inline">\(t\)</span> distribution</strong> with <span class="math inline">\(n-1\)</span> degrees of freedom (slightly heavier tails than the normal).</p></li>
+</ul>
+</section>
+<section id="two-roads-to-the-same-decision" class="slide level2 center">
+<h2>Two Roads to the Same Decision</h2>
+<p><br></p>
+<ul>
+<li class="fragment"><strong>Critical-value approach:</strong> compare <span class="math inline">\(t\)</span> to a cutoff <span class="math inline">\(t_{\alpha, n-1}\)</span> from the <span class="math inline">\(t\)</span>-distribution.</li>
+</ul>
+<div class="fragment">
 <p><span class="math display">\[
 \begin{aligned}
-\text{One-tailed (lower tail)} &amp; \quad H_0: p \geq p_0 \quad H_a: p &lt; p_0 \\
-\text{One-tailed (upper tail)} &amp; \quad H_0: p \leq p_0 \quad H_a: p &gt; p_0 \\
-\text{Two-tailed} &amp; \quad H_0: p = p_0 \quad H_a: p \neq p_0
+\text{Lower-tail:} \;&amp; \text{reject } H_0 \text{ if } t \leq -t_{\alpha,\,n-1} \\
+\text{Upper-tail:} \;&amp; \text{reject } H_0 \text{ if } t \geq t_{\alpha,\,n-1} \\
+\text{Two-tailed:} \;&amp; \text{reject } H_0 \text{ if } |t| \geq t_{\alpha/2,\,n-1}
 \end{aligned}
 \]</span></p>
+</div>
+<ul>
+<li class="fragment"><p><strong><span class="math inline">\(p\)</span>-value approach:</strong> compute the probability, <em>if <span class="math inline">\(H_0\)</span> were true</em>, of a test statistic at least this extreme — then reject <span class="math inline">\(H_0\)</span> if <span class="math inline">\(p \leq \alpha\)</span>.</p></li>
+<li class="fragment"><p>Both always agree. Excel: <code>=T.INV(1-α, df)</code> for the critical value, <code>=T.DIST.RT(t, df)</code> for an upper-tail <span class="math inline">\(p\)</span>-value.</p></li>
+</ul>
 </section>
-<section id="tests-about-a-population-proportion-1" class="slide level2 center">
-<h2>Tests about a Population Proportion</h2>
+<section id="what-the-p-value-actually-means" class="slide level2 center">
+<h2>What the <span class="math inline">\(p\)</span>-Value Actually Means</h2>
+<p><br></p>
+<ul>
+<li class="fragment"><p>The <span class="math inline">\(p\)</span>-value is <strong><span class="math inline">\(P(\text{evidence this extreme} \mid H_0 \text{ true})\)</span></strong> — <em>not</em> the probability that <span class="math inline">\(H_0\)</span> is true.</p></li>
+<li class="fragment"><p>Read it as: <em>“if B were really only at the $3.30 line, how often would 30 days look this good by luck?”</em> Small <span class="math inline">\(p\)</span> <span class="math inline">\(\Rightarrow\)</span> that luck is implausible <span class="math inline">\(\Rightarrow\)</span> doubt <span class="math inline">\(H_0\)</span>.</p></li>
+<li class="fragment"><p>A manager’s verbal scale for the strength of evidence against <span class="math inline">\(H_0\)</span>:</p></li>
+</ul>
+<div class="fragment">
+<table class="caption-top">
+<thead>
+<tr class="header">
+<th><span class="math inline">\(p\)</span>-value</th>
+<th>Strength of evidence against <span class="math inline">\(H_0\)</span></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><span class="math inline">\(p \leq 0.01\)</span></td>
+<td><strong>Overwhelming</strong></td>
+</tr>
+<tr class="even">
+<td><span class="math inline">\(0.01 &lt; p \leq 0.05\)</span></td>
+<td><strong>Strong</strong></td>
+</tr>
+<tr class="odd">
+<td><span class="math inline">\(0.05 &lt; p \leq 0.10\)</span></td>
+<td><strong>Weak / suggestive</strong></td>
+</tr>
+<tr class="even">
+<td><span class="math inline">\(p &gt; 0.10\)</span></td>
+<td><strong>Insufficient</strong></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="anchor-example-heathrow-superior-service-rating" class="slide level2 center">
+<h2>Anchor Example: Heathrow Superior-Service Rating</h2>
+<p><br></p>
+<p>A travel magazine rates airports 0–10; an airport is labeled <strong>“superior service”</strong> only if its <strong>true mean</strong> rating exceeds <strong>7</strong>. A sample of <strong>60</strong> business travelers at London Heathrow gives <span class="math inline">\(\bar{x} = 7.25\)</span>, <span class="math inline">\(s = 1.052\)</span>.</p>
+<p><br></p>
+<ul>
+<li class="fragment">We want evidence that the mean <strong>exceeds 7</strong> <span class="math inline">\(\rightarrow\)</span> upper-tail, <span class="math inline">\(\sigma\)</span> unknown <span class="math inline">\(\rightarrow\)</span> one-sample <span class="math inline">\(t\)</span>.</li>
+</ul>
+<div class="fragment">
+<p><span class="math display">\[
+H_0: \mu \leq 7 \qquad H_a: \mu &gt; 7 \qquad \alpha = 0.05
+\]</span></p>
+</div>
+</section>
+<section id="heathrow-the-five-steps" class="slide level2 center">
+<h2>Heathrow — the Five Steps</h2>
 <div class="r-fit-text">
-<p><strong>Test Statistic:</strong></p>
-<p>The Z-test for a population proportion is used to determine whether the observed sample proportion (<span class="math inline">\(\bar{p}\)</span>) is significantly different from the hypothesized population proportion (<span class="math inline">\(p_0\)</span>). By calculating the z-value, we can compare it to critical values from the standard normal distribution to decide whether to reject the null hypothesis.</p>
+<p><strong>1. Business context.</strong> Classify the airport; only a true mean above 7 earns the “superior service” badge.</p>
+<p><strong>2. Hypotheses</strong> (upper-tail): <span class="math inline">\(H_0: \mu \leq 7\)</span> vs.&nbsp;<span class="math inline">\(H_a: \mu &gt; 7\)</span>, <span class="math inline">\(\alpha = 0.05\)</span>.</p>
+<p><strong>3. Test statistic.</strong></p>
+<p><span class="math display">\[
+t = \frac{\bar{x} - \mu_0}{s/\sqrt{n}} = \frac{7.25 - 7}{1.052/\sqrt{60}} = \frac{0.25}{0.1358} = 1.84, \qquad df = 59
+\]</span></p>
+<p><strong>4. Decision.</strong> Critical value: <span class="math inline">\(t_{0.05,\,59} = 1.671\)</span>; since <span class="math inline">\(1.84 \geq 1.671\)</span> <span class="math inline">\(\rightarrow\)</span> <strong>reject <span class="math inline">\(H_0\)</span></strong>. Equivalently, <span class="math inline">\(p\text{-value} = 0.035 \leq 0.05\)</span> <span class="math inline">\(\rightarrow\)</span> <strong>reject <span class="math inline">\(H_0\)</span></strong>.</p>
+<p><strong>5. Manager’s Translation.</strong> <em>The data give us at least 95% confidence that Heathrow’s mean traveler rating tops 7 — classify it “superior service.” The evidence is strong but not overwhelming (<span class="math inline">\(p \approx 0.035\)</span>).</em></p>
+</div>
+</section>
+<section id="now-the-spine-case-bs-erpm-in-numbers" class="slide level2 center">
+<h2>Now the Spine Case — B’s eRPM in Numbers</h2>
+
+<img data-src="figs/erpm_B_vs_benchmark.png" class="quarto-figure quarto-figure-center r-stretch" style="width:80.0%"><ul>
+<li>21 of 30 days clear the $3.30 line, and the sample mean sits well above it — but a noisy 30-day sample <em>could</em> land here even if the true mean were exactly $3.30. The test settles it.</li>
+</ul>
+</section>
+<section id="step-3-compute-the-test-statistic" class="slide level2 center">
+<h2>Step 3 — Compute the Test Statistic</h2>
+<p><br></p>
+<p>From the 30 daily eRPM values for Algorithm B in <code>data/vungle_daily.csv</code>:</p>
+<div class="fragment">
+<table class="caption-top">
+<thead>
+<tr class="header">
+<th>Quantity</th>
+<th style="text-align: right;">Value</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><span class="math inline">\(n\)</span> (days)</td>
+<td style="text-align: right;">30</td>
+</tr>
+<tr class="even">
+<td><span class="math inline">\(\bar{x}\)</span> (mean eRPM)</td>
+<td style="text-align: right;"><strong>$3.4590</strong></td>
+</tr>
+<tr class="odd">
+<td><span class="math inline">\(s\)</span></td>
+<td style="text-align: right;">0.3444</td>
+</tr>
+<tr class="even">
+<td><span class="math inline">\(SE = s/\sqrt{30}\)</span></td>
+<td style="text-align: right;">0.0629</td>
+</tr>
+<tr class="odd">
+<td><span class="math inline">\(\mu_0\)</span> (benchmark)</td>
+<td style="text-align: right;">3.3000</td>
+</tr>
+<tr class="even">
+<td><span class="math inline">\(t = (\bar{x}-\mu_0)/SE\)</span></td>
+<td style="text-align: right;"><strong>2.529</strong></td>
+</tr>
+<tr class="odd">
+<td><span class="math inline">\(df\)</span></td>
+<td style="text-align: right;">29</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="fragment">
+<p><span class="math display">\[
+t = \frac{3.4590 - 3.30}{0.3444/\sqrt{30}} = \frac{0.1590}{0.0629} = 2.529
+\]</span></p>
+</div>
+</section>
+<section id="step-4-decision-critical-value" class="slide level2 center">
+<h2>Step 4 — Decision (Critical Value)</h2>
+
+<img data-src="figs/t_dist_critical_vungle.png" class="quarto-figure quarto-figure-center r-stretch" style="width:74.0%"><ul>
+<li><strong>Critical value:</strong> <span class="math inline">\(t_{0.05,\,29} = 1.699\)</span>. Since <span class="math inline">\(t = 2.529 \geq 1.699\)</span> <span class="math inline">\(\rightarrow\)</span> <strong>reject <span class="math inline">\(H_0\)</span></strong>.</li>
+<li>The observed <span class="math inline">\(t\)</span> lands deep in the gold rejection region — a sample mean this far above $3.30 is hard to explain as luck.</li>
+</ul>
+</section>
+<section id="step-4-decision-p-value" class="slide level2 center">
+<h2>Step 4 — Decision (<span class="math inline">\(p\)</span>-Value)</h2>
+
+<img data-src="figs/t_dist_pvalue_vungle.png" class="quarto-figure quarto-figure-center r-stretch" style="width:74.0%"><ul>
+<li><strong><span class="math inline">\(p\)</span>-value:</strong> <span class="math inline">\(P(T_{29} &gt; 2.529) = 0.009\)</span>. Since <span class="math inline">\(0.009 \leq 0.05\)</span> <span class="math inline">\(\rightarrow\)</span> <strong>reject <span class="math inline">\(H_0\)</span></strong>.</li>
+<li>On the manager’s scale, <span class="math inline">\(p \leq 0.01\)</span> is <strong>overwhelming</strong> evidence against the $3.30 line.</li>
+</ul>
+</section>
+<section id="the-threshold-matters-a-teaching-moment" class="slide level2 center">
+<h2>The Threshold Matters — a Teaching Moment</h2>
+<p><br></p>
+<ul>
+<li class="fragment"><p>At <span class="math inline">\(\alpha = 0.05\)</span> the call is clear: <span class="math inline">\(p = 0.009 \leq 0.05\)</span>, reject.</p></li>
+<li class="fragment"><p>At a stricter <span class="math inline">\(\alpha = 0.01\)</span>? The critical value rises to <span class="math inline">\(t_{0.01,\,29} = 2.462\)</span>. Our <span class="math inline">\(t = 2.529\)</span> still clears it — but <strong>just barely</strong>.</p></li>
+</ul>
+<div class="fragment">
+<p><span class="math display">\[
+t = 2.529 \;&gt;\; t_{0.01,\,29} = 2.462 \quad\Rightarrow\quad \text{reject } H_0 \text{ even at } \alpha = 0.01
+\]</span></p>
+</div>
+<ul>
+<li class="fragment"><strong>Lesson:</strong> how strict you set <span class="math inline">\(\alpha\)</span> can flip a close call. Here B clears even the demanding 1% bar — but a result like <span class="math inline">\(p = 0.03\)</span> would reject at 5% and <em>fail</em> at 1%. <strong>Decide <span class="math inline">\(\alpha\)</span> before you test, and report it.</strong></li>
+</ul>
+</section>
+<section id="excel-build-the-one-sample-t-with-formula-cells" class="slide level2 center">
+<h2>Excel: Build the One-Sample <span class="math inline">\(t\)</span> with Formula Cells</h2>
+<div class="columns">
+<div class="column" style="width:40%;">
+<p><br></p>
+<p>The ToolPak’s <span class="math inline">\(t\)</span>-tests are all <strong>two-sample</strong>, so a one-sample test is five formula cells:</p>
+<ul>
+<li><code>=AVERAGE</code>, <code>=STDEV.S</code>, <code>=COUNT</code> for <span class="math inline">\(\bar{x}, s, n\)</span></li>
+<li><code>=B3/SQRT(B4)</code> for the standard error</li>
+<li><code>=(B2-3.30)/SE</code> for <span class="math inline">\(t\)</span></li>
+<li><code>=T.DIST.RT(t, 29)</code> for the upper-tail <span class="math inline">\(p\)</span></li>
+</ul>
+<p><br></p>
+<p>(First run <strong>Descriptive Statistics</strong> on the <code>erpm</code> B column to read <span class="math inline">\(\bar{x}\)</span>, <span class="math inline">\(s\)</span>, <span class="math inline">\(n\)</span> — then wire the test cells to it.)</p>
+</div><div class="column" style="width:60%;">
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="figs/excel_one_sample_t_vungle.png" class="quarto-figure quarto-figure-center" style="width:100.0%"></p>
+</figure>
+</div>
+</div>
+</div>
+</div></div>
+</section>
+<section id="the-ci-and-the-test-agree" class="slide level2 center">
+<h2>The CI and the Test Agree</h2>
+<p><br></p>
+<ul>
+<li class="fragment">A two-sided 95% confidence interval for B’s true mean eRPM:</li>
+</ul>
+<div class="fragment">
+<p><span class="math display">\[
+\bar{x} \pm t_{0.025,\,29}\frac{s}{\sqrt{n}} = 3.459 \pm 2.045 \times 0.0629 \;=\; (\$3.330,\; \$3.588)
+\]</span></p>
+</div>
+<ul>
+<li class="fragment"><p>The benchmark <strong>$3.30 sits below the entire interval</strong> — consistent with rejecting <span class="math inline">\(H_0: \mu \leq 3.30\)</span>.</p></li>
+<li class="fragment"><p>This is the <strong>duality</strong>: a value outside the CI is exactly a value the test would reject. Estimation and testing tell one story.</p></li>
+<li class="fragment"><p>Even the lower bound, $3.33, is above the line — at Vungle’s scale of hundreds of millions of impressions, a few cents per 1,000 is real money.</p></li>
+</ul>
+</section>
+<section id="step-5-managers-translation" class="slide level2 center">
+<h2>Step 5 — Manager’s Translation</h2>
+<p><br></p>
+<ul>
+<li class="fragment"><p><em>“If algorithm B were truly no better than the $3.30 benchmark, we would see 30 days average this high only about <strong>9 times in 1,000</strong>. That is overwhelming evidence B clears the line — its true mean eRPM is plausibly between $3.33 and $3.59. <strong>Fund B.</strong>”</em></p></li>
+<li class="fragment"><p><strong>One number, one caveat:</strong> the call rests on <span class="math inline">\(t = 2.53\)</span> (<span class="math inline">\(p = 0.009\)</span>) — and on the assumption that June’s 30 days are <strong>representative</strong> of future traffic. A new month with different seasonality could shift the mean.</p></li>
+<li class="fragment"><p>This answers <em>“is B above the line?”</em> — but the CFO’s deeper question is <em>“is B better than <strong>A</strong>?”</em> That comparison of <strong>two</strong> populations is Topic 9.</p></li>
+</ul>
+</section>
+<section id="team-sprint-1-does-b-clear-the-3.30-benchmark" class="slide level2 center">
+<h2>⏱️ Team Sprint 1 — Does B Clear the $3.30 Benchmark?</h2>
+<div class="sprint">
+<p><strong>Decide:</strong> is algorithm B’s mean eRPM truly above the $3.30 funding benchmark?</p>
+<p><strong>Data:</strong> <code>data/vungle_daily.csv</code> (filter <code>algorithm = B</code>, column <code>erpm</code>) · <strong>Time:</strong> ~10 min</p>
+<ol type="1">
+<li>Run <strong>Data → Data Analysis → Descriptive Statistics</strong> on B’s <code>erpm</code> to get <span class="math inline">\(\bar{x}\)</span>, <span class="math inline">\(s\)</span>, <span class="math inline">\(n\)</span>.</li>
+<li>In formula cells, compute <span class="math inline">\(SE = s/\sqrt{n}\)</span>, then <span class="math inline">\(t = (\bar{x}-3.30)/SE\)</span>, then the upper-tail <span class="math inline">\(p\)</span> with <code>=T.DIST.RT(t, 29)</code>.</li>
+<li>Build the 95% CI for the mean; check that $3.30 falls below it. Decide at <span class="math inline">\(\alpha = 0.05\)</span>.</li>
+</ol>
+<p><strong>Hand in (1 slide):</strong> your <span class="math inline">\(t\)</span>, <span class="math inline">\(p\)</span>, and CI, plus a one-line <strong>fund / don’t fund</strong> verdict for the CFO.</p>
+</div>
+</section>
+<section id="debrief-lecture-1-managers-takeaway" class="slide level2 center">
+<h2>Debrief — Lecture 1 Manager’s Takeaway</h2>
+<p><br></p>
+<ul>
+<li class="fragment"><p><strong>One sentence:</strong> algorithm B’s mean daily eRPM is above the $3.30 benchmark — the one-sample <span class="math inline">\(t\)</span>-test rejects “no better” with overwhelming evidence (<span class="math inline">\(p = 0.009\)</span>). <strong>Fund B.</strong></p></li>
+<li class="fragment"><p><strong>One number to remember:</strong> <span class="math inline">\(t = 2.53\)</span> — and where it came from: <span class="math inline">\((\bar{x} - \mu_0)/(s/\sqrt{n})\)</span>.</p></li>
+<li class="fragment"><p><strong>One caveat:</strong> the test says B beats the <strong>$3.30 line</strong>, not that B beats <strong>A</strong> — and it assumes June is representative. Comparing B to A directly is Topic 9.</p></li>
+</ul>
+</section>
+<section id="carry-forward-lecture-1" class="slide level2 center">
+<h2>Carry-forward — Lecture 1</h2>
+<ul>
+<li><p><strong>Your client (homework):</strong> in your team’s case, find one <strong>mean</strong> with a meaningful <strong>benchmark</strong> (a target, a historical level, a contract threshold). State <span class="math inline">\(H_0\)</span>/<span class="math inline">\(H_a\)</span>, pick the tail from the business decision, run the one-sample <span class="math inline">\(t\)</span>, and write the call.</p></li>
+<li><p><strong>Next lecture:</strong> the same logic for a <strong>proportion</strong> — does B’s <em>conversion rate</em> clear its target?</p></li>
+</ul>
+</section></section>
+<section>
+<section id="lecture-2-one-sample-test-about-a-proportion" class="title-slide slide level1 center" data-background-color="#cfb991">
+<h1>Lecture 2 — One-Sample Test About a Proportion</h1>
+
+</section>
+<section id="the-brief-does-b-clear-the-conversion-target" class="slide level2 center">
+<h2>The Brief — Does B Clear the Conversion Target?</h2>
+<p><br></p>
+<ul>
+<li class="fragment"><p>eRPM is revenue per impression. The ops team also watches the <strong>conversion rate</strong>: installs ÷ impressions. Any algorithm must clear a minimum <strong>0.35%</strong> conversion target to be viable.</p></li>
+<li class="fragment"><p>Now the parameter is a <strong>proportion</strong> <span class="math inline">\(p\)</span>, not a mean — but the machinery is the same: state <span class="math inline">\(H_0\)</span>/<span class="math inline">\(H_a\)</span>, compute a test statistic, get a <span class="math inline">\(p\)</span>-value, decide at <span class="math inline">\(\alpha\)</span>.</p></li>
+</ul>
+<div class="fragment">
+<p><span class="math display">\[
+H_0: p \leq 0.0035 \qquad \text{vs.} \qquad H_a: p &gt; 0.0035 \qquad \alpha = 0.05
+\]</span></p>
+</div>
+<ul>
+<li class="fragment"><span class="math inline">\(p\)</span> = B’s <strong>true</strong> install-per-impression rate; the sample is every June impression served under B.</li>
+</ul>
+</section>
+<section id="the-unit-of-observation-just-changed" class="slide level2 center">
+<h2>The Unit of Observation Just Changed</h2>
+<p><br></p>
+<ul>
+<li class="fragment"><p>For <strong>eRPM</strong> the unit was the <strong>day</strong> (<span class="math inline">\(n = 30\)</span>). For <strong>conversion</strong> the unit is the <strong>impression</strong> — each one a Bernoulli trial (install / no install).</p></li>
+<li class="fragment"><p>So <span class="math inline">\(n\)</span> is now <strong>15.8 million</strong>, not 30. The “sample” exploded in size.</p></li>
+<li class="fragment"><p>We aggregate June’s B rows: total installs ÷ total impressions.</p></li>
+</ul>
+<div class="fragment">
+<table class="caption-top">
+<thead>
+<tr class="header">
+<th>Quantity</th>
+<th style="text-align: right;">Algorithm B</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Impressions (<span class="math inline">\(n\)</span>)</td>
+<td style="text-align: right;">15,825,376</td>
+</tr>
+<tr class="even">
+<td>Installs (<span class="math inline">\(x\)</span>)</td>
+<td style="text-align: right;">56,031</td>
+</tr>
+<tr class="odd">
+<td>Sample proportion <span class="math inline">\(\bar{p} = x/n\)</span></td>
+<td style="text-align: right;"><strong>0.3541%</strong></td>
+</tr>
+</tbody>
+</table>
+</div>
+<ul>
+<li class="fragment"><em>Honest caveat:</em> impressions within a day are not perfectly independent — beyond today’s scope, but a fair question to ask any A/B platform.</li>
+</ul>
+</section>
+<section id="the-proportion-test-statistic" class="slide level2 center">
+<h2>The Proportion Test Statistic</h2>
+<p><br></p>
+<ul>
+<li class="fragment">Standard error of the sample proportion, computed <strong>under <span class="math inline">\(H_0\)</span></strong> (so it uses the hypothesized <span class="math inline">\(p_0\)</span>, not <span class="math inline">\(\bar p\)</span>):</li>
+</ul>
+<div class="fragment">
+<p><span class="math display">\[
+\sigma_{\bar{p}} = \sqrt{\frac{p_0(1-p_0)}{n}}
+\]</span></p>
+</div>
+<ul>
+<li class="fragment">Test statistic — a <strong><span class="math inline">\(z\)</span></strong>, because for large <span class="math inline">\(n\)</span> the sampling distribution of <span class="math inline">\(\bar p\)</span> is approximately normal:</li>
+</ul>
+<div class="fragment">
 <p><span class="math display">\[
 z = \frac{\bar{p} - p_0}{\sigma_{\bar{p}}}
 \]</span></p>
-<p>where:</p>
-<p><span class="math display">\[
-\sigma_{\bar{p}} = \sqrt{\frac{p_0 (1 - p_0)}{n}}
-\]</span></p>
-<p>assuming <span class="math inline">\(np_0 \geq 5\)</span> and <span class="math inline">\(n(1 - p_0) \geq 5\)</span>.</p>
-<ul>
-<li><span class="math inline">\(\bar{p}\)</span>: Sample proportion</li>
-<li><span class="math inline">\(p_0\)</span>: Hypothesized population proportion</li>
-<li><span class="math inline">\(\sigma_{\bar{p}}\)</span>: Standard error of the sample proportion</li>
-<li><span class="math inline">\(p_0\)</span>: Hypothesized population proportion</li>
-<li><span class="math inline">\(n\)</span>: Sample size</li>
-</ul>
 </div>
-</section></section>
-<section>
-<section id="tests-about-a-population-proportion-2" class="title-slide slide level1 center">
-<h1>Tests about a Population Proportion</h1>
 <ul>
-<li><strong>p-value Approach</strong></li>
+<li class="fragment"><strong>Large-sample condition:</strong> <span class="math inline">\(np_0 \geq 5\)</span> and <span class="math inline">\(n(1-p_0) \geq 5\)</span>. Here <span class="math inline">\(np_0 \approx 55{,}000 \gg 5\)</span> — easily satisfied.</li>
 </ul>
-<p><span class="math display">\[
-\text{Reject } H_0 \text{ if } p\text{-value} \leq \alpha
-\]</span></p>
+</section>
+<section id="decision-rules-for-a-proportion" class="slide level2 center">
+<h2>Decision Rules for a Proportion</h2>
+<p><br></p>
 <ul>
-<li><strong>Critical Value Approach</strong></li>
+<li class="fragment">Same two roads, now with the <strong>standard normal</strong>:</li>
 </ul>
+<div class="fragment">
 <p><span class="math display">\[
 \begin{aligned}
-H_0 &amp;: p \leq p_0 &amp;\text{Reject } H_0 \text{ if } z \geq z_{\alpha} \\
-H_0 &amp;: p \geq p_0 &amp;\text{Reject } H_0 \text{ if } z \leq -z_{\alpha} \\
-H_0 &amp;: p = p_0 &amp;\text{Reject } H_0 \text{ if } z \leq -z_{\alpha/2} \text{ or } z \geq z_{\alpha/2}
+\text{Lower-tail:} \;&amp; \text{reject } H_0 \text{ if } z \leq -z_{\alpha} \\
+\text{Upper-tail:} \;&amp; \text{reject } H_0 \text{ if } z \geq z_{\alpha} \\
+\text{Two-tailed:} \;&amp; \text{reject } H_0 \text{ if } |z| \geq z_{\alpha/2}
 \end{aligned}
 \]</span></p>
+</div>
+<ul>
+<li class="fragment"><p>Excel: <code>=NORM.S.INV(1-α)</code> for the critical <span class="math inline">\(z\)</span> (e.g., <span class="math inline">\(z_{0.05} = 1.645\)</span>); <code>=1-NORM.S.DIST(z, TRUE)</code> for an upper-tail <span class="math inline">\(p\)</span>-value.</p></li>
+<li class="fragment"><p>For a two-tailed test, <strong>double</strong> the single-tail area to get the <span class="math inline">\(p\)</span>-value, and split <span class="math inline">\(\alpha\)</span> into <span class="math inline">\(\alpha/2\)</span> per tail for the two critical values.</p></li>
+</ul>
 </section>
-<section id="tests-about-a-population-proportion---example" class="slide level2 center">
-<h2>Tests About a Population Proportion - Example</h2>
+<section id="anchor-example-pine-creek-golf-course" class="slide level2 center">
+<h2>Anchor Example: Pine Creek Golf Course</h2>
 <p><br></p>
-<p><strong>Example: Pine Creek Golf Course</strong></p>
-<p><br></p>
-<p>Over the past year, 20% of the players at Pine Creek were women. <em>In an effort to increase the proportion of women players</em>, Pine Creek implemented a special promotion design to attract women golfers. The manager now wants to determine if the proportion of women players has increased.</p>
-<p><br></p>
-<p>A random sample of 400 players were selected and 100 of the players were women. The level of significance is <span class="math inline">\(\alpha = .05\)</span>.</p>
+<p>Last year <strong>20%</strong> of Pine Creek’s players were women. After a promotion to attract women golfers, the manager wants evidence the proportion <strong>increased</strong>. A sample of <strong>400</strong> players includes <strong>100</strong> women (<span class="math inline">\(\bar{p} = 0.25\)</span>), <span class="math inline">\(\alpha = 0.05\)</span>.</p>
+<div class="fragment">
+<p><span class="math display">\[
+H_0: p \leq 0.20 \qquad H_a: p &gt; 0.20 \qquad \text{(upper-tail)}
+\]</span></p>
+</div>
+<div class="fragment">
+<p><span class="math display">\[
+\sigma_{\bar{p}} = \sqrt{\frac{0.20(0.80)}{400}} = 0.02, \qquad
+z = \frac{0.25 - 0.20}{0.02} = 2.50
+\]</span></p>
+</div>
 </section>
-<section id="tests-about-a-population-proportion---example-1" class="slide level2 center">
-<h2>Tests About a Population Proportion - Example</h2>
+<section id="pine-creek-decision" class="slide level2 center">
+<h2>Pine Creek — Decision</h2>
+<p><br></p>
+<ul>
+<li class="fragment"><p><strong>Critical value:</strong> <span class="math inline">\(z_{0.05} = 1.645\)</span>. Since <span class="math inline">\(z = 2.50 \geq 1.645\)</span> <span class="math inline">\(\rightarrow\)</span> <strong>reject <span class="math inline">\(H_0\)</span></strong>.</p></li>
+<li class="fragment"><p><strong><span class="math inline">\(p\)</span>-value:</strong> <span class="math inline">\(1 - \text{NORM.S.DIST}(2.50) = 1 - 0.9938 = 0.0062 \leq 0.05\)</span> <span class="math inline">\(\rightarrow\)</span> <strong>reject <span class="math inline">\(H_0\)</span></strong>.</p></li>
+</ul>
+<div class="fragment">
+<blockquote>
+<p><em>Strong, in fact overwhelming, evidence that the promotion raised the proportion of women players above 20%.</em></p>
+</blockquote>
+</div>
+<ul>
+<li class="fragment">Notice the parallel to the airport case: same five steps, same two roads — only the standard error formula and the reference distribution (normal vs.&nbsp;<span class="math inline">\(t\)</span>) changed.</li>
+</ul>
+</section>
+<section id="now-the-spine-case-bs-conversion-in-numbers" class="slide level2 center">
+<h2>Now the Spine Case — B’s Conversion in Numbers</h2>
+<p><br></p>
+<ul>
+<li class="fragment">Plugging B’s June totals into the proportion test, with <span class="math inline">\(p_0 = 0.0035\)</span>:</li>
+</ul>
+<div class="fragment">
+<p><span class="math display">\[
+\sigma_{\bar{p}} = \sqrt{\frac{0.0035(1-0.0035)}{15{,}825{,}376}} = 1.485 \times 10^{-5}
+\]</span></p>
+</div>
+<div class="fragment">
+<p><span class="math display">\[
+z = \frac{0.003541 - 0.003500}{1.485 \times 10^{-5}} = 2.733
+\]</span></p>
+</div>
+<ul>
+<li class="fragment"><span class="math inline">\(\bar p\)</span> sits just <strong>0.0041 percentage points</strong> above the target — a tiny gap — yet with 15.8M impressions even a tiny gap is many standard errors out.</li>
+</ul>
+</section>
+<section id="step-4-decision" class="slide level2 center">
+<h2>Step 4 — Decision</h2>
+<p><br></p>
+<ul>
+<li class="fragment"><p><strong>Critical value:</strong> <span class="math inline">\(z_{0.05} = 1.645\)</span>. Since <span class="math inline">\(z = 2.733 \geq 1.645\)</span> <span class="math inline">\(\rightarrow\)</span> <strong>reject <span class="math inline">\(H_0\)</span></strong>.</p></li>
+<li class="fragment"><p><strong><span class="math inline">\(p\)</span>-value:</strong> <span class="math inline">\(1 - \text{NORM.S.DIST}(2.733) = 0.0031 \leq 0.05\)</span> <span class="math inline">\(\rightarrow\)</span> <strong>reject <span class="math inline">\(H_0\)</span></strong>.</p></li>
+</ul>
+<div class="fragment">
+<blockquote>
+<p><em>Statistically, B’s conversion rate clears the 0.35% target.</em></p>
+</blockquote>
+</div>
+<ul>
+<li class="fragment"><strong>But pause on the magnitude:</strong> the <em>effect size</em> is 0.0041 percentage points. With <span class="math inline">\(n\)</span> in the millions the test was almost <strong>guaranteed</strong> to be “significant” — which raises the question we tackle next.</li>
+</ul>
+</section>
+<section id="excel-one-proportion-z-with-formula-cells" class="slide level2 center">
+<h2>Excel: One-Proportion <span class="math inline">\(z\)</span> with Formula Cells</h2>
+<div class="columns">
+<div class="column" style="width:40%;">
+<p><br></p>
+<p>There is <strong>no ToolPak tool</strong> for a one-proportion <span class="math inline">\(z\)</span> — build it in cells:</p>
+<ul>
+<li><code>=SUM</code> the installs and impressions for B</li>
+<li><span class="math inline">\(\bar p = x/n\)</span></li>
+<li>$SE = $ <code>=SQRT(0.0035*(1-0.0035)/n)</code></li>
+<li><span class="math inline">\(z = (\bar p - 0.0035)/SE\)</span></li>
+<li>$p = $ <code>=1-NORM.S.DIST(z, TRUE)</code></li>
+</ul>
+<p><br></p>
+<p>Worth mastering: most real A/B metrics — click-through, conversion, churn — are <strong>proportions</strong>.</p>
+</div><div class="column" style="width:60%;">
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="figs/excel_one_prop_z_vungle.png" class="quarto-figure quarto-figure-center" style="width:100.0%"></p>
+</figure>
+</div>
+</div>
+</div>
+</div></div>
+</section>
+<section id="statistical-vs.-practical-significance" class="slide level2 center">
+<h2>Statistical vs.&nbsp;Practical Significance</h2>
+<p><br></p>
+<ul>
+<li class="fragment"><p>With <span class="math inline">\(n\)</span> in the <strong>millions</strong>, the conversion test was nearly guaranteed to reject: at this scale even a microscopic gap produces a large <span class="math inline">\(z\)</span>.</p></li>
+<li class="fragment"><p><span class="math inline">\(z = 2.73\)</span> tells you the gap is <strong>real</strong>; it does <strong>not</strong> tell you the gap <strong>matters</strong>. Always pair the test with the <strong>effect size</strong> — here +0.0041 percentage points above target.</p></li>
+<li class="fragment"><p>Flip side, from small samples: a real effect can be <strong>invisible</strong> when <span class="math inline">\(n\)</span> is tiny (low power <span class="math inline">\(\rightarrow\)</span> Type II error). <strong>Large <span class="math inline">\(n\)</span>: almost everything is significant. Small <span class="math inline">\(n\)</span>: almost nothing is.</strong></p></li>
+<li class="fragment"><p>Neither replaces judgment about <strong>magnitude</strong>. <em>“Is it real?”</em> and <em>“is it big enough to act on?”</em> are different questions.</p></li>
+</ul>
+</section>
+<section id="reading-p-values-like-a-manager" class="slide level2 center">
+<h2>Reading <span class="math inline">\(p\)</span>-Values Like a Manager</h2>
+<div class="r-fit-text">
+<p>The same statistic, re-anchored to the Vungle eRPM mean test under different benchmarks — what would the verdict be?</p>
+<table class="caption-top">
+<colgroup>
+<col style="width: 17%">
+<col style="width: 23%">
+<col style="width: 23%">
+<col style="width: 17%">
+<col style="width: 17%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>If the benchmark were…</th>
+<th style="text-align: right;"><span class="math inline">\(t\)</span></th>
+<th style="text-align: right;"><span class="math inline">\(p\)</span>-value</th>
+<th>Rubric label</th>
+<th>Manager’s read</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><span class="math inline">\(\mu_0 = 3.30\)</span> (our case)</td>
+<td style="text-align: right;">2.53</td>
+<td style="text-align: right;"><strong>0.009</strong></td>
+<td>Overwhelming</td>
+<td>Clear the line decisively — fund B</td>
+</tr>
+<tr class="even">
+<td><span class="math inline">\(\mu_0 = 3.35\)</span></td>
+<td style="text-align: right;">1.73</td>
+<td style="text-align: right;"><strong>0.047</strong></td>
+<td>Strong</td>
+<td>Significant at 5%, not at 1% — fund, but watch it</td>
+</tr>
+<tr class="odd">
+<td><span class="math inline">\(\mu_0 = 3.40\)</span></td>
+<td style="text-align: right;">0.94</td>
+<td style="text-align: right;"><strong>0.178</strong></td>
+<td>Insufficient</td>
+<td>Cannot distinguish B from 3.40 — hold</td>
+</tr>
+</tbody>
+</table>
+</div>
+<ul>
+<li class="fragment">The <strong>same data</strong> support very different conclusions depending on <strong>where you draw the line</strong> — which is why the benchmark is a <em>business</em> decision, set before the test.</li>
+</ul>
+</section>
+<section id="team-sprint-2-does-b-clear-the-conversion-target" class="slide level2 center">
+<h2>⏱️ Team Sprint 2 — Does B Clear the Conversion Target?</h2>
+<div class="sprint">
+<p><strong>Decide:</strong> is algorithm B’s conversion rate (installs/impressions) above the 0.35% target?</p>
+<p><strong>Data:</strong> <code>data/vungle_daily.csv</code> (filter <code>algorithm = B</code>) · <strong>Time:</strong> ~12 min</p>
 <ol type="1">
-<li><p>Determine the hypotheses</p>
-<ul>
-<li><span class="math inline">\(H_0: p \le .20\)</span> and <span class="math inline">\(H_a: p &gt; .20\)</span> (upper tail)</li>
-</ul></li>
+<li><code>=SUM</code> B’s <code>installs</code> and <code>impressions</code>; compute <span class="math inline">\(\bar p = x/n\)</span>.</li>
+<li>In formula cells: $SE = $ <code>=SQRT(0.0035*(1-0.0035)/n)</code>, then <span class="math inline">\(z = (\bar p - 0.0035)/SE\)</span>, then $p = $ <code>=1-NORM.S.DIST(z, TRUE)</code>.</li>
+<li>Decide at <span class="math inline">\(\alpha = 0.05\)</span> — <strong>then</strong> state the <strong>effect size</strong> (how far above target, in percentage points).</li>
+<li>In <strong>one sentence each:</strong> the call · the number · the caveat about statistical vs.&nbsp;practical significance.</li>
 </ol>
-<p><br></p>
-<ol start="2" type="1">
-<li>Specify the level of significance. <span class="math inline">\(\alpha = .05\)</span></li>
-</ol>
-<p><br></p>
-<ol start="3" type="1">
-<li><p>Compute the value of the z test statistic.</p>
-<ul>
-<li><span class="math inline">\(\sigma_{\bar{p}} = \sqrt{\frac{p_0(1-p_0)}{n}} = \sqrt{\frac{.2(1-.2)}{400}} = .02\)</span></li>
-<li><span class="math inline">\(z = \frac{\bar{p} - p_0}{\sigma_{\bar{p}}} = \frac{(.25) - .20}{.02} = 2.50\)</span></li>
-</ul></li>
-</ol>
+<p><strong>Hand in (1 slide):</strong> your <span class="math inline">\(z\)</span>, <span class="math inline">\(p\)</span>, effect size, and a viability verdict for the ops team.</p>
+</div>
 </section>
-<section id="tests-about-a-population-proportion---example-2" class="slide level2 center">
-<h2>Tests About a Population Proportion - Example</h2>
-<p><strong>Critical Value Approach</strong></p>
-<ol start="4" type="1">
-<li><p>Determine the critical values and rejection rule.</p>
-<ul>
-<li><span class="math inline">\(z_{0.05} = \text{NORM.S.INV}(0.95) = 1.645\)</span></li>
-<li>Decision Rule: Reject <span class="math inline">\(H_0\)</span> if <span class="math inline">\(z \ge 1.645\)</span></li>
-</ul></li>
-</ol>
+<section id="debrief-lecture-2-managers-takeaway" class="slide level2 center">
+<h2>Debrief — Lecture 2 Manager’s Takeaway</h2>
 <p><br></p>
-<ol start="5" type="1">
-<li>Determine whether to reject <span class="math inline">\(H_0\)</span> because <span class="math inline">\(z = 2.5 &gt; 1.645\)</span>, we reject <span class="math inline">\(H_0\)</span>.</li>
-</ol>
+<ul>
+<li class="fragment"><p><strong>One sentence:</strong> B’s conversion rate clears the 0.35% target — the one-proportion <span class="math inline">\(z\)</span>-test rejects “below target” (<span class="math inline">\(z = 2.73\)</span>, <span class="math inline">\(p = 0.003\)</span>). Viable on conversion, too.</p></li>
+<li class="fragment"><p><strong>One number to remember:</strong> <span class="math inline">\(z = 2.73\)</span> — same machinery as the <span class="math inline">\(t\)</span>, with <span class="math inline">\(\sigma_{\bar p} = \sqrt{p_0(1-p_0)/n}\)</span> in the denominator.</p></li>
+<li class="fragment"><p><strong>One caveat:</strong> with 15.8M impressions, <em>significance was almost automatic</em>. The honest headline is the <strong>effect size</strong> (+0.0041 pts), not the <span class="math inline">\(z\)</span>. Statistical significance <span class="math inline">\(\neq\)</span> practical importance.</p></li>
+</ul>
 </section>
-<section id="tests-about-a-population-proportion---example-3" class="slide level2 center">
-<h2>Tests About a Population Proportion - Example</h2>
-<p><strong>p-value Approach</strong></p>
-<ol start="4" type="1">
-<li><p>Compute the p-value for <span class="math inline">\(z = 2.50\)</span> (an upper tail problem).</p>
+<section id="carry-forward-lecture-2" class="slide level2 center">
+<h2>Carry-forward — Lecture 2</h2>
 <ul>
-<li><span class="math inline">\(p\)</span>-value <span class="math inline">\(= 1 - \text{NORM.S.DIST}(2.50, \text{TRUE}) = 1 - .9938 = .0062\)</span></li>
-</ul></li>
-</ol>
-<p><br></p>
-<ol start="5" type="1">
-<li>Because <span class="math inline">\(p\)</span>-value <span class="math inline">\(= .0062 &lt; \alpha = .05\)</span>, we reject <span class="math inline">\(H_0\)</span>.</li>
-</ol>
-<p><strong>Based on the current sample, we have significant statistical evidence to conclude that the proportion of women players has increased from 20%. The significance level is 5%. The evidence against</strong> <span class="math inline">\(H_0\)</span> is overwhelming.</p>
-</section></section>
-<section>
-<section id="one-sided-and-two-sided" class="title-slide slide level1 center" data-background-color="#cfb991">
-<h1>One-sided and Two-sided</h1>
-
-</section>
-<section id="one-sided-and-two-sided-1" class="slide level2 center">
-<h2>One-sided and Two-sided</h2>
-<ul>
-<li class="fragment"><p>For a left/lower-tailed test, we calculate the tail area and critical value on the left side.</p></li>
-<li class="fragment"><p>For a two-tailed test,</p>
-<ul>
-<li class="fragment"><p>Double the tail area to obtain the <span class="math inline">\(p\)</span>-value (<em>Note: p-value is a probability and, hence, must be between 0 and 1, inclusively.</em>)</p></li>
-<li class="fragment"><p>Divide the significance level <span class="math inline">\(\alpha\)</span> and assign to each side to obtain two critical values.</p></li>
-</ul></li>
+<li><p><strong>Your client (homework):</strong> in your team’s case, find one <strong>proportion</strong> with a target (a pass rate, a response rate, a defect ceiling). State <span class="math inline">\(H_0\)</span>/<span class="math inline">\(H_a\)</span>, run the one-sample <span class="math inline">\(z\)</span>, <strong>and</strong> report the effect size — not just the <span class="math inline">\(p\)</span>-value.</p></li>
+<li><p><strong>Next time:</strong> we stop testing <strong>one</strong> population against a line and start comparing <strong>two</strong> — <em>is B better than A?</em> — with the paired and two-sample tests of Topic 9.</p></li>
 </ul>
 </section></section>
 <section>
-<section id="using-excel-to-determine-p-values" class="title-slide slide level1 center" data-background-color="#cfb991">
-<h1>Using Excel to Determine <span class="math inline">\(p-values\)</span></h1>
+<section id="wrap-up" class="title-slide slide level1 center" data-background-color="#cfb991">
+<h1>Wrap-up</h1>
 
 </section>
-<section id="using-excel-to-determine-p-values-1" class="slide level2 center">
-<h2>Using Excel to Determine <span class="math inline">\(p-values\)</span></h2>
+<section id="the-one-population-testing-recipe-one-page" class="slide level2 center">
+<h2>The One-Population Testing Recipe — One Page</h2>
+<div class="r-fit-text">
+<table class="caption-top">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Step</th>
+<th>Mean (<span class="math inline">\(\sigma\)</span> unknown)</th>
+<th>Proportion (large <span class="math inline">\(n\)</span>)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>1. Hypotheses</strong></td>
+<td><span class="math inline">\(H_0\)</span> vs.&nbsp;<span class="math inline">\(H_a\)</span> about <span class="math inline">\(\mu\)</span>; tail from the decision</td>
+<td><span class="math inline">\(H_0\)</span> vs.&nbsp;<span class="math inline">\(H_a\)</span> about <span class="math inline">\(p\)</span>; tail from the decision</td>
+</tr>
+<tr class="even">
+<td><strong>2. Significance</strong></td>
+<td>choose <span class="math inline">\(\alpha\)</span> (Type I risk) before testing</td>
+<td>choose <span class="math inline">\(\alpha\)</span> before testing</td>
+</tr>
+<tr class="odd">
+<td><strong>3. Statistic</strong></td>
+<td><span class="math inline">\(t = \dfrac{\bar{x}-\mu_0}{s/\sqrt{n}}\)</span>, <span class="math inline">\(df = n-1\)</span></td>
+<td><span class="math inline">\(z = \dfrac{\bar{p}-p_0}{\sqrt{p_0(1-p_0)/n}}\)</span></td>
+</tr>
+<tr class="even">
+<td><strong>4. Decision</strong></td>
+<td>reject if <span class="math inline">\(\lvert t\rvert \geq t_{crit}\)</span> or <span class="math inline">\(p \leq \alpha\)</span></td>
+<td>reject if <span class="math inline">\(\lvert z\rvert \geq z_{crit}\)</span> or <span class="math inline">\(p \leq \alpha\)</span></td>
+</tr>
+<tr class="odd">
+<td><strong>5. Translate</strong></td>
+<td>back to the business call + effect size</td>
+<td>back to the business call + effect size</td>
+</tr>
+<tr class="even">
+<td><strong>Excel</strong></td>
+<td><code>T.DIST.RT</code>, <code>T.INV</code> (+ Descriptive Stats)</td>
+<td><code>NORM.S.DIST</code>, <code>NORM.S.INV</code> (formula cells)</td>
+</tr>
+<tr class="odd">
+<td><strong>Vungle result</strong></td>
+<td><span class="math inline">\(t = 2.53\)</span>, <span class="math inline">\(p = 0.009\)</span> — fund B</td>
+<td><span class="math inline">\(z = 2.73\)</span>, <span class="math inline">\(p = 0.003\)</span> — clears target</td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="managers-takeaway" class="slide level2 center">
+<h2>Manager’s Takeaway</h2>
 <p><br></p>
-
-<img data-src="figs/p_value_excel.png" class="quarto-figure quarto-figure-center r-stretch" style="width:80.0%"></section></section>
-<section>
-<section id="summary" class="title-slide slide level1 center">
-<h1>Summary</h1>
-
+<ul>
+<li class="fragment"><p><strong>One sentence:</strong> Algorithm B’s mean eRPM ($3.46) is above the $3.30 funding benchmark and its conversion clears the 0.35% target — both one-sample tests reject the skeptic, so <strong>fund B</strong>.</p></li>
+<li class="fragment"><p><strong>One number to remember:</strong> <span class="math inline">\(t = 2.53\)</span> for the eRPM test — and the recipe behind it: <span class="math inline">\((\bar{x} - \mu_0)/(s/\sqrt{n})\)</span>.</p></li>
+<li class="fragment"><p><strong>One caveat:</strong> these tests say B beats a <strong>line</strong>, not that B beats <strong>A</strong> — and a large <span class="math inline">\(n\)</span> can make a tiny gap “significant.” Always report the <strong>effect size</strong> and check whether the benchmark is the right line.</p></li>
+<li class="fragment"><p><strong>Practice with the real data:</strong></p>
+<ul>
+<li class="fragment"><code>data/vungle_daily.csv</code> + formula cells <span class="math inline">\(\rightarrow\)</span> reproduce <span class="math inline">\(t = 2.53\)</span> (eRPM) and <span class="math inline">\(z = 2.73\)</span> (conversion).</li>
+<li class="fragment">Worked solutions: <code>data/vungle_one_sample_tests.xlsx</code>.</li>
+</ul></li>
+</ul>
 </section>
-<section id="summary-1" class="slide level2 center">
+<section id="summary" class="slide level2 center">
 <h2>Summary</h2>
 <p>Some key takeaways from this session:</p>
 <ul>
-<li>Developing a null hypothesis involves stating the parameter of interest, its hypothesized value, and forming <span class="math inline">\(H_0\)</span> to reflect no change or effect.</li>
-<li>The critical value approach and p-value approach are two fundamental methods in hypothesis testing.</li>
-<li>Critical values are determined based on the significance level and the test statistic’s distribution.</li>
-<li>The p-value approach provides a probability measure to assess the evidence against <span class="math inline">\(H_0\)</span>.</li>
-<li>Both approaches lead to the same conclusion but offer different perspectives on the data.</li>
+<li><strong><span class="math inline">\(H_0\)</span> is the skeptic on trial:</strong> put the claim you want to prove in <span class="math inline">\(H_a\)</span>, keep the equality in <span class="math inline">\(H_0\)</span>, and let the data carry the burden of proof.</li>
+<li><strong>Two errors, one knob:</strong> you set <span class="math inline">\(\alpha\)</span> (Type I risk) before the test; <span class="math inline">\(\beta\)</span> (Type II) follows. Say <em>“fail to reject,”</em> never <em>“accept.”</em></li>
+<li><strong>One recipe, two parameters:</strong> the one-sample <span class="math inline">\(t\)</span> (mean, <span class="math inline">\(\sigma\)</span> unknown) and the one-proportion <span class="math inline">\(z\)</span> share the same five steps — only the standard error and reference distribution change.</li>
+<li><strong>Two roads agree:</strong> the critical-value and <span class="math inline">\(p\)</span>-value approaches always reach the same decision, and both agree with the confidence interval.</li>
+<li><strong>Significance <span class="math inline">\(\neq\)</span> importance:</strong> with millions of impressions almost everything is “significant” — judge the <strong>effect size</strong>; with tiny samples real effects can hide — mind the <strong>power</strong>.</li>
+<li>A test answers <em>is the parameter past a line?</em> Comparing <strong>two</strong> populations — <em>is B better than A?</em> — is Topic 9.</li>
 </ul>
 </section></section>
 <section id="thank-you" class="title-slide slide level1 center" data-background-color="#cfb991">

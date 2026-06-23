@@ -2,10 +2,10 @@
 title: "<span style = 'font-size: 100%;'> QM 6700: Business Analytics </span>"
 subtitle: "<span style = 'font-size: 150%;'> Decision Analysis </span>"
 author: "Professor<br>Davi Moreira<br>"
-# date: "2024-08-01"
+# date: "2026-09-28"
 # date-format: "MMMM DD, YYYY"
 format:
-  revealjs: 
+  revealjs:
     transition: slide
     background-transition: fade
     width: 1600
@@ -13,7 +13,7 @@ format:
     center: true
     slide-number: true
     incremental: true
-    chalkboard: 
+    chalkboard:
       buttons: false
     preview-links: auto
     #logo: images/quarto.png
@@ -24,1168 +24,619 @@ html-math-method:
   url: "https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"
 ---
 
-```{r message=FALSE, warning=FALSE, include=FALSE, results='hide'}
-library(tidyverse)
-library(infer)
-library(jtools)
-library(ggstance)
-library(readxl)
-library(broom.mixed)
-library(ggcorrplot)
-library(ggplot2)
-library(MASS)
-library(car)
-library(fields)
-library(skimr) 
-library(moderndive)
-library(readr)
-library(ggpubr)
-library(GGally)
-library(sjPlot)
-library(sjmisc)
-library(sjlabelled)
-library(emmeans) 
-library(Rmisc)
-library(faraway)
-library(foreign)
-library(rio)
-library(haven)
-library(kableExtra)
-library(cowplot)
-library(here)
-```
-
 ## Overview
 
 :::::: nonincremental
 ::::: columns
-::: {.column width="50%" style="text-align: center; justify-content: center; align-items: center;"}
--   Problem formulation.
-
--   Chance Events and States of Nature.
-
--   Payoff tables.
-
--   Decision trees.
+::: {.column style="width: 50%; text-align: center; justify-content: center; align-items: center;"}
+- Case Spotlight: the Vungle rollout decision
+- Structuring a decision: alternatives, states of nature, payoffs
+- Payoff tables and decision trees
+- Expected value (EV) — deciding under risk
 :::
 
-::: {.column width="50%" style="text-align: center; justify-content: center; align-items: center;"}
--   Decision Making with Probabilities.
-
-    -   Expected Value Approach
-    -   Expected Value of Perfect Information (EVPI)
-    -   Expected Value with Sample Information (EVSI)
-
--   Bayes’ theorem to compute branch probabilities for decision trees.
+::: {.column style="width: 50%; text-align: center; justify-content: center; align-items: center;"}
+- Expected value of perfect information (EVPI)
+- Sample information, Bayes revision, and EVSI
+- Sensitivity: how robust is the call?
+- From inference to action: making the rollout recommendation
 :::
 :::::
 ::::::
 
-# Decision Analysis {background-color="#cfb991"}
+# Case Spotlight: The Vungle Rollout Decision {background-color="#cfb991"}
 
-```{=html}
-<!---
-## Decision Analysis Overview
+## Rewind: Before the A/B Test
 
-Decision analysis can be used to develop an optimal decision strategy when a decision maker is faced with several decision alternatives and an uncertain or risk-filled pattern of future events.
+<br>
 
-Topics we will cover:
+- Earlier in our work with [Vungle](https://en.wikipedia.org/wiki/Liftoff_Mobile) — the mobile ad-tech startup that earns revenue when viewers **install** an advertised app — we tested whether their new ad-serving algorithm **B** beat the incumbent **A**.
 
-- Payoff tables: to provide a structure for decision problems. 
-- Decision trees: to show the sequential nature of the problems and to identify an optimal sequence of decisions, referred to as an optimal decision strategy. 
-- Bayes’ theorem: to compute branch probabilities for decision trees.
+- The verdict: B's daily eRPM (revenue per 1,000 impressions) ran about **\$0.11 higher** than A's, and a paired test said that lift was **real** ($t = 3.33$), worth roughly **\$26.5K/month** at June's traffic.
 
---->
+- But statistics told us *what is true and how sure we are*. They did **not** tell management **what to do**.
+
+- Today we put on the **manager's hat**: given that uncertainty, what is the right **action**?
+
+## The Brief — Today's Managerial Question
+
+<br>
+
+> "Algorithm B looks better — but we're not certain. Do we **roll out B** to all traffic now, **keep A** and play it safe, or **run a bigger test** before committing? Quantify it and make the call."
+
+<br>
+
+- Rolling out B and being **wrong** degrades *all* of Vungle's revenue — not a 1/16 slice. Keeping A forgoes a real upside. Testing more costs time and money.
+
+- **How today's studio runs:** I demo each tool on a textbook anchor → **your team builds the Vungle rollout tree** (one sprint) → we debrief the recommendation together.
+
+- By the end of class, **your team** makes the call — with the decision math to back it up.
+
+## How Today's Tools Answer It
+
+<br>
+
+Every tool today maps onto the Vungle rollout:
+
+| The managerial question | The tool |
+|---|---|
+| What are my options, and what could happen? | **Payoff table** (alternatives × states) |
+| What's the sequence of choice and chance? | **Decision tree** |
+| Which option is best *on average*? | **Expected value (EV)** |
+| What is it worth to remove the uncertainty? | **EVPI** / **EVSI** |
+| Would the call change if I'm a bit off? | **Sensitivity analysis** |
+
+<br>
+
+- One decision, five tools — and they all build on the **probability** logic from earlier in the course.
+
+# Structuring the Decision {background-color="#cfb991"}
+
+## Step Zero: Problem Formulation
+
+<br>
+
+- Before any number, **decision analysis** forces three clean lists:
+
+  - **Decision alternatives** — the strategies *you* control.
+  - **States of nature** — the uncertain future events *you do not* control. They must be **mutually exclusive** and **collectively exhaustive**.
+  - **Payoffs** — the consequence (profit, cost, time…) of each *alternative × state* combination.
+
+- The discipline is in the structuring: most bad business decisions come from a **missing alternative** or an **unstated state of nature**, not from arithmetic.
+
+- The whole apparatus — payoff tables, trees, EV — is just bookkeeping on top of these three lists.
+
+## The Vungle Decision, in Three Lists
+
+<br>
+
+**Decision alternatives** (what Vungle controls):
+
+::: nonincremental
+- $d_1$: **Roll out B now** to all traffic
+- $d_2$: **Keep A** (the safe baseline)
+- $d_3$: **Run a bigger test** first, then decide
+:::
+
+**States of nature** (the uncertainty management faces):
+
+::: nonincremental
+- $s_1$: **B is truly better** than A
+- $s_2$: **B is not better** (no real lift, or worse)
+:::
+
+- These two states are mutually exclusive and exhaustive: exactly one is true, we just don't know which.
+
+- **Payoffs** come next — and we'll build them from the data we already have.
+
+## Where Do the Payoffs Come From? The Data
+
+<br>
+
+- We don't invent payoffs — we **anchor them in the eRPM evidence**:
+
+  - The mean lift was **+\$0.112** per 1,000 impressions; A served **≈ 236.5M** impressions/month.
+  - At that scale: $\dfrac{236{,}459{,}402}{1{,}000} \times \$0.112 \approx \$26.5\text{K/month} \approx \$318\text{K/year}$.
+
+::: fragment
+
+| If we **roll out B** and… | Annual payoff (\$K) | Reasoning |
+|---|---:|---|
+| $s_1$: B *is* truly better | **+318** | full lift across all traffic |
+| $s_2$: B is *not* better | **−160** | degraded revenue vs. a working algorithm |
+
+:::
+
+- **Keep A** is the baseline: **\$0** in both states (no gain, no loss).
+
+- *(The −160 is management's estimate of the downside of replacing a working algorithm with a worse one — about half the upside. We'll stress-test it later.)*
+
+## The Payoff Table
+
+<br>
+
+The payoff table is the whole problem on one page — rows are **alternatives**, columns are **states of nature**:
+
+::: fragment
+
+| Decision alternative | $s_1$: B truly better | $s_2$: B not better |
+|---|---:|---:|
+| $d_1$: Roll out B now | **+\$318K** | **−\$160K** |
+| $d_2$: Keep A | \$0 | \$0 |
+
+:::
+
+<br>
+
+- Read a cell as: "*if I choose this row and that state occurs, this is what I get*."
+
+- A payoff table with no probabilities supports only crude rules (best-case, worst-case). To do better, we need the **odds** on the states — that is the next ingredient.
+
+## Decision Trees: Sequencing Choice and Chance
+
+```{r  echo=FALSE, out.width = "78%",fig.align="center"}
+knitr::include_graphics("figs/decision_tree_anatomy.png")
 ```
 
-## Problem Formulation
-
-<br>
-
-The first step in the decision analysis process is problem formulation.
-
-<br>
-
-It can be a verbal statement of the problem. Then, we identify the decision alternatives, the uncertain future events, referred to as **chance events**, and the **consequences** associated with each decision alternative and each chance event outcome.
-
-## Example: Pittsburgh Development Corporation (PDC)
-
-:::: {style="font-size: 80%;"}
-Pittsburgh Development Corporation (PDC) has purchased land to develop a luxury condominium complex with individual units priced between \$300,000 and \$1,400,000.
-
--   **Decision Problem**: PDC’s primary decision challenge is to determine the optimal size of the condominium project that will maximize profits, considering the uncertainty of future demand for these units.
-
--   **Project Options**: PDC has commissioned architectural plans for three potential project sizes:
-
-    1.  **Small Complex**: 30 condominiums
-    2.  **Medium Complex**: 60 condominiums
-    3.  **Large Complex**: 90 condominiums
-
--   **Key Considerations**: The financial viability and success of the project depend on:
-
-    -   The selected project size (small, medium, or large)
-    -   Future demand for the condominiums, an uncertain factor influencing profitability
-
-::: fragment
-PDC must analyze both the scale of the project and demand uncertainty to make an informed, profitable decision.
+::: nonincremental
+- **Square node = a decision** (you choose the branch). **Round node = a chance event** (nature chooses, with probabilities).
+- Branches from a square = alternatives; branches from a circle = states of nature. **Payoffs sit at the tips.**
 :::
-::::
-
-## Example: PDC's Decision Alternatives
-
-It is clear that the decision is to select the best size for the condominium complex.
-
-<br>
-
-PDC has the following three decision alternatives:
-
-$$
-d_1 = \text{a small complex with 30 condominiums}
-$$
-
-$$
-d_2 = \text{a medium complex with 60 condominiums}
-$$
-
-$$
-d_3 = \text{a large complex with 90 condominiums}
-$$
-
-## Chance Events and States of Nature in Decision Analysis
-
-In decision analysis, uncertain future events like demand levels are known as **chance events**.
-
-The possible outcomes of these events are called **states of nature**, with only one state ultimately occurring.
-
-## Example: States of Nature for the PDC Project
-
-<br>
-
-A key factor in PDC’s decision-making process is the uncertainty surrounding **demand for the condominiums**.
-
-<br>
-
-For PDC’s condominium project, the two relevant states of nature regarding demand are:
-
-$$
-s_1 = \text{Strong demand for the condominiums}
-$$
-
-$$
-s_2 = \text{Weak demand for the condominiums}
-$$
-
-By defining these states of nature, PDC can structure its decision-making process to account for **demand uncertainty** and **evaluate the impact of each demand scenario** on project profitability.
-
-## Example: Sequence of Decisions and Consequences
-
-The decision analysis process follows a structured sequence to ensure optimal decision-making:
-
-1.  **Select a Decision Alternative**: Management begins by choosing a project size (complex size) from the available options (small, medium, or large complex).
-
-2.  **State of Nature Occurs**: After the decision, an uncertain demand scenario—known as the state of nature—will materialize. In this case, it could be: **Strong Demand** or **Weak Demand**.
-
-3.  **Observe the Consequence**: Based on the chosen project size and the actual demand, a consequence will occur. For PDC, the consequence is represented as **profit or loss** from the project.
-
-::: fragment
-By following this sequence, PDC can better understand potential outcomes and make informed decisions to maximize profitability.
-:::
-
-# Payoff Tables {background-color="#cfb991"}
-
-## Payoff Tables
-
-To determine the optimal complex size, PDC must evaluate the **consequence** of each decision alternative under different demand scenarios. For the purpose of choosing the best **Payoff**, we use **Payoff Tables**.
-
--   **Key Concepts**
-
--   **Payoff**: The result (profit or loss) from a specific combination of a decision alternative (complex size) and a state of nature (demand).
-
--   **Payoff Table**: A table that organizes payoffs for all possible combinations of decision alternatives and states of nature, providing a structured view of potential outcomes.
-
-::: fragment
-By analyzing the payoff table, PDC can make an informed decision that aligns with their profitability goals.
-
-<br>
-
-<center>**Given the three decision alternatives and the two states of nature, which complex size should PDC choose?**</center>
-:::
-
-## Example: Payoff Table
-
-<br>
-
-The payoff table will show projected profits (in millions of dollars) for each combination of decision alternative (complex size) and state of nature (demand).
-
-|  |  |  |
-|----|:--:|:--:|
-| **Decision Alternative / State of Nature** | **Strong Demand**<br>($s_1$) | **Weak Demand**<br>($s_2$) |
-| **Small complex** ($d_1$) | 8 | 7 |
-| **Medium complex** ($d_2$) | 14 | 5 |
-| **Large complex** ($d_3$) | 20 | -9 |
-
-## Example: Interpreting Payoffs
-
-Since PDC’s goal is to maximize profit, **profit** is used as the payoff measure in this case.
-
--   **Notation**: We use $V_{ij}$ to denote the payoff for decision alternative $i$ under state of nature $j$.
-
-::: fragment
-**From the Payoff Table**:
-
--   $V_{31} = 20$: A payoff of \$20 million occurs if PDC builds a large complex ($d_3$) and demand is strong ($s_1$).
-
--   $V_{32} = -9$: A loss of \$9 million occurs if PDC builds a large complex ($d_3$) and demand is weak ($s_2$).
-:::
-
-::: fragment
-These payoff values help PDC evaluate the potential financial outcomes of each decision under different demand scenarios, guiding them toward the most profitable choice.
-:::
-
-# Decision Trees {background-color="#cfb991"}
-
-## Decision Trees
-
-::::::::: {style="font-size: 70%;"}
-:::::::: columns
-:::::: {.column width="50%"}
-A **decision tree** graphically shows the sequential nature of the decision-making process.
-
-::: fragment
-The Figure presents a decision tree for the PDC problem, demonstrating the natural or logical progression that will occur over time.
-
-1.  First, PDC must make a decision regarding the size of the condominium complex ($d_1$, $d_2$, or $d_3$).
-
-2.  Then, after the decision is implemented, either state of nature $s_1$ or $s_2$ will occur.
-:::
-
-::: fragment
-The number at each end point of the tree indicates the **payoff** associated with a particular sequence. For example:
-
--   The topmost payoff of 8 indicates an \$8 million profit if PDC constructs a small condominium complex ($d_1$) and demand is strong ($s_1$).
-
--   The next payoff of 7 indicates an anticipated profit of \$7 million if PDC constructs a small condominium complex ($d_1$) and demand is weak ($s_2$).
-:::
-
-::: fragment
-Thus, the decision tree shows the sequences of decision alternatives and states of nature, providing the six possible payoffs.
-:::
-::::::
-
-::: {.column width="50%"}
-```{r  echo=FALSE, out.width = "80%",fig.align="center"}
-knitr::include_graphics("figs/decision_tree_PDC.png")
-```
-:::
-::::::::
-:::::::::
-
-## Explanation of the Decision Tree
-
-::::::: {style="font-size: 70%;"}
-::::: columns
-::: {.column width="50%"}
-The decision tree has four **nodes**, numbered 1–4, representing decisions and chance events:
-
--   **Decision nodes** (squares): Represent points where a decision must be made. Node 1 is the decision node.
-
--   **Chance nodes** (circles): Represent points where the outcome depends on chance. Nodes 2, 3, and 4 are chance nodes.
-
--   **Branches**: Branches leaving the decision node correspond to decision alternatives (small, medium, or large complex).
-
--   **Branches**: Branches leaving each chance node correspond to the states of nature (strong or weak demand).
-
--   **Payoffs**: are shown at the end of each branch.
-:::
-
-::: {.column width="50%"}
-```{r  echo=FALSE, out.width = "70%",fig.align="center"}
-knitr::include_graphics("figs/decision_tree_PDC.png")
-```
-:::
-:::::
-
-::: fragment
-<center>**How can the decision maker use the information in the payoff table or the decision tree to select the best decision alternative?**</center>
-:::
-:::::::
-
-<br>
 
 # Decision Making with Probabilities {background-color="#cfb991"}
 
-## Decision Making with Probabilities
-
-::::: {style="font-size: 90%;"}
-With the **decision alternatives** and the **states of nature** established, our next step is to determine the **probabilities** for each state of nature.
-
-There are several methods to assign probabilities:
-
--   **Classical method**: Based on logical analysis, typically used when outcomes are equally likely.
-
--   **Relative frequency method**: Uses historical or empirical data to estimate probabilities.
-
--   **Subjective method**: Relies on expert judgment or intuition when data is scarce or unavailable.
-
-::: fragment
-With these probabilities in hand, we apply the **expected value approach** to calculate the **expected payoff** for each decision alternative by weighting possible outcomes according to their probabilities.
-:::
-
-::: fragment
-The decision alternative with the highest expected value is then identified as the best or recommended choice for the problem.
-:::
-:::::
-
-## Expected Value Approach
-
-:::: {style="font-size: 90%;"}
-The probabilities for the states of nature must satisfy the basic requirements for assigning probabilities.
-
-We begin by defining the expected value of a decision alternative. Let:
-
--   $N$ = the number of states of nature
-
--   $P(s_j)$ = the probability of state of nature $s_j$
-
-::: fragment
-Because one and only one of the $N$ states of nature can occur, the probabilities must satisfy two conditions:
-
-1.  **Non-negativity**: $$
-    P(s_j) \geq 0 \quad \text{for all states of nature}
-    $$
-
-2.  **Total probability**: $$
-    \sum_{j=1}^{N} P(s_j) = P(s_1) + P(s_2) + \cdots + P(s_N) = 1
-    $$
-:::
-::::
-
-## Expected Value Calculation
-
-The **expected value (EV)** of decision alternative $d_i$ is as follows:
-
-$$
-\text{EV}(d_i) = \sum_{j=1}^{N} P(s_j) V_{ij}
-$$
-
-where:
-
--   $V_{ij}$ = the value of the payoff for decision alternative $d_i$ and state of nature $s_j$.
-
-::: fragment
-In words, the expected value of a decision alternative is the sum of weighted payoffs for the decision alternative. The weight for a payoff is the probability of the associated state of nature and therefore the probability that the payoff will occur.
-:::
-
-## Example: Calculation of Expected Value
-
-::::: {style="font-size: 80%;"}
-PDC is optimistic about the potential demand for its luxury high-rise condominium complex. Based on this optimism, PDC assigns **subjective probabilities** to represent the likelihood of each demand scenario:
-
--   Probability of **strong demand** ($s_1$): $P(s_1) = 0.8$
--   Probability of **weak demand** ($s_2$): $P(s_2) = 0.2$
-
-::: fragment
-Using these probabilities and the associated payoffs, we calculate the **expected value (EV)** for each decision alternative:
-
-1.  **Small complex (**$d_1$): $$
-    \text{EV}(d_1) = 0.8(8) + 0.2(7) = 7.8
-    $$
-
-2.  **Medium complex (**$d_2$): $$
-    \text{EV}(d_2) = 0.8(14) + 0.2(5) = 12.2
-    $$
-
-3.  **Large complex (**$d_3$): $$
-    \text{EV}(d_3) = 0.8(20) + 0.2(-9) = 14.2
-    $$
-:::
-
-::: fragment
-By comparing the expected values, we find that the **large complex** ($d_3$) yields the highest expected value of **\$14.2 million**. Therefore, according to the expected value approach, the large complex is the recommended decision.
-:::
-:::::
-
-## Applying the Expected Value Approach Using Decision Trees
+## Putting Odds on the States of Nature
 
 <br>
 
-::::: columns
-::: {.column width="50%"}
-```{r  echo=FALSE, out.width = "90%",fig.align="center"}
-knitr::include_graphics("figs/decision_tree_PDC_expected_value.png")
+- To choose, we need $P(s_1)$ and $P(s_2)$. Because exactly one state occurs, they must satisfy
+
+::: fragment
+
+$$
+P(s_j) \geq 0 \quad\text{for all } j, \qquad \sum_{j=1}^{N} P(s_j) = 1
+$$
+
+:::
+
+- Vungle's data-science team, having seen the encouraging A/B signal, assigns a **prior**:
+
+  - $P(s_1) = 0.60$ (B truly better) and $P(s_2) = 0.40$ (not better).
+
+- These can come from the **classical**, **relative-frequency**, or **subjective** method. Here they are an informed subjective judgment — and we will **test how much they matter** at the end.
+
+## The Expected Value Approach
+
+<br>
+
+- The **expected value** of a decision alternative is its probability-weighted average payoff:
+
+::: fragment
+
+$$
+EV(d_i) = \sum_{j=1}^{N} P(s_j)\, V_{ij}
+$$
+
+:::
+
+- where $V_{ij}$ is the payoff for alternative $d_i$ under state $s_j$, and $N$ is the number of states.
+
+- The **decision rule:** choose the alternative with the **best EV** (highest for profit, lowest for cost).
+
+- In Excel, one formula does it: `=SUMPRODUCT(probabilities, payoff_row)`.
+
+## Anchor Example: Burger Prince
+
+::: r-fit-text
+**Burger Prince** is choosing a restaurant layout. Demand could be **80, 100, or 120** customers/hour, with probabilities **0.4, 0.2, 0.4**. Profit (\$):
+
+| Model | $s_1{=}80$ (0.4) | $s_2{=}100$ (0.2) | $s_3{=}120$ (0.4) | **EV** |
+|---|---:|---:|---:|---:|
+| A | 10,000 | 15,000 | 14,000 | **\$12,600** |
+| B | 8,000 | 18,000 | 12,000 | \$11,600 |
+| **C** | 6,000 | 16,000 | 21,000 | **\$14,000** ✅ |
+
+$$
+EV(\text{C}) = 0.4(6{,}000) + 0.2(16{,}000) + 0.4(21{,}000) = \$14{,}000
+$$
+
+**Decision:** Model C has the highest EV → choose **Model C**. (We'll reuse this example for EVPI and Bayes.)
+:::
+
+## The Vungle Decision Tree
+
+```{r  echo=FALSE, out.width = "82%",fig.align="center"}
+knitr::include_graphics("figs/vungle_decision_tree.png")
 ```
+
+::: nonincremental
+- The square is Vungle's choice; the circle is nature deciding whether B is truly better. To pick a branch, we **fold the tree back** — replace each chance node by its EV.
 :::
 
-::: {.column width="50%"}
--   The calculations required to identify the decision alternative with the best expected value can be conveniently carried out on a decision tree.
-
--   Working backward through the decision tree, we first compute the expected value at each chance node; that is, at each chance node, we weight each possible payoff by its probability of occurrence. By doing so, we obtain the expected values for nodes 2, 3, and 4.
-:::
-:::::
-
-## Summary of Expected Value Approach Using Decision Trees
+## Folding Back: EV of Each Vungle Alternative
 
 <br>
 
-The decision maker controls the choice at each decision node aiming to maximize the expected profit. At **decision node 1**, the expected value approach identifies the **best decision alternative** as:
-
--   **Decision** $d_3$: Constructing the large condominium complex, which yields an expected value of **\$14.2 million**.
+Using priors $P(s_1)=0.60$, $P(s_2)=0.40$:
 
 ::: fragment
-This recommendation of $d_3$ is consistent with both the decision tree analysis and the expected value calculations derived from the payoff table.
 
-**Using the expected value approach in conjunction with the decision tree provides a clear and structured framework for selecting the optimal decision based on projected profits.**
+$$
+EV(\text{Roll out B}) = 0.60(318) + 0.40(-160) = 190.8 - 64.0 = \mathbf{\$126.8K}
+$$
+
 :::
 
-# Expected Value of Perfect Information (EVPI) {background-color="#cfb991"}
+::: fragment
+
+$$
+EV(\text{Keep A}) = 0.60(0) + 0.40(0) = \mathbf{\$0}
+$$
+
+:::
+
+<br>
+
+- **Decision rule:** \$126.8K > \$0 → **roll out B**.
+
+- The expected payoff is positive *because* the upside (+318) is large and fairly likely (0.60), even though the downside (−160) is real.
+
+## Visualizing the Expected Values
+
+```{r  echo=FALSE, out.width = "68%",fig.align="center"}
+knitr::include_graphics("figs/vungle_ev_bars.png")
+```
+
+::: nonincremental
+- EV ranks the alternatives, but it **hides the risk**: "roll out B" averages +\$126.8K while still risking a **−\$160K** year. EV is the right tool when this decision repeats; a one-shot, bet-the-company call would also weigh that downside.
+:::
+
+## A Quick Check on the Logic
+
+<br>
+
+- **EV is a long-run average, not a guaranteed outcome.** If Vungle faced this exact decision many times, "roll out B" would net +\$126.8K *per decision on average*.
+
+- The actual result will be **either** +\$318K **or** −\$160K — never \$126.8K. The expected value is a **ranking device**, not a forecast of what happens this once.
+
+- This is exactly why managers also ask: *what would it be worth to know the true state before deciding?* That question has a precise answer — **EVPI**.
+
+# The Value of Information {background-color="#cfb991"}
 
 ## Expected Value of Perfect Information (EVPI)
 
 <br>
 
-<center>What if PDC has the opportunity to conduct a **market research study** to gauge buyer interest in the condominium project?</center>
+- Imagine a perfect oracle who tells you the true state **before** you decide. How much is that worth?
+
+- **EVwPI** (expected value *with* perfect information): for each state, take the **best** payoff you'd choose if you knew that state, then weight by the priors.
+
+- **EVPI** is the *gain* over deciding blind:
 
 ::: fragment
-This study could provide valuable information to refine the probability assessments for the different **states of nature** (e.g., strong or weak demand).
+
+$$
+\text{EVPI} = \lvert\, \text{EVwPI} - \text{EVwoPI} \,\rvert
+$$
+
 :::
 
-::: fragment
-To understand the potential value of this information, we assume the study could yield **perfect information** — meaning PDC would know, with certainty, which state of nature will occur before making a decision.
+- where **EVwoPI** is the best EV **without** information — what we just computed (\$126.8K).
+
+- EVPI is an **upper bound** on the value of *any* study, survey, or test: no information can beat perfect information.
+
+## EVPI — the Three Steps (Vungle)
+
+::: r-fit-text
+**Step 1 — best payoff in each state** (look down each column of the payoff table):
+
+| State | Best choice if you knew | Best payoff |
+|---|---|---:|
+| $s_1$: B truly better (0.60) | Roll out B | +\$318K |
+| $s_2$: B not better (0.40) | Keep A | \$0 |
+
+**Step 2 — expected value of those best returns:**
+
+$$
+\text{EVwPI} = 0.60(318) + 0.40(0) = \$190.8\text{K}
+$$
+
+**Step 3 — subtract the best EV without information:**
+
+$$
+\text{EVPI} = 190.8 - 126.8 = \mathbf{\$64K}
+$$
 :::
 
-::: fragment
-Given this perfect information, we can develop an optimal **decision strategy**.
+## What EVPI Tells the Manager
+
+```{r  echo=FALSE, out.width = "60%",fig.align="center"}
+knitr::include_graphics("figs/vungle_evpi.png")
+```
+
+::: nonincremental
+- **\$64K** is the *most* Vungle should ever pay to remove all doubt about B before deciding. Any real test — always imperfect — is worth **less** than this ceiling.
 :::
 
-::: fragment
-We can quantify how much PDC should be willing to pay for this perfect information by calculating the **Expected Value of Perfect Information (EVPI)**.
-:::
+## EVPI in Excel
 
-## Payoff Table for the PDC Condominium Project (\$ Millions)
+::::: nonincremental
+:::: columns
+::: {.column width="40%"}
+<br>
+
+Three labeled cells on top of the payoff table:
+
+- **Best per state** with `=MAX(...)` down each column
+- **EVwPI** with `=SUMPRODUCT(priors, best-per-state)`
+- **EVPI** = `EVwPI − EVwoPI`
 
 <br>
 
-| Decision Alternative  | Strong Demand $s_1$ | Weak Demand $s_2$ |
-|-----------------------|---------------------|-------------------|
-| Small complex, $d_1$  | 8                   | 7                 |
-| Medium complex, $d_2$ | 14                  | 5                 |
-| Large complex, $d_3$  | 20                  | -9                |
-
-## Decision Strategy with Perfect Information
-
-::::: {style="font-size: 80%;"}
-With **perfect information** about the states of nature, PDC can tailor its decision strategy to maximize profits based on certainty about demand:
-
-1.  If PDC knows with certainty that **strong demand** ($s_1$) will occur:
-
--   The optimal decision is to select the **large complex** ($d_3$), resulting in a payoff of **\$20 million**.
-
-2.  If PDC knows with certainty that **weak demand** ($s_2$) will occur:
-
--   The optimal decision is to select the **small complex** ($d_1$), resulting in a payoff of **\$7 million**.
-
-::: fragment
-This decision strategy demonstrates the value of perfect information by showing how it would enable PDC to make the most profitable choice in each scenario.
+EVPI is always **≥ 0**: information can't hurt you (you can ignore it).
 :::
 
-::: fragment
-<center>**What is the expected value for this decision strategy?**</center>
-:::
-:::::
-
-## Expected Value of this Decision Strategy
-
-<center>What is the expected value for this decision strategy?</center>
-
-::: fragment
-To compute the expected value with perfect information, we return to the original probabilities for the states of nature:
-
--   $P(s_1) = 0.8$
--   $P(s_2) = 0.2$
-:::
-
-::: fragment
-So, the expected value of the decision strategy based on perfect information is:
-
-$$
-0.8(20) + 0.2(7) = 17.4
-$$
-
-We refer to the expected value of \$17.4 million as the **expected value with perfect information (EVwPI)**.
-:::
-
-```{=html}
-<!---
-
-## Branch Probabilities for the PDC Condominium Project Based on a Favorable Market Research Report
-
-| States of Nature $s_j$ | Prior Probabilities $P(s_j)$ | Conditional Probabilities $P(F | s_j)$ | Joint Probabilities $P(F \cap s_j)$ | Posterior Probabilities $P(s_j | F)$ |
-|----------------------------|----------------------------------|--------------------------------------------|------------------------------------------|-------------------------------------------|
-| $s_1$                  | 0.8                              | 0.90                                       | 0.72                                     | 0.94                                      |
-| $s_2$                  | 0.2                              | 0.25                                       | 0.05                                     | 0.06                                      |
-| **Total**                  | **1.0**                          |                                            | $P(F) = 0.77$                        | 1.00                                      |
-
---->
+::: {.column width="60%"}
+```{r  echo=FALSE, out.width = "100%",fig.align="center"}
+knitr::include_graphics("figs/excel_evpi.png")
 ```
-
-## Expected Value **of** Perfect Information (EVPI)
-
-In general, the **expected value *of* perfect information (EVPI)** is computed as follows:
-
-$$
-\text{EVPI} = | \text{EVwPI} - \text{EVwoPI} |
-$$
-
-where:
-
--   **EVPI** = expected value of perfect information
-
--   **EVwPI** = expected value *with* perfect information about the states of nature
-
--   **EVwoPI** = expected value *without* perfect information about the states of nature
-
-:::: fragment
-::: {style="font-size: 90%;"}
-Note the role of the absolute value. For minimization problems, information helps reduce or lower cost; thus, the expected value with perfect information is less than or equal to the expected value without perfect information. In this case, EVPI is the magnitude of the difference between EVwPI and EVwoPI.
 :::
 ::::
-
-## Example: Expected Value of Perfect Information (EVPI)
-
-The expected value **with** perfect information is \$17.4 million, and the expected value **without** perfect information (EVwoPI) is \$14.2 million. Therefore, the expected value **of** perfect information (EVPI) is:
-
-$$
-\text{EVPI} = 17.4 - 14.2 = 3.2
-$$
-
-::: fragment
-In other words, \$3.2 million represents the additional expected value that can be obtained if perfect information were available about the states of nature.
-:::
-
-::: fragment
-Given the EVPI of \$3.2 million, PDC might seriously consider a market survey as a way to obtain more information about the states of nature.
-:::
-
-# Decision Analysis with Sample Information {background-color="#cfb991"}
-
-## Decision Analysis with Sample Information
-
-Additional information is often obtained through **sample information**, which provides insights into the likely states of nature. Common sources of sample information include:
-
--   **Raw material sampling**
--   **Product testing**
--   **Market research studies**
-
-::: fragment
-Using sample information, decision makers can update their **prior probability** estimates. These revised probabilities, adjusted based on new data, are referred to as **posterior probabilities**.
-:::
-
-## Market Research Study for PDC
-
-Let's assume that PDC manager is considering a six-month market research study designed to learn more about potential market acceptance of the PDC condominium project.
-
-She anticipates that the market research study will provide one of the following two results:
-
-1.  **Favorable report**: A significant number of the individuals contacted express interest in purchasing a PDC condominium.
-
-2.  **Unfavorable report**: Very few of the individuals contacted express interest in purchasing a PDC condominium.
-
-## Decision Tree with Market Research Study
-
-::::: columns
-::: {.column width="50%"}
-The decision tree for the PDC problem with sample information shows the logical sequence for the decisions and the chance events.
-
--   PDC’s management must decide whether the market research should be conducted.
-
--   If it is conducted, PDC’s management must be prepared to make a decision about the size of the condominium project if:
-
-    -   the market research report is favorable or
-    -   the market research report is unfavorable.
-:::
-
-::: {.column width="50%"}
-```{r  echo=FALSE, out.width = "55%",fig.align="center"}
-knitr::include_graphics("figs/decision_tree_PDC_mkt_research_study.png")
-```
-:::
 :::::
 
-## Analysis of Decision Tree Structure
+# Sample Information & Bayes {background-color="#cfb991"}
 
-::::::: {style="font-size: 60%;"}
-:::::: columns
-:::: {.column width="50%"}
-In the decision tree diagram:
+## The Third Alternative: Run a Bigger Test
 
--   **Squares represent decision nodes**, where PDC actively makes a choice.
+<br>
 
--   **Circles represent chance nodes**, where the outcome is determined by probability rather than a decision.
+- Vungle's real third option, $d_3$, is to **buy information** — run a larger, longer A/B test before committing.
+
+- A test is **imperfect** (sample) information: it returns a **signal**, not the truth.
+
+  - **Favorable (F):** the bigger test shows a significant lift.
+  - **Unfavorable (U):** the test shows no significant lift.
+
+- The signal is **reliable but not perfect**. Suppose the test's track record gives the conditional probabilities:
 
 ::: fragment
-**Key Nodes in the Decision Tree**
-
-1.  **Decision Node 1**:
-    -   PDC must decide whether to conduct a **market research study**.
-2.  **Chance Node 2**:
-    -   If the study is conducted, the outcome—**favorable** or **unfavorable report**—is determined by chance, as PDC has no control over this result.
-3.  **Decision Node 3**:
-    -   If the report is favorable, PDC must choose the **size of the complex** (small, medium, or large) based on this information.
-4.  **Decision Node 4**:
-    -   If the report is unfavorable, PDC again chooses the **size of the complex** (small, medium, or large), this time with the knowledge of an unfavorable market assessment.
-5.  **Chance Nodes 6 to 14**:
-    -   These nodes represent the **final demand outcomes** (strong or weak) for each decision path. Here, the actual state of nature—**strong demand** or **weak demand**—is determined by chance.
-:::
-::::
-
-::: {.column width="50%"}
-```{r  echo=FALSE, out.width = "55%",fig.align="center"}
-knitr::include_graphics("figs/decision_tree_PDC_mkt_research_study.png")
-```
-:::
-::::::
-:::::::
-
-## Probabilities for Market Research Study
-
-:::::: {style="font-size: 70%;"}
-::::: columns
-::: {.column width="50%"}
-PDC developed the following branch probabilities.
-
--   If the market research study is undertaken,
-
-    $$
-    P(\text{Favorable report}) = P(F) = 0.77
-    $$
-
-    $$
-    P(\text{Unfavorable report}) = P(U) = 0.23
-    $$
-
--   If the market research report is favorable,
-
-    $$
-    P(\text{Strong demand given a favorable report}) = P(s_1 | F) = 0.94
-    $$
-
-    $$
-    P(\text{Weak demand given a favorable report}) = P(s_2 | F) = 0.06
-    $$
-
--   If the market research report is unfavorable,
-
-    $$
-    P(\text{Strong demand given an unfavorable report}) = P(s_1 | U) = 0.35
-    $$
-
-    $$
-    P(\text{Weak demand given an unfavorable report}) = P(s_2 | U) = 0.65
-    $$
-
--   If the market research report is not undertaken, the prior probabilities are applicable:
-
-    $$
-    P(\text{Strong demand}) = P(s_1) = 0.80
-    $$
-
-    $$
-    P(\text{Weak demand}) = P(s_2) = 0.20
-    $$
-:::
-
-::: {.column width="50%"}
-```{r  echo=FALSE, out.width = "55%",fig.align="center"}
-knitr::include_graphics("figs/decision_tree_PDC_branch_probs.png")
-```
-:::
-:::::
-::::::
-
-## Decision Strategy
-
-<br>
-
-The approach used to determine the **optimal decision strategy** is based on a backward pass through the decision tree using the following steps:
-
-1.  **At chance nodes**, compute the expected value by multiplying the payoff at the end of each branch by the corresponding branch probability.
-
-2.  **At decision nodes**, select the decision branch that leads to the best expected value. This expected value becomes the expected value at the decision node.
-
-## Decision Strategy
-
-:::::: {style="font-size: 70%;"}
-::::: columns
-::: {.column width="50%"}
-<br>
-
-<br>
-
-Starting the backward pass calculations by computing the **expected values at chance nodes** 6 to 14 provides the following results:
-
-<br>
 
 $$
-\begin{align*}
-\text{EV(Node 6)} &= 0.94(8) + 0.06(7) = 7.94 \\
-\text{EV(Node 7)} &= 0.94(14) + 0.06(5) = 13.46 \\
-\text{EV(Node 8)} &= 0.94(20) + 0.06(-9) = 18.26 \\
-\text{EV(Node 9)} &= 0.35(8) + 0.65(7) = 7.35 \\
-\text{EV(Node 10)} &= 0.35(14) + 0.65(5) = 8.15 \\
-\text{EV(Node 11)} &= 0.35(20) + 0.65(-9) = 1.15 \\
-\text{EV(Node 12)} &= 0.80(8) + 0.20(7) = 7.80 \\
-\text{EV(Node 13)} &= 0.80(14) + 0.20(5) = 12.20 \\
-\text{EV(Node 14)} &= 0.80(20) + 0.20(-9) = 14.20 \\
-\end{align*}
+P(F \mid s_1) = 0.80, \qquad P(F \mid s_2) = 0.25
 $$
+
 :::
 
-::: {.column width="50%"}
-```{r  echo=FALSE, out.width = "55%",fig.align="center"}
-knitr::include_graphics("figs/decision_tree_PDC_expected_values.png")
-```
-:::
-:::::
-::::::
+- "When B really is better, the test flags it 80% of the time; when B is not better, it gives a false 'favorable' 25% of the time."
 
-## Selecting Best Decisions
+## Prior, Conditional, Posterior
 
-::::::: {style="font-size: 70%;"}
-:::::: columns
-:::: {.column width="50%"}
-Next, move to **decision nodes** 3, 4, and 5. For each of these nodes, select the decision alternative branch that leads to the best expected value.
+<br>
 
--   At node 3, the choices are:
-
-    -   Small complex branch: EV(Node 6) = 7.94
-    -   Medium complex branch: EV(Node 7) = 13.46
-    -   Large complex branch: EV(Node 8) = 18.26
+- We have **priors** $P(s_j)$ and **conditionals** $P(\text{signal} \mid s_j)$. We want the **posterior** — the revised odds *after* seeing the signal:
 
 ::: fragment
-The best decision is the large complex, with EV(Node 3) = 18.26.
 
--   At node 4, we select the best expected value from nodes 9, 10, and 11. The best decision is the medium complex, with EV(Node 4) = 8.15.
+$$
+P(s_j \mid \text{signal}) = \frac{P(s_j)\,P(\text{signal}\mid s_j)}{\sum_k P(s_k)\,P(\text{signal}\mid s_k)}
+$$
 
--   For node 5, we select the best expected value from nodes 12, 13, and 14. The best decision is the large complex, with EV(Node 5) = 14.20.
 :::
-::::
 
-::: {.column width="50%"}
-PDC Decision Tree After Choosing Best Decisions at Nodes 3, 4, and 5
+- This is **Bayes' theorem** — the same updating logic from earlier in the course, now feeding a decision tree.
+
+- A simple **tabular** layout does the arithmetic: **prior → joint → marginal → posterior**. The posteriors become the **branch probabilities** on the tree after the test.
+
+## Bayes Revision — Favorable Report
 
 ```{r  echo=FALSE, out.width = "70%",fig.align="center"}
-knitr::include_graphics("figs/decision_tree_PDC_best_decisions.png")
+knitr::include_graphics("figs/excel_bayes_favorable.png")
 ```
-:::
-::::::
-:::::::
 
-## Selecting Best Decisions
-
-:::::: {style="font-size: 80%;"}
-::::: columns
-::: {.column width="50%"}
-<br>
-
-The expected value at **chance node** 2 can now be computed as follows:
-
-$$
-\begin{align*}
-\text{EV(Node 2)} &= 0.77 \times \text{EV(Node 3)} + 0.23 \times \text{EV(Node 4)} \\
-&= 0.77(18.26) + 0.23(8.15) = 15.93
-\end{align*}
-$$
-
-This calculation reduces the decision tree to one involving only the two decision branches from node 1.
+::: nonincremental
+- **Joint** = prior × conditional. **Marginal** $P(F) = 0.48 + 0.10 = 0.58$. **Posterior** = joint ÷ marginal.
+- A favorable report lifts the odds B is truly better from **0.60 → 0.828**.
 :::
 
-::: {.column width="50%"}
-PDC Decision Tree Reduced to Two Decision Branches
+## Bayes Revision — Unfavorable Report
 
 ```{r  echo=FALSE, out.width = "70%",fig.align="center"}
-knitr::include_graphics("figs/decision_tree_PDC_reduced_two_branches.png")
+knitr::include_graphics("figs/excel_bayes_unfavorable.png")
 ```
-:::
-:::::
-::::::
 
-## Final Decision Strategy
-
-:::::::: {style="font-size: 80%;"}
-::::::: columns
-::::: {.column width="50%"}
-<br>
-
-At **decision node 1**, PDC can determine the optimal choice by comparing the expected values from nodes 2 and 5.
-
-::: fragment
-The highest expected value is **15.93**, which supports the decision to conduct the **market research study**.
+::: nonincremental
+- $P(U) = 0.12 + 0.30 = 0.42$ (and $0.58 + 0.42 = 1$ ✓). An unfavorable report **drops** the odds B is better from **0.60 → 0.286**.
+- Same data, opposite signal → opposite revision. That is exactly what makes the test *useful*.
 :::
 
-::: fragment
-**The Optimal Decision Strategy for PDC** is to conduct the market research study and then carry out the following decision strategy:
-
--   **If the market research is favorable**: Construct the **large condominium complex** to maximize profits ($d_3$).
-
--   **If the market research is unfavorable**: Construct the **medium condominium complex** as a safer choice under lower demand expectations ($d_2$).
-:::
-:::::
-
-::: {.column width="50%"}
-PDC Decision Tree After Choosing Best Decisions at Nodes 3, 4, and 5
+## The Signal Moves the Decision
 
 ```{r  echo=FALSE, out.width = "70%",fig.align="center"}
-knitr::include_graphics("figs/decision_tree_PDC_best_decisions.png")
+knitr::include_graphics("figs/vungle_bayes_posterior.png")
 ```
+
+::: nonincremental
+- After **favorable**: $EV(\text{roll}) = 0.828(318) + 0.172(-160) = \$235.6K > 0$ → **roll out B**.
+- After **unfavorable**: $EV(\text{roll}) = 0.286(318) + 0.714(-160) = -\$23.4K < 0$ → **keep A**.
 :::
-:::::::
-::::::::
 
-## Summary of Decision Tree Analysis
+## Expected Value of Sample Information (EVSI)
 
-1.  **Work backward through the tree** to calculate expected values at each chance node.
+<br>
 
-2.  **Select the optimal decision branch** at each decision node based on these expected values.
-
-3.  The resulting sequence of optimal branches forms the **final decision strategy** for maximizing expected profit.
+- The test is worth the *extra* expected profit it buys, **before** its cost:
 
 ::: fragment
-By systematically calculating expected values and selecting the best options at each node, PDC arrives at a data-driven decision strategy that adapts based on the information received from the market research study.
+
+$$
+\text{EVSI} = \lvert\, \text{EVwSI} - \text{EVwoSI} \,\rvert
+$$
+
 :::
 
-## Expected Value of Sample Information Formula
+- **EVwSI** weights each signal's best decision by how often that signal occurs:
+
+::: fragment
 
 $$
-\text{EVSI} = |\text{EVwSI} - \text{EVwoSI}|
+\text{EVwSI} = P(F)\,(235.6) + P(U)\,(0) = 0.58(235.6) + 0.42(0) = \$136.6\text{K}
 $$
 
-where:
+:::
 
--   **EVSI** = expected value of sample information
--   **EVwSI** = expected value *with* sample information about the states of nature
--   **EVwoSI** = expected value *without* sample information about the states of nature
+- **EVwoSI** is the best EV with no test = **\$126.8K**. So
 
-:::: fragment
-::: {style="font-size: 90%;"}
-Note the role of the absolute value. For minimization problems, the expected value with sample information is always less than or equal to the expected value without sample information.
+::: fragment
+
+$$
+\text{EVSI} = 136.6 - 126.8 = \mathbf{\$9.84K}
+$$
+
+:::
+
+## Is the Test Worth Buying?
+
+```{r  echo=FALSE, out.width = "58%",fig.align="center"}
+knitr::include_graphics("figs/vungle_evsi.png")
+```
+
+::: nonincremental
+- **Efficiency** $= \text{EVSI}/\text{EVPI} = 9.84/64 \approx 15\%$ — this imperfect test captures only 15% of perfect information's value.
+- The test costs **≈ \$20K** to run, but is worth only **\$9.84K** → **net −\$10K**. **Do not run the bigger test.** (Compare: the textbook's Burger Prince survey also failed this test — EVSI \< its price.)
+:::
+
+## EVSI in Excel
+
+::::: nonincremental
+:::: columns
+::: {.column width="40%"}
+<br>
+
+Build it from the Bayes tables:
+
+- Best EV after **each** signal (using posteriors)
+- **EVwSI** = `SUMPRODUCT(P(signal), best-EV)`
+- **EVSI** = `EVwSI − EVwoSI`
+- Compare EVSI to the **test cost**
+
+<br>
+
+If EVSI **\<** cost → skip the study and decide now.
+:::
+
+::: {.column width="60%"}
+```{r  echo=FALSE, out.width = "100%",fig.align="center"}
+knitr::include_graphics("figs/excel_evsi.png")
+```
 :::
 ::::
+:::::
 
-## Example: Expected Value of Sample Information (EVSI)
+# How Robust Is the Call? {background-color="#cfb991"}
 
-The expected value associated with the market research study is \$15.93.
+## Sensitivity Analysis
 
-Before, we saw that the best expected value if the market research study is not undertaken is \$14.20. Thus, we can conclude that the difference is:
-
-$$
-\text{EVSI} = 15.93 - 14.20 = 1.73
-$$
-
-that is the **expected value of sample information (EVSI)**.
-
-To conclude, conducting the market research study adds \$1.73 million to the PDC expected value.
-
-# Computing Branch Probabilities Using Bayes’ Theorem {background-color="#cfb991"}
-
-## Computing Branch Probabilities Using Bayes’ Theorem
-
-:::::: {style="font-size: 70%;"}
-The branch probabilities for the PDC decision tree chance nodes were specified in the problem description, with no computations initially required.
-
-::::: columns
-::: {.column width="50%"}
-PDC developed the following branch probabilities.
-
--   If the market research study is undertaken,
-
-    $$
-    P(\text{Favorable report}) = P(F) = 0.77
-    $$
-
-    $$
-    P(\text{Unfavorable report}) = P(U) = 0.23
-    $$
-
--   If the market research report is favorable,
-
-    $$
-    P(\text{Strong demand given a favorable report}) = P(s_1 | F) = 0.94
-    $$
-
-    $$
-    P(\text{Weak demand given a favorable report}) = P(s_2 | F) = 0.06
-    $$
-
--   If the market research report is unfavorable,
-
-    $$
-    P(\text{Strong demand given an unfavorable report}) = P(s_1 | U) = 0.35
-    $$
-
-    $$
-    P(\text{Weak demand given an unfavorable report}) = P(s_2 | U) = 0.65
-    $$
-
--   If the market research report is not undertaken, the prior probabilities are applicable:
-
-    $$
-    P(\text{Strong demand}) = P(s_1) = 0.80
-    $$
-
-    $$
-    P(\text{Weak demand}) = P(s_2) = 0.20
-    $$
-:::
-
-::: {.column width="50%"}
-```{r  echo=FALSE, out.width = "55%",fig.align="center"}
-knitr::include_graphics("figs/decision_tree_PDC_branch_probs.png")
+```{r  echo=FALSE, out.width = "68%",fig.align="center"}
+knitr::include_graphics("figs/vungle_sensitivity.png")
 ```
+
+::: nonincremental
+- "Roll out B" wins as long as $P(s_1)$ exceeds the **indifference prior** $p^{*} \approx 0.33$. Our prior (0.60) clears it comfortably — the decision is **robust**.
+- Below one-third, keep A. The call only flips if we're *very* pessimistic about B.
 :::
-:::::
-::::::
 
-## Computing Branch Probabilities Using Bayes’ Theorem
+## Finding the Tipping Point
 
-Now, we will see how **Bayes’ theorem** can be used to compute branch probabilities for decision trees.
+<br>
 
-Bayes' theorem is expressed as:
+- The decision flips where the two EV lines cross — set $EV(\text{roll}) = EV(\text{keep})$ and solve for the prior $p = P(s_1)$:
+
+::: fragment
 
 $$
-P(s_j | F) = \frac{P(F | s_j) \cdot P(s_j)}{P(F)}
+p(318) + (1-p)(-160) = 0 \;\Longrightarrow\; p^{*} = \frac{160}{318 + 160} \approx 0.335
 $$
 
-where:
-
--   $P(s_j | F)$ is the posterior probability of state $s_j$ given a favorable report $F$.
-
--   $P(F | s_j)$ is the conditional probability of receiving a favorable report given state $s_j$.
-
--   $P(s_j)$ is the prior probability of state $s_j$.
-
--   $P(F)$ is the total probability of receiving a favorable report.
-
-## Bayes' Theorem in Decision Trees
-
-:::::::: {style="font-size: 60%;"}
-::::::: columns
-::::: {.column width="50%"}
-**Definitions**
-
-Let:
-
--   $F$: Favorable market research report
--   $U$: Unfavorable market research report
--   $s_1$: Strong demand (state of nature 1)
--   $s_2$: Weak demand (state of nature 2)
-
-::: fragment
-**Key Branch Probabilities**
-
--   **At Chance Node 2**: Determine probabilities of a favorable or unfavorable report: $P(F)$ and $P(U)$.
-
--   **At Chance Nodes 6, 7, and 8**: Calculate **posterior probabilities** for demand given a favorable report:
-
-    -   $P(s_1 | F)$: Probability of strong demand given a favorable report.
-    -   $P(s_2 | F)$: Probability of weak demand given a favorable report.
 :::
 
-::: fragment
+- A **robust** decision is one that stays the same under small changes in the inputs. Here, B would have to be **more likely wrong than right** before we'd keep A.
+
+- **This is the real payoff of structuring the decision:** we now know not just *what* to do, but *how sure we'd have to be to change our minds*. In Excel: a **What-If Data Table** varying $p$ traces the whole line.
+
+## ⏱️ Team Sprint — Build the Rollout Tree, Make the Call
+
+::: {.sprint .nonincremental}
+**Decide:** roll out B now, keep A, or run a bigger test? Recommend with the numbers.
+
+**Data:** `data/vungle_decision_analysis.xlsx` (payoff table + priors + Bayes tables) · **Time:** ~20 min
+
+1. Build the **payoff table** (roll out B: +318 / −160; keep A: 0/0) and compute **EV** of each with `=SUMPRODUCT` (priors 0.60 / 0.40).
+2. Compute **EVPI** — the most a perfect oracle is worth.
+3. Use the Bayes tables to get the posteriors, then **EVSI**; compare it to the **\$20K** test cost.
+4. Run a quick **sensitivity** check: at what prior $p^{*}$ would the call flip?
+
+**Hand in (1 slide):** your recommendation — the call · the EV · the one caveat (and: should Vungle buy the bigger test?).
 :::
 
--   **At Chance Nodes 9, 10, and 11**: Calculate **posterior probabilities** for demand given an unfavorable report:
+# Debrief — The Rollout Recommendation {background-color="#cfb991"}
 
-    -   $P(s_1 | U)$: Probability of strong demand given an unfavorable report.
-    -   $P(s_2 | U)$: Probability of weak demand given an unfavorable report.
-
--   **At Chance Nodes 12, 13, and 14**: Use prior probabilities $P(s_1)$ and $P(s_2)$ if the market research study is not conducted.
-:::::
-
-::: {.column width="50%"}
-<center>The PDC Decision Tree</center>
-
-```{r  echo=FALSE, out.width = "55%",fig.align="center"}
-knitr::include_graphics("figs/decision_tree_PDC_bayes.png")
-```
-:::
-:::::::
-::::::::
-
-## Conditional Probability Calculations
-
-::::: {style="font-size: 70%;"}
-To perform the probability computations, we need two main sets of probabilities:
-
-1.  **Prior Probabilities**: PDC’s initial assessment of the likelihood of each state of nature:
-
-    -   $P(s_1)$: Probability of strong demand.
-    -   $P(s_2)$: Probability of weak demand.
+## The Decision on One Page
 
 <br>
 
-2.  **Conditional Probabilities**: Likelihood of specific market research outcomes (sample information) given each state of nature.
-
-::: fragment
--   **Favorable Report**:
-
-    -   $P(F | s_1)$: Probability of favorable report given strong demand.
-    -   $P(F | s_2)$: Probability of favorable report given weak demand.
-
--   **Unfavorable Report**:
-
-    -   $P(U | s_1)$: Probability of unfavorable report given strong demand.
-    -   $P(U | s_2)$: Probability of unfavorable report given weak demand.
-:::
-
-::: fragment
-These conditional probabilities allow us to use Bayes' theorem to update prior probabilities based on market research outcomes, leading to more informed decision-making.
-:::
-:::::
-
-## Market Research Probabilities Table
+| Question | Tool | Answer |
+|---|---|---:|
+| Best option on average? | EV | **Roll out B** (\$126.8K vs. \$0) |
+| Worth knowing the truth for sure? | EVPI | \$64K ceiling |
+| Worth running a bigger test? | EVSI | \$9.84K \< \$20K cost → **no** |
+| Robust to our prior? | Sensitivity | flips only below $p^{*} = 0.33$ |
 
 <br>
 
-We assume that the following assessments are available for these conditional probabilities. This is the key piece of information that we use to compute the branches probabilities.
+- **Recommendation to CEO Jaffer:** **roll out B now.** Expected value is clearly positive (+\$126.8K/yr), the decision holds unless we think B is more likely wrong than right, and a further test isn't worth its price. **Caveat:** there is a real **−\$160K** downside if B disappoints — so monitor eRPM closely post-rollout and be ready to revert.
+
+## How Inference and Decision Analysis Fit Together
 
 <br>
 
-| State of Nature / Market Research | Favorable, $F$    | Unfavorable, $U$  |
-|-----------------------------------|-------------------|-------------------|
-| Strong demand, $s_1$              | $P(F|s_1) = 0.90$ | $P(U|s_1) = 0.10$ |
-| Weak demand, $s_2$                | $P(F|s_2) = 0.25$ | $P(U|s_2) = 0.75$ |
+- This is the division of labor that runs through the whole course:
+
+  - **Inference** (estimation, hypothesis tests): *what is true, and how sure are we?* → gave us the **\$0.11 lift**, the CI, the $p$-value.
+  - **Decision analysis** (today): *given that uncertainty, what should we do?* → turned those into **alternatives, payoffs, and an EV-maximizing call**.
+
+- The test result was an **input** to the decision, not the decision itself. The paired $t$ said "the lift is real"; the EV said "and acting on it is worth +\$126.8K."
+
+- A good analyst can do both — and knows which question they're answering.
+
+## Manager's Takeaway
 
 <br>
 
-Note: These probability assessments provide a reasonable degree of confidence in the market research study:
+- **One sentence:** Structuring the rollout as a decision — alternatives, states, payoffs — says **roll out B**, because its expected value (**\$126.8K/yr**) beats keeping A, and a further test isn't worth its cost.
 
--   If $s_1$ is true, $P(F|s_1) = 0.90$ and $P(U|s_1) = 0.10$.
--   If $s_2$ is true, $P(F|s_2) = 0.25$ and $P(U|s_2) = 0.75$.
+- **One number to remember:** **EVPI = \$64K** — the ceiling on what *any* information is worth here; the actual test cleared only \$9.84K of it.
 
-## Tabular Computation: Branch Probabilities for Favorable Report
-
-:::::::: {style="font-size: 70%;"}
-::::::: columns
-::: {.column width="30%"}
-**Steps for Tabular Probability Computation**
-
--   **Step 1**: In column 1, enter the states of nature. In column 2, enter the prior probabilities. In column 3, enter the conditional probabilities of a favorable report $F$ given each state of nature.
-
--   **Step 2**: In column 4, compute the joint probabilities by multiplying the prior probability values in column 2 by the corresponding conditional probabilities in column 3.
-
--   **Step 3**: Sum the joint probabilities in column 4 to obtain the probability of a favorable report, $P(F)$.
-
--   **Step 4**: Divide each joint probability in column 4 by $P(F) = 0.77$ to obtain the revised or posterior probabilities, $P(s_1|F)$ and $P(s_2|F)$.
-:::
-
-::::: {.column width="70%"}
-| (1)<br>States of Nature $s_j$ | (2)<br>Prior Probabilities $P(s_j)$ | (3)<br>Conditional Probabilities $P(F | s_j)$ | (4)<br>Joint Probabilities $P(F \cap s_j)$ | (5)<br>Posterior Probabilities $P(s_j | F)$ |
-|:--:|:--:|:--:|:--:|:--:|
-| $s_1$ | 0.8 | 0.90 | $0.80\times0.90 = 0.72$ | $\frac{0.72}{0.77}=0.94$ |
-| $s_2$ | 0.2 | 0.25 | 0.05 | 0.06 |
-| **Total** | **1.0** |  | $P(F) = 0.77$ | 1.00 |
-
-<br>
-
-::: fragment
-The Table shows that the probability of obtaining a favorable report is $P(F) = 0.77$.
-
-In addition:
-
--   $P(s_1|F) = 0.94$
-
--   $P(s_2|F) = 0.06$
-:::
-
-::: fragment
-Note that a favorable report prompts a **posterior probability** of 0.94 that demand will be strong ($s_1$).
-:::
-:::::
-:::::::
-::::::::
-
-## Tabular Computation: Branch Probabilities for Unfavorable Report
-
-::::::: {style="font-size: 70%;"}
-The tabular probability computation procedure must be repeated for each possible sample information outcome.
-
-:::::: columns
-::: {.column width="30%"}
-**Steps for Tabular Probability Computation**
-
--   **Step 1**: In column 1, enter the states of nature. In column 2, enter the prior probabilities. In column 3, enter the conditional probabilities of an unfavorable report $U$ given each state of nature.
-
--   **Step 2**: In column 4, compute the joint probabilities by multiplying the prior probability values in column 2 by the corresponding conditional probabilities in column 3.
-
--   **Step 3**: Sum the joint probabilities in column 4 to obtain the probability of an unfavorable report, $P(U)$.
-
--   **Step 4**: Divide each joint probability in column 4 by $P(U) = 0.23$ to obtain the revised or posterior probabilities, $P(s_1|U)$ and $P(s_2|U)$.
-:::
-
-:::: {.column width="70%"}
-| (1)<br>States of Nature $s_j$ | (2)<br>Prior Probabilities $P(s_j)$ | (3)<br>Conditional Probabilities $P(U | s_j)$ | (4)<br>Joint Probabilities $P(U \cap s_j)$ | (5)<br>Posterior Probabilities $P(s_j | U)$ |
-|:--:|:--:|:--:|:--:|:--:|
-| $s_1$ | 0.8 | 0.10 | $0.8\times0.1=0.08$ | $\frac{0.08}{0.23}=0.35$ |
-| $s_2$ | 0.2 | 0.75 | 0.15 | 0.65 |
-| **Total** | **1.0** |  | $P(U) = 0.23$ | 1.00 |
-
-::: fragment
-The probability of an unfavorable report is $P(U) = 0.23$.
-
-With an unfavorable report:
-
--   $P(s_1|U) = 0.35$
-
--   $P(s_2|U) = 0.65$
-
--   Note that an unfavorable report prompts a **posterior probability** of 0.65 that demand will be weak $(s_2)$.
-:::
-::::
-::::::
-:::::::
-
-## Conclusion
-
--   The resulting **posterior probabilities** provide a clearer understanding of potential outcomes, enabling PDC to select the optimal path based on updated insights. To recap from previous slides:
-
-    -   **The Optimal Decision Strategy for PDC** is to conduct the market research study and then carry out the following decision strategy, with EV = 15.93:
-
-        -   **If the market research is favorable**: Construct the **large condominium complex** to maximize profits ($d_3$) with EV = 18.26.
-
-        -   **If the market research is unfavorable**: Construct the **medium condominium complex** as a safer choice under lower demand expectations ($d_2$) with EV = 8.15.
-
-# Summary {background-color="#cfb991"}
+- **One caveat:** EV is a long-run average. "Roll out B" still risks a **−\$160K** year — sensitivity shows the call is robust (flips only below $p^{*} = 0.33$), but the downside is real, so monitor and stay ready to revert.
 
 ## Summary
 
-:::: {style="font-size: 80%;"}
 ::: nonincremental
 Some key takeaways from this session:
 
--   **Decision Analysis Structure**: A structured approach using payoff tables and decision trees allows for organized, strategic decision-making, particularly in uncertain conditions.
-
--   **Expected Value Approach**: By calculating expected values across different states of nature, we can identify optimal decisions based on probabilistic outcomes, maximizing potential profits.
-
--   **Value of Information**:
-
-    -   **Expected Value of Perfect Information (EVPI)**: Quantifies the benefit of having certainty about future states, guiding decision-makers on how much to invest in obtaining information.
-    -   **Expected Value of Sample Information (EVSI)**: Measures the potential benefit of additional data (e.g., market research), providing insight on the value of partial or imperfect information.
-
--   **Bayes' Theorem in Decision Trees**: Allows for updating probabilities based on new evidence (e.g., favorable or unfavorable reports) to make more informed, dynamic decisions.
-
--   **Decision Trees with Probabilities**: Decision trees not only display possible decisions and outcomes but, with added probabilities, allow for more precise expected value calculations.
-
--   **Optimal Decision Strategy**: Analyzing decision trees and recalculating with updated probabilities leads to a final strategy that maximizes expected outcomes based on the best available information.
+- **Structure first:** every decision under uncertainty reduces to **alternatives × states of nature → payoffs**; the payoff table and decision tree are just that on a page.
+- **Decide by expected value:** $EV(d_i) = \sum_j P(s_j) V_{ij}$; pick the best EV — but remember it's a long-run average that hides the downside.
+- **Value information before buying it:** **EVPI** is the ceiling (perfect info); **EVSI** is what a real, imperfect test is worth — buy a study only if its value beats its cost.
+- **Bayes turns a signal into revised odds:** prior → joint → marginal → posterior; the posteriors become the branch probabilities after the test.
+- **Sensitivity tells you how robust the call is:** find the prior $p^{*}$ where the decision flips; ours holds comfortably.
+- **Inference and decision analysis are partners:** one says *what's true and how sure*; the other says *what to do about it*.
 :::
-::::
 
-## Summary
+## Carry-forward
 
-| Term | Definition | Purpose | Example |
-|----|----|----|----|
-| **Payoff** | Quantitative value of profit/loss for a decision-state combination | Used to evaluate and compare decision alternatives | Building a large complex yields \$20 million if demand is high. |
-| **Results** | Actual effects observed after decision and state of nature occur | Evaluate real-world effectiveness of decision | Medium complex yields a realized profit of \$14 million. |
-| **Outputs** | Immediate, measurable consequences from the decision | Provide operational metrics | Number of units built, time to completion, occupancy rate. |
-| **Outcomes** | Broader end results, often aligned with goals/objectives | Assess decision's success in achieving goals | Profit, market reputation, customer satisfaction, future demand |
+::: nonincremental
+- **Your client (homework):** frame **one real decision** in your team's case as a decision problem — list the **alternatives**, the **states of nature**, and a **payoff table**. Assign priors, compute **EV**, and find **EVPI**. State the recommendation and the tipping-point prior.
+
+- **Next time:** we return to the inference arc — modeling **uncertain counts** (how many installs tomorrow?) with discrete probability distributions, the raw material that priors and payoffs are built from.
+:::
 
 # Thank you! {background-color="#cfb991"}

@@ -32,7 +32,7 @@
       vertical-align: middle;
     }
   </style>
-  <link rel="stylesheet" href="../../site_libs/revealjs/dist/theme/quarto-5ef896889b6f6a61ee8a14a51d301bed.css">
+  <link rel="stylesheet" href="../../site_libs/revealjs/dist/theme/quarto-113b5beb2a57b2deea58feb1108e76b2.css">
   <link href="../../site_libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
   <link href="../../site_libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
   <link href="../../site_libs/revealjs/plugin/reveal-menu/quarto-menu.css" rel="stylesheet">
@@ -133,7 +133,7 @@
 
 <section id="title-slide" class="quarto-title-block center">
   <h1 class="title"><span style="font-size: 100%;"> QM 6700: Business Analytics </span></h1>
-  <p class="subtitle"><span style="font-size: 150%;"> Intro. &amp; Basic Stat. &amp; Prob. Rvw. 01 </span></p>
+  <p class="subtitle"><span style="font-size: 150%;"> Course Introduction &amp; Descriptive Statistics I </span></p>
 
 <div class="quarto-title-authors">
 <div class="quarto-title-author">
@@ -152,25 +152,19 @@ Professor: Davi Moreira
 <section id="overview" class="slide level2 center">
 <h2>Overview</h2>
 <div class="columns">
-<div class="column" style="text-align: center; justify-content: center; align-items: center;">
+<div class="column" style="width: 50%; text-align: center; justify-content: center; align-items: center;">
 <ul>
-<li>Introductions</li>
-<li>Course Overview and Logistics</li>
-<li>Motivation</li>
-<li>Course Objectives
-<ul>
-<li>Understand basic statistical concepts</li>
-<li>Apply statistical methods to business problems</li>
-</ul></li>
+<li>Introductions &amp; course logistics</li>
+<li><strong>Case Spotlight: A/B Testing at Vungle</strong></li>
+<li>What is statistics? Where is it used?</li>
+<li>The map: descriptive vs.&nbsp;inferential</li>
 </ul>
-</div><div class="column" style="text-align: center; justify-content: center; align-items: center;">
+</div><div class="column" style="width: 50%; text-align: center; justify-content: center; align-items: center;">
 <ul>
-<li>Key Topics
-<ul>
-<li>Descriptive Statistics</li>
-<li>Inferential Statistics</li>
-<li><code>Excel4stats</code></li>
-</ul></li>
+<li>Data, variables &amp; observations — the Vungle dataset</li>
+<li>Data types &amp; scales of measurement</li>
+<li>Study design: why Vungle ran an <em>experiment</em></li>
+<li>A first look at the data in Excel (<code>Excel4stats</code>)</li>
 </ul>
 </div></div>
 </section></section>
@@ -182,7 +176,7 @@ Professor: Davi Moreira
 <section id="instructor" class="slide level2 center">
 <h2>Instructor</h2>
 <div class="columns">
-<div class="column" style="text-align: center; justify-content: center; align-items: center;">
+<div class="column" style="width: 40%; text-align: center; justify-content: center; align-items: center;">
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
@@ -194,7 +188,7 @@ Professor: Davi Moreira
 </div>
 <p><a href="dcordeir@purdue.edu">dcordeir@purdue.edu</a></p>
 <p><a href="https://davi-moreira.github.io/" class="uri">https://davi-moreira.github.io/</a></p>
-</div><div class="column" style="text-align: center; justify-content: center; align-items: center;">
+</div><div class="column" style="width: 60%; text-align: center; justify-content: center; align-items: center;">
 <ul>
 <li class="fragment">Clinical Assistant Professor in the Management Department at Purdue University;</li>
 </ul>
@@ -275,18 +269,46 @@ Professor: Davi Moreira
 <li class="fragment"><p><strong>Supplementary Material</strong></p></li>
 <li class="fragment"><p><strong>Schedule</strong></p></li>
 </ul>
+</section>
+<section id="how-to-succeed-in-this-course" class="slide level2 center">
+<h2>How to Succeed in This Course</h2>
+<p><br></p>
+<ul>
+<li class="fragment"><p><strong>Keep up every week.</strong> Statistics builds on itself — today’s vocabulary becomes next week’s formulas. Falling behind compounds.</p></li>
+<li class="fragment"><p><strong>Work with your team.</strong> Homework is team-based by design; explaining a concept to a teammate is the fastest way to learn it.</p></li>
+<li class="fragment"><p><strong>Bring the business question.</strong> Every method we learn answers a managerial decision. Always ask: <em>what decision does this number support?</em></p></li>
+<li class="fragment"><p><strong>Use Excel from day one.</strong> Install the Analysis ToolPak this week and open the course dataset — you will use it all semester.</p></li>
+</ul>
 </section></section>
-<section id="business-analytics" class="title-slide slide level1 center" data-background-color="#cfb991">
-<h1>Business Analytics</h1>
+<section>
+<section id="textbook-software" class="title-slide slide level1 center" data-background-color="#cfb991">
+<h1>Textbook &amp; Software</h1>
 
 </section>
-
-<section id="text-book" class="title-slide slide level1 center">
-<h1>Text Book</h1>
+<section id="textbook-materials" class="slide level2 center">
+<h2>Textbook &amp; Materials</h2>
+<div class="columns">
+<div class="column" style="width: 35%; text-align: center; justify-content: center; align-items: center;">
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="figs/sbe_book.jpg" class="quarto-figure quarto-figure-center" style="width:72.0%"></p>
+</figure>
+</div>
+</div>
+</div>
+</div><div class="column" style="width: 65%; justify-content: center; align-items: center;">
+<p><strong><em>Statistics for Business and Economics</em> (SBE), 14th edition</strong></p>
+<p>Anderson · Sweeney · Williams · Camm · Cochran — Cengage, 2020 · ISBN-13 978-1337901062</p>
+<p><a href="https://www.cengage.com/c/statistics-for-business-economics-14e-anderson/9781337901062/" target="_blank">View on Cengage</a></p>
 <p><br></p>
-
-<img data-src="figs/mbs_book.png" class="quarto-figure quarto-figure-center r-stretch" style="width:50.0%"></section>
-
+<ul>
+<li>The course <strong>schedule</strong> lists the readings for each topic.</li>
+<li><strong>Software:</strong> Excel with the <strong>Analysis ToolPak</strong> — every worked example is Excel-first.</li>
+</ul>
+</div></div>
+</section></section>
 <section>
 <section id="survey" class="title-slide slide level1 center" data-background-color="#cfb991">
 <h1>Survey</h1>
@@ -299,28 +321,60 @@ Professor: Davi Moreira
 <a href="https://forms.office.com/r/3R2VwPJAzA" target="_blank">Attendance and Participation</a><br>10 min
 </center>
 </section></section>
-<section id="motivation" class="title-slide slide level1 center" data-background-color="#cfb991">
-<h1>Motivation</h1>
+<section>
+<section id="case-spotlight-ab-testing-at-vungle" class="title-slide slide level1 center" data-background-color="#cfb991">
+<h1>Case Spotlight: A/B Testing at Vungle</h1>
 
 </section>
+<section id="meet-vungle-one-decision-30-days-of-data" class="slide level2 center">
+<h2>Meet Vungle: One Decision, 30 Days of Data</h2>
+<p><br></p>
+<ul>
+<li class="fragment"><p><a href="https://en.wikipedia.org/wiki/Liftoff_Mobile">Vungle</a> is a mobile ad-tech startup: it serves 15-second video ads inside other apps and earns revenue mainly when a viewer <strong>installs</strong> the advertised app.</p></li>
+<li class="fragment"><p>The metric that pays the bills is <strong>eRPM</strong> — effective revenue per 1,000 impressions.</p></li>
+<li class="fragment"><p>In June 2014, two analysts built a new ad-serving algorithm (<strong>B</strong>) and ran it head-to-head against the current one (<strong>A</strong>) for the whole month.</p></li>
+<li class="fragment"><p><strong>The CEO’s question:</strong> <em>roll out B to all advertisers, or stay with A?</em></p></li>
+<li class="fragment"><p>We will use this one decision — <em>is B better than A?</em> — to motivate <strong>every</strong> tool in this course.</p></li>
+</ul>
+</section>
+<section id="the-data-behind-the-decision" class="slide level2 center">
+<h2>The Data Behind the Decision</h2>
 
+<img data-src="figs/vungle_funnel.png" class="quarto-figure quarto-figure-center r-stretch" style="width:78.0%"><ul>
+<li>Each ad <strong>impression</strong> can become a completed view, then a click, then an <strong>install</strong>. That chain is the <em>conversion funnel</em>.</li>
+<li>30 days, both algorithms, the full funnel — that is the dataset <code>vungle_daily.csv</code> we will analyze all term.</li>
+</ul>
+</section>
+<section id="the-tempting-answer-and-why-it-is-not-enough" class="slide level2 center">
+<h2>The Tempting Answer — and Why It Is Not Enough</h2>
+<p><br></p>
+<ul>
+<li class="fragment"><p>A manager glances at the data: <em>“B’s average daily eRPM was <strong>$3.46</strong> vs.&nbsp;A’s <strong>$3.35</strong> — so roll out B!”</em></p></li>
+<li class="fragment"><p>Not so fast. Before you can bet the company on that $0.11 gap, you have to ask:</p>
+<ul>
+<li class="fragment">Is $0.11 a <strong>real</strong> difference, or just day-to-day <strong>noise</strong>?</li>
+<li class="fragment">Is <strong>30 days</strong> enough to generalize to all future traffic?</li>
+<li class="fragment">What <strong>kind</strong> of data is this, and which statistics are even <strong>valid</strong> to compute?</li>
+</ul></li>
+<li class="fragment"><p>Answering those is the job of this course. <strong>Today we start at the foundation: what is this data?</strong></p></li>
+</ul>
+</section></section>
 <section>
-<section id="what-is-statistics" class="title-slide slide level1 center">
+<section id="what-is-statistics" class="title-slide slide level1 center" data-background-color="#cfb991">
 <h1>What is Statistics?</h1>
 
 </section>
 <section id="what-is-statistics-1" class="slide level2 center">
 <h2>What is Statistics?</h2>
 <div class="columns">
-<div class="column" style="text-align: center; justify-content: center; align-items: center;">
-<!---Statistics can be defined as the science of collecting, analyzing, interpreting, presenting, and organizing data to make informed business decisions. It involves using mathematical theoriesto process numerical information and draw meaningful conclusions. The primary goal of statistics in business is to help managers and decision-makers understand data patterns, trends, and relationships, enabling them to make data-driven decisions, optimize operations, forecast future events, and reduce uncertainty. --->
+<div class="column" style="width: 60%; text-align: center; justify-content: center; align-items: center;">
 <p><br></p>
 <p><br></p>
 <p><br></p>
 <blockquote>
 <p>“Without data, you’re just another person with an opinion.” – W. Edwards Deming</p>
 </blockquote>
-</div><div class="column" style="text-align: center; justify-content: center; align-items: center;">
+</div><div class="column" style="width: 40%; text-align: center; justify-content: center; align-items: center;">
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
@@ -337,72 +391,226 @@ Professor: Davi Moreira
 <section id="what-is-statistics-2" class="slide level2 center">
 <h2>What is Statistics?</h2>
 <p><br></p>
-<p>Statistics can be defined as the <strong>science of collecting, analyzing, interpreting, presenting, and organizing data to make informed decisions</strong>.</p>
-</section></section>
-<section>
-<section id="where-is-statistics-applied-in-business" class="title-slide slide level1 center">
-<h1>Where is statistics applied in Business?</h1>
-
-</section>
-<section id="where-is-statistics-applied-in-business-1" class="slide level2 center">
-<h2>Where is statistics applied in Business?</h2>
+<p>Statistics is the <strong>science of collecting, organizing, analyzing, interpreting, and presenting data to make informed business decisions</strong>.</p>
+<p><br></p>
 <ul>
-<li class="fragment"><p>Accounting</p>
-<ul>
-<li class="fragment">To compare actual financial performance with budgeted amounts, identifying areas of inefficiency or unexpected costs.</li>
-</ul></li>
-<li class="fragment"><p>Economics</p>
-<ul>
-<li class="fragment">To analyze employment trends, wage distributions, and the impact of income on business opportunities, helping managers make informed decisions.</li>
-</ul></li>
-<li class="fragment"><p>Finance</p>
-<ul>
-<li class="fragment">Risk analysts to assess the probability of default on loans or bonds, aiding in the pricing of financial instruments and risk management strategies.</li>
-</ul></li>
+<li class="fragment"><p>It turns raw numbers — like Vungle’s 30 days of eRPM — into a defensible answer to a manager’s question.</p></li>
+<li class="fragment"><p>The goal is always the same: <strong>reduce uncertainty enough to act.</strong></p></li>
 </ul>
+</section>
+<section id="where-is-statistics-applied-in-business" class="slide level2 center">
+<h2>Where Is Statistics Applied in Business?</h2>
+<ul>
+<li><p><strong>Accounting</strong> — audit sampling to test whether reported figures are accurate.</p></li>
+<li><p><strong>Finance</strong> — estimating the return and risk of portfolios; pricing default risk.</p></li>
+<li><p><strong>Marketing</strong> — consumer surveys, A/B testing ad creative, demand forecasting.</p></li>
+<li><p><strong>Production / Operations</strong> — quality control, process design, capacity planning.</p></li>
+<li><p><strong>Human Resources</strong> — recruiting analytics, salary benchmarking, retention modeling.</p></li>
+</ul>
+</section>
+<section id="the-map-how-statistical-analysis-works" class="slide level2 center">
+<h2>The Map: How Statistical Analysis Works</h2>
+
+<img data-src="figs/stat_analysis_scheme.png" class="quarto-figure quarto-figure-center r-stretch" style="width:82.0%"></section>
+<section id="descriptive-vs.-inferential-statistics" class="slide level2 center">
+<h2>Descriptive vs.&nbsp;Inferential Statistics</h2>
+<p><br></p>
+<ul>
+<li class="fragment"><p><strong>Descriptive statistics</strong> — tabular, graphical, and numerical methods that <strong>summarize</strong> the data you have (means, charts, tables).</p></li>
+<li class="fragment"><p><strong>Inferential statistics</strong> — using <strong>sample</strong> data to draw conclusions or make decisions about a larger <strong>population</strong>.</p></li>
+<li class="fragment"><p>Classify each Vungle statement:</p></li>
+</ul>
+<div class="fragment">
+<table class="caption-top">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Statement</th>
+<th>Descriptive or Inferential?</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>“Over the 30 test days, B’s mean eRPM was $3.46.”</td>
+<td><strong>Descriptive</strong> (summarizes the sample)</td>
+</tr>
+<tr class="even">
+<td>“If rolled out to all traffic, B will earn more than A.”</td>
+<td><strong>Inferential</strong> (a claim about the population)</td>
+</tr>
+<tr class="odd">
+<td>“26 of 30 days favored B.”</td>
+<td><strong>Descriptive</strong></td>
+</tr>
+<tr class="even">
+<td>“B’s true conversion rate differs from A’s.”</td>
+<td><strong>Inferential</strong></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="roadmap-what-descriptive-covers" class="slide level2 center">
+<h2>Roadmap: What “Descriptive” Covers</h2>
+<p><br></p>
+<p>The next topic builds five summary lenses — each with an Excel tool:</p>
+<table class="caption-top">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Lens</th>
+<th>Question it answers</th>
+<th>Tool</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>Location</strong></td>
+<td>Where is the center?</td>
+<td>mean, median — summary statistics</td>
+</tr>
+<tr class="even">
+<td><strong>Variability</strong></td>
+<td>How spread out?</td>
+<td>standard deviation, range</td>
+</tr>
+<tr class="odd">
+<td><strong>Shape</strong></td>
+<td>Symmetric or skewed?</td>
+<td>histogram, box plot</td>
+</tr>
+<tr class="even">
+<td><strong>Empirical rule</strong></td>
+<td>How much falls near the mean?</td>
+<td>68–95–99.7%</td>
+</tr>
+<tr class="odd">
+<td><strong>Association</strong></td>
+<td>Do two variables move together?</td>
+<td>scatter plot, correlation</td>
+</tr>
+</tbody>
+</table>
 </section></section>
 <section>
 <section id="data-and-statistics" class="title-slide slide level1 center" data-background-color="#cfb991">
 <h1>Data and Statistics</h1>
 
 </section>
-<section id="data-sources-and-scales-of-measurement" class="slide level2 center">
-<h2>Data Sources and Scales of Measurement</h2>
+<section id="elements-variables-and-observations" class="slide level2 center">
+<h2>Elements, Variables, and Observations</h2>
 
-<img data-src="figs/variables_observations.png" class="quarto-figure quarto-figure-center r-stretch" style="width:30.0%"><ul>
-<li class="fragment"><p>Elements are the entities on which data are collected.</p></li>
-<li class="fragment"><p>A variable is a characteristic of interest for the elements.</p></li>
-<li class="fragment"><p>The set of measurements obtained for a particular element is called an observation.</p></li>
-<li class="fragment"><p>A data set with <span class="math inline">\(n\)</span> elements contains <span class="math inline">\(n\)</span> observations.</p></li>
-<li class="fragment"><p>The total number of data values in a complete data set is the number of elements multiplied by the number of variables.</p></li>
+<img data-src="figs/variables_observations.png" class="quarto-figure quarto-figure-center r-stretch" style="width:28.0%"><ul>
+<li>An <strong>element</strong> is the entity on which data are collected.</li>
+<li>A <strong>variable</strong> is a characteristic of interest for the elements.</li>
+<li>An <strong>observation</strong> is the set of measurements for one element.</li>
+<li>A data set with <span class="math inline">\(n\)</span> elements has <span class="math inline">\(n\)</span> observations; total values = elements × variables.</li>
 </ul>
+</section>
+<section id="read-the-vungle-data-like-an-analyst" class="slide level2 center">
+<h2>Read the Vungle Data Like an Analyst</h2>
+<p><br></p>
+<ul>
+<li class="fragment">Here is a slice of <code>vungle_daily.csv</code> — algorithms interleaved by day:</li>
+</ul>
+<div class="fragment">
+<table class="caption-top">
+<colgroup>
+<col style="width: 11%">
+<col style="width: 11%">
+<col style="width: 15%">
+<col style="width: 15%">
+<col style="width: 15%">
+<col style="width: 15%">
+<col style="width: 15%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>algorithm</th>
+<th>date</th>
+<th style="text-align: right;">impressions</th>
+<th style="text-align: right;">completes</th>
+<th style="text-align: right;">clicks</th>
+<th style="text-align: right;">installs</th>
+<th style="text-align: right;">erpm</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>A</td>
+<td>2014-06-01</td>
+<td style="text-align: right;">6,777,407</td>
+<td style="text-align: right;">5,978,434</td>
+<td style="text-align: right;">345,309</td>
+<td style="text-align: right;">31,119</td>
+<td style="text-align: right;">3.327</td>
+</tr>
+<tr class="even">
+<td>B</td>
+<td>2014-06-01</td>
+<td style="text-align: right;">569,044</td>
+<td style="text-align: right;">499,235</td>
+<td style="text-align: right;">28,035</td>
+<td style="text-align: right;">2,111</td>
+<td style="text-align: right;">2.953</td>
+</tr>
+<tr class="odd">
+<td>A</td>
+<td>2014-06-02</td>
+<td style="text-align: right;">6,004,310</td>
+<td style="text-align: right;">5,331,727</td>
+<td style="text-align: right;">299,732</td>
+<td style="text-align: right;">24,601</td>
+<td style="text-align: right;">2.943</td>
+</tr>
+<tr class="even">
+<td>B</td>
+<td>2014-06-02</td>
+<td style="text-align: right;">505,963</td>
+<td style="text-align: right;">447,695</td>
+<td style="text-align: right;">24,621</td>
+<td style="text-align: right;">1,713</td>
+<td style="text-align: right;">2.587</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="fragment">
+<ul>
+<li class="fragment"><strong>Element</strong> = one algorithm-day (60 of them). <strong>Variables</strong> = the 7 columns. <strong>One observation</strong> = one row. Total values = <strong>60 × 7 = 420</strong>.</li>
+</ul>
+</div>
 </section>
 <section id="data-types" class="slide level2 center">
 <h2>Data Types</h2>
 <div class="columns">
-<div class="column" style="text-align: center; justify-content: center; align-items: center;">
-<p><strong>Categorical Data</strong></p>
+<div class="column" style="width: 50%; text-align: center; justify-content: center; align-items: center;">
+<p><strong>Categorical (Qualitative) Data</strong></p>
 <ul>
-<li>Labels or names used to identify an attribute of each element</li>
-<li>Often referred to as qualitative data</li>
-<li>Use either the nominal or ordinal scale of measurement</li>
-<li>Can be either numeric or nonnumeric</li>
-<li>Appropriate statistical analysis is rather limited</li>
+<li>Labels or names that identify an attribute of each element</li>
+<li>Use the <strong>nominal</strong> or <strong>ordinal</strong> scale</li>
+<li>Can be numeric or non-numeric</li>
+<li>Only limited arithmetic is meaningful (counts, proportions)</li>
 </ul>
-</div><div class="column" style="text-align: center; justify-content: center; align-items: center;">
+</div><div class="column" style="width: 50%; text-align: center; justify-content: center; align-items: center;">
 <p><strong>Quantitative Data</strong></p>
 <ul>
-<li><p>Quantitative data indicate how many or how much:</p>
-<pre><code>-  discrete, if measuring how many
-- continuous, if measuring how much</code></pre></li>
-<li><p>Quantitative data are always numeric.</p></li>
-<li><p>Ordinary arithmetic operations (+, -, ×, ÷) are meaningful for quantitative data</p></li>
+<li>Indicate <strong>how many</strong> or <strong>how much</strong> — always numeric</li>
+<li><strong>Discrete</strong>: counts (how many) — e.g., installs</li>
+<li><strong>Continuous</strong>: measurements (how much) — e.g., eRPM</li>
+<li>Ordinary arithmetic (+, −, ×, ÷) is meaningful</li>
 </ul>
 </div></div>
 </section>
 <section id="data-types-examples" class="slide level2 center">
 <h2>Data Types: Examples</h2>
-<p><br></p>
 <p><br></p>
 <table class="caption-top">
 <colgroup>
@@ -419,14 +627,14 @@ Professor: Davi Moreira
 </thead>
 <tbody>
 <tr class="odd">
-<td>Vehicle Type</td>
+<td>Ad algorithm (A/B)</td>
 <td>Satisfaction Level</td>
-<td>Temperature</td>
+<td>eRPM (revenue / 1,000 impr.)</td>
 </tr>
 <tr class="even">
-<td>Beverage</td>
+<td>Vehicle Type</td>
 <td>Education Level</td>
-<td>Number of Transactions</td>
+<td>Number of Installs</td>
 </tr>
 <tr class="odd">
 <td>Music Genre</td>
@@ -439,11 +647,6 @@ Professor: Davi Moreira
 <td>Product Weight</td>
 </tr>
 <tr class="odd">
-<td>Relationship Status</td>
-<td>Military Rank</td>
-<td>Distance Traveled</td>
-</tr>
-<tr class="even">
 <td>Operating System</td>
 <td>Priority Level</td>
 <td>Market Share</td>
@@ -453,9 +656,9 @@ Professor: Davi Moreira
 <p><br></p>
 <div class="r-fit-text">
 <ul>
-<li class="fragment">Categorical: Nominal refers to variables that categorize data without a specific order.</li>
-<li class="fragment">Categorical: Ordinal refers to variables that categorize data with a meaningful order but without a consistent difference between categories.</li>
-<li class="fragment">Quantitative: Continuous or Discrete refers to variables that are numerical, where discrete variables are countable and continuous variables can take any value within a range.</li>
+<li class="fragment"><strong>Nominal</strong> categorizes with no inherent order (Vungle’s <code>algorithm</code>: A vs.&nbsp;B).</li>
+<li class="fragment"><strong>Ordinal</strong> categorizes with a meaningful order but no consistent gap between levels.</li>
+<li class="fragment"><strong>Quantitative</strong> is numeric — <em>discrete</em> values are countable (<code>installs</code>); <em>continuous</em> values can take any value in a range (<code>erpm</code>).</li>
 </ul>
 </div>
 </section>
@@ -466,90 +669,148 @@ Professor: Davi Moreira
 <section id="scales-of-measurement-1" class="slide level2 center">
 <h2>Scales of Measurement</h2>
 <div class="columns">
-<div class="column" style="text-align: center; justify-content: center; align-items: center;">
+<div class="column" style="width: 50%; text-align: center; justify-content: center; align-items: center;">
 <div class="r-fit-text">
 <ol type="1">
-<li><strong>Categorical Data</strong>
+<li><strong>Categorical Data</strong> — sortable into groups.
 <ul>
-<li><strong>Definition</strong>: Data that can be sorted into categories or groups.</li>
-<li><strong>Subcategories</strong>:
-<ul>
-<li><strong>Numeric</strong>: Categorical data represented by numbers, but the numbers do not have inherent numerical value.
-<ul>
-<li><strong>Nominal</strong>: Categories that have no inherent order. Examples include gender, type of car, and nationality.</li>
-<li><strong>Ordinal</strong>: Categories that have a specific order or ranking. Examples include satisfaction levels (e.g., satisfied, neutral, dissatisfied) and education levels (e.g., high school, bachelor’s, master’s).</li>
-</ul></li>
-<li><strong>Non-numeric</strong>: Categorical data not represented by numbers.
-<ul>
-<li><strong>Nominal</strong>: Similar to numeric nominal data but represented with non-numeric labels. Examples include types of cuisine (e.g., Italian, Chinese, Indian).</li>
-<li><strong>Ordinal</strong>: Similar to numeric ordinal data but represented with non-numeric labels. Examples include rankings such as job positions (e.g., intern, junior, senior).</li>
-</ul></li>
-</ul></li>
+<li><strong>Nominal</strong>: no inherent order (gender, car type, nationality, <strong>ad algorithm</strong>).</li>
+<li><strong>Ordinal</strong>: a meaningful order, but no consistent difference between levels (satisfaction level; education level; job rank).</li>
 </ul></li>
 </ol>
 </div>
-</div><div class="column" style="text-align: center; justify-content: center; align-items: center;">
+</div><div class="column" style="width: 50%; text-align: center; justify-content: center; align-items: center;">
 <ol start="2" type="1">
-<li><strong>Quantitative Data</strong>
+<li><strong>Quantitative Data</strong> — measured numerically.
 <ul>
-<li><strong>Definition</strong>: Data that can be measured and expressed numerically.</li>
-<li><strong>Subcategories</strong>:
-<ul>
-<li><strong>Numeric</strong>: Quantitative data always represented by numbers.
-<ul>
-<li><strong>Interval</strong>: Numerical data with meaningful differences between values but no true zero point. Examples include temperature in Celsius or Fahrenheit.</li>
-<li><strong>Ratio</strong>: Numerical data with meaningful differences between values and a true zero point. Examples include height, weight, and sales figures.</li>
-</ul></li>
-</ul></li>
+<li><strong>Interval</strong>: meaningful differences, <strong>no true zero</strong> (temperature in °C/°F).</li>
+<li><strong>Ratio</strong>: meaningful differences <strong>and a true zero</strong> (height, weight, revenue, <strong>eRPM</strong>, <strong>installs</strong>).</li>
 </ul></li>
 </ol>
 </div></div>
 </section>
-<section id="cross-sectional-data-time-series" class="slide level2 center">
-<h2>Cross-Sectional Data: Time Series</h2>
+<section id="classify-vungles-variables" class="slide level2 center">
+<h2>Classify Vungle’s Variables</h2>
 <p><br></p>
+<ul>
+<li class="fragment">Before any analysis, audit every column — because <strong>the scale determines which statistics are valid</strong>:</li>
+</ul>
+<div class="fragment">
+<table class="caption-top">
+<colgroup>
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Variable</th>
+<th>Type</th>
+<th>Scale</th>
+<th>What you may compute</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>algorithm</code></td>
+<td>Categorical</td>
+<td>Nominal</td>
+<td>counts, proportions — <strong>not</strong> a mean</td>
+</tr>
+<tr class="even">
+<td><code>date</code></td>
+<td>Categorical (ordered)</td>
+<td>Ordinal / Interval</td>
+<td>ordering, time gaps</td>
+</tr>
+<tr class="odd">
+<td><code>impressions</code>, <code>completes</code>, <code>clicks</code>, <code>installs</code></td>
+<td>Quantitative — discrete</td>
+<td>Ratio</td>
+<td>counts, sums, means, rates</td>
+</tr>
+<tr class="even">
+<td><code>erpm</code></td>
+<td>Quantitative — continuous</td>
+<td>Ratio</td>
+<td>mean, SD, t-tests — the primary KPI</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="fragment">
+<ul>
+<li class="fragment">Asking for the “average <code>algorithm</code>” is meaningless; asking for the “average <code>erpm</code>” is the whole point. <strong>Scale sets your toolbox.</strong></li>
+</ul>
+</div>
+</section>
+<section id="where-data-comes-from" class="slide level2 center">
+<h2>Where Data Comes From</h2>
+<p><br></p>
+<ul>
+<li><p><strong>Existing sources</strong> — internal records (Vungle’s ad server logs), public/government databases, industry reports.</p></li>
+<li><p><strong>Collection by study:</strong></p>
+<ul>
+<li><strong>Observational</strong> — record what happens without intervening (a customer survey).</li>
+<li><strong>Experimental</strong> — set the conditions on purpose, then measure (Vungle <em>assigns</em> traffic to A or B).</li>
+</ul></li>
+<li><p><strong>Cross-sectional</strong> — many elements at <strong>one</strong> point in time.</p></li>
+<li><p><strong>Time series</strong> — <strong>one</strong> element across <strong>many</strong> time periods.</p></li>
+</ul>
+</section>
+<section id="cross-sectional-vs.-time-series-the-vungle-data" class="slide level2 center">
+<h2>Cross-Sectional vs.&nbsp;Time Series — the Vungle Data</h2>
+<p><br></p>
+<ul>
+<li><p>On any single day, comparing <strong>A vs.&nbsp;B</strong> is a <strong>cross-sectional</strong> snapshot (two entities, one moment).</p></li>
+<li><p>Tracking <strong>one algorithm across the 30 days</strong> is a <strong>time series</strong>.</p></li>
+<li><p>The full dataset is a <strong>panel</strong> — repeated cross-sections over time.</p></li>
+</ul>
 
-<img data-src="figs/time_series.png" class="quarto-figure quarto-figure-center r-stretch" style="width:50.0%"><p><br></p>
-</section></section>
+<img data-src="figs/time_series.png" class="quarto-figure quarto-figure-center r-stretch" style="width:42.0%"></section></section>
 <section>
 <section id="study-design" class="title-slide slide level1 center" data-background-color="#cfb991">
 <h1>Study Design</h1>
 
 </section>
-<section id="study-design-1" class="slide level2 center">
-<h2>Study Design</h2>
+<section id="observational-vs.-experimental-studies" class="slide level2 center">
+<h2>Observational vs.&nbsp;Experimental Studies</h2>
 <div class="columns">
-<div class="column" style="text-align: center; justify-content: center; align-items: center;">
+<div class="column" style="width: 50%; text-align: center; justify-content: center; align-items: center;">
 <p><strong>Observational</strong></p>
-<p>In observational studies, no attempt is made to control or influence the variables of interest. A survey is a good example.</p>
-<p><br> <br> <br></p>
+<p>In an observational study, no attempt is made to control the variables of interest. A survey is the classic example.</p>
+<p><br></p>
 <blockquote>
-<p>An example of an observational study is researchers observing a randomly selected group of customers that enter a Walmart Supercenter to collect data on variables such as time spent in the store, gender of the customer, and the amount spent.</p>
+<p>Researchers watching a random set of Walmart shoppers — recording time in store, gender, and amount spent — <em>without intervening</em>.</p>
 </blockquote>
-</div><div class="column" style="text-align: center; justify-content: center; align-items: center;">
-<p><strong>Experimental</strong> (Chapter 13)</p>
-<p>In experimental studies, the variable of interest is first identified. Then, the values or levels (categories) of the variable are identified and controlled so that data from the experimental units (subjects) can be obtained about how they influence the variable of interest. Can have multiple variables.</p>
+</div><div class="column" style="width: 50%; text-align: center; justify-content: center; align-items: center;">
+<p><strong>Experimental</strong></p>
+<p>In an experiment, the variable of interest is identified, then its levels are <strong>set and controlled</strong>, so we can see how they influence an outcome.</p>
+<p><br></p>
 <blockquote>
-<p>The largest experimental study ever conducted is believed to be the 1954 Public Health Service experiment for the Salk polio vaccine. Nearly two million U.S. children (grades 1 through 3) were selected.</p>
+<p>The 1954 Salk polio-vaccine trial — nearly two million children randomly assigned to vaccine or placebo — is the largest experiment ever run.</p>
 </blockquote>
 </div></div>
 </section>
-<section id="study-design-random-assignment-vs.-random-sampling" class="slide level2 center">
-<h2>Study Design: Random Assignment vs.&nbsp;Random Sampling</h2>
+<section id="vungle-ran-an-experiment-so-we-can-say-caused" class="slide level2 center">
+<h2>Vungle Ran an Experiment — So We Can Say “Caused”</h2>
 <p><br></p>
-<p><br></p>
-
-<img data-src="figs/random_assignment_sampling.png" class="quarto-figure quarto-figure-center r-stretch" style="width:50.0%"><p><br></p>
-<p><br></p>
+<ul>
+<li class="fragment"><p>The <code>algorithm</code> column is the <strong>treatment</strong>: each impression was randomly assigned to A or B (by an MD5 hash) <strong>on the same days</strong>.</p></li>
+<li class="fragment"><p>Random assignment balances everything else — same market, same advertisers, same weekends — so the only systematic difference is the algorithm.</p></li>
+<li class="fragment"><p>That is what licenses <strong>causal</strong> language: <em>“B <strong>caused</strong> higher eRPM,”</em> not merely <em>“B was associated with higher eRPM.”</em></p></li>
+<li class="fragment"><p><strong>Payoff:</strong> only an <strong>experiment</strong> supports a causal claim. An observational “B-days looked better” could be confounded; Vungle’s design rules that out.</p></li>
+</ul>
 </section>
-<section id="study-design-2" class="slide level2 center">
-<h2>Study Design</h2>
-<p><br></p>
+<section id="random-assignment-vs.-random-sampling" class="slide level2 center">
+<h2>Random Assignment vs.&nbsp;Random Sampling</h2>
 <p><br></p>
 
-<img data-src="figs/xkcd.png" class="quarto-figure quarto-figure-center r-stretch" style="width:2.0%"><p><br></p>
-<p><br></p>
-<p><br></p>
+<img data-src="figs/random_assignment_sampling.png" class="quarto-figure quarto-figure-center r-stretch" style="width:50.0%"><ul>
+<li><strong>Random sampling</strong> — <em>who gets into the study</em> — supports generalizing to the population.</li>
+<li><strong>Random assignment</strong> — <em>who gets which treatment</em> — supports causal comparison.</li>
+</ul>
 </section></section>
 <section>
 <section id="descriptive-statistics" class="title-slide slide level1 center" data-background-color="#cfb991">
@@ -564,7 +825,6 @@ Professor: Davi Moreira
 <center>
 <a href="https://paragraft.wordpress.com/2008/06/03/the-chart-junk-of-steve-jobs/">June 9th Apple CEO Steve Jobs - Post</a>
 </center>
-<p><br></p>
 </section>
 <section id="summarizing-and-presenting-data-1" class="slide level2 smaller center">
 <h2>Summarizing and Presenting Data</h2>
@@ -573,232 +833,105 @@ Professor: Davi Moreira
 <center>
 <a href="https://stats.stackexchange.com/questions/8974/problems-with-pie-charts">Problems with pie charts - Post</a>
 </center>
-<p><br></p>
 </section>
-<section id="summarizing-and-presenting-data-2" class="slide level2 center">
-<h2>Summarizing and Presenting Data</h2>
-<p><br></p>
+<section id="a-first-look-at-erpm" class="slide level2 center">
+<h2>A First Look at eRPM</h2>
 
-<img data-src="figs/presenting_data.png" class="quarto-figure quarto-figure-center r-stretch" style="width:60.0%"><p><br></p>
-</section>
-<section id="example-hudson-auto-repair" class="slide level2 center">
-<h2>Example: Hudson Auto Repair</h2>
-<p>The manager of Hudson Auto would like to have a better understanding of the cost of parts used in the engine tune-ups performed in her shop. She examines 50 customer invoices for tune-ups. The costs of parts, rounded to the nearest dollar, are listed on the next slide.</p>
-<p><br></p>
-
-<img data-src="figs/hudson_auto_repair_data.png" class="quarto-figure quarto-figure-center r-stretch" style="width:20.0%"><p><br></p>
-</section>
-<section id="tabular-summary-frequency-and-percent-frequency---example" class="slide level2 center">
-<h2>Tabular Summary: Frequency and Percent Frequency - Example</h2>
-<p><br></p>
-<table class="caption-top">
-<thead>
-<tr class="header">
-<th style="text-align: center;">Parts Cost ($)</th>
-<th style="text-align: center;">Frequency</th>
-<th style="text-align: center;">Percent Frequency</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td style="text-align: center;">50 to 59</td>
-<td style="text-align: center;">2</td>
-<td style="text-align: center;">4%</td>
-</tr>
-<tr class="even">
-<td style="text-align: center;">60 to 69</td>
-<td style="text-align: center;">13</td>
-<td style="text-align: center;">26%</td>
-</tr>
-<tr class="odd">
-<td style="text-align: center;">70 to 79</td>
-<td style="text-align: center;">16</td>
-<td style="text-align: center;">32%</td>
-</tr>
-<tr class="even">
-<td style="text-align: center;">80 to 89</td>
-<td style="text-align: center;">7</td>
-<td style="text-align: center;">14%</td>
-</tr>
-<tr class="odd">
-<td style="text-align: center;">90 to 99</td>
-<td style="text-align: center;">7</td>
-<td style="text-align: center;">14%</td>
-</tr>
-<tr class="even">
-<td style="text-align: center;">100 to 109</td>
-<td style="text-align: center;">5</td>
-<td style="text-align: center;">10%</td>
-</tr>
-<tr class="odd">
-<td style="text-align: center;"><strong>TOTAL</strong></td>
-<td style="text-align: center;"><strong>50</strong></td>
-<td style="text-align: center;"><strong>100%</strong></td>
-</tr>
-</tbody>
-</table>
-
-</section>
-<section id="graphical-summary-bar-chart-or-histogram---example" class="slide level2 center">
-<h2>Graphical Summary: Bar Chart or Histogram - Example</h2>
-<p><br></p>
-<!---`<svg aria-hidden="true" role="img" viewBox="0 0 640 512" style="height:1em;width:1.25em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:currentColor;overflow:visible;position:relative;"><path d="M64 96c0-35.3 28.7-64 64-64H512c35.3 0 64 28.7 64 64V352H512V96H128V352H64V96zM0 403.2C0 392.6 8.6 384 19.2 384H620.8c10.6 0 19.2 8.6 19.2 19.2c0 42.4-34.4 76.8-76.8 76.8H76.8C34.4 480 0 445.6 0 403.2zM281 209l-31 31 31 31c9.4 9.4 9.4 24.6 0 33.9s-24.6 9.4-33.9 0l-48-48c-9.4-9.4-9.4-24.6 0-33.9l48-48c9.4-9.4 24.6-9.4 33.9 0s9.4 24.6 0 33.9zM393 175l48 48c9.4 9.4 9.4 24.6 0 33.9l-48 48c-9.4 9.4-24.6 9.4-33.9 0s-9.4-24.6 0-33.9l31-31-31-31c-9.4-9.4-9.4-24.6 0-33.9s24.6-9.4 33.9 0z"/></svg>`{=html} Transiton: Let's Apply--->
-<p><br></p>
-
-<img data-src="figs/excel.png" class="quarto-figure quarto-figure-center r-stretch" style="width:15.0%"><p><br></p>
-<center>
-<code>hudson_auto_repair.xlsx</code>
-</center>
-<p><br></p>
-<p>File -&gt; Options -&gt; Add-ins -&gt; Select Analysis ToolPak and Analysis ToolPak-VBA (also select StatTools 7.5, if available) -&gt; Go -&gt; Data -&gt; Data Analysis (to conduct analyses)</p>
-<p><br></p>
-
-</section>
-<section id="graphical-summary-bar-chart-or-histogram---example-1" class="slide level2 center">
-<h2>Graphical Summary: Bar Chart or Histogram - Example</h2>
-<p><br> <br></p>
-<div class="columns">
-<div class="column" style="text-align: center; justify-content: center; align-items: center;">
-<ol type="1">
-<li>Open Data Analysis Add-in</li>
-</ol>
-<div class="cell" data-layout-align="center">
-<div class="cell-output-display">
-<div class="quarto-figure quarto-figure-center">
-<figure>
-<p><img data-src="figs/01_hudson.png" class="quarto-figure quarto-figure-center" style="width:100.0%"></p>
-</figure>
-</div>
-</div>
-</div>
-</div><div class="column" style="text-align: center; justify-content: center; align-items: center;">
-<div class="fragment">
-<ol start="2" type="1">
-<li>Select Histogram</li>
-</ol>
-<div class="cell" data-layout-align="center">
-<div class="cell-output-display">
-<div class="quarto-figure quarto-figure-center">
-<figure>
-<p><img data-src="figs/02_hudson.png" class="quarto-figure quarto-figure-center" style="width:100.0%"></p>
-</figure>
-</div>
-</div>
-</div>
-</div>
-</div></div>
-</section>
-<section id="graphical-summary-bar-chart-or-histogram---example-2" class="slide level2 center">
-<h2>Graphical Summary: Bar Chart or Histogram - Example</h2>
-<div class="columns">
-<div class="column" style="text-align: center; justify-content: center; align-items: center;">
-<ol start="3" type="1">
-<li>Input the ranges (data, bin limits, output cell)</li>
-</ol>
-<div class="cell" data-layout-align="center">
-<div class="cell-output-display">
-<div class="quarto-figure quarto-figure-center">
-<figure>
-<p><img data-src="figs/03_hudson.png" class="quarto-figure quarto-figure-center" style="width:100.0%"></p>
-</figure>
-</div>
-</div>
-</div>
-</div><div class="column" style="text-align: center; justify-content: center; align-items: center;">
-<div class="fragment">
-<ol start="4" type="1">
-<li>Result</li>
-</ol>
-<div class="cell" data-layout-align="center">
-<div class="cell-output-display">
-<div class="quarto-figure quarto-figure-center">
-<figure>
-<p><img data-src="figs/04_hudson.png" class="quarto-figure quarto-figure-center" style="width:100.0%"></p>
-</figure>
-</div>
-</div>
-</div>
-</div>
-</div></div>
-</section>
-<section id="numerical-descriptive-statistics" class="slide level2 center">
-<h2>Numerical Descriptive Statistics</h2>
-<p><br></p>
-<ul>
-<li class="fragment"><p>The most common numerical descriptive statistic is the mean (or average).</p></li>
-<li class="fragment"><p>The mean demonstrates a measure of the central tendency, central location, or center of mass of the data for a variable.</p></li>
-<li class="fragment"><p>Hudson’s mean cost of parts, based on the 50 tune-ups studied, is $79 (found by summing up the 50 cost values and then dividing by 50).</p></li>
-<li class="fragment"><p>There are other descriptive statistics (next chapter).</p></li>
+<img data-src="figs/vungle_erpm_box.png" class="quarto-figure quarto-figure-center r-stretch" style="width:55.0%"><ul>
+<li>A picture already tells a story: <strong>B’s mean is higher</strong> (white diamonds), but B is <strong>more spread out</strong> — a hint that “B is better” may not be the whole truth.</li>
+<li>Describing is step one; <em>deciding</em> whether that gap is real comes later (Topics 7–9).</li>
 </ul>
 </section>
-<section id="numerical-descriptive-statistics---example" class="slide level2 center">
-<h2>Numerical Descriptive Statistics - Example</h2>
-<div class="columns">
-<div class="column" style="text-align: center; justify-content: center; align-items: center;">
-<ol type="1">
-<li>Open Data Analysis Add-in and select the Descriptive Statistics analysis</li>
-</ol>
-<div class="cell" data-layout-align="center">
-<div class="cell-output-display">
-<div class="quarto-figure quarto-figure-center">
-<figure>
-<p><img data-src="figs/01_hudson_desc.png" class="quarto-figure quarto-figure-center" style="width:100.0%"></p>
-</figure>
-</div>
-</div>
-</div>
-</div><div class="column" style="text-align: center; justify-content: center; align-items: center;">
+<section id="measures-of-location-the-mean" class="slide level2 center">
+<h2>Measures of Location: the Mean</h2>
+<p><br></p>
+<ul>
+<li class="fragment">The first job of <em>describing</em> is finding the <strong>center</strong>. The workhorse is the <strong>mean</strong> — add the values, divide by the count:</li>
+</ul>
 <div class="fragment">
-<ol start="2" type="1">
-<li>Input the ranges (data, bin limits, output cell) and options</li>
-</ol>
+<p><span class="math display">\[
+\bar{x} = \frac{\sum_{i=1}^{n} x_i}{n}
+\]</span></p>
+</div>
+<div class="fragment">
+<ul>
+<li class="fragment">Vungle’s 30-day mean eRPM: <strong>A = $3.347</strong>, <strong>B = $3.459</strong> — B’s center sits <strong>$0.11 higher</strong>.</li>
+</ul>
+</div>
+<div class="fragment">
+<ul>
+<li class="fragment">That $3.459 is a <strong>point estimate</strong> of B’s <em>true</em> mean eRPM — the number we will later put to the test.</li>
+</ul>
+</div>
+</section>
+<section id="median-mode-and-when-to-use-which" class="slide level2 center">
+<h2>Median &amp; Mode — and When to Use Which</h2>
+<p><br></p>
+<ul>
+<li><strong>Median</strong> — the middle value (50th percentile); unmoved by outliers. Vungle: A median <strong>$3.327</strong>, B <strong>$3.434</strong>. Mean ≈ median ⟹ the eRPM distribution is roughly <strong>symmetric</strong>.</li>
+<li><strong>Mode</strong> — the most frequent value; the only center valid for <strong>categorical</strong> data (e.g., the most-served <code>algorithm</code>). For continuous eRPM every value is distinct, so the mode says nothing.</li>
+<li><strong>Rule of thumb:</strong> report the <strong>mean</strong> for symmetric data, the <strong>median</strong> when it is skewed or has outliers.</li>
+</ul>
+</section>
+<section id="your-excel-toolkit-the-analysis-toolpak" class="slide level2 center">
+<h2>Your Excel Toolkit: the Analysis ToolPak</h2>
+<p><br></p>
+
+<img data-src="figs/excel.png" class="quarto-figure quarto-figure-center r-stretch" style="width:12.0%"><center>
+<code>data/vungle_daily.xlsx</code>
+</center>
+<p><br></p>
+<ul>
+<li class="fragment"><p>Install it once: <strong>File → Options → Add-ins → Analysis ToolPak</strong> (and Analysis ToolPak-VBA) <strong>→ Go</strong>.</p></li>
+<li class="fragment"><p>Then every analysis lives under <strong>Data → Data Analysis</strong>.</p></li>
+<li class="fragment"><p>Do this <strong>this week</strong> with <code>vungle_daily.xlsx</code> open — it is the dataset for the whole term.</p></li>
+</ul>
+</section>
+<section id="teaser-descriptive-statistics-on-erpm" class="slide level2 center">
+<h2>Teaser: Descriptive Statistics on eRPM</h2>
+<div class="columns">
+<div class="column" style="width:42%;">
+<p><br></p>
+<p><strong>Data → Data Analysis →<br> Descriptive Statistics</strong></p>
+<ul>
+<li>Input Range: the <code>erpm</code> values for Algorithm A</li>
+<li>check <strong>Summary statistics</strong></li>
+</ul>
+<p><br></p>
+<p>The mean eRPM for A is <strong>$3.347</strong>. Every row of this panel — median, SD, skewness — is a <em>descriptive</em> measure we unpack in <strong>Topic 2</strong>.</p>
+</div><div class="column" style="width:58%;">
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure>
-<p><img data-src="figs/02_hudson_desc.png" class="quarto-figure quarto-figure-center" style="width:100.0%"></p>
+<p><img data-src="figs/excel_desc_erpm.png" class="quarto-figure quarto-figure-center" style="width:85.0%"></p>
 </figure>
-</div>
 </div>
 </div>
 </div>
 </div></div>
 </section>
-<section id="numerical-descriptive-statistics---example-1" class="slide level2 center">
-<h2>Numerical Descriptive Statistics - Example</h2>
-<div class="columns">
-<div class="column" style="text-align: center; justify-content: center; align-items: center;">
-<ol start="3" type="1">
-<li>Result</li>
+<section id="team-sprint-read-the-data-make-the-first-cut" class="slide level2 center">
+<h2>⏱️ Team Sprint — Read the Data, Make the First Cut</h2>
+<div class="sprint">
+<p><strong>Decide:</strong> what does Vungle’s data <em>say</em> so far — and what can it <strong>not</strong> say yet?</p>
+<p><strong>Data:</strong> <code>data/vungle_daily.xlsx</code> · <strong>Time:</strong> ~12 min</p>
+<ol type="1">
+<li><strong>Audit:</strong> name the elements, the variables, and the <strong>type &amp; scale</strong> of <code>algorithm</code> and <code>erpm</code>.</li>
+<li><strong>Summarize:</strong> with the ToolPak’s <em>Descriptive Statistics</em>, get the <strong>mean and median eRPM for A and for B</strong>.</li>
+<li><strong>Compare &amp; question:</strong> how big is B’s edge? List <strong>two reasons</strong> it might <em>not</em> hold up.</li>
 </ol>
-<div class="cell" data-layout-align="center">
-<div class="cell-output-display">
-<div class="quarto-figure quarto-figure-center">
-<figure>
-<p><img data-src="figs/03_hudson_desc.png" class="quarto-figure quarto-figure-center" style="width:100.0%"></p>
-</figure>
+<p><strong>Hand in (1 slide):</strong> A-vs-B mean &amp; median, plus your two “what could go wrong?” reasons.</p>
 </div>
-</div>
-</div>
-</div><div class="column" style="text-align: center; justify-content: center; align-items: center;">
-<div class="fragment">
-<ol start="4" type="1">
-<li>Let’s check the result</li>
-</ol>
-<div class="cell" data-layout-align="center">
-<div class="cell-output-display">
-<div class="quarto-figure quarto-figure-center">
-<figure>
-<p><img data-src="figs/04_hudson_desc.png" class="quarto-figure quarto-figure-center" style="width:40.0%"></p>
-</figure>
-</div>
-</div>
-</div>
-<div style="font-size: 50%;">
-<p>For percentiles: <code>= percentile.exc(Data Array, %)</code></p>
-</div>
-</div>
-</div></div>
+</section>
+<section id="debrief-back-to-the-decision" class="slide level2 center">
+<h2>Debrief — Back to the Decision</h2>
+<p><br></p>
+<ul>
+<li class="fragment"><p>We can now <strong>describe</strong> the data cleanly: A’s mean eRPM is <strong>$3.35</strong>, B’s is <strong>$3.46</strong>, over 30 carefully-designed experimental days.</p></li>
+<li class="fragment"><p>We <strong>cannot yet</strong> say whether B is <em>really</em> better for all future traffic — that is <strong>inference</strong>, and it needs the tools in Topics 7–9.</p></li>
+<li class="fragment"><p>But notice how far we have come: we know <strong>what</strong> the data are, <strong>what kind</strong> of variables they hold, and <strong>why</strong> the design lets us reason about cause.</p></li>
+</ul>
 </section></section>
 <section>
 <section id="statistical-inference" class="title-slide slide level1 center" data-background-color="#cfb991">
@@ -808,9 +941,8 @@ Professor: Davi Moreira
 <section id="statistical-inference-1" class="slide level2 center">
 <h2>Statistical Inference</h2>
 <p><br></p>
-<p><br></p>
 <div class="columns">
-<div class="column" style="text-align: center; justify-content: center; align-items: center;">
+<div class="column" style="width: 40%; text-align: center; justify-content: center; align-items: center;">
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
@@ -820,17 +952,17 @@ Professor: Davi Moreira
 </div>
 </div>
 </div>
-</div><div class="column" style="text-align: left; justify-content: center; align-items: center;">
+</div><div class="column" style="width: 50%; text-align: left; justify-content: center; align-items: center;">
 <div class="fragment">
 <div class="r-fit-text">
 <ul>
-<li class="fragment"><p><strong>Population</strong>: the set of all elements of interest in a particular study.</p></li>
-<li class="fragment"><p><strong>Sample</strong>: a subset of the population.</p></li>
-<li class="fragment"><p><strong>Descriptive Statistics</strong>: Tabular, graphical, and numerical summaries of data.</p></li>
-<li class="fragment"><p><strong>Inferential Statistics</strong>: The process of using data from the sample to make estimates or test hypotheses about the characteristics of a population</p></li>
-<li class="fragment"><p><strong>Estimation</strong>: Using sample data to approximate population parameters.</p></li>
-<li class="fragment"><p><strong>Hypotheses Testing</strong>: Determining if there is enough evidence in a sample to support a claim about a population.</p></li>
-<li class="fragment"><p><strong>Prediction</strong>: Forecasting future events based on historical data.</p></li>
+<li class="fragment"><p><strong>Population</strong>: all elements of interest (every future impression).</p></li>
+<li class="fragment"><p><strong>Sample</strong>: a subset (Vungle’s 30 test days).</p></li>
+<li class="fragment"><p><strong>Descriptive Statistics</strong>: tabular, graphical, numerical summaries.</p></li>
+<li class="fragment"><p><strong>Inferential Statistics</strong>: using the sample to estimate or test claims about the population.</p></li>
+<li class="fragment"><p><strong>Estimation</strong>: approximate a population parameter (true mean eRPM).</p></li>
+<li class="fragment"><p><strong>Hypothesis Testing</strong>: weigh evidence for a claim (is B &gt; A?).</p></li>
+<li class="fragment"><p><strong>Prediction</strong>: forecast future outcomes from data.</p></li>
 </ul>
 </div>
 </div>
@@ -841,68 +973,76 @@ Professor: Davi Moreira
 <h1>Data Science, Big Data, and Data Mining</h1>
 
 </section>
-<section id="data-science-big-data-and-data-mining---definitions" class="slide level2 center">
-<h2>Data Science, Big Data, and Data Mining - Definitions</h2>
+<section id="data-science-big-data-and-data-mining-definitions" class="slide level2 center">
+<h2>Data Science, Big Data, and Data Mining — Definitions</h2>
 <ul>
 <li><strong>Data Science</strong>:
 <ul>
-<li>The interdisciplinary field that uses scientific methods, processes, algorithms, and systems to extract knowledge and insights from structured and unstructured data.</li>
+<li>The interdisciplinary field that uses scientific methods, algorithms, and systems to extract knowledge and insights from structured and unstructured data.</li>
 </ul></li>
 <li><strong>Big Data</strong>:
 <ul>
-<li>Extremely large datasets that may be analyzed computationally to reveal patterns, trends, and associations, especially relating to human behavior and interactions.</li>
+<li>Extremely large datasets analyzed computationally to reveal patterns, trends, and associations — especially about human behavior.</li>
 </ul></li>
 <li><strong>Data Mining</strong>:
 <ul>
-<li>The practice of examining large databases to generate new information, involving methods at the intersection of machine learning, statistics, and database systems.</li>
+<li>Examining large databases to generate new information; at the intersection of machine learning, statistics, and database systems.</li>
 </ul></li>
 </ul>
 </section>
 <section id="how-data-science-big-data-and-data-mining-are-used" class="slide level2 center">
-<h2>How Data Science, Big Data, and Data Mining are Used</h2>
+<h2>How Data Science, Big Data, and Data Mining Are Used</h2>
 <div class="r-fit-text">
 <ul>
 <li><strong>Data Science</strong>:
 <ul>
-<li>Personalizing marketing efforts by analyzing customer data to predict preferences and buying behavior.</li>
-<li>Optimizing supply chain management through predictive analytics.</li>
+<li>Personalizing marketing by predicting preferences and buying behavior.</li>
+<li>Optimizing supply chains through predictive analytics.</li>
 </ul></li>
 <li><strong>Big Data</strong>:
 <ul>
-<li>Analyzing customer feedback and social media interactions to improve customer service and develop new products.</li>
-<li>Enhancing risk management in financial institutions by monitoring transaction patterns and detecting fraudulent activities.</li>
+<li>Mining customer feedback and social media to improve service and products.</li>
+<li>Detecting fraud by monitoring transaction patterns in real time.</li>
 </ul></li>
 <li><strong>Data Mining</strong>:
 <ul>
-<li>Identifying potential leads and sales opportunities by analyzing past sales data and customer demographics.</li>
-<li>Enhancing customer retention by understanding churn patterns and developing targeted retention strategies.</li>
+<li>Surfacing sales leads from past purchases and demographics.</li>
+<li>Reducing churn by learning who is about to leave and why.</li>
 </ul></li>
 </ul>
 </div>
 </section></section>
 <section>
-<section id="summary" class="title-slide slide level1 center" data-background-color="#cfb991">
-<h1>Summary</h1>
+<section id="the-takeaway" class="title-slide slide level1 center" data-background-color="#cfb991">
+<h1>The Takeaway</h1>
 
 </section>
-<section id="summary-1" class="slide level2 center">
+<section id="managers-takeaway" class="slide level2 center">
+<h2>Manager’s Takeaway</h2>
+<p><br></p>
+<ul>
+<li class="fragment"><p><strong>One sentence:</strong> today we turned a CEO’s question — <em>roll out B or keep A?</em> — into a precise data problem, and built the vocabulary to describe it.</p></li>
+<li class="fragment"><p><strong>One number to remember:</strong> <strong>60 rows × 7 variables = 420 values</strong> — that is Vungle’s dataset, and you can name every element, variable, and observation in it.</p></li>
+<li class="fragment"><p><strong>One principle:</strong> the <strong>scale of a variable</strong> determines which statistics are valid — count <code>algorithm</code>, average <code>erpm</code>.</p></li>
+<li class="fragment"><p><strong>Practice:</strong> open <code>data/vungle_daily.xlsx</code>, install the Analysis ToolPak, and run <strong>Descriptive Statistics</strong> on <code>erpm</code>. Bring one question to next class.</p></li>
+</ul>
+</section>
+<section id="carry-forward" class="slide level2 center">
+<h2>Carry-forward</h2>
+<ul>
+<li><p><strong>Your client (homework):</strong> open your team’s case dataset and write its <strong>data audit</strong> — elements, variables, and the type &amp; scale of each — then compute the <strong>mean and median</strong> of its key outcome.</p></li>
+<li><p><strong>Next time:</strong> we go deeper into <em>describing</em> — spread, shape, the boxplot, and how two variables move together.</p></li>
+</ul>
+</section>
+<section id="summary" class="slide level2 center">
 <h2>Summary</h2>
 <p>Some key takeaways from this session:</p>
 <ul>
-<li><strong>Course Overview</strong>:
-<ul>
-<li>Materials and resources available on Brightspace and the course webpage.</li>
-<li>You are welcome to join virtual office hours!</li>
-<li>If you need an individual appointment, e-mail me!</li>
-</ul></li>
-<li><strong>Key Concepts</strong>:
-<ul>
-<li>Importance of statistics in business decision-making.</li>
-<li>Study Design.</li>
-<li>Data summary and visualization good practices.</li>
-<li>Distinction between Descriptive and Inferential Statistics.</li>
-<li>Data Science, Big Data, and Data Mining</li>
-</ul></li>
+<li><strong>The spine case:</strong> the Vungle A/B test — <em>is B better than A?</em> — will motivate every method this term.</li>
+<li><strong>Statistics</strong> turns data into defensible business decisions; it splits into <strong>descriptive</strong> (summarize) and <strong>inferential</strong> (generalize).</li>
+<li><strong>Data vocabulary:</strong> elements, variables, observations; categorical vs.&nbsp;quantitative; the four scales of measurement — and the rule that <strong>scale determines method</strong>.</li>
+<li><strong>Study design:</strong> Vungle ran a randomized <strong>experiment</strong>, which is what licenses <em>causal</em> claims.</li>
+<li><strong>Excel is your toolkit:</strong> install the Analysis ToolPak and meet the dataset on day one.</li>
 </ul>
 </section></section>
 <section id="thank-you" class="title-slide slide level1 center" data-background-color="#cfb991">

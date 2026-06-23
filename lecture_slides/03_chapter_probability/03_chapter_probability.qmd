@@ -2,7 +2,7 @@
 title: "<span style = 'font-size: 100%;'> QM 6700: Business Analytics </span>"
 subtitle: "<span style = 'font-size: 150%;'> Probability </span>"
 author: "Professor<br>Davi Moreira<br>"
-# date: "2026-08-28"
+# date: "2026-09-28"
 # date-format: "MMMM DD, YYYY"
 format:
   revealjs:
@@ -28,29 +28,500 @@ html-math-method:
 
 :::::: nonincremental
 ::::: columns
-::: {.column width="50%" style="text-align: center; justify-content: center; align-items: center;"}
-- Experiments, Sample Spaces, and Events
-
-- Assigning Probabilities
-
-- Events and Their Probabilities
-
-- Some Basic Relationships of Probability
-  - Complement, Addition, Conditional, Multiplication
+::: {.column style="width: 50%; text-align: center; justify-content: center; align-items: center;"}
+- Case Spotlight: the Vungle conversion funnel
+- Experiments, sample spaces, and events
+- Assigning probabilities; basic relationships
+- Conditional probability — the funnel as a chain
 :::
 
-::: {.column width="50%" style="text-align: center; justify-content: center; align-items: center;"}
-- Conditional Probability and Independence
-
-- Bayes' Theorem
-
-- *(TBD — content to be developed for QM 6700)*
+::: {.column style="width: 50%; text-align: center; justify-content: center; align-items: center;"}
+- The multiplication law and independence
+- Bayes' theorem: revising a belief with evidence
+- Marginal vs. conditional — the manager's trap
+- The decision: what a single install tells you
 :::
 :::::
 ::::::
 
-# Section placeholder {background-color="#2C3E50"}
+# Case Spotlight: The Vungle Funnel {background-color="#cfb991"}
 
-## TBD
+## Every Impression Is a Gamble
 
-Content to be developed.
+<br>
+
+- [Vungle](https://en.wikipedia.org/wiki/Liftoff_Mobile) serves a 15-second video ad inside another app. Most of the time it earns money only when the viewer **installs** the advertised app.
+
+- Each impression travels a **funnel**: it can be watched to **completion**, then **clicked**, then turn into an **install** — and at every step, most users drop off.
+
+- So every ad served is a small bet. The whole business is the **probability** that the bet pays off — and how that probability changes as the user moves down the funnel.
+
+- We carry the same June 2014 A/B dataset from before: 30 days, two algorithms (**A** and **B**), the full funnel counts in `data/vungle_daily.csv`.
+
+## The Brief — Today's Managerial Question
+
+<br>
+
+> "What is the chance a **random impression** ends in an install? And if we already know it was **clicked**, how does that chance change? Finally — we just recorded **one install**: how likely is it that it came from algorithm **B**?"
+
+<br>
+
+- These three questions are the three pillars of probability: a **marginal** chance, a **conditional** chance, and a **reverse** (Bayes) chance.
+
+- **How today's studio runs:** I demo each idea on the Vungle funnel (and a quick textbook anchor) → **your team** builds the funnel as a probability tree and runs a Bayes update → we debrief what one install really tells you.
+
+## How Today's Tools Answer It
+
+<br>
+
+Every probability concept today maps onto the funnel:
+
+| Funnel question | The tool |
+|---|---|
+| List every outcome of "serve one ad" | **Experiment, sample space, events** |
+| Chance a random impression installs | **Marginal probability** |
+| Chance of install **given** a click | **Conditional probability** |
+| Chain the funnel steps into one rate | **Multiplication law** |
+| Given an install, was it A or B? | **Bayes' theorem** |
+
+<br>
+
+- One funnel, five tools — and the last one (Bayes) is where intuition usually breaks.
+
+# Experiments, Events, and Probability {background-color="#cfb991"}
+
+## The Vocabulary of Uncertainty
+
+<br>
+
+- A **random experiment** is any process whose outcome is not known in advance — *serve one impression and watch what happens.*
+
+- The **sample space** $S$ is the set of **all** possible outcomes (the *sample points*).
+
+- An **event** is a collection of outcomes — a subset of $S$.
+
+::: fragment
+
+| Term | "Serve one Vungle impression" |
+|---|---|
+| Experiment | Show one ad, follow it down the funnel |
+| Sample space | $S = \{$ no completion, completion-no-click, click-no-install, **install** $\}$ |
+| Event | $I$ = "the impression installs" = one outcome in $S$ |
+
+:::
+
+## What a Probability Is
+
+<br>
+
+- A **probability** is a number measuring how likely an event is. Two rules anchor everything:
+
+::: fragment
+
+$$
+0 \le P(E_i) \le 1 \qquad\qquad \sum_{i=1}^{n} P(E_i) = 1
+$$
+
+:::
+
+- Near **0** = almost impossible; near **1** = almost certain.
+
+- **Where do the numbers come from?** Three methods:
+
+  - **Classical** — equally likely outcomes (a fair die: each face $1/6$).
+  - **Relative frequency** — from data: *Vungle ran 236M impressions and saw 951,666 installs* → $P \approx 0.40\%$.
+  - **Subjective** — informed judgment when no data exist (a new product's chance of success).
+
+- Vungle is a **relative-frequency** shop: 30 days of counts give us all our probabilities.
+
+## Basic Relationships You Already Use
+
+::: r-fit-text
+| Relationship | Meaning | Formula |
+|---|---|---|
+| **Complement** | "$A$ does **not** happen" | $P(A^c) = 1 - P(A)$ |
+| **Union** | "$A$ **or** $B$ (or both)" | $P(A \cup B) = P(A) + P(B) - P(A \cap B)$ |
+| **Intersection** | "$A$ **and** $B$ together" | $P(A \cap B)$ — the *joint* probability |
+| **Mutually exclusive** | $A$ and $B$ cannot co-occur | $P(A \cap B) = 0 \Rightarrow P(A \cup B) = P(A) + P(B)$ |
+:::
+
+<br>
+
+- **Complement, on the funnel:** if $P(\text{install}) = 0.40\%$, then $P(\text{no install}) = 99.60\%$. Most bets lose — that is the ad business.
+
+- The **addition law** subtracts the overlap so you don't double-count it: a customer who buys *both* the DVD *and* the HDTV is counted once in "DVD **or** HDTV."
+
+## Anchor Example: Reading a Contingency Table
+
+:::: nonincremental
+::: r-fit-text
+A retailer logs **100 customers** by TV type bought and whether they also bought a **DVD player**. The body holds **joint** counts; the margins hold **marginal** totals.
+
+| | Regular | Flat Screen | HDTV | **Total** |
+|---|---:|---:|---:|---:|
+| **No DVD** | 20 | 10 | 10 | **40** |
+| **Bought DVD** | 5 | 25 | 30 | **60** |
+| **Total** | **25** | **35** | **40** | **100** |
+
+- **Joint:** $P(\text{DVD and HDTV}) = 30/100 = 0.30$ — a body cell over the grand total.
+- **Marginal:** $P(\text{Flat Screen}) = 35/100 = 0.35$ — a margin over the grand total.
+- **Addition law:** $P(\text{DVD or HDTV}) = 0.60 + 0.40 - 0.30 = 0.70$.
+:::
+::::
+
+# Conditional Probability: The Funnel as a Chain {background-color="#cfb991"}
+
+## Given That… — The Most Useful Idea Today
+
+<br>
+
+- A **conditional probability** is the chance of $A$ **once you know** $B$ has happened, written $P(A \mid B)$:
+
+::: fragment
+
+$$
+P(A \mid B) = \frac{P(A \cap B)}{P(B)}
+$$
+
+:::
+
+- **Intuition:** $B$ becoming known **shrinks the sample space** to just the $B$ outcomes; you re-weigh $A$ inside that smaller world.
+
+- **On the contingency table:** $P(\text{DVD} \mid \text{HDTV}) = \dfrac{30/100}{40/100} = \dfrac{30}{40} = 0.75$ — restrict to the 40 HDTV buyers, then ask how many bought a DVD.
+
+- The whole Vungle funnel is **nothing but a chain of conditional probabilities.**
+
+## The Vungle Funnel Is Conditional Probability
+
+<br>
+
+- Each funnel step *conditions* on surviving the previous one. For algorithm **A** (June totals):
+
+::: fragment
+
+| Step | Conditional probability | Value |
+|---|---|---:|
+| Watched to completion | $P(\text{complete} \mid \text{impression})$ | **89.28%** |
+| Clicked, given completed | $P(\text{click} \mid \text{complete})$ | **5.68%** |
+| Installed, given clicked | $P(\text{install} \mid \text{click})$ | **7.93%** |
+| Installed overall | $P(\text{install} \mid \text{impression})$ | **0.4025%** |
+
+:::
+
+- Notice the **marginal** install rate ($0.40\%$) is tiny, but the **conditional** rate *given a click* ($7.93\%$) is 20× larger. **Knowing the user clicked changes everything.**
+
+## The Funnel as a Probability Tree
+
+```{r  echo=FALSE, out.width = "82%",fig.align="center"}
+knitr::include_graphics("figs/funnel_tree_A.png")
+```
+
+::: nonincremental
+- Each branch is a conditional probability; multiply **along a path** to reach a leaf.
+:::
+
+## The Multiplication Law: Chaining the Steps
+
+<br>
+
+- Rearranging the conditional formula gives the **multiplication law** — the probability that **both** events occur:
+
+::: fragment
+
+$$
+P(A \cap B) = P(B)\, P(A \mid B) = P(A)\, P(B \mid A)
+$$
+
+:::
+
+- Chained down the funnel, it rebuilds the end-to-end install rate from the three step rates:
+
+::: fragment
+
+$$
+\underbrace{P(\text{install} \mid \text{imp})}_{0.4025\%} = \underbrace{P(\text{comp} \mid \text{imp})}_{89.28\%} \times \underbrace{P(\text{click} \mid \text{comp})}_{5.68\%} \times \underbrace{P(\text{install} \mid \text{click})}_{7.93\%}
+$$
+
+:::
+
+- $0.8928 \times 0.0568 \times 0.0793 = 0.004025$ — exactly $951{,}666 / 236{,}459{,}402$. The chain **must** reconcile with the raw counts; if it doesn't, you mislabeled a step.
+
+## Independence: When "Given" Changes Nothing
+
+<br>
+
+- Two events are **independent** when conditioning on one does **not** move the other:
+
+::: fragment
+
+$$
+P(A \mid B) = P(A) \quad\Longleftrightarrow\quad P(A \cap B) = P(A)\,P(B)
+$$
+
+:::
+
+- **Funnel test:** is clicking independent of completing? Compare $P(\text{click} \mid \text{complete}) = 5.68\%$ with the unconditional click rate $P(\text{click} \mid \text{impression}) = 5.07\%$. They differ → **not independent**: completing the video makes a click *more* likely. That is *why* the funnel must be modeled with conditional, not marginal, probabilities.
+
+- **Warning — do not confuse with mutually exclusive.** Mutually exclusive events with nonzero probability are the *opposite* of independent: if one happens the other *cannot*, so knowing one is maximally informative.
+
+## Excel: Build the Funnel Rates from the Raw File
+
+::::: nonincremental
+:::: columns
+::: {.column width="40%"}
+<br>
+
+**No ToolPak tool needed** — probabilities are just **ratios** of `SUMIF` totals.
+
+- `=SUMIF(algorithm,"A",impressions)` → $n_A$
+- `=SUMIF(algorithm,"A",installs)` → $x_A$
+- Conditional rate = the right cell ÷ the right total.
+
+<br>
+
+This is the workhorse move of funnel analytics — every rate is a divided pair of cells.
+:::
+
+::: {.column width="60%"}
+```{r  echo=FALSE, out.width = "100%",fig.align="center"}
+knitr::include_graphics("figs/excel_conditional_cells.png")
+```
+:::
+::::
+:::::
+
+## ⏱️ Team Sprint — Build the Funnel Tree
+
+::: {.sprint .nonincremental}
+**Decide:** what is the chance a random impression installs — and how does each funnel step change that chance?
+
+**Data:** `data/vungle_probability.xlsx` (or `vungle_daily.csv`) · **Time:** ~12 min
+
+1. With `SUMIF`, total **impressions, completes, clicks, installs** for **Algorithm B**.
+2. Compute the **three conditional rates**: $P(\text{comp}\mid\text{imp})$, $P(\text{click}\mid\text{comp})$, $P(\text{install}\mid\text{click})$.
+3. **Multiply** them and check the product equals installs ÷ impressions (the multiplication law).
+4. Sketch B's funnel as a **probability tree** with the branch probabilities labeled.
+
+**Hand in (1 slide):** B's three conditional rates, the chained install rate, and a one-line read of where B leaks the most.
+:::
+
+# Bayes' Theorem: Revising a Belief {background-color="#cfb991"}
+
+## The Reverse Question
+
+<br>
+
+- The funnel runs **forward**: given the algorithm, what is the install rate? Bayes runs it **backward**: *we just saw an install — which algorithm produced it?*
+
+- We **flip the conditioning**: we know $P(\text{install} \mid \text{algorithm})$, we want $P(\text{algorithm} \mid \text{install})$.
+
+- The ingredients:
+
+  - **Prior** $P(A_i)$ — belief *before* the evidence (here: each algorithm's share of traffic).
+  - **Likelihood** $P(B \mid A_i)$ — how probable the evidence is under each cause (the install rate).
+  - **Posterior** $P(A_i \mid B)$ — the revised belief *after* the evidence.
+
+::: fragment
+
+$$
+\text{Prior} \;\xrightarrow{\;\text{new information}\;}\; \text{Posterior}
+$$
+
+:::
+
+## Bayes' Theorem — The Formula
+
+<br>
+
+:::: {style="font-size: 88%;"}
+- For mutually exclusive, collectively exhaustive causes $A_1, \dots, A_k$ and evidence $B$:
+
+::: fragment
+
+$$
+P(A_i \mid B) = \frac{P(A_i)\,P(B \mid A_i)}{\displaystyle\sum_{j=1}^{k} P(A_j)\,P(B \mid A_j)}
+$$
+
+:::
+
+- The **numerator** is one joint probability $P(A_i \cap B) = P(A_i)\,P(B\mid A_i)$ (the multiplication law).
+
+- The **denominator** is $P(B)$ — the sum of *all* the joints, by the **total probability** rule.
+
+- So Bayes is just: **(this path's joint) ÷ (total of all joints).** A table does the bookkeeping.
+::::
+
+## Anchor Example: A Test-Market Decision
+
+::: r-fit-text
+A bank's new product has three possible fates. **Priors** from past launches: $P(\text{Failure}) = 0.80$, $P(\text{Marginal}) = 0.15$, $P(\text{Major success}) = 0.05$. A **test market** then returns a *large* share. How likely is each fate now?
+
+| Outcome $A_i$ | Prior $P(A_i)$ | Likelihood $P(\text{Large}\mid A_i)$ | Joint | Posterior $P(A_i\mid\text{Large})$ |
+|---|---:|---:|---:|---:|
+| Failure | 0.80 | 0.02 | 0.0160 | 0.0160 / 0.1010 = **0.158** |
+| Marginal | 0.15 | 0.24 | 0.0360 | **0.356** |
+| Major success | 0.05 | 0.98 | 0.0490 | 0.0490 / 0.1010 = **0.485** |
+| **Total** | **1.00** | | $P(\text{Large}) = $ **0.1010** | **1.000** |
+
+A *large* test result lifts "Major success" from a **5%** prior to a **49%** posterior — nearly ten-fold — which is exactly why the test is worth running.
+:::
+
+## The Vungle Bayes Update — Setup
+
+<br>
+
+- **Evidence:** we recorded one **install**. **Question:** $P(B \mid \text{install})$?
+
+- **Prior** = each algorithm's share of impressions (the 1/16 hash split sends most traffic to A):
+
+::: fragment
+
+$$
+P(A) = \frac{236.5\text{M}}{252.3\text{M}} = 93.73\% \qquad P(B) = \frac{15.8\text{M}}{252.3\text{M}} = 6.27\%
+$$
+
+:::
+
+- **Likelihood** = each algorithm's install rate (from the funnel):
+
+::: fragment
+
+$$
+P(\text{install} \mid A) = 0.4025\% \qquad P(\text{install} \mid B) = 0.3541\%
+$$
+
+:::
+
+- B is both a **smaller** share *and* a **lower** converter — so before any math, an install should make B look *less* likely than its 6.27% prior.
+
+## The Vungle Bayes Update — The Table
+
+```{r  echo=FALSE, out.width = "92%",fig.align="center"}
+knitr::include_graphics("figs/bayes_install_table.png")
+```
+
+::: nonincremental
+- $P(B \mid \text{install}) = \dfrac{0.0627 \times 0.003541}{0.9373 \times 0.004025 + 0.0627 \times 0.003541} = \dfrac{0.000222}{0.003994} = \mathbf{5.56\%}$.
+:::
+
+## What the Update Means
+
+```{r  echo=FALSE, out.width = "60%",fig.align="center"}
+knitr::include_graphics("figs/bayes_prior_posterior.png")
+```
+
+::: nonincremental
+- An install *lowers* the chance it was B (6.27% → **5.56%**) — because B converts at a slightly lower rate, an install is weak evidence **against** B.
+- Same machinery, reversed for a **click**: $P(B \mid \text{click}) = 6.10\%$ — a click is also mild evidence against B, but less so than an install.
+:::
+
+## Excel: The Bayes Update in Formula Cells
+
+::::: nonincremental
+:::: columns
+::: {.column width="40%"}
+<br>
+
+The whole update is **five formula cells**:
+
+- two **priors** (impression shares),
+- two **likelihoods** (install rates),
+- two **joints** (prior × likelihood),
+- their **sum** = $P(\text{install})$,
+- posterior = B's joint ÷ the sum.
+
+<br>
+
+Master this layout — it is *the* template for every Bayes problem.
+:::
+
+::: {.column width="60%"}
+```{r  echo=FALSE, out.width = "100%",fig.align="center"}
+knitr::include_graphics("figs/excel_bayes_cells.png")
+```
+:::
+::::
+:::::
+
+# Debrief — Marginal vs. Conditional {background-color="#cfb991"}
+
+## The Manager's Trap
+
+<br>
+
+- The three answers to today's Brief are **three different numbers** for the *same* funnel:
+
+::: fragment
+
+| Question | Type | Answer |
+|---|---|---:|
+| Chance a random impression installs | **Marginal** | 0.40% |
+| Chance of install **given a click** | **Conditional** | 7.93% |
+| Given an install, chance it was **B** | **Bayes (reverse)** | 5.56% |
+
+:::
+
+- Confusing these is the classic error: *"B has a lower install rate, so most installs come from A"* is true — but only because A serves 15× more traffic, **not** because A is the better algorithm. **Rates and counts answer different questions.**
+
+## Why Conditioning Drives the Funnel
+
+<br>
+
+- The unconditional install rate (0.40%) makes every ad look like a near-certain loss. But the **conditional** rates tell the real operational story:
+
+  - A completed view raises the click chance (5.68% vs. 5.07% unconditional) → completion is **not** independent of clicking.
+  - A click raises the install chance 20-fold (7.93% vs. 0.40%).
+
+- **So where should Vungle spend?** On the steps with the steepest conditional lift — getting users to *complete* and *click*, because everything downstream is conditioned on them.
+
+- This is the bridge to next topics: those conditional rates become the **parameters** of probability *models* (a click is a Bernoulli trial with $p \approx 5\%$).
+
+## Manager's Takeaway
+
+<br>
+
+- **One sentence:** every funnel rate is a **conditional probability**, the end-to-end install rate is their **product**, and Bayes lets you read the funnel **backward** — from an observed install to the likely algorithm.
+
+- **One number to remember:** **0.40%** — the marginal install rate — and how a single click multiplies it 20-fold to **7.93%**.
+
+- **One caveat:** an install is *weak* evidence about which algorithm served it ($P(B\mid\text{install}) = 5.56\%$ vs. a $6.27\%$ prior) — base rates dominate, so never read a posterior off the likelihood alone.
+
+- **Practice with the real data:** `data/vungle_daily.csv` + `SUMIF` → reproduce the funnel rates; `data/vungle_probability.xlsx` holds the worked funnel and Bayes tables.
+
+## ⏱️ (Bonus) Team Sprint — Reverse the Funnel
+
+::: {.sprint .nonincremental}
+**Decide:** given an observed **install**, how strongly should you believe it came from B?
+
+**Data:** `data/vungle_probability.xlsx` · **Time:** ~6 min (if time allows)
+
+1. Set the **priors** $P(A), P(B)$ = each algorithm's impression share.
+2. Set the **likelihoods** = each algorithm's install rate.
+3. Build the **joint** column (prior × likelihood); sum to get $P(\text{install})$.
+4. Posterior $P(B\mid\text{install})$ = B's joint ÷ the sum — compare it to the prior.
+
+**Hand in (1 slide):** the posterior $P(B\mid\text{install})$ and one sentence on why an install is evidence *against* B.
+:::
+
+## Carry-forward
+
+::: nonincremental
+- **Your client (homework):** in your team's case, build a **contingency table** of two categorical variables, then compute one **marginal**, one **conditional**, and one **Bayes (reverse)** probability. State which managerial question each one answers.
+
+- **Next time:** probabilities become **decisions** — Decision Analysis: payoffs, expected value, and the value of information, on the Vungle rollout.
+:::
+
+## Summary
+
+::: nonincremental
+Some key takeaways from this session:
+
+- **Probability vocabulary:** an experiment has a **sample space** of outcomes; an **event** is a subset; probabilities live in $[0,1]$ and sum to 1.
+- **Basic relationships:** complement, union (addition law subtracts the overlap), intersection (joint), and mutually exclusive.
+- **Conditional probability** $P(A\mid B) = P(A\cap B)/P(B)$ is the engine of funnel analytics — each step conditions on surviving the last.
+- The **multiplication law** chains the steps into the end-to-end rate; **independence** is when conditioning changes nothing (the funnel steps are *not* independent).
+- **Bayes' theorem** reverses the conditioning — prior → posterior — and base rates dominate: an install is only weak evidence about which algorithm served it.
+- **Marginal, conditional, and reverse probabilities are different numbers** for the same data; match the number to the manager's question.
+:::
+
+# Thank you! {background-color="#cfb991"}

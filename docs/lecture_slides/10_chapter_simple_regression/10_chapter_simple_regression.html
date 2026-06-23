@@ -32,7 +32,7 @@
       vertical-align: middle;
     }
   </style>
-  <link rel="stylesheet" href="../../site_libs/revealjs/dist/theme/quarto-5ef896889b6f6a61ee8a14a51d301bed.css">
+  <link rel="stylesheet" href="../../site_libs/revealjs/dist/theme/quarto-113b5beb2a57b2deea58feb1108e76b2.css">
   <link href="../../site_libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
   <link href="../../site_libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
   <link href="../../site_libs/revealjs/plugin/reveal-menu/quarto-menu.css" rel="stylesheet">
@@ -133,7 +133,7 @@
 
 <section id="title-slide" class="quarto-title-block center">
   <h1 class="title"><span style="font-size: 100%;"> QM 6700: Business Analytics </span></h1>
-  <p class="subtitle"><span style="font-size: 150%;"> Simple Linear Regression</span></p>
+  <p class="subtitle"><span style="font-size: 150%;"> Simple Linear Regression </span></p>
 
 <div class="quarto-title-authors">
 <div class="quarto-title-author">
@@ -147,1860 +147,758 @@ Professor<br>Davi Moreira<br>
 <section id="overview" class="slide level2 center">
 <h2>Overview</h2>
 <div class="columns">
-<div class="column" style="text-align: center; justify-content: center; align-items: center;">
+<div class="column" style="width: 50%; text-align: center; justify-content: center; align-items: center;">
 <ul>
-<li>Simple Linear Regression Model</li>
-<li>Least Squares Method</li>
-<li>Coefficient of Determination</li>
-<li>Model Assumptions</li>
-<li>Testing for Significance</li>
+<li>New Case Spotlight: an auto-parts retailer picking store sites</li>
+<li>From <em>comparing</em> groups to <em>predicting</em> an outcome</li>
+<li>The simple linear regression model</li>
+<li>Least squares: the best-fit line</li>
+<li>Interpreting the slope and intercept</li>
+<li><span class="math inline">\(R^2\)</span>: how much does the line explain?</li>
 </ul>
-</div><div class="column" style="text-align: center; justify-content: center; align-items: center;">
+</div><div class="column" style="width: 50%; text-align: center; justify-content: center; align-items: center;">
 <ul>
-<li>Excel’s Regression Tool</li>
-<li>Using the Estimated Regression Equation for Estimation and Prediction</li>
-<li>Residual Analysis: Validating Model Assumptions</li>
-<li>Outliers and Influential Observations</li>
+<li>Is the relationship real? The <span class="math inline">\(t\)</span>-test on the slope</li>
+<li>Confidence interval for the slope</li>
+<li>Residual analysis: checking the assumptions</li>
+<li>Predicting sales for a brand-new store</li>
+<li>Confidence vs.&nbsp;prediction intervals</li>
+<li>From a fitted line to a site recommendation</li>
 </ul>
 </div></div>
 </section>
 <section>
-<section id="association-between-two-variables" class="title-slide slide level1 center" data-background-color="#cfb991">
-<h1>Association Between Two Variables</h1>
+<section id="case-spotlight-auto-parts-retail" class="title-slide slide level1 center" data-background-color="#cfb991">
+<h1>Case Spotlight: Auto-Parts Retail</h1>
 
 </section>
-<section id="covariance" class="slide level2 center">
-<h2>Covariance</h2>
+<section id="a-new-client-where-should-the-next-store-go" class="slide level2 center">
+<h2>A New Client — Where Should the Next Store Go?</h2>
 <p><br></p>
-
-<img data-src="figs/scatter_plot.png" class="quarto-figure quarto-figure-center r-stretch" style="width:50.0%"><p><br></p>
 <ul>
-<li>The <a href="https://en.wikipedia.org/wiki/Covariance">Covariance</a> is a measure of the linear association between two variables.</li>
-<li>Positive values indicate a positive relationship.</li>
-<li>Negative values indicate a negative relationship.</li>
+<li class="fragment"><p>We close the Vungle engagement and open a new one. Our client is a regional <strong>auto-parts retailer</strong> with <strong>45 stores</strong> and capital to open more.</p></li>
+<li class="fragment"><p>The real-estate team scores prospective sites on demographics — population, income — and on the store’s <strong>Yelp rating</strong> (a proxy for service quality once a store is open).</p></li>
+<li class="fragment"><p>The question on the table: <strong>which sites will sell?</strong> The CFO wants every new lease backed by a sales forecast, not a hunch.</p></li>
+<li class="fragment"><p>We have one dataset, <code>data/autoparts.csv</code>: for each of the 45 existing stores, its <strong>2012 annual sales</strong> ($K), trade-area <strong>population</strong> and <strong>income</strong>, an <strong>end-cap</strong> placement flag, and its <strong>Yelp rating</strong>.</p></li>
+<li class="fragment"><p>Until now we <em>compared</em> two groups. Now we <em>predict</em> a number — and that is what <strong>regression</strong> does.</p></li>
 </ul>
-<p><br></p>
-<p><br></p>
 </section>
-<section id="correlation-coefficient" class="slide level2 center">
-<h2>Correlation Coefficient</h2>
-<p><br></p>
-
-<img data-src="figs/xkcd.png" class="quarto-figure quarto-figure-center r-stretch" style="width:80.0%"><ul>
-<li><p><a href="https://en.wikipedia.org/wiki/Correlation">Correlation</a> is a unit-free measure of linear association and not necessarily causation.</p></li>
-<li><p>The coefficient can take on values between −1 and +1.</p>
-<ul>
-<li>Values near −1 indicate a strong negative linear relationship.</li>
-<li>Values near +1 indicate a strong positive linear relationship.</li>
-</ul></li>
-<li><p>The closer the correlation is to zero, the weaker the linear relationship.</p></li>
-</ul>
-<p><br></p>
-</section></section>
-<section>
-<section id="model" class="title-slide slide level1 center" data-background-color="#cfb991">
-<h1>Model</h1>
-
-</section>
-<section id="what-is-a-model" class="slide level2 center">
-<h2>What is a model?</h2>
-<div class="columns">
-<div class="column" style="text-align: center; justify-content: center; align-items: center;">
-<p><br></p>
-<p><br></p>
-<p><br></p>
+<section id="the-brief-todays-managerial-question" class="slide level2 center">
+<h2>The Brief — Today’s Managerial Question</h2>
 <p><br></p>
 <blockquote>
-<p>All models are wrong, but some are useful.</p>
-<p>— George Box</p>
+<p>“Does a store’s <strong>Yelp rating</strong> predict its <strong>annual sales</strong>? If so, by how much — and how confident are we when we forecast a brand-new store?”</p>
 </blockquote>
-</div><div class="column" style="text-align: center; justify-content: center; align-items: center;">
-<div class="cell" data-layout-align="center">
-<div class="cell-output-display">
-<div class="quarto-figure quarto-figure-center">
-<figure>
-<p><img data-src="figs/metro.png" class="quarto-figure quarto-figure-center" style="width:70.0%"></p>
-</figure>
-</div>
-</div>
-</div>
-<center>
-<a href="https://new.mta.info/map/5256">NY City Subway Map</a>
-</center>
-</div></div>
-<p><br></p>
-</section>
-<section id="what-does-it-mean-to-model-data" class="slide level2 center">
-<h2>What does it mean to “model” data?</h2>
 <p><br></p>
 <ul>
-<li class="fragment"><p>Let’s start with a very simple premise:</p>
-<ul>
-<li class="fragment">to model, we need to make explicit the conditions under which a variable <span class="math inline">\(X\)</span> is related to a variable <span class="math inline">\(Y\)</span>.</li>
-</ul></li>
-</ul>
-<p><br></p>
-<ul>
-<li class="fragment"><p>Let’s begin by giving specific names to these variables:</p>
-<ul>
-<li class="fragment"><p><strong>Dependent Variable (DV)</strong>: This is our phenomenon of interest, usually denoted as <span class="math inline">\(Y\)</span>.</p></li>
-<li class="fragment"><p><strong>Independent Variable (IV)</strong>: This is the phenomenon that explains/describe our dependent variable, generally denoted as <span class="math inline">\(X\)</span>.</p></li>
-</ul></li>
+<li class="fragment"><p><strong>Lecture 1</strong> builds and reads the model: fit <code>sales ~ yelp_rating</code>, interpret the slope (dollars per star), and measure fit with <span class="math inline">\(R^2\)</span>.</p></li>
+<li class="fragment"><p><strong>Lecture 2</strong> asks whether the relationship is <em>real</em> (a <span class="math inline">\(t\)</span>-test on the slope), checks the model’s <strong>assumptions</strong>, and turns the line into a <strong>site-selection forecast</strong>.</p></li>
+<li class="fragment"><p><strong>How the studio runs:</strong> I demo each step on a textbook anchor (<strong>Armand’s Pizza</strong>) and on the auto-parts data → <strong>your team</strong> fits the model and makes the site call.</p></li>
 </ul>
 </section>
-<section id="what-does-it-mean-to-model-data-1" class="slide level2 center">
-<h2>What does it mean to “model” data?</h2>
+<section id="from-comparing-to-predicting" class="slide level2 center">
+<h2>From Comparing to Predicting</h2>
 <p><br></p>
-<p>Mathematically, we model <span class="math inline">\(Y\)</span> as a <em>function</em> of <span class="math inline">\(X\)</span>. Statistically, modeling can serve two main purposes:</p>
-<ol type="1">
-<li class="fragment"><p><a href="https://www.statlearning.com/"><strong>Prediction</strong></a>: The possibility of using the values of <span class="math inline">\(X\)</span> to predict the value of <span class="math inline">\(Y\)</span>. There must be a substantive connection between these two variables for one to generate reliable predictions about the values of the other.</p></li>
-<li class="fragment"><p><a href="https://moderndive.com/5-regression.html"><strong>Explanation</strong></a>: Used to understand the connection and significance (both substantive and statistical) of the relationship between two variables. In this case, we aim to accurately estimate the impact of one variable on the other, preferably excluding any potential omitted variables.</p></li>
-</ol>
+<table class="caption-top">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>What we did (Topics 7–9)</th>
+<th>What we do now</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Estimate / test <strong>one</strong> number (a mean, a proportion)</td>
+<td>Model <strong>how one variable moves with another</strong></td>
+</tr>
+<tr class="even">
+<td>“Is B’s eRPM above $3.30?”</td>
+<td>“How many $ of sales per Yelp star?”</td>
+</tr>
+<tr class="odd">
+<td>Output: a decision (reject / fail to reject)</td>
+<td>Output: an <strong>equation you can forecast with</strong></td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+<ul>
+<li class="fragment"><p>Regression develops an <strong>equation</strong> showing how a <strong>dependent variable</strong> <span class="math inline">\(y\)</span> (what we predict — sales) relates to an <strong>independent variable</strong> <span class="math inline">\(x\)</span> (the predictor — Yelp rating).</p></li>
+<li class="fragment"><p><strong>Simple</strong> linear regression uses <strong>one</strong> predictor; the relationship is approximated by a <strong>straight line</strong>. (More predictors → multiple regression, next topic.)</p></li>
+</ul>
 </section></section>
 <section>
-<section id="motivation-walmart-carton-mix-optimization-study" class="title-slide slide level1 center" data-background-color="#cfb991">
-<h1>Motivation: Walmart Carton-Mix Optimization Study</h1>
+<section id="lecture-1-the-model-least-squares-and-r2" class="title-slide slide level1 center" data-background-color="#cfb991">
+<h1>Lecture 1 — The Model, Least Squares, and <span class="math inline">\(R^2\)</span></h1>
 
 </section>
-<section id="motivation-walmart-carton-mix-optimization-study-1" class="slide level2 center">
-<h2>Motivation: Walmart Carton-Mix Optimization Study</h2>
+<section id="the-brief-lecture-1" class="slide level2 center">
+<h2>The Brief — Lecture 1</h2>
+<p><br></p>
+<blockquote>
+<p>“Fit a straight line to <code>sales ~ yelp_rating</code>. What does the slope mean in dollars, and how much of the store-to-store sales gap does Yelp rating explain?”</p>
+</blockquote>
 <p><br></p>
 <ul>
-<li class="fragment"><p>Walmart is the world’s largest retailer with over 245 million customers weekly.</p></li>
-<li class="fragment"><p>In 2000, Walmart launched its online shopping site, <code>Walmart.com</code>.</p></li>
-<li class="fragment"><p>A network of distribution centers was created in the US to manage packaging for online orders.</p></li>
+<li class="fragment"><p>By the end of Lecture 1 <strong>your team</strong> will have a fitted equation, a dollars-per-star interpretation, and an <span class="math inline">\(R^2\)</span> — the raw material for a site score.</p></li>
+<li class="fragment"><p>The decision it feeds: <strong>rank prospective sites</strong> by predicted sales.</p></li>
 </ul>
 </section>
-<section id="motivation-walmart-carton-mix-optimization-study-2" class="slide level2 center">
-<h2>Motivation: Walmart Carton-Mix Optimization Study</h2>
+<section id="the-simple-linear-regression-model" class="slide level2 center">
+<h2>The Simple Linear Regression Model</h2>
 <p><br></p>
-<p><strong>Carton-Mix Optimization Study</strong></p>
 <ul>
-<li class="fragment"><p><strong>Location</strong>: Carrollton, Georgia distribution center.</p></li>
-<li class="fragment"><p><strong>Objective</strong>: Minimize material, labor, and shipping costs by optimizing the size and number of cartons.</p></li>
-<li class="fragment"><p><strong>Constraints</strong>:</p>
-<ul>
-<li class="fragment">Minimum and maximum carton sizes.</li>
-<li class="fragment">One-size carton limit for automatically constructed cartons.</li>
-</ul></li>
-<li class="fragment"><p><strong>Peak Season</strong>: November to December, with over 100,000 packages shipped per day.</p></li>
+<li class="fragment">The <strong>model</strong> describes how <span class="math inline">\(y\)</span> relates to <span class="math inline">\(x\)</span> and a random <strong>error term</strong> <span class="math inline">\(\varepsilon\)</span> in the whole population of stores:</li>
 </ul>
-</section>
-<section id="motivation-walmart-carton-mix-optimization-study-3" class="slide level2 center">
-<h2>Motivation: Walmart Carton-Mix Optimization Study</h2>
-<ul>
-<li>Data was collected to develop a cost model for optimizing carton mix.</li>
-<li>DV: material cost of a carton in dollars per carton.</li>
-<li>IV: volume of the carton measured in cubic inches per carton.</li>
-<li><strong>Cost Model Formula</strong>:</li>
-</ul>
+<div class="fragment">
 <p><span class="math display">\[
-y = -0.11 + 0.0014x
+y = \beta_0 + \beta_1 x + \varepsilon
 \]</span></p>
+</div>
 <ul>
-<li><p>Example Calculation:</p>
-<ul>
-<li>Carton volume: 2800 cubic inches</li>
-<li>Estimated material cost: <span class="math inline">\(y = -0.11 + 0.0014 \times 2800 = 3.81\)</span></li>
-</ul></li>
+<li class="fragment"><p><span class="math inline">\(\beta_0\)</span> (intercept) and <span class="math inline">\(\beta_1\)</span> (slope) are unknown <strong>population parameters</strong>; <span class="math inline">\(\varepsilon\)</span> captures everything about sales that Yelp rating does <strong>not</strong> explain.</p></li>
+<li class="fragment"><p>We never see <span class="math inline">\(\beta_0, \beta_1\)</span> — we <strong>estimate</strong> them from our 45-store sample. The estimated equation is</p></li>
 </ul>
-</section>
-<section id="motivation-walmart-carton-mix-optimization-study-4" class="slide level2 center">
-<h2>Motivation: Walmart Carton-Mix Optimization Study</h2>
-<p><strong>Implementation and Results</strong></p>
-<ul>
-<li>The regression model was used in an optimization algorithm in Microsoft Excel to provide Walmart managers a recommendation on the optimal mix of carton sizes to carry at the distribution center.</li>
-</ul>
-<p><strong>Results</strong>:</p>
-<ul>
-<li><p>First-year savings: $600,000</p></li>
-<li><p>Estimated annual savings across all distribution centers: $2 million</p></li>
-</ul>
-</section>
-<section id="simple-linear-regression" class="slide level2 center">
-<h2>Simple Linear Regression</h2>
-<p><br></p>
-<ul>
-<li class="fragment"><p>Managerial decisions often are based on the relationship between two or more variables.</p></li>
-<li class="fragment"><p><strong>Regression analysis</strong> can be used to develop an equation (as a conjecture) for the relationship between the variables.</p>
-<ul>
-<li class="fragment">The variable being predicted is called the <strong>dependent variable</strong> and is denoted by <strong>y</strong>.</li>
-<li class="fragment">The variables being used to predict the value of the dependent variable are called the <strong>independent variables</strong> and are denoted by <strong>x</strong>.</li>
-</ul></li>
-</ul>
-</section>
-<section id="simple-linear-regression-1" class="slide level2 center">
-<h2>Simple Linear Regression</h2>
-<p><br></p>
-<ul>
-<li class="fragment"><p><strong>Simple linear regression</strong> involves one independent variable and one dependent variable.</p></li>
-<li class="fragment"><p>The relationship between the two variables is linear, approximated by a straight line.</p>
-<ul>
-<li class="fragment">As an initial estimate of the unknown relationship.</li>
-<li class="fragment">A regression analysis is a trial-and-error exercise.</li>
-</ul></li>
-<li class="fragment"><p>Regression analysis involving two or more independent variables is called <strong>multiple regression</strong>.</p></li>
-</ul>
-</section>
-<section id="regression-objective" class="slide level2 center">
-<h2>Regression Objective</h2>
-<p><br></p>
-<ul>
-<li class="fragment"><p><strong>Interpretation</strong>: Determine whether variation in the dependent variable can be explained by (the variation of) the independent variable(s) by testing the statistical significance of the independent variable(s):</p>
-<ul>
-<li class="fragment">As a group (F-test).</li>
-<li class="fragment">Individually (t-tests).</li>
-</ul></li>
-<li class="fragment"><p><strong>Prediction</strong>: Study how to predict the dependent variable given the information of the independent variable(s).</p></li>
-</ul>
-<!--- Note: Data-driven regression contains only curve-fitting (i.e., obtaining the estimated line). Only calculus is involved.--->
-</section>
-<section id="applications" class="slide level2 center">
-<h2>Applications</h2>
-<p><br></p>
-<ul>
-<li class="fragment">Revenue vs.&nbsp;Advertising expenditure</li>
-<li class="fragment">Total cost vs.&nbsp;production quantity (variable and fixed costs)</li>
-<li class="fragment">NFL: Annual revenue vs.&nbsp;estimated team value</li>
-<li class="fragment">Total points earned vs.&nbsp;hours spent studying</li>
-<li class="fragment">Number of days absent vs.&nbsp;distance to work</li>
-<li class="fragment">Number of defective parts vs.&nbsp;line speed</li>
-<li class="fragment">Maintenance cost vs.&nbsp;age of the equipment</li>
-<li class="fragment">Sale price of 2007 Camry vs.&nbsp;mileage</li>
-<li class="fragment">Sales vs.&nbsp;promotion activities and Price</li>
-<li class="fragment">(Beta risk) Total return of an individual stock vs.&nbsp;total return for the stock market</li>
-<li class="fragment">Output vs.&nbsp;input</li>
-</ul>
-</section>
-<section id="simple-linear-regression-model" class="slide level2 center">
-<h2>Simple Linear Regression Model</h2>
-<p><br></p>
-<ul>
-<li><p>The equation that describes how <strong>y</strong> is related to <strong>x</strong> and an error term is called the <strong>regression model</strong>.</p></li>
-<li><p>The <strong>simple linear regression model</strong> for the data is:</p></li>
-</ul>
-<p><span class="math display">\[
-y = \beta_0 + \beta_1 x + \epsilon
-\]</span></p>
-<p>where:</p>
-<ul>
-<li><p><span class="math inline">\(\beta_0\)</span> and <span class="math inline">\(\beta_1\)</span> are the unknown <strong>parameters</strong> of the model,</p></li>
-<li><p><span class="math inline">\(\epsilon\)</span> is a random variable called the <strong>error term</strong> (unexplained error), with mean of 0 and unknown <strong>error variance</strong> <span class="math inline">\(\sigma^2\)</span>.</p></li>
-</ul>
-</section>
-<section id="simple-linear-regression-2" class="slide level2 center">
-<h2>Simple Linear Regression</h2>
-<p><br></p>
-
-<img data-src="figs/reg_error.png" class="quarto-figure quarto-figure-center r-stretch" style="width:70.0%"><p><br></p>
-</section>
-<section id="simple-linear-regression-equation" class="slide level2 center">
-<h2>Simple Linear Regression Equation</h2>
-<p><br></p>
-<ul>
-<li>The <strong>Simple Linear Regression Equation</strong> is:</li>
-</ul>
-<p><span class="math display">\[
-E(y) = \beta_0 + \beta_1 x
-\]</span></p>
-<p>Graph of the regression equation is a straight line.</p>
-<ul>
-<li><span class="math inline">\(E(y)\)</span> is the expected value of <strong>y</strong> for a given <strong>x</strong> value</li>
-<li><span class="math inline">\(\beta_0\)</span> is the <strong>y</strong> intercept of the regression line (unknown)</li>
-<li><span class="math inline">\(\beta_1\)</span> is the slope of the regression line (unknown)</li>
-</ul>
-</section>
-<section id="simple-linear-regression-equation-1" class="slide level2 center">
-<h2>Simple Linear Regression Equation</h2>
-<div class="r-fit-text">
-<div class="quarto-layout-panel" data-layout-ncol="3">
-<div class="quarto-layout-row">
-<div class="columns quarto-layout-cell" style="flex-basis: 33.3%;justify-content: flex-start;">
-<div class="column" style="text-align: center; justify-content: center; align-items: center;">
-<p><br></p>
-<div class="cell" data-layout-align="center">
-<div class="cell-output-display">
-<div class="quarto-figure quarto-figure-center">
-<figure>
-<p><img data-src="figs/reg_relationship_01.png" class="quarto-figure quarto-figure-center" style="width:70.0%"></p>
-</figure>
-</div>
-</div>
-</div>
-<center>
-Positive Linear Relationship
-</center>
-</div><div class="column" style="text-align: center; justify-content: center; align-items: center;">
-<p><br></p>
-<div class="cell" data-layout-align="center">
-<div class="cell-output-display">
-<div class="quarto-figure quarto-figure-center">
-<figure>
-<p><img data-src="figs/reg_relationship_02.png" class="quarto-figure quarto-figure-center" style="width:70.0%"></p>
-</figure>
-</div>
-</div>
-</div>
-<center>
-Negative Linear Relationship
-</center>
-</div><div class="column" style="text-align: center; justify-content: center; align-items: center;">
-<p><br></p>
-<div class="cell" data-layout-align="center">
-<div class="cell-output-display">
-<div class="quarto-figure quarto-figure-center">
-<figure>
-<p><img data-src="figs/reg_relationship_03.png" class="quarto-figure quarto-figure-center" style="width:70.0%"></p>
-</figure>
-</div>
-</div>
-</div>
-<center>
-No Linear Relationship
-</center>
-</div></div>
-</div>
-</div>
-</div>
-</section>
-<section id="estimated-simple-linear-regression-equation" class="slide level2 center">
-<h2>Estimated Simple Linear Regression Equation</h2>
-<p><br></p>
-<p>The <strong>estimated simple linear regression equation</strong>:</p>
+<div class="fragment">
 <p><span class="math display">\[
 \hat{y} = b_0 + b_1 x
 \]</span></p>
-<p>The graph is called the estimated/predicted regression line.</p>
+</div>
 <ul>
-<li class="fragment"><span class="math inline">\(\hat{y}\)</span> is the estimated/predicted value of <strong>y</strong> for a given <strong>x</strong> value.</li>
-<li class="fragment"><span class="math inline">\(b_0\)</span> is the <strong>y</strong>-intercept of the line, estimating <span class="math inline">\(\beta_0\)</span></li>
-<li class="fragment"><span class="math inline">\(b_1\)</span> is the slope of the line, estimating <span class="math inline">\(\beta_1\)</span></li>
+<li class="fragment"><span class="math inline">\(\hat{y}\)</span> is the <strong>predicted</strong> mean sales at a given rating; <span class="math inline">\(b_0, b_1\)</span> are the sample estimates of <span class="math inline">\(\beta_0, \beta_1\)</span>.</li>
 </ul>
 </section>
-<section id="random-error-epsilon-and-observed-residual-e" class="slide level2 center">
-<h2>Random Error (<span class="math inline">\(\epsilon\)</span>) and Observed Residual (<span class="math inline">\(e\)</span>)</h2>
+<section id="what-a-line-can-look-like" class="slide level2 center">
+<h2>What a Line Can Look Like</h2>
 <p><br></p>
-
-<img data-src="figs/reg_error_02.png" class="quarto-figure quarto-figure-center r-stretch" style="width:70.0%"></section>
-<section id="estimation-process" class="slide level2 center">
-<h2>Estimation Process</h2>
-<p><br></p>
-
-<img data-src="figs/reg_estimation.png" class="quarto-figure quarto-figure-center r-stretch" style="width:70.0%"></section>
-<section id="residualserrors" class="slide level2 center">
-<h2>Residuals/Errors</h2>
-<p><br></p>
-
-<img data-src="figs/reg_residuals.png" class="quarto-figure quarto-figure-center r-stretch" style="width:70.0%"></section></section>
-<section>
-<section id="least-squares-method" class="title-slide slide level1 center" data-background-color="#cfb991">
-<h1>Least Squares Method</h1>
-
-</section>
-<section id="least-squares-method-1" class="slide level2 center">
-<h2>Least Squares Method</h2>
-<p><br></p>
-<p><span class="math inline">\(y_i\)</span> = observed value of the dependent variable for the <strong>i</strong>-th observation.</p>
-<p><span class="math inline">\(\hat{y}_i\)</span> = estimated value of the dependent variable for the <strong>i</strong>-th observation.</p>
-<p><span class="math display">\[
-\text{Error or Residual} = \text{Observed} - \text{Predicted} = y_i - \hat{y}_i
-\]</span></p>
 <ul>
-<li><strong>Least Squares Criterion</strong>: To minimize the <strong>Sum of Squared Errors (SSE)</strong></li>
-</ul>
-<p><span class="math display">\[
-\min SSE = \min \sum (y_i - \hat{y}_i)^2 = \min \sum (y_i - b_0 - b_1 x_i)^2
-\]</span></p>
-</section>
-<section id="least-squares-method-2" class="slide level2 center">
-<h2>Least Squares Method</h2>
-<p><br></p>
-<p>Slope for the Estimated Regression Equation</p>
-<p><span class="math display">\[
-b_1 = \frac{\sum (x_i - \bar{x})(y_i - \bar{y})}{\sum (x_i - \bar{x})^2}
-\]</span></p>
-<p>where:</p>
+<li class="fragment"><p>The sign of <span class="math inline">\(\beta_1\)</span> sets the story:</p>
 <ul>
-<li class="fragment"><span class="math inline">\(x_i\)</span> = value of independent variable for <strong>i</strong>-th observation</li>
-<li class="fragment"><span class="math inline">\(y_i\)</span> = value of dependent variable for <strong>i</strong>-th observation</li>
-<li class="fragment"><span class="math inline">\(\bar{x}\)</span> = mean value for independent variable</li>
-<li class="fragment"><span class="math inline">\(\bar{y}\)</span> = mean value for dependent variable</li>
+<li class="fragment"><span class="math inline">\(\beta_1 &gt; 0\)</span> — <strong>positive</strong> relationship: higher <span class="math inline">\(x\)</span> goes with higher <span class="math inline">\(y\)</span> (we expect this for Yelp → sales).</li>
+<li class="fragment"><span class="math inline">\(\beta_1 &lt; 0\)</span> — <strong>negative</strong> relationship: higher <span class="math inline">\(x\)</span> goes with lower <span class="math inline">\(y\)</span>.</li>
+<li class="fragment"><span class="math inline">\(\beta_1 = 0\)</span> — <strong>no</strong> linear relationship: <span class="math inline">\(x\)</span> tells you nothing about <span class="math inline">\(y\)</span>.</li>
+</ul></li>
+<li class="fragment"><p><strong>Honest caveat — regression is not causation.</strong> A line that fits well says rating and sales <em>move together</em>; it does <strong>not</strong> prove better service <em>causes</em> sales. We will return to this when we test significance.</p></li>
 </ul>
 </section>
-<section id="least-squares-method-3" class="slide level2 center">
-<h2>Least Squares Method</h2>
+<section id="the-data-just-look-first" class="slide level2 center">
+<h2>The Data: Just Look First</h2>
+
+<img data-src="figs/autoparts_scatter.png" class="quarto-figure quarto-figure-center r-stretch" style="width:78.0%"><ul>
+<li>45 stores. Higher-rated stores clearly tend to sell more — but the cloud has spread. We need a <strong>line</strong> to summarize the trend and a <strong>number</strong> to summarize how tight it is.</li>
+</ul>
+</section>
+<section id="least-squares-define-best-fit" class="slide level2 center">
+<h2>Least Squares: Define “Best Fit”</h2>
 <p><br></p>
-<p><strong>y-Intercept for the Estimated Regression Equation</strong></p>
+<ul>
+<li class="fragment"><p>Infinitely many lines pass through a cloud of points. Which one is <strong>best</strong>? The one that makes the <strong>residuals</strong> smallest.</p></li>
+<li class="fragment"><p>A <strong>residual</strong> is the vertical gap between an actual store and the line:</p></li>
+</ul>
+<div class="fragment">
+<p><span class="math display">\[
+e_i = y_i - \hat{y}_i
+\]</span></p>
+</div>
+<ul>
+<li class="fragment"><strong>Least squares criterion:</strong> choose <span class="math inline">\(b_0, b_1\)</span> to <strong>minimize the sum of squared residuals</strong>:</li>
+</ul>
+<div class="fragment">
+<p><span class="math display">\[
+\min \;\; \text{SSE} = \sum_{i=1}^{n} (y_i - \hat{y}_i)^2
+\]</span></p>
+</div>
+<ul>
+<li class="fragment">Squaring penalizes big misses and keeps positives and negatives from cancelling.</li>
+</ul>
+</section>
+<section id="the-least-squares-formulas" class="slide level2 center">
+<h2>The Least-Squares Formulas</h2>
+<p><br></p>
+<div style="font-size: 90%;">
+<ul>
+<li class="fragment"><strong>Slope</strong> — the workhorse:</li>
+</ul>
+<div class="fragment">
+<p><span class="math display">\[
+b_1 = \frac{\sum_{i=1}^{n} (x_i - \bar{x})(y_i - \bar{y})}{\sum_{i=1}^{n} (x_i - \bar{x})^2}
+\]</span></p>
+</div>
+<ul>
+<li class="fragment"><strong>Intercept</strong> — forces the line through the point of averages <span class="math inline">\((\bar{x}, \bar{y})\)</span>:</li>
+</ul>
+<div class="fragment">
 <p><span class="math display">\[
 b_0 = \bar{y} - b_1 \bar{x}
 \]</span></p>
-</section>
-<section id="regression-modeling-steps" class="slide level2 center">
-<h2>Regression Modeling Steps</h2>
-<p><br></p>
-<div style="font-size: 80%;">
-<ol type="1">
-<li class="fragment">Define problem and propose model</li>
-<li class="fragment">Make model assumptions</li>
-<li class="fragment">Collect data</li>
-<li class="fragment">Do descriptive data analysis</li>
-<li class="fragment">Obtain the prediction equation and evaluate the model
+</div>
 <ul>
-<li class="fragment">Estimate the regression coefficients</li>
-<li class="fragment">Check adequacy of the overall model</li>
-<li class="fragment">Test significance of the overall model and the individual independent variables</li>
-<li class="fragment">Residual Analysis: Validate the model assumptions</li>
-</ul></li>
-<li class="fragment">Special issues (in multiple regression)
-<ul>
-<li class="fragment">Multicollinearity and variables selection</li>
-</ul></li>
-<li class="fragment">Special models and transformations (for model-building)</li>
-<li class="fragment">(Repeat Steps 1-7 if necessary.)</li>
-<li class="fragment">Prediction, Implementation, …</li>
-</ol>
+<li class="fragment">In Excel you rarely type these: <code>=SLOPE(y, x)</code>, <code>=INTERCEPT(y, x)</code>, or the full <strong>Regression</strong> tool do the arithmetic.</li>
+</ul>
 </div>
 </section>
-<section id="linear-regression-example" class="slide level2 center">
-<h2>Linear Regression: Example</h2>
-<p><br></p>
-<p><strong>Example</strong>: Armand’s Pizza Parlor Restaurants</p>
-<p>Data was collected from a sample of 10 Armand’s Pizza Parlor Restaurants near college campuses.</p>
-<p>For the <em>i-th</em> observation or restaurant in the sample:</p>
-<ul>
-<li class="fragment"><span class="math inline">\(x_i\)</span> is the size of the student population</li>
-<li class="fragment"><span class="math inline">\(y_i\)</span> is the quarterly sales.</li>
-</ul>
-</section>
-<section id="linear-regression-example-1" class="slide level2 center">
-<h2>Linear Regression: Example</h2>
-<table class="caption-top">
-<thead>
-<tr class="header">
-<th>Restaurant</th>
-<th>Student population (1000s)</th>
-<th>Quarterly sales ($1000s)</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>1</td>
-<td>2</td>
-<td>58</td>
-</tr>
-<tr class="even">
-<td>2</td>
-<td>6</td>
-<td>105</td>
-</tr>
-<tr class="odd">
-<td>3</td>
-<td>8</td>
-<td>88</td>
-</tr>
-<tr class="even">
-<td>4</td>
-<td>8</td>
-<td>118</td>
-</tr>
-<tr class="odd">
-<td>5</td>
-<td>12</td>
-<td>117</td>
-</tr>
-<tr class="even">
-<td>6</td>
-<td>16</td>
-<td>137</td>
-</tr>
-<tr class="odd">
-<td>7</td>
-<td>20</td>
-<td>157</td>
-</tr>
-<tr class="even">
-<td>8</td>
-<td>20</td>
-<td>169</td>
-</tr>
-<tr class="odd">
-<td>9</td>
-<td>22</td>
-<td>149</td>
-</tr>
-<tr class="even">
-<td>10</td>
-<td>26</td>
-<td>202</td>
-</tr>
-</tbody>
-</table>
-</section>
-<section id="linear-regression-example-excel" class="slide level2 center">
-<h2>Linear Regression: Example Excel</h2>
-<p><br></p>
-<p><strong>Example</strong>: Armand’s Pizza Parlor Restaurants</p>
-<p><br></p>
+<section id="what-the-criterion-is-minimizing" class="slide level2 center">
+<h2>What the Criterion Is Minimizing</h2>
 
-<img data-src="figs/armands_pizza.png" class="quarto-figure quarto-figure-center r-stretch" style="width:50.0%"><p><br></p>
-<p><br></p>
-</section>
-<section id="linear-regression-example-2" class="slide level2 center">
-<h2>Linear Regression: Example</h2>
-<div style="font-size: 80%;">
-<table class="caption-top">
-<thead>
-<tr class="header">
-<th>Metric</th>
-<th>Population</th>
-<th>Sales</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>Mean</td>
-<td>14</td>
-<td>130</td>
-</tr>
-<tr class="even">
-<td>Standard Error</td>
-<td>2.512</td>
-<td>13.220</td>
-</tr>
-<tr class="odd">
-<td>Median</td>
-<td>14</td>
-<td>127.5</td>
-</tr>
-<tr class="even">
-<td>Mode</td>
-<td>8</td>
-<td>N/A</td>
-</tr>
-<tr class="odd">
-<td>Standard Deviation</td>
-<td>7.944</td>
-<td>41.806</td>
-</tr>
-<tr class="even">
-<td>Sample Variance</td>
-<td>63.111</td>
-<td>1747.778</td>
-</tr>
-<tr class="odd">
-<td>Kurtosis</td>
-<td>-1.332</td>
-<td>-0.033</td>
-</tr>
-<tr class="even">
-<td>Skewness</td>
-<td>0</td>
-<td>-0.014</td>
-</tr>
-<tr class="odd">
-<td>Range</td>
-<td>24</td>
-<td>144</td>
-</tr>
-<tr class="even">
-<td>Minimum</td>
-<td>2</td>
-<td>58</td>
-</tr>
-<tr class="odd">
-<td>Maximum</td>
-<td>26</td>
-<td>202</td>
-</tr>
-<tr class="even">
-<td>Sum</td>
-<td>140</td>
-<td>1300</td>
-</tr>
-<tr class="odd">
-<td>Count</td>
-<td>10</td>
-<td>10</td>
-</tr>
-<tr class="even">
-<td>Confidence Level (95%)</td>
-<td>5.683</td>
-<td>29.907</td>
-</tr>
-</tbody>
-</table>
-</div>
-</section>
-<section id="linear-regression-example-3" class="slide level2 center">
-<h2>Linear Regression: Example</h2>
-<p><br></p>
-
-<img data-src="figs/armands_pizza_plot.png" class="quarto-figure quarto-figure-center r-stretch" style="width:50.0%"><p><br></p>
-<p><br></p>
-</section>
-<section id="linear-regression-example-excel-1" class="slide level2 center">
-<h2>Linear Regression: Example Excel</h2>
-<div class="columns">
-<div class="column" style="text-align: center; justify-content: center; align-items: center;">
-<p><br></p>
-<ul>
-<li><p>Producing a Scatter Diagram</p>
-<ul>
-<li>Step 1: Select cells B2:C11</li>
-<li>Step 2: Click the <strong>Insert</strong> tab on the Ribbon</li>
-<li>Step 3: In the Charts group, select <strong>Insert Scatter (X,Y)</strong> or <strong>Bubble Chart</strong></li>
-<li>Step 4: When the list of scatter diagram subtypes appears, select <strong>Scatter</strong> (chart in upper left corner)</li>
-</ul></li>
-</ul>
-</div><div class="column" style="text-align: center; justify-content: center; align-items: center;">
-<div class="fragment">
-<div style="font-size: 80%;">
-<ul>
-<li><p>Editing a Scatter Diagram</p>
-<ul>
-<li>Step 1: Click the <strong>Chart Title</strong> and replace it with <em>Armand’s Pizza Parlors</em></li>
-<li>Step 2: Click the <strong>Chart Elements</strong> button</li>
-<li>Step 3: When the list of chart elements appears:
-<ul>
-<li>Click <strong>Axis Titles</strong> (creates placeholders for titles)</li>
-<li>Click <strong>Gridlines</strong> (to deselect gridlines option)</li>
-<li>Click <strong>Trendline</strong></li>
-</ul></li>
-<li>Step 4: Click the horizontal <strong>Axis Title</strong> and replace it with <em>Student population (1000s)</em></li>
-<li>Step 5: Click the <strong>Vertical (Value) Axis Title</strong> and replace it with <em>Quarterly Sales ($1000s)</em></li>
-<li>Step 6: Select the <strong>Format Trendline</strong> option</li>
-<li>Step 7: When the Format Trendline dialog box appears:
-<ul>
-<li>Select <strong>Display equation on chart</strong></li>
-<li>Click the <strong>Fill &amp; Line</strong> button</li>
-<li>In the <strong>Dash type</strong> box, select <strong>Solid</strong></li>
-<li>Close the <strong>Format Trendline</strong> dialog box</li>
-</ul></li>
-</ul></li>
-</ul>
-</div>
-</div>
-</div></div>
-</section>
-<section id="linear-regression-example-4" class="slide level2 center">
-<h2>Linear Regression: Example</h2>
-<div style="font-size: 80%;">
-<table class="caption-top">
-<colgroup>
-<col style="width: 12%">
-<col style="width: 12%">
-<col style="width: 12%">
-<col style="width: 12%">
-<col style="width: 12%">
-<col style="width: 12%">
-<col style="width: 12%">
-<col style="width: 12%">
-</colgroup>
-<thead>
-<tr class="header">
-<th>i</th>
-<th><span class="math inline">\(x_i\)</span></th>
-<th><span class="math inline">\(y_i\)</span></th>
-<th><span class="math inline">\(x_i - \bar{x}\)</span></th>
-<th><span class="math inline">\(y_i - \bar{y}\)</span></th>
-<th><span class="math inline">\((x_i - \bar{x})(y_i - \bar{y})\)</span></th>
-<th><span class="math inline">\((x_i - \bar{x})^2\)</span></th>
-<th><span class="math inline">\((y_i - \bar{y})^2\)</span></th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>1</td>
-<td>2</td>
-<td>58</td>
-<td>-12</td>
-<td>-72</td>
-<td>864</td>
-<td>144</td>
-<td>5184</td>
-</tr>
-<tr class="even">
-<td>2</td>
-<td>6</td>
-<td>105</td>
-<td>-8</td>
-<td>-25</td>
-<td>200</td>
-<td>64</td>
-<td>625</td>
-</tr>
-<tr class="odd">
-<td>3</td>
-<td>8</td>
-<td>88</td>
-<td>-6</td>
-<td>-42</td>
-<td>252</td>
-<td>36</td>
-<td>1764</td>
-</tr>
-<tr class="even">
-<td>4</td>
-<td>8</td>
-<td>118</td>
-<td>-6</td>
-<td>-12</td>
-<td>72</td>
-<td>36</td>
-<td>144</td>
-</tr>
-<tr class="odd">
-<td>5</td>
-<td>12</td>
-<td>117</td>
-<td>-2</td>
-<td>-13</td>
-<td>26</td>
-<td>4</td>
-<td>169</td>
-</tr>
-<tr class="even">
-<td>6</td>
-<td>16</td>
-<td>137</td>
-<td>2</td>
-<td>7</td>
-<td>14</td>
-<td>4</td>
-<td>49</td>
-</tr>
-<tr class="odd">
-<td>7</td>
-<td>20</td>
-<td>157</td>
-<td>6</td>
-<td>27</td>
-<td>162</td>
-<td>36</td>
-<td>729</td>
-</tr>
-<tr class="even">
-<td>8</td>
-<td>20</td>
-<td>169</td>
-<td>6</td>
-<td>39</td>
-<td>234</td>
-<td>36</td>
-<td>1521</td>
-</tr>
-<tr class="odd">
-<td>9</td>
-<td>22</td>
-<td>149</td>
-<td>8</td>
-<td>19</td>
-<td>152</td>
-<td>64</td>
-<td>361</td>
-</tr>
-<tr class="even">
-<td>10</td>
-<td>26</td>
-<td>202</td>
-<td>12</td>
-<td>72</td>
-<td>864</td>
-<td>144</td>
-<td>5184</td>
-</tr>
-<tr class="odd">
-<td><strong>Total</strong></td>
-<td><strong>140</strong></td>
-<td><strong>1300</strong></td>
-<td>-</td>
-<td>-</td>
-<td><strong>2840</strong></td>
-<td><strong>568</strong></td>
-<td><strong>15730</strong></td>
-</tr>
-</tbody>
-</table>
-<div class="fragment">
-<p>Sample correlation:</p>
-<p><span class="math display">\[
-r_{xy} = \frac{\sum(x_i - \bar{x})(y_i - \bar{y})}{\sqrt{\sum(x_i - \bar{x})^2 \sum(y_i - \bar{y})^2}} = \frac{2840}{\sqrt{568 \times 15730}} = 0.9501
-\]</span></p>
-<center>
-<code>= correl(x-array, y-array)</code>
-</center>
-</div>
-</div>
-</section>
-<section id="linear-regression-example-5" class="slide level2 center">
-<h2>Linear Regression: Example</h2>
-<p><br></p>
-<ul>
-<li>Slope for the Estimated Regression Equation</li>
-</ul>
-<p><span class="math display">\[
-b_1 = \frac{\sum (x_i - \bar{x})(y_i - \bar{y})}{\sum (x_i - \bar{x})^2} = \frac{2840}{568} = 5
-\]</span></p>
-<ul>
-<li>y-Intercept for the Estimated Regression Equation</li>
-</ul>
-<p><span class="math display">\[
-b_0 = \bar{y} - b_1 \bar{x} = 130 - 5(14) = 60
-\]</span></p>
-<ul>
-<li>Estimated Regression Equation</li>
-</ul>
-<p><span class="math display">\[
-\hat{y} = 60 + 5x
-\]</span></p>
-</section>
-<section id="remarks" class="slide level2 center">
-<h2>Remarks</h2>
-<p><br></p>
-<div style="font-size: 80%;">
-<p><span class="math display">\[
-b_1 = \frac{\sum (x_i - \bar{x})(y_i - \bar{y})}{\sum (x_i - \bar{x})^2} = \frac{\sum (x_i - \bar{x})(y_i - \bar{y}) / (n - 1)}{\sum (x_i - \bar{x})^2 / (n - 1)} = \frac{s_{xy}}{s_x^2}
-\]</span></p>
-<p><span class="math display">\[
-= \frac{s_{xy}}{s_x s_y} \cdot \frac{s_y}{s_x} = r_{xy} \frac{s_y}{s_x}
-\]</span></p>
-<p><span class="math inline">\(b_1\)</span>, <span class="math inline">\(s_{xy}\)</span>, and <span class="math inline">\(r_{xy}\)</span> have the same signs, reflecting the relationship’s direction between <span class="math inline">\(x\)</span> and <span class="math inline">\(y\)</span>.</p>
-</div>
-<div style="font-size: 70%;">
-<ul>
-<li><p><span class="math inline">\(b_1\)</span>: Slope of the regression line, indicating the change in <span class="math inline">\(y\)</span> for a unit change in <span class="math inline">\(x\)</span>.</p></li>
-<li><p><span class="math inline">\(\sum (x_i - \bar{x})(y_i - \bar{y})\)</span>: Numerator for covariance, showing the joint deviation of <span class="math inline">\(x\)</span> and <span class="math inline">\(y\)</span> from their means.</p></li>
-<li><p><span class="math inline">\(\sum (x_i - \bar{x})^2\)</span>: Denominator representing variance of <span class="math inline">\(x\)</span>.</p></li>
-<li><p><span class="math inline">\(s_{xy}\)</span>: Sample covariance, indicating how <span class="math inline">\(x\)</span> and <span class="math inline">\(y\)</span> vary together.</p></li>
-<li><p><span class="math inline">\(s_x^2\)</span>: Sample variance of <span class="math inline">\(x\)</span>, measuring the dispersion of <span class="math inline">\(x\)</span> around its mean.</p></li>
-<li><p><span class="math inline">\(s_x\)</span> and <span class="math inline">\(s_y\)</span>: Standard deviations of <span class="math inline">\(x\)</span> and <span class="math inline">\(y\)</span>, showing spread around their means.</p></li>
-<li><p><span class="math inline">\(r_{xy}\)</span>: Correlation coefficient, measuring strength and direction of the linear relationship between <span class="math inline">\(x\)</span> and <span class="math inline">\(y\)</span>.</p></li>
-</ul>
-</div>
-</section>
-<section id="partition-of-total-variation" class="slide level2 center">
-<h2>Partition of Total Variation</h2>
-<p><br></p>
-
-<img data-src="figs/reg_partitition.png" class="quarto-figure quarto-figure-center r-stretch" style="width:50.0%"><p><br></p>
-</section>
-<section id="partition-of-total-variation-1" class="slide level2 center">
-<h2>Partition of Total Variation</h2>
-<ul>
-<li><strong>Prediction equation:</strong> <span class="math inline">\(\hat{y} = 60 + 5x\)</span></li>
-<li><strong>For Observation #1</strong> <span class="math inline">\((x = 2, y = 58)\)</span>: <span class="math inline">\(\hat{y} = 60 + 5(2) = 70\)</span>
-<ul>
-<li>Unexplained error/residual = <span class="math inline">\(y - \hat{y} = 58 - 70 = -12\)</span></li>
-</ul></li>
-</ul>
-<p><br></p>
-<ul>
-<li><strong>Note:</strong></li>
-</ul>
-<p><span class="math display">\[
-y - \bar{y} = (\hat{y} - \bar{y}) + (y - \hat{y})
-\]</span></p>
-<p><span class="math display">\[
-58 - 130 = (70 - 130) + (58 - 70)
-\]</span></p>
-<p><span class="math display">\[
-\text{Total} = \text{Explained} + \text{Unexplained}
-\]</span></p>
-</section>
-<section id="partition-of-total-variation-2" class="slide level2 center">
-<h2>Partition of Total Variation</h2>
-<table class="caption-top" style="width:100%;">
-<colgroup>
-<col style="width: 7%">
-<col style="width: 11%">
-<col style="width: 16%">
-<col style="width: 21%">
-<col style="width: 9%">
-<col style="width: 15%">
-<col style="width: 18%">
-</colgroup>
-<thead>
-<tr class="header">
-<th><span class="math inline">\(i\)</span></th>
-<th><span class="math inline">\(x_i\)</span></th>
-<th>Observed Y</th>
-<th>Predicted Y</th>
-<th>Total</th>
-<th>Explained</th>
-<th>Unexplained</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>1</td>
-<td>2</td>
-<td>58</td>
-<td>70</td>
-<td>-72</td>
-<td>-60</td>
-<td>-12</td>
-</tr>
-<tr class="even">
-<td>2</td>
-<td>6</td>
-<td>105</td>
-<td>90</td>
-<td>-25</td>
-<td>-40</td>
-<td>15</td>
-</tr>
-<tr class="odd">
-<td>3</td>
-<td>8</td>
-<td>88</td>
-<td>100</td>
-<td>-42</td>
-<td>-30</td>
-<td>-12</td>
-</tr>
-<tr class="even">
-<td>4</td>
-<td>8</td>
-<td>118</td>
-<td>100</td>
-<td>-12</td>
-<td>-30</td>
-<td>18</td>
-</tr>
-<tr class="odd">
-<td>5</td>
-<td>12</td>
-<td>117</td>
-<td>120</td>
-<td>-13</td>
-<td>-10</td>
-<td>-3</td>
-</tr>
-<tr class="even">
-<td>6</td>
-<td>16</td>
-<td>137</td>
-<td>140</td>
-<td>7</td>
-<td>10</td>
-<td>-3</td>
-</tr>
-<tr class="odd">
-<td>7</td>
-<td>20</td>
-<td>157</td>
-<td>160</td>
-<td>27</td>
-<td>30</td>
-<td>-3</td>
-</tr>
-<tr class="even">
-<td>8</td>
-<td>20</td>
-<td>169</td>
-<td>160</td>
-<td>39</td>
-<td>30</td>
-<td>9</td>
-</tr>
-<tr class="odd">
-<td>9</td>
-<td>22</td>
-<td>149</td>
-<td>170</td>
-<td>19</td>
-<td>40</td>
-<td>-21</td>
-</tr>
-<tr class="even">
-<td>10</td>
-<td>26</td>
-<td>202</td>
-<td>190</td>
-<td>72</td>
-<td>60</td>
-<td>12</td>
-</tr>
-<tr class="odd">
-<td></td>
-<td>Mean Y</td>
-<td>130</td>
-<td>Sum of square</td>
-<td>15730</td>
-<td>14200</td>
-<td>1530</td>
-</tr>
-<tr class="even">
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td>SST</td>
-<td>SSR</td>
-<td>SSE</td>
-</tr>
-</tbody>
-</table>
-</section>
-<section id="derivation-of-the-total-sum-of-squares-sst" class="slide level2 center">
-<h2>Derivation of the Total Sum of Squares (SST)</h2>
-<div style="font-size: 60%;">
-<p>In the context of simple linear regression, the Total Sum of Squares (SST) is defined as the sum of the squared deviations of the observed <span class="math inline">\(y\)</span> values from their sample mean <span class="math inline">\(\bar{y}\)</span>:</p>
-<p><span class="math display">\[
-SST = \sum_{i=1}^{n} (y_i - \bar{y})^2.
-\]</span></p>
-<p>It is also possible to compute the SST with the following:</p>
-<p><span class="math display">\[
-SST = (n-1)s^2_y,
-\]</span></p>
-<p><strong>Derivation</strong></p>
-<p>Recall that the sample variance of <span class="math inline">\(y\)</span>, denoted <span class="math inline">\(s^2_y\)</span>, is defined as:</p>
-<p><span class="math display">\[
-s^2_y = \frac{1}{n-1}\sum_{i=1}^{n} (y_i - \bar{y})^2.
-\]</span></p>
-<p>This definition uses <span class="math inline">\(n-1\)</span> in the denominator to provide an unbiased estimator of the population variance.</p>
-<p>By multiplying both sides of the sample variance definition by <span class="math inline">\(n-1\)</span>, we obtain:</p>
-<p><span class="math display">\[
-(n-1)s^2_y = \sum_{i=1}^{n} (y_i - \bar{y})^2.
-\]</span></p>
-<p>Recognizing that the right-hand side is exactly the definition of <span class="math inline">\(SST\)</span>, we conclude:</p>
-<p><span class="math display">\[
-SST = (n-1)s^2_y.
-\]</span></p>
-<p>Thus, the derivation relies on the definition of sample variance, and the result follows directly from the algebraic manipulation.</p>
-</div>
-</section></section>
-<section>
-<section id="coefficient-of-determination" class="title-slide slide level1 center" data-background-color="#cfb991">
-<h1>Coefficient of Determination</h1>
-
-</section>
-<section id="coefficient-of-determination-1" class="slide level2 center">
-<h2>Coefficient of Determination</h2>
-<ul>
-<li><strong>Relationship Among SST, SSR, SSE</strong></li>
-</ul>
-<p><span class="math display">\[
-\text{SST} = \text{SSR} + \text{SSE}
-\]</span></p>
-<p><span class="math display">\[
-\sum(y_i - \bar{y})^2 = \sum(\hat{y}_i - \bar{y})^2 + \sum(y_i - \hat{y}_i)^2
-\]</span></p>
-<p><span class="math display">\[
-\text{Degrees of freedom:} \quad n-1 \quad\quad\quad\quad\quad 1 \quad\quad\quad\quad\quad n-2 \quad\quad\quad\quad\quad\quad\quad\quad\quad
-\]</span></p>
-<p><strong>where:</strong></p>
-<ul>
-<li>SST = total sum of squares (<em>Total variation</em>)</li>
-<li>SSR = sum of squares due to regression (<em>Explained variation</em>)</li>
-<li>SSE = sum of squares due to error (<em>Unexplained variation</em>)</li>
+<img data-src="figs/autoparts_residual_concept.png" class="quarto-figure quarto-figure-center r-stretch" style="width:72.0%"><ul>
+<li>Each grey segment is one residual <span class="math inline">\(e_i\)</span>. Least squares is the unique line that makes the <strong>sum of those squared lengths</strong> as small as possible.</li>
 </ul>
 </section>
-<section id="coefficient-of-determination-2" class="slide level2 center">
-<h2>Coefficient of Determination</h2>
-<ul>
-<li>The <strong>coefficient of determination</strong> is:</li>
-</ul>
-<p><span class="math display">\[
-R^2 = \frac{\text{Explained variation}}{\text{Total variation}} = \frac{\text{SSR}}{\text{SST}}
-\]</span></p>
-<p><strong>where:</strong></p>
-<ul>
-<li>SSR = sum of squares due to regression</li>
-<li>SST = total sum of squares</li>
-</ul>
-</section>
-<section id="coefficient-of-determination-3" class="slide level2 center">
-<h2>Coefficient of Determination</h2>
-<p><strong>Example:</strong> Armand’s Pizza Parlor Restaurants</p>
-<p><span class="math display">\[
-R^2 = \frac{\text{SSR}}{\text{SST}} = \frac{14200}{15730} = 0.9027 = 90.27\%
-\]</span></p>
-<p><span class="math display">\[
-R^2 = 1 - \frac{\text{SSE}}{\text{SST}} = 1 - \frac{1530}{15730} = 1 - 0.973 = 90.27\%
-\]</span></p>
-<ul>
-<li>The regression relationship is very strong;</li>
-<li>90.27% of the variability in the sales can be explained by (the variability of) the size of the student population through the proposed linear relationship between them.</li>
-</ul>
-</section>
-<section id="coefficient-of-determination-excel" class="slide level2 center">
-<h2>Coefficient of Determination: Excel</h2>
-<div class="columns">
-<div class="column" style="text-align: center; justify-content: center; align-items: center;">
-<p><br></p>
-<ul>
-<li><p><strong>Adding</strong> <span class="math inline">\(R^2\)</span> Value to Scatter Diagram</p>
-<ul>
-<li>Step 1: Right-click on the trendline and select the <strong>Format Trendline</strong> option</li>
-<li>Step 2: When the Format Trendline dialog box appears:
-<ul>
-<li>Select <strong>Display R-squared on chart</strong></li>
-<li>Close the <strong>Format Trendline</strong> dialog box</li>
-</ul></li>
-</ul></li>
-</ul>
-</div><div class="column" style="text-align: center; justify-content: center; align-items: center;">
-<div class="fragment">
-<div style="font-size: 80%;">
-<p><br></p>
-<div class="cell" data-layout-align="center">
-<div class="cell-output-display">
-<div class="quarto-figure quarto-figure-center">
-<figure>
-<p><img data-src="figs/armands_pizza_plot_r2.png" class="quarto-figure quarto-figure-center" style="width:80.0%"></p>
-</figure>
-</div>
-</div>
-</div>
-<p><br></p>
-</div>
-</div>
-</div></div>
-</section>
-<section id="sample-correlation-coefficient" class="slide level2 center">
-<h2>Sample Correlation Coefficient</h2>
-<p><span class="math display">\[
-r_{xy} = (\text{sign of } b_1) \sqrt{\text{Coefficient of Determination}}
-\]</span></p>
-<p><span class="math display">\[
-r_{xy} = (\text{sign of } b_1) \sqrt{R^2}
-\]</span></p>
-<p><strong>where:</strong></p>
-<ul>
-<li><span class="math inline">\(b_1\)</span> = the slope of the estimated regression equation <span class="math inline">\(\hat{y} = b_0 + b_1x\)</span></li>
-</ul>
-<p><strong>Only in simple regression.</strong></p>
-</section>
-<section id="sample-correlation-coefficient-1" class="slide level2 center">
-<h2>Sample Correlation Coefficient</h2>
-<p><strong>Example:</strong> Armand’s Pizza Parlor Restaurants</p>
-<p><span class="math display">\[
-r_{xy} = (\text{sign of } b_1) \sqrt{R^2}
-\]</span></p>
-<p>The sign of <span class="math inline">\(b_1\)</span> in the equation <span class="math inline">\(\hat{y} = 10 + 5x\)</span> is “+”.</p>
-<p><span class="math display">\[
-r_{xy} = +\sqrt{0.9027}
-\]</span></p>
-<p><span class="math display">\[
-r_{xy} = +0.9501
-\]</span></p>
-</section></section>
-<section>
-<section id="model-assumptions" class="title-slide slide level1 center" data-background-color="#cfb991">
-<h1>Model Assumptions</h1>
-
-</section>
-<section id="assumptions-about-the-error-term-epsilon" class="slide level2 center">
-<h2>Assumptions About the Error Term <span class="math inline">\(\epsilon\)</span></h2>
-<ol type="1">
-<li class="fragment"><p>The error term <span class="math inline">\(\epsilon\)</span> is a random variable with a mean or expected value of zero; that is, <span class="math inline">\(E(\epsilon) = 0\)</span>.</p>
-<ul>
-<li class="fragment"><strong>Implication</strong>: <span class="math inline">\(\beta_0\)</span> and <span class="math inline">\(\beta_1\)</span> are constants; therefore <span class="math inline">\(E(\beta_0) = \beta_0\)</span> and <span class="math inline">\(E(\beta_1) = \beta_1\)</span>; thus, for a given value of <span class="math inline">\(x\)</span>, the expected value of <span class="math inline">\(y\)</span> is:</li>
-</ul></li>
-</ol>
-<div class="fragment">
-<p><span class="math display">\[
-   E(y) = \beta_0 + \beta_1x
-\]</span></p>
-</div>
-<ol start="2" type="1">
-<li class="fragment"><p>The variance of <span class="math inline">\(\epsilon\)</span>, denoted by <span class="math inline">\(\sigma^2\)</span>, is the same for all values of <span class="math inline">\(x\)</span>.</p>
-<ul>
-<li class="fragment"><strong>Implication</strong>: The variance of <span class="math inline">\(y\)</span> about the regression line equals <span class="math inline">\(\sigma^2\)</span> and is the same for all values of <span class="math inline">\(x\)</span>.</li>
-</ul></li>
-<li class="fragment"><p>The values of <span class="math inline">\(\epsilon\)</span> are independent.</p>
-<ul>
-<li class="fragment"><strong>Implication</strong>: The value of <span class="math inline">\(\epsilon\)</span> for a particular value of <span class="math inline">\(x\)</span> is not related to the value of <span class="math inline">\(\epsilon\)</span> for any other value of <span class="math inline">\(x\)</span>; thus, the value of <span class="math inline">\(y\)</span> for a particular value of <span class="math inline">\(x\)</span> is not related to the value of <span class="math inline">\(y\)</span> for any other value of <span class="math inline">\(x\)</span>.</li>
-</ul></li>
-<li class="fragment"><p>The error term <span class="math inline">\(\epsilon\)</span> is a normally distributed random variable for all values of <span class="math inline">\(x\)</span>.</p>
-<ul>
-<li class="fragment"><strong>Implication</strong>: Because <span class="math inline">\(y\)</span> is a linear function of <span class="math inline">\(\epsilon\)</span>, <span class="math inline">\(y\)</span> is also a normally distributed random variable for all values of <span class="math inline">\(x\)</span>.</li>
-</ul></li>
-</ol>
-</section>
-<section id="assumptions-about-the-error-term-epsilon-1" class="slide level2 center">
-<h2>Assumptions About the Error Term <span class="math inline">\(\epsilon\)</span></h2>
-<p><br></p>
-
-<img data-src="figs/residuals_assumption.png" class="quarto-figure quarto-figure-center r-stretch" style="width:70.0%"><p><br></p>
-<p><br></p>
-</section></section>
-<section>
-<section id="testing-for-significance" class="title-slide slide level1 center" data-background-color="#cfb991">
-<h1>Testing for Significance</h1>
-
-</section>
-<section id="testing-for-significance-1" class="slide level2 center">
-<h2>Testing for Significance</h2>
-<p><br></p>
-<ul>
-<li><p>To test for a significant regression relationship, we must conduct a hypothesis test to determine whether the unknown <span class="math inline">\(\beta_1\)</span> is zero.</p></li>
-<li><p>Two equivalent Tests are commonly used in simple regression:</p>
-<ul>
-<li><span class="math inline">\(t\)</span> Test<br>
-</li>
-<li><span class="math inline">\(F\)</span> test</li>
-</ul></li>
-<li><p>Both the <span class="math inline">\(t\)</span> test and <span class="math inline">\(F\)</span> test require an estimate of the unknown error variance <span class="math inline">\(\sigma^2\)</span>.</p></li>
-</ul>
-</section>
-<section id="testing-for-significance-2" class="slide level2 center">
-<h2>Testing for Significance</h2>
-<p><br></p>
-<p>Idea: <strong>Estimating the population error variance</strong> (<span class="math inline">\(\sigma^2\)</span>) <strong>by the sample residual variance</strong> (denoted by <span class="math inline">\(s^2\)</span> or MSE).</p>
-<p>The mean square error (MSE), or <span class="math inline">\(s^2\)</span> is:</p>
-<p><span class="math display">\[
-s^2 = \text{MSE} = \frac{\text{SSE}}{(n-2)}, \quad \text{SSE = Sum of Squared Errors (unexplained variation).}
-\]</span></p>
-<p>where:</p>
-<p><span class="math display">\[
-\text{SSE} = \sum e_i^2 = \sum (y_i - \hat{y}_i)^2
-\]</span></p>
-</section>
-<section id="testing-for-significance-3" class="slide level2 center">
-<h2>Testing for Significance</h2>
-<ul>
-<li><strong>An Estimate of</strong> <span class="math inline">\(\sigma\)</span>
-<ul>
-<li>To estimate <span class="math inline">\(\sigma\)</span>, we take the square root of <span class="math inline">\(s^2\)</span>.</li>
-<li>The resulting <span class="math inline">\(s\)</span> is called the standard error (of the estimate).</li>
-</ul></li>
-</ul>
-<p><span class="math display">\[
-s = \sqrt{MSE} = \sqrt{\frac{SSE}{n - 2}} = \sqrt{\frac{\sum (y_i - \hat{y}_i)^2}{n - 2}}
-\]</span></p>
-</section>
-<section id="testing-for-overall-significance-f-test" class="slide level2 center">
-<h2>Testing for Overall Significance: <span class="math inline">\(F\)</span> Test</h2>
+<section id="anchor-example-armands-pizza-parlors" class="slide level2 center">
+<h2>Anchor Example: Armand’s Pizza Parlors</h2>
 <div class="r-fit-text">
-<ul>
-<li><p><strong>Hypotheses</strong></p>
-<p><span class="math display">\[ H_0 : \beta_1 = 0 \quad\]</span> The proposed linear model is insignificant; No linear relationship; the predictor is insignificant; the predictor explains no variation in the response.</p>
-<p><span class="math display">\[ H_a : \beta_1 \neq 0 \]</span></p></li>
-<li><p><strong>Test Statistic</strong></p></li>
-</ul>
-<p><span class="math display">\[
-F = \frac{SSR / 1}{SSE / (n-2)} = \frac{MSR}{MSE} \quad \text{follows } F(1, n-2), \text{ if } H_0 \text{ is true.}
-\]</span> where</p>
-<ul>
-<li><strong>SSR (Sum of Squares for Regression)</strong>: measures how much of the variation in the dependent variable is explained by the independent variable(s).</li>
-<li><strong>MSR (Mean Square Regression)</strong>: is the average variation explained by the model per degree of freedom for the regression.In the case above, we have only one independent variable as the degree of freedom for the regression (denominator).</li>
-<li><strong>SSE (Sum of Squares for Error/Residuals)</strong>: measures the variation in the response variable that is not explained by the model.</li>
-<li><strong>MSE (Mean Square Error)</strong>: is the average variation that remains unexplained by the model, per degree of freedom for the error. The degrees of freedom for the error is the number of observations (<span class="math inline">\(n\)</span>) in the data set minus the number of parameters being estimated (<span class="math inline">\(\beta_0\)</span> and <span class="math inline">\(\beta_1\)</span>).</li>
-</ul>
-</div>
-</section>
-<section id="testing-for-overall-significance-f-test-1" class="slide level2 center">
-<h2>Testing for Overall Significance: <span class="math inline">\(F\)</span> Test</h2>
-<ul>
-<li><p><strong>Decision Rules</strong> <em>(right-tail)</em>:</p>
-<ul>
-<li>Reject <span class="math inline">\(H_0\)</span> if <span class="math inline">\(p\text{-value} \leq \alpha\)</span>, or <span class="math inline">\(F \geq F_{\alpha, 1, n-2}\)</span></li>
-</ul></li>
-</ul>
-<p><br></p>
-<p>where:</p>
-<ul>
-<li><p><span class="math inline">\(F_{\alpha, 1, n-2}\)</span> is based on an <span class="math inline">\(F\)</span> distribution with 1 degree of freedom in the numerator and <span class="math inline">\(n - 2\)</span> degrees of freedom in the denominator.</p></li>
-<li><p><span class="math inline">\(F_{\alpha, 1, n-2} = F.\text{INV}(1-\alpha, 1, n - 2)\)</span></p></li>
-</ul>
-</section>
-<section id="testing-for-overall-significance-f-test-2" class="slide level2 center">
-<h2>Testing for Overall Significance: <span class="math inline">\(F\)</span> Test</h2>
-<ul>
-<li>Compute the value of the test statistic.</li>
-</ul>
-<p><span class="math display">\[
-F = \frac{SSR / 1}{SSE / (n-2)} = \frac{14,200 / 1}{1,530 / (10-2)} = 74.25
-\]</span></p>
-<p><br></p>
-<ul>
-<li><p><strong>Decision.</strong></p>
-<ul>
-<li><p><span class="math inline">\(F_{\alpha} = F.\text{INV}(0.99,1,8) = 11.26\)</span> and <span class="math inline">\(F = 74.25 &gt; 11.26.\)</span> We reject <span class="math inline">\(H_0.\)</span></p></li>
-<li><p><span class="math inline">\(p\text{-value} = 1 - F.\text{DIST}(74.25,1,8, \text{TRUE}) \approx 0.000 &lt; 1\% = \alpha\)</span></p></li>
-</ul></li>
-</ul>
-<center>
-<div class="red">
-<p>The statistical evidence is sufficient to conclude that a significant relationship exists between the size of the student population and quarterly sales. The significance level is <span class="math inline">\(\alpha = 1\%\)</span>.</p>
-</div>
-</center>
-</section>
-<section id="testing-for-individual-significance-t-test" class="slide level2 center">
-<h2>Testing for Individual Significance: <span class="math inline">\(t\)</span> Test</h2>
-<div style="font-size: 70%;">
-<div class="red">
-<p>In regression, <span class="math inline">\(b_1\)</span> follows a normal distribution with mean <span class="math inline">\(\beta_1\)</span>.</p>
-</div>
-<ul>
-<li><p><strong>Hypotheses</strong></p>
-<p><span class="math inline">\(H_0 : \beta_1 = 0 \quad (\text{Independent variable x is insignificant})\)</span></p>
-<p><span class="math inline">\(H_a : \beta_1 \neq 0\)</span></p></li>
-<li><p><strong>Test Statistic</strong></p></li>
-</ul>
-<p><span class="math display">\[
-t = \frac{b_1 - 0}{s_{b_1}},
-\]</span> where <span class="math inline">\(s_{b_1}\)</span> is the <strong>standard error</strong> of the slope estimate <span class="math inline">\(b_1\)</span>, i.e., an estimate of the standard deviation of the sampling distribution of <span class="math inline">\(b_1\)</span>. It is not the population standard deviation; it is the estimated uncertainty in the slope due to sampling. It follows <span class="math inline">\(t(n-2)\)</span>, if <span class="math inline">\(H_0\)</span> is true.</p>
-<p><span class="math display">\[
-s_{b_1} = \frac{s}{\sqrt{\sum(x_i - \bar{x})^2}} = \frac{\sqrt{\frac{\sum (y_i - \hat{y}_i)^2}{n - 2}}}{\sqrt{\sum(x_i - \bar{x})^2}}= \sqrt{\frac{\sum (Y_i - \hat{Y}_i)^2}{(n - 2)\,\sum (X_i - \bar{X})^2}}
-\]</span></p>
-<p>if we denote <span class="math inline">\(\text{MSE} = \frac{\sum (Y_i - \hat{Y}_i)^2}{n - 2}\)</span> (the <strong>mean squared error</strong>), then:</p>
-<p><span class="math display">\[
-s_{b_1} = \sqrt{\frac{\text{MSE}}{\sum (X_i - \bar{X})^2}}.
-\]</span></p>
-</div>
-</section>
-<section id="testing-for-individual-significance-t-test-1" class="slide level2 center">
-<h2>Testing for Individual Significance: <span class="math inline">\(t\)</span> Test</h2>
-<p><br></p>
-<ul>
-<li><p><strong>Decision Rules</strong> <em>(two-tail)</em>:</p>
-<ul>
-<li>Reject <span class="math inline">\(H_0\)</span> if <span class="math inline">\(p\text{-value} \leq \alpha\)</span></li>
-<li>Reject <span class="math inline">\(H_0\)</span> if <span class="math inline">\(t \leq -t_{\alpha/2,n-2}\)</span> or <span class="math inline">\(t \geq t_{\alpha/2,n-2}\)</span> (i.e., <span class="math inline">\(|t| &gt; t_{\alpha/2,n-2}\)</span>)</li>
-</ul></li>
-</ul>
-<p>where the critical value, <span class="math inline">\(t_{\alpha/2, n-2}\)</span>, is based on a <span class="math inline">\(t\)</span> distribution with <span class="math inline">\(n - 2\)</span> df.</p>
-</section>
-<section id="testing-for-individual-significance-t-test-2" class="slide level2 center">
-<h2>Testing for Individual Significance: <span class="math inline">\(t\)</span> Test</h2>
-<p><br></p>
-<ul>
-<li>Compute the value of the test statistic:</li>
-</ul>
-<p><span class="math display">\[
-t = \frac{b_1 - 0}{s_{b_1}} = \frac{5 - 0}{.5803} = 8.62
-\]</span> <br></p>
-<ul>
-<li><p><strong>Decision:</strong></p>
-<ul>
-<li><span class="math inline">\(t_{0.01/2, 8} = T.\text{INV}(0.995,8) = 3.355\)</span> provides an area of 0.005 in the upper tail of a <span class="math inline">\(t\)</span>-distribution with <span class="math inline">\(n-2\)</span> degrees of freedom.</li>
-<li>Because <span class="math inline">\(|t| = 8.62 &gt; 3.355\)</span>, we can reject <span class="math inline">\(H_0\)</span> at <span class="math inline">\(\alpha = 1\%\)</span>.</li>
-<li><span class="math inline">\(p\text{-value} = 2*(1-T.\text{DIST}(8.62,10-2,\text{TRUE})) \approx 0.000&lt; 1\%\)</span>.</li>
-</ul>
-<p>We can reject <span class="math inline">\(H_0\)</span>.</p></li>
-</ul>
-</section>
-<section id="confidence-interval-for-beta_1" class="slide level2 center">
-<h2>Confidence Interval for <span class="math inline">\(\beta_1\)</span></h2>
-<p><br></p>
-<p><br></p>
-<p>We can use a 99% confidence interval for <span class="math inline">\(\beta_1\)</span> to test the hypotheses just used in the <em>t</em> test.</p>
-<p><span class="math inline">\(H_0\)</span> is rejected if the hypothesized value of <span class="math inline">\(\beta_1\)</span> is not included in the corresponding confidence interval for <span class="math inline">\(\beta_1\)</span>.</p>
-</section>
-<section id="confidence-interval-for-beta_1-1" class="slide level2 center">
-<h2>Confidence Interval for <span class="math inline">\(\beta_1\)</span></h2>
-<p><br></p>
-<ul>
-<li>The form of a confidence interval for <span class="math inline">\(\beta_1\)</span> is:</li>
-</ul>
-<p><span class="math display">\[
-b_1 \pm t_{\alpha/2, n-2} s_{b_1}
-\]</span></p>
-<p>where:</p>
-<ul>
-<li><span class="math inline">\(b_1\)</span> is the point estimator,</li>
-<li><span class="math inline">\(t_{\alpha/2, n-2} s_{b_1}\)</span> is the margin of error (MOE),</li>
-<li><span class="math inline">\(t_{\alpha/2, n-2}\)</span> is the <strong><em>t</em></strong> <strong>critical value</strong> providing an upper-tail area of <span class="math inline">\(\alpha/2\)</span> in a <em>t</em> distribution with <span class="math inline">\(n-2\)</span> degrees of freedom.</li>
-<li><span class="math inline">\(s_{b_1}\)</span> is the <strong>standard error</strong> of the slope estimate <span class="math inline">\(b_1\)</span>, i.e., an estimate of the standard deviation of the sampling distribution of <span class="math inline">\(b_1\)</span>. It is not the population standard deviation; it is the estimated uncertainty in the slope due to sampling.</li>
-</ul>
-</section>
-<section id="confidence-interval-for-beta_1-2" class="slide level2 center">
-<h2>Confidence Interval for <span class="math inline">\(\beta_1\)</span></h2>
-<p><br></p>
-<ul>
-<li><strong>99% Confidence Interval for</strong> <span class="math inline">\(\beta_1\)</span>:</li>
-</ul>
-<p><span class="math display">\[
-b_1 \pm t_{\alpha/2} s_{b_1} = 5 \pm 3.355(.5803) = 5 \pm 1.95
-\]</span></p>
-<p>or 3.05 to 6.95</p>
-<ul>
-<li><strong>Conclusion:</strong> 0 is not included in the 99% confidence interval. Reject <span class="math inline">\(H_0\)</span> at <span class="math inline">\(\alpha\)</span> = 1%.</li>
-</ul>
-</section>
-<section id="some-cautions-about-the-interpretation-of-significance-tests" class="slide level2 center">
-<h2>Some Cautions about the Interpretation of Significance Tests</h2>
-<p><br></p>
-<ul>
-<li><p>Rejecting <span class="math inline">\(H_0: \beta_1 = 0\)</span> and concluding that the relationship between x and y is significant does not enable us to conclude that a <strong>cause-and-effect relationship</strong> is present between x and y.</p></li>
-<li><p>Because we <strong>are able to</strong> reject <span class="math inline">\(H_0: \beta_1 = 0\)</span> and demonstrate statistical significance does not enable us to conclude that there is a <strong>linear relationship</strong> between x and y.</p></li>
-</ul>
-</section></section>
-<section>
-<section id="excels-regression-tool" class="title-slide slide level1 center" data-background-color="#cfb991">
-<h1>Excel’s Regression Tool</h1>
-
-</section>
-<section id="excels-regression-tool-1" class="slide level2 center">
-<h2>Excel’s Regression Tool</h2>
-<p><br></p>
-<ul>
-<li><p>Excel also has a comprehensive tool in its Data Analysis package called <strong>Regression</strong>.</p></li>
-<li><p>The Regression tool can be used to perform a <strong>complete regression analysis</strong>.</p></li>
-</ul>
-</section>
-<section id="using-excels-regression-tool" class="slide level2 center">
-<h2>Using Excel’s Regression Tool</h2>
-<center>
-<strong>Performing the Regression Analysis</strong>
-</center>
-<div class="columns">
-<div class="column" style="text-align: center; justify-content: center; align-items: center;">
-<p><br></p>
-<ul>
-<li><p><strong>Step 1</strong> Click the <strong>DATA</strong> tab on the Ribbon</p></li>
-<li><p><strong>Step 2</strong> In the <strong>Analyze</strong> group, click <strong>Data Analysis</strong></p></li>
-<li><p><strong>Step 3</strong> Choose <strong>Regression</strong> from the list of Analysis Tools</p></li>
-</ul>
-</div><div class="column" style="text-align: center; justify-content: center; align-items: center;">
-<div class="fragment">
-<div style="font-size: 80%;">
-<p><br></p>
-<ul>
-<li><p><strong>Step 4</strong> When the Regression dialog box appears:</p>
-<ul>
-<li>Enter <strong>C1:C11</strong> in the <strong>Input Y Range</strong> box</li>
-<li>Enter <strong>B1:B11</strong> in the <strong>Input X Range</strong> box</li>
-<li>Select the check box for <strong>Labels</strong></li>
-<li>Select the check box for <strong>Confidence Level</strong></li>
-<li>Enter <strong>99</strong> in the <strong>Confidence Level</strong> box</li>
-<li>Select <strong>Output Range</strong></li>
-<li>Enter <strong>A13</strong> in the <strong>Output Range</strong> box</li>
-<li>Click <strong>OK</strong></li>
-</ul></li>
-</ul>
-<p><br></p>
-</div>
-</div>
-</div></div>
-</section>
-<section id="using-excels-regression-tool-1" class="slide level2 center">
-<h2>Using Excel’s Regression Tool</h2>
-<p><br></p>
-<p><strong>Example:</strong> Armand’s Pizza Parlors: Regression tool dialog box</p>
-<p><br></p>
-
-<img data-src="figs/armands_pizza_reg_excel.png" class="quarto-figure quarto-figure-center r-stretch" style="width:80.0%"><p><br></p>
-</section>
-<section id="using-excels-regression-tool-2" class="slide level2 center">
-<h2>Using Excel’s Regression Tool</h2>
-<p><br></p>
-<p><strong>Example:</strong> Armand’s Pizza Parlors: Regression tool dialog box</p>
-<p><br></p>
-
-<img data-src="figs/armands_pizza_reg_excel_output.png" class="quarto-figure quarto-figure-center r-stretch" style="width:80.0%"><p><br></p>
-</section>
-<section id="using-excels-regression-tool-3" class="slide level2 center">
-<h2>Using Excel’s Regression Tool</h2>
-<div class="r-fit-text">
-<div class="columns">
-<div class="quarto-layout-panel" data-layout-ncol="3">
-<div class="quarto-layout-row">
-<div class="column quarto-layout-cell" style="flex-basis: 33.3%;justify-content: flex-start;">
-<p><strong>Regression Statistics</strong>:</p>
-<ul>
-<li><p><strong>Multiple R</strong>: 0.9501. Indicates a strong positive correlation between observed and predicted values.</p></li>
-<li><p><strong>R Square (Coefficient of Determination)</strong>: Approximately 90.27% of the variance in the dependent variable (Sales) is explained by the independent variable (Population).</p></li>
-<li><p><strong>Adjusted R Square</strong>: 0.8906. Adjusts the R Square for the number of predictors, providing a more accurate measure.</p></li>
-<li><p><strong>Standard Error</strong>: 13.8293. Measures the typical distance that the observed values fall from the regression line.</p></li>
-</ul>
-</div><div class="column quarto-layout-cell" style="flex-basis: 33.3%;justify-content: flex-start;">
-<p><strong>ANOVA</strong></p>
-<ul>
-<li><strong>Regression SS</strong>: 14200. Variability explained by the model.
-<ul>
-<li><strong>Residual SS</strong>: 1530. Variability not explained by the model.</li>
-<li><strong>F-Statistic</strong>: 74.2484. Indicates the model is statistically significant.</li>
-<li><strong>Significance F</strong>: 2.55E-05. <span class="math inline">\(p\)</span>-value indicating strong evidence against the null hypothesis.</li>
-</ul></li>
-</ul>
-</div><div class="column quarto-layout-cell" style="flex-basis: 33.3%;justify-content: flex-start;">
-<p><strong>Model Results</strong></p>
-<ul>
-<li><p><strong>Coefficients</strong>:</p>
-<ul>
-<li><strong>Intercept</strong>: 60 (p-value: 0.0002)<br>
-</li>
-<li><strong>Population</strong>: 5 (p-value: 2.55E-05)<br>
-</li>
-<li>Both coefficients are statistically significant.</li>
-</ul></li>
-<li><p><strong>Confidence Intervals</strong>:</p>
-<ul>
-<li><strong>95% CI for Intercept</strong>: [38.7247, 81.2753]</li>
-<li><strong>95% CI for Population</strong>: [3.6619, 6.3381]</li>
-</ul></li>
-</ul>
-</div></div>
-</div>
-</div>
-</div>
-</section></section>
-<section>
-<section id="using-the-estimated-regression-equation-for-estimation-and-prediction" class="title-slide slide level1 center" data-background-color="#cfb991">
-<h1>Using the Estimated Regression Equation for Estimation and Prediction</h1>
-
-</section>
-<section id="using-the-estimated-regression-equation-for-estimation-and-prediction-1" class="slide level2 center">
-<h2>Using the Estimated Regression Equation for Estimation and Prediction</h2>
-<ul>
-<li><p>A <strong>confidence interval</strong> is an interval estimate of the <strong>mean of all</strong> values of <span class="math inline">\(y\)</span> for a given value of <span class="math inline">\(x\)</span>.</p></li>
-<li><p>A <strong>prediction interval</strong> is used whenever we want to <strong>predict an individual</strong> value of <span class="math inline">\(y\)</span> for a new randomly-chosen observation corresponding to a given value of <span class="math inline">\(x\)</span>.</p></li>
-<li><p>The given <span class="math inline">\(x\)</span>-value is denoted by <span class="math inline">\(x^*\)</span> , and the corresponding point estimate is obtained from the estimated regression equation:</p></li>
-</ul>
-<p><span class="math display">\[
-\hat{y}^* = b_0 + b_1 x^*
-\]</span></p>
-<ul>
-<li>The margin of error (MOE) is larger for a prediction interval.</li>
-</ul>
-</section>
-<section id="using-the-estimated-regression-equation-for-estimation-and-prediction-2" class="slide level2 center">
-<h2>Using the Estimated Regression Equation for Estimation and Prediction</h2>
-<ul>
-<li><strong>Confidence Interval Estimate of the mean</strong>, <span class="math inline">\(E(\hat{y}^*)\)</span>:</li>
-</ul>
-<p><span class="math display">\[
-\hat{y}^* \pm t_{\alpha/2, n-2} s_{\hat{y}^*}
-\]</span></p>
-<ul>
-<li><strong>Prediction Interval Estimate of individual</strong> <span class="math inline">\(\hat{y}^*\)</span>:</li>
-</ul>
-<p><span class="math display">\[
-\hat{y}^* \pm t_{\alpha/2, n-2} s_{pred}
-\]</span></p>
-<p>where:</p>
-<ul>
-<li><strong>confidence coefficient</strong> is <span class="math inline">\(1-\alpha\)</span> and <span class="math inline">\(t_{\alpha/2, n-2}\)</span> is based on a <em>t</em> distribution with <span class="math inline">\(n-2\)</span> degrees of freedom.</li>
-</ul>
-</section>
-<section id="point-estimation" class="slide level2 center">
-<h2>Point Estimation</h2>
-<p><strong>Example:</strong> Armand’s Pizza Parlors</p>
-<p>To predict quarterly sales or expected quarterly sales of restaurants near a campus or campuses with 10,000 students (<span class="math inline">\(x* = 10\)</span>),</p>
-<p><span class="math display">\[
-\hat{y}^* = 60 + 5(10) = 110
-\]</span></p>
-<p>Predicted quarterly sales of $110,000</p>
-</section>
-<section id="sums-of-squares" class="slide level2 center">
-<h2>Sums of Squares</h2>
+<p>A classic: <strong>Armand’s Pizza</strong> has 10 restaurants near college campuses. Sales clearly depend on how many students live nearby. <span class="math inline">\(x\)</span> = student population in the trade area (1,000s); <span class="math inline">\(y\)</span> = quarterly sales ($1,000s).</p>
 <table class="caption-top">
-<colgroup>
-<col style="width: 12%">
-<col style="width: 12%">
-<col style="width: 12%">
-<col style="width: 12%">
-<col style="width: 12%">
-<col style="width: 12%">
-<col style="width: 12%">
-<col style="width: 12%">
-</colgroup>
 <thead>
 <tr class="header">
-<th><span class="math inline">\(i\)</span></th>
-<th><span class="math inline">\(x_i\)</span></th>
-<th><span class="math inline">\(y_i\)</span></th>
-<th><span class="math inline">\(x_i - \bar{x}\)</span></th>
-<th><span class="math inline">\(y_i - \bar{y}\)</span></th>
-<th><span class="math inline">\((x_i - \bar{x})(y_i - \bar{y})\)</span></th>
-<th><span class="math inline">\((x_i - \bar{x})^2\)</span></th>
-<th><span class="math inline">\((y_i - \bar{y})^2\)</span></th>
+<th></th>
+<th style="text-align: right;">Student population <span class="math inline">\(x\)</span> (000s)</th>
+<th style="text-align: right;">Quarterly sales <span class="math inline">\(y\)</span> ($000s)</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td>1</td>
-<td>2</td>
-<td>58</td>
-<td>-12</td>
-<td>-72</td>
-<td>864</td>
-<td>144</td>
-<td>5184</td>
+<td>Restaurant 1</td>
+<td style="text-align: right;">2</td>
+<td style="text-align: right;">58</td>
 </tr>
 <tr class="even">
-<td>2</td>
-<td>6</td>
-<td>105</td>
-<td>-8</td>
-<td>-25</td>
-<td>200</td>
-<td>64</td>
-<td>625</td>
+<td>Restaurant 2</td>
+<td style="text-align: right;">6</td>
+<td style="text-align: right;">105</td>
 </tr>
 <tr class="odd">
-<td>3</td>
-<td>8</td>
-<td>88</td>
-<td>-6</td>
-<td>-42</td>
-<td>252</td>
-<td>36</td>
-<td>1764</td>
+<td><span class="math inline">\(\vdots\)</span></td>
+<td style="text-align: right;"><span class="math inline">\(\vdots\)</span></td>
+<td style="text-align: right;"><span class="math inline">\(\vdots\)</span></td>
 </tr>
 <tr class="even">
-<td>4</td>
-<td>8</td>
-<td>118</td>
-<td>-6</td>
-<td>-12</td>
-<td>72</td>
-<td>36</td>
-<td>144</td>
-</tr>
-<tr class="odd">
-<td>5</td>
-<td>12</td>
-<td>117</td>
-<td>-2</td>
-<td>-13</td>
-<td>26</td>
-<td>4</td>
-<td>169</td>
-</tr>
-<tr class="even">
-<td>6</td>
-<td>16</td>
-<td>137</td>
-<td>2</td>
-<td>7</td>
-<td>14</td>
-<td>4</td>
-<td>49</td>
-</tr>
-<tr class="odd">
-<td>7</td>
-<td>20</td>
-<td>157</td>
-<td>6</td>
-<td>27</td>
-<td>162</td>
-<td>36</td>
-<td>729</td>
-</tr>
-<tr class="even">
-<td>8</td>
-<td>20</td>
-<td>169</td>
-<td>6</td>
-<td>39</td>
-<td>234</td>
-<td>36</td>
-<td>1521</td>
-</tr>
-<tr class="odd">
-<td>9</td>
-<td>22</td>
-<td>149</td>
-<td>8</td>
-<td>19</td>
-<td>152</td>
-<td>64</td>
-<td>361</td>
-</tr>
-<tr class="even">
-<td>10</td>
-<td>26</td>
-<td>202</td>
-<td>12</td>
-<td>72</td>
-<td>864</td>
-<td>144</td>
-<td>5184</td>
-</tr>
-<tr class="odd">
-<td><strong>Total</strong></td>
-<td>140</td>
-<td>1300</td>
-<td></td>
-<td></td>
-<td>2840</td>
-<td>568</td>
-<td>15730</td>
+<td>Restaurant 10</td>
+<td style="text-align: right;">26</td>
+<td style="text-align: right;">202</td>
 </tr>
 </tbody>
 </table>
-<center>
-<span class="math inline">\(\bar{x} = 14, \bar{y} = 130\)</span>
-</center>
-<p><br></p>
+<p><strong>Least-squares fit:</strong> <span class="math inline">\(\bar{x} = 14\)</span>, <span class="math inline">\(\bar{y} = 130\)</span>, and the slope/intercept formulas give</p>
+<p><span class="math display">\[
+b_1 = 5, \qquad b_0 = 60 \qquad\Rightarrow\qquad \hat{y} = 60 + 5x
+\]</span></p>
+</div>
 </section>
-<section id="confidence-interval-for-ehaty" class="slide level2 center">
-<h2>Confidence Interval for <span class="math inline">\(E(\hat{y}^*)\)</span></h2>
-<p>Estimate of the Standard Deviation of <span class="math inline">\(\hat{y}^*\)</span>:</p>
-<p><span class="math display">\[
-s_{\hat{y}^*} = s \sqrt{\frac{1}{n} + \frac{(x^* - \bar{x})^2}{\sum (x_i - \bar{x})^2}}
-\]</span></p>
-<p><span class="math display">\[
-= 13.829 \sqrt{\frac{1}{10} + \frac{(10 - 14)^2}{568}}
-\]</span></p>
-<p><span class="math display">\[
-= 13.829 \sqrt{.1282} = 4.95
-\]</span></p>
-</section>
-<section id="confidence-interval-for-ehaty-1" class="slide level2 center">
-<h2>Confidence Interval for <span class="math inline">\(E(\hat{y}^*)\)</span></h2>
-<p>95% confidence interval of the <strong>mean</strong> quarterly sales for all Armand’s restaurants located near campuses with 10,000 students is</p>
-<p><span class="math display">\[
-\hat{y}^* \pm t_{\alpha/2} s_{\hat{y}^*}
-\]</span></p>
-<p><span class="math display">\[
-110 \pm 2.306(4.95)
-\]</span></p>
-<p><span class="math display">\[
-110 \pm 11.415, \text{ or } \$98,585 \text{ to } \$121,415
-\]</span></p>
-<p>We are 95% confident that the <strong>mean</strong> quarterly sales for <strong>all</strong> Armand’s restaurants located near campuses with 10,000 students falls between $98,585 and $121,415.</p>
-</section>
-<section id="confidence-interval-for-ehaty-2" class="slide level2 center">
-<h2>Confidence Interval for <span class="math inline">\(E(\hat{y}^*)\)</span></h2>
+<section id="armands-reading-the-line" class="slide level2 center">
+<h2>Armand’s — Reading the Line</h2>
 
-<img data-src="figs/reg_confidence_interval_plot.png" class="quarto-figure quarto-figure-center r-stretch" style="width:99.0%"></section>
-<section id="prediction-interval-for-y" class="slide level2 center">
-<h2>Prediction Interval for <span class="math inline">\(y^*\)</span></h2>
-<p>Estimate of the Standard Deviation of an <strong>Individual Value</strong> of <span class="math inline">\(y^*\)</span></p>
-<p><span class="math display">\[
-s_{pred} = s \sqrt{1 + \frac{1}{n} + \frac{(x^* - \bar{x})^2}{\sum (x_i - \bar{x})^2}}
-\]</span></p>
-<p><span class="math display">\[
-s_{pred} = 13.829 \sqrt{1 + \frac{1}{10} + \frac{(10 - 14)^2}{568}}
-\]</span></p>
-<p><span class="math display">\[
-= 13.829 \sqrt{1.282} = 14.69
-\]</span></p>
+<img data-src="figs/armands_fit.png" class="quarto-figure quarto-figure-center r-stretch" style="width:58.0%"><ul>
+<li><strong>Slope <span class="math inline">\(b_1 = 5\)</span>:</strong> each additional <strong>1,000 students</strong> in the trade area is associated with <strong>$5,000</strong> more quarterly sales.</li>
+<li><strong>Intercept <span class="math inline">\(b_0 = 60\)</span>:</strong> the line’s height at <span class="math inline">\(x = 0\)</span> — outside the data range, so read it as a fitting constant, not “sales with zero students.”</li>
+</ul>
 </section>
-<section id="prediction-interval-for-y-1" class="slide level2 center">
-<h2>Prediction Interval for <span class="math inline">\(y^*\)</span></h2>
-<p>95% prediction interval for quarterly sales for the new Armand’s restaurant located near a campus with 10,000 students is</p>
-<p><span class="math display">\[
-\hat{y}^* \pm t_{\alpha/2} s_{pred}
-\]</span></p>
-<p><span class="math display">\[
-110 \pm 2.306(14.69)
-\]</span></p>
-<p><span class="math display">\[
-110 \pm 33.875, \text{ or } \$76,125 \text{ to } \$143,875
-\]</span></p>
-<p>If we randomly select <strong>one</strong> Armand’s restaurant located near a campus with 10,000 students, we are 95% confident that its quarterly sales will be between $76,125 and $143,875.</p>
-</section>
-<section id="prediction-interval-for-y-2" class="slide level2 center">
-<h2>Prediction Interval for <span class="math inline">\(y^*\)</span></h2>
+<section id="the-auto-parts-fit" class="slide level2 center">
+<h2>The Auto-Parts Fit</h2>
 
-<img data-src="figs/reg_pred_interval_plot.png" class="quarto-figure quarto-figure-center r-stretch" style="width:99.0%"></section>
-<section id="comments" class="slide level2 center">
-<h2>Comments</h2>
+<img data-src="figs/autoparts_fit.png" class="quarto-figure quarto-figure-center r-stretch" style="width:70.0%"><div class="fragment">
+<p><span class="math display">\[
+\widehat{\text{sales}} = 332.8 + 757.5 \times (\text{Yelp rating})
+\]</span></p>
+</div>
+</section>
+<section id="interpreting-the-auto-parts-slope-and-intercept" class="slide level2 center">
+<h2>Interpreting the Auto-Parts Slope and Intercept</h2>
 <p><br></p>
 <ul>
-<li><p>Prediction intervals for individuals are wider than the corresponding confidence intervals for means.</p></li>
-<li><p>Two <span class="math inline">\(x\)</span>-values with the same distance to the <span class="math inline">\(\bar{x}\)</span>, their corresponding confidence intervals have the same width (and hence, the same margin of error). True also for the prediction intervals.</p></li>
-<li><p>The confidence interval is wider when the given <span class="math inline">\(x\)</span> is further away from the <span class="math inline">\(\bar{x}\)</span> – It is more difficult to predict for outlying <span class="math inline">\(x\)</span>’s.</p></li>
+<li class="fragment"><p><strong>Slope <span class="math inline">\(b_1 = +757.5\)</span>:</strong> each additional <strong>Yelp star</strong> is associated with about <strong>$757.5K</strong> more in annual sales. <em>This is the number the real-estate team can use to score sites.</em></p></li>
+<li class="fragment"><p><strong>Intercept <span class="math inline">\(b_0 = +332.8\)</span>:</strong> the line’s height at a rating of zero. No store has a zero rating, so do <strong>not</strong> interpret it as “sales of a zero-star store” — it just anchors the line.</p></li>
+<li class="fragment"><p><strong>Manager’s translation:</strong> <em>Moving a store from a 3.0 to a 4.0 Yelp rating is worth roughly three-quarters of a million dollars in predicted annual sales.</em></p></li>
+<li class="fragment"><p><strong>Sanity check:</strong> the slope is positive and large — consistent with the upward cloud. Good.</p></li>
 </ul>
-</section></section>
-<section>
-<section id="residual-analysis-validating-model-assumptions" class="title-slide slide level1 center" data-background-color="#cfb991">
-<h1>Residual Analysis: Validating Model Assumptions</h1>
-
 </section>
-<section id="residual-analysis-validating-model-assumptions-1" class="slide level2 center">
-<h2>Residual Analysis: Validating Model Assumptions</h2>
+<section id="r2-how-much-does-the-line-explain" class="slide level2 center">
+<h2><span class="math inline">\(R^2\)</span>: How Much Does the Line Explain?</h2>
+<p><br></p>
 <ul>
-<li><p>If the assumptions about the error term <span class="math inline">\(\epsilon\)</span> appear questionable, the hypothesis tests about the significance of the regression relationship and the interval estimation results may not be valid.</p></li>
-<li><p>The residuals provide the best information about <span class="math inline">\(\epsilon\)</span>.</p></li>
-<li><p>Residual for observation <span class="math inline">\(i\)</span></p></li>
+<li class="fragment">Total variation in sales splits into what the line <strong>explains</strong> and what it <strong>leaves</strong> as error:</li>
 </ul>
+<div class="fragment">
 <p><span class="math display">\[
-y_i - \hat{y}_i
+\underbrace{\text{SST}}_{\sum (y_i - \bar{y})^2} \;=\; \underbrace{\text{SSR}}_{\sum (\hat{y}_i - \bar{y})^2} \;+\; \underbrace{\text{SSE}}_{\sum (y_i - \hat{y}_i)^2}
 \]</span></p>
+</div>
 <ul>
-<li>Much of the residual analysis is based on an examination of graphical plots.</li>
+<li class="fragment">The <strong>coefficient of determination</strong> is the explained share:</li>
+</ul>
+<div class="fragment">
+<p><span class="math display">\[
+R^2 = \frac{\text{SSR}}{\text{SST}} = 1 - \frac{\text{SSE}}{\text{SST}}, \qquad 0 \le R^2 \le 1
+\]</span></p>
+</div>
+<ul>
+<li class="fragment"><span class="math inline">\(R^2 = 0\)</span>: the line explains nothing. <span class="math inline">\(R^2 = 1\)</span>: every point sits exactly on the line.</li>
 </ul>
 </section>
-<section id="model-assumptions-and-validation-procedures-with-diagnosis-plots" class="slide level2 center">
-<h2>Model Assumptions and Validation Procedures with Diagnosis Plots</h2>
+<section id="r2-for-the-auto-parts-model" class="slide level2 center">
+<h2><span class="math inline">\(R^2\)</span> for the Auto-Parts Model</h2>
+<p><br></p>
+<ul>
+<li class="fragment">From the auto-parts fit:</li>
+</ul>
+<div class="fragment">
+<table class="caption-top">
+<thead>
+<tr class="header">
+<th>Quantity</th>
+<th style="text-align: right;">Value</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>SST (total variation)</td>
+<td style="text-align: right;">55,840,034</td>
+</tr>
+<tr class="even">
+<td>SSR (explained by line)</td>
+<td style="text-align: right;">46,594,785</td>
+</tr>
+<tr class="odd">
+<td>SSE (left as error)</td>
+<td style="text-align: right;">9,245,249</td>
+</tr>
+<tr class="even">
+<td><span class="math inline">\(R^2 = \text{SSR}/\text{SST}\)</span></td>
+<td style="text-align: right;"><strong>0.834</strong></td>
+</tr>
+</tbody>
+</table>
+</div>
+<ul>
+<li class="fragment"><p><strong>Interpretation:</strong> Yelp rating alone explains <strong>83.4%</strong> of the store-to-store variation in annual sales — strong for a single predictor.</p></li>
+<li class="fragment"><p>The remaining <strong>16.6%</strong> is everything else (location, merchandising, competition). <em>That gap is exactly what motivates adding more predictors next topic.</em></p></li>
+<li class="fragment"><p>In Excel: <code>=RSQ(sales, yelp)</code> or read <strong>R Square</strong> off the Regression output.</p></li>
+</ul>
+</section>
+<section id="r2-and-correlation-are-the-same-story" class="slide level2 center">
+<h2><span class="math inline">\(R^2\)</span> and Correlation Are the Same Story</h2>
+<p><br></p>
+<ul>
+<li class="fragment">The sample <strong>correlation</strong> <span class="math inline">\(r\)</span> and <span class="math inline">\(R^2\)</span> are tightly linked in simple regression:</li>
+</ul>
+<div class="fragment">
+<p><span class="math display">\[
+r = (\text{sign of } b_1)\sqrt{R^2}
+\]</span></p>
+</div>
+<ul>
+<li class="fragment"><p>Here <span class="math inline">\(b_1 &gt; 0\)</span> and <span class="math inline">\(R^2 = 0.834\)</span>, so <span class="math inline">\(r = +\sqrt{0.834} = +0.913\)</span> — a strong positive correlation, the same fact <span class="math inline">\(R^2\)</span> reports.</p></li>
+<li class="fragment"><p><strong>Correlation</strong> measures the <em>tightness and direction</em> of the linear association; <strong><span class="math inline">\(R^2\)</span></strong> measures the <em>share of variation explained</em>. Same coin, two faces.</p></li>
+</ul>
+</section>
+<section id="excel-one-click-gives-you-everything" class="slide level2 center">
+<h2>Excel: One Click Gives You Everything</h2>
+<div class="columns">
+<div class="column" style="width:40%;">
+<p><br></p>
+<p><strong>Data → Data Analysis → Regression</strong></p>
+<ul>
+<li>Input Y Range: <code>sales2012_k</code></li>
+<li>Input X Range: <code>yelp_rating</code></li>
+<li>Check <strong>Labels</strong>, <strong>Residuals</strong>, <strong>Residual Plots</strong></li>
+</ul>
+<p><br></p>
+<p>The top block is <strong>Regression Statistics</strong> — <code>Multiple R</code>, <code>R Square</code>, <code>Standard Error</code>, <code>Observations</code>.</p>
+</div><div class="column" style="width:60%;">
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="figs/autoparts_reg_stats.png" class="quarto-figure quarto-figure-center" style="width:100.0%"></p>
+</figure>
+</div>
+</div>
+</div>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="figs/autoparts_reg_coef.png" class="quarto-figure quarto-figure-center" style="width:100.0%"></p>
+</figure>
+</div>
+</div>
+</div>
+</div></div>
+</section>
+<section id="team-sprint-1-fit-the-line-read-the-slope" class="slide level2 center">
+<h2>⏱️ Team Sprint 1 — Fit the line, read the slope</h2>
+<div class="sprint">
+<p><strong>Decide:</strong> does Yelp rating predict store sales — and what is one star worth?</p>
+<p><strong>Data:</strong> <code>data/autoparts.csv</code> · <strong>Time:</strong> ~12 min</p>
 <ol type="1">
-<li class="fragment"><p><span class="math inline">\(E(\epsilon) = 0\)</span>.</p>
-<ul>
-<li class="fragment"><strong>Validation procedure:</strong> A plot of residuals against the predicted values of the dependent variable <span class="math inline">\(y\)</span>.</li>
-</ul></li>
-<li class="fragment"><p>The variance of <span class="math inline">\(\epsilon\)</span>, denoted by <span class="math inline">\(\sigma^2\)</span>, is the same for all values of <span class="math inline">\(x\)</span>.</p>
-<ul>
-<li class="fragment"><strong>Validation procedure:</strong> A plot of the residuals against values of the independent variable <span class="math inline">\(x\)</span>.</li>
-</ul></li>
-<li class="fragment"><p>The values of <span class="math inline">\(\epsilon\)</span> are independent.</p>
-<ul>
-<li class="fragment"><strong>Validation procedure:</strong> A standardized residual plot.</li>
-</ul></li>
-<li class="fragment"><p>The error term <span class="math inline">\(\epsilon\)</span> has a normal distribution.</p>
-<ul>
-<li class="fragment"><strong>Validation procedure:</strong> A normal probability plot.</li>
-</ul></li>
+<li>In Excel: <strong>Data → Data Analysis → Regression</strong> (Y = <code>sales2012_k</code>, X = <code>yelp_rating</code>, check <strong>Labels</strong>).</li>
+<li>Write the estimated equation <span class="math inline">\(\hat{y} = b_0 + b_1 x\)</span> and interpret the <strong>slope</strong> in plain dollars-per-star.</li>
+<li>Read <strong>R Square</strong>: what fraction of the sales gap does Yelp rating explain? State the unexplained share.</li>
 </ol>
+<p><strong>Hand in (1 slide):</strong> the equation, the dollars-per-star sentence, and your <span class="math inline">\(R^2\)</span> read — would you use Yelp rating to score sites?</p>
+</div>
 </section>
-<section id="residual-plot-against-x" class="slide level2 center">
-<h2>Residual Plot Against <span class="math inline">\(x\)</span></h2>
-<div style="font-size: 80%;">
-<p>If the assumption that the variance of <span class="math inline">\(\epsilon\)</span> is the same (constant) for all values of <span class="math inline">\(x\)</span> is valid, and the assumed regression model is an adequate representation of the relationship between the variables, then the residual plot should give an overall impression of a horizontal band of points.</p>
+<section id="debrief-managers-takeaway-lecture-1" class="slide level2 center">
+<h2>Debrief — Manager’s Takeaway (Lecture 1)</h2>
+<p><br></p>
+<ul>
+<li class="fragment"><p><strong>One sentence:</strong> Yelp rating is a strong predictor of store sales — each star is worth about <strong>$757K</strong> in predicted annual sales.</p></li>
+<li class="fragment"><p><strong>One number:</strong> <span class="math inline">\(R^2 = 0.834\)</span> — Yelp rating alone explains <strong>83%</strong> of the sales differences across stores.</p></li>
+<li class="fragment"><p><strong>One caveat:</strong> “explains” is <strong>association, not cause</strong>, and 17% is still unexplained — one variable is rarely the whole story. We have a <em>fitted</em> line, but we have not yet asked whether it is <strong>statistically real</strong> or whether the model’s <strong>assumptions</strong> hold. That is Lecture 2.</p></li>
+</ul>
+</section>
+<section id="carry-forward-lecture-1" class="slide level2 center">
+<h2>Carry-forward (Lecture 1)</h2>
+<ul>
+<li><p><strong>Your client (homework):</strong> in your team’s case, pick a plausible numeric predictor of your key outcome. Fit the simple regression, write the slope interpretation in business units, and report <span class="math inline">\(R^2\)</span>.</p></li>
+<li><p><strong>Next time:</strong> is the slope <strong>real</strong> or could it be noise? We test it, check the assumptions behind the line, and forecast a brand-new store.</p></li>
+</ul>
+</section></section>
+<section>
+<section id="lecture-2-inference-assumptions-and-prediction" class="title-slide slide level1 center" data-background-color="#cfb991">
+<h1>Lecture 2 — Inference, Assumptions, and Prediction</h1>
+
+</section>
+<section id="the-brief-lecture-2" class="slide level2 center">
+<h2>The Brief — Lecture 2</h2>
+<p><br></p>
+<blockquote>
+<p>“The fitted slope is +757.5 $K per star. But our 45 stores are a <strong>sample</strong>. Is the Yelp–sales relationship <strong>real</strong>, do the model’s assumptions hold, and what sales should we <strong>forecast</strong> for a specific new site?”</p>
+</blockquote>
+<p><br></p>
+<ul>
+<li class="fragment"><p>Lecture 1 <em>described</em> the sample. Lecture 2 does <strong>inference</strong>: from these 45 stores to the population of all possible stores.</p></li>
+<li class="fragment"><p>Three jobs: (1) <strong>test</strong> the slope, (2) <strong>validate</strong> the assumptions with residuals, (3) <strong>predict</strong> a new store with an honest margin of error.</p></li>
+</ul>
+</section>
+<section id="the-assumptions-behind-the-line" class="slide level2 center">
+<h2>The Assumptions Behind the Line</h2>
+<p><br></p>
+<ul>
+<li class="fragment"><p>Everything we are about to do (tests, intervals) rests on four assumptions about the error term <span class="math inline">\(\varepsilon\)</span>:</p>
+<ol type="1">
+<li class="fragment"><strong>Mean zero:</strong> <span class="math inline">\(E(\varepsilon) = 0\)</span> — the line is right on average.</li>
+<li class="fragment"><strong>Constant variance:</strong> <span class="math inline">\(\text{Var}(\varepsilon) = \sigma^2\)</span> is the same for all <span class="math inline">\(x\)</span> (<strong>homoscedasticity</strong>).</li>
+<li class="fragment"><strong>Independence:</strong> the errors for different stores are independent.</li>
+<li class="fragment"><strong>Normality:</strong> <span class="math inline">\(\varepsilon\)</span> is normally distributed.</li>
+</ol></li>
+<li class="fragment"><p>If these are badly violated, the <span class="math inline">\(p\)</span>-values and intervals can mislead. We will <strong>check</strong> them with residual plots after we test — but they are the foundation, so flag them first.</p></li>
+</ul>
+</section>
+<section id="estimating-sigma-the-standard-error-of-the-estimate" class="slide level2 center">
+<h2>Estimating <span class="math inline">\(\sigma\)</span>: the Standard Error of the Estimate</h2>
+<p><br></p>
+<ul>
+<li class="fragment">The tests need an estimate of the error spread <span class="math inline">\(\sigma\)</span>. The <strong>mean square error</strong> estimates <span class="math inline">\(\sigma^2\)</span>:</li>
+</ul>
+<div class="fragment">
+<p><span class="math display">\[
+s^2 = \text{MSE} = \frac{\text{SSE}}{n - 2}
+\]</span></p>
 </div>
+<ul>
+<li class="fragment">Its square root, <span class="math inline">\(s = \sqrt{\text{MSE}}\)</span>, is the <strong>standard error of the estimate</strong> — the typical vertical miss of the line, in the units of <span class="math inline">\(y\)</span>:</li>
+</ul>
+<div class="fragment">
+<p><span class="math display">\[
+s = \sqrt{\frac{\text{SSE}}{n-2}} = \sqrt{\frac{9{,}245{,}249}{43}} \approx \$464\text{K}
+\]</span></p>
+</div>
+<ul>
+<li class="fragment">We divide by <span class="math inline">\(n - 2\)</span> because we spent two degrees of freedom estimating <span class="math inline">\(b_0\)</span> and <span class="math inline">\(b_1\)</span>. In Excel: <code>=STEYX(sales, yelp)</code> or read <strong>Standard Error</strong> off the output.</li>
+</ul>
+</section>
+<section id="testing-the-slope-is-the-relationship-real" class="slide level2 center">
+<h2>Testing the Slope: Is the Relationship Real?</h2>
+<p><br></p>
+<ul>
+<li class="fragment">If <span class="math inline">\(\beta_1 = 0\)</span>, <span class="math inline">\(x\)</span> has <strong>no</strong> linear effect on <span class="math inline">\(y\)</span> — there is no relationship to forecast with. So we test:</li>
+</ul>
+<div class="fragment">
+<p><span class="math display">\[
+H_0: \beta_1 = 0 \qquad \text{vs.} \qquad H_a: \beta_1 \neq 0 \qquad (\alpha = 0.05)
+\]</span></p>
+</div>
+<ul>
+<li class="fragment">The test statistic divides the estimated slope by its standard error, with <span class="math inline">\(df = n - 2\)</span>:</li>
+</ul>
+<div class="fragment">
+<p><span class="math display">\[
+t = \frac{b_1 - 0}{s_{b_1}}, \qquad s_{b_1} = \frac{s}{\sqrt{\sum (x_i - \bar{x})^2}}
+\]</span></p>
+</div>
+<ul>
+<li class="fragment">Same logic as every test since Topic 8: a statistic, a <span class="math inline">\(t\)</span> distribution, a <span class="math inline">\(p\)</span>-value, a decision.</li>
+</ul>
+</section>
+<section id="anchor-armands-slope-is-significant" class="slide level2 center">
+<h2>Anchor: Armand’s Slope Is Significant</h2>
 <div class="columns">
-<div class="quarto-layout-panel" data-layout-ncol="3">
-<div class="quarto-layout-row">
-<div class="column quarto-layout-cell" style="flex-basis: 33.3%;justify-content: flex-start;">
-<div class="fragment">
+<div class="column" style="width:40%;">
+<p><br></p>
+<p>For Armand’s Pizza:</p>
+<p><span class="math display">\[
+t = \frac{5}{0.580} = 8.62, \quad df = 8
+\]</span></p>
+<p><span class="math inline">\(p\text{-value} \approx 0.000 \le 0.05\)</span> → <strong>reject <span class="math inline">\(H_0\)</span></strong>.</p>
+<p><br></p>
+<p>Student population is a <strong>significant</strong> predictor of restaurant sales — the slope is not zero.</p>
+</div><div class="column" style="width:60%;">
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure>
-<p><img data-src="figs/reg_residual_01.png" class="quarto-figure quarto-figure-center" style="width:99.0%"></p>
+<p><img data-src="figs/armands_reg_coef.png" class="quarto-figure quarto-figure-center" style="width:100.0%"></p>
 </figure>
 </div>
 </div>
-</div>
-<center>
-Panel A
-</center>
-</div>
-</div><div class="column quarto-layout-cell" style="flex-basis: 33.3%;justify-content: flex-start;">
-<div class="fragment">
-<div class="cell" data-layout-align="center">
-<div class="cell-output-display">
-<div class="quarto-figure quarto-figure-center">
-<figure>
-<p><img data-src="figs/reg_residual_02.png" class="quarto-figure quarto-figure-center" style="width:99.0%"></p>
-</figure>
-</div>
-</div>
-</div>
-<center>
-Panel B
-</center>
-</div>
-</div><div class="column quarto-layout-cell" style="flex-basis: 33.3%;justify-content: flex-start;">
-<div class="fragment">
-<div class="cell" data-layout-align="center">
-<div class="cell-output-display">
-<div class="quarto-figure quarto-figure-center">
-<figure>
-<p><img data-src="figs/reg_residual_03.png" class="quarto-figure quarto-figure-center" style="width:99.0%"></p>
-</figure>
-</div>
-</div>
-</div>
-<center>
-Panel C
-</center>
 </div>
 </div></div>
-</div>
-</div>
-<p><br></p>
 </section>
-<section id="residual-plot-against-x-1" class="slide level2 center">
-<h2>Residual Plot Against <span class="math inline">\(x\)</span></h2>
-<p><strong>Example:</strong> Armand’s Pizza Parlors</p>
+<section id="the-auto-parts-slope-test" class="slide level2 center">
+<h2>The Auto-Parts Slope Test</h2>
+<p><br></p>
+<ul>
+<li class="fragment">From the Regression output (<code>yelp_rating</code> row):</li>
+</ul>
+<div class="fragment">
+<table class="caption-top">
+<thead>
+<tr class="header">
+<th>Quantity</th>
+<th style="text-align: right;">Value</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><span class="math inline">\(b_1\)</span> (slope)</td>
+<td style="text-align: right;">757.5</td>
+</tr>
+<tr class="even">
+<td><span class="math inline">\(s_{b_1}\)</span> (std. error of slope)</td>
+<td style="text-align: right;">51.46</td>
+</tr>
+<tr class="odd">
+<td><span class="math inline">\(t = b_1 / s_{b_1}\)</span></td>
+<td style="text-align: right;"><strong>14.7</strong></td>
+</tr>
+<tr class="even">
+<td><span class="math inline">\(df = n - 2\)</span></td>
+<td style="text-align: right;">43</td>
+</tr>
+<tr class="odd">
+<td><span class="math inline">\(p\)</span>-value</td>
+<td style="text-align: right;"><span class="math inline">\(&lt; 0.0001\)</span></td>
+</tr>
+</tbody>
+</table>
+</div>
+<ul>
+<li class="fragment"><p><span class="math inline">\(|t| = 14.7\)</span> is enormous against <span class="math inline">\(t_{0.025, 43} = 2.02\)</span> → <strong>reject <span class="math inline">\(H_0\)</span></strong> decisively.</p></li>
+<li class="fragment"><p><strong>Translation:</strong> the Yelp–sales relationship is <em>not</em> a fluke of these 45 stores. There is overwhelming evidence the true slope is positive.</p></li>
+</ul>
+</section>
+<section id="confidence-interval-for-the-slope" class="slide level2 center">
+<h2>Confidence Interval for the Slope</h2>
+<p><br></p>
+<ul>
+<li class="fragment">The test says the slope is nonzero; the <strong>confidence interval</strong> says how big it plausibly is:</li>
+</ul>
+<div class="fragment">
+<p><span class="math display">\[
+b_1 \pm t_{\alpha/2,\,n-2}\; s_{b_1} = 757.5 \pm 2.02 \times 51.46 = (\$653.7\text{K},\; \$861.3\text{K})
+\]</span></p>
+</div>
+<ul>
+<li class="fragment"><p>We are 95% confident each Yelp star is worth between <strong>$654K and $861K</strong> in annual sales.</p></li>
+<li class="fragment"><p>The interval is <strong>entirely above zero</strong> — the same conclusion as the test (reject <span class="math inline">\(H_0\)</span>), now with a magnitude a manager can plan around.</p></li>
+<li class="fragment"><p><strong>Equivalence:</strong> reject <span class="math inline">\(H_0: \beta_1 = 0\)</span> at <span class="math inline">\(\alpha = 0.05\)</span> <span class="math inline">\(\iff\)</span> zero is <strong>not</strong> in the 95% CI. Read directly off the <strong>Lower 95% / Upper 95%</strong> columns of the output.</p></li>
+</ul>
+</section>
+<section id="a-note-on-the-f-test" class="slide level2 center">
+<h2>A Note on the F Test</h2>
+<p><br></p>
+<ul>
+<li class="fragment"><p>The Regression output also reports an <strong>F test</strong> (the ANOVA block): <span class="math inline">\(F = \text{MSR}/\text{MSE}\)</span>, testing the same <span class="math inline">\(H_0: \beta_1 = 0\)</span>.</p></li>
+<li class="fragment"><p>In <strong>simple</strong> regression (one predictor) the <span class="math inline">\(F\)</span> and <span class="math inline">\(t\)</span> tests are <strong>equivalent</strong> — in fact <span class="math inline">\(F = t^2\)</span>:</p></li>
+</ul>
+<div class="fragment">
+<p><span class="math display">\[
+F = 216.7 = (14.7)^2 = t^2
+\]</span></p>
+</div>
+<ul>
+<li class="fragment">Same conclusion, same <span class="math inline">\(p\)</span>-value. (When we add predictors next topic, <span class="math inline">\(F\)</span> tests the model <em>as a whole</em> while each <span class="math inline">\(t\)</span> tests one variable — then they differ.)</li>
+</ul>
+</section>
+<section id="significance-is-not-causation" class="slide level2 center">
+<h2>Significance Is Not Causation</h2>
+<p><br></p>
+<ul>
+<li class="fragment"><p>Rejecting <span class="math inline">\(H_0: \beta_1 = 0\)</span> tells us the <strong>relationship is statistically significant</strong> — Yelp and sales move together more than chance would explain.</p></li>
+<li class="fragment"><p>It does <strong>not</strong> establish that <strong>better service causes</strong> higher sales. Reverse causation (busy, well-stocked stores earn better reviews) and lurking variables (a great location drives <em>both</em>) are live alternatives.</p></li>
+<li class="fragment"><p>It also does <strong>not</strong> prove the relationship is truly <strong>linear</strong> outside the range we observed — extrapolating a 6-star store is meaningless.</p></li>
+<li class="fragment"><p><em>Use regression to forecast and to quantify; use judgment and design to claim causation.</em></p></li>
+</ul>
+</section>
+<section id="residual-analysis-validating-the-assumptions" class="slide level2 center">
+<h2>Residual Analysis: Validating the Assumptions</h2>
+<p><br></p>
+<ul>
+<li class="fragment"><p>A significant slope is worthless if the model is the <strong>wrong shape</strong>. <strong>Residuals</strong> are our window onto the error term — they should look like random noise.</p></li>
+<li class="fragment"><p>The core diagnostic: <strong>plot residuals against <span class="math inline">\(x\)</span></strong> (or against <span class="math inline">\(\hat{y}\)</span>). We want a <strong>horizontal band of points centered at zero</strong> with no pattern.</p></li>
+<li class="fragment"><p>Two warning signs to learn:</p>
+<ul>
+<li class="fragment">A <strong>curved</strong> (U-shaped) band → the relationship is <strong>nonlinear</strong>; a straight line is the wrong functional form (consider adding <span class="math inline">\(x^2\)</span>).</li>
+<li class="fragment">A <strong>fan</strong> that widens → <strong>non-constant variance</strong> (heteroscedasticity); the constant-variance assumption fails (consider transforming <span class="math inline">\(y\)</span>).</li>
+</ul></li>
+</ul>
+</section>
+<section id="the-auto-parts-residual-plot" class="slide level2 center">
+<h2>The Auto-Parts Residual Plot</h2>
+
+<img data-src="figs/autoparts_residual_plot.png" class="quarto-figure quarto-figure-center r-stretch" style="width:72.0%"><ul>
+<li>Roughly horizontal, centered at zero, no fan and no curve → the <strong>linearity</strong> and <strong>constant-variance</strong> assumptions look reasonable. The straight-line model is defensible.</li>
+</ul>
+</section>
+<section id="standardized-residuals-and-outliers" class="slide level2 center">
+<h2>Standardized Residuals and Outliers</h2>
+<ul>
+<li class="fragment"><p>Dividing each residual by its standard deviation gives a <strong>standardized residual</strong> — on a <span class="math inline">\(z\)</span>-like scale.</p></li>
+<li class="fragment"><p><strong>Rule of thumb:</strong> a standardized residual with <span class="math inline">\(|z| &gt; 2\)</span> flags an <strong>outlier</strong> — a store that performs far off-trend for its rating. Investigate; don’t auto-delete.</p></li>
+</ul>
+<div class="fragment">
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="figs/autoparts_std_residual_plot.png" class="quarto-figure quarto-figure-center" style="width:60.0%"></p>
+</figure>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="two-stores-worth-a-conversation" class="slide level2 center">
+<h2>Two Stores Worth a Conversation</h2>
+<p><br></p>
+<ul>
+<li class="fragment"><p>Two stores sit just past <span class="math inline">\(\pm 2\)</span> — both rated <strong>5.0 stars</strong>:</p>
+<ul>
+<li class="fragment">One <strong>under-performs</strong> badly (sales far below the $4.1M its rating predicts).</li>
+<li class="fragment">One <strong>over-performs</strong> (sales well above the line).</li>
+</ul></li>
+<li class="fragment"><p>These are <strong>not data errors</strong> — they are real stores the model can’t fully explain with rating alone.</p></li>
+<li class="fragment"><p><em>What might separate two 5-star stores?</em> End-cap placement, local income, population. <strong>That is the teaser for multiple regression</strong> — adding the variables that explain the residuals.</p></li>
+</ul>
+</section>
+<section id="forecasting-a-new-store-point-prediction" class="slide level2 center">
+<h2>Forecasting a New Store: Point Prediction</h2>
+<p><br></p>
+<ul>
+<li class="fragment">The real payoff: a prospective site rates <strong>4.5 stars</strong> on comparable stores. Predicted sales:</li>
+</ul>
+<div class="fragment">
+<p><span class="math display">\[
+\hat{y} = 332.8 + 757.5 \times 4.5 = \$3{,}742\text{K} \;\approx\; \$3.74\text{M}
+\]</span></p>
+</div>
+<ul>
+<li class="fragment"><p>That single number is the <strong>point prediction</strong> — but a point with no margin of error is a trap. Two different questions need two different intervals:</p>
+<ul>
+<li class="fragment"><strong>Confidence interval</strong> — the <strong>mean</strong> sales of <em>all</em> stores rated 4.5.</li>
+<li class="fragment"><strong>Prediction interval</strong> — the sales of <strong>this one</strong> new store.</li>
+</ul></li>
+</ul>
+</section>
+<section id="confidence-interval-vs.-prediction-interval" class="slide level2 center">
+<h2>Confidence Interval vs.&nbsp;Prediction Interval</h2>
+<p><br></p>
+<div style="font-size: 86%;">
+<ul>
+<li class="fragment"><strong>Confidence interval</strong> for the mean response at <span class="math inline">\(x^*\)</span> — narrower:</li>
+</ul>
+<div class="fragment">
+<p><span class="math display">\[
+\hat{y} \pm t_{\alpha/2,\,n-2}\; s\sqrt{\frac{1}{n} + \frac{(x^* - \bar{x})^2}{\sum (x_i - \bar{x})^2}}
+\]</span></p>
+</div>
+<ul>
+<li class="fragment"><strong>Prediction interval</strong> for one new store at <span class="math inline">\(x^*\)</span> — wider (note the extra <strong>1</strong>):</li>
+</ul>
+<div class="fragment">
+<p><span class="math display">\[
+\hat{y} \pm t_{\alpha/2,\,n-2}\; s\sqrt{1 + \frac{1}{n} + \frac{(x^* - \bar{x})^2}{\sum (x_i - \bar{x})^2}}
+\]</span></p>
+</div>
+<ul>
+<li class="fragment">The PI carries the <strong>individual store’s</strong> own scatter (<span class="math inline">\(s\)</span>) <em>on top of</em> the uncertainty in the line — that is the extra “1.”</li>
+</ul>
+</div>
+</section>
+<section id="the-two-intervals-in-a-picture" class="slide level2 center">
+<h2>The Two Intervals, in a Picture</h2>
+
+<img data-src="figs/autoparts_pred_band.png" class="quarto-figure quarto-figure-center r-stretch" style="width:66.0%"><ul>
+<li>At Yelp = 4.5: point $3.74M; <strong>CI</strong> <span class="math inline">\((\$3{,}543\text{K},\; \$3{,}940\text{K})\)</span> for the average such store; <strong>PI</strong> <span class="math inline">\((\$2{,}786\text{K},\; \$4{,}698\text{K})\)</span> for one specific new store.</li>
+<li>Both bands are <strong>narrowest near <span class="math inline">\(\bar{x}\)</span></strong> and flare out at the edges — forecasts far from the data are less certain.</li>
+</ul>
+</section>
+<section id="what-makes-a-forecast-tighter-or-looser" class="slide level2 center">
+<h2>What Makes a Forecast Tighter or Looser</h2>
+<p><br></p>
+<ul>
+<li class="fragment"><p>Four levers set the width of these intervals:</p>
+<ol type="1">
+<li class="fragment"><strong>Confidence level</strong> <span class="math inline">\((1-\alpha)\)</span> — more confidence → wider.</li>
+<li class="fragment"><strong>Data spread</strong> <span class="math inline">\(s\)</span> — noisier data → wider.</li>
+<li class="fragment"><strong>Sample size</strong> <span class="math inline">\(n\)</span> — more stores → narrower.</li>
+<li class="fragment"><strong>Distance of <span class="math inline">\(x^*\)</span> from <span class="math inline">\(\bar{x}\)</span></strong> — forecasting far from the average rating → wider.</li>
+</ol></li>
+<li class="fragment"><p><strong>Manager’s lesson:</strong> a confident forecast comes from a tight model (<span class="math inline">\(s\)</span> small), lots of data (<span class="math inline">\(n\)</span> large), and a site that looks like the stores we already have (<span class="math inline">\(x^*\)</span> near <span class="math inline">\(\bar{x}\)</span>). Forecasting an exotic site is a guess dressed as a number.</p></li>
+</ul>
+</section>
+<section id="team-sprint-2-test-the-slope-forecast-a-site" class="slide level2 center">
+<h2>⏱️ Team Sprint 2 — Test the slope, forecast a site</h2>
+<div class="sprint">
+<p><strong>Decide:</strong> is the Yelp–sales relationship real, and what should we forecast for a candidate 4.5-star site?</p>
+<p><strong>Data:</strong> <code>data/autoparts.csv</code> · <strong>Time:</strong> ~15 min</p>
+<ol type="1">
+<li>From the Regression output, state <span class="math inline">\(t\)</span>, the <span class="math inline">\(p\)</span>-value, and the <strong>95% CI for the slope</strong> — is <span class="math inline">\(\beta_1\)</span> significantly nonzero?</li>
+<li>Glance at the <strong>residual plot</strong> (check Residual Plots in the dialog): any fan or curve that breaks the assumptions?</li>
+<li>Forecast a site at <strong>Yelp = 4.5</strong>: give the point prediction, and say whether the CFO should quote the <strong>CI</strong> or the <strong>PI</strong> for one new lease — and why.</li>
+</ol>
+<p><strong>Hand in (1 slide):</strong> the slope verdict (with CI), an assumptions one-liner, and your forecast + the interval you’d put in the lease memo.</p>
+</div>
+</section>
+<section id="debrief-managers-takeaway-lecture-2" class="slide level2 center">
+<h2>Debrief — Manager’s Takeaway (Lecture 2)</h2>
+<p><br></p>
+<ul>
+<li class="fragment"><p><strong>One sentence:</strong> the Yelp–sales slope is overwhelmingly significant (<span class="math inline">\(t = 14.7\)</span>, <span class="math inline">\(p &lt; 0.0001\)</span>); a 4.5-star site is forecast at <strong>$3.74M</strong>, and for <em>one</em> lease we quote the <strong>prediction interval</strong> <span class="math inline">\((\$2.79\text{M}, \$4.70\text{M})\)</span>.</p></li>
+<li class="fragment"><p><strong>One number:</strong> 95% CI for the slope = <strong>($654K, $861K)</strong> per star — the magnitude the real-estate team plans around.</p></li>
+<li class="fragment"><p><strong>One caveat:</strong> the model assumes the new site behaves like our 45 stores; the two off-trend 5-star outliers warn that rating alone misses something — which is exactly why we add predictors next.</p></li>
+</ul>
+</section>
+<section id="carry-forward-lecture-2" class="slide level2 center">
+<h2>Carry-forward (Lecture 2)</h2>
+<ul>
+<li><p><strong>Your client (homework):</strong> on your team’s simple regression — test the slope (report <span class="math inline">\(t\)</span>, <span class="math inline">\(p\)</span>, and the 95% CI), check the residual plot for assumption violations, and produce a point prediction <em>with the right interval</em> for one new case. State whether you’d trust the forecast.</p></li>
+<li><p><strong>Next time:</strong> sales depend on more than one thing. We add <strong>population, income, and end-cap placement</strong> to the model — <strong>Multiple Regression</strong> — and learn why a variable that looks important alone can vanish once others are in the room.</p></li>
+</ul>
+</section></section>
+<section>
+<section id="debrief-from-a-line-to-a-site-decision" class="title-slide slide level1 center" data-background-color="#cfb991">
+<h1>Debrief — From a Line to a Site Decision</h1>
+
+</section>
+<section id="the-whole-engagement-on-one-page" class="slide level2 center">
+<h2>The Whole Engagement on One Page</h2>
+<div class="r-fit-text">
 <table class="caption-top">
 <colgroup>
 <col style="width: 25%">
@@ -2010,565 +908,91 @@ Panel C
 </colgroup>
 <thead>
 <tr class="header">
-<th>Student Population (<span class="math inline">\(x_i\)</span>)</th>
-<th>Sales (<span class="math inline">\(y_i\)</span>)</th>
-<th>Predicted sales <span class="math inline">\(y_i = 60 + 5(x_i)\)</span></th>
-<th>Residuals (<span class="math inline">\(y_i - \hat{y_i}\)</span>)</th>
+<th>Step</th>
+<th>Question</th>
+<th>Tool</th>
+<th>Auto-parts result</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td>2</td>
-<td>58</td>
-<td>70</td>
-<td>-12</td>
+<td>Fit</td>
+<td>What’s the line?</td>
+<td>Least squares</td>
+<td><span class="math inline">\(\hat{y} = 332.8 + 757.5\,x\)</span></td>
 </tr>
 <tr class="even">
-<td>6</td>
-<td>105</td>
-<td>90</td>
-<td>15</td>
+<td>Interpret</td>
+<td>What’s a star worth?</td>
+<td>Slope <span class="math inline">\(b_1\)</span></td>
+<td><strong>+$757.5K</strong> per Yelp star</td>
 </tr>
 <tr class="odd">
-<td>8</td>
-<td>88</td>
-<td>100</td>
-<td>-12</td>
+<td>Explain</td>
+<td>How good is the fit?</td>
+<td><span class="math inline">\(R^2\)</span></td>
+<td><strong>0.834</strong> — 83% of sales variation</td>
 </tr>
 <tr class="even">
-<td>8</td>
-<td>118</td>
-<td>100</td>
-<td>18</td>
+<td>Test</td>
+<td>Is it real?</td>
+<td><span class="math inline">\(t\)</span> test on slope</td>
+<td><span class="math inline">\(t = 14.7\)</span>, <span class="math inline">\(p &lt; .0001\)</span> → reject <span class="math inline">\(H_0\)</span></td>
 </tr>
 <tr class="odd">
-<td>12</td>
-<td>117</td>
-<td>120</td>
-<td>-3</td>
+<td>Quantify</td>
+<td>How big, plausibly?</td>
+<td>95% CI for slope</td>
+<td>($654K, $861K) per star</td>
 </tr>
 <tr class="even">
-<td>16</td>
-<td>137</td>
-<td>140</td>
-<td>-3</td>
+<td>Validate</td>
+<td>Do assumptions hold?</td>
+<td>Residual plot</td>
+<td>Horizontal band → OK (2 outliers)</td>
 </tr>
 <tr class="odd">
-<td>20</td>
-<td>157</td>
-<td>160</td>
-<td>-3</td>
-</tr>
-<tr class="even">
-<td>20</td>
-<td>169</td>
-<td>160</td>
-<td>9</td>
-</tr>
-<tr class="odd">
-<td>22</td>
-<td>149</td>
-<td>170</td>
-<td>-21</td>
-</tr>
-<tr class="even">
-<td>26</td>
-<td>202</td>
-<td>190</td>
-<td>12</td>
+<td>Forecast</td>
+<td>What will a new site sell?</td>
+<td>Point + PI</td>
+<td>$3.74M; PI ($2.79M, $4.70M) at 4.5 stars</td>
 </tr>
 </tbody>
 </table>
-</section>
-<section id="residual-plot-against-x-2" class="slide level2 center">
-<h2>Residual Plot Against <span class="math inline">\(x\)</span></h2>
-<p><strong>Example:</strong> Armand’s Pizza Parlors</p>
-<p>Plot of the residuals against the independent variable <span class="math inline">\(x\)</span>.</p>
-
-<img data-src="figs/armands_pizza_plot_residual_x.png" class="quarto-figure quarto-figure-center r-stretch" style="width:70.0%"><div style="font-size: 80%;">
-<ul>
-<li class="fragment">The residuals appear to approximate the horizontal pattern in Panel A.</li>
-<li class="fragment">Based on this subjective evaluation, we conclude that the residual plot does not provide evidence that the assumptions made for Armand’s regression model should be challenged.</li>
-<li class="fragment">We can be confident that Armand’s simple regression model is valid.</li>
-</ul>
 </div>
 </section>
-<section id="residual-plot-against-x---excel" class="slide level2 center">
-<h2>Residual Plot Against <span class="math inline">\(x\)</span> - Excel</h2>
-<div class="columns">
-<div class="column" style="text-align: center; justify-content: center; align-items: center;">
-<ul>
-<li><p>Using Excel to Produce a Residual Plot</p>
-<ul>
-<li><p>The steps outlined earlier to obtain the regression output are performed with one change.</p></li>
-<li><p>When the Regression dialog box appears, we must also select the <strong>Residual Plot</strong> option.</p></li>
-<li><p>The output will include two new items:</p>
-<ul>
-<li>A plot of the residuals against the independent variable, and</li>
-<li>A list of predicted values of <span class="math inline">\(y\)</span> and the corresponding residual values.</li>
-</ul></li>
-</ul></li>
-</ul>
-</div><div class="column" style="text-align: center; justify-content: center; align-items: center;">
-<p><br></p>
-<div class="cell" data-layout-align="center">
-<div class="cell-output-display">
-<div class="quarto-figure quarto-figure-center">
-<figure>
-<p><img data-src="figs/armands_pizza_plot_residual_excel.png" class="quarto-figure quarto-figure-center" style="width:90.0%"></p>
-</figure>
-</div>
-</div>
-</div>
-</div></div>
-</section>
-<section id="residual-plot-against-haty" class="slide level2 center">
-<h2>Residual Plot Against <span class="math inline">\(\hat{y}\)</span></h2>
-<p><strong>Example:</strong> Armand’s Pizza Parlors</p>
-<p>Plot of the residuals against the independent variable <span class="math inline">\(\hat{y}\)</span>.</p>
-
-<img data-src="figs/armands_pizza_plot_residual_y.png" class="quarto-figure quarto-figure-center r-stretch" style="width:70.0%"><div style="font-size: 80%;">
-<ul>
-<li class="fragment">The pattern of this residual plot is the same as the pattern of the residual plot against the independent variable <span class="math inline">\(x\)</span>.</li>
-<li class="fragment">It is not a pattern that would lead us to question the model assumptions.</li>
-<li class="fragment">For simple linear regression, both the residual plot against <span class="math inline">\(x\)</span> and the residual plot against <span class="math inline">\(\hat{y}\)</span> provide the same pattern.</li>
-<li class="fragment">For multiple regression analysis, the residual plot against <span class="math inline">\(\hat{y}\)</span> is more widely used because of the presence of more than one independent variable.</li>
-</ul>
-</div>
-</section>
-<section id="standardized-residuals" class="slide level2 center">
-<h2>Standardized Residuals</h2>
-<ul>
-<li>Standardized Residual for Observation <span class="math inline">\(i\)</span></li>
-</ul>
-<p><span class="math display">\[
-\frac{y_i - \hat{y_i}}{s_{y_i - \hat{y_i}}}
-\]</span></p>
-<p>where <span class="math inline">\(s_{y_i - \hat{y_i}}\)</span> is the standard deviation of residual <span class="math inline">\(i\)</span></p>
-<p><span class="math display">\[
-s_{y_i - \hat{y_i}} = s \sqrt{1 + h_i}
-\]</span> where <span class="math inline">\(s\)</span> is the standard error of the estimate</p>
-<p><span class="math display">\[
-h_i = \frac{1}{n} + \frac{(x_i - \bar{x})^2}{\sum (x_i - \bar{x})^2}
-\]</span></p>
-</section>
-<section id="standardized-residual-plot" class="slide level2 center">
-<h2>Standardized Residual Plot</h2>
-<ul>
-<li class="fragment"><p>The standardized residual plot can provide insight about the assumption that the error term <span class="math inline">\(\epsilon\)</span> has a normal distribution.</p></li>
-<li class="fragment"><p>If this assumption is satisfied, the distribution of the standardized residuals should appear to come from a standard normal probability distribution.</p>
-<ul>
-<li class="fragment">Empirical rule applies.</li>
-</ul></li>
-</ul>
-</section>
-<section id="standardized-residual" class="slide level2 center">
-<h2>Standardized Residual</h2>
-<p><strong>Example:</strong> Armand’s Pizza Parlors</p>
-<table class="caption-top">
-<colgroup>
-<col style="width: 25%">
-<col style="width: 25%">
-<col style="width: 25%">
-<col style="width: 25%">
-</colgroup>
-<thead>
-<tr class="header">
-<th>Observation</th>
-<th>Predicted sales <span class="math inline">\(y_i = 60 + 5(x_i)\)</span></th>
-<th>Residuals (<span class="math inline">\(y_i - \hat{y_i}\)</span>)</th>
-<th>Standardized Residual</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>1</td>
-<td>70</td>
-<td>-12</td>
-<td>-1.0792</td>
-</tr>
-<tr class="even">
-<td>2</td>
-<td>90</td>
-<td>15</td>
-<td>1.2224</td>
-</tr>
-<tr class="odd">
-<td>3</td>
-<td>100</td>
-<td>-12</td>
-<td>-.9487</td>
-</tr>
-<tr class="even">
-<td>4</td>
-<td>100</td>
-<td>18</td>
-<td>1.4230</td>
-</tr>
-<tr class="odd">
-<td>5</td>
-<td>120</td>
-<td>-3</td>
-<td>-.2296</td>
-</tr>
-<tr class="even">
-<td>6</td>
-<td>140</td>
-<td>-3</td>
-<td>-.2296</td>
-</tr>
-<tr class="odd">
-<td>7</td>
-<td>160</td>
-<td>-3</td>
-<td>-.2372</td>
-</tr>
-<tr class="even">
-<td>8</td>
-<td>160</td>
-<td>9</td>
-<td>.7115</td>
-</tr>
-<tr class="odd">
-<td>9</td>
-<td>170</td>
-<td>-21</td>
-<td>-1.7114</td>
-</tr>
-<tr class="even">
-<td>10</td>
-<td>190</td>
-<td>12</td>
-<td>1.0792</td>
-</tr>
-</tbody>
-</table>
-</section>
-<section id="standardized-residual-plot-1" class="slide level2 center">
-<h2>Standardized Residual Plot</h2>
-<p><strong>Example:</strong> Armand’s Pizza Parlors</p>
-
-<img data-src="figs/armands_pizza_plot_residual_std.png" class="quarto-figure quarto-figure-center r-stretch" style="width:70.0%"><ul>
-<li class="fragment">All of the standardized residuals are between -2 and +2 indicating that there is no reason to question the assumption that ε has a normal distribution.</li>
-</ul>
-</section>
-<section id="using-excel-to-construct-a-standardized-residual-plot" class="slide level2 center">
-<h2>Using Excel to construct a Standardized Residual Plot</h2>
-<p><strong>Example: Armand’s Pizza Parlors</strong></p>
-
-<img data-src="figs/armands_pizza_plot_residual_std_excel.png" class="quarto-figure quarto-figure-center r-stretch" style="width:70.0%"></section>
-<section id="normal-probability-plot" class="slide level2 center">
-<h2>Normal Probability Plot</h2>
-<p>Another approach for determining the validity of the assumption that the error term has a normal distribution.</p>
-<p>To show how a normal probability plot is developed, we introduce the concept of <strong>normal scores</strong>:</p>
-<blockquote>
-<p>Suppose 10 values are selected randomly from a normal probability distribution with a mean of zero and a standard deviation of one, and that the sampling process is repeated over and over with the values in each sample of 10 ordered from smallest to largest. For now, let us consider only the smallest value in each sample. The random variable representing the smallest value obtained in repeated sampling is called the <strong>first-order statistic</strong>.</p>
-</blockquote>
-<blockquote>
-<p>For samples of size 10 from a standard normal probability distribution, the expected value of the first-order statistic is -1.55. This expected value is called a <strong>normal score</strong>. For the case with a sample of size <span class="math inline">\(n = 10\)</span>, there are 10 order statistics and 10 normal scores (next slide). In general, a data set consisting of <span class="math inline">\(n\)</span> observations will have <span class="math inline">\(n\)</span> order statistics and hence <span class="math inline">\(n\)</span> normal scores.</p>
-</blockquote>
-<p><strong>Normal Scores</strong>: are expected values of the order statistics from a standard normal distribution.</p>
-</section>
-<section id="normal-probability-plot-1" class="slide level2 center">
-<h2>Normal Probability Plot</h2>
-<p><strong>Normal Scores for</strong> <span class="math inline">\(n = 10\)</span></p>
-<center>
-<table class="caption-top">
-<thead>
-<tr class="header">
-<th>Order Statistic</th>
-<th>Normal Score</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>1</td>
-<td>-1.55</td>
-</tr>
-<tr class="even">
-<td>2</td>
-<td>-1.00</td>
-</tr>
-<tr class="odd">
-<td>3</td>
-<td>-0.65</td>
-</tr>
-<tr class="even">
-<td>4</td>
-<td>-0.37</td>
-</tr>
-<tr class="odd">
-<td>5</td>
-<td>-0.12</td>
-</tr>
-<tr class="even">
-<td>6</td>
-<td>0.12</td>
-</tr>
-<tr class="odd">
-<td>7</td>
-<td>0.37</td>
-</tr>
-<tr class="even">
-<td>8</td>
-<td>0.65</td>
-</tr>
-<tr class="odd">
-<td>9</td>
-<td>1.00</td>
-</tr>
-<tr class="even">
-<td>10</td>
-<td>1.55</td>
-</tr>
-</tbody>
-</table>
-</center>
-</section>
-<section id="normal-probability-plot-2" class="slide level2 center">
-<h2>Normal Probability Plot</h2>
-<div style="font-size: 80%;">
-<p>To determine whether the standardized residuals for Armand’s Pizza Parlors appear to come from a standard normal probability distribution.</p>
-<p>We order the 10 standardized residuals in parallel with the 10 normal scores:</p>
-<table class="caption-top">
-<thead>
-<tr class="header">
-<th>Normal Scores</th>
-<th>Ordered Standardized Residuals</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>-1.55</td>
-<td>-1.7114</td>
-</tr>
-<tr class="even">
-<td>-1.00</td>
-<td>-1.0792</td>
-</tr>
-<tr class="odd">
-<td>-0.65</td>
-<td>-0.9487</td>
-</tr>
-<tr class="even">
-<td>-0.37</td>
-<td>-0.2372</td>
-</tr>
-<tr class="odd">
-<td>-0.12</td>
-<td>-0.2296</td>
-</tr>
-<tr class="even">
-<td>0.12</td>
-<td>-0.2296</td>
-</tr>
-<tr class="odd">
-<td>0.37</td>
-<td>0.7115</td>
-</tr>
-<tr class="even">
-<td>0.65</td>
-<td>1.0792</td>
-</tr>
-<tr class="odd">
-<td>1.00</td>
-<td>1.2224</td>
-</tr>
-<tr class="even">
-<td>1.55</td>
-<td>1.4230</td>
-</tr>
-</tbody>
-</table>
-<p><strong>Interpreting the Normal Probability Plot</strong>: If the normality assumption is satisfied, the smallest standardized residual should be close to the smallest normal score, the next smallest standardized residual should be close to the next smallest normal score, and so on.</p>
-</div>
-</section>
-<section id="normal-probability-plot-3" class="slide level2 center">
-<h2>Normal Probability Plot</h2>
-<div style="font-size: 70%;">
-<p>A plot with the normal scores on the horizontal axis and the corresponding standardized residuals on the vertical axis, the plotted points should cluster closely around a 45-degree line passing through the origin if the standardized residuals are approximately normally distributed.</p>
-<div class="fragment">
-<div class="cell" data-layout-align="center">
-<div class="cell-output-display">
-<div class="quarto-figure quarto-figure-center">
-<figure>
-<p><img data-src="figs/armands_pizza_normality_plot.png" class="quarto-figure quarto-figure-center" style="width:40.0%"></p>
-</figure>
-</div>
-</div>
-</div>
-<ul>
-<li class="fragment">The points are grouped closely about the line. Therefore, we can conclude that the assumption of the error term having a normal probability distribution is reasonable.</li>
-<li class="fragment">In general, the more closely the points are clustered about the 45-degree line, the stronger the evidence supporting the normality assumption. Any substantial curvature in the normal probability plot is evidence that the residuals have not come from a normal distribution.</li>
-</ul>
-</div>
-</div>
-</section></section>
-<section>
-<section id="outliers-and-influential-observations" class="title-slide slide level1 center" data-background-color="#cfb991">
-<h1>Outliers and Influential Observations</h1>
-
-</section>
-<section id="outliers" class="slide level2 center">
-<h2>Outliers</h2>
-<p>An <strong>outlier</strong> is a data point (observation) that does not fit the trend shown by the remaining data. Represent observations that are suspect and warrant careful examination.</p>
-<ul>
-<li class="fragment"><p><strong>Erroneous Data</strong></p>
-<ul>
-<li class="fragment"><p>Investigate the source of the outlier to identify any errors in data collection or entry.</p></li>
-<li class="fragment"><p>Correct the data point if possible, or remove it if the correct value cannot be determined.</p></li>
-</ul></li>
-<li class="fragment"><p><strong>Violation of Model Assumptions</strong></p>
-<ul>
-<li class="fragment"><p>Use diagnostic tools to check if the outlier violates the assumptions of simple regression.</p></li>
-<li class="fragment"><p>Consider alternative models, such as transformations or robust regression methods, if the assumptions are violated.</p></li>
-</ul></li>
-<li class="fragment"><p><strong>Legitimate but Unusual Observations</strong></p>
-<ul>
-<li class="fragment"><p>Recognize that some outliers are natural occurrences and represent rare events.</p></li>
-<li class="fragment"><p>Retain these outliers in the analysis to reflect the true variability in the data.</p></li>
-<li class="fragment"><p>Report and interpret the presence of these outliers in the context of the study.</p></li>
-</ul></li>
-</ul>
-</section>
-<section id="detecting-outliers" class="slide level2 center">
-<h2>Detecting Outliers</h2>
-<div style="font-size: 80%;">
-<p>For the case of simple linear regression, one can often detect outliers by simply examining the scatter diagram.</p>
-<div class="cell" data-layout-align="center">
-<div class="cell-output-display">
-<div class="quarto-figure quarto-figure-center">
-<figure>
-<p><img data-src="figs/outlier_01.png" class="quarto-figure quarto-figure-center" style="width:40.0%"></p>
-</figure>
-</div>
-</div>
-</div>
-<center>
-<span class="math inline">\(R^2 = .4968\)</span>
-</center>
-<p>Given the pattern of the rest of the data, we would have expected <span class="math inline">\(y_4\)</span> to be much smaller and hence would consider observation 4 to be an outlier.</p>
-</div>
-</section>
-<section id="detecting-outliers-with-standardized-residuals" class="slide level2 center">
-<h2>Detecting Outliers with Standardized Residuals</h2>
-<div style="font-size: 70%;">
-<p>If an observation deviates greatly from the pattern of the rest of the data, the corresponding standardized residual will be large in absolute value.</p>
-<p>Any observation with a standardized residual of less than -2 or greater than +2 is a potential outlier. With normally distributed errors, standardized residuals should be outside these limits approximately 5% of the time.</p>
-<div class="cell" data-layout-align="center">
-<div class="cell-output-display">
-<div class="quarto-figure quarto-figure-center">
-<figure>
-<p><img data-src="figs/outlier_01.png" class="quarto-figure quarto-figure-center" style="width:40.0%"></p>
-</figure>
-</div>
-</div>
-</div>
-<p>In the residual output section in the Figure we see that the standard residual value for observation 4 is 2.68.</p>
-</div>
-</section>
-<section id="detecting-outliers-1" class="slide level2 center">
-<h2>Detecting Outliers</h2>
-<div style="font-size: 80%;">
-<p>The identification of the outlier enables us to correct the data error and improve the regression results. This is the result with <span class="math inline">\(y_4 = 30\)</span>.</p>
-<div class="cell" data-layout-align="center">
-<div class="cell-output-display">
-<div class="quarto-figure quarto-figure-center">
-<figure>
-<p><img data-src="figs/outlier_02.png" class="quarto-figure quarto-figure-center" style="width:40.0%"></p>
-</figure>
-</div>
-</div>
-</div>
-<ul>
-<li class="fragment">Now, no standard residuals are less than -2 or greater than +2.</li>
-<li class="fragment">The value of <span class="math inline">\(R^2\)</span> has increased from 0.4968 to 0.8380</li>
-<li class="fragment">The value of <span class="math inline">\(b_0\)</span> has decreased from 64.95 to 59.23.</li>
-<li class="fragment">The slope of the line has changed from -7.330 to -6.949.</li>
-</ul>
-</div>
-</section>
-<section id="influential-observations" class="slide level2 center">
-<h2>Influential Observations</h2>
+<section id="managers-takeaway" class="slide level2 center">
+<h2>Manager’s Takeaway</h2>
 <p><br></p>
 <ul>
-<li class="fragment"><p>An <strong>influential observation</strong> is an observation that has a strong influence on the regression results.</p></li>
-<li class="fragment"><p>An influential observation may be an outlier, it may correspond to an <span class="math inline">\(x\)</span> value far from its mean, or it may be caused by a combination of a somewhat off-trend <span class="math inline">\(y\)</span> value and a somewhat extreme <span class="math inline">\(x\)</span> value.</p></li>
-<li class="fragment"><p>If the observation is valid, it can contribute to a better understanding of the appropriate model and can lead to a better estimated regression equation.</p></li>
-</ul>
-</section>
-<section id="detecting-influential-observations" class="slide level2 center">
-<h2>Detecting Influential Observations</h2>
-<div style="font-size: 80%;">
-<p><br></p>
-<div class="cell" data-layout-align="center">
-<div class="cell-output-display">
-<div class="quarto-figure quarto-figure-center">
-<figure>
-<p><img data-src="figs/influential_01.png" class="quarto-figure quarto-figure-center" style="width:40.0%"></p>
-</figure>
-</div>
-</div>
-</div>
-<p><br></p>
-<p>With observation 7 deleted,</p>
+<li class="fragment"><p><strong>One sentence:</strong> Yelp rating predicts auto-parts store sales strongly and significantly — about <strong>$758K per star</strong>, explaining <strong>83%</strong> of the sales gap — so the real-estate team can use it to score and forecast sites.</p></li>
+<li class="fragment"><p><strong>One number to remember:</strong> <span class="math inline">\(b_1 = 757.5\)</span> — and where it came from: <span class="math inline">\(\sum(x-\bar{x})(y-\bar{y}) / \sum(x-\bar{x})^2\)</span>.</p></li>
+<li class="fragment"><p><strong>One caveat:</strong> regression forecasts and quantifies; it does <strong>not</strong> prove causation, and 17% of sales is still unexplained — a single predictor is a start, not the answer.</p></li>
+<li class="fragment"><p><strong>Practice with the real data:</strong></p>
 <ul>
-<li class="fragment"><p>The value of <span class="math inline">\(b_0\)</span> has increased from 127.4 to 138.1.</p></li>
-<li class="fragment"><p>The slope of the line has changed from -0.425 to -1.090.</p></li>
+<li class="fragment"><code>data/autoparts.csv</code> + Regression tool → reproduce <span class="math inline">\(b_1 = 757.5\)</span>, <span class="math inline">\(R^2 = 0.834\)</span>, <span class="math inline">\(t = 14.7\)</span>.</li>
+<li class="fragment">Worked solutions: <code>data/autoparts_regression.xlsx</code>.</li>
+</ul></li>
 </ul>
-</div>
 </section>
-<section id="detecting-influential-observations-1" class="slide level2 center">
-<h2>Detecting Influential Observations</h2>
-<p><strong>High Leverage Points:</strong> Observations with extreme values for the independent variable. Observation 7 in the data set shown is a point with high leverage.</p>
-<p>The leverage of an observation is determined by how far the value of the independent variable is from its mean value.</p>
-<p>For the single-independent-variable case, the leverage of the <span class="math inline">\(i\)</span>th observation, denoted <span class="math inline">\(h_i\)</span>, can be computed using:</p>
-<p><span class="math display">\[
-h_i = \frac{1}{n} + \frac{(x_i - \bar{x})^2}{\sum (x_i - \bar{x})^2}
-\]</span></p>
-<p>From the formula, farther <span class="math inline">\(x_i\)</span> is from its mean <span class="math inline">\(\bar{x}\)</span>, the higher the leverage of observation <span class="math inline">\(i\)</span>.</p>
-</section>
-<section id="detecting-influential-observations-2" class="slide level2 center">
-<h2>Detecting Influential Observations</h2>
-<div style="font-size: 70%;">
-<p>For the data shown, the leverage of observation 7 is as follows:</p>
-<p><span class="math display">\[
-h_i = \frac{1}{n} + \frac{(x_i - \bar{x})^2}{\sum (x_i - \bar{x})^2} = \frac{1}{7} + \frac{(70 - 24.286)^2}{2621.43} = 0.94
-\]</span></p>
-<p>For simple linear regression, we consider observations as having high leverage if <span class="math inline">\(h_i &gt; \frac{6}{n}\)</span>. For the example, <span class="math inline">\(\frac{6}{n} = \frac{6}{7} = 0.86\)</span>.</p>
-<p>Thus, because <span class="math inline">\(h_i = 0.94 &gt; 0.86\)</span>, observation 7 would be identified as having high leverage.</p>
-<p><br></p>
-<div class="fragment">
-<p><strong>Notes and Comments</strong>:</p>
-<ul>
-<li class="fragment"><p>The number <strong>6</strong> in the criterion <span class="math inline">\(h_i &gt; \frac{6}{n}\)</span> is an arbitrary rule of thumb used to identify high leverage points in linear regression. Some statisticians use <span class="math inline">\(\frac{2p}{n}\)</span>, where <span class="math inline">\(p\)</span> is the number of predictors plus one (for the intercept) in the model.</p></li>
-<li class="fragment"><p>Once an observation is identified as potentially influential because of a large residual or high leverage, its impact on the estimated regression equation should be evaluated.</p></li>
-<li class="fragment"><p>More advanced texts discuss diagnostics for doing so. However, if one is not familiar with the more advanced material, a simple procedure is to run the regression analysis with and without the observation. This approach will reveal the influence of the observation on the results.</p></li>
-</ul>
-</div>
-</div>
-</section></section>
-<section>
-<section id="summary" class="title-slide slide level1 center" data-background-color="#cfb991">
-<h1>Summary</h1>
-
-</section>
-<section id="summary-1" class="slide level2 center">
+<section id="summary" class="slide level2 center">
 <h2>Summary</h2>
 <p>Some key takeaways from this session:</p>
 <ul>
-<li><p><strong>Simple Linear Regression Model</strong>: Helps to understand the linear relationship between two variables—predicting the Dependent Variable (<span class="math inline">\(Y\)</span>) based on the Independent Variable (<span class="math inline">\(X\)</span>).</p>
+<li><strong>Regression predicts</strong>, where comparison only contrasts: the estimated line <span class="math inline">\(\hat{y} = b_0 + b_1 x\)</span> turns a relationship into a forecast.</li>
+<li><strong>Least squares</strong> picks the unique line that minimizes <span class="math inline">\(\sum (y_i - \hat{y}_i)^2\)</span>; the <strong>slope</strong> is the business number ($757.5K per Yelp star), the <strong>intercept</strong> just anchors the line.</li>
+<li><strong><span class="math inline">\(R^2 = \text{SSR}/\text{SST}\)</span></strong> is the share of variation the line explains (0.834 here); <span class="math inline">\(r = (\text{sign } b_1)\sqrt{R^2}\)</span> ties it to correlation.</li>
+<li><strong>Inference</strong> asks if the slope is real: <span class="math inline">\(t = b_1/s_{b_1}\)</span> with <span class="math inline">\(df = n-2\)</span> (and <span class="math inline">\(F = t^2\)</span>); the 95% CI gives the plausible magnitude.</li>
+<li><strong>Residual plots</strong> validate the assumptions — look for a horizontal band; a curve means nonlinearity, a fan means non-constant variance.</li>
+<li><strong>Prediction</strong> needs the right interval: a <strong>CI</strong> for the mean response, a <strong>wider PI</strong> for one new store; both widen as <span class="math inline">\(x^*\)</span> leaves <span class="math inline">\(\bar{x}\)</span>.</li>
+<li>Significance <span class="math inline">\(\neq\)</span> causation, and one predictor is rarely enough — the bridge to multiple regression.</li>
+</ul>
+</section>
+<section id="carry-forward" class="slide level2 center">
+<h2>Carry-forward</h2>
 <ul>
-<li>This method is foundational for exploring how variables are related and how changes in one variable can predict changes in another.</li>
-</ul></li>
-<li><p><strong>Model Interpretation and Assumptions</strong>: It is essential to interpret the regression coefficients and validate model assumptions to ensure that the model is reliable.</p>
-<ul>
-<li>Assumptions include linearity, independence, homoscedasticity (constant variance), and normality of residuals.</li>
-</ul></li>
-<li><p><strong>Residual Analysis</strong>: Residual plots and other diagnostic tools are critical for validating the assumptions of the regression model and ensuring its accuracy.</p>
-<ul>
-<li>Proper validation techniques prevent misinterpretation of data and help maintain the integrity of the analysis.</li>
-</ul></li>
+<li><p><strong>Your client (homework):</strong> fit, interpret, test, validate, and forecast a simple regression on your team’s case — the full arc on one slide, ending with a forecast you’d defend.</p></li>
+<li><p><strong>Next time:</strong> we add more predictors and learn what “holding everything else constant” really means — <strong>Multiple Regression</strong> on the same auto-parts client.</p></li>
 </ul>
 </section></section>
 <section id="thank-you" class="title-slide slide level1 center" data-background-color="#cfb991">

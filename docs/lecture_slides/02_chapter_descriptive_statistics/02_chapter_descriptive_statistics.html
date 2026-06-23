@@ -32,7 +32,7 @@
       vertical-align: middle;
     }
   </style>
-  <link rel="stylesheet" href="../../site_libs/revealjs/dist/theme/quarto-5ef896889b6f6a61ee8a14a51d301bed.css">
+  <link rel="stylesheet" href="../../site_libs/revealjs/dist/theme/quarto-113b5beb2a57b2deea58feb1108e76b2.css">
   <link href="../../site_libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
   <link href="../../site_libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
   <link href="../../site_libs/revealjs/plugin/reveal-menu/quarto-menu.css" rel="stylesheet">
@@ -133,7 +133,7 @@
 
 <section id="title-slide" class="quarto-title-block center">
   <h1 class="title"><span style="font-size: 100%;"> QM 6700: Business Analytics </span></h1>
-  <p class="subtitle"><span style="font-size: 150%;"> Basic Stat. &amp; Prob. Rvw. 02 </span></p>
+  <p class="subtitle"><span style="font-size: 150%;"> Descriptive Statistics II: Numerical Measures </span></p>
 
 <div class="quarto-title-authors">
 <div class="quarto-title-author">
@@ -147,49 +147,787 @@ Professor<br>Davi Moreira<br>
 <section id="overview" class="slide level2 center">
 <h2>Overview</h2>
 <div class="columns">
-<div class="column" style="text-align: center; justify-content: center; align-items: center;">
+<div class="column" style="width: 50%; text-align: center; justify-content: center; align-items: center;">
 <ul>
-<li><p>Descriptive Statistics</p></li>
-<li><p>Measures of Central Location and Variability</p></li>
-<li><p>Distribution Shape</p>
+<li>Case Spotlight: A/B Testing at Vungle</li>
+<li>Beyond the center: measures of <strong>variability</strong>
 <ul>
-<li>Skewness</li>
-<li>Symmetry</li>
+<li>range, IQR, variance, SD, coefficient of variation</li>
 </ul></li>
-<li><p>Relative Location and z-Scores</p>
-<ul>
-<li>Calculation and Interpretation</li>
-<li>Examples</li>
-</ul></li>
-<li><p>Empirical Rule</p>
-<ul>
-<li>68-95-99.7 Rule</li>
-<li>Detecting Outliers</li>
-</ul></li>
+<li>Distribution <strong>shape</strong>: skewness</li>
+<li>Relative location: <strong>z-scores</strong>, Chebyshev, the Empirical Rule</li>
+<li>Detecting <strong>outliers</strong></li>
 </ul>
-</div><div class="column" style="text-align: center; justify-content: center; align-items: center;">
+</div><div class="column" style="width: 50%; text-align: center; justify-content: center; align-items: center;">
 <ul>
-<li><p>Five-Number Summaries and Boxplots</p></li>
-<li><p>Measures of Association Between Two Variables</p>
-<ul>
-<li>Covariance</li>
-<li>Correlation</li>
-</ul></li>
+<li>The <strong>five-number summary</strong> and the <strong>boxplot</strong></li>
+<li>Measures of <strong>association</strong>: covariance &amp; correlation</li>
+<li>Building an A-vs-B descriptive <strong>dashboard</strong></li>
+<li>From “B’s mean is higher” to “is B’s edge real or just noise?”</li>
 </ul>
 </div></div>
 </section>
-<section id="descriptive-statistics" class="title-slide slide level1 center" data-background-color="#cfb991">
-<h1>Descriptive Statistics</h1>
-
-</section>
-
 <section>
-<section id="measures-of-central-location-and-variability" class="title-slide slide level1 center" data-background-color="#cfb991">
-<h1>Measures of Central Location and Variability</h1>
+<section id="case-spotlight-ab-testing-at-vungle" class="title-slide slide level1 center" data-background-color="#cfb991">
+<h1>Case Spotlight: A/B Testing at Vungle</h1>
 
 </section>
-<section id="central-location" class="slide level2 smaller center">
-<h2>Central Location</h2>
+<section id="recap-where-we-left-off" class="slide level2 center">
+<h2>Recap — Where We Left Off</h2>
+<p><br></p>
+<ul>
+<li class="fragment"><p><a href="https://en.wikipedia.org/wiki/Liftoff_Mobile">Vungle</a> is a mobile ad-tech startup: it serves 15-second video ads inside other apps and earns revenue mainly when a viewer <strong>installs</strong> the advertised app.</p></li>
+<li class="fragment"><p>The metric that pays the bills is <strong>eRPM</strong> — effective revenue per 1,000 impressions.</p></li>
+<li class="fragment"><p>Two analysts built a new ad-serving algorithm (<strong>B</strong>) and ran it head-to-head against the current one (<strong>A</strong>) for the whole month of June 2014.</p></li>
+<li class="fragment"><p>Last time we computed the <strong>centers</strong>: A’s mean eRPM is <strong>$3.347</strong>, B’s is <strong>$3.459</strong> — B’s average sits <strong>$0.11 higher</strong>.</p></li>
+<li class="fragment"><p>A manager glances at that gap and says: <em>“B wins — roll it out.”</em></p></li>
+</ul>
+</section>
+<section id="the-brief-todays-managerial-question" class="slide level2 center">
+<h2>The Brief — Today’s Managerial Question</h2>
+<p><br></p>
+<blockquote>
+<p>“B’s average daily eRPM ran about <strong>$0.11 higher</strong> than A’s. Before I brief the CEO — is B’s edge <strong>real</strong>, or is it just <strong>noise</strong>? How confident can I be in that one number?”</p>
+</blockquote>
+<p><br></p>
+<ul>
+<li class="fragment"><p>The <strong>mean is only half the story.</strong> A center tells you <em>where</em> the data sit; it says nothing about how <em>spread out</em>, <em>lopsided</em>, or <em>risky</em> they are.</p></li>
+<li class="fragment"><p>Two algorithms can share the <strong>same average</strong> and behave completely differently day to day.</p></li>
+<li class="fragment"><p><strong>How today’s studio runs:</strong> I demo each measure on a textbook anchor → <strong>your team builds an A-vs-B descriptive dashboard</strong> on the Vungle data → we debrief what you can honestly tell the CEO.</p></li>
+</ul>
+</section>
+<section id="why-the-mean-alone-misleads" class="slide level2 center">
+<h2>Why the Mean Alone Misleads</h2>
+
+<img data-src="figs/spread_vs_center.png" class="quarto-figure quarto-figure-center r-stretch" style="width:80.0%"><ul>
+<li><strong>Same mean ($3.46), opposite risk.</strong> The CEO who only hears “average $3.46” cannot tell these two campaigns apart.</li>
+<li>Today we add the <strong>other half of describing data</strong>: spread, shape, and how two variables move together.</li>
+</ul>
+</section>
+<section id="how-todays-tools-build-the-ceo-brief" class="slide level2 center">
+<h2>How Today’s Tools Build the CEO Brief</h2>
+<p><br></p>
+<p>Each tool answers one question the CEO will ask about Vungle’s data:</p>
+<table class="caption-top">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>The CEO asks…</th>
+<th>The tool</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>“How <em>risky</em> is each algorithm day to day?”</td>
+<td><strong>Range, IQR, variance, SD, CV</strong></td>
+</tr>
+<tr class="even">
+<td>“Is the eRPM distribution <em>lopsided</em>?”</td>
+<td><strong>Skewness</strong></td>
+</tr>
+<tr class="odd">
+<td>“Was any day <em>weirdly</em> high or low?”</td>
+<td><strong>z-scores, Empirical Rule, Chebyshev, outliers</strong></td>
+</tr>
+<tr class="even">
+<td>“Show me A vs.&nbsp;B <em>at a glance</em>.”</td>
+<td><strong>Five-number summary + boxplot</strong></td>
+</tr>
+<tr class="odd">
+<td>“Do clicks and installs <em>move together</em>?”</td>
+<td><strong>Covariance &amp; correlation</strong></td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+<ul>
+<li class="fragment">By the end, your team turns these into a <strong>one-screen A-vs-B dashboard</strong> — the manager’s first honest read.</li>
+</ul>
+</section></section>
+<section>
+<section id="measures-of-variability" class="title-slide slide level1 center" data-background-color="#cfb991">
+<h1>Measures of Variability</h1>
+
+</section>
+<section id="why-spread-matters-as-much-as-center" class="slide level2 center">
+<h2>Why Spread Matters as Much as Center</h2>
+<p><br></p>
+<ul>
+<li class="fragment"><p>Choosing between <strong>supplier A and supplier B</strong>, you weigh not just the <em>average</em> delivery time but the <em>variability</em> — a supplier that is fast on average but wildly inconsistent can wreck a schedule.</p></li>
+<li class="fragment"><p>Same for Vungle: an algorithm with a slightly higher mean eRPM but <strong>huge day-to-day swings</strong> is a riskier bet than a steady one.</p></li>
+<li class="fragment"><p>Five workhorse measures of variability, smallest toolkit to richest:</p></li>
+</ul>
+<div class="fragment">
+<table class="caption-top">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Measure</th>
+<th>What it captures</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>Range</strong></td>
+<td>total swing (max − min)</td>
+</tr>
+<tr class="even">
+<td><strong>IQR</strong></td>
+<td>swing of the middle 50%</td>
+</tr>
+<tr class="odd">
+<td><strong>Variance / SD</strong></td>
+<td>typical distance from the mean (uses all the data)</td>
+</tr>
+<tr class="even">
+<td><strong>Coefficient of variation</strong></td>
+<td>spread <em>relative</em> to the mean (unit-free)</td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="range-and-interquartile-range-iqr" class="slide level2 center">
+<h2>Range and Interquartile Range (IQR)</h2>
+<p><br></p>
+<ul>
+<li class="fragment"><strong>Range</strong> = largest value − smallest value. Simplest measure — but <strong>driven entirely by the two extremes</strong>, so a single odd day distorts it.</li>
+</ul>
+<div class="fragment">
+<p><span class="math display">\[
+\text{Range} = x_{\max} - x_{\min}
+\]</span></p>
+</div>
+<ul>
+<li class="fragment"><strong>Interquartile range (IQR)</strong> = the range of the <strong>middle 50%</strong> of the data:</li>
+</ul>
+<div class="fragment">
+<p><span class="math display">\[
+\text{IQR} = Q_3 - Q_1
+\]</span></p>
+</div>
+<ul>
+<li class="fragment"><p>IQR throws away the top 25% and bottom 25%, so it <strong>ignores extremes</strong> — a more robust read of “typical” spread.</p></li>
+<li class="fragment"><p><strong>Excel:</strong> <code>=MAX(rng)-MIN(rng)</code> for the range; <code>=QUARTILE.INC(rng,3)-QUARTILE.INC(rng,1)</code> for the IQR.</p></li>
+</ul>
+</section>
+<section id="variance-the-average-squared-distance-from-the-mean" class="slide level2 center">
+<h2>Variance — the Average Squared Distance from the Mean</h2>
+<p><br></p>
+<ul>
+<li class="fragment">Variance uses <strong>every</strong> observation: it averages the <strong>squared deviations</strong> from the mean. Squaring keeps positives and negatives from cancelling and punishes big misses.</li>
+</ul>
+<div class="fragment">
+<p><span class="math display">\[
+\text{Sample: } \; s^2 = \frac{\sum_{i=1}^{n}(x_i - \bar{x})^2}{n-1}
+\qquad\qquad
+\text{Population: } \; \sigma^2 = \frac{\sum_{i=1}^{N}(x_i - \mu)^2}{N}
+\]</span></p>
+</div>
+<ul>
+<li class="fragment"><p><strong>Why divide by <span class="math inline">\(n-1\)</span> for a sample?</strong> We “spend” one degree of freedom estimating <span class="math inline">\(\bar{x}\)</span> from the same data; dividing by <span class="math inline">\(n-1\)</span> corrects the bias so <span class="math inline">\(s^2\)</span> is an honest estimate of <span class="math inline">\(\sigma^2\)</span>.</p></li>
+<li class="fragment"><p>The catch: variance is in <strong>squared units</strong> (dollars²) — hard to interpret directly. That is what the standard deviation fixes.</p></li>
+</ul>
+</section>
+<section id="standard-deviation-and-the-notation-table" class="slide level2 center">
+<h2>Standard Deviation and the Notation Table</h2>
+<p><br></p>
+<ul>
+<li class="fragment"><strong>Standard deviation</strong> = the positive square root of the variance — back in the <strong>original units</strong> (dollars), so it reads as “a typical day lands about this far from the mean.”</li>
+</ul>
+<div class="fragment">
+<p><span class="math display">\[
+s = \sqrt{s^2} \qquad\qquad \sigma = \sqrt{\sigma^2}
+\]</span></p>
+</div>
+<div class="fragment">
+<table class="caption-top">
+<thead>
+<tr class="header">
+<th>Quantity</th>
+<th style="text-align: center;">Sample (statistic)</th>
+<th style="text-align: center;">Population (parameter)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Mean</td>
+<td style="text-align: center;"><span class="math inline">\(\bar{x}\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(\mu\)</span></td>
+</tr>
+<tr class="even">
+<td>Variance</td>
+<td style="text-align: center;"><span class="math inline">\(s^2\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(\sigma^2\)</span></td>
+</tr>
+<tr class="odd">
+<td>Standard deviation</td>
+<td style="text-align: center;"><span class="math inline">\(s\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(\sigma\)</span></td>
+</tr>
+</tbody>
+</table>
+</div>
+<ul>
+<li class="fragment"><strong>Excel:</strong> <code>=VAR.S</code> / <code>=STDEV.S</code> for a <strong>sample</strong>; <code>=VAR.P</code> / <code>=STDEV.P</code> for a full <strong>population</strong>. Our 30 days are a <em>sample</em> of all possible days → use the <strong><code>.S</code></strong> versions.</li>
+</ul>
+</section>
+<section id="coefficient-of-variation-spread-relative-to-size" class="slide level2 center">
+<h2>Coefficient of Variation — Spread Relative to Size</h2>
+<p><br></p>
+<ul>
+<li class="fragment">A standard deviation of $0.34 is large for eRPM but trivial for a stock price. The <strong>coefficient of variation (CV)</strong> rescales spread by the mean, so you can compare <strong>differently-sized series</strong>:</li>
+</ul>
+<div class="fragment">
+<p><span class="math display">\[
+\text{CV} = \left( \frac{s}{\bar{x}} \right) \times 100\%
+\]</span></p>
+</div>
+<ul>
+<li class="fragment"><p>It is <strong>unit-free</strong> (a percentage) — “the SD is X% of the mean.”</p></li>
+<li class="fragment"><p><strong>Vungle read:</strong> even before testing, CV tells you which algorithm is <em>relatively</em> more volatile — exactly the risk question the CEO cares about.</p></li>
+<li class="fragment"><p><strong>Excel:</strong> <code>=STDEV.S(rng)/AVERAGE(rng)</code>.</p></li>
+</ul>
+</section>
+<section id="anchor-example-two-suppliers-delivery-times" class="slide level2 center">
+<h2>Anchor Example: Two Suppliers’ Delivery Times</h2>
+<div class="r-fit-text">
+<p>A purchasing manager compares delivery times (hours) from two carriers over five shipments. <strong>Same mean — very different reliability.</strong></p>
+<table class="caption-top" style="width:100%;">
+<colgroup>
+<col style="width: 7%">
+<col style="width: 10%">
+<col style="width: 10%">
+<col style="width: 10%">
+<col style="width: 10%">
+<col style="width: 10%">
+<col style="width: 10%">
+<col style="width: 10%">
+<col style="width: 10%">
+<col style="width: 10%">
+</colgroup>
+<thead>
+<tr class="header">
+<th></th>
+<th style="text-align: right;">Ship 1</th>
+<th style="text-align: right;">Ship 2</th>
+<th style="text-align: right;">Ship 3</th>
+<th style="text-align: right;">Ship 4</th>
+<th style="text-align: right;">Ship 5</th>
+<th style="text-align: right;">Mean</th>
+<th style="text-align: right;">Range</th>
+<th style="text-align: right;"><span class="math inline">\(s\)</span></th>
+<th style="text-align: right;">CV</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>Carrier A</strong></td>
+<td style="text-align: right;">14</td>
+<td style="text-align: right;">15</td>
+<td style="text-align: right;">16</td>
+<td style="text-align: right;">15</td>
+<td style="text-align: right;">15</td>
+<td style="text-align: right;"><strong>15</strong></td>
+<td style="text-align: right;">2</td>
+<td style="text-align: right;">0.71</td>
+<td style="text-align: right;"><strong>4.7%</strong></td>
+</tr>
+<tr class="even">
+<td><strong>Carrier B</strong></td>
+<td style="text-align: right;">9</td>
+<td style="text-align: right;">21</td>
+<td style="text-align: right;">14</td>
+<td style="text-align: right;">19</td>
+<td style="text-align: right;">12</td>
+<td style="text-align: right;"><strong>15</strong></td>
+<td style="text-align: right;">12</td>
+<td style="text-align: right;">4.85</td>
+<td style="text-align: right;"><strong>32.3%</strong></td>
+</tr>
+</tbody>
+</table>
+<div class="fragment">
+<ul>
+<li class="fragment"><strong>Identical average (15 hrs)</strong> — but A’s range is 2 hours and B’s is 12.</li>
+<li class="fragment">A’s CV is 4.7%; B’s is 32.3%. <strong>A is the dependable carrier</strong>; B is a gamble.</li>
+<li class="fragment"><em>The mean could not tell them apart — variability did.</em> This is the lesson we now take to Vungle.</li>
+</ul>
+</div>
+</div>
+</section>
+<section id="vungle-variability-a-vs.-b" class="slide level2 center">
+<h2>Vungle Variability: A vs.&nbsp;B</h2>
+<div class="r-fit-text">
+<p>Computing each measure on the 30 daily eRPM values, by algorithm:</p>
+<table class="caption-top">
+<colgroup>
+<col style="width: 21%">
+<col style="width: 28%">
+<col style="width: 28%">
+<col style="width: 21%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Measure</th>
+<th style="text-align: right;">Algorithm A</th>
+<th style="text-align: right;">Algorithm B</th>
+<th>Read</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Mean</td>
+<td style="text-align: right;">$3.347</td>
+<td style="text-align: right;">$3.459</td>
+<td>B’s center is $0.11 higher</td>
+</tr>
+<tr class="even">
+<td>Range</td>
+<td style="text-align: right;">0.887</td>
+<td style="text-align: right;"><strong>1.486</strong></td>
+<td>B swings far more day to day</td>
+</tr>
+<tr class="odd">
+<td>IQR (<span class="math inline">\(Q_3-Q_1\)</span>)</td>
+<td style="text-align: right;">0.264</td>
+<td style="text-align: right;"><strong>0.350</strong></td>
+<td>even the middle 50% is wider for B</td>
+</tr>
+<tr class="even">
+<td>Variance (<span class="math inline">\(s^2\)</span>)</td>
+<td style="text-align: right;">0.047</td>
+<td style="text-align: right;"><strong>0.119</strong></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>Standard deviation (<span class="math inline">\(s\)</span>)</td>
+<td style="text-align: right;"><strong>0.217</strong></td>
+<td style="text-align: right;"><strong>0.344</strong></td>
+<td>a typical B-day is $0.34 off its mean</td>
+</tr>
+<tr class="even">
+<td>CV</td>
+<td style="text-align: right;">6.5%</td>
+<td style="text-align: right;"><strong>10.0%</strong></td>
+<td>B is ~50% more volatile, <em>relative to its size</em></td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+<div class="fragment">
+<ul>
+<li class="fragment"><strong>B earns more on average — and is markedly riskier.</strong> Higher mean, higher spread.</li>
+<li class="fragment">That is the real headline for the CEO: <em>“B’s edge comes with more volatility.”</em> The mean hid it; variability reveals it.</li>
+</ul>
+</div>
+</div>
+</section>
+<section id="excel-descriptive-statistics-in-one-click" class="slide level2 center">
+<h2>Excel: Descriptive Statistics in One Click</h2>
+<div class="columns">
+<div class="column" style="width:40%;">
+<p><br></p>
+<p><strong>Data → Data Analysis →<br> Descriptive Statistics</strong></p>
+<ul>
+<li>Input Range: the <code>erpm</code> values for Algorithm B</li>
+<li>check <strong>Summary statistics</strong></li>
+</ul>
+<p><br></p>
+<p>One run returns <strong>mean, SE, median, SD, variance, skewness, kurtosis, range, min, max</strong> — the entire numerical toolkit of today’s lecture in a single panel.</p>
+</div><div class="column" style="width:60%;">
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="figs/excel_desc_B.png" class="quarto-figure quarto-figure-center" style="width:82.0%"></p>
+</figure>
+</div>
+</div>
+</div>
+</div></div>
+</section></section>
+<section>
+<section id="distribution-shape-relative-location" class="title-slide slide level1 center" data-background-color="#cfb991">
+<h1>Distribution Shape &amp; Relative Location</h1>
+
+</section>
+<section id="skewness-is-the-distribution-lopsided" class="slide level2 center">
+<h2>Skewness — Is the Distribution Lopsided?</h2>
+<p><br></p>
+<ul>
+<li class="fragment">Center and spread still miss one thing: <strong>symmetry</strong>. <strong>Skewness</strong> measures the lopsidedness of a distribution.</li>
+</ul>
+<div class="fragment">
+<p><span class="math display">\[
+\text{Skewness} = \frac{n}{(n-1)(n-2)} \sum_{i=1}^{n}\left( \frac{x_i - \bar{x}}{s} \right)^3
+\]</span></p>
+</div>
+<div class="fragment">
+<table class="caption-top">
+<colgroup>
+<col style="width: 27%">
+<col style="width: 45%">
+<col style="width: 27%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Shape</th>
+<th style="text-align: center;">Skewness</th>
+<th>Mean vs.&nbsp;median</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>Skewed left</strong> (long lower tail)</td>
+<td style="text-align: center;">negative</td>
+<td>mean <strong>&lt;</strong> median</td>
+</tr>
+<tr class="even">
+<td><strong>Symmetric</strong></td>
+<td style="text-align: center;">≈ 0</td>
+<td>mean <strong>≈</strong> median</td>
+</tr>
+<tr class="odd">
+<td><strong>Skewed right</strong> (long upper tail)</td>
+<td style="text-align: center;">positive (often &gt; 1)</td>
+<td>mean <strong>&gt;</strong> median</td>
+</tr>
+</tbody>
+</table>
+</div>
+<ul>
+<li class="fragment"><strong>Quick check, no formula:</strong> compare mean and median. If they are close, the data are roughly symmetric.</li>
+</ul>
+</section>
+<section id="vungle-shape-check" class="slide level2 center">
+<h2>Vungle Shape Check</h2>
+<ul>
+<li class="fragment">Compare each algorithm’s mean to its median:</li>
+</ul>
+<div class="fragment">
+<table class="caption-top" style="width:100%;">
+<colgroup>
+<col style="width: 16%">
+<col style="width: 22%">
+<col style="width: 22%">
+<col style="width: 22%">
+<col style="width: 16%">
+</colgroup>
+<thead>
+<tr class="header">
+<th></th>
+<th style="text-align: right;">Mean</th>
+<th style="text-align: right;">Median</th>
+<th style="text-align: right;">Skewness</th>
+<th>Read</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>A</strong></td>
+<td style="text-align: right;">$3.347</td>
+<td style="text-align: right;">$3.327</td>
+<td style="text-align: right;">+0.24</td>
+<td>mean slightly above median → <strong>mild right skew</strong></td>
+</tr>
+<tr class="even">
+<td><strong>B</strong></td>
+<td style="text-align: right;">$3.459</td>
+<td style="text-align: right;">$3.434</td>
+<td style="text-align: right;">−0.47</td>
+<td>a few low days pull the <strong>left</strong> tail → <strong>mild left skew</strong></td>
+</tr>
+</tbody>
+</table>
+</div>
+<ul>
+<li class="fragment"><p>Both are <strong>close to symmetric</strong> (|skew| well under 1) — good news, because the Empirical Rule we are about to use assumes a roughly bell shape.</p></li>
+<li class="fragment"><p>B’s slight <strong>left</strong> skew traces to a couple of weak early days (a slow June 2–3) — worth flagging, not alarming.</p></li>
+</ul>
+</section>
+<section id="boxplots-show-shape-at-a-glance" class="slide level2 center">
+<h2>Boxplots Show Shape at a Glance</h2>
+
+<img data-src="figs/shape_boxplot_map.png" class="quarto-figure quarto-figure-center r-stretch" style="width:82.0%"><ul>
+<li><strong>Where the median line sits inside the box tells you the skew:</strong> centered → symmetric; pushed toward <span class="math inline">\(Q_3\)</span> with a long lower whisker → skewed left; pushed toward <span class="math inline">\(Q_1\)</span> with a long upper whisker → skewed right.</li>
+</ul>
+</section>
+<section id="z-scores-how-unusual-is-one-day" class="slide level2 center">
+<h2>z-Scores — How Unusual Is One Day?</h2>
+<p><br></p>
+<ul>
+<li class="fragment">A <strong>z-score</strong> (standardized value) reports how many <strong>standard deviations</strong> a value sits from the mean — a unit-free measure of <strong>relative location</strong>:</li>
+</ul>
+<div class="fragment">
+<p><span class="math display">\[
+z_i = \frac{x_i - \bar{x}}{s}
+\]</span></p>
+</div>
+<ul>
+<li class="fragment"><p><span class="math inline">\(z &lt; 0\)</span> → below the mean; <span class="math inline">\(z &gt; 0\)</span> → above; <span class="math inline">\(z = 0\)</span> → exactly at the mean. A <span class="math inline">\(z\)</span> of <span class="math inline">\(+2\)</span> means “two SDs above average.”</p></li>
+<li class="fragment"><p>It lets you compare positions <strong>across different scales</strong> — a $4.07 eRPM day and a 38,000-install day both become “how many SDs from typical?”</p></li>
+<li class="fragment"><p><strong>Excel:</strong> <code>=STANDARDIZE(x, mean, standard_deviation)</code>.</p></li>
+</ul>
+</section>
+<section id="the-empirical-rule-for-bell-shaped-data" class="slide level2 center">
+<h2>The Empirical Rule — for Bell-Shaped Data</h2>
+
+<img data-src="figs/empirical_rule.png" class="quarto-figure quarto-figure-center r-stretch" style="width:68.0%"><ul>
+<li>When data are roughly <strong>bell-shaped</strong>: ≈<strong>68%</strong> fall within ±1 SD, ≈<strong>95%</strong> within ±2 SD, ≈<strong>99.7%</strong> within ±3 SD of the mean.</li>
+<li>Read as a probability: a randomly chosen day has ≈ a 95% chance of landing within 2 SDs of the mean.</li>
+</ul>
+</section>
+<section id="empirical-rule-on-vungles-b" class="slide level2 center">
+<h2>Empirical Rule on Vungle’s B</h2>
+<p><br></p>
+<ul>
+<li class="fragment">B’s mean is $3.459 and SD is $0.344, so the Empirical Rule <strong>predicts</strong>:</li>
+</ul>
+<div class="fragment">
+<table class="caption-top">
+<thead>
+<tr class="header">
+<th>Band</th>
+<th>Interval</th>
+<th style="text-align: center;">Rule predicts</th>
+<th style="text-align: center;">Actually observed</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><span class="math inline">\(\bar{x} \pm 1s\)</span></td>
+<td>$3.11 – $3.80</td>
+<td style="text-align: center;">≈ 68%</td>
+<td style="text-align: center;"><strong>70%</strong> (21/30)</td>
+</tr>
+<tr class="even">
+<td><span class="math inline">\(\bar{x} \pm 2s\)</span></td>
+<td>$2.77 – $4.15</td>
+<td style="text-align: center;">≈ 95%</td>
+<td style="text-align: center;"><strong>93%</strong> (28/30)</td>
+</tr>
+<tr class="odd">
+<td><span class="math inline">\(\bar{x} \pm 3s\)</span></td>
+<td>$2.43 – $4.49</td>
+<td style="text-align: center;">≈ 99.7%</td>
+<td style="text-align: center;"><strong>100%</strong> (30/30)</td>
+</tr>
+</tbody>
+</table>
+</div>
+<ul>
+<li class="fragment"><p>The observed shares track the rule closely → B’s eRPM is <strong>well-approximated by a bell shape</strong>. (We will <em>fit</em> that bell formally in a later topic.)</p></li>
+<li class="fragment"><p><strong>Practical use:</strong> a day outside $2.77–$4.15 is in the rare 5% tail — worth a second look.</p></li>
+</ul>
+</section>
+<section id="chebyshev-when-you-cant-assume-a-bell" class="slide level2 center">
+<h2>Chebyshev — When You Can’t Assume a Bell</h2>
+<p><br></p>
+<ul>
+<li class="fragment">The Empirical Rule needs a <strong>bell shape</strong>. <strong>Chebyshev’s Theorem</strong> makes a weaker promise that holds for <strong>any</strong> distribution:</li>
+</ul>
+<div class="fragment">
+<p><span class="math display">\[
+\text{At least } \left( 1 - \frac{1}{z^2} \right) \text{ of the data lie within } z \text{ SDs of the mean} \quad (z &gt; 1)
+\]</span></p>
+</div>
+<div class="fragment">
+<table class="caption-top">
+<thead>
+<tr class="header">
+<th style="text-align: center;"><span class="math inline">\(z\)</span></th>
+<th style="text-align: center;">Empirical Rule (bell only)</th>
+<th style="text-align: center;">Chebyshev (any shape)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;">2</td>
+<td style="text-align: center;">≈ 95%</td>
+<td style="text-align: center;"><strong>at least 75%</strong></td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">3</td>
+<td style="text-align: center;">≈ 99.7%</td>
+<td style="text-align: center;"><strong>at least 89%</strong></td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">4</td>
+<td style="text-align: center;">≈ 100%</td>
+<td style="text-align: center;"><strong>at least 94%</strong></td>
+</tr>
+</tbody>
+</table>
+</div>
+<ul>
+<li class="fragment">Chebyshev is the <strong>safe, conservative</strong> bound; the Empirical Rule is <strong>tighter but only valid for bell-shaped data</strong>. Check the shape, then pick the rule.</li>
+</ul>
+</section>
+<section id="detecting-outliers-two-rules-that-can-disagree" class="slide level2 center">
+<h2>Detecting Outliers — Two Rules That Can Disagree</h2>
+<p><br></p>
+<ul>
+<li class="fragment">An <strong>outlier</strong> is an unusually small or large value. It may be a recording error, a wrongly-included point, or a <strong>genuinely unusual but valid</strong> observation. Two common rules:</li>
+</ul>
+<div class="fragment">
+<table class="caption-top">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Rule</th>
+<th>Flags a value as an outlier when…</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>z-score</strong></td>
+<td><span class="math inline">\(|z| &gt; 3\)</span> (more than 3 SDs from the mean)</td>
+</tr>
+<tr class="even">
+<td><strong>Boxplot (1.5 × IQR)</strong></td>
+<td>below <span class="math inline">\(Q_1 - 1.5\,\text{IQR}\)</span> or above <span class="math inline">\(Q_3 + 1.5\,\text{IQR}\)</span></td>
+</tr>
+</tbody>
+</table>
+</div>
+<ul>
+<li class="fragment"><p><strong>They do not always agree</strong> — the IQR rule is more sensitive in the tails. On Vungle’s B, the slow June 2 ($2.587) sits <em>below</em> the boxplot lower fence, yet its <span class="math inline">\(z = -2.53\)</span> is <em>inside</em> the <span class="math inline">\(|z|&gt;3\)</span> cutoff.</p></li>
+<li class="fragment"><p><strong>A flag is an invitation to investigate, not a delete button.</strong> Ask <em>why</em> before you drop a point.</p></li>
+</ul>
+</section>
+<section id="outlier-hunt-on-vungles-b" class="slide level2 center">
+<h2>Outlier Hunt on Vungle’s B</h2>
+
+<img data-src="figs/zscores_B.png" class="quarto-figure quarto-figure-center r-stretch" style="width:78.0%"><ul>
+<li>The most extreme day is <strong>June 2 at $2.587, z = −2.53</strong> — notable, but <strong>not</strong> an outlier by the <span class="math inline">\(|z| &gt; 3\)</span> rule.</li>
+<li>By the <strong>boxplot</strong> rule it <em>would</em> be flagged (below the $2.80 fence). Same data, two rules, different verdicts — judgment decides.</li>
+</ul>
+</section></section>
+<section>
+<section id="five-number-summary-boxplot" class="title-slide slide level1 center" data-background-color="#cfb991">
+<h1>Five-Number Summary &amp; Boxplot</h1>
+
+</section>
+<section id="the-five-number-summary" class="slide level2 center">
+<h2>The Five-Number Summary</h2>
+<p><br></p>
+<ul>
+<li class="fragment">Five numbers summarize a whole distribution — center, spread, and shape in one compact line:</li>
+</ul>
+<div class="fragment">
+<p><span class="math display">\[
+\underbrace{x_{\min}}_{\text{Min}} \;\le\; \underbrace{Q_1}_{\text{25th}} \;\le\; \underbrace{Q_2}_{\text{Median}} \;\le\; \underbrace{Q_3}_{\text{75th}} \;\le\; \underbrace{x_{\max}}_{\text{Max}}
+\]</span></p>
+</div>
+<div class="fragment">
+<table class="caption-top">
+<thead>
+<tr class="header">
+<th></th>
+<th style="text-align: right;">Min</th>
+<th style="text-align: right;"><span class="math inline">\(Q_1\)</span></th>
+<th style="text-align: right;">Median</th>
+<th style="text-align: right;"><span class="math inline">\(Q_3\)</span></th>
+<th style="text-align: right;">Max</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>Algorithm A</strong></td>
+<td style="text-align: right;">2.943</td>
+<td style="text-align: right;">3.214</td>
+<td style="text-align: right;">3.327</td>
+<td style="text-align: right;">3.478</td>
+<td style="text-align: right;">3.830</td>
+</tr>
+<tr class="even">
+<td><strong>Algorithm B</strong></td>
+<td style="text-align: right;">2.587</td>
+<td style="text-align: right;">3.324</td>
+<td style="text-align: right;">3.434</td>
+<td style="text-align: right;">3.674</td>
+<td style="text-align: right;">4.073</td>
+</tr>
+</tbody>
+</table>
+</div>
+<ul>
+<li class="fragment"><strong>Excel:</strong> <code>=MIN</code>, <code>=QUARTILE.INC(rng,1)</code>, <code>=MEDIAN</code>, <code>=QUARTILE.INC(rng,3)</code>, <code>=MAX</code>.</li>
+</ul>
+</section>
+<section id="anatomy-of-a-boxplot" class="slide level2 center">
+<h2>Anatomy of a Boxplot</h2>
+<p><br></p>
+<ul>
+<li>A <strong>boxplot</strong> draws the five-number summary as a picture:
+<ul>
+<li>The <strong>box</strong> spans <span class="math inline">\(Q_1\)</span> to <span class="math inline">\(Q_3\)</span> (the middle 50%); its height <strong>is</strong> the IQR.</li>
+<li>A line inside the box marks the <strong>median</strong>.</li>
+<li><strong>Whiskers</strong> reach to the most extreme points still inside the fences:
+<ul>
+<li>Lower fence: <span class="math inline">\(Q_1 - 1.5\,\text{IQR}\)</span> · Upper fence: <span class="math inline">\(Q_3 + 1.5\,\text{IQR}\)</span>.</li>
+</ul></li>
+<li>Points <strong>beyond the fences</strong> are plotted individually as <strong>outliers</strong>.</li>
+</ul></li>
+</ul>
+<ul>
+<li class="fragment"><strong>Excel 2016+:</strong> select the data → <strong>Insert → Statistic Chart → Box and Whisker</strong>.</li>
+</ul>
+</section>
+<section id="a-vs-b-boxplots-side-by-side" class="slide level2 center">
+<h2>A-vs-B Boxplots Side by Side</h2>
+
+<img data-src="figs/erpm_box_compare.png" class="quarto-figure quarto-figure-center r-stretch" style="width:60.0%"><ul>
+<li>One picture carries the whole brief: <strong>B’s box is higher</strong> (greater median/mean) <strong>and taller</strong> (greater spread), with a low June 2 trailing the bottom whisker.</li>
+<li>This single chart will anchor your team’s dashboard.</li>
+</ul>
+</section>
+<section id="building-the-five-number-summary-in-excel" class="slide level2 center">
+<h2>Building the Five-Number Summary in Excel</h2>
+<div class="columns">
+<div class="column" style="width:42%;">
+<p><br></p>
+<p>Five formula cells per column give the whole summary — then <strong>Insert → Box and Whisker</strong> draws it.</p>
+<p><br></p>
+<ul>
+<li>IQR and CV drop straight out of the same cells.</li>
+<li>B’s IQR (0.350) is wider than A’s (0.264): <strong>even the calm middle of B’s distribution is more spread out.</strong></li>
+</ul>
+</div><div class="column" style="width:58%;">
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="figs/excel_fivenum.png" class="quarto-figure quarto-figure-center" style="width:100.0%"></p>
+</figure>
+</div>
+</div>
+</div>
+</div></div>
+</section></section>
+<section>
+<section id="measures-of-association" class="title-slide slide level1 center" data-background-color="#cfb991">
+<h1>Measures of Association</h1>
+
+</section>
+<section id="from-one-variable-to-two" class="slide level2 center">
+<h2>From One Variable to Two</h2>
+<p><br></p>
+<ul>
+<li class="fragment"><p>So far we have summarized <strong>one</strong> variable at a time. Managers usually care about <strong>relationships</strong>: do clicks drive installs? does spending lift sales?</p></li>
+<li class="fragment"><p>Two numerical measures of the <strong>linear</strong> relationship between two variables:</p></li>
+</ul>
+<div class="fragment">
 <table class="caption-top">
 <colgroup>
 <col style="width: 33%">
@@ -198,932 +936,233 @@ Professor<br>Davi Moreira<br>
 </colgroup>
 <thead>
 <tr class="header">
-<th><strong>Statistic</strong></th>
-<th><strong>Definition</strong></th>
-<th><strong>Formula</strong></th>
+<th>Measure</th>
+<th>Tells you</th>
+<th>Range</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td><strong>Mean</strong></td>
-<td>The average of all values of a variable</td>
-<td><span class="math inline">\(\bar{x} = \frac{\sum_{i=1}^{n} x_i}{n}\)</span></td>
+<td><strong>Covariance</strong></td>
+<td>the <strong>direction</strong> of the linear relationship</td>
+<td>any value (unit-dependent)</td>
 </tr>
 <tr class="even">
-<td><strong>Mode</strong></td>
-<td>The most frequently occurring value</td>
-<td></td>
-</tr>
-<tr class="odd">
-<td><strong>k</strong><sup>th</sup> Percentile</td>
-<td>Roughly k% of the data is at or below this value</td>
-<td></td>
-</tr>
-<tr class="even">
-<td><strong>Quartile</strong></td>
-<td>The first, second, and third quartiles are 25<sup>th</sup>, 50<sup>th</sup>, and 75<sup>th</sup> percentiles</td>
-<td><span class="math inline">\(Q1, Q2, Q3\)</span></td>
-</tr>
-<tr class="odd">
-<td><strong>Median</strong></td>
-<td>The “middle” observation when the data are listed from smallest to largest</td>
-<td><span class="math inline">\(Q2\)</span></td>
-</tr>
-<tr class="even">
-<td><strong>Maximum</strong></td>
-<td>The largest value</td>
-<td></td>
-</tr>
-<tr class="odd">
-<td><strong>Minimum</strong></td>
-<td>The smallest value</td>
-<td></td>
-</tr>
-<tr class="even">
-<td><strong>Midrange</strong></td>
-<td>The middle of the maximum and minimum</td>
-<td><span class="math inline">\(\frac{Max + Min}{2}\)</span></td>
-</tr>
-<tr class="odd">
-<td><strong>Midhinge</strong></td>
-<td>The middle of the first and third quartiles</td>
-<td><span class="math inline">\(\frac{Q3 + Q1}{2}\)</span></td>
+<td><strong>Correlation</strong></td>
+<td>direction <strong>and strength</strong>, on a fixed scale</td>
+<td>always between <strong>−1 and +1</strong></td>
 </tr>
 </tbody>
 </table>
-</section>
-<section id="variability-sampling-variation" class="slide level2 center">
-<h2>Variability (Sampling Variation)</h2>
+</div>
 <ul>
-<li class="fragment"><p><strong>Sample Variance</strong>: “Average” squared deviation of observations from the mean of all observations (<span class="math inline">\(n-1\)</span> is called the <strong>degrees of freedom, df</strong>):</p>
-<p><span class="math display">\[S^2 = \frac{\sum (x_i - \bar{x})^2}{n - 1}\]</span></p>
-<ul>
-<li class="fragment">Why do we compute the sample variance using <span class="math inline">\(n-1\)</span> instead of <span class="math inline">\(n\)</span>?</li>
-<li class="fragment">To not underestimate the True Population Variance <span class="math inline">\(\sigma^2\)</span></li>
-<li class="fragment">What is an unbiased estimator? <a href="https://www.youtube.com/watch?v=xJlwSkyeP0k">Video</a></li>
-<li class="fragment"><a href="https://www.khanacademy.org/math/ap-statistics/summarizing-quantitative-data-ap/more-standard-deviation/v/review-and-intuition-why-we-divide-by-n-1-for-the-unbiased-sample-variance">Video</a> and <a href="https://www.khanacademy.org/computer-programming/unbiased-variance-visualization/1167453164">Simulation</a></li>
-</ul></li>
-<li class="fragment"><p><strong>Sample Standard Deviation</strong>:</p>
-<p><span class="math display">\[S = \sqrt{S^2}\]</span></p></li>
-<li class="fragment"><p><strong>Range</strong> = Maximum – Minimum.</p></li>
-<li class="fragment"><p><strong>Interquartile Range (IQR)</strong> = 3rd Quartile – 1st Quartile<br>
-(Range of the middle 50% of data.)</p></li>
+<li class="fragment">Start with a <strong>scatter plot</strong> — always look before you compute.</li>
 </ul>
-</section></section>
-<section>
-<section id="distribution-shape" class="title-slide slide level1 center">
-<h1>Distribution Shape</h1>
+</section>
+<section id="a-scatter-plot-comes-first" class="slide level2 center">
+<h2>A Scatter Plot Comes First</h2>
 
-</section>
-<section id="distribution-shape-skewness" class="slide level2 center">
-<h2>Distribution Shape: Skewness</h2>
-<ul>
-<li class="fragment"><p>An important measure of the shape of a distribution is called <a href="https://en.wikipedia.org/wiki/Skewness"><strong>skewness</strong></a>.</p></li>
-<li class="fragment"><p>The formula for the skewness of sample data is:</p>
-<p><span class="math display">\[\text{Skewness} = \frac{n}{(n - 1)(n - 2)} \sum \left(\frac{x_i - \bar{x}}{s}\right)^3\]</span></p></li>
-<li class="fragment"><p>Skewness can be easily computed using statistical software.</p></li>
+<img data-src="figs/scatter_clicks_installs.png" class="quarto-figure quarto-figure-center r-stretch" style="width:56.0%"><ul>
+<li>Each dot is one day for Algorithm A: its clicks (x) and installs (y). The cloud slopes <strong>up</strong> — more clicks, more installs.</li>
+<li>A scatter plot reveals the <strong>direction, strength, and any non-linearity</strong> the single numbers might hide.</li>
 </ul>
 </section>
-<section id="distribution-shape-skewness-1" class="slide level2 center">
-<h2>Distribution Shape: Skewness</h2>
-<div class="columns">
-<div class="column" style="text-align: center; justify-content: center; align-items: center;">
-<div class="cell" data-layout-align="center">
-<div class="cell-output-display">
-<div class="quarto-figure quarto-figure-center">
-<figure>
-<p><img data-src="figs/01_skewness.png" class="quarto-figure quarto-figure-center" style="width:80.0%"></p>
-</figure>
-</div>
-</div>
-</div>
-<p><br></p>
-</div><div class="column" style="text-align: center; justify-content: center; align-items: center;">
-<p><br> <br></p>
-<ul>
-<li class="fragment"><p>Symmetric (not skewed)</p>
-<ul>
-<li class="fragment">Skewness is zero.</li>
-<li class="fragment">Mean and median are equal.</li>
-</ul></li>
-</ul>
-</div></div>
-</section>
-<section id="distribution-shape-skewness-2" class="slide level2 center">
-<h2>Distribution Shape: Skewness</h2>
-<div class="columns">
-<div class="column" style="text-align: center; justify-content: center; align-items: center;">
-<div class="cell" data-layout-align="center">
-<div class="cell-output-display">
-<div class="quarto-figure quarto-figure-center">
-<figure>
-<p><img data-src="figs/02_skewness.png" class="quarto-figure quarto-figure-center" style="width:80.0%"></p>
-</figure>
-</div>
-</div>
-</div>
-<p><br></p>
-</div><div class="column" style="text-align: center; justify-content: center; align-items: center;">
-<p><br> <br></p>
-<ul>
-<li class="fragment"><p>Moderately Skewed Left</p>
-<ul>
-<li class="fragment">Skewness is negative.</li>
-<li class="fragment">Mean will usually be less than the median.</li>
-</ul></li>
-</ul>
-</div></div>
-</section>
-<section id="distribution-shape-skewness-3" class="slide level2 center">
-<h2>Distribution Shape: Skewness</h2>
-<div class="columns">
-<div class="column" style="text-align: center; justify-content: center; align-items: center;">
-<div class="cell" data-layout-align="center">
-<div class="cell-output-display">
-<div class="quarto-figure quarto-figure-center">
-<figure>
-<p><img data-src="figs/03_skewness.png" class="quarto-figure quarto-figure-center" style="width:80.0%"></p>
-</figure>
-</div>
-</div>
-</div>
-<p><br></p>
-</div><div class="column" style="text-align: center; justify-content: center; align-items: center;">
-<p><br> <br></p>
-<ul>
-<li class="fragment"><p>Moderately Skewed Right</p>
-<ul>
-<li class="fragment">Skewness is positive.</li>
-<li class="fragment">Mean will usually be more than the median.</li>
-</ul></li>
-</ul>
-</div></div>
-</section>
-<section id="distribution-shape-skewness-4" class="slide level2 center">
-<h2>Distribution Shape: Skewness</h2>
-<div class="columns">
-<div class="column" style="text-align: center; justify-content: center; align-items: center;">
-<div class="cell" data-layout-align="center">
-<div class="cell-output-display">
-<div class="quarto-figure quarto-figure-center">
-<figure>
-<p><img data-src="figs/04_skewness.png" class="quarto-figure quarto-figure-center" style="width:80.0%"></p>
-</figure>
-</div>
-</div>
-</div>
-<p><br></p>
-</div><div class="column" style="text-align: center; justify-content: center; align-items: center;">
-<p><br> <br></p>
-<ul>
-<li class="fragment"><p>Highly Skewed Right</p>
-<ul>
-<li class="fragment">Skewness is positive (often above 1.0).</li>
-<li class="fragment">Mean will usually be more than the median.</li>
-</ul></li>
-</ul>
-</div></div>
-</section></section>
-<section>
-<section id="relative-location---z-scores" class="title-slide slide level1 center" data-background-color="#cfb991">
-<h1>Relative Location - z-Scores</h1>
-
-</section>
-<section id="z-scores" class="slide level2 center">
-<h2>z-Scores</h2>
-<ul>
-<li class="fragment"><p>The <a href="https://en.wikipedia.org/wiki/Standard_score"><strong>z-score</strong></a> is often called the standardized value.</p></li>
-<li class="fragment"><p>It describes the relative location of a data value relative to the mean.</p></li>
-<li class="fragment"><p>It denotes the number of standard deviations a data value <span class="math inline">\(x_i\)</span> is from the mean.</p>
-<p><span class="math display">\[Z_i = \frac{x_i - \bar{x}}{s}\]</span></p></li>
-<li class="fragment"><p><code>=STANDARDIZE(x, mean, standard deviation)</code></p></li>
-</ul>
-</section>
-<section id="z-scores-1" class="slide level2 center">
-<h2>z-Scores</h2>
-<ul>
-<li class="fragment">An observation’s z-score is a measure of the relative location of the observation in a data set.</li>
-<li class="fragment">A data value less than the sample mean will have a z-score less than zero.</li>
-<li class="fragment">A data value greater than the sample mean will have a z-score greater than zero.</li>
-<li class="fragment">A data value equal to the sample mean will have a z-score of zero.</li>
-</ul>
-</section>
-<section id="z-scores-2" class="slide level2 center">
-<h2>z-Scores</h2>
-<p><br></p>
-<p><strong>Example:</strong> <code>class_size_data.xlsx</code></p>
-<p><span class="math display">\[Z_i = \frac{x_i - \bar{x}}{s}\]</span></p>
-<table class="caption-top">
-<thead>
-<tr class="header">
-<th>Number of students in class</th>
-<th>Deviation about the Mean</th>
-<th>Z score</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>46</td>
-<td>2</td>
-<td><span class="math inline">\(\frac{2}{8} = 0.25\)</span></td>
-</tr>
-<tr class="even">
-<td>54</td>
-<td>10</td>
-<td><span class="math inline">\(\frac{10}{8} = 1.25\)</span></td>
-</tr>
-<tr class="odd">
-<td>42</td>
-<td>-2</td>
-<td><span class="math inline">\(\frac{-2}{8} = -0.25\)</span></td>
-</tr>
-<tr class="even">
-<td>46</td>
-<td>2</td>
-<td><span class="math inline">\(\frac{2}{8} = 0.25\)</span></td>
-</tr>
-<tr class="odd">
-<td>32</td>
-<td>-12</td>
-<td><span class="math inline">\(\frac{-12}{8} = -1.5\)</span></td>
-</tr>
-</tbody>
-</table>
-<p><br></p>
-
-<aside><div>
-<p><strong>Note:</strong> <span class="math inline">\(\bar{x} = 44\)</span> and <span class="math inline">\(s = 8\)</span> for the given data.</p>
-</div></aside></section></section>
-<section id="z-scores---example" class="title-slide slide level1 center">
-<h1>z-Scores - Example</h1>
-<p><br> <br></p>
-
-<img data-src="figs/zscore_excel.png" class="quarto-figure quarto-figure-center r-stretch" style="width:80.0%"><p><br></p>
-<center>
-<ul>
-<li class="fragment"><code>=STANDARDIZE(x, mean, standard deviation)</code></li>
-</ul>
-</center>
-</section>
-
-<section>
-<section id="empirical-rule---68-95-99.7-rule" class="title-slide slide level1 center" data-background-color="#cfb991">
-<h1>Empirical Rule - 68-95-99.7 Rule</h1>
-
-</section>
-<section id="empirical-rule---68-95-99.7-rule-1" class="slide level2 center">
-<h2>Empirical Rule - 68-95-99.7 Rule</h2>
-<p><br></p>
-<div class="columns">
-<div class="column" style="text-align: center; justify-content: center; align-items: center;">
-<div class="cell" data-layout-align="center">
-<div class="cell-output-display">
-<div class="quarto-figure quarto-figure-center">
-<figure>
-<p><img data-src="figs/empirical_rule.png" class="quarto-figure quarto-figure-center" style="width:80.0%"></p>
-</figure>
-</div>
-</div>
-</div>
-</div><div class="column" style="text-align: center; justify-content: center; align-items: center;">
-<ul>
-<li class="fragment"><p>When the data are believed to approximate a bell-shaped (normal) distribution:</p>
-<ul>
-<li class="fragment">The empirical rule can be used to determine the percentage of data values that must be within a specified number of standard deviations of the mean.</li>
-</ul></li>
-</ul>
-</div></div>
-</section>
-<section id="empirical-rule---68-95-99.7-rule-2" class="slide level2 center">
-<h2>Empirical Rule - 68-95-99.7 Rule</h2>
-<p><br></p>
-<div class="columns">
-<div class="column" style="text-align: center; justify-content: center; align-items: center;">
-<div class="cell" data-layout-align="center">
-<div class="cell-output-display">
-<div class="quarto-figure quarto-figure-center">
-<figure>
-<p><img data-src="figs/empirical_rule.png" class="quarto-figure quarto-figure-center" style="width:80.0%"></p>
-</figure>
-</div>
-</div>
-</div>
-</div><div class="column" style="text-align: center; justify-content: center; align-items: center;">
-<ul>
-<li class="fragment"><p>For nearly normally distributed data,</p>
-<ul>
-<li class="fragment">about 68% falls within 1 SD of the mean,</li>
-<li class="fragment">about 95% falls within 2 SD of the mean,</li>
-<li class="fragment">about 99.7% falls within 3 SD of the mean.</li>
-</ul></li>
-<li class="fragment"><p>It is possible for observations to fall 4, 5, or more standard deviations away from the mean, but these occurrences are very rare if the data are nearly normal.</p></li>
-</ul>
-</div></div>
-</section>
-<section id="empirical-rule---68-95-99.7-rule---example" class="slide level2 center">
-<h2>Empirical Rule - 68-95-99.7 Rule - Example</h2>
-<p><br></p>
-<div class="columns">
-<div class="column" style="text-align: center; justify-content: center; align-items: center;">
-<div class="cell" data-layout-align="center">
-<div class="cell-output-display">
-<div class="quarto-figure quarto-figure-center">
-<figure>
-<p><img data-src="figs/empirical_rule.png" class="quarto-figure quarto-figure-center" style="width:80.0%"></p>
-</figure>
-</div>
-</div>
-</div>
-</div><div class="column" style="text-align: center; justify-content: center; align-items: center;">
-<ul>
-<li class="fragment"><p>SAT scores are distributed nearly normally with mean 1500 and standard deviation 300.</p>
-<ul>
-<li class="fragment">~68% of students score between 1200 and 1800 on the SAT.</li>
-<li class="fragment">~95% of students score between 900 and 2100 on the SAT.</li>
-<li class="fragment">~$99.7% of students score between 600 and 2400 on the SAT.</li>
-</ul></li>
-</ul>
-</div></div>
-</section></section>
-<section>
-<section id="detecting-outliers" class="title-slide slide level1 center" data-background-color="#cfb991">
-<h1>Detecting Outliers</h1>
-
-</section>
-<section id="detecting-outliers-1" class="slide level2 center">
-<h2>Detecting Outliers</h2>
-<ul>
-<li class="fragment"><p>An outlier is an unusually small or unusually large value in a data set.</p></li>
-<li class="fragment"><p>A data value with a z-score less than −3 or greater than +3 might be considered an outlier.</p></li>
-<li class="fragment"><p>It might be:</p>
-<ul>
-<li class="fragment">an incorrectly recorded data value</li>
-<li class="fragment">a data value that was incorrectly included in the data set</li>
-<li class="fragment">a correctly recorded unusual data value that belongs in the data set</li>
-</ul></li>
-</ul>
-</section>
-<section id="detecting-outliers---example" class="slide level2 center">
-<h2>Detecting Outliers - Example</h2>
-<p><strong>Example:</strong> <code>class_size_data.xlsx</code></p>
-<p><span class="math display">\[Z_i = \frac{x_i - \bar{x}}{s}\]</span></p>
-<table class="caption-top">
-<thead>
-<tr class="header">
-<th>Number of students in class</th>
-<th>Deviation about the Mean</th>
-<th>Z score</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>46</td>
-<td>2</td>
-<td><span class="math inline">\(\frac{2}{8} = 0.25\)</span></td>
-</tr>
-<tr class="even">
-<td>54</td>
-<td>10</td>
-<td><span class="math inline">\(\frac{10}{8} = 1.25\)</span></td>
-</tr>
-<tr class="odd">
-<td>42</td>
-<td>-2</td>
-<td><span class="math inline">\(\frac{-2}{8} = -0.25\)</span></td>
-</tr>
-<tr class="even">
-<td>46</td>
-<td>2</td>
-<td><span class="math inline">\(\frac{2}{8} = 0.25\)</span></td>
-</tr>
-<tr class="odd">
-<td>32</td>
-<td>-12</td>
-<td><span class="math inline">\(\frac{-12}{8} = -1.5\)</span></td>
-</tr>
-</tbody>
-</table>
-<ul>
-<li class="fragment"><strong>Note:</strong> <span class="math inline">\(-1.5\)</span> shows the fifth class size is farthest from the mean.</li>
-<li class="fragment">No outliers are present as the z values are within the <span class="math inline">\(\pm 3\)</span> guideline.</li>
-</ul>
-</section></section>
-<section>
-<section id="five-number-summaries-and-boxplots" class="title-slide slide level1 center" data-background-color="#cfb991">
-<h1>Five-Number Summaries and Boxplots</h1>
-
-</section>
-<section id="five-number-summaries" class="slide level2 center">
-<h2>Five-Number Summaries</h2>
+<section id="covariance-direction-of-the-relationship" class="slide level2 center">
+<h2>Covariance — Direction of the Relationship</h2>
 <p><br></p>
 <ul>
-<li class="fragment"><p>Smallest Value</p></li>
-<li class="fragment"><p>First Quartile (25th percentile)</p></li>
-<li class="fragment"><p>Median (50th percentile)</p></li>
-<li class="fragment"><p>Third Quartile (75th percentile)</p></li>
-<li class="fragment"><p>Largest Value</p></li>
+<li class="fragment">Covariance averages the <strong>product of paired deviations</strong> from each variable’s mean:</li>
 </ul>
-
-<aside><div>
 <div class="fragment">
-<p><strong>Note:</strong> <span class="math inline">\(k-th\)</span> percentile = <code>percentile.EXC(Data Array, k)</code>, where 0 ≤ k ≤ 1.</p>
+<p><span class="math display">\[
+\text{Sample: } \; s_{xy} = \frac{\sum_{i=1}^{n}(x_i - \bar{x})(y_i - \bar{y})}{n-1}
+\qquad
+\text{Population: } \; \sigma_{xy} = \frac{\sum (x_i - \mu_x)(y_i - \mu_y)}{N}
+\]</span></p>
 </div>
-</div></aside></section>
-<section id="five-number-summaries---example" class="slide level2 center">
-<h2>Five-Number Summaries - Example</h2>
-<p><strong>Example:</strong> Monthly starting salary</p>
-<div class="columns">
-<div class="column" style="text-align: center; justify-content: center; align-items: center;">
+<ul>
+<li class="fragment"><p><strong>Sign is the message:</strong> positive → the variables move <strong>together</strong>; negative → they move <strong>opposite</strong>; near zero → no linear relationship.</p></li>
+<li class="fragment"><p><strong>But the magnitude is uninterpretable:</strong> covariance depends on the units. Rescale clicks from raw counts to thousands and the number changes — it captures <strong>direction, not strength</strong>.</p></li>
+<li class="fragment"><p><strong>Excel:</strong> <code>=COVARIANCE.S(array1, array2)</code> (sample) or <code>=COVARIANCE.P(...)</code> (population).</p></li>
+</ul>
+</section>
+<section id="correlation-direction-and-strength" class="slide level2 center">
+<h2>Correlation — Direction <em>and</em> Strength</h2>
+<p><br></p>
+<ul>
+<li class="fragment">The <strong>correlation coefficient</strong> divides covariance by the two standard deviations, stripping out the units:</li>
+</ul>
+<div class="fragment">
+<p><span class="math display">\[
+r_{xy} = \frac{s_{xy}}{s_x \, s_y}
+\]</span></p>
+</div>
+<div class="fragment">
 <table class="caption-top">
 <thead>
 <tr class="header">
-<th>Monthly Starting Salary ($)</th>
+<th><span class="math inline">\(r\)</span> near…</th>
+<th>Linear relationship</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td>5,710</td>
+<td><strong>+1</strong></td>
+<td>strong <strong>positive</strong></td>
 </tr>
 <tr class="even">
-<td>5,755</td>
+<td><strong>0</strong></td>
+<td>weak / none</td>
 </tr>
 <tr class="odd">
-<td>5,850</td>
-</tr>
-<tr class="even">
-<td>5,880</td>
-</tr>
-<tr class="odd">
-<td>5,890</td>
-</tr>
-<tr class="even">
-<td>5,920</td>
-</tr>
-<tr class="odd">
-<td>5,940</td>
-</tr>
-<tr class="even">
-<td>5,950</td>
-</tr>
-<tr class="odd">
-<td>6,050</td>
-</tr>
-<tr class="even">
-<td>6,130</td>
-</tr>
-<tr class="odd">
-<td>6,325</td>
+<td><strong>−1</strong></td>
+<td>strong <strong>negative</strong></td>
 </tr>
 </tbody>
 </table>
-<p><br></p>
-</div><div class="column" style="text-align: center; justify-content: center; align-items: center;">
-<p><br> <br></p>
+</div>
 <ul>
-<li class="fragment"><strong>Lowest Value</strong> = 5,710</li>
-<li class="fragment"><strong>Third Quartile</strong> = 6,025</li>
-<li class="fragment"><strong>Median</strong> = 5,905</li>
-<li class="fragment"><strong>First Quartile</strong> = 5,857.5</li>
-<li class="fragment"><strong>Largest Value</strong> = 6,325</li>
+<li class="fragment">Always between <strong>−1 and +1</strong>, <strong>unit-free</strong>, so it compares across any two variables. <strong>Excel:</strong> <code>=CORREL(array1, array2)</code>.</li>
 </ul>
-</div></div>
 </section>
-<section id="boxplot" class="slide level2 center">
-<h2>Boxplot</h2>
-<p><br></p>
-<div class="columns">
-<div class="column" style="text-align: center; justify-content: center; align-items: center;">
-<div class="cell" data-layout-align="center">
-<div class="cell-output-display">
-<div class="quarto-figure quarto-figure-center">
-<figure>
-<p><img data-src="figs/boxplot_michelsonmorley.png" class="quarto-figure quarto-figure-center" style="width:80.0%"></p>
-</figure>
-</div>
-</div>
-</div>
-<div style="font-size: 70%;">
-<center>
-<a href="https://en.wikipedia.org/wiki/Michelson%E2%80%93Morley_experiment#Michelson_experiment_(1881)">Michelson–Morley experiment - Wiki</a>
-</center>
-</div>
-</div><div class="column" style="text-align: center; justify-content: center; align-items: center;">
-<ul>
-<li class="fragment"><p>A <a href="https://en.wikipedia.org/wiki/Box_plot"><strong>boxplot</strong></a> is a graphical summary of data that is based on a five-number summary.</p></li>
-<li class="fragment"><p>A key to the development of a boxplot is the computation of the median and the quartiles, <span class="math inline">\(Q_1\)</span> and <span class="math inline">\(Q_3\)</span>.</p></li>
-<li class="fragment"><p>Boxplots provide another way to identify outliers.</p></li>
-</ul>
-</div></div>
-</section>
-<section id="boxplot-1" class="slide level2 center">
-<h2>Boxplot</h2>
-<p><strong>Example:</strong> <code>monthly_starting_salary.xlsx</code></p>
-<p><br></p>
+<section id="reading-r-a-visual-gallery" class="slide level2 center">
+<h2>Reading r — a Visual Gallery</h2>
 
-<img data-src="figs/boxplot.png" class="quarto-figure quarto-figure-center r-stretch" style="width:70.0%"><p><br></p>
-<ul>
-<li class="fragment">A box is drawn with its ends located at the first and third quartiles.</li>
-<li class="fragment">A vertical line is drawn in the box at the location of the median (second quartile).</li>
-</ul>
-<p><br></p>
-</section>
-<section id="boxplot-2" class="slide level2 center">
-<h2>Boxplot</h2>
-<p><br></p>
-<ul>
-<li class="fragment">Limits are located using the interquartile range (IQR).</li>
-<li class="fragment">Data outside these limits are considered outliers.</li>
-<li class="fragment">The locations of each outlier are shown with the symbol.</li>
-<li class="fragment">The limits are not shown in a Boxplot.</li>
+<img data-src="figs/correlation_gallery.png" class="quarto-figure quarto-figure-center r-stretch" style="width:90.0%"><ul>
+<li>As <span class="math inline">\(|r|\)</span> grows, the cloud tightens toward a line. <span class="math inline">\(r\)</span> captures <strong>linear</strong> association only — a perfect U-shape can have <span class="math inline">\(r \approx 0\)</span>.</li>
 </ul>
 </section>
-<section id="boxplot-3" class="slide level2 center">
-<h2>Boxplot</h2>
-<div style="font-size: 80%;">
-<p><strong>Example:</strong> <code>monthly_starting_salary.xlsx</code></p>
-</div>
-<p><br></p>
-
-<img data-src="figs/boxplot.png" class="quarto-figure quarto-figure-center r-stretch" style="width:70.0%"><p><br></p>
-<div style="font-size: 80%;">
-<ul>
-<li class="fragment"><p>The lower limit is located 1.5(IQR) below <span class="math inline">\(Q_1\)</span>.</p>
-<ul>
-<li class="fragment">Lower Limit: <span class="math inline">\(Q_1 - 1.5(\text{IQR}) = 5,857.5 - 1.5(167.5) = 5,606.25\)</span></li>
-</ul></li>
-<li class="fragment"><p>The upper limit is located 1.5(IQR) above <span class="math inline">\(Q_3\)</span>.</p>
-<ul>
-<li class="fragment">Upper Limit: <span class="math inline">\(Q_3 + 1.5(\text{IQR}) = 6,025 + 1.5(167.5) = 6,276.25\)</span></li>
-</ul></li>
-<li class="fragment"><p>There is one outlier: 6,325.</p></li>
-</ul>
-</div>
-</section>
-<section id="boxplot-4" class="slide level2 center">
-<h2>Boxplot</h2>
-<p><br></p>
-<center>
-<strong>Distribution and Boxplot</strong>
-</center>
-<p><br></p>
-
-<img data-src="figs/boxplot_distribution.png" class="quarto-figure quarto-figure-center r-stretch" style="width:70.0%"><p><br></p>
-</section></section>
-<section>
-<section id="measures-of-association-between-two-variables" class="title-slide slide level1 center" data-background-color="#cfb991">
-<h1>Measures of Association Between Two Variables</h1>
-
-</section>
-<section id="covariance" class="slide level2 center">
-<h2>Covariance</h2>
-<p><br></p>
-
-<img data-src="figs/scatter_plot.png" class="quarto-figure quarto-figure-center r-stretch" style="width:50.0%"><p><br></p>
-<ul>
-<li class="fragment">The covariance is a measure of the linear association between two variables.</li>
-<li class="fragment">Positive values indicate a positive relationship.</li>
-<li class="fragment">Negative values indicate a negative relationship.</li>
-</ul>
-<p><br></p>
-<p><br></p>
-</section>
-<section id="covariance-1" class="slide level2 center">
-<h2>Covariance</h2>
-<p><br></p>
-<ul>
-<li class="fragment"><p>The covariance is computed as follows:</p>
-<p><strong>For population:</strong></p>
-<p><span class="math display">\[\sigma_{xy} = \frac{\sum (x_i - \mu_x)(y_i - \mu_y)}{N}\]</span></p>
-<p><strong>For samples:</strong></p>
-<p><span class="math display">\[s_{xy} = \frac{\sum (x_i - \bar{x})(y_i - \bar{y})}{n - 1}\]</span></p></li>
-<li class="fragment"><p><strong>EXCEL for Sample covariance:</strong> <code>=COVARIANCE.S(array1, array2)</code></p></li>
-</ul>
-</section>
-<section id="correlation-coefficient" class="slide level2 center">
-<h2>Correlation Coefficient</h2>
-<p><br></p>
-
-<img data-src="figs/xkcd.png" class="quarto-figure quarto-figure-center r-stretch" style="width:50.0%"><p><br></p>
-<ul>
-<li class="fragment">Correlation is a unit-free measure of linear association and not necessarily causation.</li>
-</ul>
-<p><br></p>
-<p><br></p>
-<p><br></p>
-</section>
-<section id="correlation-coefficient-1" class="slide level2 center">
-<h2>Correlation Coefficient</h2>
-<p><br></p>
-
-<img data-src="figs/spurious_correlations.png" class="quarto-figure quarto-figure-center r-stretch" style="width:30.0%"><center>
-<a href="https://www.tylervigen.com/spurious-correlations">Spurious Correlations!</a>
-</center>
-<p><br></p>
-<ul>
-<li class="fragment">Just because two variables are highly correlated, it does not mean that one variable is the cause of the other.</li>
-</ul>
-<p><br> <br> <br></p>
-</section>
-<section id="correlation-coefficient-2" class="slide level2 center">
-<h2>Correlation Coefficient</h2>
-<ul>
-<li class="fragment"><p>The correlation coefficient is computed as follows:</p>
-<p><strong>For population:</strong></p>
-<p><span class="math display">\[\rho_{xy} = \frac{\sigma_{xy}}{\sigma_x \sigma_y}\]</span></p>
-<p><strong>For samples:</strong></p>
-<p><span class="math display">\[r_{xy} = \frac{s_{xy}}{s_x s_y}\]</span></p></li>
-<li class="fragment"><p><strong>EXCEL:</strong> <code>=correl(array1, array2)</code></p></li>
-</ul>
-</section>
-<section id="correlation-coefficient-3" class="slide level2 center">
-<h2>Correlation Coefficient</h2>
-<p><br></p>
-<ul>
-<li class="fragment"><p>The coefficient can take on values between −1 and +1.</p>
-<ul>
-<li class="fragment">Values near −1 indicate a strong negative linear relationship.</li>
-<li class="fragment">Values near +1 indicate a strong positive linear relationship.</li>
-</ul></li>
-<li class="fragment"><p>The closer the correlation is to zero, the weaker the relationship.</p></li>
-</ul>
-<p><br></p>
-<center>
-<div class="fragment">
-<p><a href="https://www.guessthecorrelation.com/">Guess the correlation!</a></p>
-</div>
-</center>
-</section>
-<section id="correlation-coefficient-4" class="slide level2 center">
-<h2>Correlation Coefficient</h2>
-<p><br></p>
-
-<img data-src="figs/correlation_estimates.png" class="quarto-figure quarto-figure-center r-stretch" style="width:40.0%"><p><strong>Rules of thumb:</strong></p>
-<ul>
-<li class="fragment">( 0.0 &lt; |r| &lt; 0.3 ) — <em>weak correlation</em></li>
-<li class="fragment">( 0.3 &lt; |r| &lt; 0.7 ) — <em>moderate correlation</em></li>
-<li class="fragment">( 0.7 &lt; |r| &lt; 1.0 ) — <em>strong correlation</em></li>
-</ul>
-<p><br></p>
-</section>
-<section id="correlation-coefficient-5" class="slide level2 center">
-<h2>Correlation Coefficient</h2>
-<p><br></p>
-
-<img data-src="figs/correlation_linear.png" class="quarto-figure quarto-figure-center r-stretch" style="width:80.0%"><p><br></p>
-<div class="fragment">
-<div style="font-size: 70%;">
-<ul>
-<li>The correlation reflects the strength and direction of a linear relationship (top row)</li>
-<li>The correlation does not reflect the slope of that relationship (middle)</li>
-<li>Nor many aspects of nonlinear relationships (bottom).</li>
-<li>N.B.: the figure in the center has a slope of 0 but in that case the correlation coefficient is undefined because the variance of Y is zero.</li>
-</ul>
-<center>
-<a href="https://en.wikipedia.org/wiki/Pearson_correlation_coefficient">Wiki</a>
-</center>
-</div>
-</div>
-<p><br></p>
-</section>
-<section id="covariance-and-correlation-coefficient---example" class="slide level2 center">
-<h2>Covariance and Correlation Coefficient - Example</h2>
-<p><br></p>
-<div style="font-size: 80%;">
-<p><strong>Example:</strong> <code>san_francisco_electronics_store.xlsx</code></p>
-</div>
-<p><br></p>
-<div class="columns">
-<div class="column" style="text-align: center; justify-content: center; align-items: center;">
-<table class="caption-top">
-<thead>
-<tr class="header">
-<th>Week</th>
-<th>Number of Commercials</th>
-<th>Sales ($100s)</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>1</td>
-<td>2</td>
-<td>50</td>
-</tr>
-<tr class="even">
-<td>2</td>
-<td>5</td>
-<td>57</td>
-</tr>
-<tr class="odd">
-<td>3</td>
-<td>1</td>
-<td>41</td>
-</tr>
-<tr class="even">
-<td>4</td>
-<td>3</td>
-<td>54</td>
-</tr>
-<tr class="odd">
-<td>5</td>
-<td>4</td>
-<td>54</td>
-</tr>
-<tr class="even">
-<td>6</td>
-<td>1</td>
-<td>38</td>
-</tr>
-<tr class="odd">
-<td>7</td>
-<td>5</td>
-<td>63</td>
-</tr>
-<tr class="even">
-<td>8</td>
-<td>3</td>
-<td>48</td>
-</tr>
-<tr class="odd">
-<td>9</td>
-<td>4</td>
-<td>59</td>
-</tr>
-<tr class="even">
-<td>10</td>
-<td>2</td>
-<td>46</td>
-</tr>
-</tbody>
-</table>
-</div><div class="column" style="text-align: center; justify-content: center; align-items: center;">
-<p><br></p>
-<p><br></p>
-<p><br></p>
-<ul>
-<li class="fragment">The store’s manager wants to determine the relationship between the number of weekend television commercials shown and the sales at the store during the following week.</li>
-</ul>
-</div></div>
-</section>
-<section id="covariance-and-correlation-coefficient---example-1" class="slide level2 center">
-<h2>Covariance and Correlation Coefficient - Example</h2>
-<p><br></p>
-<div style="font-size: 80%;">
-<p><strong>Example:</strong> <code>san_francisco_electronics_store.xlsx</code></p>
-</div>
-<p><br></p>
-<div class="columns">
-<div class="column" style="text-align: center; justify-content: center; align-items: center;">
+<section id="vungle-association-clicks-vs.-installs" class="slide level2 center">
+<h2>Vungle Association: Clicks vs.&nbsp;Installs</h2>
+<div class="r-fit-text">
+<p>For Algorithm A’s 30 days, with clicks and installs measured in thousands:</p>
 <table class="caption-top">
 <colgroup>
-<col style="width: 20%">
-<col style="width: 20%">
-<col style="width: 20%">
-<col style="width: 20%">
-<col style="width: 20%">
+<col style="width: 30%">
+<col style="width: 40%">
+<col style="width: 30%">
 </colgroup>
 <thead>
 <tr class="header">
-<th style="text-align: center;"><span class="math inline">\(x_i\)</span></th>
-<th style="text-align: center;"><span class="math inline">\(y_i\)</span></th>
-<th style="text-align: center;"><span class="math inline">\(x_i - \bar{x}\)</span></th>
-<th style="text-align: center;"><span class="math inline">\(y_i - \bar{y}\)</span></th>
-<th style="text-align: center;"><span class="math inline">\((x_i - \bar{x})(y_i - \bar{y})\)</span></th>
+<th>Quantity</th>
+<th style="text-align: right;">Value</th>
+<th>Excel</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td style="text-align: center;">2</td>
-<td style="text-align: center;">50</td>
-<td style="text-align: center;">-1</td>
-<td style="text-align: center;">-1</td>
-<td style="text-align: center;">1</td>
+<td>Sample covariance <span class="math inline">\(s_{xy}\)</span></td>
+<td style="text-align: right;"><strong>+163.7</strong></td>
+<td><code>=COVARIANCE.S(clicks_k, installs_k)</code></td>
 </tr>
 <tr class="even">
-<td style="text-align: center;">5</td>
-<td style="text-align: center;">57</td>
-<td style="text-align: center;">2</td>
-<td style="text-align: center;">6</td>
-<td style="text-align: center;">12</td>
+<td>SD of clicks (thousands)</td>
+<td style="text-align: right;">48.69</td>
+<td><code>=STDEV.S(clicks_k)</code></td>
 </tr>
 <tr class="odd">
-<td style="text-align: center;">1</td>
-<td style="text-align: center;">41</td>
-<td style="text-align: center;">-2</td>
-<td style="text-align: center;">-10</td>
-<td style="text-align: center;">20</td>
+<td>SD of installs (thousands)</td>
+<td style="text-align: right;">3.67</td>
+<td><code>=STDEV.S(installs_k)</code></td>
 </tr>
 <tr class="even">
-<td style="text-align: center;">3</td>
-<td style="text-align: center;">54</td>
-<td style="text-align: center;">0</td>
-<td style="text-align: center;">3</td>
-<td style="text-align: center;">0</td>
-</tr>
-<tr class="odd">
-<td style="text-align: center;">4</td>
-<td style="text-align: center;">54</td>
-<td style="text-align: center;">1</td>
-<td style="text-align: center;">3</td>
-<td style="text-align: center;">3</td>
-</tr>
-<tr class="even">
-<td style="text-align: center;">1</td>
-<td style="text-align: center;">38</td>
-<td style="text-align: center;">-2</td>
-<td style="text-align: center;">-13</td>
-<td style="text-align: center;">26</td>
-</tr>
-<tr class="odd">
-<td style="text-align: center;">5</td>
-<td style="text-align: center;">63</td>
-<td style="text-align: center;">2</td>
-<td style="text-align: center;">12</td>
-<td style="text-align: center;">24</td>
-</tr>
-<tr class="even">
-<td style="text-align: center;">3</td>
-<td style="text-align: center;">48</td>
-<td style="text-align: center;">0</td>
-<td style="text-align: center;">-3</td>
-<td style="text-align: center;">0</td>
-</tr>
-<tr class="odd">
-<td style="text-align: center;">4</td>
-<td style="text-align: center;">59</td>
-<td style="text-align: center;">1</td>
-<td style="text-align: center;">8</td>
-<td style="text-align: center;">8</td>
-</tr>
-<tr class="even">
-<td style="text-align: center;">2</td>
-<td style="text-align: center;">46</td>
-<td style="text-align: center;">-1</td>
-<td style="text-align: center;">-5</td>
-<td style="text-align: center;">5</td>
-</tr>
-<tr class="odd">
-<td style="text-align: center;"><strong>Totals</strong></td>
-<td style="text-align: center;"><strong>30</strong></td>
-<td style="text-align: center;"><strong>510</strong></td>
-<td style="text-align: center;"><strong>0</strong></td>
-<td style="text-align: center;"><strong>99</strong></td>
+<td>Correlation <span class="math inline">\(r\)</span></td>
+<td style="text-align: right;"><strong>+0.915</strong></td>
+<td><code>=CORREL(clicks, installs)</code></td>
 </tr>
 </tbody>
 </table>
-</div><div class="column" style="text-align: center; justify-content: center; align-items: center;">
 <p><br></p>
-<p><br></p>
-<p><br></p>
-<p><span class="math display">\[s_{xy} = \frac{\sum (x_i - \bar{x})(y_i - \bar{y})}{n - 1} = \frac{99}{10 - 1} = 11\]</span></p>
+<div class="fragment">
+<ul>
+<li class="fragment">Covariance is <strong>positive</strong> → clicks and installs move together. But “163.7” means nothing on its own.</li>
+<li class="fragment">Correlation <strong>+0.915</strong> says the same direction <em>and</em> that the relationship is <strong>strong</strong> — check: <span class="math inline">\(163.7 / (48.69 \times 3.67) = 0.915\)</span>.</li>
+<li class="fragment"><strong>Managerial read:</strong> days with more clicks reliably bring more installs — the funnel holds together.</li>
+</ul>
+</div>
+</div>
+</section>
+<section id="correlation-is-not-causation" class="slide level2 center">
+<h2>Correlation Is Not Causation</h2>
+<div class="columns">
+<div class="column" style="width: 55%; justify-content: center; align-items: center;">
+<ul>
+<li><p>A high <span class="math inline">\(r\)</span> means two variables <strong>move together</strong> — <em>not</em> that one <strong>causes</strong> the other.</p></li>
+<li><p>Clicks and installs are both partly driven by <strong>daily traffic volume</strong> — a lurking third variable.</p></li>
+<li><p>The internet is full of nonsense high correlations (cheese consumption vs.&nbsp;bedsheet accidents).</p></li>
+<li><p><strong>Only the experimental design</strong> (random assignment of A vs.&nbsp;B) licenses causal claims — correlation alone never does.</p></li>
+</ul>
+</div><div class="column" style="width: 45%; text-align: center; justify-content: center; align-items: center;">
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="figs/xkcd.png" class="quarto-figure quarto-figure-center" style="width:92.0%"></p>
+</figure>
+</div>
+</div>
+</div>
+<div style="font-size: 70%;">
+<p><a href="https://www.tylervigen.com/spurious-correlations">Spurious Correlations</a></p>
+</div>
 </div></div>
 </section>
-<section id="covariance-and-correlation-coefficient---example-2" class="slide level2 center">
-<h2>Covariance and Correlation Coefficient - Example</h2>
-<p><br></p>
-<div style="font-size: 80%;">
-<p><strong>Example:</strong> <code>san_francisco_electronics_store.xlsx</code></p>
+<section id="team-sprint-build-the-a-vs-b-descriptive-dashboard" class="slide level2 center">
+<h2>⏱️ Team Sprint — Build the A-vs-B Descriptive Dashboard</h2>
+<div class="sprint">
+<p><strong>Decide:</strong> what can you honestly tell the CEO about B’s edge — center, spread, and risk?</p>
+<p><strong>Data:</strong> <code>data/vungle_descriptive.xlsx</code> (or <code>data/vungle_daily.csv</code>) · <strong>Time:</strong> ~18 min</p>
+<ol type="1">
+<li><strong>Center &amp; spread:</strong> with <strong>Data → Data Analysis → Descriptive Statistics</strong>, get the <strong>mean, median, SD, and range</strong> of <code>erpm</code> for A and for B; compute the <strong>CV</strong> for each (<code>=STDEV.S/AVERAGE</code>).</li>
+<li><strong>Shape &amp; outliers:</strong> compare each mean to its median (skew?); flag any day with <strong>|z| &gt; 3</strong> (<code>=STANDARDIZE</code>).</li>
+<li><strong>Picture:</strong> build the <strong>five-number summary</strong> (<code>=QUARTILE.INC</code>) and insert a <strong>Box &amp; Whisker</strong> chart for A and B together.</li>
+<li><strong>Read it:</strong> write <strong>two sentences</strong> — <em>(1) how A and B compare on center and spread, (2) what that means for the rollout decision.</em></li>
+</ol>
+<p><strong>Hand in (1 slide):</strong> your A-vs-B summary table + boxplot + the two-sentence read.</p>
 </div>
-<p><br></p>
-<p><strong>Sample Covariance</strong></p>
-<p><span class="math display">\[s_{xy} = \frac{\sum (x_i - \bar{x})(y_i - \bar{y})}{n - 1} = \frac{99}{10 - 1} = 11\]</span></p>
-<p><strong>Sample Correlation Coefficient</strong></p>
-<p><span class="math display">\[r_{xy} = \frac{s_{xy}}{s_x s_y} = \frac{11}{1.49 \times 7.93} = 0.93\]</span></p>
-</section>
-<section id="correlation-coefficient-6" class="slide level2 center">
-<h2>Correlation Coefficient</h2>
-<p><br></p>
-<p><span class="math display">\[r_{xy} = \frac{s_{xy}}{s_x s_y} = \frac{1}{n-1} \sum \left(\frac{x_i - \bar{x}}{s_x}\right) \left(\frac{y_i - \bar{y}}{s_y}\right)\]</span> <br></p>
-<ul>
-<li class="fragment">Correlation is a unit-free measure of linear relationship.</li>
-<li class="fragment">Correlation is unchanged if one or both variables are linearly transformed.</li>
-</ul>
 </section></section>
 <section>
-<section id="using-excel-to-compute-covariance-and-correlation-coefficient" class="title-slide slide level1 center">
-<h1>Using Excel to Compute Covariance and Correlation coefficient</h1>
+<section id="debrief-the-ceo-brief" class="title-slide slide level1 center" data-background-color="#cfb991">
+<h1>Debrief — The CEO Brief</h1>
 
 </section>
-<section id="using-excel-to-compute-covariance-and-correlation-coefficient-1" class="slide level2 center">
-<h2>Using Excel to Compute Covariance and Correlation coefficient</h2>
-<p>Example: San Francisco Electronics Store</p>
-<p>Excel Formula and Value Worksheets</p>
-
-<img data-src="figs/covariance_excel.png" class="quarto-figure quarto-figure-center r-stretch" style="width:80.0%"></section></section>
-<section>
-<section id="summary" class="title-slide slide level1 center" data-background-color="#cfb991">
-<h1>Summary</h1>
-
+<section id="what-the-dashboard-says" class="slide level2 center">
+<h2>What the Dashboard Says</h2>
+<p><br></p>
+<ul>
+<li class="fragment"><p><strong>Center:</strong> B’s mean eRPM ($3.459) sits about <strong>$0.11 above</strong> A’s ($3.347) — B’s edge is real <em>in this sample</em>.</p></li>
+<li class="fragment"><p><strong>Spread:</strong> B is <strong>markedly riskier</strong> — SD $0.344 vs.&nbsp;$0.217, CV 10.0% vs.&nbsp;6.5%, a wider IQR and a wider range. <strong>Higher reward comes with higher volatility.</strong></p></li>
+<li class="fragment"><p><strong>Shape:</strong> both are roughly symmetric (|skew| &lt; 0.5); no day is an outlier by the <span class="math inline">\(|z|&gt;3\)</span> rule, though B’s slow June 2 trails the boxplot’s lower whisker.</p></li>
+<li class="fragment"><p><strong>The honest two-sentence read:</strong> <em>“Over 30 days, B averaged $0.11 more per 1,000 impressions than A, but with ~50% more day-to-day volatility. Whether that $0.11 edge is real signal or sampling noise is a question description alone cannot settle — that needs a hypothesis test.”</em></p></li>
+</ul>
 </section>
-<section id="summary-1" class="slide level2 center">
+<section id="managers-takeaway" class="slide level2 center">
+<h2>Manager’s Takeaway</h2>
+<p><br></p>
+<ul>
+<li class="fragment"><p><strong>One sentence:</strong> B earns <strong>more on average</strong> ($3.46 vs.&nbsp;$3.35) but is <strong>more volatile</strong> (SD $0.34 vs.&nbsp;$0.22, CV 10% vs.&nbsp;6.5%) — the mean was only half the story.</p></li>
+<li class="fragment"><p><strong>One number to remember:</strong> <strong>CV</strong> — Algorithm B’s spread is <strong>10% of its mean</strong> vs.&nbsp;A’s 6.5%; that is the risk the CEO must weigh against the $0.11 reward.</p></li>
+<li class="fragment"><p><strong>One caveat:</strong> description <strong>summarizes the 30 days we have</strong>; it <strong>cannot</strong> tell us whether B’s $0.11 edge generalizes to all future traffic. <em>Is the edge real or noise?</em> is an <strong>inference</strong> question — the heart of Topics 7–9.</p></li>
+<li class="fragment"><p><strong>Practice with the real data:</strong> <code>data/vungle_daily.csv</code> + the Analysis ToolPak → reproduce the A-vs-B dashboard. Worked solutions: <code>data/vungle_descriptive.xlsx</code>.</p></li>
+</ul>
+</section>
+<section id="summary" class="slide level2 center">
 <h2>Summary</h2>
 <p>Some key takeaways from this session:</p>
 <ul>
-<li><p><strong>Descriptive Statistics</strong>: help us to understand the data we have.</p></li>
-<li><p><strong>Measures of Central Location and Variability</strong>: Central location and variability metrics help us to summarize the data.</p></li>
-<li><p><strong>Distribution Shape</strong>: skewness can be used to understand the shape of a distribution.</p></li>
-<li><p><strong>Relative Location and z-Scores</strong>: z-scores to determine the relative position of data points within a distribution.</p></li>
-<li><p><strong>Empirical Rule</strong>: The 68-95-99.7 Rule for understanding data distribution in relation to the mean and standard deviation. Good for symetric distrubutions!</p></li>
-<li><p><strong>Covariance and Correlation</strong>: to understand the relationship between two numerical variables.</p></li>
+<li><strong>The center is only half the story.</strong> Range, IQR, variance, SD, and CV describe <strong>spread</strong> — and two algorithms with the same mean can carry very different risk.</li>
+<li><strong>Standard deviation</strong> puts spread back in the data’s own units; <strong>CV</strong> makes spread comparable across differently-sized series.</li>
+<li><strong>Shape</strong> (skewness) and <strong>relative location</strong> (z-scores, Empirical Rule, Chebyshev) tell you whether a value is unusual; <strong>outlier rules can disagree</strong>, so investigate before you delete.</li>
+<li>The <strong>five-number summary</strong> and <strong>boxplot</strong> compress center, spread, and shape into one picture — ideal for an A-vs-B comparison.</li>
+<li><strong>Covariance</strong> gives the direction of a relationship; <strong>correlation</strong> (<span class="math inline">\(-1\)</span> to <span class="math inline">\(+1\)</span>) gives direction <em>and</em> strength — but <strong>correlation is not causation</strong>.</li>
+<li>For Vungle: <strong>B earns more but is riskier</strong> — and whether its $0.11 edge is <em>real</em> is the inference question we tackle next.</li>
+</ul>
+</section>
+<section id="carry-forward" class="slide level2 center">
+<h2>Carry-forward</h2>
+<ul>
+<li><p><strong>Your client (homework):</strong> for your team’s case, build a <strong>descriptive dashboard</strong> of the key outcome — center (mean/median), spread (SD, IQR, CV), a <strong>boxplot</strong>, and the <strong>correlation</strong> between the outcome and one plausible driver. Write the <strong>two-sentence read</strong> a manager would act on.</p></li>
+<li><p><strong>Next time:</strong> we move from <em>describing</em> uncertainty to <em>quantifying</em> it — <strong>Probability</strong>: the chance a random impression installs, and how that chance changes once it clicks.</p></li>
 </ul>
 </section></section>
 <section id="thank-you" class="title-slide slide level1 center" data-background-color="#cfb991">

@@ -32,7 +32,7 @@
       vertical-align: middle;
     }
   </style>
-  <link rel="stylesheet" href="../../site_libs/revealjs/dist/theme/quarto-5ef896889b6f6a61ee8a14a51d301bed.css">
+  <link rel="stylesheet" href="../../site_libs/revealjs/dist/theme/quarto-113b5beb2a57b2deea58feb1108e76b2.css">
   <link href="../../site_libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
   <link href="../../site_libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
   <link href="../../site_libs/revealjs/plugin/reveal-menu/quarto-menu.css" rel="stylesheet">
@@ -147,35 +147,670 @@ Professor<br>Davi Moreira<br>
 <section id="overview" class="slide level2 center">
 <h2>Overview</h2>
 <div class="columns">
-<div class="column" style="text-align: center; justify-content: center; align-items: center;">
+<div class="column" style="width: 50%; text-align: center; justify-content: center; align-items: center;">
 <ul>
-<li><p>Experiments, Sample Spaces, and Events</p></li>
-<li><p>Assigning Probabilities</p></li>
-<li><p>Events and Their Probabilities</p></li>
-<li><p>Some Basic Relationships of Probability</p>
-<ul>
-<li>Complement, Addition, Conditional, Multiplication</li>
-</ul></li>
+<li>Case Spotlight: the Vungle conversion funnel</li>
+<li>Experiments, sample spaces, and events</li>
+<li>Assigning probabilities; basic relationships</li>
+<li>Conditional probability — the funnel as a chain</li>
 </ul>
-</div><div class="column" style="text-align: center; justify-content: center; align-items: center;">
+</div><div class="column" style="width: 50%; text-align: center; justify-content: center; align-items: center;">
 <ul>
-<li><p>Conditional Probability and Independence</p></li>
-<li><p>Bayes’ Theorem</p></li>
-<li><p><em>(TBD — content to be developed for QM 6700)</em></p></li>
+<li>The multiplication law and independence</li>
+<li>Bayes’ theorem: revising a belief with evidence</li>
+<li>Marginal vs.&nbsp;conditional — the manager’s trap</li>
+<li>The decision: what a single install tells you</li>
 </ul>
 </div></div>
 </section>
 <section>
-<section id="section-placeholder" class="title-slide slide level1 center" data-background-color="#2C3E50">
-<h1>Section placeholder</h1>
+<section id="case-spotlight-the-vungle-funnel" class="title-slide slide level1 center" data-background-color="#cfb991">
+<h1>Case Spotlight: The Vungle Funnel</h1>
 
 </section>
-<section id="tbd" class="slide level2 center">
-<h2>TBD</h2>
-<p>Content to be developed.</p>
-
-
+<section id="every-impression-is-a-gamble" class="slide level2 center">
+<h2>Every Impression Is a Gamble</h2>
+<p><br></p>
+<ul>
+<li class="fragment"><p><a href="https://en.wikipedia.org/wiki/Liftoff_Mobile">Vungle</a> serves a 15-second video ad inside another app. Most of the time it earns money only when the viewer <strong>installs</strong> the advertised app.</p></li>
+<li class="fragment"><p>Each impression travels a <strong>funnel</strong>: it can be watched to <strong>completion</strong>, then <strong>clicked</strong>, then turn into an <strong>install</strong> — and at every step, most users drop off.</p></li>
+<li class="fragment"><p>So every ad served is a small bet. The whole business is the <strong>probability</strong> that the bet pays off — and how that probability changes as the user moves down the funnel.</p></li>
+<li class="fragment"><p>We carry the same June 2014 A/B dataset from before: 30 days, two algorithms (<strong>A</strong> and <strong>B</strong>), the full funnel counts in <code>data/vungle_daily.csv</code>.</p></li>
+</ul>
+</section>
+<section id="the-brief-todays-managerial-question" class="slide level2 center">
+<h2>The Brief — Today’s Managerial Question</h2>
+<p><br></p>
+<blockquote>
+<p>“What is the chance a <strong>random impression</strong> ends in an install? And if we already know it was <strong>clicked</strong>, how does that chance change? Finally — we just recorded <strong>one install</strong>: how likely is it that it came from algorithm <strong>B</strong>?”</p>
+</blockquote>
+<p><br></p>
+<ul>
+<li class="fragment"><p>These three questions are the three pillars of probability: a <strong>marginal</strong> chance, a <strong>conditional</strong> chance, and a <strong>reverse</strong> (Bayes) chance.</p></li>
+<li class="fragment"><p><strong>How today’s studio runs:</strong> I demo each idea on the Vungle funnel (and a quick textbook anchor) → <strong>your team</strong> builds the funnel as a probability tree and runs a Bayes update → we debrief what one install really tells you.</p></li>
+</ul>
+</section>
+<section id="how-todays-tools-answer-it" class="slide level2 center">
+<h2>How Today’s Tools Answer It</h2>
+<p><br></p>
+<p>Every probability concept today maps onto the funnel:</p>
+<table class="caption-top">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Funnel question</th>
+<th>The tool</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>List every outcome of “serve one ad”</td>
+<td><strong>Experiment, sample space, events</strong></td>
+</tr>
+<tr class="even">
+<td>Chance a random impression installs</td>
+<td><strong>Marginal probability</strong></td>
+</tr>
+<tr class="odd">
+<td>Chance of install <strong>given</strong> a click</td>
+<td><strong>Conditional probability</strong></td>
+</tr>
+<tr class="even">
+<td>Chain the funnel steps into one rate</td>
+<td><strong>Multiplication law</strong></td>
+</tr>
+<tr class="odd">
+<td>Given an install, was it A or B?</td>
+<td><strong>Bayes’ theorem</strong></td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+<ul>
+<li class="fragment">One funnel, five tools — and the last one (Bayes) is where intuition usually breaks.</li>
+</ul>
 </section></section>
+<section>
+<section id="experiments-events-and-probability" class="title-slide slide level1 center" data-background-color="#cfb991">
+<h1>Experiments, Events, and Probability</h1>
+
+</section>
+<section id="the-vocabulary-of-uncertainty" class="slide level2 center">
+<h2>The Vocabulary of Uncertainty</h2>
+<p><br></p>
+<ul>
+<li class="fragment"><p>A <strong>random experiment</strong> is any process whose outcome is not known in advance — <em>serve one impression and watch what happens.</em></p></li>
+<li class="fragment"><p>The <strong>sample space</strong> <span class="math inline">\(S\)</span> is the set of <strong>all</strong> possible outcomes (the <em>sample points</em>).</p></li>
+<li class="fragment"><p>An <strong>event</strong> is a collection of outcomes — a subset of <span class="math inline">\(S\)</span>.</p></li>
+</ul>
+<div class="fragment">
+<table class="caption-top">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Term</th>
+<th>“Serve one Vungle impression”</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Experiment</td>
+<td>Show one ad, follow it down the funnel</td>
+</tr>
+<tr class="even">
+<td>Sample space</td>
+<td><span class="math inline">\(S = \{\)</span> no completion, completion-no-click, click-no-install, <strong>install</strong> <span class="math inline">\(\}\)</span></td>
+</tr>
+<tr class="odd">
+<td>Event</td>
+<td><span class="math inline">\(I\)</span> = “the impression installs” = one outcome in <span class="math inline">\(S\)</span></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="what-a-probability-is" class="slide level2 center">
+<h2>What a Probability Is</h2>
+<p><br></p>
+<ul>
+<li class="fragment">A <strong>probability</strong> is a number measuring how likely an event is. Two rules anchor everything:</li>
+</ul>
+<div class="fragment">
+<p><span class="math display">\[
+0 \le P(E_i) \le 1 \qquad\qquad \sum_{i=1}^{n} P(E_i) = 1
+\]</span></p>
+</div>
+<ul>
+<li class="fragment"><p>Near <strong>0</strong> = almost impossible; near <strong>1</strong> = almost certain.</p></li>
+<li class="fragment"><p><strong>Where do the numbers come from?</strong> Three methods:</p>
+<ul>
+<li class="fragment"><strong>Classical</strong> — equally likely outcomes (a fair die: each face <span class="math inline">\(1/6\)</span>).</li>
+<li class="fragment"><strong>Relative frequency</strong> — from data: <em>Vungle ran 236M impressions and saw 951,666 installs</em> → <span class="math inline">\(P \approx 0.40\%\)</span>.</li>
+<li class="fragment"><strong>Subjective</strong> — informed judgment when no data exist (a new product’s chance of success).</li>
+</ul></li>
+<li class="fragment"><p>Vungle is a <strong>relative-frequency</strong> shop: 30 days of counts give us all our probabilities.</p></li>
+</ul>
+</section>
+<section id="basic-relationships-you-already-use" class="slide level2 center">
+<h2>Basic Relationships You Already Use</h2>
+<div class="r-fit-text">
+<table class="caption-top">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Relationship</th>
+<th>Meaning</th>
+<th>Formula</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>Complement</strong></td>
+<td>“<span class="math inline">\(A\)</span> does <strong>not</strong> happen”</td>
+<td><span class="math inline">\(P(A^c) = 1 - P(A)\)</span></td>
+</tr>
+<tr class="even">
+<td><strong>Union</strong></td>
+<td>“<span class="math inline">\(A\)</span> <strong>or</strong> <span class="math inline">\(B\)</span> (or both)”</td>
+<td><span class="math inline">\(P(A \cup B) = P(A) + P(B) - P(A \cap B)\)</span></td>
+</tr>
+<tr class="odd">
+<td><strong>Intersection</strong></td>
+<td>“<span class="math inline">\(A\)</span> <strong>and</strong> <span class="math inline">\(B\)</span> together”</td>
+<td><span class="math inline">\(P(A \cap B)\)</span> — the <em>joint</em> probability</td>
+</tr>
+<tr class="even">
+<td><strong>Mutually exclusive</strong></td>
+<td><span class="math inline">\(A\)</span> and <span class="math inline">\(B\)</span> cannot co-occur</td>
+<td><span class="math inline">\(P(A \cap B) = 0 \Rightarrow P(A \cup B) = P(A) + P(B)\)</span></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p><br></p>
+<ul>
+<li class="fragment"><p><strong>Complement, on the funnel:</strong> if <span class="math inline">\(P(\text{install}) = 0.40\%\)</span>, then <span class="math inline">\(P(\text{no install}) = 99.60\%\)</span>. Most bets lose — that is the ad business.</p></li>
+<li class="fragment"><p>The <strong>addition law</strong> subtracts the overlap so you don’t double-count it: a customer who buys <em>both</em> the DVD <em>and</em> the HDTV is counted once in “DVD <strong>or</strong> HDTV.”</p></li>
+</ul>
+</section>
+<section id="anchor-example-reading-a-contingency-table" class="slide level2 center">
+<h2>Anchor Example: Reading a Contingency Table</h2>
+<div class="r-fit-text">
+<p>A retailer logs <strong>100 customers</strong> by TV type bought and whether they also bought a <strong>DVD player</strong>. The body holds <strong>joint</strong> counts; the margins hold <strong>marginal</strong> totals.</p>
+<table class="caption-top">
+<thead>
+<tr class="header">
+<th></th>
+<th style="text-align: right;">Regular</th>
+<th style="text-align: right;">Flat Screen</th>
+<th style="text-align: right;">HDTV</th>
+<th style="text-align: right;"><strong>Total</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>No DVD</strong></td>
+<td style="text-align: right;">20</td>
+<td style="text-align: right;">10</td>
+<td style="text-align: right;">10</td>
+<td style="text-align: right;"><strong>40</strong></td>
+</tr>
+<tr class="even">
+<td><strong>Bought DVD</strong></td>
+<td style="text-align: right;">5</td>
+<td style="text-align: right;">25</td>
+<td style="text-align: right;">30</td>
+<td style="text-align: right;"><strong>60</strong></td>
+</tr>
+<tr class="odd">
+<td><strong>Total</strong></td>
+<td style="text-align: right;"><strong>25</strong></td>
+<td style="text-align: right;"><strong>35</strong></td>
+<td style="text-align: right;"><strong>40</strong></td>
+<td style="text-align: right;"><strong>100</strong></td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li><strong>Joint:</strong> <span class="math inline">\(P(\text{DVD and HDTV}) = 30/100 = 0.30\)</span> — a body cell over the grand total.</li>
+<li><strong>Marginal:</strong> <span class="math inline">\(P(\text{Flat Screen}) = 35/100 = 0.35\)</span> — a margin over the grand total.</li>
+<li><strong>Addition law:</strong> <span class="math inline">\(P(\text{DVD or HDTV}) = 0.60 + 0.40 - 0.30 = 0.70\)</span>.</li>
+</ul>
+</div>
+</section></section>
+<section>
+<section id="conditional-probability-the-funnel-as-a-chain" class="title-slide slide level1 center" data-background-color="#cfb991">
+<h1>Conditional Probability: The Funnel as a Chain</h1>
+
+</section>
+<section id="given-that-the-most-useful-idea-today" class="slide level2 center">
+<h2>Given That… — The Most Useful Idea Today</h2>
+<p><br></p>
+<ul>
+<li class="fragment">A <strong>conditional probability</strong> is the chance of <span class="math inline">\(A\)</span> <strong>once you know</strong> <span class="math inline">\(B\)</span> has happened, written <span class="math inline">\(P(A \mid B)\)</span>:</li>
+</ul>
+<div class="fragment">
+<p><span class="math display">\[
+P(A \mid B) = \frac{P(A \cap B)}{P(B)}
+\]</span></p>
+</div>
+<ul>
+<li class="fragment"><p><strong>Intuition:</strong> <span class="math inline">\(B\)</span> becoming known <strong>shrinks the sample space</strong> to just the <span class="math inline">\(B\)</span> outcomes; you re-weigh <span class="math inline">\(A\)</span> inside that smaller world.</p></li>
+<li class="fragment"><p><strong>On the contingency table:</strong> <span class="math inline">\(P(\text{DVD} \mid \text{HDTV}) = \dfrac{30/100}{40/100} = \dfrac{30}{40} = 0.75\)</span> — restrict to the 40 HDTV buyers, then ask how many bought a DVD.</p></li>
+<li class="fragment"><p>The whole Vungle funnel is <strong>nothing but a chain of conditional probabilities.</strong></p></li>
+</ul>
+</section>
+<section id="the-vungle-funnel-is-conditional-probability" class="slide level2 center">
+<h2>The Vungle Funnel Is Conditional Probability</h2>
+<p><br></p>
+<ul>
+<li class="fragment">Each funnel step <em>conditions</em> on surviving the previous one. For algorithm <strong>A</strong> (June totals):</li>
+</ul>
+<div class="fragment">
+<table class="caption-top">
+<colgroup>
+<col style="width: 30%">
+<col style="width: 30%">
+<col style="width: 40%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Step</th>
+<th>Conditional probability</th>
+<th style="text-align: right;">Value</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Watched to completion</td>
+<td><span class="math inline">\(P(\text{complete} \mid \text{impression})\)</span></td>
+<td style="text-align: right;"><strong>89.28%</strong></td>
+</tr>
+<tr class="even">
+<td>Clicked, given completed</td>
+<td><span class="math inline">\(P(\text{click} \mid \text{complete})\)</span></td>
+<td style="text-align: right;"><strong>5.68%</strong></td>
+</tr>
+<tr class="odd">
+<td>Installed, given clicked</td>
+<td><span class="math inline">\(P(\text{install} \mid \text{click})\)</span></td>
+<td style="text-align: right;"><strong>7.93%</strong></td>
+</tr>
+<tr class="even">
+<td>Installed overall</td>
+<td><span class="math inline">\(P(\text{install} \mid \text{impression})\)</span></td>
+<td style="text-align: right;"><strong>0.4025%</strong></td>
+</tr>
+</tbody>
+</table>
+</div>
+<ul>
+<li class="fragment">Notice the <strong>marginal</strong> install rate (<span class="math inline">\(0.40\%\)</span>) is tiny, but the <strong>conditional</strong> rate <em>given a click</em> (<span class="math inline">\(7.93\%\)</span>) is 20× larger. <strong>Knowing the user clicked changes everything.</strong></li>
+</ul>
+</section>
+<section id="the-funnel-as-a-probability-tree" class="slide level2 center">
+<h2>The Funnel as a Probability Tree</h2>
+
+<img data-src="figs/funnel_tree_A.png" class="quarto-figure quarto-figure-center r-stretch" style="width:82.0%"><ul>
+<li>Each branch is a conditional probability; multiply <strong>along a path</strong> to reach a leaf.</li>
+</ul>
+</section>
+<section id="the-multiplication-law-chaining-the-steps" class="slide level2 center">
+<h2>The Multiplication Law: Chaining the Steps</h2>
+<p><br></p>
+<ul>
+<li class="fragment">Rearranging the conditional formula gives the <strong>multiplication law</strong> — the probability that <strong>both</strong> events occur:</li>
+</ul>
+<div class="fragment">
+<p><span class="math display">\[
+P(A \cap B) = P(B)\, P(A \mid B) = P(A)\, P(B \mid A)
+\]</span></p>
+</div>
+<ul>
+<li class="fragment">Chained down the funnel, it rebuilds the end-to-end install rate from the three step rates:</li>
+</ul>
+<div class="fragment">
+<p><span class="math display">\[
+\underbrace{P(\text{install} \mid \text{imp})}_{0.4025\%} = \underbrace{P(\text{comp} \mid \text{imp})}_{89.28\%} \times \underbrace{P(\text{click} \mid \text{comp})}_{5.68\%} \times \underbrace{P(\text{install} \mid \text{click})}_{7.93\%}
+\]</span></p>
+</div>
+<ul>
+<li class="fragment"><span class="math inline">\(0.8928 \times 0.0568 \times 0.0793 = 0.004025\)</span> — exactly <span class="math inline">\(951{,}666 / 236{,}459{,}402\)</span>. The chain <strong>must</strong> reconcile with the raw counts; if it doesn’t, you mislabeled a step.</li>
+</ul>
+</section>
+<section id="independence-when-given-changes-nothing" class="slide level2 center">
+<h2>Independence: When “Given” Changes Nothing</h2>
+<p><br></p>
+<ul>
+<li class="fragment">Two events are <strong>independent</strong> when conditioning on one does <strong>not</strong> move the other:</li>
+</ul>
+<div class="fragment">
+<p><span class="math display">\[
+P(A \mid B) = P(A) \quad\Longleftrightarrow\quad P(A \cap B) = P(A)\,P(B)
+\]</span></p>
+</div>
+<ul>
+<li class="fragment"><p><strong>Funnel test:</strong> is clicking independent of completing? Compare <span class="math inline">\(P(\text{click} \mid \text{complete}) = 5.68\%\)</span> with the unconditional click rate <span class="math inline">\(P(\text{click} \mid \text{impression}) = 5.07\%\)</span>. They differ → <strong>not independent</strong>: completing the video makes a click <em>more</em> likely. That is <em>why</em> the funnel must be modeled with conditional, not marginal, probabilities.</p></li>
+<li class="fragment"><p><strong>Warning — do not confuse with mutually exclusive.</strong> Mutually exclusive events with nonzero probability are the <em>opposite</em> of independent: if one happens the other <em>cannot</em>, so knowing one is maximally informative.</p></li>
+</ul>
+</section>
+<section id="excel-build-the-funnel-rates-from-the-raw-file" class="slide level2 center">
+<h2>Excel: Build the Funnel Rates from the Raw File</h2>
+<div class="columns">
+<div class="column" style="width:40%;">
+<p><br></p>
+<p><strong>No ToolPak tool needed</strong> — probabilities are just <strong>ratios</strong> of <code>SUMIF</code> totals.</p>
+<ul>
+<li><code>=SUMIF(algorithm,"A",impressions)</code> → <span class="math inline">\(n_A\)</span></li>
+<li><code>=SUMIF(algorithm,"A",installs)</code> → <span class="math inline">\(x_A\)</span></li>
+<li>Conditional rate = the right cell ÷ the right total.</li>
+</ul>
+<p><br></p>
+<p>This is the workhorse move of funnel analytics — every rate is a divided pair of cells.</p>
+</div><div class="column" style="width:60%;">
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="figs/excel_conditional_cells.png" class="quarto-figure quarto-figure-center" style="width:100.0%"></p>
+</figure>
+</div>
+</div>
+</div>
+</div></div>
+</section>
+<section id="team-sprint-build-the-funnel-tree" class="slide level2 center">
+<h2>⏱️ Team Sprint — Build the Funnel Tree</h2>
+<div class="sprint">
+<p><strong>Decide:</strong> what is the chance a random impression installs — and how does each funnel step change that chance?</p>
+<p><strong>Data:</strong> <code>data/vungle_probability.xlsx</code> (or <code>vungle_daily.csv</code>) · <strong>Time:</strong> ~12 min</p>
+<ol type="1">
+<li>With <code>SUMIF</code>, total <strong>impressions, completes, clicks, installs</strong> for <strong>Algorithm B</strong>.</li>
+<li>Compute the <strong>three conditional rates</strong>: <span class="math inline">\(P(\text{comp}\mid\text{imp})\)</span>, <span class="math inline">\(P(\text{click}\mid\text{comp})\)</span>, <span class="math inline">\(P(\text{install}\mid\text{click})\)</span>.</li>
+<li><strong>Multiply</strong> them and check the product equals installs ÷ impressions (the multiplication law).</li>
+<li>Sketch B’s funnel as a <strong>probability tree</strong> with the branch probabilities labeled.</li>
+</ol>
+<p><strong>Hand in (1 slide):</strong> B’s three conditional rates, the chained install rate, and a one-line read of where B leaks the most.</p>
+</div>
+</section></section>
+<section>
+<section id="bayes-theorem-revising-a-belief" class="title-slide slide level1 center" data-background-color="#cfb991">
+<h1>Bayes’ Theorem: Revising a Belief</h1>
+
+</section>
+<section id="the-reverse-question" class="slide level2 center">
+<h2>The Reverse Question</h2>
+<p><br></p>
+<ul>
+<li class="fragment"><p>The funnel runs <strong>forward</strong>: given the algorithm, what is the install rate? Bayes runs it <strong>backward</strong>: <em>we just saw an install — which algorithm produced it?</em></p></li>
+<li class="fragment"><p>We <strong>flip the conditioning</strong>: we know <span class="math inline">\(P(\text{install} \mid \text{algorithm})\)</span>, we want <span class="math inline">\(P(\text{algorithm} \mid \text{install})\)</span>.</p></li>
+<li class="fragment"><p>The ingredients:</p>
+<ul>
+<li class="fragment"><strong>Prior</strong> <span class="math inline">\(P(A_i)\)</span> — belief <em>before</em> the evidence (here: each algorithm’s share of traffic).</li>
+<li class="fragment"><strong>Likelihood</strong> <span class="math inline">\(P(B \mid A_i)\)</span> — how probable the evidence is under each cause (the install rate).</li>
+<li class="fragment"><strong>Posterior</strong> <span class="math inline">\(P(A_i \mid B)\)</span> — the revised belief <em>after</em> the evidence.</li>
+</ul></li>
+</ul>
+<div class="fragment">
+<p><span class="math display">\[
+\text{Prior} \;\xrightarrow{\;\text{new information}\;}\; \text{Posterior}
+\]</span></p>
+</div>
+</section>
+<section id="bayes-theorem-the-formula" class="slide level2 center">
+<h2>Bayes’ Theorem — The Formula</h2>
+<p><br></p>
+<div style="font-size: 88%;">
+<ul>
+<li class="fragment">For mutually exclusive, collectively exhaustive causes <span class="math inline">\(A_1, \dots, A_k\)</span> and evidence <span class="math inline">\(B\)</span>:</li>
+</ul>
+<div class="fragment">
+<p><span class="math display">\[
+P(A_i \mid B) = \frac{P(A_i)\,P(B \mid A_i)}{\displaystyle\sum_{j=1}^{k} P(A_j)\,P(B \mid A_j)}
+\]</span></p>
+</div>
+<ul>
+<li class="fragment"><p>The <strong>numerator</strong> is one joint probability <span class="math inline">\(P(A_i \cap B) = P(A_i)\,P(B\mid A_i)\)</span> (the multiplication law).</p></li>
+<li class="fragment"><p>The <strong>denominator</strong> is <span class="math inline">\(P(B)\)</span> — the sum of <em>all</em> the joints, by the <strong>total probability</strong> rule.</p></li>
+<li class="fragment"><p>So Bayes is just: <strong>(this path’s joint) ÷ (total of all joints).</strong> A table does the bookkeeping.</p></li>
+</ul>
+</div>
+</section>
+<section id="anchor-example-a-test-market-decision" class="slide level2 center">
+<h2>Anchor Example: A Test-Market Decision</h2>
+<div class="r-fit-text">
+<p>A bank’s new product has three possible fates. <strong>Priors</strong> from past launches: <span class="math inline">\(P(\text{Failure}) = 0.80\)</span>, <span class="math inline">\(P(\text{Marginal}) = 0.15\)</span>, <span class="math inline">\(P(\text{Major success}) = 0.05\)</span>. A <strong>test market</strong> then returns a <em>large</em> share. How likely is each fate now?</p>
+<table class="caption-top">
+<colgroup>
+<col style="width: 15%">
+<col style="width: 21%">
+<col style="width: 21%">
+<col style="width: 21%">
+<col style="width: 21%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Outcome <span class="math inline">\(A_i\)</span></th>
+<th style="text-align: right;">Prior <span class="math inline">\(P(A_i)\)</span></th>
+<th style="text-align: right;">Likelihood <span class="math inline">\(P(\text{Large}\mid A_i)\)</span></th>
+<th style="text-align: right;">Joint</th>
+<th style="text-align: right;">Posterior <span class="math inline">\(P(A_i\mid\text{Large})\)</span></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Failure</td>
+<td style="text-align: right;">0.80</td>
+<td style="text-align: right;">0.02</td>
+<td style="text-align: right;">0.0160</td>
+<td style="text-align: right;">0.0160 / 0.1010 = <strong>0.158</strong></td>
+</tr>
+<tr class="even">
+<td>Marginal</td>
+<td style="text-align: right;">0.15</td>
+<td style="text-align: right;">0.24</td>
+<td style="text-align: right;">0.0360</td>
+<td style="text-align: right;"><strong>0.356</strong></td>
+</tr>
+<tr class="odd">
+<td>Major success</td>
+<td style="text-align: right;">0.05</td>
+<td style="text-align: right;">0.98</td>
+<td style="text-align: right;">0.0490</td>
+<td style="text-align: right;">0.0490 / 0.1010 = <strong>0.485</strong></td>
+</tr>
+<tr class="even">
+<td><strong>Total</strong></td>
+<td style="text-align: right;"><strong>1.00</strong></td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;">$P() = $ <strong>0.1010</strong></td>
+<td style="text-align: right;"><strong>1.000</strong></td>
+</tr>
+</tbody>
+</table>
+<p>A <em>large</em> test result lifts “Major success” from a <strong>5%</strong> prior to a <strong>49%</strong> posterior — nearly ten-fold — which is exactly why the test is worth running.</p>
+</div>
+</section>
+<section id="the-vungle-bayes-update-setup" class="slide level2 center">
+<h2>The Vungle Bayes Update — Setup</h2>
+<p><br></p>
+<ul>
+<li class="fragment"><p><strong>Evidence:</strong> we recorded one <strong>install</strong>. <strong>Question:</strong> <span class="math inline">\(P(B \mid \text{install})\)</span>?</p></li>
+<li class="fragment"><p><strong>Prior</strong> = each algorithm’s share of impressions (the 1/16 hash split sends most traffic to A):</p></li>
+</ul>
+<div class="fragment">
+<p><span class="math display">\[
+P(A) = \frac{236.5\text{M}}{252.3\text{M}} = 93.73\% \qquad P(B) = \frac{15.8\text{M}}{252.3\text{M}} = 6.27\%
+\]</span></p>
+</div>
+<ul>
+<li class="fragment"><strong>Likelihood</strong> = each algorithm’s install rate (from the funnel):</li>
+</ul>
+<div class="fragment">
+<p><span class="math display">\[
+P(\text{install} \mid A) = 0.4025\% \qquad P(\text{install} \mid B) = 0.3541\%
+\]</span></p>
+</div>
+<ul>
+<li class="fragment">B is both a <strong>smaller</strong> share <em>and</em> a <strong>lower</strong> converter — so before any math, an install should make B look <em>less</em> likely than its 6.27% prior.</li>
+</ul>
+</section>
+<section id="the-vungle-bayes-update-the-table" class="slide level2 center">
+<h2>The Vungle Bayes Update — The Table</h2>
+
+<img data-src="figs/bayes_install_table.png" class="quarto-figure quarto-figure-center r-stretch" style="width:92.0%"><ul>
+<li><span class="math inline">\(P(B \mid \text{install}) = \dfrac{0.0627 \times 0.003541}{0.9373 \times 0.004025 + 0.0627 \times 0.003541} = \dfrac{0.000222}{0.003994} = \mathbf{5.56\%}\)</span>.</li>
+</ul>
+</section>
+<section id="what-the-update-means" class="slide level2 center">
+<h2>What the Update Means</h2>
+
+<img data-src="figs/bayes_prior_posterior.png" class="quarto-figure quarto-figure-center r-stretch" style="width:60.0%"><ul>
+<li>An install <em>lowers</em> the chance it was B (6.27% → <strong>5.56%</strong>) — because B converts at a slightly lower rate, an install is weak evidence <strong>against</strong> B.</li>
+<li>Same machinery, reversed for a <strong>click</strong>: <span class="math inline">\(P(B \mid \text{click}) = 6.10\%\)</span> — a click is also mild evidence against B, but less so than an install.</li>
+</ul>
+</section>
+<section id="excel-the-bayes-update-in-formula-cells" class="slide level2 center">
+<h2>Excel: The Bayes Update in Formula Cells</h2>
+<div class="columns">
+<div class="column" style="width:40%;">
+<p><br></p>
+<p>The whole update is <strong>five formula cells</strong>:</p>
+<ul>
+<li>two <strong>priors</strong> (impression shares),</li>
+<li>two <strong>likelihoods</strong> (install rates),</li>
+<li>two <strong>joints</strong> (prior × likelihood),</li>
+<li>their <strong>sum</strong> = <span class="math inline">\(P(\text{install})\)</span>,</li>
+<li>posterior = B’s joint ÷ the sum.</li>
+</ul>
+<p><br></p>
+<p>Master this layout — it is <em>the</em> template for every Bayes problem.</p>
+</div><div class="column" style="width:60%;">
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="figs/excel_bayes_cells.png" class="quarto-figure quarto-figure-center" style="width:100.0%"></p>
+</figure>
+</div>
+</div>
+</div>
+</div></div>
+</section></section>
+<section>
+<section id="debrief-marginal-vs.-conditional" class="title-slide slide level1 center" data-background-color="#cfb991">
+<h1>Debrief — Marginal vs.&nbsp;Conditional</h1>
+
+</section>
+<section id="the-managers-trap" class="slide level2 center">
+<h2>The Manager’s Trap</h2>
+<p><br></p>
+<ul>
+<li class="fragment">The three answers to today’s Brief are <strong>three different numbers</strong> for the <em>same</em> funnel:</li>
+</ul>
+<div class="fragment">
+<table class="caption-top">
+<thead>
+<tr class="header">
+<th>Question</th>
+<th>Type</th>
+<th style="text-align: right;">Answer</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Chance a random impression installs</td>
+<td><strong>Marginal</strong></td>
+<td style="text-align: right;">0.40%</td>
+</tr>
+<tr class="even">
+<td>Chance of install <strong>given a click</strong></td>
+<td><strong>Conditional</strong></td>
+<td style="text-align: right;">7.93%</td>
+</tr>
+<tr class="odd">
+<td>Given an install, chance it was <strong>B</strong></td>
+<td><strong>Bayes (reverse)</strong></td>
+<td style="text-align: right;">5.56%</td>
+</tr>
+</tbody>
+</table>
+</div>
+<ul>
+<li class="fragment">Confusing these is the classic error: <em>“B has a lower install rate, so most installs come from A”</em> is true — but only because A serves 15× more traffic, <strong>not</strong> because A is the better algorithm. <strong>Rates and counts answer different questions.</strong></li>
+</ul>
+</section>
+<section id="why-conditioning-drives-the-funnel" class="slide level2 center">
+<h2>Why Conditioning Drives the Funnel</h2>
+<p><br></p>
+<ul>
+<li class="fragment"><p>The unconditional install rate (0.40%) makes every ad look like a near-certain loss. But the <strong>conditional</strong> rates tell the real operational story:</p>
+<ul>
+<li class="fragment">A completed view raises the click chance (5.68% vs.&nbsp;5.07% unconditional) → completion is <strong>not</strong> independent of clicking.</li>
+<li class="fragment">A click raises the install chance 20-fold (7.93% vs.&nbsp;0.40%).</li>
+</ul></li>
+<li class="fragment"><p><strong>So where should Vungle spend?</strong> On the steps with the steepest conditional lift — getting users to <em>complete</em> and <em>click</em>, because everything downstream is conditioned on them.</p></li>
+<li class="fragment"><p>This is the bridge to next topics: those conditional rates become the <strong>parameters</strong> of probability <em>models</em> (a click is a Bernoulli trial with <span class="math inline">\(p \approx 5\%\)</span>).</p></li>
+</ul>
+</section>
+<section id="managers-takeaway" class="slide level2 center">
+<h2>Manager’s Takeaway</h2>
+<p><br></p>
+<ul>
+<li class="fragment"><p><strong>One sentence:</strong> every funnel rate is a <strong>conditional probability</strong>, the end-to-end install rate is their <strong>product</strong>, and Bayes lets you read the funnel <strong>backward</strong> — from an observed install to the likely algorithm.</p></li>
+<li class="fragment"><p><strong>One number to remember:</strong> <strong>0.40%</strong> — the marginal install rate — and how a single click multiplies it 20-fold to <strong>7.93%</strong>.</p></li>
+<li class="fragment"><p><strong>One caveat:</strong> an install is <em>weak</em> evidence about which algorithm served it (<span class="math inline">\(P(B\mid\text{install}) = 5.56\%\)</span> vs.&nbsp;a <span class="math inline">\(6.27\%\)</span> prior) — base rates dominate, so never read a posterior off the likelihood alone.</p></li>
+<li class="fragment"><p><strong>Practice with the real data:</strong> <code>data/vungle_daily.csv</code> + <code>SUMIF</code> → reproduce the funnel rates; <code>data/vungle_probability.xlsx</code> holds the worked funnel and Bayes tables.</p></li>
+</ul>
+</section>
+<section id="bonus-team-sprint-reverse-the-funnel" class="slide level2 center">
+<h2>⏱️ (Bonus) Team Sprint — Reverse the Funnel</h2>
+<div class="sprint">
+<p><strong>Decide:</strong> given an observed <strong>install</strong>, how strongly should you believe it came from B?</p>
+<p><strong>Data:</strong> <code>data/vungle_probability.xlsx</code> · <strong>Time:</strong> ~6 min (if time allows)</p>
+<ol type="1">
+<li>Set the <strong>priors</strong> <span class="math inline">\(P(A), P(B)\)</span> = each algorithm’s impression share.</li>
+<li>Set the <strong>likelihoods</strong> = each algorithm’s install rate.</li>
+<li>Build the <strong>joint</strong> column (prior × likelihood); sum to get <span class="math inline">\(P(\text{install})\)</span>.</li>
+<li>Posterior <span class="math inline">\(P(B\mid\text{install})\)</span> = B’s joint ÷ the sum — compare it to the prior.</li>
+</ol>
+<p><strong>Hand in (1 slide):</strong> the posterior <span class="math inline">\(P(B\mid\text{install})\)</span> and one sentence on why an install is evidence <em>against</em> B.</p>
+</div>
+</section>
+<section id="carry-forward" class="slide level2 center">
+<h2>Carry-forward</h2>
+<ul>
+<li><p><strong>Your client (homework):</strong> in your team’s case, build a <strong>contingency table</strong> of two categorical variables, then compute one <strong>marginal</strong>, one <strong>conditional</strong>, and one <strong>Bayes (reverse)</strong> probability. State which managerial question each one answers.</p></li>
+<li><p><strong>Next time:</strong> probabilities become <strong>decisions</strong> — Decision Analysis: payoffs, expected value, and the value of information, on the Vungle rollout.</p></li>
+</ul>
+</section>
+<section id="summary" class="slide level2 center">
+<h2>Summary</h2>
+<p>Some key takeaways from this session:</p>
+<ul>
+<li><strong>Probability vocabulary:</strong> an experiment has a <strong>sample space</strong> of outcomes; an <strong>event</strong> is a subset; probabilities live in <span class="math inline">\([0,1]\)</span> and sum to 1.</li>
+<li><strong>Basic relationships:</strong> complement, union (addition law subtracts the overlap), intersection (joint), and mutually exclusive.</li>
+<li><strong>Conditional probability</strong> <span class="math inline">\(P(A\mid B) = P(A\cap B)/P(B)\)</span> is the engine of funnel analytics — each step conditions on surviving the last.</li>
+<li>The <strong>multiplication law</strong> chains the steps into the end-to-end rate; <strong>independence</strong> is when conditioning changes nothing (the funnel steps are <em>not</em> independent).</li>
+<li><strong>Bayes’ theorem</strong> reverses the conditioning — prior → posterior — and base rates dominate: an install is only weak evidence about which algorithm served it.</li>
+<li><strong>Marginal, conditional, and reverse probabilities are different numbers</strong> for the same data; match the number to the manager’s question.</li>
+</ul>
+</section></section>
+<section id="thank-you" class="title-slide slide level1 center" data-background-color="#cfb991">
+<h1>Thank you!</h1>
+
+
+</section>
     </div>
   <div class="quarto-auto-generated-content" style="display: none;">
 <div class="footer footer-default">
@@ -393,6 +1028,44 @@ Professor<br>Davi Moreira<br>
         ]
       });
     </script>
+    
+    <script>
+      // htmlwidgets need to know to resize themselves when slides are shown/hidden.
+      // Fire the "slideenter" event (handled by htmlwidgets.js) when the current
+      // slide changes (different for each slide format).
+      (function () {
+        // dispatch for htmlwidgets
+        function fireSlideEnter() {
+          const event = window.document.createEvent("Event");
+          event.initEvent("slideenter", true, true);
+          window.document.dispatchEvent(event);
+        }
+
+        function fireSlideChanged(previousSlide, currentSlide) {
+          fireSlideEnter();
+
+          // dispatch for shiny
+          if (window.jQuery) {
+            if (previousSlide) {
+              window.jQuery(previousSlide).trigger("hidden");
+            }
+            if (currentSlide) {
+              window.jQuery(currentSlide).trigger("shown");
+            }
+          }
+        }
+
+        // hookup for slidy
+        if (window.w3c_slidy) {
+          window.w3c_slidy.add_observer(function (slide_num) {
+            // slide_num starts at position 1
+            fireSlideChanged(null, w3c_slidy.slides[slide_num - 1]);
+          });
+        }
+
+      })();
+    </script>
+
     <script id="quarto-html-after-body" type="application/javascript">
       window.document.addEventListener("DOMContentLoaded", function (event) {
         const tabsets =  window.document.querySelectorAll(".panel-tabset-tabby")

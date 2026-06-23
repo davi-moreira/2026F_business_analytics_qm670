@@ -32,7 +32,7 @@
       vertical-align: middle;
     }
   </style>
-  <link rel="stylesheet" href="../../site_libs/revealjs/dist/theme/quarto-5ef896889b6f6a61ee8a14a51d301bed.css">
+  <link rel="stylesheet" href="../../site_libs/revealjs/dist/theme/quarto-113b5beb2a57b2deea58feb1108e76b2.css">
   <link href="../../site_libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
   <link href="../../site_libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
   <link href="../../site_libs/revealjs/plugin/reveal-menu/quarto-menu.css" rel="stylesheet">
@@ -133,7 +133,7 @@
 
 <section id="title-slide" class="quarto-title-block center">
   <h1 class="title"><span style="font-size: 100%;"> QM 6700: Business Analytics </span></h1>
-  <p class="subtitle"><span style="font-size: 150%;"> Basic Stat. &amp; Prob. Rvw. 03 </span></p>
+  <p class="subtitle"><span style="font-size: 150%;"> Continuous Probability Distributions </span></p>
 
 <div class="quarto-title-authors">
 <div class="quarto-title-author">
@@ -147,495 +147,697 @@ Professor<br>Davi Moreira<br>
 <section id="overview" class="slide level2 center">
 <h2>Overview</h2>
 <div class="columns">
-<div class="column" style="text-align: center; justify-content: center; align-items: center;">
+<div class="column" style="width: 50%; text-align: center; justify-content: center; align-items: center;">
 <ul>
-<li><p>Continuous Probability Distributions</p>
-<ul>
-<li>Definition</li>
-<li>Area as a Measure of Probability</li>
-</ul></li>
-<li><p>Normal Probability Distribution</p>
-<ul>
-<li>Characteristics</li>
-<li>Applications</li>
-</ul></li>
+<li>Case Spotlight: A/B Testing at Vungle</li>
+<li>Continuous random variables: probability is <strong>area</strong></li>
+<li>The uniform distribution (the simplest continuous model)</li>
+<li>The <strong>Normal</strong> distribution: shape, the empirical rule</li>
+<li>The standard Normal and <strong>z</strong>-scores</li>
+<li>Modeling daily eRPM as Normal</li>
 </ul>
-</div><div class="column" style="text-align: center; justify-content: center; align-items: center;">
+</div><div class="column" style="width: 50%; text-align: center; justify-content: center; align-items: center;">
 <ul>
-<li><p>Standard Normal Probability Distribution</p>
-<ul>
-<li>Standardization</li>
-<li>Excel Functions</li>
-</ul></li>
-<li><p><span class="math inline">\(t\)</span>-distribution</p>
-<ul>
-<li>Use and comparison</li>
-<li>Excel Functions</li>
-</ul></li>
+<li>Normal probabilities in Excel: <code>NORM.DIST</code>, <code>NORM.INV</code></li>
+<li>Tail probabilities: <span class="math inline">\(P(\text{eRPM} &gt; \$3.50)\)</span></li>
+<li>Percentiles: the <strong>90th-percentile day</strong></li>
+<li><strong>Checking</strong> the Normal assumption (QQ plot)</li>
+<li>The Normal <strong>approximation of the Binomial</strong></li>
+<li>From a distribution to a planning number</li>
 </ul>
 </div></div>
 </section>
 <section>
-<section id="continuous-probability-distributions" class="title-slide slide level1 center" data-background-color="#cfb991">
-<h1>Continuous Probability Distributions</h1>
+<section id="case-spotlight-ab-testing-at-vungle" class="title-slide slide level1 center" data-background-color="#cfb991">
+<h1>Case Spotlight: A/B Testing at Vungle</h1>
 
 </section>
-<section id="continuous-probability-distributions-1" class="slide level2 center">
-<h2>Continuous Probability Distributions</h2>
+<section id="back-to-vungle-now-we-model-the-distribution" class="slide level2 center">
+<h2>Back to Vungle — Now We Model the <em>Distribution</em></h2>
 <p><br></p>
 <ul>
-<li class="fragment"><p>A continuous random variable can assume any value in an interval on the real line or in a collection of intervals.</p></li>
-<li class="fragment"><p>We don’t normally talk about the probability of a continuous random variable assuming a particular value, because it is always 0 <span class="math inline">\(P(X=x)=0\)</span>.</p></li>
-<li class="fragment"><p>Instead, we talk about the probability of the random variable assuming a value within a given interval <span class="math inline">\(P(X \in (a,b))\)</span>.</p></li>
+<li class="fragment"><p><a href="https://en.wikipedia.org/wiki/Liftoff_Mobile">Vungle</a> serves 15-second video ads inside other apps and earns revenue mainly when viewers <strong>install</strong> the advertised app.</p></li>
+<li class="fragment"><p>The metric that pays the bills is <strong>eRPM</strong>: effective revenue per 1,000 impressions. Algorithm <strong>B</strong> is the new ad-serving engine the team is evaluating.</p></li>
+<li class="fragment"><p>So far we have <strong>summarized</strong> eRPM (center, spread) and modeled <strong>counts</strong> (installs) with the Binomial and Poisson. Today we model a <strong>continuous</strong> quantity — the dollar value of eRPM itself.</p></li>
+<li class="fragment"><p>Over 30 days of June 2014, B’s daily eRPM averaged <strong>$3.46</strong> with a standard deviation of <strong>$0.34</strong>. The histogram is a bell.</p></li>
+<li class="fragment"><p><strong>Today’s move:</strong> treat daily eRPM as a draw from a <strong>Normal distribution</strong> — then we can answer <em>forward-looking</em> questions about days we have not yet seen.</p></li>
 </ul>
 </section>
-<section id="continuous-probability-distributions-2" class="slide level2 center">
-<h2>Continuous Probability Distributions</h2>
-<p><br></p>
-<div class="columns">
-<div class="column" style="text-align: center; justify-content: center; align-items: center;">
-<div class="cell" data-layout-align="center">
-<div class="cell-output-display">
-<div class="quarto-figure quarto-figure-center">
-<figure>
-<p><img data-src="figs/normal_interval.png" class="quarto-figure quarto-figure-center" style="width:80.0%"></p>
-</figure>
-</div>
-</div>
-</div>
-<p><br></p>
-</div><div class="column" style="text-align: center; justify-content: center; align-items: center;">
-<p><br> <br></p>
-<ul>
-<li class="fragment">The probability of the random variable assuming a value within some given interval from <span class="math inline">\(x_1\)</span> to <span class="math inline">\(x_2\)</span> is defined to be the area under the graph of the probability density function between <span class="math inline">\(x_1\)</span> and <span class="math inline">\(x_2\)</span>.</li>
-</ul>
-</div></div>
-</section>
-<section id="area-as-a-measure-of-probability" class="slide level2 center">
-<h2>Area as a Measure of Probability</h2>
-<p><br></p>
-<ul>
-<li class="fragment">The area under the graph of <span class="math inline">\(f(x)\)</span> and probability are identical.</li>
-<li class="fragment">This is valid for all continuous random variables.</li>
-<li class="fragment">The probability that <span class="math inline">\(x\)</span> takes on a value between some lower value <span class="math inline">\(x_1\)</span> and some higher value <span class="math inline">\(x_2\)</span> can be found by computing the area under the graph of <span class="math inline">\(f(x)\)</span> over the interval from <span class="math inline">\(x_1\)</span> to <span class="math inline">\(x_2\)</span>.</li>
-</ul>
-</section></section>
-<section>
-<section id="normal-probability-distribution" class="title-slide slide level1 center" data-background-color="#cfb991">
-<h1>Normal Probability Distribution</h1>
-
-</section>
-<section id="normal-probability-distribution-1" class="slide level2 center">
-<h2>Normal Probability Distribution</h2>
-<p><br></p>
-<ul>
-<li class="fragment"><p>The normal probability distribution is the most common distribution for describing a continuous random variable.</p></li>
-<li class="fragment"><p>It is widely used in statistical inference, especially because of the Central Limit Theorem (CLT).</p></li>
-<li class="fragment"><p>It has been used in a wide variety of applications including:</p>
-<ul>
-<li class="fragment">Heights of people</li>
-<li class="fragment">Test scores</li>
-<li class="fragment">Rainfall amounts</li>
-<li class="fragment">Scientific measurements</li>
-</ul></li>
-<li class="fragment"><p>Abraham de Moivre, a French mathematician, published <em>The Doctrine of Chances</em> in 1733. He derived the normal distribution.</p></li>
-</ul>
-<p><br></p>
-</section>
-<section id="normal-probability-distribution-2" class="slide level2 center">
-<h2>Normal Probability Distribution</h2>
-<p><br></p>
-<ul>
-<li class="fragment"><p><strong>Normal Probability Density Function</strong></p>
-<p><span class="math display">\[f(x) = \frac{1}{\sigma \sqrt{2\pi}} e^{-\frac{1}{2}\left(\frac{x - \mu}{\sigma}\right)^2}\]</span></p>
-<p>where:</p>
-<ul>
-<li class="fragment"><span class="math inline">\(\mu\)</span>= population mean</li>
-<li class="fragment"><span class="math inline">\(\sigma\)</span>= population standard deviation</li>
-<li class="fragment"><span class="math inline">\(\pi = 3.14159\)</span></li>
-<li class="fragment"><span class="math inline">\(e = 2.71828\)</span></li>
-</ul></li>
-<li class="fragment"><p>The distribution is symmetric with respect to mean; its skewness measure is zero.</p></li>
-<li class="fragment"><p>The graph of the distribution is a bell-shaped curve.</p></li>
-</ul>
-<p><br></p>
-</section>
-<section id="normal-probability-distribution-3" class="slide level2 center">
-<h2>Normal Probability Distribution</h2>
-<p><br></p>
-
-<img data-src="figs/normal_dist.png" class="quarto-figure quarto-figure-center r-stretch" style="width:80.0%"><p><strong>Characteristics</strong></p>
-<ul>
-<li class="fragment">The entire family of normal probability distributions is defined by its mean <span class="math inline">\(\mu\)</span> and its standard deviation <span class="math inline">\(\sigma\)</span>. Denoted by <span class="math inline">\(N(\mu, \sigma)\)</span>.</li>
-<li class="fragment">The highest point on the normal curve is at the mean, which is also the median and mode.</li>
-<li class="fragment">The mean can be any numerical value: negative, zero, or positive. The mean determines the location of the distribution.</li>
-</ul>
-<p><br></p>
-</section>
-<section id="normal-probability-distribution-4" class="slide level2 center">
-<h2>Normal Probability Distribution</h2>
-<p><br></p>
-
-<img data-src="figs/normal_sd.png" class="quarto-figure quarto-figure-center r-stretch" style="width:80.0%"><p><strong>Characteristics</strong></p>
-<ul>
-<li class="fragment">The standard deviation determines the width of the curve: larger values result in wider, flatter curves.</li>
-<li class="fragment">Probabilities for the normal random variable are given by areas under the curve. The total area under the curve is 1 (.5 to the left of the mean and .5 to the right).</li>
-</ul>
-<p><br></p>
-</section>
-<section id="normal-probability-distribution-5" class="slide level2 center">
-<h2>Normal Probability Distribution</h2>
-<p><br></p>
-
-<img data-src="figs/empirical_rule.png" class="quarto-figure quarto-figure-center r-stretch" style="width:50.0%"><p><strong>Characteristics</strong></p>
-<ul>
-<li class="fragment">Empirical Rule</li>
-</ul>
-<p><br></p>
-<p><br></p>
-</section></section>
-<section>
-<section id="standard-normal-probability-distribution" class="title-slide slide level1 center" data-background-color="#cfb991">
-<h1>Standard Normal Probability Distribution</h1>
-
-</section>
-<section id="standard-normal-probability-distribution-1" class="slide level2 center">
-<h2>Standard Normal Probability Distribution</h2>
-<p><br></p>
-
-<img data-src="figs/normal_standard.png" class="quarto-figure quarto-figure-center r-stretch" style="width:80.0%"><p><strong>Characteristics</strong></p>
-<ul>
-<li class="fragment"><p>A random variable having a normal distribution with a mean of 0 and a standard deviation of 1 is said to have a standard normal probability distribution.</p></li>
-<li class="fragment"><p>Also called a z-distribution; Denoted by <span class="math inline">\(Z\)</span> or <span class="math inline">\(N(0,1)\)</span>.</p></li>
-</ul>
-<p><br></p>
-<p><br></p>
-</section>
-<section id="standard-normal-probability-distribution-2" class="slide level2 center">
-<h2>Standard Normal Probability Distribution</h2>
-<p><br></p>
-
-<img data-src="figs/normal_standard_z.png" class="quarto-figure quarto-figure-center r-stretch" style="width:80.0%"><div class="fragment">
-<div style="font-size: 90%;">
-<p><strong>Standardization: Standardize</strong> <span class="math inline">\(X \sim N(\mu, \sigma)\)</span> to standard Normal Distribution, <span class="math inline">\(Z\)</span></p>
-<p><span class="math display">\[  Z = \frac{X - \mu}{\sigma}
-  \]</span></p>
-<ul>
-<li class="fragment"><p>We can think of <span class="math inline">\(Z\)</span> as a measure of the number of standard deviations <span class="math inline">\(X\)</span> is from <span class="math inline">\(\mu\)</span>. (Cf. Standardization in Chapter 1.)</p>
-<ul>
-<li class="fragment">Conversely, <span class="math inline">\(X = \mu + z \cdot \sigma\)</span>. If <span class="math inline">\(X\)</span> can be written as <span class="math inline">\(X = \mu + z \cdot \sigma\)</span> where <span class="math inline">\(Z\)</span> is standard normal, then <span class="math inline">\(X \sim N(\mu, \sigma^2)\)</span></li>
-</ul></li>
-<li class="fragment"><p>The letter z is used to designate the standard normal random variable.</p></li>
-</ul>
-</div>
-</div>
-</section></section>
-<section>
-<section id="excel-to-compute-standard-normal-probabilities" class="title-slide slide level1 center" data-background-color="#cfb991">
-<h1>Excel to Compute Standard Normal Probabilities</h1>
-
-</section>
-<section id="excel-to-compute-standard-normal-probabilities-1" class="slide level2 center">
-<h2>Excel to Compute Standard Normal Probabilities</h2>
-<p><br></p>
-<ul>
-<li class="fragment"><p>Excel functions for standard normal probability distributions.</p>
-<ul>
-<li class="fragment"><p><code>=NORM.S.DIST(z, TRUE)</code> function computes the cumulative probability for a given <span class="math inline">\(z\)</span> value of the standard normal distribution.</p></li>
-<li class="fragment"><p><code>=NORM.S.INV(cumulative probability)</code> function computes the <span class="math inline">\(z\)</span> value for a given cumulative probability of the standard normal distribution.</p></li>
-<li class="fragment"><p>“S” in the function names reminds us that these functions relate to the standard normal probability distribution.</p></li>
-<li class="fragment"><p>“TRUE” or “1” indicates a cumulative probability is requested.</p></li>
-</ul></li>
-</ul>
-</section>
-<section id="excel-to-compute-standard-normal-probabilities-2" class="slide level2 center">
-<h2>Excel to Compute Standard Normal Probabilities</h2>
-<p><br></p>
-
-<img data-src="figs/z_plot_excel.png" class="quarto-figure quarto-figure-center r-stretch" style="width:80.0%"><p>The standard normal distribution and the cumulative area up to a given <span class="math inline">\(z\)</span> value using the <code>NORM.S.DIST(z, TRUE)</code> function in Excel. The shaded area represents the cumulative probability up to the specified <span class="math inline">\(z\)</span> value.</p>
-<p><br></p>
-<p><br></p>
-</section>
-<section id="excel-to-compute-standard-normal-probabilities-3" class="slide level2 center">
-<h2>Excel to Compute Standard Normal Probabilities</h2>
-<p><br></p>
-<div class="columns">
-<div class="column" style="text-align: center; justify-content: center; align-items: center;">
-<p><br> <br></p>
-<p><strong>Formula</strong></p>
-<div class="cell" data-layout-align="center">
-<div class="cell-output-display">
-<div class="quarto-figure quarto-figure-center">
-<figure>
-<p><img data-src="figs/normal_excel_01.png" class="quarto-figure quarto-figure-center" style="width:80.0%"></p>
-</figure>
-</div>
-</div>
-</div>
-</div><div class="column" style="text-align: center; justify-content: center; align-items: center;">
-<p><br> <br> <strong>Results</strong></p>
-<div class="cell" data-layout-align="center">
-<div class="cell-output-display">
-<div class="quarto-figure quarto-figure-center">
-<figure>
-<p><img data-src="figs/normal_excel_02.png" class="quarto-figure quarto-figure-center" style="width:80.0%"></p>
-</figure>
-</div>
-</div>
-</div>
-</div></div>
-</section>
-<section id="excel-to-compute-standard-normal-probabilities-4" class="slide level2 center">
-<h2>Excel to Compute Standard Normal Probabilities</h2>
-<div class="columns">
-<div class="column" style="text-align: center; justify-content: center; align-items: center;">
-<p><br> <br></p>
-<p><strong>Formula</strong></p>
-<div class="cell" data-layout-align="center">
-<div class="cell-output-display">
-<div class="quarto-figure quarto-figure-center">
-<figure>
-<p><img data-src="figs/normal_excel_03.png" class="quarto-figure quarto-figure-center" style="width:80.0%"></p>
-</figure>
-</div>
-</div>
-</div>
-</div><div class="column" style="text-align: center; justify-content: center; align-items: center;">
-<p><br> <br> <strong>Results</strong></p>
-<div class="cell" data-layout-align="center">
-<div class="cell-output-display">
-<div class="quarto-figure quarto-figure-center">
-<figure>
-<p><img data-src="figs/normal_excel_04.png" class="quarto-figure quarto-figure-center" style="width:80.0%"></p>
-</figure>
-</div>
-</div>
-</div>
-</div></div>
-</section>
-<section id="standard-normal-probabilities---example-grear-tire-company-problem" class="slide level2 center">
-<h2>Standard Normal Probabilities - Example: Grear Tire Company Problem</h2>
-<p>Grear Tire company has developed a new steel-belted radial tire to be sold through a chain of discount stores. But before finalizing the tire mileage guarantee policy, Grear’s managers want probability information about the number of miles of tires will last.</p>
-<p>It was estimated from the historical data that the (population) mean tire mileage is 36,500 miles with a (population) standard deviation of 5000.</p>
-<p><strong>Question 1:</strong> The manager now wants to know the probability that the tire mileage <span class="math inline">\(x\)</span> will exceed 40,000.</p>
-</section>
-<section id="standard-normal-probabilities---example-grear-tire-company-problem-1" class="slide level2 center">
-<h2>Standard Normal Probabilities - Example: Grear Tire Company Problem</h2>
-<ul>
-<li class="fragment">P(x &gt; 40,000) = ?</li>
-</ul>
-<div class="fragment">
-<p><strong>Step 1</strong>: Convert x to standard normal distribution.</p>
-<p><span class="math display">\[z = \frac{(x - \mu)}{\sigma} \\
-z = \frac{(40,000 - 36,500)}{5,000} \\
-z = 0.7\]</span></p>
-</div>
-</section>
-<section id="standard-normal-probabilities---example-grear-tire-company-problem-2" class="slide level2 center">
-<h2>Standard Normal Probabilities - Example: Grear Tire Company Problem</h2>
-<p><br></p>
-<p><strong>Step 2</strong>: Compute the area under the standard normal curve to the right of <span class="math inline">\(z = 0.7\)</span></p>
-<p><br></p>
-
-<img data-src="figs/z-score_example_q1.png" class="quarto-figure quarto-figure-center r-stretch" style="width:80.0%"><div class="fragment">
-<p><span class="math display">\[P(z &gt; 0.7) = 1 - P(z \leq 0.7) \\
-= 1 - \text{=NORM.S.DIST}(0.7, \text{TRUE}) \\
-= 1 - 0.7580 \\
-= 0.2420\]</span></p>
-</div>
-</section>
-<section id="standard-normal-probabilities---example-grear-tire-company-problem-3" class="slide level2 center">
-<h2>Standard Normal Probabilities - Example: Grear Tire Company Problem</h2>
-<p><br></p>
-<p><strong>Question 2:</strong> What should be the guaranteed mileage if Grear wants no more than 10% of tires to be eligible for the discount guarantee?</p>
+<section id="the-brief-todays-managerial-question" class="slide level2 center">
+<h2>The Brief — Today’s Managerial Question</h2>
 <p><br></p>
 <blockquote>
-<p>(Hint: Given a probability, we can use the standard normal table in an inverse fashion to find the corresponding z-value.)</p>
+<p>“Model B’s daily eRPM as Normal($3.46, $0.34). What’s the chance tomorrow’s eRPM <strong>tops $3.50</strong>? What eRPM marks a <strong>90th-percentile day</strong> — and is the Normal model even <strong>trustworthy</strong> here?”</p>
 </blockquote>
+<p><br></p>
+<ul>
+<li class="fragment"><p>Counting distributions (Binomial, Poisson) answered “how many installs?” Today’s tool answers “<strong>how much revenue per impression</strong>, and how often above a threshold?”</p></li>
+<li class="fragment"><p><strong>How today’s studio runs:</strong> I demo each idea on a textbook example → <strong>your team fits the Normal to Vungle eRPM</strong> (two sprints) → we debrief what the model can and cannot tell a manager.</p></li>
+<li class="fragment"><p>By the end, <strong>your team</strong> turns a fitted distribution into a planning number — a probability and a percentile — and stress-tests the assumption behind it.</p></li>
+</ul>
 </section>
-<section id="standard-normal-probabilities---example-grear-tire-company-problem-4" class="slide level2 center">
-<h2>Standard Normal Probabilities - Example: Grear Tire Company Problem</h2>
+<section id="how-todays-tools-answer-it" class="slide level2 center">
+<h2>How Today’s Tools Answer It</h2>
 <p><br></p>
-<p><strong>Step 2:</strong> Convert <span class="math inline">\(z_{0.1}\)</span> to the corresponding value of <span class="math inline">\(x\)</span>.</p>
+<p>Every tool today maps onto the Vungle eRPM data:</p>
+<table class="caption-top">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>The managerial question</th>
+<th>The tool</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>“What does a <em>typical</em> day look like?”</td>
+<td><strong>Normal model</strong> — mean $3.46, sd $0.34</td>
+</tr>
+<tr class="even">
+<td>“How likely is eRPM above $3.50?”</td>
+<td><strong>z-score + <code>NORM.DIST</code></strong> (a tail area)</td>
+</tr>
+<tr class="odd">
+<td>“What’s a great day — the top 10%?”</td>
+<td><strong><code>NORM.INV</code></strong> (a percentile)</td>
+</tr>
+<tr class="even">
+<td>“Is ‘Normal’ even a fair assumption?”</td>
+<td><strong>Normal-probability (QQ) plot</strong></td>
+</tr>
+<tr class="odd">
+<td>“Plan for installs at huge scale”</td>
+<td><strong>Normal approximation of the Binomial</strong></td>
+</tr>
+</tbody>
+</table>
 <p><br></p>
-
-<img data-src="figs/z-score_example_q2.png" class="quarto-figure quarto-figure-center r-stretch" style="width:80.0%"></section>
-<section id="standard-normal-probabilities---example-grear-tire-company-problem-5" class="slide level2 center">
-<h2>Standard Normal Probabilities - Example: Grear Tire Company Problem</h2>
-<p><br></p>
-<p><strong>Step 2:</strong> Convert <span class="math inline">\(z_{0.1}\)</span> to the corresponding value of <span class="math inline">\(x\)</span>.</p>
-<p><br></p>
-
-<img data-src="figs/z-score_example_q2.png" class="quarto-figure quarto-figure-center r-stretch" style="width:80.0%"><div class="fragment">
-<p><span class="math display">\[x = \mu + z_{0.1} \cdot \sigma \\
-= 36,500 + \text{=NORM.S.INV}(0.1) \cdot (5000) \\
-= 36,500 + (-1.28155) \cdot (5000) \\
-= 30,092.24\]</span></p>
-<p>Thus, a guarantee of 30,100 miles will meet the requirement that approximately 10% of the tires will be eligible for the guarantee.</p>
-</div>
+<ul>
+<li class="fragment">One dataset, one bell curve — and from it, every probability and percentile a manager needs.</li>
+</ul>
 </section></section>
 <section>
-<section id="t-probability-distribution" class="title-slide slide level1 center" data-background-color="#cfb991">
-<h1><span class="math inline">\(t\)</span> Probability Distribution</h1>
+<section id="lecture-1-continuous-variables-the-uniform-and-the-normal" class="title-slide slide level1 center" data-background-color="#cfb991">
+<h1>Lecture 1 — Continuous Variables, the Uniform, and the Normal</h1>
 
 </section>
-<section id="why-use-the-t-distribution" class="slide level2 center">
-<h2>Why use the <span class="math inline">\(t\)</span>-distribution?</h2>
-<ul>
-<li class="fragment"><p>What can we do when dealing with small sample sizes (<span class="math inline">\(n &lt; 30\)</span>)?</p></li>
-<li class="fragment"><p>What can we do when the population standard deviation (<span class="math inline">\(\sigma\)</span>) is unknown and must be estimated from the sample?</p></li>
-<li class="fragment"><p>How to obtain more accurate confidence intervals for the mean when dealing with small samples?</p></li>
-</ul>
+<section id="the-brief-lecture-1" class="slide level2 center">
+<h2>The Brief — Lecture 1</h2>
 <p><br></p>
+<blockquote>
+<p>“Before we can ask <em>‘how likely is eRPM above $3.50?’</em>, we need a <strong>model</strong> for a continuous quantity. Today: what a continuous distribution <em>is</em>, and the two we use most — the <strong>uniform</strong> and the <strong>Normal</strong>.”</p>
+</blockquote>
+<p><br></p>
+<ul>
+<li class="fragment"><p>The payoff question — <span class="math inline">\(P(\text{eRPM} &gt; \$3.50)\)</span> — waits for Lecture 2. First we build the machinery: <strong>probability as area</strong>, the <strong>Normal</strong> shape, and the <strong>z-score</strong> that unlocks any Normal.</p></li>
+<li class="fragment"><p>Anchor examples today: <strong>Slater’s Buffet</strong> (uniform) and <strong>Pep Zone</strong> inventory (Normal). Then we fit the Normal to Vungle eRPM.</p></li>
+</ul>
+</section></section>
+<section>
+<section id="continuous-random-variables" class="title-slide slide level1 center" data-background-color="#cfb991">
+<h1>Continuous Random Variables</h1>
+
+</section>
+<section id="discrete-vs.-continuous-probability-becomes-area" class="slide level2 center">
+<h2>Discrete vs.&nbsp;Continuous: Probability Becomes Area</h2>
+<p><br></p>
+<ul>
+<li class="fragment"><p>A <strong>continuous</strong> random variable can assume <strong>any</strong> value in an interval on the real line (eRPM could be $3.4590, $3.45901, …).</p></li>
+<li class="fragment"><p>Unlike a die roll, you <strong>cannot</strong> ask for the probability of one <em>exact</em> value:</p></li>
+</ul>
 <div class="fragment">
-<center>
-<span class="math inline">\(t\)</span>-distribution
-</center>
+<p><span class="math display">\[
+P(X = x) = 0 \quad \text{for any single point } x
+\]</span></p>
 </div>
-</section>
-<section id="why-use-the-t-distribution-1" class="slide level2 center">
-<h2>Why use the <span class="math inline">\(t\)</span>-distribution?</h2>
-<div class="r-fit-text">
 <ul>
-<li class="fragment"><strong>Sample Size Considerations</strong>
-<ul>
-<li class="fragment">When the sample size is small <span class="math inline">\((n &lt; 30)\)</span>, the <span class="math inline">\(t\)</span>-distribution provides a better estimate than the normal distribution.</li>
-<li class="fragment">With small samples, the sample standard deviation (<span class="math inline">\(S\)</span>) may not be a reliable estimate of the population standard deviation (<span class="math inline">\(\sigma\)</span>).</li>
-</ul></li>
-<li class="fragment"><strong>Unknown Population Standard Deviation</strong>
-<ul>
-<li class="fragment">When the population standard deviation (<span class="math inline">\(\sigma\)</span>) is unknown and must be estimated from the sample, the <span class="math inline">\(t\)</span>-distribution is appropriate.</li>
-<li class="fragment">The <span class="math inline">\(t\)</span>-distribution adjusts for the additional variability introduced by using <span class="math inline">\(S\)</span> instead of <span class="math inline">\(\sigma\)</span>.</li>
-</ul></li>
-<li class="fragment"><strong>More Accurate Confidence Intervals</strong>
-<ul>
-<li class="fragment">Provides more accurate confidence intervals for the mean when dealing with small samples.</li>
-<li class="fragment">Reflects the increased uncertainty in estimates due to small sample sizes and unknown <span class="math inline">\(\sigma\)</span>.</li>
-</ul></li>
-</ul>
-</div>
-</section>
-<section id="t-probability-distribution-1" class="slide level2 center">
-<h2><span class="math inline">\(t\)</span> Probability Distribution</h2>
-<ul>
-<li>Standardize <span class="math inline">\(N(\mu, \sigma)\)</span> using sample mean and sample standard deviation:</li>
-</ul>
-<p><span class="math display">\[t = \frac{X - \bar{X}}{S}\]</span></p>
-<ul>
-<li><p>This t-statistic has a <span class="math inline">\(t\)</span>-distribution with <strong>degrees of freedom (df)</strong> = <span class="math inline">\(n-1\)</span>, which is the degrees of freedom of the sample standard deviation <span class="math inline">\(S\)</span>.</p></li>
-<li><p>When using sample mean and sample standard deviation to standardize a normal distribution, we will always have a <span class="math inline">\(t\)</span>-distribution, <strong>approximately</strong>.</p></li>
+<li class="fragment"><p>Instead we ask about an <strong>interval</strong>: <span class="math inline">\(P(x_1 \le X \le x_2)\)</span>. The eRPM is never <em>exactly</em> $3.50 — but it can be <em>between</em> $3.40 and $3.60.</p></li>
+<li class="fragment"><p>For a continuous variable, probability is the <strong>area under a curve</strong> called the <strong>probability density function</strong> <span class="math inline">\(f(x)\)</span>.</p></li>
 </ul>
 </section>
-<section id="t-probability-distribution-2" class="slide level2 center">
-<h2><span class="math inline">\(t\)</span> Probability Distribution</h2>
-<ul>
-<li class="fragment"><p><strong>Similar to</strong> the standard normal.</p></li>
-<li class="fragment"><p>Symmetric with mean 0 and a shape parameter (the degrees of freedom, df).</p></li>
-<li class="fragment"><p>The standard deviation is <span class="math inline">\(\sqrt{\frac{df}{(df - 2)}}\)</span> and is always larger than 1 (Recall: 1 is the standard deviation of Z-distribution):</p>
-<ul>
-<li class="fragment"><p><span class="math inline">\(t(df)\)</span> has more variability than Z.</p></li>
-<li class="fragment"><p><span class="math inline">\(t(df)\)</span> has heavier tails than Z: More probability (area) in the tails than Z. (Heavier tails.)</p></li>
-<li class="fragment"><p><span class="math inline">\(t(df)\)</span> approaches Z if <span class="math inline">\(df\)</span> increases. Empirical rules can be used when <span class="math inline">\(df \geq 5\)</span>.</p></li>
-</ul></li>
-</ul>
-</section>
-<section id="t-probability-distribution-3" class="slide level2 center">
-<h2><span class="math inline">\(t\)</span> Probability Distribution</h2>
+<section id="the-probability-density-function-pdf" class="slide level2 center">
+<h2>The Probability Density Function (PDF)</h2>
 <p><br></p>
+<ul>
+<li class="fragment"><p>Think of <span class="math inline">\(f(x)\)</span> as a <strong>smoothed histogram</strong>: the relative-frequency bars, refined until they form a continuous curve.</p></li>
+<li class="fragment"><p>Two defining properties:</p></li>
+</ul>
+<div class="fragment">
+<p><span class="math display">\[
+f(x) \ge 0 \quad \text{for all } x \qquad\qquad \int_{-\infty}^{\infty} f(x)\, dx = 1 \;\; (\text{total area} = 1)
+\]</span></p>
+</div>
+<ul>
+<li class="fragment"><p><strong>Key subtlety:</strong> <span class="math inline">\(f(x)\)</span> is a <em>density</em>, <strong>not</strong> a probability — it can exceed 1. Only <strong>areas</strong> are probabilities.</p></li>
+<li class="fragment"><p>The probability <span class="math inline">\(X\)</span> lands between <span class="math inline">\(x_1\)</span> and <span class="math inline">\(x_2\)</span> is the area under <span class="math inline">\(f(x)\)</span> across that interval:</p></li>
+</ul>
+<div class="fragment">
+<p><span class="math display">\[
+P(x_1 \le X \le x_2) = \text{area under } f(x) \text{ from } x_1 \text{ to } x_2
+\]</span></p>
+</div>
+</section></section>
+<section>
+<section id="the-uniform-distribution" class="title-slide slide level1 center" data-background-color="#cfb991">
+<h1>The Uniform Distribution</h1>
 
-<img data-src="figs/z_t_dist_comparison.png" class="quarto-figure quarto-figure-center r-stretch" style="width:80.0%"><p>The standard normal distribution and two <span class="math inline">\(t\)</span> distributions with different degrees of freedom.</p>
+</section>
+<section id="the-simplest-continuous-model" class="slide level2 center">
+<h2>The Simplest Continuous Model</h2>
 <p><br></p>
+<ul>
+<li class="fragment">A variable is <strong>uniformly distributed</strong> when the probability is <strong>proportional to the length</strong> of the interval — every equal-width slice is equally likely.</li>
+</ul>
+<div class="fragment">
+<p><span class="math display">\[
+f(x) = \begin{cases} \dfrac{1}{b - a} &amp; a \le x \le b \\[4pt] 0 &amp; \text{otherwise} \end{cases}
+\]</span></p>
+</div>
+<ul>
+<li class="fragment"><p>The density is a <strong>flat rectangle</strong> of height <span class="math inline">\(1/(b-a)\)</span> — and the rectangle’s total area is exactly 1.</p></li>
+<li class="fragment"><p>Mean and variance:</p></li>
+</ul>
+<div class="fragment">
+<p><span class="math display">\[
+E(X) = \frac{a + b}{2} \qquad\qquad \operatorname{Var}(X) = \frac{(b - a)^2}{12}
+\]</span></p>
+</div>
+</section>
+<section id="anchor-example-slaters-buffet" class="slide level2 center">
+<h2>Anchor Example: Slater’s Buffet</h2>
 <p><br></p>
-</section>
-<section id="comparing-normal-and-t-distributions" class="slide level2 center">
-<h2>Comparing Normal and <span class="math inline">\(t\)</span>-Distributions</h2>
 <ul>
-<li class="fragment"><strong>Shape and Symmetry</strong>
-<ul>
-<li class="fragment">Both distributions are symmetric and bell-shaped.</li>
-<li class="fragment">The <span class="math inline">\(t\)</span>-distribution has heavier tails compared to the normal distribution, reflecting more variability.</li>
-</ul></li>
-<li class="fragment"><strong>Dependence on Sample Size</strong>
-<ul>
-<li class="fragment">The normal distribution does not depend on sample size.</li>
-<li class="fragment">The <span class="math inline">\(t\)</span>-distribution varies with degrees of freedom (<span class="math inline">\(df = n - 1\)</span>).</li>
-<li class="fragment">As the degrees of freedom increase, the <span class="math inline">\(t\)</span>-distribution approaches the normal distribution.</li>
-</ul></li>
+<li class="fragment"><p>Slater’s charges customers by the <strong>weight of salad</strong> they take. Sampling shows the amount is <strong>uniform between 5 and 15 ounces</strong>: <span class="math inline">\(X \sim \text{Uniform}(5, 15)\)</span>, so <span class="math inline">\(f(x) = 1/10\)</span>.</p></li>
+<li class="fragment"><p><strong>Expected value and variance:</strong></p></li>
 </ul>
-</section>
-<section id="t-probability-distribution---example-grear-tire-company-problem" class="slide level2 center">
-<h2><span class="math inline">\(t\)</span> Probability Distribution - Example: Grear Tire Company Problem</h2>
-<p>Grear Tire company has developed a new steel-belted radial tire to be sold through a chain of discount stores. But before finalizing the tire mileage guarantee policy, Grear’s managers want probability information about the number of miles tires will last.</p>
-<p>It was estimated from a sample of size 28 that the sample mean tire mileage is 36,500 miles with a sample standard deviation of 5000.</p>
-<p>The manager now wants to know:</p>
+<div class="fragment">
+<p><span class="math display">\[
+E(X) = \frac{5 + 15}{2} = 10 \text{ oz} \qquad \operatorname{Var}(X) = \frac{(15 - 5)^2}{12} = 8.33
+\]</span></p>
+</div>
 <ul>
-<li class="fragment"><strong>Question 1:</strong> What is the probability that the tire mileage <span class="math inline">\(X\)</span> will exceed 40,000 miles?</li>
-<li class="fragment"><strong>Question 2:</strong> What is the 10th percentile tire mileage for the new tires?</li>
+<li class="fragment"><strong>What is <span class="math inline">\(P(12 \le X \le 15)\)</span> — a heaping plate?</strong> Area = base <span class="math inline">\(\times\)</span> height:</li>
 </ul>
+<div class="fragment">
+<p><span class="math display">\[
+P(12 \le X \le 15) = (15 - 12) \times \frac{1}{10} = 0.30
+\]</span></p>
+</div>
 </section>
-<section id="t-probability-distribution---example-grear-tire-company-problem-1" class="slide level2 center">
-<h2><span class="math inline">\(t\)</span> Probability Distribution - Example: Grear Tire Company Problem</h2>
-<p><strong>Solution</strong></p>
-<ul>
-<li class="fragment"><p><strong>Question 1:</strong> What is the probability that the tire mileage <span class="math inline">\(X\)</span> will exceed 40,000 miles?</p>
-<p><span class="math inline">\(P(X &gt; 40,000) = P(t_{27} &gt; 0.7) = 1 - P(t_{27} \leq 0.7)\)</span></p>
-<p><span class="math display">\[= 1 - \text{T.DIST}(0.7, 27, \text{TRUE}) \\
-= 1 - 0.7550 \\
-= 0.250\]</span></p></li>
-<li class="fragment"><p><strong>Question 2:</strong> What is the 10th percentile tire mileage for the new tires?</p>
-<p><span class="math display">\[x_{0.1} = \bar{X} + t_{0.1,27} \cdot s \\
-= 36,500 + \text{T.INV}(0.1, 27) \cdot (5000) \\
-= 36,500 + (-1.314) \cdot (5000) \\
-= 29,903 \text{ miles}\]</span></p></li>
+<section id="slaters-buffet-probability-is-the-shaded-area" class="slide level2 center">
+<h2>Slater’s Buffet — Probability Is the Shaded Area</h2>
+
+<img data-src="figs/uniform_slater.png" class="quarto-figure quarto-figure-center r-stretch" style="width:72.0%"><ul>
+<li>30% of customers take between 12 and 15 ounces — directly the <strong>area</strong> of the shaded rectangle, no calculus needed.</li>
+<li>The same idea — <strong>probability = area</strong> — now carries over to the bell-shaped Normal, where the area is harder to compute by hand (so we lean on z-scores and Excel).</li>
 </ul>
 </section></section>
 <section>
-<section id="summary" class="title-slide slide level1 center" data-background-color="#cfb991">
-<h1>Summary</h1>
+<section id="the-normal-probability-distribution" class="title-slide slide level1 center" data-background-color="#cfb991">
+<h1>The Normal Probability Distribution</h1>
 
 </section>
-<section id="summary-1" class="slide level2 center">
+<section id="why-the-normal-matters" class="slide level2 center">
+<h2>Why the Normal Matters</h2>
+<p><br></p>
+<ul>
+<li class="fragment"><p>The <strong>Normal</strong> is the most important distribution for a continuous variable — it describes heights, test scores, measurement errors, rainfall, <strong>and</strong> daily revenue metrics like eRPM.</p></li>
+<li class="fragment"><p>It is the backbone of statistical inference (the next several topics), and it <strong>approximates</strong> the Binomial and Poisson at large <span class="math inline">\(n\)</span>.</p></li>
+<li class="fragment"><p>Its density:</p></li>
+</ul>
+<div class="fragment">
+<p><span class="math display">\[
+f(x) = \frac{1}{\sigma\sqrt{2\pi}}\; e^{-\frac{1}{2}\left(\frac{x - \mu}{\sigma}\right)^2}, \qquad \pi \approx 3.14159, \;\; e \approx 2.71828
+\]</span></p>
+</div>
+<ul>
+<li class="fragment"><strong>Don’t tattoo this on your arm.</strong> You will never plug numbers into it by hand — z-scores and Excel do the work. It is here so you see <em>where the bell comes from</em>: two parameters, <span class="math inline">\(\mu\)</span> and <span class="math inline">\(\sigma\)</span>.</li>
+</ul>
+</section>
+<section id="what-the-two-parameters-do" class="slide level2 center">
+<h2>What the Two Parameters Do</h2>
+
+<img data-src="figs/normal_shapes.png" class="quarto-figure quarto-figure-center r-stretch" style="width:70.0%"><ul>
+<li>The <strong>mean <span class="math inline">\(\mu\)</span></strong> sets the <strong>location</strong> (the peak); it can be any value — negative, zero, or positive.</li>
+<li>The <strong>standard deviation <span class="math inline">\(\sigma\)</span></strong> sets the <strong>spread</strong>: larger <span class="math inline">\(\sigma\)</span> → wider, flatter curve.</li>
+<li>Every Normal is <strong>symmetric</strong> and <strong>bell-shaped</strong>, with <strong>mean = median = mode</strong>, and an (in principle) infinite range.</li>
+</ul>
+</section>
+<section id="the-empirical-rule" class="slide level2 center">
+<h2>The Empirical Rule</h2>
+
+<img data-src="figs/empirical_rule.png" class="quarto-figure quarto-figure-center r-stretch" style="width:68.0%"><ul>
+<li><strong>68.26%</strong> of values fall within <strong><span class="math inline">\(\pm 1\sigma\)</span></strong> of the mean.</li>
+<li><strong>95.44%</strong> fall within <strong><span class="math inline">\(\pm 2\sigma\)</span></strong>; <strong>99.72%</strong> fall within <strong><span class="math inline">\(\pm 3\sigma\)</span></strong>.</li>
+<li>Half the area (0.5) sits on each side of <span class="math inline">\(\mu\)</span>. For Vungle: ~95% of B-days should fall in <span class="math inline">\(3.46 \pm 2(0.34) = (\$2.77, \$4.15)\)</span>.</li>
+</ul>
+</section></section>
+<section>
+<section id="the-standard-normal-z-scores" class="title-slide slide level1 center" data-background-color="#cfb991">
+<h1>The Standard Normal &amp; z-Scores</h1>
+
+</section>
+<section id="one-curve-to-rule-them-all-z-n0-1" class="slide level2 center">
+<h2>One Curve to Rule Them All: Z ~ N(0, 1)</h2>
+<p><br></p>
+<ul>
+<li class="fragment"><p>There are infinitely many Normal curves (one per <span class="math inline">\(\mu, \sigma\)</span>). We standardize them all to a <strong>single reference</strong>: the <strong>standard Normal</strong>, <span class="math inline">\(Z \sim N(0, 1)\)</span> — mean 0, standard deviation 1.</p></li>
+<li class="fragment"><p><strong>Standardization</strong> converts any <span class="math inline">\(x\)</span> to a <span class="math inline">\(z\)</span>:</p></li>
+</ul>
+<div class="fragment">
+<p><span class="math display">\[
+z = \frac{x - \mu}{\sigma}
+\]</span></p>
+</div>
+<ul>
+<li class="fragment"><p><span class="math inline">\(z\)</span> is <strong>the number of standard deviations</strong> <span class="math inline">\(x\)</span> lies from the mean. <span class="math inline">\(z = +1.5\)</span> means “1.5 SDs above average”; <span class="math inline">\(z = -2\)</span> means “2 SDs below.”</p></li>
+<li class="fragment"><p>Once standardized, <strong>one</strong> table (or one Excel function) gives the area for <em>any</em> Normal problem.</p></li>
+</ul>
+</section>
+<section id="standardizing-in-pictures" class="slide level2 center">
+<h2>Standardizing in Pictures</h2>
+
+<img data-src="figs/standardization.png" class="quarto-figure quarto-figure-center r-stretch" style="width:78.0%"><ul>
+<li>The <strong>shape and the shaded area are identical</strong> before and after standardizing — only the axis labels change.</li>
+<li>Compute <span class="math inline">\(z\)</span>, then read the area off <span class="math inline">\(N(0,1)\)</span>. This is the move behind every Normal probability you will ever calculate.</li>
+</ul>
+</section>
+<section id="anchor-example-pep-zone-stockout" class="slide level2 center">
+<h2>Anchor Example: Pep Zone Stockout</h2>
+<p><br></p>
+<ul>
+<li class="fragment"><p>Pep Zone reorders motor oil when stock hits <strong>20 gallons</strong>. Demand during the replenishment lead time is <strong>Normal with mean 15, sd 6</strong>: <span class="math inline">\(X \sim N(15, 6)\)</span>.</p></li>
+<li class="fragment"><p><strong>What is the probability of a stockout</strong> — that demand <em>exceeds</em> 20 before the new stock arrives?</p></li>
+</ul>
+<div class="fragment">
+<p><span class="math display">\[
+z = \frac{20 - 15}{6} = 0.83 \quad\Rightarrow\quad P(X &gt; 20) = P(Z &gt; 0.83) = 0.2023
+\]</span></p>
+</div>
+<ul>
+<li class="fragment">About a <strong>20% chance</strong> of running out on each cycle — the store manager wants that lower.</li>
+</ul>
+</section>
+<section id="pep-zone-the-stockout-area" class="slide level2 center">
+<h2>Pep Zone — the Stockout Area</h2>
+
+<img data-src="figs/pepzone_stockout.png" class="quarto-figure quarto-figure-center r-stretch" style="width:70.0%"><ul>
+<li>The stockout probability is the <strong>right-tail area</strong> beyond 20 gallons: <strong>0.2023</strong>.</li>
+<li><em>Inverse question (Lecture 2 tool):</em> what reorder point cuts stockout risk to 5%? Answer: <span class="math inline">\(x = 15 + 1.645(6) \approx 25\)</span> gallons. Raising the trigger from 20 to 25 drops stockout risk from ~20% to ~5%.</li>
+</ul>
+</section></section>
+<section>
+<section id="modeling-vungle-erpm-as-normal" class="title-slide slide level1 center" data-background-color="#cfb991">
+<h1>Modeling Vungle eRPM as Normal</h1>
+
+</section>
+<section id="fitting-the-normal-to-daily-erpm-algorithm-b" class="slide level2 center">
+<h2>Fitting the Normal to Daily eRPM (Algorithm B)</h2>
+<div style="font-size: 86%;">
+<ul>
+<li class="fragment">Treat each day’s eRPM for algorithm B as a draw from a Normal. From the 30 June days (<code>data/vungle_daily.csv</code>, <code>algorithm == "B"</code>):</li>
+</ul>
+<div class="fragment">
+<table class="caption-top">
+<thead>
+<tr class="header">
+<th>Quantity</th>
+<th style="text-align: right;">Value</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><span class="math inline">\(n\)</span> (days)</td>
+<td style="text-align: right;">30</td>
+</tr>
+<tr class="even">
+<td><span class="math inline">\(\bar{x}\)</span> (mean eRPM)</td>
+<td style="text-align: right;"><strong>$3.459</strong></td>
+</tr>
+<tr class="odd">
+<td><span class="math inline">\(s\)</span> (standard deviation)</td>
+<td style="text-align: right;"><strong>$0.344</strong></td>
+</tr>
+</tbody>
+</table>
+</div>
+<ul>
+<li class="fragment"><p>So our working model is <span class="math inline">\(\text{eRPM}_B \sim N(\mu = 3.459, \; \sigma = 0.344)\)</span>.</p></li>
+<li class="fragment"><p><strong>A first z-score.</strong> A $3.50 day standardizes to:</p></li>
+</ul>
+<div class="fragment">
+<p><span class="math display">\[
+z = \frac{3.50 - 3.459}{0.344} = 0.12
+\]</span></p>
+</div>
+<ul>
+<li class="fragment">A $3.50 day is barely above average — only <strong>0.12 SD</strong> up. That hints (we’ll confirm next time) that beating $3.50 is close to a coin flip.</li>
+</ul>
+</div>
+</section>
+<section id="normal-probabilities-in-excel-two-functions" class="slide level2 center">
+<h2>Normal Probabilities in Excel — Two Functions</h2>
+<p><br></p>
+<ul>
+<li class="fragment"><p>The ToolPak is not needed for Normal probabilities — two worksheet functions do everything:</p>
+<ul>
+<li class="fragment"><code>=NORM.DIST(x, mean, sd, TRUE)</code> → the <strong>cumulative</strong> probability <span class="math inline">\(P(X \le x)\)</span>.</li>
+<li class="fragment"><code>=NORM.INV(p, mean, sd)</code> → the <strong>inverse</strong>: the <span class="math inline">\(x\)</span> with <span class="math inline">\(P(X \le x) = p\)</span> (a percentile).</li>
+</ul></li>
+<li class="fragment"><p>The standardized cousins act on <span class="math inline">\(z\)</span> directly:</p>
+<ul>
+<li class="fragment"><code>=NORM.S.DIST(z, TRUE)</code> → <span class="math inline">\(P(Z \le z)\)</span>; <code>=NORM.S.INV(p)</code> → the <span class="math inline">\(z\)</span> for probability <span class="math inline">\(p\)</span>.</li>
+</ul></li>
+<li class="fragment"><p><strong>Workhorses:</strong> <code>NORM.DIST</code> and <code>NORM.INV</code> (real units). The <code>.S.</code> versions are for when you have already standardized to a <span class="math inline">\(z\)</span>.</p></li>
+<li class="fragment"><p>We put them to work in Lecture 2 — for now, your team just <strong>fits the model and reads its shape</strong>.</p></li>
+</ul>
+</section>
+<section id="team-sprint-1-fit-the-normal-to-erpm" class="slide level2 center">
+<h2>⏱️ Team Sprint 1 — Fit the Normal to eRPM</h2>
+<div class="sprint">
+<p><strong>Decide:</strong> is the Normal a sensible model for B’s daily eRPM — and what does a “typical” day look like?</p>
+<p><strong>Data:</strong> <code>data/vungle_daily.csv</code> (filter <code>algorithm = "B"</code>) · <strong>Time:</strong> ~8 min</p>
+<ol type="1">
+<li>In Excel, compute <span class="math inline">\(\bar{x}\)</span> = <code>AVERAGE</code> and <span class="math inline">\(s\)</span> = <code>STDEV.S</code> of the 30 B-day <code>erpm</code> values (target: ~3.459, ~0.344).</li>
+<li>Apply the <strong>empirical rule</strong>: give the interval that should hold ~95% of days (<span class="math inline">\(\bar{x} \pm 2s\)</span>).</li>
+<li>Standardize a $3.50 day: compute <span class="math inline">\(z = (3.50 - \bar{x})/s\)</span>. Is $3.50 a good day, an average day, or a bad day?</li>
+</ol>
+<p><strong>Hand in (1 slide):</strong> your <span class="math inline">\(\bar{x}\)</span>, <span class="math inline">\(s\)</span>, the 95% empirical interval, and one sentence on where $3.50 sits.</p>
+</div>
+</section>
+<section id="debrief-lecture-1-takeaway" class="slide level2 center">
+<h2>Debrief — Lecture 1 Takeaway</h2>
+<p><br></p>
+<ul>
+<li class="fragment"><p><strong>One sentence:</strong> B’s daily eRPM is well described by a Normal centered at <strong>$3.46</strong> with spread <strong>$0.34</strong> — and standardizing (<span class="math inline">\(z = (x-\mu)/\sigma\)</span>) turns any eRPM question into a single standard-Normal area.</p></li>
+<li class="fragment"><p><strong>One number:</strong> <span class="math inline">\(z = 0.12\)</span> for a $3.50 day — barely above average, so “beating $3.50” is roughly a coin flip (we’ll nail the exact probability next time).</p></li>
+<li class="fragment"><p><strong>One caveat:</strong> the empirical rule and z-scores are only as good as the <strong>Normal assumption</strong>. We have <em>assumed</em> the bell; Lecture 2 we <strong>check</strong> it with a QQ plot before betting a decision on it.</p></li>
+</ul>
+</section>
+<section id="carry-forward-lecture-1" class="slide level2 center">
+<h2>Carry-forward — Lecture 1</h2>
+<ul>
+<li><p><strong>Your client (homework):</strong> pick a roughly continuous metric in your team’s case (price, time, spend, rating). Compute its mean and sd, and use the <strong>empirical rule</strong> to describe a typical range. Flag whether a Normal model looks plausible from the histogram.</p></li>
+<li><p><strong>Next time:</strong> we cash in the model — exact tail probabilities (<span class="math inline">\(P(\text{eRPM} &gt; \$3.50)\)</span>), the <strong>90th-percentile day</strong>, a formal <strong>normality check</strong>, and the Normal approximation of the Binomial.</p></li>
+</ul>
+</section></section>
+<section>
+<section id="lecture-2-normal-applications-the-normal-approximation" class="title-slide slide level1 center" data-background-color="#cfb991">
+<h1>Lecture 2 — Normal Applications &amp; the Normal Approximation</h1>
+
+</section>
+<section id="the-brief-lecture-2" class="slide level2 center">
+<h2>The Brief — Lecture 2</h2>
+<p><br></p>
+<blockquote>
+<p>“Cash in the model. Tomorrow’s eRPM is <span class="math inline">\(\sim N(3.459, 0.344)\)</span>. <strong>What’s <span class="math inline">\(P(\text{eRPM} &gt; \$3.50)\)</span>? What eRPM defines a top-10% day?</strong> And — before we trust any of it — <strong>is the Normal assumption fair?</strong>”</p>
+</blockquote>
+<p><br></p>
+<ul>
+<li class="fragment"><p>Lecture 1 built the model; today we <strong>use</strong> it: a tail probability, a percentile, an assumption check, and the bridge from counts (Binomial) to the Normal at scale.</p></li>
+<li class="fragment"><p>Tools: <code>NORM.DIST</code> (tail areas), <code>NORM.INV</code> (percentiles), the <strong>QQ plot</strong> (assumption), and the <strong>Normal approximation of the Binomial</strong> (planning installs).</p></li>
+</ul>
+</section></section>
+<section>
+<section id="normal-probabilities-tails" class="title-slide slide level1 center" data-background-color="#cfb991">
+<h1>Normal Probabilities: Tails</h1>
+
+</section>
+<section id="perpm-3.50-a-right-tail-area" class="slide level2 center">
+<h2>P(eRPM &gt; $3.50) — a Right-Tail Area</h2>
+<p><br></p>
+<ul>
+<li class="fragment">The managerial question: how often does B clear the <strong>$3.50</strong> bar? Standardize, then take the tail area.</li>
+</ul>
+<div class="fragment">
+<p><span class="math display">\[
+z = \frac{3.50 - 3.459}{0.344} = 0.12 \qquad P(\text{eRPM} &gt; 3.50) = P(Z &gt; 0.12) = 1 - 0.547 = 0.453
+\]</span></p>
+</div>
+<ul>
+<li class="fragment"><strong>In Excel</strong> (no standardizing needed):</li>
+</ul>
+<div class="fragment">
+<p><span class="math display">\[
+\texttt{=1 - NORM.DIST(3.50, 3.459, 0.344, TRUE)} \;=\; 0.4526
+\]</span></p>
+</div>
+<ul>
+<li class="fragment"><strong>Read it for the manager:</strong> on roughly <strong>45 of every 100 days</strong>, B’s eRPM tops $3.50. A $3.50 day is <em>not</em> exceptional — it is just shy of a coin flip.</li>
+</ul>
+</section>
+<section id="the-tail-area-visualized" class="slide level2 center">
+<h2>The Tail Area, Visualized</h2>
+
+<img data-src="figs/vungle_pgt350.png" class="quarto-figure quarto-figure-center r-stretch" style="width:70.0%"><ul>
+<li>The shaded right tail beyond $3.50 is <strong>0.4526</strong> of the total area.</li>
+<li>Same machine for a <strong>bad day</strong>: <span class="math inline">\(P(\text{eRPM} &lt; \$3.00) =\)</span> <code>NORM.DIST(3.00, 3.459, 0.344, TRUE)</code> <span class="math inline">\(= 0.091\)</span> — about a <strong>1-in-11</strong> chance B dips below $3.00.</li>
+</ul>
+</section>
+<section id="excel-norm.dist-on-the-vungle-model" class="slide level2 center">
+<h2>Excel: NORM.DIST on the Vungle Model</h2>
+
+<img data-src="figs/excel_normdist_vungle.png" class="quarto-figure quarto-figure-center r-stretch" style="width:82.0%"><ul>
+<li><code>NORM.DIST(..., TRUE)</code> returns the area to the <strong>left</strong>; subtract from 1 for a right tail.</li>
+<li>The standard-Normal route — standardize to <span class="math inline">\(z = 0.12\)</span>, then <code>1 - NORM.S.DIST(0.12, TRUE)</code> — gives the <strong>same</strong> 0.4526. Two roads, one answer.</li>
+</ul>
+</section></section>
+<section>
+<section id="normal-percentiles-norm.inv" class="title-slide slide level1 center" data-background-color="#cfb991">
+<h1>Normal Percentiles: NORM.INV</h1>
+
+</section>
+<section id="the-90th-percentile-day" class="slide level2 center">
+<h2>The 90th-Percentile Day</h2>
+<p><br></p>
+<ul>
+<li class="fragment"><p>Flip the question. Instead of “what area is above $3.50?”, ask “<strong>what eRPM marks the top 10% of days?</strong>” — the 90th percentile.</p></li>
+<li class="fragment"><p><strong>Inverse Normal:</strong> find <span class="math inline">\(x\)</span> with <span class="math inline">\(P(X \le x) = 0.90\)</span>. By hand, <span class="math inline">\(z_{0.90} = 1.282\)</span>, then back-convert:</p></li>
+</ul>
+<div class="fragment">
+<p><span class="math display">\[
+x = \mu + z\,\sigma = 3.459 + 1.282 \times 0.344 = \$3.90
+\]</span></p>
+</div>
+<ul>
+<li class="fragment"><strong>In Excel</strong> (direct, no z needed):</li>
+</ul>
+<div class="fragment">
+<p><span class="math display">\[
+\texttt{=NORM.INV(0.90, 3.459, 0.344)} \;=\; \$3.90
+\]</span></p>
+</div>
+<ul>
+<li class="fragment"><strong>For the manager:</strong> a <strong>$3.90</strong> day is a genuine top-10% performance — a useful internal benchmark for “a great day.”</li>
+</ul>
+</section>
+<section id="the-percentile-visualized" class="slide level2 center">
+<h2>The Percentile, Visualized</h2>
+
+<img data-src="figs/vungle_pct90.png" class="quarto-figure quarto-figure-center r-stretch" style="width:70.0%"><ul>
+<li>90% of the area sits <strong>at or below $3.90</strong>; the top 10% of days lie beyond it.</li>
+<li><code>NORM.DIST</code> and <code>NORM.INV</code> are <strong>inverses</strong>: <code>NORM.DIST(3.90, …)</code> <span class="math inline">\(\approx 0.90\)</span>, and <code>NORM.INV(0.90, …)</code> <span class="math inline">\(\approx 3.90\)</span>. One asks “what area?”, the other “what value?”.</li>
+</ul>
+</section>
+<section id="excel-norm.inv-percentiles-tails" class="slide level2 center">
+<h2>Excel: NORM.INV — Percentiles &amp; Tails</h2>
+
+<img data-src="figs/excel_norminv_vungle.png" class="quarto-figure quarto-figure-center r-stretch" style="width:82.0%"><ul>
+<li>The median equals the mean (<span class="math inline">\(\$3.46\)</span>) for a symmetric Normal — <code>NORM.INV(0.50, …)</code> confirms it.</li>
+<li>Percentiles turn an abstract distribution into <strong>decision thresholds</strong>: a 75th-percentile day ($3.69) is “good,” a 90th ($3.90) is “great.” Same model, business-ready language.</li>
+</ul>
+</section></section>
+<section>
+<section id="is-the-normal-assumption-fair" class="title-slide slide level1 center" data-background-color="#cfb991">
+<h1>Is the Normal Assumption Fair?</h1>
+
+</section>
+<section id="check-before-you-trust-the-qq-plot" class="slide level2 center">
+<h2>Check Before You Trust: the QQ Plot</h2>
+<p><br></p>
+<ul>
+<li class="fragment"><p>Every probability and percentile we just computed <strong>assumes</strong> eRPM is Normal. If the assumption fails, the numbers are fiction. So we <strong>check</strong>.</p></li>
+<li class="fragment"><p>A <strong>Normal-probability plot</strong> (QQ plot) sorts the data and plots each value against the value a perfect Normal would predict at that rank.</p></li>
+<li class="fragment"><p><strong>The read:</strong></p>
+<ul>
+<li class="fragment">Points hug a <strong>straight line</strong> → Normal is a reasonable model.</li>
+<li class="fragment">Systematic curves, S-shapes, or fat tails → Normal is suspect.</li>
+</ul></li>
+<li class="fragment"><p>A formal companion is the <strong>Shapiro-Wilk test</strong> (<span class="math inline">\(H_0\)</span>: the data are Normal). A <em>large</em> p-value means “<strong>no evidence against</strong> Normal” — exactly what we want here.</p></li>
+</ul>
+</section>
+<section id="the-qq-plot-for-erpm-algorithm-b" class="slide level2 center">
+<h2>The QQ Plot for eRPM (Algorithm B)</h2>
+
+<img data-src="figs/vungle_qq.png" class="quarto-figure quarto-figure-center r-stretch" style="width:68.0%"><ul>
+<li>The 30 B-day points <strong>track the line</strong> closely — no fat tails, no S-curve.</li>
+<li>Shapiro-Wilk: <strong>W = 0.961, p = 0.33</strong> → we <strong>do not reject</strong> Normality. The model is fair to use.</li>
+<li><em>Honest caveat:</em> <span class="math inline">\(n = 30\)</span> is modest; the QQ plot can’t <em>prove</em> Normal, only fail to flag a problem. For business decisions, “Normal is a reasonable working model” is the right standard.</li>
+</ul>
+</section>
+<section id="team-sprint-2-probabilities-percentiles-a-normality-check" class="slide level2 center">
+<h2>⏱️ Team Sprint 2 — Probabilities, Percentiles &amp; a Normality Check</h2>
+<div class="sprint">
+<p><strong>Decide:</strong> how often does B top $3.50, what’s a top-10% day, and is the Normal model trustworthy?</p>
+<p><strong>Data:</strong> <code>data/vungle_daily.csv</code> (filter <code>algorithm = "B"</code>) · <strong>Time:</strong> ~12 min</p>
+<ol type="1">
+<li><strong>Tail probability:</strong> <code>=1 - NORM.DIST(3.50, mean, sd, TRUE)</code>. State <span class="math inline">\(P(\text{eRPM} &gt; \$3.50)\)</span> in plain English.</li>
+<li><strong>Percentile:</strong> <code>=NORM.INV(0.90, mean, sd)</code>. Report the <strong>90th-percentile day</strong> as a “great day” benchmark.</li>
+<li><strong>Check the assumption:</strong> sort the 30 values; eyeball them against the Normal QQ plot (provided). Do they hug the line?</li>
+</ol>
+<p><strong>Hand in (1 slide):</strong> <span class="math inline">\(P(\text{eRPM} &gt; \$3.50)\)</span>, the 90th-percentile eRPM, and a one-line verdict on whether the Normal model is trustworthy.</p>
+</div>
+</section></section>
+<section>
+<section id="the-normal-approximation-of-the-binomial" class="title-slide slide level1 center" data-background-color="#cfb991">
+<h1>The Normal Approximation of the Binomial</h1>
+
+</section>
+<section id="why-approximate-counts-at-huge-scale" class="slide level2 center">
+<h2>Why Approximate? Counts at Huge Scale</h2>
+<p><br></p>
+<ul>
+<li class="fragment"><p>Recall installs are <strong>counts</strong>: each impression either installs (success) or not — a Binomial with huge <span class="math inline">\(n\)</span>. On a typical B-traffic day, <span class="math inline">\(n \approx 527{,}000\)</span> impressions, <span class="math inline">\(p \approx 0.0035\)</span>.</p></li>
+<li class="fragment"><p>The exact Binomial is <strong>unwieldy</strong> at that scale — but a smooth <strong>Normal</strong> matches it beautifully.</p></li>
+<li class="fragment"><p><strong>Conditions to approximate</strong> <span class="math inline">\(\text{Binomial}(n, p)\)</span> with a Normal:</p></li>
+</ul>
+<div class="fragment">
+<p><span class="math display">\[
+n &gt; 20, \qquad np \ge 5, \qquad n(1 - p) \ge 5
+\]</span></p>
+</div>
+<ul>
+<li class="fragment">Then set:</li>
+</ul>
+<div class="fragment">
+<p><span class="math display">\[
+\mu = np \qquad\qquad \sigma = \sqrt{np(1 - p)}
+\]</span></p>
+</div>
+</section>
+<section id="the-picture-binomial-bars-normal-curve" class="slide level2 center">
+<h2>The Picture: Binomial Bars, Normal Curve</h2>
+
+<img data-src="figs/normal_approx_binomial.png" class="quarto-figure quarto-figure-center r-stretch" style="width:70.0%"><ul>
+<li>Textbook anchor: <span class="math inline">\(\text{Binomial}(100, 0.4)\)</span> → <span class="math inline">\(\mu = 40\)</span>, <span class="math inline">\(\sigma = 4.90\)</span>. The Normal curve traces the tops of the bars.</li>
+<li>The bigger <span class="math inline">\(n\)</span> gets, the better the fit — which is why a 527,000-impression install count is essentially Normal.</li>
+</ul>
+</section>
+<section id="continuity-correction-bars-have-width" class="slide level2 center">
+<h2>Continuity Correction: Bars Have Width</h2>
+
+<img data-src="figs/continuity_correction.png" class="quarto-figure quarto-figure-center r-stretch" style="width:62.0%"><ul>
+<li>A discrete count of exactly 10 occupies the <strong>continuous interval [9.5, 10.5]</strong> — so <span class="math inline">\(P(X = 10) \approx P(9.5 \le X \le 10.5)\)</span>.</li>
+<li>Add/subtract <strong>0.5</strong> at the edges. For <span class="math inline">\(P(30 \le X \le 50)\)</span> use <span class="math inline">\(P(29.5 \le X \le 50.5)\)</span> — this <span class="math inline">\(\pm 0.5\)</span> “continuity correction” sharpens the approximation (most relevant when <span class="math inline">\(n\)</span> is moderate).</li>
+</ul>
+</section>
+<section id="vungle-installs-as-a-planning-number" class="slide level2 center">
+<h2>Vungle Installs as a Planning Number</h2>
+<div class="r-fit-text">
+<p><strong>Setup.</strong> On a typical B-traffic day: <span class="math inline">\(n = 527{,}513\)</span> impressions, install rate <span class="math inline">\(p = 0.00354\)</span>. Model daily installs <span class="math inline">\(\approx \text{Binomial}(n, p)\)</span>.</p>
+<p><strong>Conditions.</strong> <span class="math inline">\(np = 1{,}867 \ge 5\)</span> and <span class="math inline">\(n(1-p) = 525{,}646 \ge 5\)</span> → Normal approximation is safe.</p>
+<p><span class="math display">\[
+\mu = np = 1{,}867 \text{ installs} \qquad \sigma = \sqrt{np(1-p)} = 43.1 \text{ installs}
+\]</span></p>
+<p><strong>Planning question.</strong> What is the chance the day delivers <strong>more than 2,000 installs</strong> (e.g., a capacity / fulfillment trigger)?</p>
+<p><span class="math display">\[
+z = \frac{2000.5 - 1867}{43.1} = 3.10 \qquad P(\text{installs} &gt; 2000) = \texttt{1 - NORM.DIST(2000.5, 1867, 43.1, TRUE)} = 0.0010
+\]</span></p>
+<p><strong>Manager’s translation.</strong> <em>A 2,000-install B-day is rare — about a 1-in-1,000 event under current traffic. Capacity planned to 2,000 installs is comfortable; the constraint is impressions, not the install spike.</em></p>
+</div>
+</section>
+<section id="excel-normal-approximation-formula-sheet" class="slide level2 center">
+<h2>Excel: Normal Approximation Formula Sheet</h2>
+
+<img data-src="figs/excel_normapprox_vungle.png" class="quarto-figure quarto-figure-center r-stretch" style="width:80.0%"><ul>
+<li>Five cells: compute <span class="math inline">\(np\)</span> and <span class="math inline">\(n(1-p)\)</span> (the condition check), then <span class="math inline">\(\mu = np\)</span>, <span class="math inline">\(\sigma = \sqrt{np(1-p)}\)</span>, and the tail with <code>NORM.DIST</code>.</li>
+<li>This is the bridge from Topic 5’s <strong>counting</strong> distributions to today’s <strong>continuous</strong> Normal — at scale, the Binomial <em>becomes</em> a Normal.</li>
+</ul>
+</section></section>
+<section>
+<section id="debrief-from-distribution-to-decision" class="title-slide slide level1 center" data-background-color="#cfb991">
+<h1>Debrief — From Distribution to Decision</h1>
+
+</section>
+<section id="three-answers-one-model" class="slide level2 center">
+<h2>Three Answers, One Model</h2>
+<p><br></p>
+<table class="caption-top">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Question</th>
+<th>Tool</th>
+<th>Vungle answer</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>How often does eRPM top $3.50?</td>
+<td><span class="math inline">\(z\)</span> + <code>NORM.DIST</code></td>
+<td><span class="math inline">\(P = 0.453\)</span> — almost a coin flip</td>
+</tr>
+<tr class="even">
+<td>What’s a top-10% day?</td>
+<td><code>NORM.INV(0.90)</code></td>
+<td><strong>$3.90</strong> — the “great day” benchmark</td>
+</tr>
+<tr class="odd">
+<td>Is the Normal model fair?</td>
+<td>QQ plot + Shapiro</td>
+<td>Yes — <span class="math inline">\(W = 0.96\)</span>, <span class="math inline">\(p = 0.33\)</span></td>
+</tr>
+<tr class="even">
+<td>Plan installs at scale</td>
+<td>Normal approx. Binomial</td>
+<td><span class="math inline">\(P(&gt;2000) = 0.001\)</span> — rare</td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+<ul>
+<li class="fragment">Every row came from <strong>one</strong> fitted distribution, <span class="math inline">\(N(3.459, 0.344)\)</span> — the model turns 30 observed days into statements about days we have not yet seen.</li>
+</ul>
+</section>
+<section id="managers-takeaway" class="slide level2 center">
+<h2>Manager’s Takeaway</h2>
+<p><br></p>
+<ul>
+<li class="fragment"><p><strong>One sentence:</strong> Model B’s daily eRPM as <span class="math inline">\(N(\$3.46, \$0.34)\)</span> and the whole business vocabulary follows — “beats $3.50” happens <strong>45%</strong> of days, a “great day” is <strong>$3.90</strong>, and a sub-$3.00 day is a <strong>1-in-11</strong> disappointment.</p></li>
+<li class="fragment"><p><strong>One number to remember:</strong> <span class="math inline">\(z = (x - \mu)/\sigma\)</span> — the single move that turns <em>any</em> Normal question into a standard-Normal area.</p></li>
+<li class="fragment"><p><strong>One caveat:</strong> the model is only as good as its assumption. <strong>Check it</strong> (QQ plot, Shapiro) before you bet a decision on a Normal probability — and remember that at huge <span class="math inline">\(n\)</span>, even the Binomial <em>becomes</em> Normal.</p></li>
+<li class="fragment"><p><strong>Practice with the real data:</strong></p>
+<ul>
+<li class="fragment"><code>data/vungle_daily.csv</code> (filter B) + <code>NORM.DIST</code> / <code>NORM.INV</code> → reproduce <span class="math inline">\(P(&gt;3.50) = 0.453\)</span> and the $3.90 percentile.</li>
+<li class="fragment">Worked solutions: <code>data/vungle_normal_analysis.xlsx</code>.</li>
+</ul></li>
+</ul>
+</section>
+<section id="summary" class="slide level2 center">
 <h2>Summary</h2>
-<div class="columns">
-<div class="column" style="text-align: center; justify-content: center; align-items: center;">
 <p>Some key takeaways from this session:</p>
 <ul>
-<li><strong>Continuous Probability Distributions</strong>:
-<ul>
-<li>Continuous random variables can assume any value in an interval.</li>
-<li>Probability is defined as the area under the probability density function.</li>
-</ul></li>
-<li><strong>Normal Probability Distribution</strong>:
-<ul>
-<li>Most common distribution for describing a continuous random variable.</li>
-<li>Defined by its mean and standard deviation.</li>
-<li>Widely used due to the Central Limit Theorem.</li>
-</ul></li>
+<li>For a <strong>continuous</strong> variable, <span class="math inline">\(P(X = x) = 0\)</span>; probability is the <strong>area</strong> under the density <span class="math inline">\(f(x)\)</span>.</li>
+<li>The <strong>uniform</strong> is the simplest model (probability ∝ interval length); the <strong>Normal</strong> — set by <span class="math inline">\(\mu\)</span> (location) and <span class="math inline">\(\sigma\)</span> (spread) — is the workhorse, with the <strong>empirical rule</strong> (68/95/99.7).</li>
+<li><strong>Standardize</strong> with <span class="math inline">\(z = (x - \mu)/\sigma\)</span>, then read areas off the single standard Normal <span class="math inline">\(N(0,1)\)</span>.</li>
+<li>In Excel: <code>NORM.DIST</code> for <strong>probabilities</strong> (tail areas), <code>NORM.INV</code> for <strong>percentiles</strong> — they are inverses.</li>
+<li><strong>Check the assumption</strong> with a QQ plot / Shapiro-Wilk before trusting a Normal probability.</li>
+<li>At large <span class="math inline">\(n\)</span> with <span class="math inline">\(np \ge 5\)</span> and <span class="math inline">\(n(1-p) \ge 5\)</span>, the <strong>Binomial is well approximated by a Normal</strong> (<span class="math inline">\(\mu = np\)</span>, <span class="math inline">\(\sigma = \sqrt{np(1-p)}\)</span>, with a <span class="math inline">\(\pm 0.5\)</span> continuity correction).</li>
 </ul>
-</div><div class="column" style="text-align: center; justify-content: center; align-items: center;">
-<div class="r-fit-text">
+</section>
+<section id="carry-forward" class="slide level2 center">
+<h2>Carry-forward</h2>
 <ul>
-<li><strong>Standard Normal Probability Distribution</strong>:
-<ul>
-<li>A normal distribution with a mean of 0 and a standard deviation of 1.</li>
-<li>Standardization helps in comparing different normal distributions.</li>
-</ul></li>
-<li><span class="math inline">\(t\)</span>-distribution
-<ul>
-<li>Use when the sample size is small <span class="math inline">\((n &lt; 30)\)</span></li>
-<li>Use when the population standard deviation is unknown</li>
-</ul></li>
-<li><strong>Excel Functions</strong>:
-<ul>
-<li><code>=NORM.S.DIST(z, TRUE)</code> computes the cumulative probability for a given z-value.</li>
-<li><code>=NORM.S.INV(cumulative probability)</code> computes the z-value for a given cumulative probability.</li>
-<li><code>=T.DIST(X, DF, TRUE)</code> computes the cumulative probability for a given t-value.<br>
-</li>
-<li><code>=T.INV(cumulative probability)</code> computes the t-value for a given cumulative probability.</li>
-</ul></li>
+<li><p><strong>Your client (homework):</strong> for your team’s continuous metric, compute <span class="math inline">\(P(X &gt; \text{threshold})\)</span> with <code>NORM.DIST</code> and a meaningful percentile with <code>NORM.INV</code>, then <strong>check normality</strong> with a QQ plot. State one decision the numbers inform.</p></li>
+<li><p><strong>Next time:</strong> we stop treating these 30 days as the whole story and recognize them as a <strong>sample</strong> — <strong>Sampling &amp; Estimation</strong>: how to estimate the <em>true</em> eRPM, with a margin of error.</p></li>
 </ul>
-</div>
-</div></div>
 </section></section>
 <section id="thank-you" class="title-slide slide level1 center" data-background-color="#cfb991">
 <h1>Thank you!</h1>

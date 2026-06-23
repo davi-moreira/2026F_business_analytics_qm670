@@ -1,11 +1,11 @@
 ---
 title: "<span style = 'font-size: 100%;'> QM 6700: Business Analytics </span>"
-subtitle: "<span style = 'font-size: 150%;'> Int. Est. Rvw. </span>"
+subtitle: "<span style = 'font-size: 150%;'> Sampling Distributions & Interval Estimation </span>"
 author: "Professor<br>Davi Moreira<br>"
-# date: "2024-08-01"
+# date: "2026-09-28"
 # date-format: "MMMM DD, YYYY"
 format:
-  revealjs: 
+  revealjs:
     transition: slide
     background-transition: fade
     width: 1600
@@ -13,7 +13,7 @@ format:
     center: true
     slide-number: true
     incremental: true
-    chalkboard: 
+    chalkboard:
       buttons: false
     preview-links: auto
     #logo: images/quarto.png
@@ -28,536 +28,800 @@ html-math-method:
 
 :::::: nonincremental
 ::::: columns
-::: {.column width="40%" style="text-align: center; justify-content: center; align-items: center;"}
-- Statistical Inference
-- Central Limit Theorem
-- Population Mean: $\sigma$ Known
+::: {.column style="width: 50%; text-align: center; justify-content: center; align-items: center;"}
+- Case Spotlight: A/B Testing at Vungle
+- **Lecture 1** — sampling, point estimation
+- The sampling distribution of $\bar{x}$ and $\bar{p}$
+- The Central Limit Theorem & standard error
+- How sure can 30 days make us?
 :::
 
-::: {.column width="60%" style="text-align: center; justify-content: center; align-items: center;"}
-- Population Mean: $\sigma$ Unknown
-- Population Proportion
-- Sample Size Determination
+::: {.column style="width: 50%; text-align: center; justify-content: center; align-items: center;"}
+- **Lecture 2** — the interval estimate
+- Confidence intervals for a mean ($t$) and a proportion
+- The margin of error — and the three levers that set it
+- How many days for $\pm\$0.05$? — sample size
+- The estimation memo for Vungle
 :::
 :::::
 ::::::
 
-# Interval Estimation {background-color="#cfb991"}
+# Case Spotlight: A/B Testing at Vungle {background-color="#cfb991"}
 
-# Statistical Inference {background-color="#cfb991"}
-
-## Statistical Inference
+## The Brief — 30 Days Is a *Sample*
 
 <br>
 
-::::::::: columns
-:::: {.column width="45%"}
-::: nonincremental
-<center>**Interval Estimation**</center>
-
-- Confidence level: 95% $(1-\alpha)$ (Middle area; Confidence level)
-- Confidence multipliers
-- Upper/lower tail areas
-- One- or 2-sided intervals
-- Sampling errors and Margin of Error (MOE)
-- Find range of all reasonable parameter values
-:::
-::::
-
-::: {.column width="10%"}
- 
-:::
-
-::::: {.column width="45%"}
-:::: fragment
-::: nonincremental
-<center>**Hypothesis Testing**</center>
-
-- Significance level: 5% $(\alpha)$ (Tail area(s); Risk)
-- Critical values
-- p-values
-- Which side $(H_a)$ depends mostly on data
-- Strength of sample evidence against the hypothesized value (via p-value)
-- Test a specific hypothesized parameter value
-:::
-::::
-:::::
-:::::::::
-
-## Interval Estimate and Margin of Error
+> "We ran algorithm B for **30 days** and saw a mean eRPM of about **\$3.46**. But June is over. What is B's **true** mean eRPM going forward — and how close can 30 days really get us?"
 
 <br>
 
-**Parameter Estimation**
+- Until now we have **described** the 30 days we have. Today we **generalize** to the days we *don't* have — every future impression B will ever serve.
 
-::: nonincremental
-- We are often interested in *population parameters*.
+- The 30-day mean \$3.46 is a single **point estimate**. By itself it hides the most important question a manager can ask: ***how much could it be off?***
 
-- Since complete populations are difficult (or impossible) to collect data on, we use *sample statistics* as *point estimates* for the unknown population parameters of interest.
+- **Today's job:** turn "\$3.46" into "\$3.46, give or take a known **margin of error**" — and decide whether 30 days is even enough.
 
-- Sample statistics vary from sample to sample.
+## How Today's Studio Runs
 
-- Quantifying how sample statistics vary provides a way to estimate the *margin of error* associated with our point estimate.
-:::
+<br>
 
-<center>
-
-*Suppose we randomly sample 1,000 adults from each state in the US. Would you expect the sample means of their heights to be the same, somewhat different, or very different?*
+- This is a **two-lecture** topic. Each lecture runs the same loop: **I demo → your team sprints on the Vungle data → we debrief the call.**
 
 ::: fragment
-**Not the same, but only somewhat different.**
+| Lecture | The question | The tool |
+|---|---|---|
+| **1** | Why does a *sample* mean wobble — and by how much? | Sampling distribution, standard error, the CLT |
+| **2** | What is B's *true* mean eRPM, $\pm$ how much? How many days do we need? | Confidence intervals, margin of error, sample size |
 :::
 
-</center>
+- By the end, **your team** writes Vungle's **estimation memo**: the true mean eRPM and conversion rate, each with a 95% interval, plus the days needed for a tighter test.
 
-## Interval Estimate and Margin of Error
+# Lecture 1 — Samples, Estimates & the Sampling Distribution {background-color="#cfb991"}
+
+## The Brief — Why a Sample Mean Wobbles
 
 <br>
 
-```{r  echo=FALSE, out.width = "80%",fig.align="center"}
-knitr::include_graphics("figs/point_interval_estimate.png") 
+- A different 30 days — say, **July** — would give a **different** mean eRPM. So would any other random sample.
+
+- That wobble is not a mistake; it is the price of working from a **sample** instead of the whole **population**.
+
+- **Lecture 1's question:** *if the sample mean changes every time we sample, how can we trust any one of them?* The answer is the **sampling distribution** — and it is surprisingly well-behaved.
+
+## Population, Sample, Inference
+
+```{r echo=FALSE, out.width="78%", fig.align="center"}
+knitr::include_graphics("figs/population_sample_inference.png")
 ```
 
 ::: nonincremental
-- A plausible range of values for the population parameter is called a confidence interval.
-
-- Using only a sample statistic to estimate a parameter is like fishing in a murky lake with a spear, and using a confidence interval is like fishing with a net.
+- **Population:** every future impression B will serve — its true mean eRPM $\mu$ is **unknown**.
+- **Sample:** the 30 June days. We use them to **estimate** $\mu$ — first with a point, later with an interval.
 :::
 
-## Central Limit Theorem
+# Point Estimation {background-color="#cfb991"}
+
+## From Population Parameter to Sample Statistic
 
 <br>
 
-<br>
+- A **parameter** is a fixed (usually unknown) number describing the **population**; a **statistic** is computed from the **sample** to estimate it.
 
-<center>
+::: fragment
+| Population parameter | Point estimator (statistic) |
+|---|---|
+| mean $\mu$ | sample mean $\bar{x}$ |
+| standard deviation $\sigma$ | sample SD $s$ |
+| proportion $p$ | sample proportion $\bar{p}$ |
+:::
 
-**Seeing Theory**
+- **Point estimation** uses one sample to compute a single number as our best guess of the parameter.
 
-<https://seeing-theory.brown.edu/>
+- A different random sample gives a different estimate — so a point estimate alone never tells us **how close** we are.
 
-<br>
-
-<br>
-
-**Bunnies, Dragons and the 'Normal' World: Central Limit Theorem \| The New York Times**
-
-[(video)](https://www.youtube.com/watch?v=jvoxEYmQHNM)
-
-</center>
-
-## Interval Estimate and Margin of Error
-
-- A point estimator cannot be expected to provide the exact value of the population parameter with a given level of confidence; but it is a good starting point to construct an interval estimate.
-
-- An interval estimate for mean can be computed by adding and subtracting a margin of error (MOE) to the point estimate.
-
-  $$\text{Point Estimate} \pm \text{Margin of Error}$$
-
-- The purpose of an interval estimate is to provide information about how close the point estimate is to the true value of the unknown population parameter with a certain level of confidence.
-
-## Interval Estimate and Margin of Error
+## Anchor Example: St. Andrew's College
 
 <br>
 
-<center>
+- St. Andrew's received **900 applications**. The Director wants the **mean SAT score** and the **proportion** wanting on-campus housing — *before* the full data are entered.
 
-```{r  echo=FALSE, out.width = "80%",fig.align="center"}
-knitr::include_graphics("figs/garfield.png") 
+- She draws a **simple random sample** of $n = 30$ applicants:
+
+::: fragment
+| Parameter | True value (later) | Sample estimate ($n=30$) |
+|---|---:|---:|
+| Mean SAT $\mu$ | 1697 | $\bar{x} = 1684$ |
+| SD $\sigma$ | 87.4 | $s = 85.2$ |
+| Proportion housing $p$ | 0.72 | $\bar{p} = 0.67$ |
+:::
+
+- Each estimate is **close but not exact** — and a *different* 30 applicants would have landed elsewhere. That variability is exactly what the sampling distribution describes.
+
+## The Vungle Point Estimates
+
+<br>
+
+- Vungle's 30-day sample gives the same kind of best guesses:
+
+::: fragment
+| Parameter (true, going forward) | Point estimate from 30 days |
+|---|---:|
+| Mean eRPM, Algorithm A | $\bar{x}_A = \$3.347$ |
+| Mean eRPM, Algorithm B | $\bar{x}_B = \$3.459$ |
+| Mean daily conversion rate, B | $\bar{x} = 0.354\%$ |
+:::
+
+- These are our spears. The rest of the topic builds the **net** — the interval that quantifies how far off the spear might be.
+
+# The Sampling Distribution of $\bar{x}$ {background-color="#cfb991"}
+
+## A Distribution *of the Estimates Themselves*
+
+<br>
+
+- Imagine drawing **many** random samples of size $n$, computing $\bar{x}$ for each. Collect all those $\bar{x}$ values.
+
+- Their distribution is the **sampling distribution of $\bar{x}$** — the probability distribution of the sample mean.
+
+- **Do not confuse two distributions:**
+
+  - the distribution of the **raw data** in one sample (30 daily eRPMs), versus
+  - the distribution of the **sample mean** across many samples.
+
+- The sampling distribution is what lets us say how close *our* $\bar{x}$ is likely to be to $\mu$.
+
+## Center and Spread of $\bar{x}$
+
+<br>
+
+- **Center (unbiased):** on average, the sample mean equals the population mean —
+
+::: fragment
+
+$$
+E(\bar{x}) = \mu
+$$
+
+:::
+
+- **Spread (the standard error):** the standard deviation of $\bar{x}$ is the **standard error of the mean** —
+
+::: fragment
+
+$$
+\sigma_{\bar{x}} = \frac{\sigma}{\sqrt{n}}
+$$
+
+:::
+
+- The estimate is **unbiased** (centered on the truth) and gets **more precise** as $n$ grows.
+
+## Standard Error: Precision Depends on $n$, Not $N$
+
+<br>
+
+- The standard error $\sigma/\sqrt{n}$ depends on the **sample size $n$**, *not* on how big the population is.
+
+- **This is the wonderful part:** to halve the wobble of your estimate you need **four times** the data ($\sqrt{n}$), and it does not matter whether the population is 900 applicants or billions of impressions.
+
+::: fragment
+| St. Andrew's: $\sigma = 87.4$ | $\sigma_{\bar{x}} = 87.4/\sqrt{n}$ |
+|---|---:|
+| $n = 30$ | $15.96$ |
+| $n = 100$ | $8.74$ |
+:::
+
+- More than triple the sample → the standard error roughly **halves**. Precision is *bought* with sample size.
+
+## Seeing the Sampling Distribution
+
+```{r echo=FALSE, out.width="80%", fig.align="center"}
+knitr::include_graphics("figs/sampling_dist_xbar.png")
 ```
-
-**Simulation**
-
-<https://rpsychologist.com/d3/ci/>
-
-</center>
-
-## Interval Estimate of a Population Mean
-
-- In order to develop an interval estimate of a population mean, the margin of error (the maximum error due to sampling in order to control the confidence level) must be computed using either:
-
-  - the population standard deviation $\sigma$ (if known), or
-  - the sample standard deviation $s$
-
-- $\sigma$ is rarely known exactly, but often a good estimate can be obtained based on historical data or other information.
-
-- We refer to such cases as the $\sigma$ known case.
-
-## Margin of Error and the Interval Estimate
-
-- The general form of an interval estimate of a population mean is
-
-  $$\bar{X} \pm \text{Margin of Error}$$
-
-- The Margin of Error (MOE) depends on the sampling distribution (sampling variation) of the point estimate $\bar{X}$.
-
-## Sampling Distribution of $\bar{X}$
-
-<br>
-
-```{r  echo=FALSE, out.width = "80%",fig.align="center"}
-knitr::include_graphics("figs/sampling_dist.png") 
-```
-
-It will be symmetric if:
-
-1.  $n$ is large (Central Limit Theorem) or
-2.  Population of $X$ is normal
-
-# Interval Estimate of a Population Mean: $\sigma$ Known {background-color="#cfb991"}
-
-## Interval Estimate of a Population Mean: $\sigma$ Known
 
 ::: nonincremental
-- When the population standard deviation ($\sigma$) is known, we can compute a 95% confidence that the population parameter $(\mu)$ will fall within $1.96 \times \sigma_{\bar{X}}$ from the $\bar{X}$; i.e., $\mu$ is in the following interval
-
-$$\bar{X} \pm 1.96 \frac{\sigma}{\sqrt{n}}$$
-
-- When the quantities are replaced by numbers, the interval is called a 95% confidence interval for $\mu$.
-
-- 95% is called the confidence level ($= 1- \alpha$). What means that $\alpha = 0.05$.
-
-- 1.96 is referred to as the 95% z-confidence multiplier, denoted by $z_{0.025}$ (or $z_{\alpha/2}$). This value represents the number of standard deviations one must move from the mean in both directions to capture the central 95% of the standard normal distribution, thereby defining the 95% confidence interval.
-
-- $\frac{\sigma}{\sqrt{n}}$ Standard Error of the Mean
+- Repeatedly averaging 10 Vungle A-days: the **individual days** are scattered, but their **averages** pile up tightly in a bell around $\mu$ — narrower than the raw data, and roughly Normal.
 :::
 
-## Confidence Multipliers
+# The Central Limit Theorem {background-color="#cfb991"}
+
+## The CLT — Why the Bell Always Appears
 
 <br>
 
-<center>
+- **Central Limit Theorem:** for random samples of size $n$ from *any* population with mean $\mu$ and SD $\sigma$, the sampling distribution of $\bar{x}$ is approximately
 
-**Values of** $Z_{\alpha/2}$ for the Most Commonly Used Confidence Levels
+::: fragment
 
-<br>
+$$
+\bar{x} \;\sim\; \text{approximately } N\!\left(\mu,\; \frac{\sigma^2}{n}\right) \quad \text{as } n \text{ grows}
+$$
 
-| Confidence level | $\alpha$ | $\alpha/2$ | $Z_{\alpha/2}$ |
-|:----------------:|:--------:|:----------:|:--------------:|
-|       90%        |   0.1    |    0.05    |     1.645      |
-|       95%        |   0.05   |   0.025    |     1.960      |
-|       99%        |   0.01   |   0.005    |     2.576      |
+:::
 
-</center>
+- It works **regardless of the population's shape** — skewed, uniform, lumpy, it does not matter.
 
-**Excel:** $= \text{norm.s.inv}(1 - \alpha/2)$
+- **Rule of thumb:** $n \geq 30$ is usually enough; $n \geq 50$ if the population is highly skewed or has outliers. Vungle's $n = 30$ sits right on the line.
 
-# Interval Estimate of a Population Mean: $\sigma$ Unknown {background-color="#cfb991"}
+## The CLT in One Picture
 
-## Interval Estimate of a Population Mean: $\sigma$ Unknown
-
-- When $\sigma$ of a normal population is unknown, it is replaced by the sample standard deviation $S$ and the distribution involved will be a $t$-distribution.
-
-- The degrees of freedom of the $t$-distribution is the sample size minus 1 (i.e., $n-1$).
-
-- The $1 - \alpha$ confidence multiplier is $t_{\alpha/2, n-1}$
-
-- Excel: = T.INV(1-$\alpha$/2, $n-1$).
-
-## Interval Estimate of a Population Mean: $\sigma$ Unknown
-
-This formula is used to construct a confidence interval for the population mean when the population standard deviation is unknown and the sample size is relatively small.
-
-$$\bar{X} \pm t_{\alpha/2, n-1} \times \frac{s}{\sqrt{n}}$$
-
-- $\bar{X}$: The sample mean, which serves as the point estimate of the population mean.
-
-- $t_{\alpha/2, n-1}$: The t-value for the chosen confidence level with $n-1$ degrees of freedom. It represents the number of standard deviations (from the t-distribution) needed to capture the central $(1-\alpha)\%$ of the data.
-
-- $s$: The sample standard deviation, which measures the amount of variation or dispersion in the sample.
-
-- $n$: The sample size, representing the number of observations in the sample.
-
-- $\frac{s}{\sqrt{n}}$: The standard error of the mean, which estimates the standard deviation of the sampling distribution of the sample mean.
-
-## Interval Estimate of a Population Mean: $\sigma$ Unknown - Example
-
-<br>
-
-**Example:** Credit card debt for the population of US households
-
-<br>
-
-The credit card balances of a sample of 70 households provided a mean credit card debt of \$9,312 with a sample standard deviation of \$4,007.
-
-<br>
-
-Let us provide a 95% confidence interval estimate of the mean credit card debt for the population of US households. We will assume this population to be normally distributed.
-
-## Interval Estimate of a Population Mean: $\sigma$ Unknown - Example
-
-$$\bar{x} \pm t_{.025, 69} \times \frac{s}{\sqrt{n}}$$
-
-$$\bar{x} \pm =T.INV(1-0.025,69) \times \frac{s}{\sqrt{n}}$$
-
-$$9,312 \pm 1.995 \times \frac{4007}{\sqrt{70}} = 9,312 \pm 955 = (8,357,10,267)$$
-
-We are 95% confident that the mean credit card debt for the entire population of U.S. households is between \$8,357 and \$10,267. The margin of error (maximum error) of the sample mean (as an estimate of the unknown population mean) is \$955.
-
-## Interval Estimate of a Population Mean: $\sigma$ Unknown - Example
-
-**Adequate Sample Size**
-
-Usually, a sample size of $n \geq 30$ is adequate when using the expression
-
-$$\bar{x} \pm t_{\alpha/2} \frac{s}{\sqrt{n}}$$
-
-to develop an interval estimate of a population mean $\mu$.
-
-- If the population distribution is highly skewed or contains outliers, a sample size of 50 or more is recommended.
-- If the population is not normally distributed but is roughly symmetric, a sample size as small as 15 will suffice.
-- If the population is believed to be at least approximately normal, a sample size of less than 15 can be used.
-
-# Interval Estimate of a Population Proportion {background-color="#cfb991"}
-
-## Interval Estimate of a Population Proportion
-
-<br>
-
-The general form of an interval estimate of a population proportion is:
-
-<br>
-
-$$\bar{p} \pm \text{Margin of Error}$$
-
-<br>
-
-where $\bar{p}$ is the sample proportion of the event of interest.
-
-<br>
-
-## Interval Estimate of a Population Proportion
-
-- The sampling distribution of $\bar{p}$ plays a key role in computing the margin of error for this interval estimate.
-
-- The sampling distribution of $\bar{p}$ can be approximated by a normal distribution whenever $np \geq 5$ and $n(1-p) \geq 5$.This is known as success failure condition.
-
-- Unlike the population mean, there is no $t$-distribution in this case.
-
-## Interval Estimate of a Population Proportion
-
-<br>
-
-```{r  echo=FALSE, out.width = "80%",fig.align="center"}
-knitr::include_graphics("figs/normal_sampling_dist_proportion.png") 
+```{r echo=FALSE, out.width="92%", fig.align="center"}
+knitr::include_graphics("figs/clt_population_shapes.png")
 ```
 
-## Interval Estimate of a Population Proportion
-
-This formula is used to construct a confidence interval for the population proportion.
-
-$$\bar{p} \pm z_{\alpha/2} \times \sqrt{\frac{\bar{p}(1 - \bar{p})}{n}}$$
-
-- $\bar{p}$: The sample proportion, which serves as the point estimate of the population proportion.
-- $z_{\alpha/2}$: The z-value for the chosen confidence level. It represents the number of standard deviations (from the standard normal distribution) needed to capture the central $(1-\alpha)\%$ of the data.
-- $\sqrt{\frac{\bar{p}(1 - \bar{p})}{n}}$: The standard error of the proportion, which estimates the standard deviation of the sampling distribution of the sample proportion.
-  - $\bar{p}(1 - \bar{p})$: The variance of the sample proportion.
-  - $n$: The sample size, representing the number of observations in the sample.
-
-## Interval Estimate of a Population Proportion - Example
-
-**Example: Survey of women golfers**
-
-<br>
-
-A national survey of 900 women golfers was conducted to learn how women golfers view their treatment at golf courses in United States. The survey found that 396 of the women golfers were satisfied with the availability of tee times.
-
-<br>
-
-Suppose one wants to develop a 95% confidence interval estimate for the proportion of the population of women golfers satisfied with the availability of tee times.
-
-## Interval Estimate of a Population Proportion - Example
-
 ::: nonincremental
-
-$$\bar{p} \pm z_{\alpha/2} \times \sqrt{\frac{\bar{p}(1 - \bar{p})}{n}}$$
-
-where:
-
-- $n = 900$,
-- $\bar{p} = \frac{396}{900} = 0.44$,
-- $z_{\alpha/2} = 1.96$
-
-$$0.44 \pm 1.96 \times \sqrt{\frac{0.44(1 - 0.44)}{900}} = 0.44 \pm 0.0324$$
-
-**Survey results enable us to state with 95% confidence that between 40.76% and 47.24% of all women golfers are satisfied with the availability of tee times.**
+- Start with a sharply **right-skewed** population ($n = 1$). Average just a handful of values ($n = 5$) and it already symmetrizes; by $n = 30$ the distribution of $\bar{x}$ is essentially **Normal**.
 :::
 
-## Interval Estimate of a Population Proportion - Excel Example
+## Using the CLT: A Probability Question
+
+::: r-fit-text
+**St. Andrew's:** with $\sigma = 87.4$ and $n = 30$, what is the probability the sample mean SAT lands **within 10 points** of the true $\mu = 1697$ (i.e., between 1687 and 1707)?
+
+::: fragment
+
+$$
+\sigma_{\bar{x}} = \frac{87.4}{\sqrt{30}} = 15.96,
+\qquad
+z = \frac{10}{15.96} = 0.63
+$$
+
+:::
+
+::: fragment
+
+$$
+P(1687 \le \bar{x} \le 1707) = P(-0.63 \le Z \le 0.63) = 0.4691
+$$
+
+:::
+
+**Read it:** a single sample of 30 has only about a **47% chance** of landing within 10 SAT points of the truth — precision you can now *quantify*, and improve by raising $n$. In Excel: `=NORM.S.DIST(0.63,TRUE)-NORM.S.DIST(-0.63,TRUE)`.
+:::
+
+# The Sampling Distribution of $\bar{p}$ {background-color="#cfb991"}
+
+## Proportions Have a Sampling Distribution Too
 
 <br>
 
-```{r  echo=FALSE, out.width = "80%",fig.align="center"}
-knitr::include_graphics("figs/confidence_interval_excel.png") 
+- For a **yes/no** outcome (an impression converts or it doesn't), the sample proportion is $\bar{p} = x/n$.
+
+- It has its own sampling distribution, centered and spread by:
+
+::: fragment
+
+$$
+E(\bar{p}) = p
+\qquad\qquad
+\sigma_{\bar{p}} = \sqrt{\frac{p(1-p)}{n}}
+$$
+
+:::
+
+- **Normal approximation holds when** the sample is large enough:
+
+::: fragment
+
+$$
+np \geq 5 \qquad \text{and} \qquad n(1-p) \geq 5
+$$
+
+:::
+
+- St. Andrew's: $n = 30$, $p = 0.72$ → $np = 21.6 \geq 5$ and $n(1-p) = 8.4 \geq 5$ ✓ — the normal approximation is acceptable.
+
+## ⏱️ Team Sprint 1 — How Trustworthy Is 30 Days?
+
+::: {.sprint .nonincremental}
+**Decide:** is 30 days a *precise* enough sample to pin down B's true mean eRPM — or just a noisy first look?
+
+**Data:** `data/vungle_estimation.xlsx` (sheet `eRPM_by_day`) · **Time:** ~10 min
+
+1. With the ToolPak's **Descriptive Statistics** (or `=AVERAGE` / `=STDEV.S`), get $\bar{x}$ and $s$ for `erpm_B`.
+2. Compute the **standard error** $s/\sqrt{30}$ — the typical wobble of a 30-day mean.
+3. Compute what the standard error **would be at $n = 120$** ($s/\sqrt{120}$). By how much does it shrink, and why?
+
+**Hand in (1 slide):** B's $\bar{x}$, $s$, the standard error at $n=30$ vs. $n=120$, and a one-line verdict: precise enough, or test longer?
+:::
+
+## Debrief — Lecture 1 Takeaway
+
+<br>
+
+- **One sentence:** a sample mean is an **unbiased** estimate of the truth, but it **wobbles** by a standard error of $\sigma/\sqrt{n}$ — and thanks to the CLT, that wobble is **Normal** for $n \geq 30$.
+
+- **One number:** B's standard error is $s/\sqrt{30} = 0.344/\sqrt{30} \approx \$0.063$ — the typical gap between a 30-day mean and the truth.
+
+- **One caveat:** precision is bought with $n$, and only as $\sqrt{n}$ — quadrupling the days only halves the error.
+
+## Carry-forward to Lecture 2
+
+::: nonincremental
+- We can now say *how much* a 30-day mean wobbles. Next we turn that wobble into a **confidence interval** — a stated range for B's true mean eRPM — and answer the manager's real question: **\$3.46, give or take how much?**
+:::
+
+# Lecture 2 — The Interval Estimate {background-color="#cfb991"}
+
+## The Brief — \$3.46, Give or Take How Much?
+
+<br>
+
+> "Don't just tell me B earns \$3.46. Tell me the **range** I can bank on — and tell me how many test-days it would take to cut that range in half."
+
+<br>
+
+- A point estimate with no range is half an answer. Today we attach a **margin of error** and report an **interval** we are 95% confident contains the truth.
+
+- Then we **invert** the question: pick the precision first ($\pm\$0.05$), and solve for the **sample size** that delivers it.
+
+## From Standard Error to a Margin of Error
+
+<br>
+
+- An **interval estimate** adds and subtracts a **margin of error** $E$ from the point estimate:
+
+::: fragment
+
+$$
+\bar{x} \pm E
+\qquad\text{where}\qquad
+E = (\text{a multiplier}) \times (\text{standard error})
+$$
+
+:::
+
+- The multiplier comes from the sampling distribution: about **1.96** standard errors capture the middle **95%** of a Normal curve.
+
+- Two cases for the multiplier:
+
+  - $\sigma$ **known** (rare) → use $z$.
+  - $\sigma$ **unknown** (almost always) → estimate it with $s$ and use the **$t$ distribution**.
+
+# The $t$ Distribution {background-color="#cfb991"}
+
+## Why $t$, Not $z$
+
+<br>
+
+- In real data we never know $\sigma$ — we estimate it with the sample SD $s$. That extra uncertainty makes the bell **fatter in the tails**: the **$t$ distribution**.
+
+- A $t$ distribution is indexed by its **degrees of freedom** $df = n - 1$ (the $n$ observations, minus one used up estimating $s$).
+
+- As $df$ grows, $t$ converges to $z$: by $df = 29$ they are nearly identical, and beyond $df = 100$ the difference is negligible.
+
+## $t$ Has Fatter Tails Than $z$
+
+```{r echo=FALSE, out.width="80%", fig.align="center"}
+knitr::include_graphics("figs/t_vs_z.png")
 ```
 
-# Sample Size for an Interval Estimate of a Population Proportion {background-color="#cfb991"}
+::: nonincremental
+- Fatter tails → a **larger** multiplier → a **wider** interval. That is the honest "tax" for not knowing $\sigma$. Excel: `=T.INV.2T(0.05, df)` gives the 95% multiplier.
+:::
 
-## Sample Size for an Interval Estimate of a Population Proportion
+# Confidence Interval for a Mean {background-color="#cfb991"}
 
-- **Margin of Error**
-
-  $$E = z_{\alpha/2} \times \sqrt{\frac{\bar{p}(1-\bar{p})}{n}}$$
-
-- **Solving for the necessary sample size** $n$, we get:
-
-  $$n = \left( \frac{z_{\alpha/2}^2 \times \bar{p}(1-\bar{p})}{E^2} \right)$$
-
-- However, $\bar{p}$ will not be known until after we have selected the sample. We can use the planning value $p^*$ for $\bar{p}$.
-
-## Sample Size for an Interval Estimate of a Population Proportion
-
-- **Necessary Sample Size:**
-
-  $$n = \left( \frac{z_{\alpha/2}^2 \times p^*(1-p^*)}{E^2} \right)$$
-
-- The planning value $p^*$ can be chosen by one of the following procedures:
-
-1.  **Previous Studies**: Use the sample proportion from a previous study or similar survey as $p^*$.
-
-2.  **Pilot Study**: Conduct a preliminary survey and use the sample proportion from that study as $p^*$.
-
-3.  **Best Guess**: Use a judgment or "best guess" based on available information or expert opinion.
-
-4.  **Conservative Approach**: If no prior information is available, use $p^* = 0.5$ as it maximizes the sample size and provides the most conservative estimate. This is because the product $p^*(1 - p^*)$ is maximized when $p^* = 0.5$.
-
-## Sample Size for an Interval Estimate of a Population Proportion - Example
-
-**Example: Survey of women golfers**
+## The $t$-Interval Formula
 
 <br>
 
-A national survey of 900 women golfers was conducted to learn how women golfers view their treatment at golf courses in United States. The survey found that 396 of the women golfers were satisfied with the availability of tee times.
+- With $\sigma$ unknown (the usual case), the confidence interval for $\mu$ is:
 
-<br>
+::: fragment
 
-Suppose one wants to develop a 95% confidence interval estimate for the proportion of the population of women golfers satisfied with the availability of tee times, but ensure that the Margin of Error will be equal or lower than 0.025. What is the needed sample size?
+$$
+\bar{x} \pm t_{\alpha/2,\,n-1}\,\frac{s}{\sqrt{n}}
+$$
 
-## Sample Size for an Interval Estimate of a Population Proportion - Example
-
-**Calculations:**
-
-$$  E = z_{\alpha/2} \times \sqrt{\frac{p^*(1-p^*)}{n}} = .025
-  $$
-
-At 95% confidence $z_{0.025} = 1.96$. Assume $p^* = 0.44$.
-
-$$  n = \left( \frac{z_{\alpha/2}^2 \times p^*(1-p^*)}{E^2} \right) = \left( \frac{(1.96)^2 (0.44)(0.56)}{(0.025)^2} \right) = 1,514.5
-  $$
-
-**Conclusion:** A sample of size 1,515 is needed to reach a desired precision of $\pm$ 0.025 at 95% confidence.
-
-## Sample Size for an Interval Estimate of a Population Proportion - Example
-
-- We used 0.44 as the best estimate of $p$ in the preceding expression.
-
-- If no information is available about $p$, then 0.5 is often assumed because it provides the highest possible (conservative) sample size.
-
-- If we had used $p = 0.5$, the recommended $n$ would have been 1537.
-
-# Concepts {background-color="#cfb991"}
-
-## Concepts
-
-::: {style="font-size: 50%;"}
-| **Concept** | **Definition** | **Purpose** |
-|------------------------|------------------------|------------------------|
-| **Standard Deviation** | A measure of the amount of variation or dispersion in a set of values. | To quantify the dispersion of data points around the mean. |
-| **Standard Error** | The standard deviation of the sample distribution of a statistic (e.g. the sample mean). | To estimate how much sample statistics will vary from the true population parameter. |
-| **Margin of Error** | A measure of the range within which the true population parameter is expected to lie, with a given level of confidence. | To quantify the uncertainty in estimates of population parameters. |
-| **Confidence Level** | The probability that if a random sample were taken and a confidence interval calculated, that interval would contain the true population parameter. | To indicate the degree of confidence that the interval contains the true parameter. |
-| **Confidence Interval** | An interval estimate of a population parameter that provides an estimated range of values which is likely to include an unknown population parameter. | To provide a range in which we are *fairly confident* the true population parameter lies. |
 :::
 
-# Summary {background-color="#cfb991"}
+- The pieces: $\bar{x}$ the point estimate, $s/\sqrt{n}$ the standard error, $t_{\alpha/2,\,n-1}$ the multiplier for confidence level $1-\alpha$.
 
-## Summary
+- Excel multipliers: `=T.INV.2T(0.05, n-1)` (95%), `=T.INV.2T(0.10, n-1)` (90%), `=T.INV.2T(0.01, n-1)` (99%).
 
-::::::: nonincremental
-:::::: r-fit-text
-::::: columns
-::: {.column width="50%"}
-<center>**CI for** $\bar{p}$</center>
+## What "95% Confident" Really Means
 
-1.  Check assumptions.
-
-    a.  Randomization
-    b.  Independence
-    c.  The sampling distribution of $\bar{p}$ is approximately normal. (
-        i.  Check $n\bar{p} \geq 5$ and $n(1 - \bar{p}) \geq 5$.
-
-2.  Calculate the standard error of $\bar{p}$:
-    $$se = \sqrt{\frac{\bar{p}(1 - \bar{p})}{n}}$$
-
-3.  Identify $z$ for your specified level of confidence.
-
-4.  Calculate the interval:
-    $$\bar{p} \pm z \times se$$
-:::
-
-::: {.column width="50%"}
-<center>**CI for** $\mu$</center>
-
-1.  Check assumptions.
-
-    a.  Randomization
-    b.  Independence
-    c.  The sampling distribution of $\bar{x}$ is approximately normal.
-        i.  Check $n \geq 30$ or underlying population distribution normal.
-
-2.  Calculate the standard error of $\bar{x}$:
-    $$se = \frac{s}{\sqrt{n}}$$
-
-3.  Identify $t$ for your specified level of confidence
-    $$(df = n - 1)$$
-
-4.  Calculate the interval:
-    $$\bar{x} \pm t \times se$$
-:::
-:::::
-::::::
-:::::::
-
-## Summary
+```{r echo=FALSE, out.width="74%", fig.align="center"}
+knitr::include_graphics("figs/ci_mechanics.png")
+```
 
 ::: nonincremental
-Some key takeaways from this session:
-
-- **Statistical Inference**:
-
-  Involves using sample data to make generalizations about a population. It includes methods like interval estimation and hypothesis testing to draw conclusions with a certain level of confidence.
-
-- **Central Limit Theorem**:
-
-  States that the distribution of the sample mean will approximate a normal distribution as the sample size becomes large, regardless of the population's distribution. This theorem underpins many inferential statistics techniques.
-
-- **Interval Estimation**:
-
-  Provides a range of values (confidence interval) for an unknown population parameter, giving an estimate along with an associated margin of error to quantify the uncertainty.
+- **Correct:** *"in repeated sampling, about 95% of intervals built this way contain $\mu$."* The interval is random; $\mu$ is fixed.
+- **Wrong:** *"there is a 95% chance $\mu$ is in this one interval."* Once computed, an interval either contains $\mu$ or it doesn't.
 :::
 
-## Summary
+## Anchor Example: Apartment Rents
 
-:::: nonincremental
-::: {style="font-size: 75%;"}
-Some key takeaways from this session:
+::: r-fit-text
+A reporter samples $n = 16$ one-bedroom apartments near campus: $\bar{x} = \$750$/month, $s = \$55$. Population assumed roughly Normal; $\sigma$ unknown → **$t$-interval**, $df = 15$.
 
-- **Population Mean (**$\sigma$ Known):
+::: fragment
 
-  When the population standard deviation is known, a z-distribution is used to construct confidence intervals for the population mean.
+$$
+t_{0.025,\,15} = 2.131,
+\qquad
+\frac{s}{\sqrt{n}} = \frac{55}{\sqrt{16}} = 13.75,
+\qquad
+E = 2.131 \times 13.75 = 29.31
+$$
 
-- **Population Mean (**$\sigma$ Unknown):
+:::
 
-  When the population standard deviation is unknown, a t-distribution is used. This is common in practical applications where the sample standard deviation serves as an estimate for the population standard deviation.
+::: fragment
 
-- **Population Proportion**:
+$$
+750 \pm 29.31 \;=\; (\$720.69,\; \$779.31)
+$$
 
-  Involves estimating the proportion of a population that possesses a certain characteristic. Confidence intervals for population proportions can be calculated using the sample proportion and its standard error.
+:::
 
-- **Sample Size Determination**:
+**Read it:** *we are 95% confident the true mean rent for one-bedroom apartments near campus is between \$721 and \$779.* In Excel: `=CONFIDENCE.T(0.05, 55, 16)` returns the margin \$29.31 directly.
+:::
 
-  Important for ensuring that estimates are accurate and reliable. The required sample size can be calculated based on desired margin of error, confidence level, and variability in the population.
+## The Vungle eRPM Interval — the Five Steps
+
+::: r-fit-text
+**1. Business context.** B's true mean eRPM drives every revenue projection; we need a defensible range, not a single number.
+
+**2. Setup.** $n = 30$ days, $\sigma$ unknown, $\bar{x}_B = \$3.459$, $s_B = \$0.344$, $df = 29$, 95% confidence.
+
+**3. Compute.**
+
+$$
+\frac{s}{\sqrt{n}} = \frac{0.344}{\sqrt{30}} = 0.0629,
+\qquad
+t_{0.025,\,29} = 2.045,
+\qquad
+E = 2.045 \times 0.0629 = 0.1286
+$$
+
+**4. Interval.** $3.459 \pm 0.129 = (\$3.330,\; \$3.588)$.
+
+**5. Manager's Translation.** *We are 95% confident B's true mean eRPM is between \$3.33 and \$3.59. The \$0.13 margin is wide relative to the \$0.11 gap over A — a first hint that 30 days may not yet settle the A-vs-B question.*
+:::
+
+## The Two Intervals, Side by Side
+
+```{r echo=FALSE, out.width="78%", fig.align="center"}
+knitr::include_graphics("figs/vungle_erpm_ci.png")
+```
+
+::: nonincremental
+- A's interval is **(\$3.27, \$3.43)**, B's is **(\$3.33, \$3.59)** — they **overlap**. Estimation alone cannot yet declare a winner; that is the job of **hypothesis testing**, next topic.
+:::
+
+## Vungle eRPM CI in Excel
+
+::::: nonincremental
+:::: columns
+::: {.column width="40%"}
+<br>
+
+**Two equivalent paths:**
+
+- **Formula cells:** `=AVERAGE`, `=STDEV.S`, `=T.INV.2T(0.05,29)`, then $\bar{x}\pm t\cdot s/\sqrt{n}$.
+- **One shot:** `=CONFIDENCE.T(0.05, s, n)` returns the margin $E$ directly.
+
+<br>
+
+The ToolPak's **Descriptive Statistics** also prints the 95% margin as the `Confidence Level(95.0%)` row.
+:::
+
+::: {.column width="60%"}
+```{r echo=FALSE, out.width="100%", fig.align="center"}
+knitr::include_graphics("figs/excel_ci_mean.png")
+```
 :::
 ::::
+:::::
+
+## Adequate Sample Size for a $t$-Interval
+
+<br>
+
+::: nonincremental
+- A general guide for the $t$-interval to behave well:
+  - $n \geq 30$ is usually adequate.
+  - $n \geq 50$ if the population is highly skewed or has outliers.
+  - $n \geq 15$ suffices if the population is roughly symmetric.
+  - $n < 15$ only if the population is approximately Normal.
+:::
+
+- Vungle's eRPM is roughly symmetric (mean $\approx$ median in our descriptives), so $n = 30$ clears the bar — the interval is trustworthy; it is just **wide**.
+
+# Confidence Interval for a Proportion {background-color="#cfb991"}
+
+## The Proportion Interval
+
+<br>
+
+- For a population proportion $p$, the interval uses $\bar{p}$ and the **$z$** multiplier (no $t$ — there is no separate SD to estimate):
+
+::: fragment
+
+$$
+\bar{p} \pm z_{\alpha/2}\sqrt{\frac{\bar{p}(1-\bar{p})}{n}}
+$$
+
+:::
+
+- Check the large-sample condition first: $n\bar{p} \geq 5$ and $n(1-\bar{p}) \geq 5$.
+
+- Excel: `=NORM.S.INV(0.975)` → 1.96 for the 95% multiplier.
+
+## Anchor Example: PSI Election Poll
+
+::: r-fit-text
+Political Science Inc. contacts $n = 500$ registered voters; **220** favor the candidate, so $\bar{p} = 220/500 = 0.44$. Build a 95% interval for the true share.
+
+::: fragment
+
+$$
+\sqrt{\frac{0.44(0.56)}{500}} = 0.0222,
+\qquad
+E = 1.96 \times 0.0222 = 0.0435
+$$
+
+:::
+
+::: fragment
+
+$$
+0.44 \pm 0.0435 \;=\; (0.3965,\; 0.4835)
+$$
+
+:::
+
+**Read it:** *PSI is 95% confident that between 39.6% and 48.4% of all voters favor the candidate.* The interval straddles 50% from below — too close to call a lead.
+:::
+
+## Vungle Conversion Rate — a Proportion in Practice
+
+<br>
+
+- Each impression either becomes an install or not — a proportion. We estimate B's **true mean daily conversion rate** from the 30 daily rates (a $t$-interval on the daily percentages keeps the unit the **day**, parallel to eRPM):
+
+::: fragment
+| Quantity | Algorithm B |
+|---|---:|
+| mean daily rate | $0.3538\%$ |
+| $s$ | $0.0231\%$ |
+| standard error | $0.0042\%$ |
+| 95% margin ($t_{29}$) | $0.0086\%$ |
+| **95% CI** | $(0.345\%,\; 0.362\%)$ |
+:::
+
+- **Read it:** we are 95% confident B converts between **0.345% and 0.362%** of impressions to installs — a tight interval, because day-to-day conversion is very stable.
+
+## Vungle Conversion CI in Excel
+
+::::: nonincremental
+:::: columns
+::: {.column width="40%"}
+<br>
+
+Same machinery as the mean eRPM interval — just run it on the **daily conversion-rate** column:
+
+- $\bar{x}$, $s$ on `conv_B_pct`
+- $t_{0.025,29} = 2.045$
+- $E = t \cdot s/\sqrt{30}$
+
+<br>
+
+Because conversion is stable across days, $s$ is tiny → a **very tight** interval.
+:::
+
+::: {.column width="60%"}
+```{r echo=FALSE, out.width="100%", fig.align="center"}
+knitr::include_graphics("figs/excel_ci_prop.png")
+```
+:::
+::::
+:::::
+
+# Margin of Error & Sample Size {background-color="#cfb991"}
+
+## The Three Levers That Set Interval Width
+
+<br>
+
+- The margin of error $E = t_{\alpha/2}\,s/\sqrt{n}$ moves with exactly three things:
+
+::: fragment
+| Lever | Increase it → interval gets | Manager's control? |
+|---|---|---|
+| **Confidence level** ($1-\alpha$) | **wider** (bigger multiplier) | choose it |
+| **Variability** ($s$) | **wider** | not directly |
+| **Sample size** ($n$) | **narrower** (as $\sqrt{n}$) | **yes — buy more data** |
+:::
+
+- The only lever a manager freely controls is **$n$**. Want a tighter interval at the same confidence? Collect more days.
+
+## Higher Confidence Costs Width
+
+<br>
+
+- For B's eRPM, holding $n = 30$ fixed, raising confidence **widens** the interval:
+
+::: fragment
+| Confidence | $t^*$ multiplier | Margin $E$ | Interval |
+|---|---:|---:|---:|
+| 90% | 1.699 | \$0.107 | (\$3.352, \$3.566) |
+| 95% | 2.045 | \$0.129 | (\$3.330, \$3.588) |
+| 99% | 2.756 | \$0.173 | (\$3.286, \$3.632) |
+:::
+
+- More confidence = a **wider net**. There is no free lunch: to be *more* sure the interval contains $\mu$, you must accept a *less* precise range.
+
+## Sample Size: Pick Precision First, Solve for $n$
+
+<br>
+
+- Invert the margin-of-error formula. Set the target $E$, use a planning $s$ and $z$ (95% → 1.96):
+
+::: fragment
+
+$$
+E = z_{\alpha/2}\frac{s}{\sqrt{n}}
+\qquad\Longrightarrow\qquad
+n = \left(\frac{z_{\alpha/2}\,s}{E}\right)^{2}
+$$
+
+:::
+
+- **Always round up** — a fractional person or day cannot be sampled, and rounding down would miss the target precision.
+
+- Planning value for $s$: a prior study, a pilot sample, or a best guess. Here we use B's pilot $s = \$0.344$.
+
+## How Many Days Does Vungle Need?
+
+::: r-fit-text
+**Question:** how many test-days for the mean eRPM margin to hit $\pm\$0.10$? $\pm\$0.05$? (planning $s = 0.344$, 95% confidence, $z = 1.96$)
+
+::: fragment
+
+$$
+n_{0.10} = \left(\frac{1.96 \times 0.344}{0.10}\right)^{2} = 45.6 \;\rightarrow\; \mathbf{46 \text{ days}}
+$$
+
+:::
+
+::: fragment
+
+$$
+n_{0.05} = \left(\frac{1.96 \times 0.344}{0.05}\right)^{2} = 182.3 \;\rightarrow\; \mathbf{183 \text{ days}}
+$$
+
+:::
+
+**The lesson:** halving the margin ($\$0.10 \rightarrow \$0.05$) takes **four times** the days ($46 \rightarrow 183$). Precision is expensive — and the manager must decide whether \$0.05 of precision is worth six months of testing.
+:::
+
+## Margin of Error vs. Sample Size
+
+```{r echo=FALSE, out.width="78%", fig.align="center"}
+knitr::include_graphics("figs/moe_vs_n.png")
+```
+
+::: nonincremental
+- The curve flattens fast: early days buy a lot of precision, later days buy very little. The $\sqrt{n}$ law is why **doubling down** on data has **diminishing returns**.
+:::
+
+## Sample Size in Excel
+
+::::: nonincremental
+:::: columns
+::: {.column width="42%"}
+<br>
+
+**One formula cell per target:**
+
+`=CEILING((NORM.S.INV(0.975)*s/E)^2, 1)`
+
+<br>
+
+- `s` = planning SD (here B's \$0.344)
+- `E` = desired margin (\$0.10, then \$0.05)
+- `CEILING(...,1)` rounds **up** to whole days
+:::
+
+::: {.column width="58%"}
+```{r echo=FALSE, out.width="100%", fig.align="center"}
+knitr::include_graphics("figs/excel_sample_size.png")
+```
+:::
+::::
+:::::
+
+## Sample Size for a Proportion
+
+<br>
+
+- The proportion version, solving the same way:
+
+::: fragment
+
+$$
+n = \frac{z_{\alpha/2}^{2}\,p^*(1-p^*)}{E^{2}}
+$$
+
+:::
+
+- $p^*$ is a **planning value** for the proportion: a prior estimate, a pilot, or — if you know nothing — the **conservative $p^* = 0.5$**, which maximizes $p^*(1-p^*)$ and gives the largest (safest) $n$.
+
+- **PSI example:** for $E = 0.03$ at 99% ($z = 2.576$): with $p^* = 0.44$, $n = 1817$; with the conservative $p^* = 0.5$, $n = 1844$. When unsure, plan for the larger.
+
+## ⏱️ Team Sprint 2 — Vungle's Estimation Memo
+
+::: {.sprint .nonincremental}
+**Decide:** what is B's true mean eRPM and conversion rate (each $\pm$ a margin), and how long must the next test run for $\pm\$0.05$ precision?
+
+**Data:** `data/vungle_estimation.xlsx` · **Time:** ~14 min
+
+1. **95% CI for mean eRPM (B):** $\bar{x} \pm t_{0.025,29}\,s/\sqrt{30}$ — use `=CONFIDENCE.T(0.05, s, 30)` for the margin.
+2. **95% CI for the daily conversion rate (B):** same steps on the `conv_B_pct` column.
+3. **Sample size:** how many days for the eRPM margin to reach $\pm\$0.05$? Use `=CEILING((1.96*s/0.05)^2,1)`.
+
+**Hand in (1 slide):** the two intervals (with a one-line plain-English reading of each) and the required number of days — your estimation memo to Vungle.
+:::
+
+# Debrief — The Estimation Memo {background-color="#cfb991"}
+
+## What the Intervals Tell Vungle
+
+<br>
+
+| Quantity | Point estimate | 95% interval | Read |
+|---|---:|---:|---|
+| Mean eRPM (B) | \$3.459 | (\$3.330, \$3.588) | true earning power, $\pm\$0.13$ |
+| Conversion rate (B) | 0.354% | (0.345%, 0.362%) | very stable, $\pm 0.009$pt |
+| Days for $\pm\$0.05$ eRPM | — | $n = 183$ | six months to halve the margin |
+
+<br>
+
+- **The memo in one line:** B's true mean eRPM is **\$3.46 give or take \$0.13**, its conversion rate is **0.354% give or take 0.009pt**, and reaching $\pm\$0.05$ on eRPM would take about **183 days** of testing.
+
+## The Honest Limit of Estimation
+
+<br>
+
+- B's eRPM interval **(\$3.33, \$3.59)** and A's **(\$3.27, \$3.43)** **overlap**. The \$0.11 sample gap is real in *this* sample, but the intervals do not, by themselves, prove B's *true* mean beats A's.
+
+- Estimation answers *"how big, and how sure are we about that size?"* — it does **not** directly answer *"is B better than A?"*
+
+- That comparison question — **does B beat a benchmark, and does B beat A?** — is **hypothesis testing**, the next two topics. Today's standard error and $t$ machinery carry straight over.
+
+## Manager's Takeaway
+
+<br>
+
+- **One sentence:** a confidence interval turns a point estimate into a defensible **range** — B's true mean eRPM is \$3.46 $\pm$ \$0.13 at 95% confidence — and the **margin of error** is the number a manager should actually negotiate over.
+
+- **One number to remember:** $E = t_{\alpha/2}\,s/\sqrt{n}$ — and the $\sqrt{n}$ in the denominator, which makes precision expensive.
+
+- **One caveat:** "95% confident" describes the **procedure** over many samples, not a probability for this one interval — and overlapping intervals do **not** settle a comparison.
+
+## Summary
+
+::: nonincremental
+Some key takeaways from this session:
+
+- A **point estimate** ($\bar{x}$, $\bar{p}$) is a single best guess; it is **unbiased** but tells you nothing about how close it is.
+- The **sampling distribution** of $\bar{x}$ is centered at $\mu$ with standard error $\sigma/\sqrt{n}$; the **CLT** makes it Normal for $n \geq 30$, whatever the population's shape.
+- A **confidence interval** = point estimate $\pm$ margin of error; use **$t$** for a mean ($\sigma$ unknown), **$z$** for a proportion.
+- The margin of error has **three levers**: confidence level (up → wider), variability $s$ (up → wider), sample size $n$ (up → narrower, as $\sqrt{n}$).
+- **Sample size** inverts the margin formula: pick the precision, solve for $n$, round up — halving the margin costs ~4× the data.
+- "95% confident" is a statement about the **method**, not a probability for one interval — and overlapping intervals do not prove a difference.
+:::
+
+## Carry-forward
+
+::: nonincremental
+- **Your client (homework):** for your team's case, pick one key **mean** and one key **proportion**. Build a **95% confidence interval** for each, write a one-sentence plain-English reading, and compute the **sample size** needed to halve one of the margins. Justify your planning value.
+
+- **Next time:** we stop *estimating ranges* and start *testing claims* — **Hypothesis Testing**: fund B only if its mean eRPM beats a benchmark. Today's standard error and $t$ tools become the test statistic.
+:::
 
 # Thank you! {background-color="#cfb991"}

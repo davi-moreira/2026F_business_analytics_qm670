@@ -1,11 +1,11 @@
 ---
 title: "<span style = 'font-size: 100%;'> QM 6700: Business Analytics </span>"
-subtitle: "<span style = 'font-size: 150%;'> Intro. & Basic Stat. & Prob. Rvw. 01 </span>"
+subtitle: "<span style = 'font-size: 150%;'> Course Introduction & Descriptive Statistics I </span>"
 author: "Professor: Davi Moreira"
 #date: "2024-08-01"
 #date-format: "MMMM DD, YYYY"
 format:
-  revealjs: 
+  revealjs:
     transition: slide
     background-transition: fade
     width: 1600
@@ -13,7 +13,7 @@ format:
     center: true
     slide-number: true
     incremental: true
-    chalkboard: 
+    chalkboard:
       buttons: false
     preview-links: auto
     #logo: images/quarto.png
@@ -30,20 +30,18 @@ html-math-method:
 
 :::::: nonincremental
 ::::: columns
-::: {.column width="40%" style="text-align: center; justify-content: center; align-items: center;"}
--   Introductions
--   Course Overview and Logistics
--   Motivation
--   Course Objectives
-    -   Understand basic statistical concepts
-    -   Apply statistical methods to business problems
+::: {.column style="width: 50%; text-align: center; justify-content: center; align-items: center;"}
+-   Introductions & course logistics
+-   **Case Spotlight: A/B Testing at Vungle**
+-   What is statistics? Where is it used?
+-   The map: descriptive vs. inferential
 :::
 
-::: {.column width="60%" style="text-align: center; justify-content: center; align-items: center;"}
--   Key Topics
-    -   Descriptive Statistics
-    -   Inferential Statistics
-    -   `Excel4stats`
+::: {.column style="width: 50%; text-align: center; justify-content: center; align-items: center;"}
+-   Data, variables & observations — the Vungle dataset
+-   Data types & scales of measurement
+-   Study design: why Vungle ran an *experiment*
+-   A first look at the data in Excel (`Excel4stats`)
 :::
 :::::
 ::::::
@@ -53,9 +51,9 @@ html-math-method:
 ## Instructor
 
 ::::: columns
-::: {.column width="40%" style="text-align: center; justify-content: center; align-items: center;"}
+::: {.column style="width: 40%; text-align: center; justify-content: center; align-items: center;"}
 ```{r  echo=FALSE, out.width = "60%",fig.align="center"}
-knitr::include_graphics("figs/davi_moreira_photo.JPG") 
+knitr::include_graphics("figs/davi_moreira_photo.JPG")
 ```
 
 [dcordeir\@purdue.edu](dcordeir@purdue.edu)
@@ -63,7 +61,7 @@ knitr::include_graphics("figs/davi_moreira_photo.JPG")
 <https://davi-moreira.github.io/>
 :::
 
-::: {.column width="60%" style="text-align: center; justify-content: center; align-items: center;"}
+::: {.column style="width: 60%; text-align: center; justify-content: center; align-items: center;"}
 -   Clinical Assistant Professor in the Management Department at Purdue University;
 
 <br>
@@ -79,11 +77,11 @@ knitr::include_graphics("figs/davi_moreira_photo.JPG")
 ## Instructor's Passions
 
 ```{r  echo=FALSE, out.width = "15%", fig.align="center"}
-knitr::include_graphics("figs/palmeiras_logo.png") 
+knitr::include_graphics("figs/palmeiras_logo.png")
 ```
 
 ```{r  echo=FALSE, out.width = "40%", fig.align="center"}
-knitr::include_graphics("figs/palmeiras_stadium.jpg") 
+knitr::include_graphics("figs/palmeiras_stadium.jpg")
 ```
 
 <center>
@@ -101,7 +99,7 @@ knitr::include_graphics("figs/palmeiras_stadium.jpg")
 ## Instructor's Passions
 
 ```{r  echo=FALSE, out.width = "25%", fig.align="center"}
-knitr::include_graphics("figs/carnaval_olinda.jpg") 
+knitr::include_graphics("figs/carnaval_olinda.jpg")
 ```
 
 <center>[NYT - How John Travolta Became the Star of Carnival](https://www.nytimes.com/2024/02/13/world/americas/brazil-carnival-john-travolta.html)[-Video.](https://www.nytimes.com/video/world/americas/100000009311331/the-star-of-this-carnival-is-a-giant-john-travolta-puppet.html?auth=login-google1tap&login=google1tap)</center>
@@ -141,36 +139,102 @@ knitr::include_graphics("figs/carnaval_olinda.jpg")
 
 -   **Schedule**
 
-# Business Analytics {background-color="#cfb991"}
-
-# Text Book
+## How to Succeed in This Course
 
 <br>
 
-```{r  echo=FALSE, out.width = "50%",fig.align="center"}
-knitr::include_graphics("figs/mbs_book.png") 
+- **Keep up every week.** Statistics builds on itself — today's vocabulary becomes next week's formulas. Falling behind compounds.
+
+- **Work with your team.** Homework is team-based by design; explaining a concept to a teammate is the fastest way to learn it.
+
+- **Bring the business question.** Every method we learn answers a managerial decision. Always ask: *what decision does this number support?*
+
+- **Use Excel from day one.** Install the Analysis ToolPak this week and open the course dataset — you will use it all semester.
+
+# Textbook & Software {background-color="#cfb991"}
+
+## Textbook & Materials
+
+::::: columns
+::: {.column style="width: 35%; text-align: center; justify-content: center; align-items: center;"}
+```{r echo=FALSE, out.width="72%", fig.align="center"}
+knitr::include_graphics("figs/sbe_book.jpg")
 ```
+:::
+
+::: {.column style="width: 65%; justify-content: center; align-items: center;"}
+::: nonincremental
+**_Statistics for Business and Economics_ (SBE), 14th edition**
+
+Anderson · Sweeney · Williams · Camm · Cochran — Cengage, 2020 · ISBN-13 978-1337901062
+
+[View on Cengage](https://www.cengage.com/c/statistics-for-business-economics-14e-anderson/9781337901062/){target="_blank"}
+
+<br>
+
+- The course **schedule** lists the readings for each topic.
+- **Software:** Excel with the **Analysis ToolPak** — every worked example is Excel-first.
+:::
+:::
+:::::
 
 # Survey {background-color="#cfb991"}
 
 ## Survey {background-color="#cfb991"}
 
 ```{r  echo=FALSE, out.width = "25%", fig.align="center"}
-knitr::include_graphics("figs/qrcode_review_survey.png") 
+knitr::include_graphics("figs/qrcode_review_survey.png")
 ```
 
 <center>[Attendance and Participation](https://forms.office.com/r/3R2VwPJAzA){target="_blank"}<br>10 min</center>
 
-# Motivation {background-color="#cfb991"}
+# Case Spotlight: A/B Testing at Vungle {background-color="#cfb991"}
 
-# What is Statistics?
+## Meet Vungle: One Decision, 30 Days of Data
+
+<br>
+
+- [Vungle](https://en.wikipedia.org/wiki/Liftoff_Mobile) is a mobile ad-tech startup: it serves 15-second video ads inside other apps and earns revenue mainly when a viewer **installs** the advertised app.
+
+- The metric that pays the bills is **eRPM** — effective revenue per 1,000 impressions.
+
+- In June 2014, two analysts built a new ad-serving algorithm (**B**) and ran it head-to-head against the current one (**A**) for the whole month.
+
+- **The CEO's question:** *roll out B to all advertisers, or stay with A?*
+
+- We will use this one decision — *is B better than A?* — to motivate **every** tool in this course.
+
+## The Data Behind the Decision
+
+```{r  echo=FALSE, out.width = "78%",fig.align="center"}
+knitr::include_graphics("figs/vungle_funnel.png")
+```
+
+::: nonincremental
+- Each ad **impression** can become a completed view, then a click, then an **install**. That chain is the *conversion funnel*.
+- 30 days, both algorithms, the full funnel — that is the dataset `vungle_daily.csv` we will analyze all term.
+:::
+
+## The Tempting Answer — and Why It Is Not Enough
+
+<br>
+
+- A manager glances at the data: *"B's average daily eRPM was **\$3.46** vs. A's **\$3.35** — so roll out B!"*
+
+- Not so fast. Before you can bet the company on that \$0.11 gap, you have to ask:
+
+  - Is \$0.11 a **real** difference, or just day-to-day **noise**?
+  - Is **30 days** enough to generalize to all future traffic?
+  - What **kind** of data is this, and which statistics are even **valid** to compute?
+
+- Answering those is the job of this course. **Today we start at the foundation: what is this data?**
+
+# What is Statistics? {background-color="#cfb991"}
 
 ## What is Statistics?
 
 ::::: columns
-::: {.column width="60%" style="text-align: center; justify-content: center; align-items: center;"}
-<!---Statistics can be defined as the science of collecting, analyzing, interpreting, presenting, and organizing data to make informed business decisions. It involves using mathematical theoriesto process numerical information and draw meaningful conclusions. The primary goal of statistics in business is to help managers and decision-makers understand data patterns, trends, and relationships, enabling them to make data-driven decisions, optimize operations, forecast future events, and reduce uncertainty. --->
-
+::: {.column style="width: 60%; text-align: center; justify-content: center; align-items: center;"}
 <br>
 
 <br>
@@ -180,9 +244,9 @@ knitr::include_graphics("figs/qrcode_review_survey.png")
 > "Without data, you're just another person with an opinion." – W. Edwards Deming
 :::
 
-::: {.column width="40%" style="text-align: center; justify-content: center; align-items: center;"}
+::: {.column style="width: 40%; text-align: center; justify-content: center; align-items: center;"}
 ```{r  echo=FALSE, out.width = "70%",fig.align="center"}
-knitr::include_graphics("figs/w_edwards_deming.jpg") 
+knitr::include_graphics("figs/w_edwards_deming.jpg")
 ```
 
 W. Edwards Deming
@@ -195,71 +259,125 @@ W. Edwards Deming
 
 <br>
 
-Statistics can be defined as the **science of collecting, analyzing, interpreting, presenting, and organizing data to make informed decisions**.
+Statistics is the **science of collecting, organizing, analyzing, interpreting, and presenting data to make informed business decisions**.
 
-# Where is statistics applied in Business?
+<br>
 
-## Where is statistics applied in Business?
+- It turns raw numbers — like Vungle's 30 days of eRPM — into a defensible answer to a manager's question.
 
--   Accounting
+- The goal is always the same: **reduce uncertainty enough to act.**
 
-    -   To compare actual financial performance with budgeted amounts, identifying areas of inefficiency or unexpected costs.
+## Where Is Statistics Applied in Business?
 
--   Economics
+::: nonincremental
+- **Accounting** — audit sampling to test whether reported figures are accurate.
 
-    -   To analyze employment trends, wage distributions, and the impact of income on business opportunities, helping managers make informed decisions.
+- **Finance** — estimating the return and risk of portfolios; pricing default risk.
 
--   Finance
+- **Marketing** — consumer surveys, A/B testing ad creative, demand forecasting.
 
-    -   Risk analysts to assess the probability of default on loans or bonds, aiding in the pricing of financial instruments and risk management strategies.
+- **Production / Operations** — quality control, process design, capacity planning.
+
+- **Human Resources** — recruiting analytics, salary benchmarking, retention modeling.
+:::
+
+## The Map: How Statistical Analysis Works
+
+```{r  echo=FALSE, out.width = "82%",fig.align="center"}
+knitr::include_graphics("figs/stat_analysis_scheme.png")
+```
+
+## Descriptive vs. Inferential Statistics
+
+<br>
+
+- **Descriptive statistics** — tabular, graphical, and numerical methods that **summarize** the data you have (means, charts, tables).
+
+- **Inferential statistics** — using **sample** data to draw conclusions or make decisions about a larger **population**.
+
+- Classify each Vungle statement:
+
+::: fragment
+| Statement | Descriptive or Inferential? |
+|---|---|
+| "Over the 30 test days, B's mean eRPM was \$3.46." | **Descriptive** (summarizes the sample) |
+| "If rolled out to all traffic, B will earn more than A." | **Inferential** (a claim about the population) |
+| "26 of 30 days favored B." | **Descriptive** |
+| "B's true conversion rate differs from A's." | **Inferential** |
+:::
+
+## Roadmap: What "Descriptive" Covers
+
+<br>
+
+::: nonincremental
+The next topic builds five summary lenses — each with an Excel tool:
+
+| Lens | Question it answers | Tool |
+|---|---|---|
+| **Location** | Where is the center? | mean, median — summary statistics |
+| **Variability** | How spread out? | standard deviation, range |
+| **Shape** | Symmetric or skewed? | histogram, box plot |
+| **Empirical rule** | How much falls near the mean? | 68–95–99.7% |
+| **Association** | Do two variables move together? | scatter plot, correlation |
+:::
 
 # Data and Statistics {background-color="#cfb991"}
 
-## Data Sources and Scales of Measurement
+## Elements, Variables, and Observations
 
-```{r  echo=FALSE, out.width = "30%",fig.align="center"}
-knitr::include_graphics("figs/variables_observations.png") 
+```{r  echo=FALSE, out.width = "28%",fig.align="center"}
+knitr::include_graphics("figs/variables_observations.png")
 ```
 
--   Elements are the entities on which data are collected.
+::: nonincremental
+- An **element** is the entity on which data are collected.
+- A **variable** is a characteristic of interest for the elements.
+- An **observation** is the set of measurements for one element.
+- A data set with $n$ elements has $n$ observations; total values = elements × variables.
+:::
 
--   A variable is a characteristic of interest for the elements.
+## Read the Vungle Data Like an Analyst
 
--   The set of measurements obtained for a particular element is called an observation.
+<br>
 
--   A data set with $n$ elements contains $n$ observations.
+- Here is a slice of `vungle_daily.csv` — algorithms interleaved by day:
 
--   The total number of data values in a complete data set is the number of elements multiplied by the number of variables.
+::: fragment
+| algorithm | date | impressions | completes | clicks | installs | erpm |
+|---|---|---:|---:|---:|---:|---:|
+| A | 2014-06-01 | 6,777,407 | 5,978,434 | 345,309 | 31,119 | 3.327 |
+| B | 2014-06-01 | 569,044 | 499,235 | 28,035 | 2,111 | 2.953 |
+| A | 2014-06-02 | 6,004,310 | 5,331,727 | 299,732 | 24,601 | 2.943 |
+| B | 2014-06-02 | 505,963 | 447,695 | 24,621 | 1,713 | 2.587 |
+:::
+
+::: fragment
+- **Element** = one algorithm-day (60 of them). **Variables** = the 7 columns. **One observation** = one row. Total values = **60 × 7 = 420**.
+:::
 
 ## Data Types
 
 ::::::: columns
-:::: {.column width="50%" style="text-align: center; justify-content: center; align-items: center;"}
+:::: {.column style="width: 50%; text-align: center; justify-content: center; align-items: center;"}
 ::: nonincremental
-**Categorical Data**
+**Categorical (Qualitative) Data**
 
--   Labels or names used to identify an attribute of each element
--   Often referred to as qualitative data
--   Use either the nominal or ordinal scale of measurement
--   Can be either numeric or nonnumeric
--   Appropriate statistical analysis is rather limited
+-   Labels or names that identify an attribute of each element
+-   Use the **nominal** or **ordinal** scale
+-   Can be numeric or non-numeric
+-   Only limited arithmetic is meaningful (counts, proportions)
 :::
 ::::
 
-:::: {.column width="50%" style="text-align: center; justify-content: center; align-items: center;"}
+:::: {.column style="width: 50%; text-align: center; justify-content: center; align-items: center;"}
 ::: nonincremental
 **Quantitative Data**
 
--   Quantitative data indicate how many or how much:
-
-    ```         
-    -  discrete, if measuring how many
-    - continuous, if measuring how much
-    ```
-
--   Quantitative data are always numeric.
-
--   Ordinary arithmetic operations (+, -, ×, ÷) are meaningful for quantitative data
+-   Indicate **how many** or **how much** — always numeric
+-   **Discrete**: counts (how many) — e.g., installs
+-   **Continuous**: measurements (how much) — e.g., eRPM
+-   Ordinary arithmetic (+, −, ×, ÷) is meaningful
 :::
 ::::
 :::::::
@@ -268,125 +386,150 @@ knitr::include_graphics("figs/variables_observations.png")
 
 <br>
 
-<br>
-
 | Categorical: Nominal | Categorical: Ordinal | Quantitative: Continuous or Discrete |
 |---------------------|-------------------|--------------------------------|
-| Vehicle Type | Satisfaction Level | Temperature |
-| Beverage | Education Level | Number of Transactions |
+| Ad algorithm (A/B) | Satisfaction Level | eRPM (revenue / 1,000 impr.) |
+| Vehicle Type | Education Level | Number of Installs |
 | Music Genre | Customer Feedback | Revenue |
 | Nationality | Job Position | Product Weight |
-| Relationship Status | Military Rank | Distance Traveled |
 | Operating System | Priority Level | Market Share |
 
 <br>
 
 ::: r-fit-text
--   Categorical: Nominal refers to variables that categorize data without a specific order.
--   Categorical: Ordinal refers to variables that categorize data with a meaningful order but without a consistent difference between categories.
--   Quantitative: Continuous or Discrete refers to variables that are numerical, where discrete variables are countable and continuous variables can take any value within a range.
+-   **Nominal** categorizes with no inherent order (Vungle's `algorithm`: A vs. B).
+-   **Ordinal** categorizes with a meaningful order but no consistent gap between levels.
+-   **Quantitative** is numeric — *discrete* values are countable (`installs`); *continuous* values can take any value in a range (`erpm`).
 :::
 
 ## Scales of Measurement
 
 ```{r  echo=FALSE, out.width = "70%",fig.align="center"}
-knitr::include_graphics("figs/scale_measurement.png") 
+knitr::include_graphics("figs/scale_measurement.png")
 ```
 
 ## Scales of Measurement
 
 :::::::: columns
-::::: {.column width="50%" style="text-align: center; justify-content: center; align-items: center;"}
+::::: {.column style="width: 50%; text-align: center; justify-content: center; align-items: center;"}
 :::: nonincremental
 ::: r-fit-text
-1.  **Categorical Data**
-    -   **Definition**: Data that can be sorted into categories or groups.
-    -   **Subcategories**:
-        -   **Numeric**: Categorical data represented by numbers, but the numbers do not have inherent numerical value.
-            -   **Nominal**: Categories that have no inherent order. Examples include gender, type of car, and nationality.
-            -   **Ordinal**: Categories that have a specific order or ranking. Examples include satisfaction levels (e.g., satisfied, neutral, dissatisfied) and education levels (e.g., high school, bachelor's, master's).
-        -   **Non-numeric**: Categorical data not represented by numbers.
-            -   **Nominal**: Similar to numeric nominal data but represented with non-numeric labels. Examples include types of cuisine (e.g., Italian, Chinese, Indian).
-            -   **Ordinal**: Similar to numeric ordinal data but represented with non-numeric labels. Examples include rankings such as job positions (e.g., intern, junior, senior).
+1.  **Categorical Data** — sortable into groups.
+    -   **Nominal**: no inherent order (gender, car type, nationality, **ad algorithm**).
+    -   **Ordinal**: a meaningful order, but no consistent difference between levels (satisfaction level; education level; job rank).
 :::
 ::::
 :::::
 
-:::: {.column width="50%" style="text-align: center; justify-content: center; align-items: center;"}
+:::: {.column style="width: 50%; text-align: center; justify-content: center; align-items: center;"}
 ::: nonincremental
-2.  **Quantitative Data**
-    -   **Definition**: Data that can be measured and expressed numerically.
-    -   **Subcategories**:
-        -   **Numeric**: Quantitative data always represented by numbers.
-            -   **Interval**: Numerical data with meaningful differences between values but no true zero point. Examples include temperature in Celsius or Fahrenheit.
-            -   **Ratio**: Numerical data with meaningful differences between values and a true zero point. Examples include height, weight, and sales figures.
+2.  **Quantitative Data** — measured numerically.
+    -   **Interval**: meaningful differences, **no true zero** (temperature in °C/°F).
+    -   **Ratio**: meaningful differences **and a true zero** (height, weight, revenue, **eRPM**, **installs**).
 :::
 ::::
 ::::::::
 
-## Cross-Sectional Data: Time Series
+## Classify Vungle's Variables
 
 <br>
 
-```{r  echo=FALSE, out.width = "50%",fig.align="center"}
-knitr::include_graphics("figs/time_series.png") 
+- Before any analysis, audit every column — because **the scale determines which statistics are valid**:
+
+::: fragment
+| Variable | Type | Scale | What you may compute |
+|---|---|---|---|
+| `algorithm` | Categorical | Nominal | counts, proportions — **not** a mean |
+| `date` | Categorical (ordered) | Ordinal / Interval | ordering, time gaps |
+| `impressions`, `completes`, `clicks`, `installs` | Quantitative — discrete | Ratio | counts, sums, means, rates |
+| `erpm` | Quantitative — continuous | Ratio | mean, SD, t-tests — the primary KPI |
+:::
+
+::: fragment
+- Asking for the "average `algorithm`" is meaningless; asking for the "average `erpm`" is the whole point. **Scale sets your toolbox.**
+:::
+
+## Where Data Comes From
+
+<br>
+
+::: nonincremental
+- **Existing sources** — internal records (Vungle's ad server logs), public/government databases, industry reports.
+
+- **Collection by study:**
+  - **Observational** — record what happens without intervening (a customer survey).
+  - **Experimental** — set the conditions on purpose, then measure (Vungle *assigns* traffic to A or B).
+
+- **Cross-sectional** — many elements at **one** point in time.
+- **Time series** — **one** element across **many** time periods.
+:::
+
+## Cross-Sectional vs. Time Series — the Vungle Data
+
+<br>
+
+::: nonincremental
+- On any single day, comparing **A vs. B** is a **cross-sectional** snapshot (two entities, one moment).
+
+- Tracking **one algorithm across the 30 days** is a **time series**.
+
+- The full dataset is a **panel** — repeated cross-sections over time.
+:::
+
+```{r  echo=FALSE, out.width = "42%",fig.align="center"}
+knitr::include_graphics("figs/time_series.png")
 ```
-
-<br>
 
 # Study Design {background-color="#cfb991"}
 
-## Study Design
+## Observational vs. Experimental Studies
 
 ::::: columns
-::: {.column width="50%" style="text-align: center; justify-content: center; align-items: center;"}
+::: {.column style="width: 50%; text-align: center; justify-content: center; align-items: center;"}
 **Observational**
 
-In observational studies, no attempt is made to control or influence the variables of interest. A survey is a good example.
+In an observational study, no attempt is made to control the variables of interest. A survey is the classic example.
 
-<br> <br> <br>
+<br>
 
-> An example of an observational study is researchers observing a randomly selected group of customers that enter a Walmart Supercenter to collect data on variables such as time spent in the store, gender of the customer, and the amount spent.
+> Researchers watching a random set of Walmart shoppers — recording time in store, gender, and amount spent — *without intervening*.
 :::
 
-::: {.column width="50%" style="text-align: center; justify-content: center; align-items: center;"}
-**Experimental** (Chapter 13)
+::: {.column style="width: 50%; text-align: center; justify-content: center; align-items: center;"}
+**Experimental**
 
-In experimental studies, the variable of interest is first identified. Then, the values or levels (categories) of the variable are identified and controlled so that data from the experimental units (subjects) can be obtained about how they influence the variable of interest. Can have multiple variables.
+In an experiment, the variable of interest is identified, then its levels are **set and controlled**, so we can see how they influence an outcome.
 
-> The largest experimental study ever conducted is believed to be the 1954 Public Health Service experiment for the Salk polio vaccine. Nearly two million U.S. children (grades 1 through 3) were selected.
+<br>
+
+> The 1954 Salk polio-vaccine trial — nearly two million children randomly assigned to vaccine or placebo — is the largest experiment ever run.
 :::
 :::::
 
-## Study Design: Random Assignment vs. Random Sampling
+## Vungle Ran an Experiment — So We Can Say "Caused"
 
 <br>
+
+- The `algorithm` column is the **treatment**: each impression was randomly assigned to A or B (by an MD5 hash) **on the same days**.
+
+- Random assignment balances everything else — same market, same advertisers, same weekends — so the only systematic difference is the algorithm.
+
+- That is what licenses **causal** language: *"B **caused** higher eRPM,"* not merely *"B was associated with higher eRPM."*
+
+- **Payoff:** only an **experiment** supports a causal claim. An observational "B-days looked better" could be confounded; Vungle's design rules that out.
+
+## Random Assignment vs. Random Sampling
 
 <br>
 
 ```{r  echo=FALSE, out.width = "50%",fig.align="center"}
-knitr::include_graphics("figs/random_assignment_sampling.png") 
+knitr::include_graphics("figs/random_assignment_sampling.png")
 ```
 
-<br>
-
-<br>
-
-## Study Design
-
-<br>
-
-<br>
-
-```{r  echo=FALSE, out.width = "2%",fig.align="center"}
-knitr::include_graphics("figs/xkcd.png") 
-```
-
-<br>
-
-<br>
-
-<br>
+::: nonincremental
+- **Random sampling** — *who gets into the study* — supports generalizing to the population.
+- **Random assignment** — *who gets which treatment* — supports causal comparison.
+:::
 
 # Descriptive Statistics {background-color="#cfb991"}
 
@@ -395,210 +538,130 @@ knitr::include_graphics("figs/xkcd.png")
 <br>
 
 ```{r  echo=FALSE, out.width = "50%",fig.align="center"}
-knitr::include_graphics("figs/steve-jobs-pie.jpg") 
+knitr::include_graphics("figs/steve-jobs-pie.jpg")
 ```
 
 <br>
 
 <center>[June 9th Apple CEO Steve Jobs - Post](https://paragraft.wordpress.com/2008/06/03/the-chart-junk-of-steve-jobs/)</center>
 
-<br>
-
 ## Summarizing and Presenting Data {.smaller}
 
 ```{r  echo=FALSE, out.width = "70%",fig.align="center"}
-knitr::include_graphics("figs/pie-vs-bar.png") 
+knitr::include_graphics("figs/pie-vs-bar.png")
 ```
 
 <br>
 
 <center>[Problems with pie charts - Post](https://stats.stackexchange.com/questions/8974/problems-with-pie-charts)</center>
 
-<br>
+## A First Look at eRPM
 
-## Summarizing and Presenting Data
-
-<br>
-
-```{r  echo=FALSE, out.width = "60%",fig.align="center"}
-knitr::include_graphics("figs/presenting_data.png") 
+```{r  echo=FALSE, out.width = "55%",fig.align="center"}
+knitr::include_graphics("figs/vungle_erpm_box.png")
 ```
 
-<br>
-
-## Example: Hudson Auto Repair
-
-The manager of Hudson Auto would like to have a better understanding of the cost of parts used in the engine tune-ups performed in her shop. She examines 50 customer invoices for tune-ups. The costs of parts, rounded to the nearest dollar, are listed on the next slide.
-
-<br>
-
-```{r  echo=FALSE, out.width = "20%",fig.align="center"}
-knitr::include_graphics("figs/hudson_auto_repair_data.png") 
-```
-
-<br>
-
-## Tabular Summary: Frequency and Percent Frequency - Example
-
-<br>
-
-| Parts Cost (\$) | Frequency | Percent Frequency |
-|:---------------:|:---------:|:-----------------:|
-|    50 to 59     |     2     |        4%         |
-|    60 to 69     |    13     |        26%        |
-|    70 to 79     |    16     |        32%        |
-|    80 to 89     |     7     |        14%        |
-|    90 to 99     |     7     |        14%        |
-|   100 to 109    |     5     |        10%        |
-|    **TOTAL**    |  **50**   |     **100%**      |
-
-</center>
-
-## Graphical Summary: Bar Chart or Histogram - Example
-
-<br>
-
-<!---`r fontawesome::fa("laptop-code")` Transiton: Let's Apply--->
-
-<br>
-
-```{r  echo=FALSE, out.width = "15%",fig.align="center"}
-knitr::include_graphics("figs/excel.png") 
-```
-
-<br>
-
-<center>`hudson_auto_repair.xlsx`</center>
-
-<br>
-
-File -\> Options -\> Add-ins -\> Select Analysis ToolPak and Analysis ToolPak-VBA (also select StatTools 7.5, if available) -\> Go -\> Data -\> Data Analysis (to conduct analyses)
-
-<br>
-
-</center>
-
-## Graphical Summary: Bar Chart or Histogram - Example
-
-<br> <br>
-
-:::::::: columns
-:::: {.column width="50%" style="text-align: center; justify-content: center; align-items: center;"}
 ::: nonincremental
-1.  Open Data Analysis Add-in
-
-```{r  echo=FALSE, out.width = "100%",fig.align="center"}
-knitr::include_graphics("figs/01_hudson.png") 
-```
+- A picture already tells a story: **B's mean is higher** (white diamonds), but B is **more spread out** — a hint that "B is better" may not be the whole truth.
+- Describing is step one; *deciding* whether that gap is real comes later (Topics 7–9).
 :::
-::::
 
-::::: {.column width="50%" style="text-align: center; justify-content: center; align-items: center;"}
-:::: fragment
+## Measures of Location: the Mean
+
+<br>
+
+- The first job of *describing* is finding the **center**. The workhorse is the **mean** — add the values, divide by the count:
+
+::: fragment
+$$
+\bar{x} = \frac{\sum_{i=1}^{n} x_i}{n}
+$$
+:::
+
+::: fragment
+- Vungle's 30-day mean eRPM: **A = \$3.347**, **B = \$3.459** — B's center sits **\$0.11 higher**.
+:::
+
+::: fragment
+- That \$3.459 is a **point estimate** of B's *true* mean eRPM — the number we will later put to the test.
+:::
+
+## Median & Mode — and When to Use Which
+
+<br>
+
 ::: nonincremental
-2.  Select Histogram
+- **Median** — the middle value (50th percentile); unmoved by outliers. Vungle: A median **\$3.327**, B **\$3.434**. Mean ≈ median ⟹ the eRPM distribution is roughly **symmetric**.
+- **Mode** — the most frequent value; the only center valid for **categorical** data (e.g., the most-served `algorithm`). For continuous eRPM every value is distinct, so the mode says nothing.
+- **Rule of thumb:** report the **mean** for symmetric data, the **median** when it is skewed or has outliers.
+:::
 
-```{r  echo=FALSE, out.width = "100%",fig.align="center"}
-knitr::include_graphics("figs/02_hudson.png") 
+## Your Excel Toolkit: the Analysis ToolPak
+
+<br>
+
+```{r  echo=FALSE, out.width = "12%",fig.align="center"}
+knitr::include_graphics("figs/excel.png")
+```
+
+<center>`data/vungle_daily.xlsx`</center>
+
+<br>
+
+- Install it once: **File → Options → Add-ins → Analysis ToolPak** (and Analysis ToolPak-VBA) **→ Go**.
+
+- Then every analysis lives under **Data → Data Analysis**.
+
+- Do this **this week** with `vungle_daily.xlsx` open — it is the dataset for the whole term.
+
+## Teaser: Descriptive Statistics on eRPM
+
+::::: nonincremental
+:::: columns
+::: {.column width="42%"}
+<br>
+
+**Data → Data Analysis →<br> Descriptive Statistics**
+
+- Input Range: the `erpm` values for Algorithm A
+- check **Summary statistics**
+
+<br>
+
+The mean eRPM for A is **\$3.347**. Every row of this panel — median, SD, skewness — is a *descriptive* measure we unpack in **Topic 2**.
+:::
+
+::: {.column width="58%"}
+```{r  echo=FALSE, out.width = "85%",fig.align="center"}
+knitr::include_graphics("figs/excel_desc_erpm.png")
 ```
 :::
 ::::
 :::::
-::::::::
 
-## Graphical Summary: Bar Chart or Histogram - Example
+## ⏱️ Team Sprint — Read the Data, Make the First Cut
 
-:::::::: columns
-:::: {.column width="50%" style="text-align: center; justify-content: center; align-items: center;"}
-::: nonincremental
-3.  Input the ranges (data, bin limits, output cell)
+::: {.sprint .nonincremental}
+**Decide:** what does Vungle's data *say* so far — and what can it **not** say yet?
 
-```{r  echo=FALSE, out.width = "100%",fig.align="center"}
-knitr::include_graphics("figs/03_hudson.png") 
-```
+**Data:** `data/vungle_daily.xlsx` · **Time:** ~12 min
+
+1. **Audit:** name the elements, the variables, and the **type & scale** of `algorithm` and `erpm`.
+2. **Summarize:** with the ToolPak's *Descriptive Statistics*, get the **mean and median eRPM for A and for B**.
+3. **Compare & question:** how big is B's edge? List **two reasons** it might *not* hold up.
+
+**Hand in (1 slide):** A-vs-B mean & median, plus your two "what could go wrong?" reasons.
 :::
-::::
 
-::::: {.column width="50%" style="text-align: center; justify-content: center; align-items: center;"}
-:::: fragment
-::: nonincremental
-4.  Result
-
-```{r  echo=FALSE, out.width = "100%",fig.align="center"}
-knitr::include_graphics("figs/04_hudson.png") 
-```
-:::
-::::
-:::::
-::::::::
-
-## Numerical Descriptive Statistics
+## Debrief — Back to the Decision
 
 <br>
 
--   The most common numerical descriptive statistic is the mean (or average).
+- We can now **describe** the data cleanly: A's mean eRPM is **\$3.35**, B's is **\$3.46**, over 30 carefully-designed experimental days.
 
--   The mean demonstrates a measure of the central tendency, central location, or center of mass of the data for a variable.
+- We **cannot yet** say whether B is *really* better for all future traffic — that is **inference**, and it needs the tools in Topics 7–9.
 
--   Hudson’s mean cost of parts, based on the 50 tune-ups studied, is \$79 (found by summing up the 50 cost values and then dividing by 50).
-
--   There are other descriptive statistics (next chapter).
-
-## Numerical Descriptive Statistics - Example
-
-:::::::: columns
-:::: {.column width="50%" style="text-align: center; justify-content: center; align-items: center;"}
-::: nonincremental
-1.  Open Data Analysis Add-in and select the Descriptive Statistics analysis
-
-```{r  echo=FALSE, out.width = "100%",fig.align="center"}
-knitr::include_graphics("figs/01_hudson_desc.png") 
-```
-:::
-::::
-
-::::: {.column width="50%" style="text-align: center; justify-content: center; align-items: center;"}
-:::: fragment
-::: nonincremental
-2.  Input the ranges (data, bin limits, output cell) and options
-
-```{r  echo=FALSE, out.width = "100%",fig.align="center"}
-knitr::include_graphics("figs/02_hudson_desc.png") 
-```
-:::
-::::
-:::::
-::::::::
-
-## Numerical Descriptive Statistics - Example
-
-::::::::: columns
-:::: {.column width="50%" style="text-align: center; justify-content: center; align-items: center;"}
-::: nonincremental
-3.  Result
-
-```{r  echo=FALSE, out.width = "100%",fig.align="center"}
-knitr::include_graphics("figs/03_hudson_desc.png") 
-```
-:::
-::::
-
-:::::: {.column width="50%" style="text-align: center; justify-content: center; align-items: center;"}
-::::: fragment
-:::: nonincremental
-4.  Let's check the result
-
-```{r  echo=FALSE, out.width = "40%",fig.align="center"}
-knitr::include_graphics("figs/04_hudson_desc.png") 
-```
-
-::: {style="font-size: 50%;"}
-For percentiles: `= percentile.exc(Data Array, %)`
-:::
-::::
-:::::
-::::::
-:::::::::
+- But notice how far we have come: we know **what** the data are, **what kind** of variables they hold, and **why** the design lets us reason about cause.
 
 # Statistical Inference {background-color="#cfb991"}
 
@@ -606,31 +669,29 @@ For percentiles: `= percentile.exc(Data Array, %)`
 
 <br>
 
-<br>
-
 ::::::: columns
-::: {.column width="40%" style="text-align: center; justify-content: center; align-items: center;"}
+::: {.column style="width: 40%; text-align: center; justify-content: center; align-items: center;"}
 ```{r  echo=FALSE, out.width = "80%",fig.align="center"}
-knitr::include_graphics("figs/inference.svg") 
+knitr::include_graphics("figs/inference.svg")
 ```
 :::
 
-::::: {.column width="50%" style="text-align: left; justify-content: center; align-items: center;"}
+::::: {.column style="width: 50%; text-align: left; justify-content: center; align-items: center;"}
 :::: fragment
 ::: r-fit-text
--   **Population**: the set of all elements of interest in a particular study.
+-   **Population**: all elements of interest (every future impression).
 
--   **Sample**: a subset of the population.
+-   **Sample**: a subset (Vungle's 30 test days).
 
--   **Descriptive Statistics**: Tabular, graphical, and numerical summaries of data.
+-   **Descriptive Statistics**: tabular, graphical, numerical summaries.
 
--   **Inferential Statistics**: The process of using data from the sample to make estimates or test hypotheses about the characteristics of a population
+-   **Inferential Statistics**: using the sample to estimate or test claims about the population.
 
--   **Estimation**: Using sample data to approximate population parameters.
+-   **Estimation**: approximate a population parameter (true mean eRPM).
 
--   **Hypotheses Testing**: Determining if there is enough evidence in a sample to support a claim about a population.
+-   **Hypothesis Testing**: weigh evidence for a claim (is B > A?).
 
--   **Prediction**: Forecasting future events based on historical data.
+-   **Prediction**: forecast future outcomes from data.
 :::
 ::::
 :::::
@@ -638,50 +699,65 @@ knitr::include_graphics("figs/inference.svg")
 
 # Data Science, Big Data, and Data Mining {background-color="#cfb991"}
 
-## Data Science, Big Data, and Data Mining - Definitions
+## Data Science, Big Data, and Data Mining — Definitions
 
 ::: nonincremental
 -   **Data Science**:
-    -   The interdisciplinary field that uses scientific methods, processes, algorithms, and systems to extract knowledge and insights from structured and unstructured data.
+    -   The interdisciplinary field that uses scientific methods, algorithms, and systems to extract knowledge and insights from structured and unstructured data.
 -   **Big Data**:
-    -   Extremely large datasets that may be analyzed computationally to reveal patterns, trends, and associations, especially relating to human behavior and interactions.
+    -   Extremely large datasets analyzed computationally to reveal patterns, trends, and associations — especially about human behavior.
 -   **Data Mining**:
-    -   The practice of examining large databases to generate new information, involving methods at the intersection of machine learning, statistics, and database systems.
+    -   Examining large databases to generate new information; at the intersection of machine learning, statistics, and database systems.
 :::
 
-## How Data Science, Big Data, and Data Mining are Used
+## How Data Science, Big Data, and Data Mining Are Used
 
 :::: nonincremental
 ::: r-fit-text
 -   **Data Science**:
-    -   Personalizing marketing efforts by analyzing customer data to predict preferences and buying behavior.
-    -   Optimizing supply chain management through predictive analytics.
+    -   Personalizing marketing by predicting preferences and buying behavior.
+    -   Optimizing supply chains through predictive analytics.
 -   **Big Data**:
-    -   Analyzing customer feedback and social media interactions to improve customer service and develop new products.
-    -   Enhancing risk management in financial institutions by monitoring transaction patterns and detecting fraudulent activities.
+    -   Mining customer feedback and social media to improve service and products.
+    -   Detecting fraud by monitoring transaction patterns in real time.
 -   **Data Mining**:
-    -   Identifying potential leads and sales opportunities by analyzing past sales data and customer demographics.
-    -   Enhancing customer retention by understanding churn patterns and developing targeted retention strategies.
+    -   Surfacing sales leads from past purchases and demographics.
+    -   Reducing churn by learning who is about to leave and why.
 :::
 ::::
 
-# Summary {background-color="#cfb991"}
+# The Takeaway {background-color="#cfb991"}
+
+## Manager's Takeaway
+
+<br>
+
+- **One sentence:** today we turned a CEO's question — *roll out B or keep A?* — into a precise data problem, and built the vocabulary to describe it.
+
+- **One number to remember:** **60 rows × 7 variables = 420 values** — that is Vungle's dataset, and you can name every element, variable, and observation in it.
+
+- **One principle:** the **scale of a variable** determines which statistics are valid — count `algorithm`, average `erpm`.
+
+- **Practice:** open `data/vungle_daily.xlsx`, install the Analysis ToolPak, and run **Descriptive Statistics** on `erpm`. Bring one question to next class.
+
+## Carry-forward
+
+::: nonincremental
+- **Your client (homework):** open your team's case dataset and write its **data audit** — elements, variables, and the type & scale of each — then compute the **mean and median** of its key outcome.
+
+- **Next time:** we go deeper into *describing* — spread, shape, the boxplot, and how two variables move together.
+:::
 
 ## Summary
 
 ::: nonincremental
 Some key takeaways from this session:
 
--   **Course Overview**:
-    -   Materials and resources available on Brightspace and the course webpage.
-    -   You are welcome to join virtual office hours!
-    -   If you need an individual appointment, e-mail me!
--   **Key Concepts**:
-    -   Importance of statistics in business decision-making.
-    -   Study Design.
-    -   Data summary and visualization good practices.
-    -   Distinction between Descriptive and Inferential Statistics.
-    -   Data Science, Big Data, and Data Mining
+-   **The spine case:** the Vungle A/B test — *is B better than A?* — will motivate every method this term.
+-   **Statistics** turns data into defensible business decisions; it splits into **descriptive** (summarize) and **inferential** (generalize).
+-   **Data vocabulary:** elements, variables, observations; categorical vs. quantitative; the four scales of measurement — and the rule that **scale determines method**.
+-   **Study design:** Vungle ran a randomized **experiment**, which is what licenses *causal* claims.
+-   **Excel is your toolkit:** install the Analysis ToolPak and meet the dataset on day one.
 :::
 
 # Thank you! {background-color="#cfb991"}

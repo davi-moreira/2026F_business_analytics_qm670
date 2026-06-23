@@ -1,11 +1,11 @@
 ---
 title: "<span style = 'font-size: 100%;'> QM 6700: Business Analytics </span>"
-subtitle: "<span style = 'font-size: 150%;'> Multiple Regression</span>"
+subtitle: "<span style = 'font-size: 150%;'> Multiple Regression </span>"
 author: "Professor<br>Davi Moreira<br>"
-# date: "2024-08-01"
+# date: "2026-11-09"
 # date-format: "MMMM DD, YYYY"
 format:
-  revealjs: 
+  revealjs:
     transition: slide
     background-transition: fade
     width: 1600
@@ -13,7 +13,7 @@ format:
     center: true
     slide-number: true
     incremental: true
-    chalkboard: 
+    chalkboard:
       buttons: false
     preview-links: auto
     #logo: images/quarto.png
@@ -28,1179 +28,823 @@ html-math-method:
 
 :::::: nonincremental
 ::::: columns
-::: {.column width="50%" style="text-align: center; justify-content: center; align-items: center;"}
-- Multiple Regression Model
-- Least Squares Method
-- Multiple Coefficient of Determination
-- Model Assumptions
-- Testing for Significance: Overall and Individual
+::: {.column style="width: 50%; text-align: center; justify-content: center; align-items: center;"}
+- Case Spotlight: an auto-parts retailer choosing where to invest
+- One predictor to many: the multiple regression model
+- Least squares and the **partial** coefficient: "holding the others constant"
+- How well does the model fit? $R^2$ and **adjusted** $R^2$
 :::
 
-::: {.column width="50%" style="text-align: center; justify-content: center; align-items: center;"}
-- Multicollinearity Issue
-- Residual Analysis
-- Prediction
-- Categorical Independent Variables
-:::
-:::::
-::::::
-
-# Motivation {background-color="#cfb991"}
-
-## Motivation: Controlling for a Variable
-
-- **Puzzle**: What is the effect of education on income?
-- **Y**: Income
-- **X**: Education
-- **Objective**: X $\rightarrow$ Y
-- **Challenge**: X $\leftarrow$ W $\rightarrow$ Y
-- **W**: IQ (Intelligence)
-- **Solution**: Control for W
-
-## Motivation: Controlling for a Variable
-
-<center>
-
-![DAG](figs/dag-control.png){width="30%"}
-
-::: {style="font-size: 50%;"}
-Source: [Causal Inference Animated Plots](https://nickchk.com/causalgraphs.html)
-:::
-
-</center>
-
-## Motivation: Controlling for a Variable
-
-<center>
-
-![Relationship between Y and X controlled for W](figs/animation_control.gif){width="40%"}
-
-::: {style="font-size: 50%;"}
-Source: [Causal Inference Animated Plots](https://nickchk.com/causalgraphs.html)
-:::
-
-</center>
-
-## Omitted Variables (Confounders)
-
-- One of the most common errors in observational studies (besides selection bias and information bias — classification or measurement error);
-
-- It occurs when we suggest that the explanation for something is "confounded" with the effect of another variable;
-
-- For example, "the sun rose because the rooster crowed," and not because of Earth's rotation.
-
-## How to Address Omitted Variable Bias?
-
-- Be well-versed in the literature;
-
-- Select good control variables for your model;
-
-- That is, perform a **multiple regression model**.
-
-# Multiple Regression {background-color="#cfb991"}
-
-## Multiple Regression
-
-- Regression analysis involving two or more independent variables (x's).
-
-- This subject area, called multiple regression analysis, enables us to consider more independent variables (factors) and thus obtain better estimates of the relationship than are possible with simple linear regression.
-
-## Multiple Regression Model
-
-The equation that describes how the dependent variable $y$ is related to the independent variables $x_1, x_2, \ldots x_p$ and an error term $\epsilon$ is:
-
-$$y = \beta_0 + \beta_1 x_1 + \beta_2 x_2 + \dots + \beta_p x_p + \epsilon$$
-
-Where:
-
-- $\beta_0, \beta_1, \beta_2, \dots, \beta_p$ are the unknown parameters.
-
-- $\epsilon$ is a random variable called the error term with the same assumptions as in simple regression (Normality, zero mean, constant variance, independence).
-
-- $p$ is the number of independent variables (dimension or complexity of the model).
-
-## Multiple Regression Equation
-
-The equation that describes how the mean value of $y$ is related to $x_1, x_2, \ldots x_p$ is:
-
-$$E(y) = \beta_0 + \beta_1 x_1 + \beta_2 x_2 + \dots + \beta_p x_p$$
-
-$\beta_1, \ldots, \beta_p$ measure the marginal effects of the respective independent variables.
-
-<br>
-
-For example, $\beta_1$ is the change in $E(y)$ corresponding to a 1-unit increase in $x_1$, when all other independent variables are held constant or when we control for all other independent variables.
-
-## Estimated Multiple Regression Equation
-
-<br>
-
-$$\hat{y} = b_0 + b_1 x_1 + b_2 x_2 + \dots + b_p x_p$$
-
-A simple random sample is used to compute sample intercept and slopes $b_0, b_1, b_2, \dots, b_p$ that are used as the point estimators of the population intercept and slopes $\beta_0, \beta_1, \beta_2, \dots, \beta_p$.
-
-<br>
-
-Hence, $\hat{y}$ estimates $E(Y)$.
-
-# Least Squares Method {background-color="#cfb991"}
-
-## Least Squares Method
-
-<br>
-
-Least Squares Criterion: Minimize the Sum of Squared Errors (SSE):
-
-$$\min \sum (y_i - \hat{y_i})^2$$
-
-Where $y_i - \hat{y_i}$ is the $i$-th residual/error.
-
-<br>
-
-- The formulas for the regression coefficients $b_0, b_1, b_2, \dots, b_p$ involve the use of matrix algebra. We will rely on computer software packages to perform the calculations.
-
-- The emphasis will be on how to interpret the computer output rather than on how to make the multiple regression computations.
-
-## Estimation Process
-
-<br>
-
-```{r  echo=FALSE, out.width = "80%",fig.align="center"}
-knitr::include_graphics("figs/estimation_process.png")
-```
-
-<br>
-
-## Multiple Regression Model
-
-**Example: Butler Trucking Company**
-
-Managers at Butler Trucking Company want to develop better work schedules for their drivers. They believe that the total daily travel time would be closely related to the number of miles traveled in making the daily deliveries and also to the number of deliveries.
-
-A simple random sample of 10 driving assignments was taken.
-
-## Multiple Regression Model
-
-**Example**: Butler Trucking Company - `Butler.xlsx`
-
-| Driving Assignment | Miles traveled $x_1$ | Deliveries $x_2$ | $y$ = Travel Time (hours) |
-|------------------|------------------|------------------|------------------|
-| 1 | 100 | 4 | 9.3 |
-| 2 | 50 | 3 | 4.8 |
-| 3 | 100 | 4 | 8.9 |
-| 4 | 100 | 2 | 6.5 |
-| 5 | 50 | 2 | 4.2 |
-| 6 | 80 | 2 | 6.2 |
-| 7 | 75 | 3 | 7.4 |
-| 8 | 65 | 4 | 6.0 |
-| 9 | 90 | 3 | 7.6 |
-| 10 | 90 | 2 | 6.1 |
-
-## Multiple Regression Model
-
-**Example: Butler Trucking Company**
-
-Suppose we believe that total daily travel time ($y$) is related to the miles traveled ($x_1$) and the number of deliveries made ($x_2$) by the following multiple linear regression model:
-
-$$y = \beta_0 + \beta_1 x_1 + \beta_2 x_2 + \epsilon$$
-
-Where:
-
-- $y$ = Total travel time
-
-- $x_1$ = Miles traveled
-
-- $x_2$ = Deliveries made
-
-- $n = 10, p = 2$
-
-## Summary Statistics
-
-::: {style="font-size: 80%;"}
-|                    | Miles ($x_1$) | Deliveries ($x_2$) | Time ($Y$) |
-|--------------------|---------------|--------------------|------------|
-| Mean               | 80            | 2.9                | 6.7        |
-| Standard Error     | 6.191         | 0.277              | 0.515      |
-| Median             | 85            | 3                  | 6.35       |
-| Mode               | 100           | 2                  | #N/A       |
-| Standard Deviation | 19.579        | 0.876              | 1.630      |
-| Sample Variance    | 383.333       | 0.767              | 2.656      |
-| Kurtosis           | -1.114        | -1.734             | -0.547     |
-| Skewness           | -0.583        | 0.223              | 0.196      |
-| Range              | 50            | 2                  | 5.1        |
-| Minimum            | 50            | 2                  | 4.2        |
-| Maximum            | 100           | 4                  | 9.3        |
-| Sum                | 800           | 29                 | 67         |
-| Count              | 10            | 10                 | 10         |
-:::
-
-## Correlations
-
-|                        | Miles ($x_1$) | Deliveries ($x_2$) | Time ($Y$) |
-|------------------------|---------------|--------------------|------------|
-| **Miles (**$x_1$)      | 1             |                    |            |
-| **Deliveries (**$x_2$) | 0.162         | 1                  |            |
-| **Time (**$Y$)         | 0.815         | 0.615              | 1          |
-
-## Regression Output
-
-**Example: Butler Trucking Company**
-
-<br>
-
-```{r  echo=FALSE, out.width = "80%",fig.align="center"}
-knitr::include_graphics("figs/butler_company_reg_output_excel.png")
-```
-
-<br>
-
-## Estimated Regression Equation
-
-**Example: Butler Trucking Company**
-
-Prediction equation:
-
-$$\hat{y} = -0.8687 + 0.0611x_1 + 0.9234x_2$$
-
-::: fragment
-<br>
-
-For observation #1 where $x_1 = 100$, $x_2 = 4$, and $y = 9.3$:
-
-$$\hat{y} = -0.8687 + 0.0611(100) + 0.9234(4) = 8.9385$$
-
-Unexplained residual = $y - \hat{y} = 9.3 - 8.9385 = 0.3615$
-:::
-
-## Interpreting the Regression Coefficients
-
-<br>
-
-Each $b_i$ (for $x_i$) represents an estimate of the change in the expected $y$ corresponding to a 1-unit increase in $x_i$, when all other independent variables are held constant or when we control for all other independent variables.
-
-## Interpreting the Regression Coefficients
-
-**Example: Butler Trucking Company**
-
-<br>
-
-:::::: nonincremental
-::::: columns
-::: {.column width="30%" style="text-align: center; justify-content: center; align-items: center;"}
-```{r  echo=FALSE, out.width = "80%",fig.align="center"}
-knitr::include_graphics("figs/butler_company_reg_output_excel.png")
-```
-:::
-
-::: {.column width="70%" style="text-align: center; justify-content: center; align-items: center;"}
-- $b_1 = +0.0611$ (for $x_1$)
-
-  - +0.0611 is the estimated average change (increase) in the expected travel time corresponding to an increase of one mile in the distance traveled when the number of deliveries is held constant.
-
-<br>
-
-- $b_2 = +0.9234$ (for $x_2$)
-
-  - +0.9234 is the estimated average change (increase) in the expected travel time corresponding to an increase of one delivery when the number of miles traveled is held constant.
+::: {.column style="width: 50%; text-align: center; justify-content: center; align-items: center;"}
+- Is the model useful? The overall **$F$-test**
+- Which predictors matter? The individual **$t$-tests**
+- A switch on or off: the **dummy** (indicator) variable
+- When predictors overlap: **multicollinearity**
+- The investment call: demographics or service & merchandising?
 :::
 :::::
 ::::::
 
-# Multiple Coefficient of Determination {background-color="#cfb991"}
+# Case Spotlight: Auto-Parts Retail {background-color="#cfb991"}
 
-## Multiple Coefficient of Determination
-
-::: {style="font-size: 80%;"}
-Relationship Among SST, SSR, SSE
-
-|   | SST | SSR | SSE |
-|------------------|------------------|------------------|------------------|
-| Formula | $\sum (y_i - \bar{y})^2$ | $\sum (\hat{y}_i - \bar{y})^2$ | $\sum (y_i - \hat{y}_i)^2$ |
-| Degrees of Freedom | $n-1$ | $p$ | $n-p-1$ |
-
-$$\sum (y_i - \bar{y})^2 = \sum (\hat{y_i} - \bar{y})^2 + \sum (y_i - \hat{y_i})^2$$
-
-Where:
-
-- SST = Total sum of squares (total variation of the response)
-
-- SSR = Sum of squares due to regression (explained by all predictors)
-
-- SSE = Sum of squares due to error (unexplained variation of residuals)
-
-- $n$ = sample size.
-
-- $p$ = number of predictors (independent variables).
-
-- The degrees of freedom for SSE reflect the number of observations left after accounting for the number of estimated parameters ($n - (p + \text{one intercept})$.
-:::
-
-## Partition of SST
+## Last Topic We Predicted with One Variable. Now We Have Four.
 
 <br>
 
-```{r  echo=FALSE, out.width = "80%",fig.align="center"}
-knitr::include_graphics("figs/partitiion_sst.png")
-```
+- Our client is a regional **auto-parts retail chain** — 45 stores, deciding where to put its next dollar.
 
-<br>
+- Last time we found a single strong predictor of a store's annual sales: its **Yelp rating**. Each extra star was worth roughly **+\$758K** a year. A clean simple-regression story.
 
-<center>df: SST = 9, SSE = 7, SSR = 2</center>
-
-## Multiple Coefficient of Determination
-
-**Example: Butler Trucking Company**
-
-**ANOVA Table**
-
-| ANOVA      | df  | SS      | MS      | F       | Significance F |
-|------------|-----|---------|---------|---------|----------------|
-| Regression | 2   | 21.6006 | 10.8003 | 32.8784 | 0.0003         |
-| Residual   | 7   | 2.2994  | 0.3285  |         |                |
-| Total      | 9   | 23.9    |         |         |                |
-
-## Multiple Coefficient of Determination
-
-**Example: Butler Trucking Company**
-
-$$R^2 = \frac{SSR}{SST} = 1 - \frac{SSE}{SST}$$
-
-$$R^2 = \frac{21.6006}{23.9} = 1 - \frac{2.2994}{23.9} = 90.38\%$$
-
-$$R^2 = 1 - \frac{SSE / (n - 1)}{SST / (n - 1)} = 1 - \frac{\text{Residual variance}}{\text{Response variance}}$$
-
-## Remarks on Multiple Coefficient of Determination
-
-- Adding independent variables, even ones that are not statistically significant, will reduce the prediction errors, thus the SSE will become smaller.
-
-- Because SST = SSR + SSE is fixed, SSR will become larger, SSE will become smaller, and hence, $R^2 = SSR/SST$ will always increase.
-
-- But, adding independent variables, the model will become more complex (a larger $p$).
-
-## Adjusted Multiple Coefficient of Determination
-
-<br>
-
-The **adjusted multiple coefficient of determination** ($R^2_a$) takes into account the following factors:
-
-- The number of independent variables in the model ($p$, dimension or complexity)
-
-- The $R^2$ (Adequacy)
-
-- The sample size ($n$, available information)
-
-## Adjusted Multiple Coefficient of Determination
-
-**Example**: Butler Trucking Company
-
-$$R^2 = 1 - \frac{SSE}{SST} = 90.38\%$$
-
-$$R^2_a = 1 - \frac{\frac{SSE}{(n - p - 1)}}{\frac{SST}{(n - 1)}} = 1 - (1 - R^2) \cdot \frac{n - 1}{n - p - 1}$$
-
-$$R^2_a = 1 - \frac{2.2994 / (10 - 2 - 1)}{23.9 / (10 - 1)} = 1 - (1 - 0.9038) \cdot \frac{10 - 1}{10 - 2 - 1} = 87.63\%$$
-
-## Adjusted Multiple Coefficient of Determination
-
-$$R^2_a = 1 - \frac{\frac{SSE}{(n - p - 1)}}{\frac{SST}{(n - 1)}} = 1 - \frac{MSE}{\frac{SST}{(n - 1)}} = 1 - \frac{S^2}{\frac{SST}{(n - 1)}}$$
-
-<br>
-
-A smaller $S^2$ gives a higher $R^2_a$.
-
-Bringing in a new independent variable will increase the $R^2_a$ when and only when it can decrease the estimated error variance ($S^2$ or MSE). Hence, $R^2_a$ is a good criterion for **model building or model selection**.
-
-<br>
-
-*(Recall: MSE or* $S^2$ estimates the error variance $\sigma^2$.)
-
-# Testing for Significance {background-color="#cfb991"}
-
-## Testing for Significance
-
-- In simple linear regression, the F and $t$ Tests provide the same conclusion:
-  - They are equivalen$t$ Tests: Squared t-value = F-value.
-  - They have the same p-value.
-- In multiple regression, the F and $t$ Tests have different purposes and are not equivalent.
-
-## Testing for Overall Significance: $F$ Test
-
-- The $F$ Test is used to determine whether a significant linear relationship exists between the dependent variable and the set of all the independent variables, by testing their population slopes ($\beta_1, \dots, \beta_p$) together as a group.
-
-- The $F$ Test is referred to as the test for overall significance.
-
-## Testing for Overall Significance: $F$ Test
-
-::: {style="font-size: 80%;"}
-**Hypotheses**
-
-$$H_0: \beta_1 = \beta_2 = \dots = \beta_p = 0 \quad (\text{No linear relationship})$$
-
-$$H_a: \text{One or more of the slopes is not equal to zero}$$
-
-**Test Statistics**
-
-$$F = \frac{MSR}{MSE}$$
-where,
-
-$$MSR = \frac{SSR}{p} \quad \text{and} \quad MSE = \frac{SSE}{n-p-1}$$
-
-**Rejection Rule**
-
-Reject $H_0$ if $F \geq F_\alpha$ or $p \leq \alpha$.
-
-where $F_\alpha$ is based on an $F$ distribution with $p$ d.f. (numerator) and $n - p - 1$ d.f. (denominator).
-:::
-
-## Testing for Overall Significance: $F$ Test
-
-**Example: Butler Trucking Company**
-
-**Hypotheses:**
-
-$$H_0: \beta_1 = \beta_2 = 0$$
-
-$$H_a: \text{One or both slopes are not equal to zero}$$
-
-**Rejection Rule**
-
-For $\alpha = 0.01$ and degrees of freedom = 2 and 7, $F_{\alpha} = 9.55$.
-
-Reject $H_0$ if $F \geq 9.55$ or $p \leq .01$.
-
-## Testing for Overall Significance: $F$ Test
-
-**Test Statistics**
-
-$$F = \frac{MSR}{MSE} = \frac{10.8003}{0.3285} = 32.8784$$
-
-**Conclusion:**
-
-We reject $H_0$ because $F = 32.8784 > 9.55$.
-
-We have significant statistical evidence to conclude that at least one of the independent variables is useful in explaining the variation in the total travel time, or for predicting the total travel time. The significance level is 1%.
-
-## Testing for Overall Significance: $F$ Test
-
-**ANOVA Output**
-
-| Source | df | SS | MS | F | Significance F |
-|------------|------------|------------|------------|------------|------------|
-| Regression | $p$ | SSR | $MSR=\frac{SSR}{p}$ | $F=\frac{MSR}{MSE}$ | $p-value$ |
-| Residual | $n-p-1$ | SSE | $MSE=\frac{SSE}{n-p-1}$ |  |  |
-| Total | $n-1$ | SST |  |  |  |
-
-## Testing for Overall Significance: $F$ Test
-
-**ANOVA Output**
-
-| Source     | df  | SS      | MS      | F       | Significance F |
-|------------|-----|---------|---------|---------|----------------|
-| Regression | 2   | 21.6006 | 10.8003 | 32.8784 | 0.0003         |
-| Residual   | 7   | 2.2994  | 0.3285  |         |                |
-| Total      | 9   | 23.9    |         |         |                |
-
-$$p-value = 1 - F.DIST(32.8784, 2, 7, TRUE) \approx 0.0003$$
-
-## Testing for Individual Significance: $t$ Test
-
-- If the $F$ test shows an overall significance, a separate $t$ test is conducted for each of the independent variables in the model.
-
-- The $t$ test is used to determine whether each of the individual independent variables is significant **in the presence of all other independent variables in the model**.
-
-  - It tests the **additional contribution** in reducing the variation of the unexplained error (or in increasing the explained variation).
-
-- We refer to each of these $t$ tests as a test for individual significance.
-
-## Testing for Individual Significance: $t$ Test
-
-**Hypotheses**
-
-$$H_0: \beta_i = 0 \quad (x_i \text{ is not significant in the presence of all other } x's)$$
-
-$$H_a: \beta_i \neq 0$$
-
-**Test Statistic**
-
-$$t = \frac{b_i - 0}{s_{b_i}} \quad (s_{b_i} \text{ is the standard error of } b_i)$$
-
-**Rejection Rule**
-
-Reject $H_0$ if $t \leq -t_{\alpha / 2}$ or $t \geq t_{\alpha / 2}$ or if $p$-value $\leq \alpha$.
-
-where $t_{\alpha/2}$ is based on a $t$-distribution with $n - p - 1$ degrees of freedom.
-
-## Testing for Individual Significance: $t$ Test
-
-**Example: Butler Trucking Company**
-
-- $H_0: \beta_i = 0$
-- $H_a: \beta_i \neq 0 \quad \text{(Two-tailed)}$
+- But a Yelp rating is a *symptom*, not a lever you can pull directly. The CFO's real question is sharper:
 
 ::: fragment
-For $\alpha = 0.01$ and $df = 7$:
-
-$$t_{0.005} = 3.499$$
-
-Reject $H_0$ if $p$-value $\leq .01$, or if $t \leq -3.499$ or $t \geq 3.499$.
+> "We can invest in **location** (open stores in bigger, richer markets), in **service** (raise the customer experience), or in **merchandising** (pay for premium **endcap** shelf placement). **Which actually drives sales — and where should the money go?**"
 :::
 
-## Testing for Individual Significance: $t$ Test
+- Answering that needs **several predictors at once** — and a way to isolate the effect of each one. That is today's tool: **multiple regression**.
 
-**Test Statistics**
-
-$$t = \frac{b_1 - 0}{s_{b_1}} = \frac{0.0611 - 0}{0.0099} = 6.1717, \quad \text{for } x_1$$
-
-$$t = \frac{b_2 - 0}{s_{b_2}} = \frac{0.9234 - 0}{0.2211} = 4.1764, \quad \text{for } x_2$$
-
-**Conclusion**
-
-Reject each of $H_0: \beta_1 = 0$ and $H_0: \beta_2 = 0$. Each independent variable is statistically significant **in the presence of the other**.
-
-## Testing for Individual Significance: $t$ Test
-
-**Example: Butler Trucking Company**
-
-Regression Table
+## The Data: 45 Stores, Four Candidate Drivers
 
 <br>
 
-```{r  echo=FALSE, out.width = "80%",fig.align="center"}
-knitr::include_graphics("figs/butler_company_reg_table_excel.png")
-```
-
-<br>
-
-# Multicollinearity {background-color="#cfb991"}
-
-## Multicollinearity
-
-- The term **multicollinearity** refers to the correlation among the independent variables.
-
-- It is important to compute pairwise correlations in a multiple regression analysis.
-
-- **Rule of Thumb**: When independent variables are highly correlated (e.g., $|r| > 0.7$), it is difficult to determine the separate/marginal effect of each independent variable on the dependent variable.
-
-- Every attempt should be made to avoid including independent variables that are highly correlated.
-
-- If the estimated regression equation is to be used only for predictive purposes, multicollinearity is usually not a serious problem
-
-## Multicollinearity
-
-- The coefficients do not measure marginal effects of the predictors (rather **combined** effects may be measured).
-
-- Coefficient estimates (b’s) are **unstable** (having “inflated” standard errors — also see **Variance Inflation Factor, VIF**).
-
-  - **Nonsignificant** test results for important predictor variables.
-  - Estimated regression coefficients with an algebraic sign that is the **opposite** of what is expected from theoretical considerations or prior experience.
-  - **Large changes** in the estimated regression coefficients (slopes) when a predictor variable is added or deleted.
-  - **Wide confidence intervals** for the regression coefficients representing important predictor variables.
-
-# Estimation and Prediction {background-color="#cfb991"}
-
-## Estimation and Prediction
-
-- The procedures for estimating the mean value of $y$ and predicting an individual value of $y$ in multiple regression are similar to those in simple regression.
-
-- We substitute the given values of $x_1, x_2, ..., x_p$ into the estimated regression equation and use the corresponding value of $\hat{y}$ as the point estimate.
-
-- The interpretations of the Confidence Interval (CI) and Prediction Interval (PI) in multiple regression are similar to those in simple regression:
-
-  - The Confidence Interval (CI) estimates the range within which the mean value of the dependent variable is expected to lie, given specific values of the independent variables.
-  - The Prediction Interval (PI) estimates the range within which an individual observation of the dependent variable is expected to lie, given specific values of the independent variables.
-
-<br>
-
-- The formulas required to develop interval estimates, CI and PI, are beyond the scope of the course and our textbook. Software packages for multiple regression will often provide these interval estimates.
-
-# Categorical Independent Variables {background-color="#cfb991"}
-
-## Categorical Independent Variables
-
-- In many situations, we need to work with categorical independent variables such as gender (an independent variable with 2 categories: Male, Female), method of payment (an independent variable with 3 categories: Cash, Check, Credit card), etc.
-
-- Need to code categorical independent variables. For example, if $x_2$ is a gender variable, let $x_2 = 1$ for males and $x_2 = 0$ for females.
-
-- In this case, $x_2$ is called a dummy or indicator variable, and the category with a 0 (i.e., female) is called the reference category or level.
-
-## Categorical Independent Variables
-
-- Gender: F, M
-- Job Type: Lawyer, Salesperson, Educator, Government (for salary)
-- Tool Type: A, B, C (for yields)
-- Region: NE, NW, SE, SW (for sales)
-- Season (for sales)
-- Training Method: Online, Hybrid, In-person (for learning outcome)
-- Position: Manager, AVP, Senior VP, Chair (for retirement age)
-- Advertising Media: Newspaper, Magazine, Spot TV (for sales)
-- Smoker: Yes, No (for health risk)
-- Method of Payment: Cash, Check, Credit Card (for credit rating or loan approvals)
-
-## Categorical Independent Variables
-
-**Example: Johnson Filtration, Inc.**
-
-Managers of Johnson Filtration, Inc. want to predict the repair time necessary for processing its maintenance requests. Repair time is believed to be related to two factors, the number of months since last service and the type of repair problem (mechanical or electrical). Data for a sample of 10 service calls are reported in the table (next slide).
-
-## Categorical Independent Variables
-
-**Example: Johnson Filtration, Inc**
-
-| Service Call | Months since last service | Type of repair | Repair time (hours) |
-|----------------|-----------------------|----------------|------------------|
-| 1            | 2                         | Electrical     | 2.9                 |
-| 2            | 6                         | Mechanical     | 3.0                 |
-| 3            | 8                         | Electrical     | 4.8                 |
-| 4            | 3                         | Mechanical     | 1.8                 |
-| 5            | 2                         | Electrical     | 2.9                 |
-| 6            | 7                         | Electrical     | 4.9                 |
-| 7            | 9                         | Mechanical     | 4.2                 |
-| 8            | 8                         | Mechanical     | 4.8                 |
-| 9            | 4                         | Electrical     | 4.4                 |
-| 10           | 6                         | Electrical     | 4.5                 |
-
-## Categorical Independent Variables
-
-**Example: Johnson Filtration, Inc**: Now with a *dummy* or *indicator variable*.
-
-| Service Call | Months since last service | Type of repair | Repair time (hours) |
-|----------------|-----------------------|----------------|------------------|
-| 1            | 2                         | 1              | 2.9                 |
-| 2            | 6                         | 0              | 3.0                 |
-| 3            | 8                         | 1              | 4.8                 |
-| 4            | 3                         | 0              | 1.8                 |
-| 5            | 2                         | 1              | 2.9                 |
-| 6            | 7                         | 1              | 4.9                 |
-| 7            | 9                         | 0              | 4.2                 |
-| 8            | 8                         | 0              | 4.8                 |
-| 9            | 4                         | 1              | 4.4                 |
-| 10           | 6                         | 1              | 4.5                 |
-
-0 = Mechanical (reference)\
-1 = Electrical
-
-## Categorical Independent Variables
-
-**Example: Johnson Filtration, Inc.**
-
-Regression model:
-
-$$y = \beta_0 + \beta_1 x_1 + \beta_2 x_2 + \epsilon$$
-
-Where:\
-$y$ = Repair time in hours\
-$x_1$ = Number of months since last maintenance service\
-$x_2$ = 0 if type of repair is mechanical, 1 if the type of repair is electrical ( $x_2$ is a dummy variable)
-
-## Categorical Independent Variables
-
-**Example: Johnson Filtration, Inc.**
-
-```{r  echo=FALSE, out.width = "80%",fig.align="center"}
-knitr::include_graphics("figs/multiple_reg_categorical_iv.png")
-```
-
-<br>
-
-## Categorical Independent Variables
-
-Interpretation of regression coefficient $\beta_2$ of dummy variable $x_2$:
-
-$$E(y) = \beta_0 + \beta_1 x_1 + \beta_2 x_2$$
-
-For mechanical (reference):\
-
-$$E(y|mechanical) = \beta_0 + \beta_1 x_1 + \beta_2 \cdot 0 = \beta_0 + \beta_1 x_1$$
-
-For electrical:\
-
-$$E(y|electrical) = \beta_0 + \beta_1 x_1 + \beta_2 \cdot 1 = (\beta_0 + \beta_2) + \beta_1 x_1 $$
-
-## Categorical Independent Variables
-
-- The mean repair time is a linear function of $x_1$ for both mechanical and electrical repairs.
-
-- The slope of both equations is $\beta_1$, but the y-intercept differs:
-
-  - For mechanical repairs: the y-intercept is $\beta_0$.
-  - For electrical repairs: the y-intercept is $\beta_0 + \beta_2$.
-
-- The coefficient $\beta_2$ indicates the difference between the mean repair time for electrical repairs and the mean repair time for mechanical repairs.
-
-## Interpretation of $\beta_2$
-
-- **If** $\beta_2$ is positive: The mean repair time for an electrical repair is greater than for a mechanical repair.
-
-- **If** $\beta_2$ is negative: The mean repair time for an electrical repair is less than for a mechanical repair.
-
-- **If** $\beta_2 = 0$: There is no difference in the mean repair time between electrical and mechanical repairs, indicating that the type of repair is not related to repair time.
-
-- In effect, the use of the dummy variable for type of repair provides two estimated regression equations that can be used to predict the repair time.
-
-## Categorical Independent Variables
-
-```{r  echo=FALSE, out.width = "80%",fig.align="center"}
-knitr::include_graphics("figs/multiple_reg_categorical_iv_plot.png")
-```
-
-<br>
-
-## More Complex Categorical Variables
-
-> A categorical variable with $k$ levels must be modeled using $k - 1$ dummy variables. Care must be taken in defining and interpreting the dummy variables.
-
-- In the Johnson Filtration example, a categorical variable (mechanical and electrical) with two levels was represented by a single dummy variable.
-
-- When a categorical variable has more than two levels, $k - 1$ dummy variables are required, with each coded as 0 or 1.
-
-## Example: Categorical Variable with Three Levels
-
-- Suppose a manufacturer organizes the sales territories into three regions: A, B, and C.
-
-- The number of copiers sold per week is the dependent variable.
-
-- The sales region is a categorical variable with three levels: A, B, and C.
-
-::: fragment
-**Dummy Variables for Sales Region:** We need $3 - 1 = 2$ dummy variables.
-
-$$x_1 = 
-\begin{cases}
-1 & \text{if sales region B} \\
-0 & \text{otherwise}
-\end{cases}$$
-
-$$x_2 = 
-\begin{cases}
-1 & \text{if sales region C} \\
-0 & \text{otherwise}
-\end{cases}$$
+::: {style="font-size: 90%;"}
+| Column | What it measures | The lever it represents |
+|---|---|---|
+| `sales2012_k` | annual store sales (\$ thousands) | **the outcome we want to grow** |
+| `population_3mi` | residents within 3 miles | location — market size |
+| `income_3mi` | median household income within 3 miles | location — market wealth |
+| `yelp_rating` | average Yelp rating (1–5 stars) | service / customer experience |
+| `endcap` | 1 = premium endcap shelf placement, 0 = none | merchandising spend |
 :::
 
-## Example: Dummy Variable Coding
+<br>
 
-- The following table shows the coding for the dummy variables $x_1$ and $x_2$ for each sales region.
+- Data: `data/autoparts.csv` — 45 rows, one per store. `endcap` is already coded **0/1**.
 
-::: fragment
-| Region | $x_1$ | $x_2$ |
-|--------|-------|-------|
-| A      | 0     | 0     |
-| B      | 1     | 0     |
-| C      | 0     | 1     |
-:::
+- **The trap we will spring today:** the two drivers a manager *expects* to dominate — population and income — turn out **not** to matter once service and merchandising are in the model.
 
-- Observations corresponding to region A are coded $x_1 = 0,  x_2 = 0$.
-- Observations corresponding to region B are coded $x_1 = 1,  x_2 = 0$.
-- Observations corresponding to region C are coded $x_1 = 0,  x_2 = 1$.
+## How Today's Studio Runs
 
-## Example: Regression Equation with Dummy Variables
+<br>
 
-:::: {style="font-size: 80%;"}
-- The regression equation for the expected number of units sold is:
+- **Two lectures, two halves of the decision:**
+
+  - **Lecture 1 — Build & read the model.** Fit sales on all four drivers; interpret each **partial** coefficient ("holding the others constant"); judge overall fit with $R^2$ and adjusted $R^2$. Anchor: **Butler Trucking**.
+
+  - **Lecture 2 — Test & decide.** Which drivers are *real* ($F$-test vs. $t$-tests)? Put a **dollar value on an endcap** with a dummy variable; check the predictors don't overlap (multicollinearity); make the investment call.
+
+- I demo each idea on a small textbook anchor → **your team runs it on the auto-parts data** → we debrief the recommendation together.
+
+- By the end, **your team** tells the CFO where to invest — with the regression to back it.
+
+# Lecture 1 — Building & Reading the Model {background-color="#cfb991"}
+
+## The Brief — Lecture 1
+
+<br>
+
+> "Fit a model for store sales using **all four** drivers at once. For each driver, tell me its effect on sales **holding the others fixed** — and tell me how much of the sales story the model captures."
+
+<br>
+
+- Simple regression answered "does Yelp predict sales?" in isolation. But stores with high Yelp ratings might also sit in richer markets — so the simple slope can **mix two effects together**.
+
+- Multiple regression's superpower: estimate the effect of **each** driver **while statistically holding the others constant** — the closest thing we have to a controlled comparison from observational data.
+
+- First we build the machine and learn to read its output. Testing and the dollar decision come in Lecture 2.
+
+# From One Predictor to Many {background-color="#cfb991"}
+
+## The Multiple Regression Model
+
+<br>
+
+- With $p$ independent variables $x_1, x_2, \ldots, x_p$, the **population model** is:
 
 ::: fragment
 
-$$E(y) = \beta_0 + \beta_1 x_1 + \beta_2 x_2$$
+$$
+y = \beta_0 + \beta_1 x_1 + \beta_2 x_2 + \cdots + \beta_p x_p + \epsilon
+$$
+
 :::
 
-- To interpret the parameters $\beta_0,  \beta_1,  \beta_2$, consider the three variations of the regression equation:
-
-- **Region A**:
-  $$E(y | \text{region A}) = \beta_0 + \beta_1 (0) + \beta_2 (0) = \beta_0$$
-
-- **Region B**:
-  $$E(y | \text{region B}) = \beta_0 + \beta_1 (1) + \beta_2 (0) = \beta_0 + \beta_1 $$
-
-- **Region C**:
-  $$E(y | \text{region C}) = \beta_0 + \beta_1 (0) + \beta_2 (1) = \beta_0 + \beta_2$$
-
-- Interpretation:
-
-  - $\beta_0$: Mean or expected value of sales for region A.
-  - $\beta_1$: Difference in mean sales between region B and region A.
-  - $\beta_2$: Difference in mean sales between region C and region A.
-::::
-
-## Example: Important Points on Dummy Variables
-
-- Two dummy variables are used because the sales region has three levels.
-
-- The assignment of $x_1 = 0, x_2 = 0$ for region A is arbitrary.
-
-- Alternative coding choices are possible, which would change the interpretation of $\beta_1$ and $\beta_2$.
-
-- **Key Point**: For a categorical variable with $k$ levels, $k - 1$ dummy variables are required.
-
-  - For a fourth region $D$, we would need three dummy variables.
-
-# Model Assumptions {background-color="#cfb991"}
-
-## Precision and Accuracy
-
-:::::::: columns
-::: {.column width="60%" style="text-align: center; justify-content: center; align-items: center;"}
-```{r  echo=FALSE, out.width = "80%",fig.align="center"}
-knitr::include_graphics("figs/precision_accuracy.png")
-```
-:::
-
-:::::: {.column width="40%" style="text-align: center; justify-content: center; align-items: center;"}
-::::: {style="font-size: 70%;"}
-- **Precision**: Refers to the consistency or reliability of the model's predictions.
-
-- **Accuracy**: Refers to how close the model's predictions are to the true values.
-
-:::: fragment
-In the context of regression:
-
-- **High Precision, Low Accuracy**: Predictions are consistent but biased.
-- **High Precision, High Accuracy**: Predictions are both consistent and valid.
-- **Low Precision, Low Accuracy**: Predictions are neither consistent nor valid.
-- **Low Precision, High Accuracy**: Predictions are valid on average but have high variability.
+- The **regression equation** (the mean response) drops the error term:
 
 ::: fragment
-**To achieve high precision and high accuracy, we need to meet the model assumptions.**
-:::
-::::
-:::::
-::::::
-::::::::
 
-## Assumptions about the Error Term $\epsilon$ in the Multiple Regression Model
+$$
+E(y) = \beta_0 + \beta_1 x_1 + \beta_2 x_2 + \cdots + \beta_p x_p
+$$
 
-::: {style="font-size: 80%;"}
-Consider the following two-independent-variable multiple regression equation:
-
-$$E(y) = \beta_0 + \beta_1 x_1 + \beta_2 x_2$$
 :::
 
-<br>
+- Same error assumptions as before: $E(\epsilon)=0$, constant variance $\sigma^2$, independent errors, normally distributed.
 
-```{r  echo=FALSE, out.width = "80%",fig.align="center"}
+- $\beta_j$ = the change in $E(y)$ for a **one-unit increase in $x_j$ when all other variables are held constant.** That phrase is the whole point of today.
+
+## A Plane, Not a Line
+
+```{r  echo=FALSE, out.width = "62%",fig.align="center"}
 knitr::include_graphics("figs/multiple_regression_plot.png")
 ```
 
-::: {style="font-size: 80%;"}
-The graph of this equation is a plane in three-dimensional space. The value of $\epsilon$ shown is the difference between the actual $y$ value and the expected value of $y$, $E(y)$, when $x_1 = x_1^*$ and $x_2 = x_2^*$.
+::: nonincremental
+- With two predictors, $E(y) = \beta_0 + \beta_1 x_1 + \beta_2 x_2$ traces a **plane** in 3-D space; with $p$ predictors it is a *hyperplane* we can no longer draw — but the algebra is identical.
+- The vertical gap from a point to the plane is the error $\epsilon$; least squares tilts the plane to make those gaps as small as possible.
 :::
+
+## Estimating the Coefficients: Least Squares Again
 
 <br>
 
-## Assumptions about the Error Term $\epsilon$ in the Multiple Regression Model
-
-$$y = \beta_0 + \beta_1 x_1 + \cdots + \beta_p x_p + \epsilon$$
-
-1.  **The error term** $\epsilon$ is a random variable with $E(\epsilon) = 0$.
-
-- **Implication**: For given values of $x_1, x_2, \ldots, x_p$, the expected, or average, value of $y$ is given by:
+- The **estimated** equation replaces the unknown $\beta$'s with sample estimates $b$'s:
 
 ::: fragment
 
-$$E(y) = \beta_0 + \beta_1 x_1 + \beta_2 x_2 + \cdots + \beta_p x_p$$
+$$
+\hat{y} = b_0 + b_1 x_1 + b_2 x_2 + \cdots + b_p x_p
+$$
+
 :::
 
-- **Validation**: Residuals vs. Predicted Values Plot or the Standardized Residuals vs. Predicted Values Plot
+- Same criterion as simple regression — pick the $b$'s that **minimize the sum of squared residuals**:
 
-2.  **The variance of** $\epsilon$ is denoted by $\sigma^2$ and is the same for all values of the independent variables $x_1, x_2, \ldots, x_p$.
+::: fragment
 
-- **Implication**: The variance of $y$ about the regression line equals $\sigma^2$ and is the same for all values of $x_1, x_2, \ldots, x_p$.
+$$
+\min \; SSE = \min \sum_{i=1}^{n} (y_i - \hat{y}_i)^2
+$$
 
-- **Validation**: Residuals vs. Predicted Values Plot or the Standardized Residuals vs. Predicted Values Plot
+:::
 
-## Assumptions about the Error Term $\epsilon$ in the Multiple Regression Model
+- The closed-form solution needs matrix algebra, so we let **Excel** do the arithmetic. Our job is to **read and interpret** the output — that is where the business judgment lives.
 
-3.  **The values of** $\epsilon$ are independent.
-
-    - **Implication**: The value of $\epsilon$ for a particular set of values for the independent variables is not related to the value of $\epsilon$ for any other set of values.
-
-    - **Validation**: Standardized Residuals vs. Predicted Values Plot
-
-4.  **The error term** $\epsilon$ is a normally distributed random variable reflecting the deviation between the $y$ value and the expected value of $y$.
-
-    - **Implication**: Because $\beta_0, \beta_1, \ldots, \beta_p$ are constants for the given values of $x_1, x_2, \ldots, x_p$, the dependent variable $y$ is also a normally distributed random variable.
-
-    - **Validation**: Normal Probability Plot or Q-Q Plot (Quantile-Quantile Plot) of Residuals.
-
-# Residual Analysis {background-color="#cfb991"}
-
-## Residual Analysis
-
-- For simple linear regression, the residual plot against $\hat{y}$ and the residual plot against $x$ provide the same information.
-
-- In multiple regression analysis, it is preferable to use the residual plot against $\hat{y}$ to determine if the model assumptions are satisfied.
-
-## Standardized Residuals
-
-- Standardized residuals are frequently used in residual plots for purposes of:
-
-  - Identifying outliers (typically, standardized residuals $< -2$ or $> +2$)
-  - Providing insight about the assumption that the error term $\epsilon$ has a normal distribution, using the Empirical Rule.
-
-- The computation of standardized residuals in multiple regression analysis is too complex to be done by hand.
-
-  - Excel’s Regression tool can be used.
-
-- Normality of residuals can be checked by the normal probability plot.
-
-## Standardized Residuals
-
-**Example: Butler Trucking Company: Residual output**
+## The Partial Coefficient — the Key Idea
 
 <br>
 
-```{r  echo=FALSE, out.width = "80%",fig.align="center"}
-knitr::include_graphics("figs/butler_company_residual_output_excel.png")
+- In simple regression, $b_1$ was *the* effect of $x$ on $y$.
+
+- In multiple regression, $b_j$ is a **partial** coefficient: the effect of $x_j$ on $y$ **after the model has already accounted for every other predictor.**
+
+- Read every coefficient with the same clause attached:
+
+  - "$b_j$ = the predicted change in $y$ for a one-unit increase in $x_j$, **holding all other variables constant.**"
+
+- This is why a predictor can look important alone yet vanish in the full model — its apparent effect was really the work of a variable it travels with. (We will watch exactly this happen to population and income.)
+
+# Anchor Example: Butler Trucking {background-color="#cfb991"}
+
+## Butler Trucking — Two Predictors of Travel Time
+
+<br>
+
+- Managers at **Butler Trucking** want better driver schedules. They believe a driver's **total daily travel time** ($y$, hours) depends on two things about the route:
+
+  - $x_1$ = **miles** traveled
+  - $x_2$ = number of **deliveries** made
+
+- Ten driving assignments were recorded. The proposed model:
+
+::: fragment
+
+$$
+y = \beta_0 + \beta_1 x_1 + \beta_2 x_2 + \epsilon \qquad (n = 10,\; p = 2)
+$$
+
+:::
+
+- A small, clean example — perfect for learning to read the output table before we scale up to 45 stores and four predictors.
+
+## Butler — the Estimated Equation
+
+::::: nonincremental
+:::: columns
+::: {.column width="46%"}
+<br>
+
+**Data → Data Analysis → Regression**
+
+- Input Y Range: travel-time column
+- Input X Range: the **two** columns (miles, deliveries) together
+- Labels ✓, Confidence Level 95% ✓
+
+<br>
+
+From the **Coefficients** column:
+
+$$
+\hat{y} = -0.869 + 0.0611\,x_1 + 0.923\,x_2
+$$
+:::
+
+::: {.column width="54%"}
+```{r  echo=FALSE, out.width = "100%",fig.align="center"}
+knitr::include_graphics("figs/excel_reg_butler_coefs.png")
 ```
+:::
+::::
+:::::
+
+## Butler — Reading the Partial Coefficients
 
 <br>
 
-## Standardized Residual Plot Against $\hat{y}$
+- $b_1 = +0.0611$ (miles): each **additional mile** adds about **0.061 hour** (\~3.7 min) to travel time — **holding the number of deliveries constant.**
 
-**Example: Butler Trucking Company**
+- $b_2 = +0.923$ (deliveries): each **additional delivery** adds about **0.92 hour** — **holding miles constant.**
 
-<br>
+- **Predict** assignment #1 ($x_1=100$, $x_2=4$):
 
-```{r  echo=FALSE, out.width = "80%",fig.align="center"}
-knitr::include_graphics("figs/butler_company_residual_plot_excel.png")
-```
+::: fragment
 
-<br>
+$$
+\hat{y} = -0.869 + 0.0611(100) + 0.923(4) = 8.94 \text{ hours}
+$$
 
-::: {style="font-size: 80%;"}
-- The standardized residual plot does not indicate any abnormalities, and no standard residual is less than -2 or greater than +2.
-- Note: the pattern of the standardized residual plot against $\hat{y}$ is the same as the pattern of the residual plot against $\hat{y}$. But the standardized residual plot enables us to check for outliers and determine whether the assumption of normality for the regression model (Distribution of $y$) is reasonable.
 :::
 
-````{=html}
-<!---
+- Actual was $9.3$, so the **residual** is $9.3 - 8.94 = +0.36$ hour: this route took slightly longer than the model expects.
 
-# Adding or Removing Independent Variables? {background-color="#cfb991"}
+# How Well Does the Model Fit? {background-color="#cfb991"}
 
-## Adding or Removing Independent Variables?
+## Partitioning the Variation: SST = SSR + SSE
 
--   If adding a predictor to a model can lower the estimated error variance $S^2$, then adding it will increase Adjusted $R^2$.
+<br>
 
--   **Definition**: A predictor is said to be an **ineffective predictor** if its $|T\text{-value}|$
+- Exactly as in simple regression, total variation in $y$ splits into explained + unexplained:
 
-    -   $\frac{|b-0|}{se(b)} < 1$ (coefficient estimate $b$ is within one standard deviation from 0), or its two-sided p-value $> 0.32$.
-    -   Adding an ineffective predictor will decrease Adjusted $R^2$.
-    -   Removing an ineffective predictor will increase Adjusted $R^2$.
-    -   We will be penalized for including ineffective predictors.
+::: fragment
 
-# Application of Dummy Variables {background-color="#cfb991"}
+$$
+\underbrace{\sum (y_i - \bar{y})^2}_{SST \;(\text{total})} \;=\; \underbrace{\sum (\hat{y}_i - \bar{y})^2}_{SSR \;(\text{explained})} \;+\; \underbrace{\sum (y_i - \hat{y}_i)^2}_{SSE \;(\text{unexplained})}
+$$
 
-## Chemitech Experiment
-
-**Chemitech** developed a new filtration system for municipal water supplies.\
-There are different methods that can be used to assemble the system.
-
-**Chemitech** has narrowed down to three methods: A, B, and C and wants to determine which assembly method can produce the greatest number of filtration systems per week.
-
-## Chemitech Experiment (cont'd)
-
-For the purpose, it selected 15 workers and then randomly assigned each of the three treatments to 5 of the workers.
-
-::: cell
-Response (Y): Number of units produced per week\
-Factor: Assembly method\
-Treatments: A, B, and C\
-Experimental units: Employees
 :::
 
-## Chemitech Experiment (cont'd)
+- The **multiple coefficient of determination** is the explained share:
 
-Hypotheses:
+::: fragment
 
-$H_0: \mu_A = \mu_B = \mu_C$\
-$H_a:$ Not all the means are equal
+$$
+R^2 = \frac{SSR}{SST} = 1 - \frac{SSE}{SST}
+$$
 
-where:
-
-$\mu_A = E(Y)$ using method A
-
-$\mu_B = E(Y)$ using method B
-
-$\mu_C = E(Y)$ using method C
-
-## Chemitech Experiment: Data (cont'd)
-
-| Observation             | A    | B    | C    |
-|-------------------------|------|------|------|
-| 1                       | 58   | 58   | 48   |
-| 2                       | 64   | 69   | 57   |
-| 3                       | 55   | 71   | 59   |
-| 4                       | 66   | 64   | 47   |
-| 5                       | 67   | 68   | 49   |
-| Sample mean $\bar{y}_j$ | 62   | 66   | 52   |
-| Sample variance $s_j^2$ | 27.5 | 26.5 | 31.0 |
-
-<center>Grand sample mean $\bar{y} = 60$</center>
-
-## Chemitech Experiment (cont'd)
-
-**One-way ANOVA by Regression with dummy variables:**
-
--   Consider the Assembly Method (Factor) as the independent variable with three categorical values (A, B, C).
-
--   Use dummy variables to represent or differentiate the three categorical values.
-
--   Include only (any) two dummy variables for three categories.
-
--   Use an $F$-Test to test the overall significance of the dummy variables.
-
-## Define Dummy Variables
-
-::: nonincremental
-::: {style="font-size: 70%;"}
-| Production | Method | DA  | DB  | DC  |
-|------------|--------|-----|-----|-----|
-| 58         | A      | 1   | 0   | 0   |
-| 64         | A      | 1   | 0   | 0   |
-| 55         | A      | 1   | 0   | 0   |
-| 66         | A      | 1   | 0   | 0   |
-| 67         | A      | 1   | 0   | 0   |
-| 58         | B      | 0   | 1   | 0   |
-| 69         | B      | 0   | 1   | 0   |
-| 71         | B      | 0   | 1   | 0   |
-| 64         | B      | 0   | 1   | 0   |
-| 68         | B      | 0   | 1   | 0   |
-| 48         | C      | 0   | 0   | 1   |
-| 57         | C      | 0   | 0   | 1   |
-| 59         | C      | 0   | 0   | 1   |
-| 47         | C      | 0   | 0   | 1   |
-| 49         | C      | 0   | 0   | 1   |
-
--   DA represents Method A\
--   DB represents Method B\
--   DC represents Method C
-:::
 :::
 
-## Model and Interpretation
+- For Butler: $R^2 = 21.60 / 23.90 = 0.904$ — miles and deliveries together explain about **90%** of the variation in travel time.
 
-**Regression Model (assume category C is the reference category):**
-
-$$
-Y = \beta_0 + \beta_1 \cdot (DA) + \beta_2 \cdot (DB) + 0 \cdot (DC) + \epsilon
-$$
-
-or
-
-$$
-E(Y) = \beta_0 + \beta_1 \cdot (DA) + \beta_2 \cdot (DB) + 0 \cdot (DC)
-$$
-
-$\beta_1$: slope of DA - the difference in $E(Y)$ between the category that DA represents and the reference category.
-
-$\beta_2$: slope of DB - the difference in $E(Y)$ between the category that DB represents and the reference category.
-
-## Model and Interpretation (cont'd)
-
-**Regression Model (Use Method C as the reference method):**
-
-$$
-E(Y) = \beta_0 + \beta_1 \cdot (DA) + \beta_2 \cdot (DB) + 0 \cdot (DC)
-$$
-
-$\mu_C = \beta_0$ for Method C\
-$\mu_A = \beta_0 + \beta_1$ for Method A\
-$\mu_B = \beta_0 + \beta_2$ for Method B
-
-## Hypotheses
-
-**Test of Overall Significance (**$F$ test):
-
-$H_0: \beta_1 = \beta_2 = 0$ (i.e., $\mu_A = \mu_B = \mu_C$, and Method is insignificant)
-
-**Test of individual significance (**$t$ test):
-
-$H_0: \beta_1 = 0$ (i.e., $\mu_A - \mu_C = 0$)\
-$H_0: \beta_2 = 0$ (i.e., $\mu_B - \mu_C = 0$)
-
-## Excel Output
+## The $R^2$ Trap: It Can Only Go Up
 
 <br>
 
-```{r  echo=FALSE, out.width = "95%",fig.align="center"}
-knitr::include_graphics("figs/chemitech_experiment_excel_output.png")
-```
+- Here is the catch that makes $R^2$ dangerous in multiple regression:
 
-<br>
+  - **Adding *any* predictor — even a useless, random one — can only *increase* $R^2$ (never decrease it).**
 
--   Reject $H_0$ at $\alpha$ = 5%.
+- Why: a new variable gives least squares one more knob to fit noise, so $SSE$ shrinks and $R^2$ ticks up — whether or not the variable is real.
 
--   Overall, the assembly method is a significant factor.
+- So a bigger $R^2$ does **not** mean a better model. If we chased $R^2$ alone, we would throw every variable we could find into the model.
 
-## Details of the $F$-Test
+- We need a fit measure that **charges a penalty** for each predictor added. That is **adjusted $R^2$.**
 
-<br>
-
-**Test Statistic:**
-
-$F = MSTR/MSE = 260/28.3333 = 9.1765$
-
-<br>
-
-**Decision Rule: Critical-value approach**
-
-Reject $H_0$ if $F \geq 3.8853$
-
-where $3.8853 = F_{0.05} = F.INV(0.95, 2, 12)$ is the 5% upper critical value.
-
-## $p$-value
+## Adjusted $R^2$ — Pay a Fee per Predictor
 
 ::: {style="font-size: 90%;"}
+- Adjusted $R^2$ replaces the raw sums of squares with their **per-degree-of-freedom** versions:
+
+::: fragment
+
+$$
+R^2_a = 1 - \frac{SSE/(n - p - 1)}{SST/(n - 1)} = 1 - (1 - R^2)\,\frac{n - 1}{n - p - 1}
+$$
+
+:::
+
+- The penalty rises with $p$ (more predictors) and eases with $n$ (more data). Two consequences:
+
+  - $R^2_a \le R^2$ **always**, and the gap widens as you add predictors.
+  - $R^2_a$ goes **up only if a new predictor reduces the error variance $s^2$ (= MSE) more than the penalty costs.**
+
+- That makes $R^2_a$ a real **model-building criterion**: compare candidate models, prefer the higher $R^2_a$.
+
+- Butler: $R^2 = 0.904$ but $R^2_a = 0.876$ — the gap is the fee for using two predictors on only ten observations.
+:::
+
+# The Spine Model: All Four Drivers {background-color="#cfb991"}
+
+## Fitting Sales on All Four Drivers in Excel
+
+::::: nonincremental
+:::: columns
+::: {.column width="42%"}
 <br>
 
-```{r  echo=FALSE, out.width = "60%",fig.align="center"}
-knitr::include_graphics("figs/chemitech_experiment_pvalue.png")
+**Data → Data Analysis → Regression**
+
+- Input Y Range: `sales2012_k`
+- Input X Range: all **four** predictor columns (`population_3mi`, `income_3mi`, `yelp_rating`, `endcap`) — selected together
+- Labels ✓, Confidence Level 95% ✓
+
+<br>
+
+The top block reports overall fit; we read it now and test it in Lecture 2.
+:::
+
+::: {.column width="58%"}
+```{r  echo=FALSE, out.width = "100%",fig.align="center"}
+knitr::include_graphics("figs/excel_reg_full_stats.png")
 ```
+:::
+::::
+:::::
 
-Where,
+## The Estimated Equation for Store Sales
 
-$p$-value = 1 – `F.DIST(9.1765, 2, 12, TRUE)` $\approx 0.0038$
+<br>
 
--   There is sufficient statistical evidence to conclude that at least two mean numbers of units produced are not equal and hence the Assembly Method is significant. The significance level is 5%.
+From the **Coefficients** column of the output:
+
+::: fragment
+
+$$
+\widehat{\text{sales}} = -52.1 + 0.00035\,\text{pop} + 0.0047\,\text{income} + 642.3\,\text{yelp} + 816.5\,\text{endcap}
+$$
+
 :::
 
 <br>
 
-## Comparisons
+- **Fit:** $R^2 = 0.932$, adjusted $R^2 = 0.925$ — the four drivers together explain about **93%** of the variation in store sales, and that holds up after the per-predictor penalty.
 
-|           | Coefficients | SE      | t Stat  |
-|-----------|--------------|---------|---------|
-| Intercept | 52           | 2.38048 | 21.8444 |
-| DA        | 10           | 3.3665  | 2.97044 |
-| DB        | 14           | 3.3665  | 4.15862 |
+- Standard error $s = \$308.5\text{K}$: a rough "typical miss" of the model's sales prediction.
 
--   Method A is predicted to have a higher expected production quantity than Method C (by 10 units), and it is significantly higher at $\alpha = 5\%$.
+- Now the interpretation — and the surprise.
 
--   Method B is predicted to have a higher expected production quantity than Method C (by 14 units), and it is significantly higher at $\alpha = 5\%$.
+## Reading the Partial Effects
 
--   Method A is predicted to have a lower expected production quantity than Method B (by 4 units), but the significance level cannot be determined directly based on this particular ANOVA output.
+```{r  echo=FALSE, out.width = "82%",fig.align="center"}
+knitr::include_graphics("figs/autoparts_coef_effects.png")
+```
 
---->
-````
+::: nonincremental
+- Each **Yelp star** predicts **+\$642K** in annual sales, holding location and merchandising fixed. An **endcap** predicts **+\$816K**, holding everything else fixed.
+- The two location drivers (population, income) move the needle far less — we will test whether they matter at all next lecture.
+:::
 
-# Summary {background-color="#cfb991"}
+## The Surprise: Bigger Market ≠ More Sales
+
+<br>
+
+- A manager's intuition says **population** and **income** should dominate — more people, more money, more sales.
+
+- But the partial coefficients say otherwise:
+
+  - **Population:** $+0.00035$ → about **+\$0.35K per extra 1,000 residents**. Essentially flat.
+  - **Income:** $+0.0047$ → about **+\$4.7K per extra \$1,000 of median income**. Small.
+
+- Meanwhile **service** (Yelp) and **merchandising** (endcap) carry the model.
+
+- **Why the intuition fails:** in simple regression a market-size variable can look strong because it travels with the variables that *really* matter. Once those are in the model, "holding the others constant" strips the borrowed credit away. We will confirm this with formal tests in Lecture 2.
+
+## ⏱️ Team Sprint 1 — Build & read the model
+
+::: {.sprint .nonincremental}
+**Decide:** what does each driver contribute to predicted store sales, holding the others constant?
+
+**Data:** `data/autoparts.csv` · **Time:** ~12 min
+
+1. In Excel: **Data → Data Analysis → Regression.** Y = `sales2012_k`; X = the four columns `population_3mi`, `income_3mi`, `yelp_rating`, `endcap` (select together). Check **Labels** and **Confidence Level 95%**.
+2. Write out the estimated equation $\widehat{\text{sales}} = b_0 + b_1(\text{pop}) + \cdots$ from the **Coefficients** column.
+3. Record $R^2$ and **Adjusted $R^2$** from the top block. In one sentence, say what fraction of the sales story the model captures.
+4. Translate the **Yelp** and **endcap** coefficients into plain dollars ("each extra star / an endcap is worth about \$___K, holding the others fixed").
+
+**Hand in (1 slide):** the equation, $R^2$ vs. adjusted $R^2$, and your dollar reading of the two biggest drivers.
+:::
+
+## Debrief — Manager's Takeaway (Lecture 1)
+
+<br>
+
+- **One sentence:** four drivers explain **93%** of store-sales variation, and the effects that matter are **service (Yelp, +\$642K/star)** and **merchandising (endcap, +\$816K)** — *not* the market-size variables a manager would bet on.
+
+- **One number:** **adjusted $R^2 = 0.925$** — high fit that *survives* the penalty for using four predictors, so the model isn't just padded with noise.
+
+- **One caveat:** "holding the others constant" is doing heavy lifting. A coefficient near zero (population, income) doesn't prove the variable is irrelevant in the world — only that it adds little **once the others are in.** Next lecture we make that rigorous with the $F$- and $t$-tests.
+
+## Carry-forward (to Lecture 2)
+
+::: nonincremental
+- **Your client (homework, part 1):** fit a multiple regression for your team's case with **two or more** predictors. Report the estimated equation, $R^2$, and adjusted $R^2$; interpret each coefficient with the "holding the others constant" clause.
+
+- **Next lecture:** which of these drivers are *statistically real*? We separate the **overall $F$-test** from the **individual $t$-tests**, put a defensible **dollar value on an endcap** with a dummy variable, and make the investment call.
+:::
+
+# Lecture 2 — Testing & the Investment Call {background-color="#cfb991"}
+
+## The Brief — Lecture 2
+
+<br>
+
+> "The model fits well — but is each driver *real*, or could its coefficient be noise? Put a **dollar figure on an endcap** we can defend in a budget meeting. Then tell me: invest in **location, service, or merchandising**?"
+
+<br>
+
+- A high $R^2$ tells us the model predicts well **in aggregate**. It does **not** tell us which individual coefficients we can trust.
+
+- Today we add the inference layer: an **overall** test (is the model useful at all?), **individual** tests (which predictors carry their weight?), the **dummy variable** that turns "has an endcap" into a dollar amount, and a **multicollinearity** check so we don't get fooled by overlapping predictors.
+
+# Is the Model Useful? The Overall $F$-Test {background-color="#cfb991"}
+
+## $F$ vs. $t$: Different Jobs Now
+
+<br>
+
+- In **simple** regression, the $F$-test and the $t$-test gave the **same** answer — there was only one predictor to judge.
+
+- In **multiple** regression they split into two distinct jobs:
+
+  - **$F$-test (overall):** is the model **as a whole** useful — does **at least one** predictor carry information?
+  - **$t$-tests (individual):** taken **one at a time**, which specific predictors are pulling their weight?
+
+- You always read them in that order: **$F$ first** (is anything here?), then **$t$'s** (which things?).
+
+## The $F$-Test — Hypotheses and Statistic
+
+<br>
+
+- **Hypotheses** — $H_0$ says *every* slope is zero (the model explains nothing):
+
+::: fragment
+
+$$
+H_0: \beta_1 = \beta_2 = \cdots = \beta_p = 0 \qquad H_a: \text{at least one } \beta_j \neq 0
+$$
+
+:::
+
+- **Test statistic** — the ratio of explained to unexplained variation, each per degree of freedom:
+
+::: fragment
+
+$$
+F = \frac{MSR}{MSE} = \frac{SSR/p}{SSE/(n - p - 1)} \;\sim\; F_{p,\; n-p-1} \text{ under } H_0
+$$
+
+:::
+
+- Reject $H_0$ when $F$ is large (p-value $\le \alpha$). In Excel this is the **"Significance F"** cell in the ANOVA block.
+
+## The $F$-Test on the Auto-Parts Model
+
+<br>
+
+From the ANOVA block ($n = 45$, $p = 4$):
+
+::: fragment
+
+| Source | df | SS | MS | $F$ |
+|---|---:|---:|---:|---:|
+| Regression | 4 | 52,033,385 | 13,008,346 | **136.7** |
+| Residual | 40 | 3,806,649 | 95,166 | |
+| Total | 44 | 55,840,034 | | |
+
+:::
+
+::: fragment
+
+$$
+F = \frac{MSR}{MSE} = \frac{13{,}008{,}346}{95{,}166} = 136.7, \qquad \text{Significance } F \approx 3.4\times10^{-23}
+$$
+
+:::
+
+- $F = 136.7$ with p-value far below any $\alpha$ → **reject $H_0$**: the model is overwhelmingly useful — **at least one** driver carries real information. Now, *which ones?*
+
+# Which Predictors Matter? The $t$-Tests {background-color="#cfb991"}
+
+## The Individual $t$-Test
+
+<br>
+
+- For each predictor we ask: does it add information **in the presence of all the others**?
+
+::: fragment
+
+$$
+H_0: \beta_j = 0 \qquad H_a: \beta_j \neq 0 \qquad t = \frac{b_j}{s_{b_j}}, \quad df = n - p - 1
+$$
+
+:::
+
+- $s_{b_j}$ is the standard error of the coefficient (Excel's "Standard Error" column). Reject $H_0$ when the p-value $\le \alpha$, i.e. roughly when $|t| \gtrsim 2$.
+
+- **Critical subtlety:** each $t$-test is *conditional on the other predictors being in the model.* A predictor can be significant alone and insignificant here — because a teammate is already explaining its share.
+
+## Reading the Coefficient Table
+
+::::: nonincremental
+:::: columns
+::: {.column width="40%"}
+<br>
+
+For each predictor, the output gives **Coefficient**, **Std Error**, **t Stat**, **P-value**, and a 95% CI.
+
+- $|t| > 2$ (p < 0.05) → **significant**
+- $|t| < 2$ (p > 0.05) → **not significant** *in this model*
+
+<br>
+
+Scan the **t Stat** column top to bottom and sort the drivers into "real" vs. "can't tell."
+:::
+
+::: {.column width="60%"}
+```{r  echo=FALSE, out.width = "100%",fig.align="center"}
+knitr::include_graphics("figs/excel_reg_full_coefs.png")
+```
+:::
+::::
+:::::
+
+## The Verdict on Each Driver
+
+<br>
+
+::: fragment
+
+| Driver | Coefficient | $t$ | p-value | Significant? |
+|---|---:|---:|---:|---|
+| Population | +0.00035 | 0.88 | 0.39 | **No** |
+| Income | +0.0047 | 1.50 | 0.14 | **No** |
+| Yelp rating | **+642.3** | **16.5** | < 0.0001 | **Yes** |
+| Endcap | **+816.5** | **6.98** | < 0.0001 | **Yes** |
+
+:::
+
+- The model is highly significant overall ($F = 136.7$) — yet **two of its four predictors are individually insignificant.**
+
+- **The lesson:** a significant $F$ does **not** mean every variable matters. Here all the explanatory power comes from **service (Yelp)** and **merchandising (endcap)**; the location variables are statistical passengers.
+
+- *Significance ≠ importance, and importance ≠ significance.* Judge each on its own evidence.
+
+## Confirming with a Side-by-Side Comparison
+
+::::: nonincremental
+:::: columns
+::: {.column width="40%"}
+<br>
+
+Build models step by step and watch **adjusted $R^2$**:
+
+- **Population + Income alone:** the demographics explain almost **nothing**.
+- **Add Yelp:** adjusted $R^2$ leaps.
+- **Add Endcap:** it climbs again.
+
+<br>
+
+The location variables a manager would buy first are the ones that move the model **least**.
+:::
+
+::: {.column width="60%"}
+```{r  echo=FALSE, out.width = "100%",fig.align="center"}
+knitr::include_graphics("figs/excel_model_comparison.png")
+```
+:::
+::::
+:::::
+
+# The Dummy Variable: Pricing an Endcap {background-color="#cfb991"}
+
+## A Switch, Not a Dial: Encoding "Has an Endcap"
+
+<br>
+
+- `endcap` isn't a number you can have more or less of — it is a **category**: a store either has premium endcap placement or it doesn't.
+
+- We encode it as a **dummy (indicator) variable**: $1$ = has an endcap, $0$ = none. The $0$ category is the **reference** (baseline) level.
+
+- Excel treats the 0/1 column **like any other predictor** — no special tool. Its coefficient has a special meaning:
+
+  - $b_{\text{endcap}}$ = the **average difference in sales between an endcap store and a non-endcap store, holding the other predictors constant.**
+
+- In other words, the dummy coefficient is the **dollar value of an endcap** — exactly what the CFO asked for.
+
+## What the Dummy Does to the Equation
+
+<br>
+
+- Split the fitted equation by the two values of the dummy (all else held fixed):
+
+::: fragment
+
+$$
+\text{No endcap } (x=0): \quad \widehat{\text{sales}} = (b_0 + \cdots) + 642.3\,\text{yelp}
+$$
+
+$$
+\text{Endcap } (x=1): \quad \widehat{\text{sales}} = (b_0 + 816.5 + \cdots) + 642.3\,\text{yelp}
+$$
+
+:::
+
+- Same slope on every other variable — only the **intercept shifts up by \$816.5K.**
+
+- A dummy gives the two groups **parallel lines**: identical response to Yelp, location, income — but a fixed **level gap** between them.
+
+## The Endcap Gap, Drawn
+
+```{r  echo=FALSE, out.width = "74%",fig.align="center"}
+knitr::include_graphics("figs/autoparts_endcap_dummy.png")
+```
+
+::: nonincremental
+- Two parallel lines, separated by a constant **\$816K** — the endcap premium, holding population, income, and Yelp fixed.
+- $t = 6.98$, p < 0.0001 → this gap is **not** noise. An endcap is a real, sizeable lever.
+:::
+
+## Putting a Defensible Number on the Decision
+
+<br>
+
+- **Scenario:** the chain plans a new store with `population_3mi = 120,000`, `income_3mi = 55,000`, `yelp_rating = 4.0`. Should it pay for endcap placement?
+
+- Plug into the fitted equation, once with `endcap = 0` and once with `endcap = 1`:
+
+::: fragment
+
+| Configuration | Predicted annual sales |
+|---|---:|
+| Without endcap | **\$2,816K** |
+| With endcap | **\$3,632K** |
+| **Lift from the endcap** | **+\$816K / year** |
+
+:::
+
+- **The decision rule:** negotiate for the endcap **if its annual cost is below \~\$816K.** If the placement leases for, say, \$150K/year, that is a clear yes. The dummy turned a vague "merchandising matters" into a number you can put in a budget.
+
+## A Note on Categories with More Than Two Levels
+
+<br>
+
+- `endcap` had two levels → **one** dummy. The rule generalizes:
+
+  - A categorical variable with $k$ levels needs $\mathbf{k - 1}$ dummy variables (one level is the reference).
+
+- Example — three store **formats** (Standard, Express, Flagship): use **two** dummies (`Express` 0/1, `Flagship` 0/1); "Standard" is the reference. Each dummy coefficient is that format's sales gap **versus Standard**.
+
+- **Do not** encode categories as a single 1/2/3 number — that would falsely force the levels to be evenly spaced and ordered. Always use separate 0/1 columns.
+
+# When Predictors Overlap: Multicollinearity {background-color="#cfb991"}
+
+## Why We Check It
+
+<br>
+
+- **Multicollinearity** = two or more predictors are strongly correlated *with each other*.
+
+- When predictors overlap, the model struggles to credit the effect to one versus another. Symptoms:
+
+  - coefficient **standard errors inflate** → wide CIs, small $t$'s;
+  - coefficients become **unstable** and can flip sign;
+  - an *important* predictor can look insignificant — not because it's useless, but because a correlated partner is absorbing its credit.
+
+- It rarely hurts **prediction**, but it muddies **interpretation** — and interpretation is exactly what the CFO is buying.
+
+## Detecting It: Correlations and VIF
+
+::::: nonincremental
+:::: columns
+::: {.column width="46%"}
+<br>
+
+- **Quick look:** the predictor **correlation matrix** (Data Analysis → Correlation). Flag any pair with $|r| > 0.7$.
+
+- **Formal measure:** the **Variance Inflation Factor**,
+
+$$
+VIF_j = \frac{1}{1 - R_j^2}
+$$
+
+where $R_j^2$ is from regressing $x_j$ on all the other predictors. **Rule of thumb: investigate when VIF > 5.**
+:::
+
+::: {.column width="54%"}
+```{r  echo=FALSE, out.width = "100%",fig.align="center"}
+knitr::include_graphics("figs/autoparts_predictor_corr.png")
+```
+:::
+::::
+:::::
+
+## Our Model Is Clean — So the Verdict Stands
+
+<br>
+
+- For the auto-parts model every pairwise correlation is small (largest: income–endcap at $-0.47$) and **every VIF is below 1.7** — far under the threshold of 5.
+
+::: fragment
+
+| Predictor | VIF |
+|---|---:|
+| Population | 1.17 |
+| Income | 1.49 |
+| Yelp rating | 1.29 |
+| Endcap | 1.62 |
+
+:::
+
+- So population and income are insignificant for an **honest** reason — they genuinely add little once service and merchandising are in the model. This is **not** a multicollinearity artifact; the verdict is trustworthy.
+
+- *Contrast:* had population and income been highly correlated, we'd have to be cautious — their small $t$'s could have been an overlap symptom rather than true irrelevance.
+
+## ⏱️ Team Sprint 2 — Test the drivers & make the call
+
+::: {.sprint .nonincremental}
+**Decide:** which drivers are *real*, what is an endcap worth, and where should the CFO invest?
+
+**Data:** `data/autoparts.csv` · **Time:** ~15 min
+
+1. From your regression output, read **Significance F** (overall test) — is the model useful at all?
+2. In the **Coefficients** table, mark each predictor **significant** ($|t| > 2$, p < 0.05) or **not** — sort the four drivers into "real" vs. "can't tell."
+3. **Price the endcap:** predict sales for a planned store (`pop = 120,000`, `income = 55,000`, `yelp = 4.0`) with `endcap = 0` and with `endcap = 1`; the difference is the endcap's dollar value.
+4. State the investment call in **three sentences**: the lever to fund · the number · the caveat.
+
+**Hand in (1 slide):** your significant-vs-not verdict, the endcap's dollar value, and the CFO recommendation.
+:::
+
+## Debrief — Manager's Takeaway (Lecture 2)
+
+<br>
+
+- **One sentence:** the overall model is decisive ($F = 136.7$), but only **service (Yelp)** and **merchandising (endcap)** survive their individual $t$-tests — so the budget goes there, not into bigger-market real estate.
+
+- **One number:** **\$816K** — an endcap's value, straight off the dummy coefficient; defensible against any lease under that figure.
+
+- **One caveat:** every coefficient is read "holding the other three constant" and the model is *descriptive* — pilot the endcap, then re-estimate before betting the chain on it.
+
+# Debrief — The Investment Call {background-color="#cfb991"}
+
+## The Whole Picture on One Page
+
+::: r-fit-text
+| Driver | Partial effect | $t$ | Verdict | Investment read |
+|---|---:|---:|---|---|
+| Population (3 mi) | +\$0.35K / 1,000 residents | 0.88 | not significant | bigger market ≠ more sales here |
+| Income (3 mi) | +\$4.7K / \$1,000 income | 1.50 | not significant | richer market ≠ more sales here |
+| **Yelp rating** | **+\$642K / star** | **16.5** | **significant** | **invest in service / experience** |
+| **Endcap** | **+\$816K** | **6.98** | **significant** | **buy the endcap placement** |
+
+Model: $R^2 = 0.932$, adjusted $R^2 = 0.925$, overall $F = 136.7$ (p $< 10^{-22}$), $s = \$308.5$K, all VIF $< 1.7$.
+:::
+
+- **Recommendation to the CFO:** stop chasing big, rich markets — **location demographics don't move sales** in this chain. The money belongs in **service quality** (every Yelp star ≈ +\$642K/yr) and in **endcap merchandising** (≈ +\$816K/yr, well worth a sub-\$816K lease). Both effects are statistically rock-solid and not a multicollinearity mirage.
+
+## $F$ vs. $t$ — the Lesson That Travels
+
+<br>
+
+- **The $F$-test and the $t$-tests answer different questions, and you need both:**
+
+  - $F$ said the model **as a whole** is useful — but that alone could have tempted us to keep all four variables.
+  - The $t$-tests revealed that **half the predictors were dead weight**, steering the budget toward the two that actually pay.
+
+- **Significance is conditional.** Every coefficient and every $t$ here means "…*holding the other three constant.*" Change the set of predictors and the story can change.
+
+- **Significance ≠ importance.** With huge samples trivial effects turn "significant"; with small samples real effects can hide. Always pair the test with the **dollar size** of the effect — that is the number a manager decides on.
+
+## Manager's Takeaway
+
+<br>
+
+- **One sentence:** for this 45-store chain, **service and merchandising — not location demographics — drive sales**, so invest in Yelp rating (+\$642K/star) and endcap placement (+\$816K), each statistically decisive.
+
+- **One number to remember:** **\$816K** — the value of an endcap, read straight off a dummy variable's coefficient, holding everything else constant.
+
+- **One caveat:** the model *describes* 45 existing stores; it does not *prove* that buying an endcap will *cause* +\$816K at a brand-new store. Correlation control is the best we can do with observational data — pilot it, then re-estimate.
+
+- **Practice with the real data:** `data/autoparts.csv` + Excel Regression → reproduce $R^2 = 0.932$, $F = 136.7$, the four coefficients, and the prediction. Worked solutions: `data/autoparts_regression.xlsx`.
 
 ## Summary
 
 ::: nonincremental
-Some key takeaways from this session:
+Some key takeaways from this topic:
 
-- Multiple regression analysis enables the inclusion of more independent variables, improving estimates over simple regression.
+- **Multiple regression** estimates the effect of each predictor **holding the others constant** — observational data's closest move to a controlled comparison.
+- A **partial coefficient** can differ wildly from its simple-regression cousin: population and income looked plausible but added nothing once Yelp and endcap were in.
+- **$R^2$ only ever rises** when you add predictors → judge model size with **adjusted $R^2$**, which charges a fee per predictor.
+- **$F$ first, then $t$:** $F$ asks "is the model useful at all?"; the $t$-tests ask "which predictors carry their weight?" A significant $F$ does not bless every coefficient.
+- A **dummy variable** (0/1) prices a category — the endcap coefficient *is* the dollar value of an endcap; $k$ levels need $k-1$ dummies.
+- **Multicollinearity** (overlapping predictors; check VIF > 5) muddies interpretation; here every VIF < 1.7, so the verdict holds.
+- Regression output is an **input to a decision**: translate coefficients into dollars and weigh them against costs.
+:::
 
-- The **multiple regression model** describes how the dependent variable is related to multiple independent variables.
+## Carry-forward
 
-- **Least Squares Method** is used to estimate the coefficients by minimizing the sum of squared errors.
+::: nonincremental
+- **Your client (homework, part 2):** for your team's case, run the **overall $F$-test** and the **individual $t$-tests**; if your case has a natural category, add a **dummy** and interpret its coefficient as a group difference. Check **VIF** for any predictors you suspect overlap. Close with a one-paragraph recommendation: which lever should the client pull, and what is it worth?
 
-- Adjusted $R^2$ accounts for the number of predictors, making it a more reliable criterion for model selection.
-
-- **Multicollinearity** can affect the stability of coefficient estimates and make it difficult to isolate the effects of individual predictors.
-
-- Dummy variables can be used to incorporate categorical variables in regression models.
-
-- The overall significance of the model is tested using the **F-test**, while individual predictors are tested using **t-tests**.
+- **Where we've been:** from *comparing* two groups (inference) to *predicting* with one driver (simple regression) to *isolating many drivers at once* (today) — the analyst's core toolkit for turning data into a defensible business decision.
 :::
 
 # Thank you! {background-color="#cfb991"}

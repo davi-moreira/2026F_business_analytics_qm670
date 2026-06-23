@@ -1,11 +1,11 @@
 ---
 title: "<span style = 'font-size: 100%;'> QM 6700: Business Analytics </span>"
-subtitle: "<span style = 'font-size: 150%;'> Simple Linear Regression</span>"
+subtitle: "<span style = 'font-size: 150%;'> Simple Linear Regression </span>"
 author: "Professor<br>Davi Moreira<br>"
-# date: "2024-08-01"
+# date: "2026-10-05"
 # date-format: "MMMM DD, YYYY"
 format:
-  revealjs: 
+  revealjs:
     transition: slide
     background-transition: fade
     width: 1600
@@ -13,7 +13,7 @@ format:
     center: true
     slide-number: true
     incremental: true
-    chalkboard: 
+    chalkboard:
       buttons: false
     preview-links: auto
     #logo: images/quarto.png
@@ -28,1874 +28,771 @@ html-math-method:
 
 :::::: nonincremental
 ::::: columns
-::: {.column width="50%" style="text-align: center; justify-content: center; align-items: center;"}
--   Simple Linear Regression Model
--   Least Squares Method
--   Coefficient of Determination
--   Model Assumptions
--   Testing for Significance
+::: {.column style="width: 50%; text-align: center; justify-content: center; align-items: center;"}
+- New Case Spotlight: an auto-parts retailer picking store sites
+- From *comparing* groups to *predicting* an outcome
+- The simple linear regression model
+- Least squares: the best-fit line
+- Interpreting the slope and intercept
+- $R^2$: how much does the line explain?
 :::
 
-::: {.column width="50%" style="text-align: center; justify-content: center; align-items: center;"}
--   Excel’s Regression Tool
--   Using the Estimated Regression Equation for Estimation and Prediction
--   Residual Analysis: Validating Model Assumptions
--   Outliers and Influential Observations
+::: {.column style="width: 50%; text-align: center; justify-content: center; align-items: center;"}
+- Is the relationship real? The $t$-test on the slope
+- Confidence interval for the slope
+- Residual analysis: checking the assumptions
+- Predicting sales for a brand-new store
+- Confidence vs. prediction intervals
+- From a fitted line to a site recommendation
 :::
 :::::
 ::::::
 
-# Association Between Two Variables {background-color="#cfb991"}
+# Case Spotlight: Auto-Parts Retail {background-color="#cfb991"}
 
-## Covariance
-
-<br>
-
-```{r  echo=FALSE, out.width = "50%",fig.align="center"}
-knitr::include_graphics("figs/scatter_plot.png")
-```
+## A New Client — Where Should the Next Store Go?
 
 <br>
 
-::: nonincremental
--   The [Covariance](https://en.wikipedia.org/wiki/Covariance) is a measure of the linear association between two variables.
--   Positive values indicate a positive relationship.
--   Negative values indicate a negative relationship.
-:::
+- We close the Vungle engagement and open a new one. Our client is a regional **auto-parts retailer** with **45 stores** and capital to open more.
+
+- The real-estate team scores prospective sites on demographics — population, income — and on the store's **Yelp rating** (a proxy for service quality once a store is open).
+
+- The question on the table: **which sites will sell?** The CFO wants every new lease backed by a sales forecast, not a hunch.
+
+- We have one dataset, `data/autoparts.csv`: for each of the 45 existing stores, its **2012 annual sales** (\$K), trade-area **population** and **income**, an **end-cap** placement flag, and its **Yelp rating**.
+
+- Until now we *compared* two groups. Now we *predict* a number — and that is what **regression** does.
+
+## The Brief — Today's Managerial Question
 
 <br>
 
-<br>
-
-## Correlation Coefficient
+> "Does a store's **Yelp rating** predict its **annual sales**? If so, by how much — and how confident are we when we forecast a brand-new store?"
 
 <br>
 
-```{r  echo=FALSE, out.width = "80%",fig.align="center"}
-knitr::include_graphics("figs/xkcd.png")
-```
+- **Lecture 1** builds and reads the model: fit `sales ~ yelp_rating`, interpret the slope (dollars per star), and measure fit with $R^2$.
 
-::: nonincremental
--   [Correlation](https://en.wikipedia.org/wiki/Correlation) is a unit-free measure of linear association and not necessarily causation.
+- **Lecture 2** asks whether the relationship is *real* (a $t$-test on the slope), checks the model's **assumptions**, and turns the line into a **site-selection forecast**.
 
--   The coefficient can take on values between −1 and +1.
+- **How the studio runs:** I demo each step on a textbook anchor (**Armand's Pizza**) and on the auto-parts data → **your team** fits the model and makes the site call.
 
-    -   Values near −1 indicate a strong negative linear relationship.
-    -   Values near +1 indicate a strong positive linear relationship.
-
--   The closer the correlation is to zero, the weaker the linear relationship.
-:::
+## From Comparing to Predicting
 
 <br>
 
-# Model {background-color="#cfb991"}
-
-## What is a model?
-
-::::: columns
-::: {.column width="40%" style="text-align: center; justify-content: center; align-items: center;"}
-<br>
+| What we did (Topics 7–9) | What we do now |
+|---|---|
+| Estimate / test **one** number (a mean, a proportion) | Model **how one variable moves with another** |
+| "Is B's eRPM above \$3.30?" | "How many \$ of sales per Yelp star?" |
+| Output: a decision (reject / fail to reject) | Output: an **equation you can forecast with** |
 
 <br>
 
-<br>
+- Regression develops an **equation** showing how a **dependent variable** $y$ (what we predict — sales) relates to an **independent variable** $x$ (the predictor — Yelp rating).
+
+- **Simple** linear regression uses **one** predictor; the relationship is approximated by a **straight line**. (More predictors → multiple regression, next topic.)
+
+# Lecture 1 — The Model, Least Squares, and $R^2$ {background-color="#cfb991"}
+
+## The Brief — Lecture 1
 
 <br>
 
-> All models are wrong, but some are useful.
->
-> --- George Box
-:::
-
-::: {.column width="60%" style="text-align: center; justify-content: center; align-items: center;"}
-```{r  echo=FALSE, out.width = "70%",fig.align="center"}
-knitr::include_graphics("figs/metro.png")
-```
-
-<center>[NY City Subway Map](https://new.mta.info/map/5256)</center>
-:::
-:::::
+> "Fit a straight line to `sales ~ yelp_rating`. What does the slope mean in dollars, and how much of the store-to-store sales gap does Yelp rating explain?"
 
 <br>
 
-## What does it mean to "model" data?
+- By the end of Lecture 1 **your team** will have a fitted equation, a dollars-per-star interpretation, and an $R^2$ — the raw material for a site score.
+
+- The decision it feeds: **rank prospective sites** by predicted sales.
+
+## The Simple Linear Regression Model
 
 <br>
 
--   Let's start with a very simple premise:
+- The **model** describes how $y$ relates to $x$ and a random **error term** $\varepsilon$ in the whole population of stores:
 
-    -   to model, we need to make explicit the conditions under which a variable $X$ is related to a variable $Y$.
-
-<br>
-
--   Let's begin by giving specific names to these variables:
-
-    -   **Dependent Variable (DV)**: This is our phenomenon of interest, usually denoted as $Y$.
-
-    -   **Independent Variable (IV)**: This is the phenomenon that explains/describe our dependent variable, generally denoted as $X$.
-
-## What does it mean to "model" data?
-
-<br>
-
-Mathematically, we model $Y$ as a *function* of $X$. Statistically, modeling can serve two main purposes:
-
-1.  [**Prediction**](https://www.statlearning.com/): The possibility of using the values of $X$ to predict the value of $Y$. There must be a substantive connection between these two variables for one to generate reliable predictions about the values of the other.
-
-2.  [**Explanation**](https://moderndive.com/5-regression.html): Used to understand the connection and significance (both substantive and statistical) of the relationship between two variables. In this case, we aim to accurately estimate the impact of one variable on the other, preferably excluding any potential omitted variables.
-
-# Motivation: Walmart Carton-Mix Optimization Study {background-color="#cfb991"}
-
-## Motivation: Walmart Carton-Mix Optimization Study
-
-<br>
-
--   Walmart is the world's largest retailer with over 245 million customers weekly.
-
--   In 2000, Walmart launched its online shopping site, `Walmart.com`.
-
--   A network of distribution centers was created in the US to manage packaging for online orders.
-
-## Motivation: Walmart Carton-Mix Optimization Study
-
-<br>
-
-**Carton-Mix Optimization Study**
-
--   **Location**: Carrollton, Georgia distribution center.
-
--   **Objective**: Minimize material, labor, and shipping costs by optimizing the size and number of cartons.
-
--   **Constraints**:
-
-    -   Minimum and maximum carton sizes.
-    -   One-size carton limit for automatically constructed cartons.
-
--   **Peak Season**: November to December, with over 100,000 packages shipped per day.
-
-## Motivation: Walmart Carton-Mix Optimization Study
-
-::: nonincremental
--   Data was collected to develop a cost model for optimizing carton mix.
--   DV: material cost of a carton in dollars per carton.
--   IV: volume of the carton measured in cubic inches per carton.
--   **Cost Model Formula**:
+::: fragment
 
 $$
-y = -0.11 + 0.0014x
+y = \beta_0 + \beta_1 x + \varepsilon
 $$
 
--   Example Calculation:
-
-    -   Carton volume: 2800 cubic inches
-    -   Estimated material cost: $y = -0.11 + 0.0014 \times 2800 = 3.81$
 :::
 
-## Motivation: Walmart Carton-Mix Optimization Study
+- $\beta_0$ (intercept) and $\beta_1$ (slope) are unknown **population parameters**; $\varepsilon$ captures everything about sales that Yelp rating does **not** explain.
 
-::: nonincremental
-**Implementation and Results**
+- We never see $\beta_0, \beta_1$ — we **estimate** them from our 45-store sample. The estimated equation is
 
--   The regression model was used in an optimization algorithm in Microsoft Excel to provide Walmart managers a recommendation on the optimal mix of carton sizes to carry at the distribution center.
-
-**Results**:
-
--   First-year savings: \$600,000
-
--   Estimated annual savings across all distribution centers: \$2 million
-:::
-
-## Simple Linear Regression
-
-<br>
-
--   Managerial decisions often are based on the relationship between two or more variables.
-
--   **Regression analysis** can be used to develop an equation (as a conjecture) for the relationship between the variables.
-
-    -   The variable being predicted is called the **dependent variable** and is denoted by **y**.
-    -   The variables being used to predict the value of the dependent variable are called the **independent variables** and are denoted by **x**.
-
-## Simple Linear Regression
-
-<br>
-
--   **Simple linear regression** involves one independent variable and one dependent variable.
-
--   The relationship between the two variables is linear, approximated by a straight line.
-
-    -   As an initial estimate of the unknown relationship.
-    -   A regression analysis is a trial-and-error exercise.
-
--   Regression analysis involving two or more independent variables is called **multiple regression**.
-
-## Regression Objective
-
-<br>
-
--   **Interpretation**: Determine whether variation in the dependent variable can be explained by (the variation of) the independent variable(s) by testing the statistical significance of the independent variable(s):
-
-    -   As a group (F-test).
-    -   Individually (t-tests).
-
--   **Prediction**: Study how to predict the dependent variable given the information of the independent variable(s).
-
-<!--- Note: Data-driven regression contains only curve-fitting (i.e., obtaining the estimated line). Only calculus is involved.--->
-
-## Applications
-
-<br>
-
--   Revenue vs. Advertising expenditure
--   Total cost vs. production quantity (variable and fixed costs)
--   NFL: Annual revenue vs. estimated team value
--   Total points earned vs. hours spent studying
--   Number of days absent vs. distance to work
--   Number of defective parts vs. line speed
--   Maintenance cost vs. age of the equipment
--   Sale price of 2007 Camry vs. mileage
--   Sales vs. promotion activities and Price
--   (Beta risk) Total return of an individual stock vs. total return for the stock market
--   Output vs. input
-
-## Simple Linear Regression Model
-
-<br>
-
-::: nonincremental
--   The equation that describes how **y** is related to **x** and an error term is called the **regression model**.
-
--   The **simple linear regression model** for the data is:
-
-$$
-y = \beta_0 + \beta_1 x + \epsilon
-$$
-
-where:
-
--   $\beta_0$ and $\beta_1$ are the unknown **parameters** of the model,
-
--   $\epsilon$ is a random variable called the **error term** (unexplained error), with mean of 0 and unknown **error variance** $\sigma^2$.
-:::
-
-## Simple Linear Regression
-
-<br>
-
-```{r  echo=FALSE, out.width = "70%",fig.align="center"}
-knitr::include_graphics("figs/reg_error.png") 
-```
-
-<br>
-
-## Simple Linear Regression Equation
-
-::: nonincremental
-<br>
-
--   The **Simple Linear Regression Equation** is:
-
-$$
-E(y) = \beta_0 + \beta_1 x
-$$
-
-Graph of the regression equation is a straight line.
-
--   $E(y)$ is the expected value of **y** for a given **x** value
--   $\beta_0$ is the **y** intercept of the regression line (unknown)
--   $\beta_1$ is the slope of the regression line (unknown)
-:::
-
-## Simple Linear Regression Equation
-
-:::::::: r-fit-text
-::::::: {layout-ncol="3"}
-:::::: columns
-::: {.column width="33%" style="text-align: center; justify-content: center; align-items: center;"}
-<br>
-
-```{r  echo=FALSE, out.width = "70%",fig.align="center"}
-knitr::include_graphics("figs/reg_relationship_01.png") 
-```
-
-<center>Positive Linear Relationship</center>
-:::
-
-::: {.column width="33%" style="text-align: center; justify-content: center; align-items: center;"}
-<br>
-
-```{r  echo=FALSE, out.width = "70%",fig.align="center"}
-knitr::include_graphics("figs/reg_relationship_02.png") 
-```
-
-<center>Negative Linear Relationship</center>
-:::
-
-::: {.column width="33%" style="text-align: center; justify-content: center; align-items: center;"}
-<br>
-
-```{r  echo=FALSE, out.width = "70%",fig.align="center"}
-knitr::include_graphics("figs/reg_relationship_03.png") 
-```
-
-<center>No Linear Relationship</center>
-:::
-::::::
-:::::::
-::::::::
-
-## Estimated Simple Linear Regression Equation
-
-<br>
-
-The **estimated simple linear regression equation**:
+::: fragment
 
 $$
 \hat{y} = b_0 + b_1 x
 $$
 
-The graph is called the estimated/predicted regression line.
-
--   $\hat{y}$ is the estimated/predicted value of **y** for a given **x** value.
--   $b_0$ is the **y**-intercept of the line, estimating $\beta_0$
--   $b_1$ is the slope of the line, estimating $\beta_1$
-
-## Random Error ($\epsilon$) and Observed Residual ($e$)
-
-<br>
-
-```{r  echo=FALSE, out.width = "70%",fig.align="center"}
-knitr::include_graphics("figs/reg_error_02.png") 
-```
-
-## Estimation Process
-
-<br>
-
-```{r  echo=FALSE, out.width = "70%",fig.align="center"}
-knitr::include_graphics("figs/reg_estimation.png") 
-```
-
-## Residuals/Errors
-
-<br>
-
-```{r  echo=FALSE, out.width = "70%",fig.align="center"}
-knitr::include_graphics("figs/reg_residuals.png") 
-```
-
-# Least Squares Method {background-color="#cfb991"}
-
-## Least Squares Method
-
-<br>
-
-::: nonincremental
-$y_i$ = observed value of the dependent variable for the **i**-th observation.
-
-$\hat{y}_i$ = estimated value of the dependent variable for the **i**-th observation.
-
-$$
-\text{Error or Residual} = \text{Observed} - \text{Predicted} = y_i - \hat{y}_i
-$$
-
--   **Least Squares Criterion**: To minimize the **Sum of Squared Errors (SSE)**
-
-$$
-\min SSE = \min \sum (y_i - \hat{y}_i)^2 = \min \sum (y_i - b_0 - b_1 x_i)^2
-$$
 :::
 
-## Least Squares Method
+- $\hat{y}$ is the **predicted** mean sales at a given rating; $b_0, b_1$ are the sample estimates of $\beta_0, \beta_1$.
+
+## What a Line Can Look Like
 
 <br>
+
+- The sign of $\beta_1$ sets the story:
+
+  - $\beta_1 > 0$ — **positive** relationship: higher $x$ goes with higher $y$ (we expect this for Yelp → sales).
+  - $\beta_1 < 0$ — **negative** relationship: higher $x$ goes with lower $y$.
+  - $\beta_1 = 0$ — **no** linear relationship: $x$ tells you nothing about $y$.
+
+- **Honest caveat — regression is not causation.** A line that fits well says rating and sales *move together*; it does **not** prove better service *causes* sales. We will return to this when we test significance.
+
+## The Data: Just Look First
+
+```{r  echo=FALSE, out.width = "78%",fig.align="center"}
+knitr::include_graphics("figs/autoparts_scatter.png")
+```
 
 ::: nonincremental
-Slope for the Estimated Regression Equation
-
-$$
-b_1 = \frac{\sum (x_i - \bar{x})(y_i - \bar{y})}{\sum (x_i - \bar{x})^2}
-$$
+- 45 stores. Higher-rated stores clearly tend to sell more — but the cloud has spread. We need a **line** to summarize the trend and a **number** to summarize how tight it is.
 :::
 
-where:
-
--   $x_i$ = value of independent variable for **i**-th observation
--   $y_i$ = value of dependent variable for **i**-th observation
--   $\bar{x}$ = mean value for independent variable
--   $\bar{y}$ = mean value for dependent variable
-
-## Least Squares Method
+## Least Squares: Define "Best Fit"
 
 <br>
 
-**y-Intercept for the Estimated Regression Equation**
+- Infinitely many lines pass through a cloud of points. Which one is **best**? The one that makes the **residuals** smallest.
+
+- A **residual** is the vertical gap between an actual store and the line:
+
+::: fragment
+
+$$
+e_i = y_i - \hat{y}_i
+$$
+
+:::
+
+- **Least squares criterion:** choose $b_0, b_1$ to **minimize the sum of squared residuals**:
+
+::: fragment
+
+$$
+\min \;\; \text{SSE} = \sum_{i=1}^{n} (y_i - \hat{y}_i)^2
+$$
+
+:::
+
+- Squaring penalizes big misses and keeps positives and negatives from cancelling.
+
+## The Least-Squares Formulas
+
+<br>
+
+:::: {style="font-size: 90%;"}
+- **Slope** — the workhorse:
+
+::: fragment
+
+$$
+b_1 = \frac{\sum_{i=1}^{n} (x_i - \bar{x})(y_i - \bar{y})}{\sum_{i=1}^{n} (x_i - \bar{x})^2}
+$$
+
+:::
+
+- **Intercept** — forces the line through the point of averages $(\bar{x}, \bar{y})$:
+
+::: fragment
 
 $$
 b_0 = \bar{y} - b_1 \bar{x}
 $$
 
-## Regression Modeling Steps
-
-<br>
-
-::: {style="font-size: 80%;"}
-1.  Define problem and propose model
-2.  Make model assumptions
-3.  Collect data
-4.  Do descriptive data analysis
-5.  Obtain the prediction equation and evaluate the model
-    -   Estimate the regression coefficients
-    -   Check adequacy of the overall model
-    -   Test significance of the overall model and the individual independent variables
-    -   Residual Analysis: Validate the model assumptions
-6.  Special issues (in multiple regression)
-    -   Multicollinearity and variables selection
-7.  Special models and transformations (for model-building)
-8.  (Repeat Steps 1-7 if necessary.)
-9.  Prediction, Implementation, …
 :::
 
-## Linear Regression: Example
+- In Excel you rarely type these: `=SLOPE(y, x)`, `=INTERCEPT(y, x)`, or the full **Regression** tool do the arithmetic.
+::::
 
-<br>
+## What the Criterion Is Minimizing
 
-**Example**: Armand’s Pizza Parlor Restaurants
-
-Data was collected from a sample of 10 Armand’s Pizza Parlor Restaurants near college campuses.
-
-For the *i-th* observation or restaurant in the sample:
-
--   $x_i$ is the size of the student population
--   $y_i$ is the quarterly sales.
-
-## Linear Regression: Example
-
-| Restaurant | Student population (1000s) | Quarterly sales (\$1000s) |
-|------------|----------------------------|---------------------------|
-| 1          | 2                          | 58                        |
-| 2          | 6                          | 105                       |
-| 3          | 8                          | 88                        |
-| 4          | 8                          | 118                       |
-| 5          | 12                         | 117                       |
-| 6          | 16                         | 137                       |
-| 7          | 20                         | 157                       |
-| 8          | 20                         | 169                       |
-| 9          | 22                         | 149                       |
-| 10         | 26                         | 202                       |
-
-## Linear Regression: Example Excel
-
-<br>
-
-**Example**: Armand’s Pizza Parlor Restaurants
-
-<br>
-
-```{r  echo=FALSE, out.width = "50%",fig.align="center"}
-knitr::include_graphics("figs/armands_pizza.png") 
+```{r  echo=FALSE, out.width = "72%",fig.align="center"}
+knitr::include_graphics("figs/autoparts_residual_concept.png")
 ```
 
-<br>
-
-<br>
-
-## Linear Regression: Example
-
-::: {style="font-size: 80%;"}
-| Metric                 | Population | Sales    |
-|------------------------|------------|----------|
-| Mean                   | 14         | 130      |
-| Standard Error         | 2.512      | 13.220   |
-| Median                 | 14         | 127.5    |
-| Mode                   | 8          | N/A      |
-| Standard Deviation     | 7.944      | 41.806   |
-| Sample Variance        | 63.111     | 1747.778 |
-| Kurtosis               | -1.332     | -0.033   |
-| Skewness               | 0          | -0.014   |
-| Range                  | 24         | 144      |
-| Minimum                | 2          | 58       |
-| Maximum                | 26         | 202      |
-| Sum                    | 140        | 1300     |
-| Count                  | 10         | 10       |
-| Confidence Level (95%) | 5.683      | 29.907   |
-:::
-
-## Linear Regression: Example
-
-<br>
-
-```{r  echo=FALSE, out.width = "50%",fig.align="center"}
-knitr::include_graphics("figs/armands_pizza_plot.png") 
-```
-
-<br>
-
-<br>
-
-## Linear Regression: Example Excel
-
-::::::::: columns
-:::: {.column width="40%" style="text-align: center; justify-content: center; align-items: center;"}
 ::: nonincremental
-<br>
-
--   Producing a Scatter Diagram
-
-    -   Step 1: Select cells B2:C11
-    -   Step 2: Click the **Insert** tab on the Ribbon
-    -   Step 3: In the Charts group, select **Insert Scatter (X,Y)** or **Bubble Chart**
-    -   Step 4: When the list of scatter diagram subtypes appears, select **Scatter** (chart in upper left corner)
-:::
-::::
-
-:::::: {.column width="60%" style="text-align: center; justify-content: center; align-items: center;"}
-::::: fragment
-:::: {style="font-size: 80%;"}
-::: nonincremental
--   Editing a Scatter Diagram
-
-    -   Step 1: Click the **Chart Title** and replace it with *Armand’s Pizza Parlors*
-    -   Step 2: Click the **Chart Elements** button
-    -   Step 3: When the list of chart elements appears:
-        -   Click **Axis Titles** (creates placeholders for titles)
-        -   Click **Gridlines** (to deselect gridlines option)
-        -   Click **Trendline**
-    -   Step 4: Click the horizontal **Axis Title** and replace it with *Student population (1000s)*
-    -   Step 5: Click the **Vertical (Value) Axis Title** and replace it with *Quarterly Sales (\$1000s)*
-    -   Step 6: Select the **Format Trendline** option
-    -   Step 7: When the Format Trendline dialog box appears:
-        -   Select **Display equation on chart**
-        -   Click the **Fill & Line** button
-        -   In the **Dash type** box, select **Solid**
-        -   Close the **Format Trendline** dialog box
-:::
-::::
-:::::
-::::::
-:::::::::
-
-## Linear Regression: Example
-
-:::: {style="font-size: 80%;"}
-| i | $x_i$ | $y_i$ | $x_i - \bar{x}$ | $y_i - \bar{y}$ | $(x_i - \bar{x})(y_i - \bar{y})$ | $(x_i - \bar{x})^2$ | $(y_i - \bar{y})^2$ |
-|----|----|----|----|----|----|----|----|
-| 1 | 2 | 58 | -12 | -72 | 864 | 144 | 5184 |
-| 2 | 6 | 105 | -8 | -25 | 200 | 64 | 625 |
-| 3 | 8 | 88 | -6 | -42 | 252 | 36 | 1764 |
-| 4 | 8 | 118 | -6 | -12 | 72 | 36 | 144 |
-| 5 | 12 | 117 | -2 | -13 | 26 | 4 | 169 |
-| 6 | 16 | 137 | 2 | 7 | 14 | 4 | 49 |
-| 7 | 20 | 157 | 6 | 27 | 162 | 36 | 729 |
-| 8 | 20 | 169 | 6 | 39 | 234 | 36 | 1521 |
-| 9 | 22 | 149 | 8 | 19 | 152 | 64 | 361 |
-| 10 | 26 | 202 | 12 | 72 | 864 | 144 | 5184 |
-| **Total** | **140** | **1300** | \- | \- | **2840** | **568** | **15730** |
-
-::: fragment
-Sample correlation:
-
-$$
-r_{xy} = \frac{\sum(x_i - \bar{x})(y_i - \bar{y})}{\sqrt{\sum(x_i - \bar{x})^2 \sum(y_i - \bar{y})^2}} = \frac{2840}{\sqrt{568 \times 15730}} = 0.9501
-$$
-
-<center>`= correl(x-array, y-array)`</center>
-:::
-::::
-
-## Linear Regression: Example
-
-<br>
-
-::: nonincremental
--   Slope for the Estimated Regression Equation
-
-$$
-b_1 = \frac{\sum (x_i - \bar{x})(y_i - \bar{y})}{\sum (x_i - \bar{x})^2} = \frac{2840}{568} = 5
-$$
-
--   y-Intercept for the Estimated Regression Equation
-
-$$
-b_0 = \bar{y} - b_1 \bar{x} = 130 - 5(14) = 60
-$$
-
--   Estimated Regression Equation
-
-$$
-\hat{y} = 60 + 5x
-$$
+- Each grey segment is one residual $e_i$. Least squares is the unique line that makes the **sum of those squared lengths** as small as possible.
 :::
 
-## Remarks
-
-<br>
-
-:::: {style="font-size: 80%;"}
-::: nonincremental
-$$
-b_1 = \frac{\sum (x_i - \bar{x})(y_i - \bar{y})}{\sum (x_i - \bar{x})^2} = \frac{\sum (x_i - \bar{x})(y_i - \bar{y}) / (n - 1)}{\sum (x_i - \bar{x})^2 / (n - 1)} = \frac{s_{xy}}{s_x^2}
-$$
-
-$$
-= \frac{s_{xy}}{s_x s_y} \cdot \frac{s_y}{s_x} = r_{xy} \frac{s_y}{s_x}
-$$
-
-$b_1$, $s_{xy}$, and $r_{xy}$ have the same signs, reflecting the relationship's direction between $x$ and $y$.
-:::
-::::
-
-:::: {style="font-size: 70%;"}
-::: nonincremental
--   $b_1$: Slope of the regression line, indicating the change in $y$ for a unit change in $x$.
-
--   $\sum (x_i - \bar{x})(y_i - \bar{y})$: Numerator for covariance, showing the joint deviation of $x$ and $y$ from their means.
-
--   $\sum (x_i - \bar{x})^2$: Denominator representing variance of $x$.
-
--   $s_{xy}$: Sample covariance, indicating how $x$ and $y$ vary together.
-
--   $s_x^2$: Sample variance of $x$, measuring the dispersion of $x$ around its mean.
-
--   $s_x$ and $s_y$: Standard deviations of $x$ and $y$, showing spread around their means.
-
--   $r_{xy}$: Correlation coefficient, measuring strength and direction of the linear relationship between $x$ and $y$.
-:::
-::::
-
-## Partition of Total Variation
-
-<br>
-
-```{r  echo=FALSE, out.width = "50%",fig.align="center"}
-knitr::include_graphics("figs/reg_partitition.png") 
-```
-
-<br>
-
-## Partition of Total Variation
-
-::: nonincremental
--   **Prediction equation:** $\hat{y} = 60 + 5x$
--   **For Observation #1** $(x = 2, y = 58)$: $\hat{y} = 60 + 5(2) = 70$
-    -   Unexplained error/residual = $y - \hat{y} = 58 - 70 = -12$
-
-<br>
-
--   **Note:**
-
-$$
-y - \bar{y} = (\hat{y} - \bar{y}) + (y - \hat{y})
-$$
-
-$$
-58 - 130 = (70 - 130) + (58 - 70)
-$$
-
-$$
-\text{Total} = \text{Explained} + \text{Unexplained}
-$$
-:::
-
-## Partition of Total Variation
-
-| $i$ | $x_i$  | Observed Y | Predicted Y   | Total | Explained | Unexplained |
-|-----|--------|------------|---------------|-------|-----------|-------------|
-| 1   | 2      | 58         | 70            | -72   | -60       | -12         |
-| 2   | 6      | 105        | 90            | -25   | -40       | 15          |
-| 3   | 8      | 88         | 100           | -42   | -30       | -12         |
-| 4   | 8      | 118        | 100           | -12   | -30       | 18          |
-| 5   | 12     | 117        | 120           | -13   | -10       | -3          |
-| 6   | 16     | 137        | 140           | 7     | 10        | -3          |
-| 7   | 20     | 157        | 160           | 27    | 30        | -3          |
-| 8   | 20     | 169        | 160           | 39    | 30        | 9           |
-| 9   | 22     | 149        | 170           | 19    | 40        | -21         |
-| 10  | 26     | 202        | 190           | 72    | 60        | 12          |
-|     | Mean Y | 130        | Sum of square | 15730 | 14200     | 1530        |
-|     |        |            |               | SST   | SSR       | SSE         |
-
-## Derivation of the Total Sum of Squares (SST)
-
-::: {style="font-size: 60%;"}
-In the context of simple linear regression, the Total Sum of Squares (SST) is defined as the sum of the squared deviations of the observed $y$ values from their sample mean $\bar{y}$:
-
-$$
-SST = \sum_{i=1}^{n} (y_i - \bar{y})^2.
-$$
-
-It is also possible to compute the SST with the following:
-
-$$
-SST = (n-1)s^2_y,
-$$
-
-**Derivation**
-
-Recall that the sample variance of $y$, denoted $s^2_y$, is defined as:
-
-$$
-s^2_y = \frac{1}{n-1}\sum_{i=1}^{n} (y_i - \bar{y})^2.
-$$
-
-This definition uses $n-1$ in the denominator to provide an unbiased estimator of the population variance.
-
-By multiplying both sides of the sample variance definition by $n-1$, we obtain:
-
-$$
-(n-1)s^2_y = \sum_{i=1}^{n} (y_i - \bar{y})^2.
-$$
-
-Recognizing that the right-hand side is exactly the definition of $SST$, we conclude:
-
-$$
-SST = (n-1)s^2_y.
-$$
-
-Thus, the derivation relies on the definition of sample variance, and the result follows directly from the algebraic manipulation.
-:::
-
-# Coefficient of Determination {background-color="#cfb991"}
-
-## Coefficient of Determination
-
-::: nonincremental
--   **Relationship Among SST, SSR, SSE**
-
-$$
-\text{SST} = \text{SSR} + \text{SSE}
-$$
-
-$$
-\sum(y_i - \bar{y})^2 = \sum(\hat{y}_i - \bar{y})^2 + \sum(y_i - \hat{y}_i)^2
-$$
-
-$$
-\text{Degrees of freedom:} \quad n-1 \quad\quad\quad\quad\quad 1 \quad\quad\quad\quad\quad n-2 \quad\quad\quad\quad\quad\quad\quad\quad\quad
-$$
-
-**where:**
-
--   SST = total sum of squares (*Total variation*)
--   SSR = sum of squares due to regression (*Explained variation*)
--   SSE = sum of squares due to error (*Unexplained variation*)
-:::
-
-## Coefficient of Determination
-
-::: nonincremental
--   The **coefficient of determination** is:
-
-$$
-R^2 = \frac{\text{Explained variation}}{\text{Total variation}} = \frac{\text{SSR}}{\text{SST}}
-$$
-
-**where:**
-
--   SSR = sum of squares due to regression
--   SST = total sum of squares
-:::
-
-## Coefficient of Determination
-
-**Example:** Armand’s Pizza Parlor Restaurants
-
-::: nonincremental
-$$
-R^2 = \frac{\text{SSR}}{\text{SST}} = \frac{14200}{15730} = 0.9027 = 90.27\%
-$$
-
-$$
-R^2 = 1 - \frac{\text{SSE}}{\text{SST}} = 1 - \frac{1530}{15730} = 1 - 0.973 = 90.27\%
-$$
-
--   The regression relationship is very strong;
--   90.27% of the variability in the sales can be explained by (the variability of) the size of the student population through the proposed linear relationship between them.
-:::
-
-## Coefficient of Determination: Excel
-
-::::::::: columns
-:::: {.column width="40%" style="text-align: center; justify-content: center; align-items: center;"}
-::: nonincremental
-<br>
-
--   **Adding** $R^2$ Value to Scatter Diagram
-
-    -   Step 1: Right-click on the trendline and select the **Format Trendline** option
-    -   Step 2: When the Format Trendline dialog box appears:
-        -   Select **Display R-squared on chart**
-        -   Close the **Format Trendline** dialog box
-:::
-::::
-
-:::::: {.column width="60%" style="text-align: center; justify-content: center; align-items: center;"}
-::::: fragment
-:::: {style="font-size: 80%;"}
-::: nonincremental
-<br>
-
-```{r  echo=FALSE, out.width = "80%",fig.align="center"}
-knitr::include_graphics("figs/armands_pizza_plot_r2.png") 
-```
-
-<br>
-:::
-::::
-:::::
-::::::
-:::::::::
-
-## Sample Correlation Coefficient
-
-::: nonincremental
-$$
-r_{xy} = (\text{sign of } b_1) \sqrt{\text{Coefficient of Determination}}
-$$
-
-$$
-r_{xy} = (\text{sign of } b_1) \sqrt{R^2}
-$$
-
-**where:**
-
--   $b_1$ = the slope of the estimated regression equation $\hat{y} = b_0 + b_1x$
-
-**Only in simple regression.**
-:::
-
-## Sample Correlation Coefficient
-
-::: nonincremental
-**Example:** Armand’s Pizza Parlor Restaurants
-
-$$
-r_{xy} = (\text{sign of } b_1) \sqrt{R^2}
-$$
-
-The sign of $b_1$ in the equation $\hat{y} = 10 + 5x$ is "+".
-
-$$
-r_{xy} = +\sqrt{0.9027}
-$$
-
-$$
-r_{xy} = +0.9501
-$$
-:::
-
-# Model Assumptions {background-color="#cfb991"}
-
-## Assumptions About the Error Term $\epsilon$
-
-1.  The error term $\epsilon$ is a random variable with a mean or expected value of zero; that is, $E(\epsilon) = 0$.
-
-    -   **Implication**: $\beta_0$ and $\beta_1$ are constants; therefore $E(\beta_0) = \beta_0$ and $E(\beta_1) = \beta_1$; thus, for a given value of $x$, the expected value of $y$ is:
-
-::: fragment
-$$
-   E(y) = \beta_0 + \beta_1x
-$$
-:::
-
-2.  The variance of $\epsilon$, denoted by $\sigma^2$, is the same for all values of $x$.
-
-    -   **Implication**: The variance of $y$ about the regression line equals $\sigma^2$ and is the same for all values of $x$.
-
-3.  The values of $\epsilon$ are independent.
-
-    -   **Implication**: The value of $\epsilon$ for a particular value of $x$ is not related to the value of $\epsilon$ for any other value of $x$; thus, the value of $y$ for a particular value of $x$ is not related to the value of $y$ for any other value of $x$.
-
-4.  The error term $\epsilon$ is a normally distributed random variable for all values of $x$.
-
-    -   **Implication**: Because $y$ is a linear function of $\epsilon$, $y$ is also a normally distributed random variable for all values of $x$.
-
-## Assumptions About the Error Term $\epsilon$
-
-<br>
-
-```{r  echo=FALSE, out.width = "70%",fig.align="center"}
-knitr::include_graphics("figs/residuals_assumption.png") 
-```
-
-<br>
-
-<br>
-
-# Testing for Significance {background-color="#cfb991"}
-
-## Testing for Significance
-
-<br>
-
-::: nonincremental
--   To test for a significant regression relationship, we must conduct a hypothesis test to determine whether the unknown $\beta_1$ is zero.
-
--   Two equivalent Tests are commonly used in simple regression:
-
-    -   $t$ Test\
-    -   $F$ test
-
--   Both the $t$ test and $F$ test require an estimate of the unknown error variance $\sigma^2$.
-:::
-
-## Testing for Significance
-
-<br>
-
-::: nonincremental
-Idea: **Estimating the population error variance** ($\sigma^2$) **by the sample residual variance** (denoted by $s^2$ or MSE).
-
-The mean square error (MSE), or $s^2$ is:
-
-$$
-s^2 = \text{MSE} = \frac{\text{SSE}}{(n-2)}, \quad \text{SSE = Sum of Squared Errors (unexplained variation).}
-$$
-
-where:
-
-$$
-\text{SSE} = \sum e_i^2 = \sum (y_i - \hat{y}_i)^2 
-$$
-:::
-
-## Testing for Significance
-
-::: nonincremental
--   **An Estimate of** $\sigma$
-    -   To estimate $\sigma$, we take the square root of $s^2$.
-    -   The resulting $s$ is called the standard error (of the estimate).
-
-$$
-s = \sqrt{MSE} = \sqrt{\frac{SSE}{n - 2}} = \sqrt{\frac{\sum (y_i - \hat{y}_i)^2}{n - 2}}
-$$
-:::
-
-## Testing for Overall Significance: $F$ Test
+## Anchor Example: Armand's Pizza Parlors
 
 :::: nonincremental
 ::: r-fit-text
--   **Hypotheses**
+A classic: **Armand's Pizza** has 10 restaurants near college campuses. Sales clearly depend on how many students live nearby. $x$ = student population in the trade area (1,000s); $y$ = quarterly sales (\$1,000s).
 
-    $$ H_0 : \beta_1 = 0 \quad$$ The proposed linear model is insignificant; No linear relationship; the predictor is insignificant; the predictor explains no variation in the response.
+| | Student population $x$ (000s) | Quarterly sales $y$ (\$000s) |
+|---|---:|---:|
+| Restaurant 1 | 2 | 58 |
+| Restaurant 2 | 6 | 105 |
+| $\vdots$ | $\vdots$ | $\vdots$ |
+| Restaurant 10 | 26 | 202 |
 
-    $$ H_a : \beta_1 \neq 0 $$
-
--   **Test Statistic**
+**Least-squares fit:** $\bar{x} = 14$, $\bar{y} = 130$, and the slope/intercept formulas give
 
 $$
-F = \frac{SSR / 1}{SSE / (n-2)} = \frac{MSR}{MSE} \quad \text{follows } F(1, n-2), \text{ if } H_0 \text{ is true.}
-$$ where
-
--   **SSR (Sum of Squares for Regression)**: measures how much of the variation in the dependent variable is explained by the independent variable(s).
--   **MSR (Mean Square Regression)**: is the average variation explained by the model per degree of freedom for the regression.In the case above, we have only one independent variable as the degree of freedom for the regression (denominator).
--   **SSE (Sum of Squares for Error/Residuals)**: measures the variation in the response variable that is not explained by the model.
--   **MSE (Mean Square Error)**: is the average variation that remains unexplained by the model, per degree of freedom for the error. The degrees of freedom for the error is the number of observations ($n$) in the data set minus the number of parameters being estimated ($\beta_0$ and $\beta_1$).
+b_1 = 5, \qquad b_0 = 60 \qquad\Rightarrow\qquad \hat{y} = 60 + 5x
+$$
 :::
 ::::
 
-## Testing for Overall Significance: $F$ Test
+## Armand's — Reading the Line
+
+```{r  echo=FALSE, out.width = "58%",fig.align="center"}
+knitr::include_graphics("figs/armands_fit.png")
+```
 
 ::: nonincremental
--   **Decision Rules** *(right-tail)*:
+- **Slope $b_1 = 5$:** each additional **1,000 students** in the trade area is associated with **\$5,000** more quarterly sales.
+- **Intercept $b_0 = 60$:** the line's height at $x = 0$ — outside the data range, so read it as a fitting constant, not "sales with zero students."
+:::
 
-    -   Reject $H_0$ if $p\text{-value} \leq \alpha$, or $F \geq F_{\alpha, 1, n-2}$
+## The Auto-Parts Fit
+
+```{r  echo=FALSE, out.width = "70%",fig.align="center"}
+knitr::include_graphics("figs/autoparts_fit.png")
+```
+
+::: fragment
+
+$$
+\widehat{\text{sales}} = 332.8 + 757.5 \times (\text{Yelp rating})
+$$
+
+:::
+
+## Interpreting the Auto-Parts Slope and Intercept
 
 <br>
 
-where:
+- **Slope $b_1 = +757.5$:** each additional **Yelp star** is associated with about **\$757.5K** more in annual sales. *This is the number the real-estate team can use to score sites.*
 
--   $F_{\alpha, 1, n-2}$ is based on an $F$ distribution with 1 degree of freedom in the numerator and $n - 2$ degrees of freedom in the denominator.
+- **Intercept $b_0 = +332.8$:** the line's height at a rating of zero. No store has a zero rating, so do **not** interpret it as "sales of a zero-star store" — it just anchors the line.
 
--   $F_{\alpha, 1, n-2} = F.\text{INV}(1-\alpha, 1, n - 2)$
-:::
+- **Manager's translation:** *Moving a store from a 3.0 to a 4.0 Yelp rating is worth roughly three-quarters of a million dollars in predicted annual sales.*
 
-## Testing for Overall Significance: $F$ Test
+- **Sanity check:** the slope is positive and large — consistent with the upward cloud. Good.
 
-:::: nonincremental
--   Compute the value of the test statistic.
-
-$$
-F = \frac{SSR / 1}{SSE / (n-2)} = \frac{14,200 / 1}{1,530 / (10-2)} = 74.25
-$$
+## $R^2$: How Much Does the Line Explain?
 
 <br>
 
--   **Decision.**
+- Total variation in sales splits into what the line **explains** and what it **leaves** as error:
 
-    -   $F_{\alpha} = F.\text{INV}(0.99,1,8) = 11.26$ and $F = 74.25 > 11.26.$ We reject $H_0.$
+::: fragment
 
-    -   $p\text{-value} = 1 - F.\text{DIST}(74.25,1,8, \text{TRUE}) \approx 0.000 < 1\% = \alpha$
+$$
+\underbrace{\text{SST}}_{\sum (y_i - \bar{y})^2} \;=\; \underbrace{\text{SSR}}_{\sum (\hat{y}_i - \bar{y})^2} \;+\; \underbrace{\text{SSE}}_{\sum (y_i - \hat{y}_i)^2}
+$$
 
-<center>
-
-::: red
-The statistical evidence is sufficient to conclude that a significant relationship exists between the size of the student population and quarterly sales. The significance level is $\alpha = 1\%$.
 :::
 
-</center>
-::::
+- The **coefficient of determination** is the explained share:
 
-## Testing for Individual Significance: $t$ Test
+::: fragment
 
-::::: {style="font-size: 70%;"}
-:::: nonincremental
-::: red
-In regression, $b_1$ follows a normal distribution with mean $\beta_1$.
+$$
+R^2 = \frac{\text{SSR}}{\text{SST}} = 1 - \frac{\text{SSE}}{\text{SST}}, \qquad 0 \le R^2 \le 1
+$$
+
 :::
 
--   **Hypotheses**
+- $R^2 = 0$: the line explains nothing. $R^2 = 1$: every point sits exactly on the line.
 
-    $H_0 : \beta_1 = 0 \quad (\text{Independent variable x is insignificant})$
+## $R^2$ for the Auto-Parts Model
 
-    $H_a : \beta_1 \neq 0$
+<br>
 
--   **Test Statistic**
+- From the auto-parts fit:
+
+::: fragment
+
+| Quantity | Value |
+|---|---:|
+| SST (total variation) | 55,840,034 |
+| SSR (explained by line) | 46,594,785 |
+| SSE (left as error) | 9,245,249 |
+| $R^2 = \text{SSR}/\text{SST}$ | **0.834** |
+
+:::
+
+- **Interpretation:** Yelp rating alone explains **83.4%** of the store-to-store variation in annual sales — strong for a single predictor.
+
+- The remaining **16.6%** is everything else (location, merchandising, competition). *That gap is exactly what motivates adding more predictors next topic.*
+
+- In Excel: `=RSQ(sales, yelp)` or read **R Square** off the Regression output.
+
+## $R^2$ and Correlation Are the Same Story
+
+<br>
+
+- The sample **correlation** $r$ and $R^2$ are tightly linked in simple regression:
+
+::: fragment
 
 $$
-t = \frac{b_1 - 0}{s_{b_1}}, 
-$$ where $s_{b_1}$ is the **standard error** of the slope estimate $b_1$, i.e., an estimate of the standard deviation of the sampling distribution of $b_1$. It is not the population standard deviation; it is the estimated uncertainty in the slope due to sampling. It follows $t(n-2)$, if $H_0$ is true.
-
-$$
-s_{b_1} = \frac{s}{\sqrt{\sum(x_i - \bar{x})^2}} = \frac{\sqrt{\frac{\sum (y_i - \hat{y}_i)^2}{n - 2}}}{\sqrt{\sum(x_i - \bar{x})^2}}= \sqrt{\frac{\sum (Y_i - \hat{Y}_i)^2}{(n - 2)\,\sum (X_i - \bar{X})^2}}
+r = (\text{sign of } b_1)\sqrt{R^2}
 $$
 
-if we denote $\text{MSE} = \frac{\sum (Y_i - \hat{Y}_i)^2}{n - 2}$ (the **mean squared error**), then:
+:::
 
-$$
-s_{b_1} = \sqrt{\frac{\text{MSE}}{\sum (X_i - \bar{X})^2}}.
-$$
+- Here $b_1 > 0$ and $R^2 = 0.834$, so $r = +\sqrt{0.834} = +0.913$ — a strong positive correlation, the same fact $R^2$ reports.
+
+- **Correlation** measures the *tightness and direction* of the linear association; **$R^2$** measures the *share of variation explained*. Same coin, two faces.
+
+## Excel: One Click Gives You Everything
+
+::::: nonincremental
+:::: columns
+::: {.column width="40%"}
+<br>
+
+**Data → Data Analysis → Regression**
+
+- Input Y Range: `sales2012_k`
+- Input X Range: `yelp_rating`
+- Check **Labels**, **Residuals**, **Residual Plots**
+
+<br>
+
+The top block is **Regression Statistics** — `Multiple R`, `R Square`, `Standard Error`, `Observations`.
+:::
+
+::: {.column width="60%"}
+```{r  echo=FALSE, out.width = "100%",fig.align="center"}
+knitr::include_graphics("figs/autoparts_reg_stats.png")
+```
+
+```{r  echo=FALSE, out.width = "100%",fig.align="center"}
+knitr::include_graphics("figs/autoparts_reg_coef.png")
+```
+:::
 ::::
 :::::
 
-## Testing for Individual Significance: $t$ Test
+## ⏱️ Team Sprint 1 — Fit the line, read the slope
 
-::: nonincremental
-<br>
+::: {.sprint .nonincremental}
+**Decide:** does Yelp rating predict store sales — and what is one star worth?
 
--   **Decision Rules** *(two-tail)*:
+**Data:** `data/autoparts.csv` · **Time:** ~12 min
 
-    -   Reject $H_0$ if $p\text{-value} \leq \alpha$
-    -   Reject $H_0$ if $t \leq -t_{\alpha/2,n-2}$ or $t \geq t_{\alpha/2,n-2}$ (i.e., $|t| > t_{\alpha/2,n-2}$)
+1. In Excel: **Data → Data Analysis → Regression** (Y = `sales2012_k`, X = `yelp_rating`, check **Labels**).
+2. Write the estimated equation $\hat{y} = b_0 + b_1 x$ and interpret the **slope** in plain dollars-per-star.
+3. Read **R Square**: what fraction of the sales gap does Yelp rating explain? State the unexplained share.
 
-where the critical value, $t_{\alpha/2, n-2}$, is based on a $t$ distribution with $n - 2$ df.
+**Hand in (1 slide):** the equation, the dollars-per-star sentence, and your $R^2$ read — would you use Yelp rating to score sites?
 :::
 
-## Testing for Individual Significance: $t$ Test
+## Debrief — Manager's Takeaway (Lecture 1)
 
 <br>
 
+- **One sentence:** Yelp rating is a strong predictor of store sales — each star is worth about **\$757K** in predicted annual sales.
+
+- **One number:** $R^2 = 0.834$ — Yelp rating alone explains **83%** of the sales differences across stores.
+
+- **One caveat:** "explains" is **association, not cause**, and 17% is still unexplained — one variable is rarely the whole story. We have a *fitted* line, but we have not yet asked whether it is **statistically real** or whether the model's **assumptions** hold. That is Lecture 2.
+
+## Carry-forward (Lecture 1)
+
 ::: nonincremental
--   Compute the value of the test statistic:
+- **Your client (homework):** in your team's case, pick a plausible numeric predictor of your key outcome. Fit the simple regression, write the slope interpretation in business units, and report $R^2$.
+
+- **Next time:** is the slope **real** or could it be noise? We test it, check the assumptions behind the line, and forecast a brand-new store.
+:::
+
+# Lecture 2 — Inference, Assumptions, and Prediction {background-color="#cfb991"}
+
+## The Brief — Lecture 2
+
+<br>
+
+> "The fitted slope is +757.5 \$K per star. But our 45 stores are a **sample**. Is the Yelp–sales relationship **real**, do the model's assumptions hold, and what sales should we **forecast** for a specific new site?"
+
+<br>
+
+- Lecture 1 *described* the sample. Lecture 2 does **inference**: from these 45 stores to the population of all possible stores.
+
+- Three jobs: (1) **test** the slope, (2) **validate** the assumptions with residuals, (3) **predict** a new store with an honest margin of error.
+
+## The Assumptions Behind the Line
+
+<br>
+
+- Everything we are about to do (tests, intervals) rests on four assumptions about the error term $\varepsilon$:
+
+  1. **Mean zero:** $E(\varepsilon) = 0$ — the line is right on average.
+  2. **Constant variance:** $\text{Var}(\varepsilon) = \sigma^2$ is the same for all $x$ (**homoscedasticity**).
+  3. **Independence:** the errors for different stores are independent.
+  4. **Normality:** $\varepsilon$ is normally distributed.
+
+- If these are badly violated, the $p$-values and intervals can mislead. We will **check** them with residual plots after we test — but they are the foundation, so flag them first.
+
+## Estimating $\sigma$: the Standard Error of the Estimate
+
+<br>
+
+- The tests need an estimate of the error spread $\sigma$. The **mean square error** estimates $\sigma^2$:
+
+::: fragment
 
 $$
-t = \frac{b_1 - 0}{s_{b_1}} = \frac{5 - 0}{.5803} = 8.62
-$$ <br>
-
--   **Decision:**
-
-    -   $t_{0.01/2, 8} = T.\text{INV}(0.995,8) = 3.355$ provides an area of 0.005 in the upper tail of a $t$-distribution with $n-2$ degrees of freedom.
-    -   Because $|t| = 8.62 > 3.355$, we can reject $H_0$ at $\alpha = 1\%$.
-    -   $p\text{-value} = 2*(1-T.\text{DIST}(8.62,10-2,\text{TRUE})) \approx 0.000< 1\%$.
-
-    We can reject $H_0$.
-:::
-
-## Confidence Interval for $\beta_1$
-
-<br>
-
-<br>
-
-We can use a 99% confidence interval for $\beta_1$ to test the hypotheses just used in the *t* test.
-
-$H_0$ is rejected if the hypothesized value of $\beta_1$ is not included in the corresponding confidence interval for $\beta_1$.
-
-## Confidence Interval for $\beta_1$
-
-<br>
-
-::: nonincremental
--   The form of a confidence interval for $\beta_1$ is:
-
-$$
-b_1 \pm t_{\alpha/2, n-2} s_{b_1}
+s^2 = \text{MSE} = \frac{\text{SSE}}{n - 2}
 $$
 
-where:
-
--   $b_1$ is the point estimator,
--   $t_{\alpha/2, n-2} s_{b_1}$ is the margin of error (MOE),
--   $t_{\alpha/2, n-2}$ is the ***t*** **critical value** providing an upper-tail area of $\alpha/2$ in a *t* distribution with $n-2$ degrees of freedom.
--   $s_{b_1}$ is the **standard error** of the slope estimate $b_1$, i.e., an estimate of the standard deviation of the sampling distribution of $b_1$. It is not the population standard deviation; it is the estimated uncertainty in the slope due to sampling.
 :::
 
-## Confidence Interval for $\beta_1$
+- Its square root, $s = \sqrt{\text{MSE}}$, is the **standard error of the estimate** — the typical vertical miss of the line, in the units of $y$:
 
-<br>
-
-::: nonincremental
--   **99% Confidence Interval for** $\beta_1$:
+::: fragment
 
 $$
-b_1 \pm t_{\alpha/2} s_{b_1} = 5 \pm 3.355(.5803) = 5 \pm 1.95
+s = \sqrt{\frac{\text{SSE}}{n-2}} = \sqrt{\frac{9{,}245{,}249}{43}} \approx \$464\text{K}
 $$
 
-or 3.05 to 6.95
-
--   **Conclusion:** 0 is not included in the 99% confidence interval. Reject $H_0$ at $\alpha$ = 1%.
 :::
 
-## Some Cautions about the Interpretation of Significance Tests
+- We divide by $n - 2$ because we spent two degrees of freedom estimating $b_0$ and $b_1$. In Excel: `=STEYX(sales, yelp)` or read **Standard Error** off the output.
+
+## Testing the Slope: Is the Relationship Real?
 
 <br>
 
-::: nonincremental
--   Rejecting $H_0: \beta_1 = 0$ and concluding that the relationship between x and y is significant does not enable us to conclude that a **cause-and-effect relationship** is present between x and y.
+- If $\beta_1 = 0$, $x$ has **no** linear effect on $y$ — there is no relationship to forecast with. So we test:
 
--   Because we **are able to** reject $H_0: \beta_1 = 0$ and demonstrate statistical significance does not enable us to conclude that there is a **linear relationship** between x and y.
+::: fragment
+
+$$
+H_0: \beta_1 = 0 \qquad \text{vs.} \qquad H_a: \beta_1 \neq 0 \qquad (\alpha = 0.05)
+$$
+
 :::
 
-# Excel’s Regression Tool {background-color="#cfb991"}
+- The test statistic divides the estimated slope by its standard error, with $df = n - 2$:
 
-## Excel’s Regression Tool
+::: fragment
 
-<br>
+$$
+t = \frac{b_1 - 0}{s_{b_1}}, \qquad s_{b_1} = \frac{s}{\sqrt{\sum (x_i - \bar{x})^2}}
+$$
 
-::: nonincremental
--   Excel also has a comprehensive tool in its Data Analysis package called **Regression**.
-
--   The Regression tool can be used to perform a **complete regression analysis**.
 :::
 
-## Using Excel’s Regression Tool
+- Same logic as every test since Topic 8: a statistic, a $t$ distribution, a $p$-value, a decision.
 
-<center>**Performing the Regression Analysis**</center>
+## Anchor: Armand's Slope Is Significant
 
-::::::::: columns
-:::: {.column width="40%" style="text-align: center; justify-content: center; align-items: center;"}
-::: nonincremental
+::::: nonincremental
+:::: columns
+::: {.column width="40%"}
 <br>
 
--   **Step 1** Click the **DATA** tab on the Ribbon
+For Armand's Pizza:
 
--   **Step 2** In the **Analyze** group, click **Data Analysis**
+$$
+t = \frac{5}{0.580} = 8.62, \quad df = 8
+$$
 
--   **Step 3** Choose **Regression** from the list of Analysis Tools
+$p\text{-value} \approx 0.000 \le 0.05$ → **reject $H_0$**.
+
+<br>
+
+Student population is a **significant** predictor of restaurant sales — the slope is not zero.
 :::
-::::
 
-:::::: {.column width="60%" style="text-align: center; justify-content: center; align-items: center;"}
-::::: fragment
-:::: {style="font-size: 80%;"}
-::: nonincremental
-<br>
-
--   **Step 4** When the Regression dialog box appears:
-
-    -   Enter **C1:C11** in the **Input Y Range** box
-    -   Enter **B1:B11** in the **Input X Range** box
-    -   Select the check box for **Labels**
-    -   Select the check box for **Confidence Level**
-    -   Enter **99** in the **Confidence Level** box
-    -   Select **Output Range**
-    -   Enter **A13** in the **Output Range** box
-    -   Click **OK**
-
-<br>
+::: {.column width="60%"}
+```{r  echo=FALSE, out.width = "100%",fig.align="center"}
+knitr::include_graphics("figs/armands_reg_coef.png")
+```
 :::
 ::::
 :::::
-::::::
-:::::::::
 
-## Using Excel’s Regression Tool
+## The Auto-Parts Slope Test
 
 <br>
 
-**Example:** Armand’s Pizza Parlors: Regression tool dialog box
-
-<br>
-
-```{r  echo=FALSE, out.width = "80%",fig.align="center"}
-knitr::include_graphics("figs/armands_pizza_reg_excel.png") 
-```
-
-<br>
-
-## Using Excel’s Regression Tool
-
-<br>
-
-**Example:** Armand’s Pizza Parlors: Regression tool dialog box
-
-<br>
-
-```{r  echo=FALSE, out.width = "80%",fig.align="center"}
-knitr::include_graphics("figs/armands_pizza_reg_excel_output.png") 
-```
-
-<br>
-
-## Using Excel’s Regression Tool
-
-::::::::: r-fit-text
-:::::::: nonincremental
-::::::: columns
-:::::: {layout-ncol="3"}
-::: {.column width="33%" style="text-align: center; justify-content: center; align-items: center;"}
-**Regression Statistics**:
-
--   **Multiple R**: 0.9501. Indicates a strong positive correlation between observed and predicted values.
-
--   **R Square (Coefficient of Determination)**: Approximately 90.27% of the variance in the dependent variable (Sales) is explained by the independent variable (Population).
-
--   **Adjusted R Square**: 0.8906. Adjusts the R Square for the number of predictors, providing a more accurate measure.
-
--   **Standard Error**: 13.8293. Measures the typical distance that the observed values fall from the regression line.
-:::
-
-::: {.column width="33%" style="text-align: center; justify-content: center; align-items: center;"}
-**ANOVA**
-
--   **Regression SS**: 14200. Variability explained by the model.
-    -   **Residual SS**: 1530. Variability not explained by the model.
-    -   **F-Statistic**: 74.2484. Indicates the model is statistically significant.
-    -   **Significance F**: 2.55E-05. $p$-value indicating strong evidence against the null hypothesis.
-:::
-
-::: {.column width="33%" style="text-align: center; justify-content: center; align-items: center;"}
-**Model Results**
-
--   **Coefficients**:
-
-    -   **Intercept**: 60 (p-value: 0.0002)\
-    -   **Population**: 5 (p-value: 2.55E-05)\
-    -   Both coefficients are statistically significant.
-
--   **Confidence Intervals**:
-
-    -   **95% CI for Intercept**: \[38.7247, 81.2753\]
-    -   **95% CI for Population**: \[3.6619, 6.3381\]
-:::
-::::::
-:::::::
-::::::::
-:::::::::
-
-# Using the Estimated Regression Equation for Estimation and Prediction {background-color="#cfb991"}
-
-## Using the Estimated Regression Equation for Estimation and Prediction
-
-::: nonincremental
--   A **confidence interval** is an interval estimate of the **mean of all** values of $y$ for a given value of $x$.
-
--   A **prediction interval** is used whenever we want to **predict an individual** value of $y$ for a new randomly-chosen observation corresponding to a given value of $x$.
-
--   The given $x$-value is denoted by $x^*$ , and the corresponding point estimate is obtained from the estimated regression equation:
-
-$$
-\hat{y}^* = b_0 + b_1 x^*
-$$
-
--   The margin of error (MOE) is larger for a prediction interval.
-:::
-
-## Using the Estimated Regression Equation for Estimation and Prediction
-
-::: nonincremental
--   **Confidence Interval Estimate of the mean**, $E(\hat{y}^*)$:
-
-$$
-\hat{y}^* \pm t_{\alpha/2, n-2} s_{\hat{y}^*}
-$$
-
--   **Prediction Interval Estimate of individual** $\hat{y}^*$:
-
-$$
-\hat{y}^* \pm t_{\alpha/2, n-2} s_{pred}
-$$
-
-where:
-
--   **confidence coefficient** is $1-\alpha$ and $t_{\alpha/2, n-2}$ is based on a *t* distribution with $n-2$ degrees of freedom.
-:::
-
-## Point Estimation
-
-::: nonincremental
-**Example:** Armand’s Pizza Parlors
-
-To predict quarterly sales or expected quarterly sales of restaurants near a campus or campuses with 10,000 students ($x* = 10$),
-
-$$
-\hat{y}^* = 60 + 5(10) = 110
-$$
-
-Predicted quarterly sales of \$110,000
-:::
-
-## Sums of Squares
-
-| $i$ | $x_i$ | $y_i$ | $x_i - \bar{x}$ | $y_i - \bar{y}$ | $(x_i - \bar{x})(y_i - \bar{y})$ | $(x_i - \bar{x})^2$ | $(y_i - \bar{y})^2$ |
-|----|----|----|----|----|----|----|----|
-| 1 | 2 | 58 | -12 | -72 | 864 | 144 | 5184 |
-| 2 | 6 | 105 | -8 | -25 | 200 | 64 | 625 |
-| 3 | 8 | 88 | -6 | -42 | 252 | 36 | 1764 |
-| 4 | 8 | 118 | -6 | -12 | 72 | 36 | 144 |
-| 5 | 12 | 117 | -2 | -13 | 26 | 4 | 169 |
-| 6 | 16 | 137 | 2 | 7 | 14 | 4 | 49 |
-| 7 | 20 | 157 | 6 | 27 | 162 | 36 | 729 |
-| 8 | 20 | 169 | 6 | 39 | 234 | 36 | 1521 |
-| 9 | 22 | 149 | 8 | 19 | 152 | 64 | 361 |
-| 10 | 26 | 202 | 12 | 72 | 864 | 144 | 5184 |
-| **Total** | 140 | 1300 |  |  | 2840 | 568 | 15730 |
-
-<center>$\bar{x} = 14, \bar{y} = 130$</center>
-
-<br>
-
-## Confidence Interval for $E(\hat{y}^*)$
-
-::: nonincremental
-Estimate of the Standard Deviation of $\hat{y}^*$:
-
-$$
-s_{\hat{y}^*} = s \sqrt{\frac{1}{n} + \frac{(x^* - \bar{x})^2}{\sum (x_i - \bar{x})^2}}
-$$
-
-$$
-= 13.829 \sqrt{\frac{1}{10} + \frac{(10 - 14)^2}{568}}
-$$
-
-$$
-= 13.829 \sqrt{.1282} = 4.95
-$$
-:::
-
-## Confidence Interval for $E(\hat{y}^*)$
-
-95% confidence interval of the **mean** quarterly sales for all Armand’s restaurants located near campuses with 10,000 students is
-
-$$
-\hat{y}^* \pm t_{\alpha/2} s_{\hat{y}^*}
-$$
-
-$$
-110 \pm 2.306(4.95)
-$$
-
-$$
-110 \pm 11.415, \text{ or } \$98,585 \text{ to } \$121,415
-$$
-
-We are 95% confident that the **mean** quarterly sales for **all** Armand’s restaurants located near campuses with 10,000 students falls between \$98,585 and \$121,415.
-
-## Confidence Interval for $E(\hat{y}^*)$
-
-```{r  echo=FALSE, out.width = "99%",fig.align="center"}
-knitr::include_graphics("figs/reg_confidence_interval_plot.png") 
-```
-
-## Prediction Interval for $y^*$
-
-::: nonincremental
-Estimate of the Standard Deviation of an **Individual Value** of $y^*$
-
-$$
-s_{pred} = s \sqrt{1 + \frac{1}{n} + \frac{(x^* - \bar{x})^2}{\sum (x_i - \bar{x})^2}}
-$$
-
-$$
-s_{pred} = 13.829 \sqrt{1 + \frac{1}{10} + \frac{(10 - 14)^2}{568}}
-$$
-
-$$
-= 13.829 \sqrt{1.282} = 14.69
-$$
-:::
-
-## Prediction Interval for $y^*$
-
-::: nonincremental
-95% prediction interval for quarterly sales for the new Armand’s restaurant located near a campus with 10,000 students is
-
-$$
-\hat{y}^* \pm t_{\alpha/2} s_{pred}
-$$
-
-$$
-110 \pm 2.306(14.69)
-$$
-
-$$
-110 \pm 33.875, \text{ or } \$76,125 \text{ to } \$143,875
-$$
-
-If we randomly select **one** Armand’s restaurant located near a campus with 10,000 students, we are 95% confident that its quarterly sales will be between \$76,125 and \$143,875.
-:::
-
-## Prediction Interval for $y^*$
-
-```{r  echo=FALSE, out.width = "99%",fig.align="center"}
-knitr::include_graphics("figs/reg_pred_interval_plot.png") 
-```
-
-## Comments
-
-<br>
-
-::: nonincremental
--   Prediction intervals for individuals are wider than the corresponding confidence intervals for means.
-
--   Two $x$-values with the same distance to the $\bar{x}$, their corresponding confidence intervals have the same width (and hence, the same margin of error). True also for the prediction intervals.
-
--   The confidence interval is wider when the given $x$ is further away from the $\bar{x}$ -- It is more difficult to predict for outlying $x$'s.
-:::
-
-# Residual Analysis: Validating Model Assumptions {background-color="#cfb991"}
-
-## Residual Analysis: Validating Model Assumptions
-
-::: nonincremental
--   If the assumptions about the error term $\epsilon$ appear questionable, the hypothesis tests about the significance of the regression relationship and the interval estimation results may not be valid.
-
--   The residuals provide the best information about $\epsilon$.
-
--   Residual for observation $i$
-
-$$
-y_i - \hat{y}_i
-$$
-
--   Much of the residual analysis is based on an examination of graphical plots.
-:::
-
-## Model Assumptions and Validation Procedures with Diagnosis Plots
-
-1.  $E(\epsilon) = 0$.
-
-    -   **Validation procedure:** A plot of residuals against the predicted values of the dependent variable $y$.
-
-2.  The variance of $\epsilon$, denoted by $\sigma^2$, is the same for all values of $x$.
-
-    -   **Validation procedure:** A plot of the residuals against values of the independent variable $x$.
-
-3.  The values of $\epsilon$ are independent.
-
-    -   **Validation procedure:** A standardized residual plot.
-
-4.  The error term $\epsilon$ has a normal distribution.
-
-    -   **Validation procedure:** A normal probability plot.
-
-## Residual Plot Against $x$
-
-::: {style="font-size: 80%;"}
-If the assumption that the variance of $\epsilon$ is the same (constant) for all values of $x$ is valid, and the assumed regression model is an adequate representation of the relationship between the variables, then the residual plot should give an overall impression of a horizontal band of points.
-:::
-
-:::::::::: columns
-::::::::: {layout-ncol="3"}
-:::: {.column width="33%" style="text-align: center; justify-content: center; align-items: center;"}
-::: fragment
-```{r  echo=FALSE, out.width = "99%",fig.align="center"}
-knitr::include_graphics("figs/reg_residual_01.png") 
-```
-
-<center>Panel A</center>
-:::
-::::
-
-:::: {.column width="33%" style="text-align: center; justify-content: center; align-items: center;"}
-::: fragment
-```{r  echo=FALSE, out.width = "99%",fig.align="center"}
-knitr::include_graphics("figs/reg_residual_02.png") 
-```
-
-<center>Panel B</center>
-:::
-::::
-
-:::: {.column width="33%" style="text-align: center; justify-content: center; align-items: center;"}
-::: fragment
-```{r  echo=FALSE, out.width = "99%",fig.align="center"}
-knitr::include_graphics("figs/reg_residual_03.png") 
-```
-
-<center>Panel C</center>
-:::
-::::
-:::::::::
-::::::::::
-
-<br>
-
-## Residual Plot Against $x$
-
-**Example:** Armand’s Pizza Parlors
-
-| Student Population ($x_i$) | Sales ($y_i$) | Predicted sales $y_i = 60 + 5(x_i)$ | Residuals ($y_i - \hat{y_i}$) |
-|----|----|----|----|
-| 2 | 58 | 70 | -12 |
-| 6 | 105 | 90 | 15 |
-| 8 | 88 | 100 | -12 |
-| 8 | 118 | 100 | 18 |
-| 12 | 117 | 120 | -3 |
-| 16 | 137 | 140 | -3 |
-| 20 | 157 | 160 | -3 |
-| 20 | 169 | 160 | 9 |
-| 22 | 149 | 170 | -21 |
-| 26 | 202 | 190 | 12 |
-
-## Residual Plot Against $x$
-
-**Example:** Armand’s Pizza Parlors
-
-Plot of the residuals against the independent variable $x$.
-
-```{r  echo=FALSE, out.width = "70%",fig.align="center"}
-knitr::include_graphics("figs/armands_pizza_plot_residual_x.png") 
-```
-
-::: {style="font-size: 80%;"}
--   The residuals appear to approximate the horizontal pattern in Panel A.
--   Based on this subjective evaluation, we conclude that the residual plot does not provide evidence that the assumptions made for Armand's regression model should be challenged.
--   We can be confident that Armand's simple regression model is valid.
-:::
-
-## Residual Plot Against $x$ - Excel
-
-:::::: nonincremental
-::::: columns
-::: {.column width="40%" style="text-align: center; justify-content: center; align-items: center;"}
--   Using Excel to Produce a Residual Plot
-
-    -   The steps outlined earlier to obtain the regression output are performed with one change.
-
-    -   When the Regression dialog box appears, we must also select the **Residual Plot** option.
-
-    -   The output will include two new items:
-
-        -   A plot of the residuals against the independent variable, and
-        -   A list of predicted values of $y$ and the corresponding residual values.
-:::
-
-::: {.column width="60%" style="text-align: center; justify-content: center; align-items: center;"}
-<br>
-
-```{r  echo=FALSE, out.width = "90%",fig.align="center"}
-knitr::include_graphics("figs/armands_pizza_plot_residual_excel.png") 
-```
-:::
-:::::
-::::::
-
-## Residual Plot Against $\hat{y}$
-
-**Example:** Armand’s Pizza Parlors
-
-Plot of the residuals against the independent variable $\hat{y}$.
-
-```{r  echo=FALSE, out.width = "70%",fig.align="center"}
-knitr::include_graphics("figs/armands_pizza_plot_residual_y.png") 
-```
-
-::: {style="font-size: 80%;"}
--   The pattern of this residual plot is the same as the pattern of the residual plot against the independent variable $x$.
--   It is not a pattern that would lead us to question the model assumptions.
--   For simple linear regression, both the residual plot against $x$ and the residual plot against $\hat{y}$ provide the same pattern.
--   For multiple regression analysis, the residual plot against $\hat{y}$ is more widely used because of the presence of more than one independent variable.
-:::
-
-## Standardized Residuals
-
-::: nonincremental
--   Standardized Residual for Observation $i$
-
-$$
-\frac{y_i - \hat{y_i}}{s_{y_i - \hat{y_i}}}
-$$
-
-where $s_{y_i - \hat{y_i}}$ is the standard deviation of residual $i$
-
-$$
-s_{y_i - \hat{y_i}} = s \sqrt{1 + h_i}
-$$ where $s$ is the standard error of the estimate
-
-$$
-h_i = \frac{1}{n} + \frac{(x_i - \bar{x})^2}{\sum (x_i - \bar{x})^2}
-$$
-:::
-
-## Standardized Residual Plot
-
--   The standardized residual plot can provide insight about the assumption that the error term $\epsilon$ has a normal distribution.
-
--   If this assumption is satisfied, the distribution of the standardized residuals should appear to come from a standard normal probability distribution.
-
-    -   Empirical rule applies.
-
-## Standardized Residual
-
-**Example:** Armand’s Pizza Parlors
-
-| Observation | Predicted sales $y_i = 60 + 5(x_i)$ | Residuals ($y_i - \hat{y_i}$) | Standardized Residual |
-|----|----|----|----|
-| 1 | 70 | -12 | -1.0792 |
-| 2 | 90 | 15 | 1.2224 |
-| 3 | 100 | -12 | -.9487 |
-| 4 | 100 | 18 | 1.4230 |
-| 5 | 120 | -3 | -.2296 |
-| 6 | 140 | -3 | -.2296 |
-| 7 | 160 | -3 | -.2372 |
-| 8 | 160 | 9 | .7115 |
-| 9 | 170 | -21 | -1.7114 |
-| 10 | 190 | 12 | 1.0792 |
-
-## Standardized Residual Plot
-
-**Example:** Armand’s Pizza Parlors
-
-```{r  echo=FALSE, out.width = "70%",fig.align="center"}
-knitr::include_graphics("figs/armands_pizza_plot_residual_std.png") 
-```
-
--   All of the standardized residuals are between -2 and +2 indicating that there is no reason to question the assumption that ε has a normal distribution.
-
-## Using Excel to construct a Standardized Residual Plot
-
-**Example: Armand’s Pizza Parlors**
-
-```{r  echo=FALSE, out.width = "70%",fig.align="center"}
-knitr::include_graphics("figs/armands_pizza_plot_residual_std_excel.png") 
-```
-
-## Normal Probability Plot
-
-Another approach for determining the validity of the assumption that the error term has a normal distribution.
-
-To show how a normal probability plot is developed, we introduce the concept of **normal scores**:
-
-> Suppose 10 values are selected randomly from a normal probability distribution with a mean of zero and a standard deviation of one, and that the sampling process is repeated over and over with the values in each sample of 10 ordered from smallest to largest. For now, let us consider only the smallest value in each sample. The random variable representing the smallest value obtained in repeated sampling is called the **first-order statistic**.
-
-> For samples of size 10 from a standard normal probability distribution, the expected value of the first-order statistic is -1.55. This expected value is called a **normal score**. For the case with a sample of size $n = 10$, there are 10 order statistics and 10 normal scores (next slide). In general, a data set consisting of $n$ observations will have $n$ order statistics and hence $n$ normal scores.
-
-**Normal Scores**: are expected values of the order statistics from a standard normal distribution.
-
-## Normal Probability Plot
-
-**Normal Scores for** $n = 10$
-
-<center>
-
-| Order Statistic | Normal Score |
-|-----------------|--------------|
-| 1               | -1.55        |
-| 2               | -1.00        |
-| 3               | -0.65        |
-| 4               | -0.37        |
-| 5               | -0.12        |
-| 6               | 0.12         |
-| 7               | 0.37         |
-| 8               | 0.65         |
-| 9               | 1.00         |
-| 10              | 1.55         |
-
-</center>
-
-## Normal Probability Plot
-
-::: {style="font-size: 80%;"}
-To determine whether the standardized residuals for Armand’s Pizza Parlors appear to come from a standard normal probability distribution.
-
-We order the 10 standardized residuals in parallel with the 10 normal scores:
-
-| Normal Scores | Ordered Standardized Residuals |
-|---------------|--------------------------------|
-| -1.55         | -1.7114                        |
-| -1.00         | -1.0792                        |
-| -0.65         | -0.9487                        |
-| -0.37         | -0.2372                        |
-| -0.12         | -0.2296                        |
-| 0.12          | -0.2296                        |
-| 0.37          | 0.7115                         |
-| 0.65          | 1.0792                         |
-| 1.00          | 1.2224                         |
-| 1.55          | 1.4230                         |
-
-**Interpreting the Normal Probability Plot**: If the normality assumption is satisfied, the smallest standardized residual should be close to the smallest normal score, the next smallest standardized residual should be close to the next smallest normal score, and so on.
-:::
-
-## Normal Probability Plot
-
-:::: {style="font-size: 70%;"}
-A plot with the normal scores on the horizontal axis and the corresponding standardized residuals on the vertical axis, the plotted points should cluster closely around a 45-degree line passing through the origin if the standardized residuals are approximately normally distributed.
+- From the Regression output (`yelp_rating` row):
 
 ::: fragment
-```{r  echo=FALSE, out.width = "40%",fig.align="center"}
-knitr::include_graphics("figs/armands_pizza_normality_plot.png") 
-```
 
--   The points are grouped closely about the line. Therefore, we can conclude that the assumption of the error term having a normal probability distribution is reasonable.
--   In general, the more closely the points are clustered about the 45-degree line, the stronger the evidence supporting the normality assumption. Any substantial curvature in the normal probability plot is evidence that the residuals have not come from a normal distribution.
-:::
-::::
+| Quantity | Value |
+|---|---:|
+| $b_1$ (slope) | 757.5 |
+| $s_{b_1}$ (std. error of slope) | 51.46 |
+| $t = b_1 / s_{b_1}$ | **14.7** |
+| $df = n - 2$ | 43 |
+| $p$-value | $< 0.0001$ |
 
-# Outliers and Influential Observations {background-color="#cfb991"}
-
-## Outliers
-
-An **outlier** is a data point (observation) that does not fit the trend shown by the remaining data. Represent observations that are suspect and warrant careful examination.
-
--   **Erroneous Data**
-
-    -   Investigate the source of the outlier to identify any errors in data collection or entry.
-
-    -   Correct the data point if possible, or remove it if the correct value cannot be determined.
-
--   **Violation of Model Assumptions**
-
-    -   Use diagnostic tools to check if the outlier violates the assumptions of simple regression.
-
-    -   Consider alternative models, such as transformations or robust regression methods, if the assumptions are violated.
-
--   **Legitimate but Unusual Observations**
-
-    -   Recognize that some outliers are natural occurrences and represent rare events.
-
-    -   Retain these outliers in the analysis to reflect the true variability in the data.
-
-    -   Report and interpret the presence of these outliers in the context of the study.
-
-## Detecting Outliers
-
-::: {style="font-size: 80%;"}
-For the case of simple linear regression, one can often detect outliers by simply examining the scatter diagram.
-
-```{r  echo=FALSE, out.width = "40%",fig.align="center"}
-knitr::include_graphics("figs/outlier_01.png") 
-```
-
-<center>$R^2 = .4968$</center>
-
-Given the pattern of the rest of the data, we would have expected $y_4$ to be much smaller and hence would consider observation 4 to be an outlier.
 :::
 
-## Detecting Outliers with Standardized Residuals
+- $|t| = 14.7$ is enormous against $t_{0.025, 43} = 2.02$ → **reject $H_0$** decisively.
 
-::: {style="font-size: 70%;"}
-If an observation deviates greatly from the pattern of the rest of the data, the corresponding standardized residual will be large in absolute value.
+- **Translation:** the Yelp–sales relationship is *not* a fluke of these 45 stores. There is overwhelming evidence the true slope is positive.
 
-Any observation with a standardized residual of less than -2 or greater than +2 is a potential outlier. With normally distributed errors, standardized residuals should be outside these limits approximately 5% of the time.
-
-```{r  echo=FALSE, out.width = "40%",fig.align="center"}
-knitr::include_graphics("figs/outlier_01.png") 
-```
-
-In the residual output section in the Figure we see that the standard residual value for observation 4 is 2.68.
-:::
-
-## Detecting Outliers
-
-::: {style="font-size: 80%;"}
-The identification of the outlier enables us to correct the data error and improve the regression results. This is the result with $y_4 = 30$.
-
-```{r  echo=FALSE, out.width = "40%",fig.align="center"}
-knitr::include_graphics("figs/outlier_02.png") 
-```
-
--   Now, no standard residuals are less than -2 or greater than +2.
--   The value of $R^2$ has increased from 0.4968 to 0.8380
--   The value of $b_0$ has decreased from 64.95 to 59.23.
--   The slope of the line has changed from -7.330 to -6.949.
-:::
-
-## Influential Observations
+## Confidence Interval for the Slope
 
 <br>
 
--   An **influential observation** is an observation that has a strong influence on the regression results.
-
--   An influential observation may be an outlier, it may correspond to an $x$ value far from its mean, or it may be caused by a combination of a somewhat off-trend $y$ value and a somewhat extreme $x$ value.
-
--   If the observation is valid, it can contribute to a better understanding of the appropriate model and can lead to a better estimated regression equation.
-
-## Detecting Influential Observations
-
-::: {style="font-size: 80%;"}
-<br>
-
-```{r  echo=FALSE, out.width = "40%",fig.align="center"}
-knitr::include_graphics("figs/influential_01.png") 
-```
-
-<br>
-
-With observation 7 deleted,
-
--   The value of $b_0$ has increased from 127.4 to 138.1.
-
--   The slope of the line has changed from -0.425 to -1.090.
-:::
-
-## Detecting Influential Observations
-
-**High Leverage Points:** Observations with extreme values for the independent variable. Observation 7 in the data set shown is a point with high leverage.
-
-The leverage of an observation is determined by how far the value of the independent variable is from its mean value.
-
-For the single-independent-variable case, the leverage of the $i$th observation, denoted $h_i$, can be computed using:
-
-$$
-h_i = \frac{1}{n} + \frac{(x_i - \bar{x})^2}{\sum (x_i - \bar{x})^2}
-$$
-
-From the formula, farther $x_i$ is from its mean $\bar{x}$, the higher the leverage of observation $i$.
-
-## Detecting Influential Observations
-
-:::: {style="font-size: 70%;"}
-For the data shown, the leverage of observation 7 is as follows:
-
-$$
-h_i = \frac{1}{n} + \frac{(x_i - \bar{x})^2}{\sum (x_i - \bar{x})^2} = \frac{1}{7} + \frac{(70 - 24.286)^2}{2621.43} = 0.94
-$$
-
-For simple linear regression, we consider observations as having high leverage if $h_i > \frac{6}{n}$. For the example, $\frac{6}{n} = \frac{6}{7} = 0.86$.
-
-Thus, because $h_i = 0.94 > 0.86$, observation 7 would be identified as having high leverage.
-
-<br>
+- The test says the slope is nonzero; the **confidence interval** says how big it plausibly is:
 
 ::: fragment
-**Notes and Comments**:
 
--   The number **6** in the criterion $h_i > \frac{6}{n}$ is an arbitrary rule of thumb used to identify high leverage points in linear regression. Some statisticians use $\frac{2p}{n}$, where $p$ is the number of predictors plus one (for the intercept) in the model.
+$$
+b_1 \pm t_{\alpha/2,\,n-2}\; s_{b_1} = 757.5 \pm 2.02 \times 51.46 = (\$653.7\text{K},\; \$861.3\text{K})
+$$
 
--   Once an observation is identified as potentially influential because of a large residual or high leverage, its impact on the estimated regression equation should be evaluated.
-
--   More advanced texts discuss diagnostics for doing so. However, if one is not familiar with the more advanced material, a simple procedure is to run the regression analysis with and without the observation. This approach will reveal the influence of the observation on the results.
 :::
+
+- We are 95% confident each Yelp star is worth between **\$654K and \$861K** in annual sales.
+
+- The interval is **entirely above zero** — the same conclusion as the test (reject $H_0$), now with a magnitude a manager can plan around.
+
+- **Equivalence:** reject $H_0: \beta_1 = 0$ at $\alpha = 0.05$ $\iff$ zero is **not** in the 95% CI. Read directly off the **Lower 95% / Upper 95%** columns of the output.
+
+## A Note on the F Test
+
+<br>
+
+- The Regression output also reports an **F test** (the ANOVA block): $F = \text{MSR}/\text{MSE}$, testing the same $H_0: \beta_1 = 0$.
+
+- In **simple** regression (one predictor) the $F$ and $t$ tests are **equivalent** — in fact $F = t^2$:
+
+::: fragment
+
+$$
+F = 216.7 = (14.7)^2 = t^2
+$$
+
+:::
+
+- Same conclusion, same $p$-value. (When we add predictors next topic, $F$ tests the model *as a whole* while each $t$ tests one variable — then they differ.)
+
+## Significance Is Not Causation
+
+<br>
+
+- Rejecting $H_0: \beta_1 = 0$ tells us the **relationship is statistically significant** — Yelp and sales move together more than chance would explain.
+
+- It does **not** establish that **better service causes** higher sales. Reverse causation (busy, well-stocked stores earn better reviews) and lurking variables (a great location drives *both*) are live alternatives.
+
+- It also does **not** prove the relationship is truly **linear** outside the range we observed — extrapolating a 6-star store is meaningless.
+
+- *Use regression to forecast and to quantify; use judgment and design to claim causation.*
+
+## Residual Analysis: Validating the Assumptions
+
+<br>
+
+- A significant slope is worthless if the model is the **wrong shape**. **Residuals** are our window onto the error term — they should look like random noise.
+
+- The core diagnostic: **plot residuals against $x$** (or against $\hat{y}$). We want a **horizontal band of points centered at zero** with no pattern.
+
+- Two warning signs to learn:
+
+  - A **curved** (U-shaped) band → the relationship is **nonlinear**; a straight line is the wrong functional form (consider adding $x^2$).
+  - A **fan** that widens → **non-constant variance** (heteroscedasticity); the constant-variance assumption fails (consider transforming $y$).
+
+## The Auto-Parts Residual Plot
+
+```{r  echo=FALSE, out.width = "72%",fig.align="center"}
+knitr::include_graphics("figs/autoparts_residual_plot.png")
+```
+
+::: nonincremental
+- Roughly horizontal, centered at zero, no fan and no curve → the **linearity** and **constant-variance** assumptions look reasonable. The straight-line model is defensible.
+:::
+
+## Standardized Residuals and Outliers
+
+- Dividing each residual by its standard deviation gives a **standardized residual** — on a $z$-like scale.
+
+- **Rule of thumb:** a standardized residual with $|z| > 2$ flags an **outlier** — a store that performs far off-trend for its rating. Investigate; don't auto-delete.
+
+::: fragment
+
+```{r  echo=FALSE, out.width = "60%",fig.align="center"}
+knitr::include_graphics("figs/autoparts_std_residual_plot.png")
+```
+
+:::
+
+## Two Stores Worth a Conversation
+
+<br>
+
+- Two stores sit just past $\pm 2$ — both rated **5.0 stars**:
+
+  - One **under-performs** badly (sales far below the \$4.1M its rating predicts).
+  - One **over-performs** (sales well above the line).
+
+- These are **not data errors** — they are real stores the model can't fully explain with rating alone.
+
+- *What might separate two 5-star stores?* End-cap placement, local income, population. **That is the teaser for multiple regression** — adding the variables that explain the residuals.
+
+## Forecasting a New Store: Point Prediction
+
+<br>
+
+- The real payoff: a prospective site rates **4.5 stars** on comparable stores. Predicted sales:
+
+::: fragment
+
+$$
+\hat{y} = 332.8 + 757.5 \times 4.5 = \$3{,}742\text{K} \;\approx\; \$3.74\text{M}
+$$
+
+:::
+
+- That single number is the **point prediction** — but a point with no margin of error is a trap. Two different questions need two different intervals:
+
+  - **Confidence interval** — the **mean** sales of *all* stores rated 4.5.
+  - **Prediction interval** — the sales of **this one** new store.
+
+## Confidence Interval vs. Prediction Interval
+
+<br>
+
+:::: {style="font-size: 86%;"}
+- **Confidence interval** for the mean response at $x^*$ — narrower:
+
+::: fragment
+
+$$
+\hat{y} \pm t_{\alpha/2,\,n-2}\; s\sqrt{\frac{1}{n} + \frac{(x^* - \bar{x})^2}{\sum (x_i - \bar{x})^2}}
+$$
+
+:::
+
+- **Prediction interval** for one new store at $x^*$ — wider (note the extra **1**):
+
+::: fragment
+
+$$
+\hat{y} \pm t_{\alpha/2,\,n-2}\; s\sqrt{1 + \frac{1}{n} + \frac{(x^* - \bar{x})^2}{\sum (x_i - \bar{x})^2}}
+$$
+
+:::
+
+- The PI carries the **individual store's** own scatter ($s$) *on top of* the uncertainty in the line — that is the extra "1."
 ::::
 
-# Summary {background-color="#cfb991"}
+## The Two Intervals, in a Picture
+
+```{r  echo=FALSE, out.width = "66%",fig.align="center"}
+knitr::include_graphics("figs/autoparts_pred_band.png")
+```
+
+::: nonincremental
+- At Yelp = 4.5: point \$3.74M; **CI** $(\$3{,}543\text{K},\; \$3{,}940\text{K})$ for the average such store; **PI** $(\$2{,}786\text{K},\; \$4{,}698\text{K})$ for one specific new store.
+- Both bands are **narrowest near $\bar{x}$** and flare out at the edges — forecasts far from the data are less certain.
+:::
+
+## What Makes a Forecast Tighter or Looser
+
+<br>
+
+- Four levers set the width of these intervals:
+
+  1. **Confidence level** $(1-\alpha)$ — more confidence → wider.
+  2. **Data spread** $s$ — noisier data → wider.
+  3. **Sample size** $n$ — more stores → narrower.
+  4. **Distance of $x^*$ from $\bar{x}$** — forecasting far from the average rating → wider.
+
+- **Manager's lesson:** a confident forecast comes from a tight model ($s$ small), lots of data ($n$ large), and a site that looks like the stores we already have ($x^*$ near $\bar{x}$). Forecasting an exotic site is a guess dressed as a number.
+
+## ⏱️ Team Sprint 2 — Test the slope, forecast a site
+
+::: {.sprint .nonincremental}
+**Decide:** is the Yelp–sales relationship real, and what should we forecast for a candidate 4.5-star site?
+
+**Data:** `data/autoparts.csv` · **Time:** ~15 min
+
+1. From the Regression output, state $t$, the $p$-value, and the **95% CI for the slope** — is $\beta_1$ significantly nonzero?
+2. Glance at the **residual plot** (check Residual Plots in the dialog): any fan or curve that breaks the assumptions?
+3. Forecast a site at **Yelp = 4.5**: give the point prediction, and say whether the CFO should quote the **CI** or the **PI** for one new lease — and why.
+
+**Hand in (1 slide):** the slope verdict (with CI), an assumptions one-liner, and your forecast + the interval you'd put in the lease memo.
+:::
+
+## Debrief — Manager's Takeaway (Lecture 2)
+
+<br>
+
+- **One sentence:** the Yelp–sales slope is overwhelmingly significant ($t = 14.7$, $p < 0.0001$); a 4.5-star site is forecast at **\$3.74M**, and for *one* lease we quote the **prediction interval** $(\$2.79\text{M}, \$4.70\text{M})$.
+
+- **One number:** 95% CI for the slope = **(\$654K, \$861K)** per star — the magnitude the real-estate team plans around.
+
+- **One caveat:** the model assumes the new site behaves like our 45 stores; the two off-trend 5-star outliers warn that rating alone misses something — which is exactly why we add predictors next.
+
+## Carry-forward (Lecture 2)
+
+::: nonincremental
+- **Your client (homework):** on your team's simple regression — test the slope (report $t$, $p$, and the 95% CI), check the residual plot for assumption violations, and produce a point prediction *with the right interval* for one new case. State whether you'd trust the forecast.
+
+- **Next time:** sales depend on more than one thing. We add **population, income, and end-cap placement** to the model — **Multiple Regression** — and learn why a variable that looks important alone can vanish once others are in the room.
+:::
+
+# Debrief — From a Line to a Site Decision {background-color="#cfb991"}
+
+## The Whole Engagement on One Page
+
+::: r-fit-text
+| Step | Question | Tool | Auto-parts result |
+|---|---|---|---|
+| Fit | What's the line? | Least squares | $\hat{y} = 332.8 + 757.5\,x$ |
+| Interpret | What's a star worth? | Slope $b_1$ | **+\$757.5K** per Yelp star |
+| Explain | How good is the fit? | $R^2$ | **0.834** — 83% of sales variation |
+| Test | Is it real? | $t$ test on slope | $t = 14.7$, $p < .0001$ → reject $H_0$ |
+| Quantify | How big, plausibly? | 95% CI for slope | (\$654K, \$861K) per star |
+| Validate | Do assumptions hold? | Residual plot | Horizontal band → OK (2 outliers) |
+| Forecast | What will a new site sell? | Point + PI | \$3.74M; PI (\$2.79M, \$4.70M) at 4.5 stars |
+:::
+
+## Manager's Takeaway
+
+<br>
+
+- **One sentence:** Yelp rating predicts auto-parts store sales strongly and significantly — about **\$758K per star**, explaining **83%** of the sales gap — so the real-estate team can use it to score and forecast sites.
+
+- **One number to remember:** $b_1 = 757.5$ — and where it came from: $\sum(x-\bar{x})(y-\bar{y}) / \sum(x-\bar{x})^2$.
+
+- **One caveat:** regression forecasts and quantifies; it does **not** prove causation, and 17% of sales is still unexplained — a single predictor is a start, not the answer.
+
+- **Practice with the real data:**
+  - `data/autoparts.csv` + Regression tool → reproduce $b_1 = 757.5$, $R^2 = 0.834$, $t = 14.7$.
+  - Worked solutions: `data/autoparts_regression.xlsx`.
 
 ## Summary
 
 ::: nonincremental
 Some key takeaways from this session:
 
--   **Simple Linear Regression Model**: Helps to understand the linear relationship between two variables—predicting the Dependent Variable ($Y$) based on the Independent Variable ($X$).
+- **Regression predicts**, where comparison only contrasts: the estimated line $\hat{y} = b_0 + b_1 x$ turns a relationship into a forecast.
+- **Least squares** picks the unique line that minimizes $\sum (y_i - \hat{y}_i)^2$; the **slope** is the business number (\$757.5K per Yelp star), the **intercept** just anchors the line.
+- **$R^2 = \text{SSR}/\text{SST}$** is the share of variation the line explains (0.834 here); $r = (\text{sign } b_1)\sqrt{R^2}$ ties it to correlation.
+- **Inference** asks if the slope is real: $t = b_1/s_{b_1}$ with $df = n-2$ (and $F = t^2$); the 95% CI gives the plausible magnitude.
+- **Residual plots** validate the assumptions — look for a horizontal band; a curve means nonlinearity, a fan means non-constant variance.
+- **Prediction** needs the right interval: a **CI** for the mean response, a **wider PI** for one new store; both widen as $x^*$ leaves $\bar{x}$.
+- Significance $\neq$ causation, and one predictor is rarely enough — the bridge to multiple regression.
+:::
 
-    -   This method is foundational for exploring how variables are related and how changes in one variable can predict changes in another.
+## Carry-forward
 
--   **Model Interpretation and Assumptions**: It is essential to interpret the regression coefficients and validate model assumptions to ensure that the model is reliable.
+::: nonincremental
+- **Your client (homework):** fit, interpret, test, validate, and forecast a simple regression on your team's case — the full arc on one slide, ending with a forecast you'd defend.
 
-    -   Assumptions include linearity, independence, homoscedasticity (constant variance), and normality of residuals.
-
--   **Residual Analysis**: Residual plots and other diagnostic tools are critical for validating the assumptions of the regression model and ensuring its accuracy.
-
-    -   Proper validation techniques prevent misinterpretation of data and help maintain the integrity of the analysis.
+- **Next time:** we add more predictors and learn what "holding everything else constant" really means — **Multiple Regression** on the same auto-parts client.
 :::
 
 # Thank you! {background-color="#cfb991"}

@@ -32,7 +32,7 @@
       vertical-align: middle;
     }
   </style>
-  <link rel="stylesheet" href="../../site_libs/revealjs/dist/theme/quarto-5ef896889b6f6a61ee8a14a51d301bed.css">
+  <link rel="stylesheet" href="../../site_libs/revealjs/dist/theme/quarto-113b5beb2a57b2deea58feb1108e76b2.css">
   <link href="../../site_libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
   <link href="../../site_libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
   <link href="../../site_libs/revealjs/plugin/reveal-menu/quarto-menu.css" rel="stylesheet">
@@ -147,31 +147,1146 @@ Professor<br>Davi Moreira<br>
 <section id="overview" class="slide level2 center">
 <h2>Overview</h2>
 <div class="columns">
-<div class="column" style="text-align: center; justify-content: center; align-items: center;">
+<div class="column" style="width: 50%; text-align: center; justify-content: center; align-items: center;">
 <ul>
-<li><p>Random Variables</p></li>
-<li><p>Developing Discrete Probability Distributions</p></li>
-<li><p>Expected Value and Variance</p></li>
+<li>Case Spotlight: planning capacity at Vungle</li>
+<li>Random variables: discrete vs.&nbsp;continuous</li>
+<li>Discrete probability distributions — table, conditions, graph</li>
+<li>Expected value and variance of a random variable</li>
+<li>The <strong>Binomial</strong> distribution: counting installs over impressions</li>
 </ul>
-</div><div class="column" style="text-align: center; justify-content: center; align-items: center;">
+</div><div class="column" style="width: 50%; text-align: center; justify-content: center; align-items: center;">
 <ul>
-<li><p>Binomial Probability Distribution</p></li>
-<li><p>Poisson Probability Distribution</p></li>
-<li><p><em>(TBD — content to be developed for QM 6700)</em></p></li>
+<li>The <strong>Poisson</strong> distribution: rare events over an interval</li>
+<li>When Binomial ≈ Poisson (large <span class="math inline">\(n\)</span>, small <span class="math inline">\(p\)</span>)</li>
+<li>Excel: <code>BINOM.DIST</code> and <code>POISSON.DIST</code></li>
+<li>Tail probabilities: <span class="math inline">\(P(X \geq N)\)</span> for capacity planning</li>
+<li>The decision: how big a postback pipeline does Vungle need?</li>
 </ul>
 </div></div>
 </section>
 <section>
-<section id="section-placeholder" class="title-slide slide level1 center" data-background-color="#2C3E50">
-<h1>Section placeholder</h1>
+<section id="case-spotlight-ab-testing-at-vungle" class="title-slide slide level1 center" data-background-color="#cfb991">
+<h1>Case Spotlight: A/B Testing at Vungle</h1>
 
 </section>
-<section id="tbd" class="slide level2 center">
-<h2>TBD</h2>
-<p>Content to be developed.</p>
-
-
+<section id="june-2014-from-is-b-better-to-can-we-handle-it" class="slide level2 center">
+<h2>June 2014 — From “Is B Better?” to “Can We Handle It?”</h2>
+<p><br></p>
+<ul>
+<li class="fragment"><p><a href="https://en.wikipedia.org/wiki/Liftoff_Mobile">Vungle</a> is a mobile ad-tech startup: it serves 15-second video ads inside other apps and earns revenue mainly when a viewer <strong>installs</strong> the advertised app.</p></li>
+<li class="fragment"><p>Across June 2014, algorithm <strong>A</strong> served ~236M impressions and <strong>B</strong> served ~16M, side by side. The metric that pays the bills is <strong>eRPM</strong> — revenue per 1,000 impressions.</p></li>
+<li class="fragment"><p>Every install fires a <strong>postback</strong>: a real-time callback the ad server must record, bill, and confirm to the advertiser. Installs are the events the <strong>infrastructure</strong> has to absorb.</p></li>
+<li class="fragment"><p>Engineering’s worry is not “is B better?” — it is <strong>“how many installs hit us at once, and how often?”</strong> Provision too little capacity and postbacks drop (lost revenue); too much and you burn cash on idle servers.</p></li>
+</ul>
+</section>
+<section id="the-brief-todays-managerial-question" class="slide level2 center">
+<h2>The Brief — Today’s Managerial Question</h2>
+<p><br></p>
+<blockquote>
+<p>“For a typical burst of traffic, <strong>what is the probability of at least <span class="math inline">\(N\)</span> installs</strong> — so we can size the postback pipeline without over- or under-building?”</p>
+</blockquote>
+<p><br></p>
+<ul>
+<li class="fragment"><p>So far we have <em>described</em> and <em>compared</em> data. Today we <strong>model</strong> it: we put a <strong>probability distribution</strong> on a random count, then read off the chance of any outcome we care about.</p></li>
+<li class="fragment"><p><strong>How today’s studio runs:</strong> I demo each distribution on a textbook example → <strong>your team models Vungle installs</strong> (one sprint per class) → we debrief the capacity call.</p></li>
+<li class="fragment"><p>By the end, <strong>your team</strong> turns a conversion rate into a defensible <strong>capacity plan</strong> — with the probabilities to back it up.</p></li>
+</ul>
+</section>
+<section id="how-todays-tools-answer-it" class="slide level2 center">
+<h2>How Today’s Tools Answer It</h2>
+<p><br></p>
+<p>Every tool today maps onto the Vungle install count:</p>
+<table class="caption-top">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Feature of the Vungle problem</th>
+<th>The tool</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Each impression installs (yes) or not (no)</td>
+<td><strong>Bernoulli trial</strong></td>
+</tr>
+<tr class="even">
+<td>Count installs over <span class="math inline">\(n\)</span> fixed impressions</td>
+<td><strong>Binomial</strong> distribution (Lecture 1)</td>
+</tr>
+<tr class="odd">
+<td>Installs as rare arrivals over an interval</td>
+<td><strong>Poisson</strong> distribution (Lecture 2)</td>
+</tr>
+<tr class="even">
+<td>“How big must capacity be?”</td>
+<td>a <strong>tail probability</strong> <span class="math inline">\(P(X \geq N)\)</span></td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+<ul>
+<li class="fragment">One conversion rate, two models — and for Vungle’s tiny <span class="math inline">\(p\)</span> they will give <strong>almost the same answer</strong>. That is today’s punchline.</li>
+</ul>
 </section></section>
+<section>
+<section id="lecture-1-random-variables-expected-value-the-binomial" class="title-slide slide level1 center" data-background-color="#cfb991">
+<h1>Lecture 1 — Random Variables, Expected Value &amp; the Binomial</h1>
+
+</section>
+<section id="the-brief-lecture-1" class="slide level2 center">
+<h2>The Brief — Lecture 1</h2>
+<p><br></p>
+<blockquote>
+<p>“Model the number of <strong>installs in a burst of 1,000 impressions</strong> as a random count. What is its expected value, its spread, and the probability it hits <strong>at least 8</strong> — the level that stresses a single postback worker?”</p>
+</blockquote>
+<p><br></p>
+<ul>
+<li class="fragment"><p>We build the machinery in three steps: (1) name the <strong>random variable</strong>, (2) get its <strong>expected value and variance</strong>, (3) recognize it as a <strong>Binomial</strong> and compute exact probabilities in Excel.</p></li>
+<li class="fragment"><p>The number that drives everything is Vungle’s conversion rate: <span class="math inline">\(p \approx 0.0035\)</span> for B, <span class="math inline">\(p \approx 0.0040\)</span> for A.</p></li>
+</ul>
+</section></section>
+<section>
+<section id="random-variables" class="title-slide slide level1 center" data-background-color="#cfb991">
+<h1>Random Variables</h1>
+
+</section>
+<section id="what-is-a-random-variable" class="slide level2 center">
+<h2>What Is a Random Variable?</h2>
+<p><br></p>
+<ul>
+<li class="fragment"><p>A <strong>random variable</strong> is a numerical description of the outcome of an experiment — it assigns a <strong>number</strong> to each possible result.</p></li>
+<li class="fragment"><p>Two flavors:</p>
+<ul>
+<li class="fragment"><strong>Discrete</strong> — assumes a finite or countable list of values (you can list them: <span class="math inline">\(0, 1, 2, \dots\)</span>).</li>
+<li class="fragment"><strong>Continuous</strong> — assumes any value in an interval (we handle these next topic).</li>
+</ul></li>
+<li class="fragment"><p>For Vungle, the count we care about is discrete:</p></li>
+</ul>
+<div class="fragment">
+<p><span class="math display">\[
+X = \text{number of installs in a fixed batch of impressions} \in \{0, 1, 2, \dots\}
+\]</span></p>
+</div>
+<ul>
+<li class="fragment">Installs are <strong>counted</strong>, not measured — so <span class="math inline">\(X\)</span> is a <strong>discrete</strong> random variable. (eRPM, by contrast, is continuous — next topic.)</li>
+</ul>
+</section>
+<section id="discrete-finite-vs.-countably-infinite" class="slide level2 center">
+<h2>Discrete: Finite vs.&nbsp;Countably Infinite</h2>
+<p><br></p>
+<ul>
+<li class="fragment"><p><strong>Finite</strong> number of values — a hard upper limit exists:</p>
+<ul>
+<li class="fragment"><em>JSL Appliances:</em> <span class="math inline">\(x\)</span> = TVs sold in a day <span class="math inline">\(\in \{0,1,2,3,4\}\)</span> (you cannot sell more than you stock).</li>
+<li class="fragment"><em>Vungle burst:</em> installs in 1,000 impressions <span class="math inline">\(\in \{0, 1, \dots, 1000\}\)</span>.</li>
+</ul></li>
+<li class="fragment"><p><strong>Countably infinite</strong> — no upper limit, but still countable:</p>
+<ul>
+<li class="fragment"><em>JSL:</em> <span class="math inline">\(x\)</span> = customers arriving in a day <span class="math inline">\(\in \{0, 1, 2, \dots\}\)</span>.</li>
+<li class="fragment"><em>Vungle:</em> installs across a whole day — millions of impressions, no fixed ceiling.</li>
+</ul></li>
+<li class="fragment"><p><strong>Why it matters:</strong> the distribution we choose mirrors the structure. A fixed-<span class="math inline">\(n\)</span> count → <strong>Binomial</strong>; an open-ended count of rare events → <strong>Poisson</strong>.</p></li>
+</ul>
+</section>
+<section id="quick-check-classify-the-variable" class="slide level2 center">
+<h2>Quick Check — Classify the Variable</h2>
+<p><br></p>
+<table class="caption-top">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Random variable</th>
+<th>Discrete or continuous?</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Installs in a 1,000-impression burst</td>
+<td><strong>Discrete</strong> (finite)</td>
+</tr>
+<tr class="even">
+<td>Customers arriving at Vungle’s API per minute</td>
+<td><strong>Discrete</strong> (countably infinite)</td>
+</tr>
+<tr class="odd">
+<td>eRPM on a given day ($ per 1,000 impr.)</td>
+<td><strong>Continuous</strong></td>
+</tr>
+<tr class="even">
+<td>Number of postbacks dropped in an hour</td>
+<td><strong>Discrete</strong></td>
+</tr>
+<tr class="odd">
+<td>Time until the next install fires</td>
+<td><strong>Continuous</strong></td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+<ul>
+<li class="fragment"><strong>Rule of thumb:</strong> if you would naturally <em>count</em> it, it is discrete; if you would <em>measure</em> it on a scale, it is continuous.</li>
+</ul>
+</section></section>
+<section>
+<section id="discrete-probability-distributions" class="title-slide slide level1 center" data-background-color="#cfb991">
+<h1>Discrete Probability Distributions</h1>
+
+</section>
+<section id="the-probability-distribution" class="slide level2 center">
+<h2>The Probability Distribution</h2>
+<p><br></p>
+<ul>
+<li class="fragment"><p>The <strong>probability distribution</strong> of a discrete random variable lists every value <span class="math inline">\(x\)</span> together with its probability, through a <strong>probability function</strong> <span class="math inline">\(f(x) = P(X = x)\)</span>.</p></li>
+<li class="fragment"><p>It can be given as a <strong>table</strong>, a <strong>graph</strong>, or a <strong>formula</strong>.</p></li>
+<li class="fragment"><p>Two conditions make a probability function <strong>valid</strong>:</p></li>
+</ul>
+<div class="fragment">
+<p><span class="math display">\[
+f(x) \geq 0 \qquad \text{for every } x \qquad\qquad \sum_{x} f(x) = 1
+\]</span></p>
+</div>
+<ul>
+<li class="fragment">The first says probabilities cannot be negative; the second says <em>something</em> must happen.</li>
+</ul>
+</section>
+<section id="anchor-example-jsl-appliances" class="slide level2 center">
+<h2>Anchor Example: JSL Appliances</h2>
+<p><br></p>
+<ul>
+<li class="fragment">Using 200 days of past TV-sales data, JSL builds an <strong>empirical</strong> distribution (relative frequencies):</li>
+</ul>
+<div class="fragment">
+<table class="caption-top">
+<thead>
+<tr class="header">
+<th style="text-align: right;"><span class="math inline">\(x\)</span> (TVs sold)</th>
+<th style="text-align: right;">Days</th>
+<th style="text-align: right;"><span class="math inline">\(f(x) = P(X=x)\)</span></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">80</td>
+<td style="text-align: right;">0.40</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">50</td>
+<td style="text-align: right;">0.25</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">2</td>
+<td style="text-align: right;">40</td>
+<td style="text-align: right;">0.20</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">3</td>
+<td style="text-align: right;">10</td>
+<td style="text-align: right;">0.05</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">4</td>
+<td style="text-align: right;">20</td>
+<td style="text-align: right;">0.10</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;"><strong>Total</strong></td>
+<td style="text-align: right;"><strong>200</strong></td>
+<td style="text-align: right;"><strong>1.00</strong></td>
+</tr>
+</tbody>
+</table>
+</div>
+<ul>
+<li class="fragment"><strong>Check the conditions:</strong> every <span class="math inline">\(f(x) \geq 0\)</span> ✓, and they sum to <span class="math inline">\(1.00\)</span> ✓ — a valid distribution.</li>
+</ul>
+</section>
+<section id="reading-the-distribution" class="slide level2 center">
+<h2>Reading the Distribution</h2>
+<p><br></p>
+<ul>
+<li class="fragment"><p>Once you have <span class="math inline">\(f(x)\)</span>, <strong>any</strong> question about <span class="math inline">\(X\)</span> is just addition:</p>
+<ul>
+<li class="fragment"><span class="math inline">\(P(X = 0) = 0.40\)</span> — no sale on 40% of days.</li>
+<li class="fragment"><span class="math inline">\(P(X \geq 2) = 0.20 + 0.05 + 0.10 = 0.35\)</span>.</li>
+<li class="fragment"><span class="math inline">\(P(X \leq 1) = 0.40 + 0.25 = 0.65\)</span>.</li>
+</ul></li>
+<li class="fragment"><p>This is exactly the move we will make for Vungle: build <span class="math inline">\(f(x)\)</span> for installs, then read off <span class="math inline">\(P(X \geq N)\)</span> for the capacity plan.</p></li>
+<li class="fragment"><p>The only change is <strong>how</strong> we get <span class="math inline">\(f(x)\)</span>: JSL used past data; for Vungle we will use a <strong>formula</strong> (the Binomial) driven by the conversion rate <span class="math inline">\(p\)</span>.</p></li>
+</ul>
+</section></section>
+<section>
+<section id="expected-value-and-variance" class="title-slide slide level1 center" data-background-color="#cfb991">
+<h1>Expected Value and Variance</h1>
+
+</section>
+<section id="expected-value-the-center" class="slide level2 center">
+<h2>Expected Value — the Center</h2>
+<p><br></p>
+<ul>
+<li class="fragment">The <strong>expected value</strong> <span class="math inline">\(E(X)\)</span> (or mean <span class="math inline">\(\mu\)</span>) is the <strong>probability-weighted average</strong> of the values <span class="math inline">\(X\)</span> can take:</li>
+</ul>
+<div class="fragment">
+<p><span class="math display">\[
+E(X) = \mu = \sum_{x} x \, f(x)
+\]</span></p>
+</div>
+<ul>
+<li class="fragment"><p>It is the <strong>long-run average</strong> outcome over many repetitions of the experiment.</p></li>
+<li class="fragment"><p>It need <strong>not</strong> be a value <span class="math inline">\(X\)</span> can actually assume — JSL’s <span class="math inline">\(E(X) = 1.2\)</span> TVs, though you never sell 1.2 TVs.</p></li>
+</ul>
+</section>
+<section id="variance-and-standard-deviation-the-spread" class="slide level2 center">
+<h2>Variance and Standard Deviation — the Spread</h2>
+<p><br></p>
+<ul>
+<li class="fragment">The <strong>variance</strong> is the probability-weighted average of squared deviations from the mean — it measures <strong>risk / variability</strong>:</li>
+</ul>
+<div class="fragment">
+<p><span class="math display">\[
+\text{Var}(X) = \sigma^2 = \sum_{x} (x - \mu)^2 \, f(x)
+\]</span></p>
+</div>
+<ul>
+<li class="fragment">The <strong>standard deviation</strong> is its positive square root, in the same units as <span class="math inline">\(X\)</span>:</li>
+</ul>
+<div class="fragment">
+<p><span class="math display">\[
+\sigma = \sqrt{\text{Var}(X)}
+\]</span></p>
+</div>
+<ul>
+<li class="fragment">Same mean, larger <span class="math inline">\(\sigma\)</span> → <strong>more spread, more risk</strong> — exactly what a capacity planner fears (a big burst).</li>
+</ul>
+</section>
+<section id="jsl-appliances-the-worksheet" class="slide level2 center">
+<h2>JSL Appliances — the Worksheet</h2>
+<div class="r-fit-text">
+<table class="caption-top" style="width:100%;">
+<colgroup>
+<col style="width: 16%">
+<col style="width: 16%">
+<col style="width: 16%">
+<col style="width: 16%">
+<col style="width: 16%">
+<col style="width: 16%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: right;"><span class="math inline">\(x\)</span></th>
+<th style="text-align: right;"><span class="math inline">\(f(x)\)</span></th>
+<th style="text-align: right;"><span class="math inline">\(x\,f(x)\)</span></th>
+<th style="text-align: right;"><span class="math inline">\(x - \mu\)</span></th>
+<th style="text-align: right;"><span class="math inline">\((x-\mu)^2\)</span></th>
+<th style="text-align: right;"><span class="math inline">\((x-\mu)^2 f(x)\)</span></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0.40</td>
+<td style="text-align: right;">0.00</td>
+<td style="text-align: right;"><span class="math inline">\(-1.2\)</span></td>
+<td style="text-align: right;">1.44</td>
+<td style="text-align: right;">0.576</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">0.25</td>
+<td style="text-align: right;">0.25</td>
+<td style="text-align: right;"><span class="math inline">\(-0.2\)</span></td>
+<td style="text-align: right;">0.04</td>
+<td style="text-align: right;">0.010</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">2</td>
+<td style="text-align: right;">0.20</td>
+<td style="text-align: right;">0.40</td>
+<td style="text-align: right;"><span class="math inline">\(0.8\)</span></td>
+<td style="text-align: right;">0.64</td>
+<td style="text-align: right;">0.128</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">3</td>
+<td style="text-align: right;">0.05</td>
+<td style="text-align: right;">0.15</td>
+<td style="text-align: right;"><span class="math inline">\(1.8\)</span></td>
+<td style="text-align: right;">3.24</td>
+<td style="text-align: right;">0.162</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">4</td>
+<td style="text-align: right;">0.10</td>
+<td style="text-align: right;">0.40</td>
+<td style="text-align: right;"><span class="math inline">\(2.8\)</span></td>
+<td style="text-align: right;">7.84</td>
+<td style="text-align: right;">0.784</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;"><strong>Sum</strong></td>
+<td style="text-align: right;"><strong>1.00</strong></td>
+<td style="text-align: right;"><span class="math inline">\(\boldsymbol{\mu = 1.20}\)</span></td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;"><span class="math inline">\(\boldsymbol{\sigma^2 = 1.660}\)</span></td>
+</tr>
+</tbody>
+</table>
+<p><span class="math display">\[
+E(X) = 1.20 \text{ TVs} \qquad \sigma^2 = 1.660 \qquad \sigma = \sqrt{1.660} = 1.288 \text{ TVs}
+\]</span></p>
+</div>
+</section>
+<section id="expected-value-variance-in-excel" class="slide level2 center">
+<h2>Expected Value &amp; Variance in Excel</h2>
+<div class="columns">
+<div class="column" style="width:40%;">
+<p><br></p>
+<p>Two columns of formula cells do the whole job — no ToolPak tool needed:</p>
+<ul>
+<li><code>x*f(x)</code> then <code>=SUM(...)</code> → <span class="math inline">\(E(X)\)</span></li>
+<li><code>(x − mu)^2 * f(x)</code> then <code>=SUM(...)</code> → <span class="math inline">\(\sigma^2\)</span></li>
+<li><code>=SQRT(...)</code> → <span class="math inline">\(\sigma\)</span></li>
+</ul>
+<p><br></p>
+<p>This is the engine behind <strong>every</strong> discrete distribution — the Binomial and Poisson just supply <span class="math inline">\(f(x)\)</span> from a formula.</p>
+</div><div class="column" style="width:60%;">
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="figs/excel_ev_var.png" class="quarto-figure quarto-figure-center" style="width:100.0%"></p>
+</figure>
+</div>
+</div>
+</div>
+</div></div>
+</section>
+<section id="why-managers-care-mean-and-risk-together" class="slide level2 center">
+<h2>Why Managers Care: Mean and Risk Together</h2>
+<p><br></p>
+<ul>
+<li class="fragment"><p><span class="math inline">\(E(X)\)</span> alone is not enough. Two ad algorithms could deliver the <strong>same average</strong> installs but very different <strong>spread</strong> — and spread is what overflows a server or empties a sales pipeline.</p></li>
+<li class="fragment"><p>A capacity planner reads <span class="math inline">\(E(X)\)</span> to <strong>size for the typical load</strong> and <span class="math inline">\(\sigma\)</span> (and the tail) to <strong>size for the bad days</strong>.</p></li>
+<li class="fragment"><p><strong>Forward pointer:</strong> the Vungle install count has a special structure — a fixed number of impressions, each an independent yes/no at the <strong>same</strong> rate <span class="math inline">\(p\)</span>. That structure has a name: the <strong>Binomial</strong>, and it hands us <span class="math inline">\(E(X)\)</span>, <span class="math inline">\(\sigma\)</span>, and the full <span class="math inline">\(f(x)\)</span> from just two numbers, <span class="math inline">\(n\)</span> and <span class="math inline">\(p\)</span>.</p></li>
+</ul>
+</section></section>
+<section>
+<section id="the-binomial-distribution" class="title-slide slide level1 center" data-background-color="#cfb991">
+<h1>The Binomial Distribution</h1>
+
+</section>
+<section id="from-one-impression-to-many-the-bernoulli-trial" class="slide level2 center">
+<h2>From One Impression to Many: the Bernoulli Trial</h2>
+
+<img data-src="figs/bernoulli_to_binomial.png" class="quarto-figure quarto-figure-center r-stretch" style="width:92.0%"><ul>
+<li>Each impression is a <strong>Bernoulli trial</strong>: it installs (<strong>success</strong>, prob. <span class="math inline">\(p\)</span>) or not (<strong>failure</strong>, prob. <span class="math inline">\(1-p\)</span>).</li>
+<li>Count the successes over <span class="math inline">\(n\)</span> impressions and you have a <strong>Binomial</strong> random variable.</li>
+</ul>
+</section>
+<section id="the-four-binomial-assumptions" class="slide level2 center">
+<h2>The Four Binomial Assumptions</h2>
+<p><br></p>
+<p>A <strong>Binomial experiment</strong> requires all four:</p>
+<div class="fragment">
+<ol type="1">
+<li class="fragment">A sequence of <span class="math inline">\(n\)</span> <strong>identical</strong> trials.</li>
+<li class="fragment">Exactly <strong>two</strong> outcomes per trial — <em>success</em> and <em>failure</em>.</li>
+<li class="fragment">The success probability <span class="math inline">\(p\)</span> is <strong>constant</strong> across trials (the <em>stationarity</em> assumption).</li>
+<li class="fragment">The trials are <strong>independent</strong>.</li>
+</ol>
+</div>
+<p><br></p>
+<ul>
+<li class="fragment"><strong>Vungle check:</strong> <span class="math inline">\(n\)</span> impressions in a burst (1) — each one installs or not (2) — the conversion rate <span class="math inline">\(p\)</span> is the same within a stable burst (3) — one user installing does not change another’s odds (4). All four hold (approximately). So installs are <strong>Binomial</strong>.</li>
+</ul>
+</section>
+<section id="the-binomial-probability-function" class="slide level2 center">
+<h2>The Binomial Probability Function</h2>
+<p><br></p>
+<div style="font-size: 88%;">
+<ul>
+<li class="fragment">The probability of exactly <span class="math inline">\(x\)</span> successes in <span class="math inline">\(n\)</span> trials:</li>
+</ul>
+<div class="fragment">
+<p><span class="math display">\[
+f(x) = \binom{n}{x} p^x (1-p)^{n-x}, \qquad x = 0, 1, 2, \dots, n
+\]</span></p>
+</div>
+<ul>
+<li class="fragment">The <strong>binomial coefficient</strong> counts the ways to arrange <span class="math inline">\(x\)</span> successes among <span class="math inline">\(n\)</span> trials:</li>
+</ul>
+<div class="fragment">
+<p><span class="math display">\[
+\binom{n}{x} = \frac{n!}{x!\,(n-x)!}
+\]</span></p>
+</div>
+<ul>
+<li class="fragment">Read it in two pieces: <span class="math inline">\(p^x (1-p)^{n-x}\)</span> is the probability of <strong>one specific</strong> arrangement; <span class="math inline">\(\binom{n}{x}\)</span> is <strong>how many</strong> arrangements give <span class="math inline">\(x\)</span> successes.</li>
+</ul>
+</div>
+</section>
+<section id="anchor-example-evans-electronics" class="slide level2 center">
+<h2>Anchor Example: Evans Electronics</h2>
+<p><br></p>
+<ul>
+<li class="fragment"><p>Evans Electronics loses about <strong>10%</strong> of hourly employees per year (<span class="math inline">\(p = 0.10\)</span>). Choosing <strong>3</strong> employees at random (<span class="math inline">\(n = 3\)</span>), what is <span class="math inline">\(P(\text{exactly 1 leaves})\)</span>?</p></li>
+<li class="fragment"><p>One specific way — leaver, stayer, stayer — has probability:</p></li>
+</ul>
+<div class="fragment">
+<p><span class="math display">\[
+(0.10)(0.90)(0.90) = (0.10)(0.90)^2 = 0.081
+\]</span></p>
+</div>
+<ul>
+<li class="fragment">There are <span class="math inline">\(\binom{3}{1} = 3\)</span> such arrangements (the leaver could be 1st, 2nd, or 3rd):</li>
+</ul>
+<div class="fragment">
+<p><span class="math display">\[
+f(1) = \binom{3}{1}(0.10)^1 (0.90)^2 = 3 \times 0.081 = 0.243
+\]</span></p>
+</div>
+</section>
+<section id="evans-electronics-the-full-distribution" class="slide level2 center">
+<h2>Evans Electronics — the Full Distribution</h2>
+
+<img data-src="figs/binom_pmf_evans.png" class="quarto-figure quarto-figure-center r-stretch" style="width:72.0%"><ul>
+<li><span class="math inline">\(f(0)=0.729,\; f(1)=0.243,\; f(2)=0.027,\; f(3)=0.001\)</span> — and they sum to 1.</li>
+<li><span class="math inline">\(P(\text{at least 1 leaves}) = 1 - f(0) = 1 - 0.729 = 0.271\)</span>.</li>
+</ul>
+</section>
+<section id="binomial-mean-variance-and-sd" class="slide level2 center">
+<h2>Binomial Mean, Variance, and SD</h2>
+<p><br></p>
+<ul>
+<li class="fragment">Because the trials are identical and independent, the mean and variance collapse to clean formulas — no worksheet needed:</li>
+</ul>
+<div class="fragment">
+<p><span class="math display">\[
+E(X) = \mu = np \qquad\quad \text{Var}(X) = \sigma^2 = np(1-p) \qquad\quad \sigma = \sqrt{np(1-p)}
+\]</span></p>
+</div>
+<ul>
+<li class="fragment"><p><strong>Evans:</strong> <span class="math inline">\(\mu = 3(0.10) = 0.30\)</span> leavers, <span class="math inline">\(\sigma^2 = 3(0.10)(0.90) = 0.27\)</span>, <span class="math inline">\(\sigma = 0.520\)</span>.</p></li>
+<li class="fragment"><p>These are the same <span class="math inline">\(E(X)\)</span> and <span class="math inline">\(\sigma\)</span> from the worksheet — the Binomial just hands them to you from <span class="math inline">\(n\)</span> and <span class="math inline">\(p\)</span>.</p></li>
+</ul>
+</section>
+<section id="cumulative-probabilities-and-the-tail" class="slide level2 center">
+<h2>Cumulative Probabilities and the Tail</h2>
+<p><br></p>
+<ul>
+<li class="fragment"><p>Most business questions are about a <strong>range</strong>, not a single value. Two cumulative moves cover them all:</p>
+<ul>
+<li class="fragment">“<strong>at most</strong> <span class="math inline">\(k\)</span>”: <span class="math inline">\(P(X \leq k) = f(0) + f(1) + \dots + f(k)\)</span>.</li>
+<li class="fragment">“<strong>at least</strong> <span class="math inline">\(N\)</span>”: <span class="math inline">\(P(X \geq N) = 1 - P(X \leq N-1)\)</span> — the <strong>complement</strong> trick.</li>
+</ul></li>
+<li class="fragment"><p>The capacity question is a <strong>tail</strong>: <span class="math inline">\(P(X \geq N)\)</span> — <em>how often does the load exceed level <span class="math inline">\(N\)</span>?</em></p></li>
+<li class="fragment"><p>Computing these by hand is tedious; Excel does the summation for us with one function.</p></li>
+</ul>
+</section>
+<section id="excel-binom.dist" class="slide level2 center">
+<h2>Excel: <code>BINOM.DIST</code></h2>
+<p><br></p>
+<ul>
+<li class="fragment">Two arguments and a TRUE/FALSE switch give you everything:</li>
+</ul>
+<div class="fragment">
+<table class="caption-top">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>You want</th>
+<th>Excel</th>
+<th>Returns</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><span class="math inline">\(P(X = x)\)</span> (PMF)</td>
+<td><code>=BINOM.DIST(x, n, p, FALSE)</code></td>
+<td>exact probability</td>
+</tr>
+<tr class="even">
+<td><span class="math inline">\(P(X \leq x)\)</span> (CDF)</td>
+<td><code>=BINOM.DIST(x, n, p, TRUE)</code></td>
+<td>cumulative probability</td>
+</tr>
+<tr class="odd">
+<td><span class="math inline">\(P(X \geq N)\)</span> (tail)</td>
+<td><code>=1 - BINOM.DIST(N-1, n, p, TRUE)</code></td>
+<td>complement</td>
+</tr>
+</tbody>
+</table>
+</div>
+<ul>
+<li class="fragment"><p><code>BINOMDIST</code> (no dot) is the legacy alias — same result.</p></li>
+<li class="fragment"><p><strong>Capacity example:</strong> <span class="math inline">\(P(\geq 5 \text{ installs in 1{,}000 impressions at } p=0.004) =\)</span> <code>=1-BINOM.DIST(4, 1000, 0.004, TRUE)</code>.</p></li>
+</ul>
+</section></section>
+<section>
+<section id="the-vungle-burst-installs-as-a-binomial" class="title-slide slide level1 center" data-background-color="#cfb991">
+<h1>The Vungle Burst: Installs as a Binomial</h1>
+
+</section>
+<section id="set-up-the-model" class="slide level2 center">
+<h2>Set Up the Model</h2>
+<p><br></p>
+<ul>
+<li class="fragment">The data give us the daily install <strong>counts</strong>; a count over a fixed batch of impressions is exactly a Binomial.</li>
+</ul>
+
+<img data-src="figs/vungle_installs_timeseries.png" class="quarto-figure quarto-figure-center r-stretch" style="width:78.0%"><ul>
+<li>A averages ~31,700 installs/day, B ~1,870 — but for capacity we work at the <strong>burst</strong> scale (1,000 impressions), where the model is tractable and the tail is the story.</li>
+</ul>
+</section>
+<section id="estimate-p-then-build-the-distribution" class="slide level2 center">
+<h2>Estimate <span class="math inline">\(p\)</span>, then Build the Distribution</h2>
+<p><br></p>
+<ul>
+<li class="fragment">From <code>vungle_daily.csv</code>, the conversion rate is <code>installs / impressions</code>, averaged over the 30 days:</li>
+</ul>
+<div class="fragment">
+<table class="caption-top">
+<colgroup>
+<col style="width: 27%">
+<col style="width: 36%">
+<col style="width: 36%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Algorithm</th>
+<th style="text-align: right;">Conversion rate <span class="math inline">\(p\)</span></th>
+<th style="text-align: right;">Per-burst mean <span class="math inline">\(\mu = np\)</span> (<span class="math inline">\(n=1000\)</span>)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>A</td>
+<td style="text-align: right;">0.4027% <span class="math inline">\(\approx\)</span> <strong>0.0040</strong></td>
+<td style="text-align: right;">$1000 = $ <strong>4.0</strong> installs</td>
+</tr>
+<tr class="even">
+<td>B</td>
+<td style="text-align: right;">0.3538% <span class="math inline">\(\approx\)</span> <strong>0.0035</strong></td>
+<td style="text-align: right;">$1000 = $ <strong>3.5</strong> installs</td>
+</tr>
+</tbody>
+</table>
+</div>
+<ul>
+<li class="fragment">So installs per 1,000-impression burst are:</li>
+</ul>
+<div class="fragment">
+<p><span class="math display">\[
+X_A \sim \text{Binomial}(1000,\, 0.0040) \qquad\qquad X_B \sim \text{Binomial}(1000,\, 0.0035)
+\]</span></p>
+</div>
+<ul>
+<li class="fragment"><span class="math inline">\(\sigma_B = \sqrt{1000(0.0035)(0.9965)} = 1.868\)</span> installs — a tight, right-skewed count.</li>
+</ul>
+</section>
+<section id="the-burst-distribution-a-vs.-b" class="slide level2 center">
+<h2>The Burst Distribution: A vs.&nbsp;B</h2>
+
+<img data-src="figs/binom_pmf_vungle_burst.png" class="quarto-figure quarto-figure-center r-stretch" style="width:82.0%"><ul>
+<li>Both peak near 3–4 installs; A’s higher rate shifts mass right and <strong>fattens the tail</strong> — A’s bursts overflow capacity more often.</li>
+</ul>
+</section>
+<section id="the-tail-that-sizes-the-pipeline" class="slide level2 center">
+<h2>The Tail That Sizes the Pipeline</h2>
+
+<img data-src="figs/binom_tail_vungle_B.png" class="quarto-figure quarto-figure-center r-stretch" style="width:72.0%"><ul>
+<li>For B, $P(X ) = 1 - P(X ) = 1 - 0.9735 = $ <strong>0.0265</strong> — about <strong>1 burst in 38</strong> delivers 8+ installs.</li>
+<li>If one postback worker handles up to 7 installs/burst, ~2.7% of B’s bursts need a second worker — <em>that</em> is the capacity number.</li>
+</ul>
+</section>
+<section id="vungle-binomial-in-excel" class="slide level2 center">
+<h2>Vungle Binomial in Excel</h2>
+<div class="columns">
+<div class="column" style="width:40%;">
+<p><br></p>
+<p><strong>Build the table with <code>BINOM.DIST</code>:</strong></p>
+<ul>
+<li>Column B: <code>=BINOM.DIST(x, 1000, 0.0035, FALSE)</code></li>
+<li>Column C: <code>=BINOM.DIST(x, 1000, 0.0035, TRUE)</code></li>
+</ul>
+<p><br></p>
+<p>Read the capacity answer straight off the cumulative column:</p>
+<ul>
+<li><span class="math inline">\(P(X \leq 7) = 0.9735\)</span></li>
+<li><span class="math inline">\(P(X \geq 8) = 1 - 0.9735 = 0.0265\)</span></li>
+</ul>
+</div><div class="column" style="width:60%;">
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="figs/excel_binom_vungle.png" class="quarto-figure quarto-figure-center" style="width:100.0%"></p>
+</figure>
+</div>
+</div>
+</div>
+</div></div>
+</section>
+<section id="team-sprint-1-size-the-burst-with-a-binomial" class="slide level2 center">
+<h2>⏱️ Team Sprint 1 — Size the Burst with a Binomial</h2>
+<div class="sprint">
+<p><strong>Decide:</strong> for a 1,000-impression burst of <strong>Algorithm A</strong> (<span class="math inline">\(p = 0.0040\)</span>), how big a postback pipeline do you need?</p>
+<p><strong>Data:</strong> <code>data/vungle_discrete.xlsx</code> (or build it) · <strong>Time:</strong> ~12 min</p>
+<ol type="1">
+<li>State the model: <span class="math inline">\(X_A \sim\)</span> Binomial(<span class="math inline">\(1000\)</span>, <span class="math inline">\(0.0040\)</span>). Compute <span class="math inline">\(E(X) = np\)</span> and <span class="math inline">\(\sigma = \sqrt{np(1-p)}\)</span> by hand.</li>
+<li>In Excel, build the PMF/CDF table with <code>BINOM.DIST(x, 1000, 0.004, FALSE/TRUE)</code> for <span class="math inline">\(x = 0 \dots 12\)</span>.</li>
+<li>Compute the tail <span class="math inline">\(P(X \geq 8) =\)</span> <code>1 - BINOM.DIST(7, 1000, 0.004, TRUE)</code>.</li>
+<li>If a worker absorbs 7 installs/burst, what fraction of A’s bursts overflow?</li>
+</ol>
+<p><strong>Hand in (1 slide):</strong> <span class="math inline">\(E(X)\)</span>, <span class="math inline">\(\sigma\)</span>, <span class="math inline">\(P(X \geq 8)\)</span>, and a one-line capacity recommendation.</p>
+</div>
+</section>
+<section id="debrief-managers-takeaway-lecture-1" class="slide level2 center">
+<h2>Debrief — Manager’s Takeaway (Lecture 1)</h2>
+<p><br></p>
+<ul>
+<li class="fragment"><p><strong>One sentence:</strong> model installs over a fixed batch of impressions as <strong>Binomial(<span class="math inline">\(n\)</span>, <span class="math inline">\(p\)</span>)</strong>, and every capacity question becomes a tail probability you read off <code>BINOM.DIST</code>.</p></li>
+<li class="fragment"><p><strong>One number:</strong> for Algorithm A, <span class="math inline">\(P(\geq 8 \text{ installs / 1,000-impr. burst}) \approx\)</span> <strong>0.051</strong> — twice B’s 0.027, because A converts at a higher rate.</p></li>
+<li class="fragment"><p><strong>One caveat:</strong> the Binomial assumes a <strong>constant, independent</strong> <span class="math inline">\(p\)</span>. Within a stable burst that holds; across a viral campaign spike it does not — re-estimate <span class="math inline">\(p\)</span> when traffic shifts.</p></li>
+</ul>
+</section>
+<section id="carry-forward-lecture-1" class="slide level2 center">
+<h2>Carry-forward (Lecture 1)</h2>
+<ul>
+<li><p><strong>Your client (homework):</strong> find a <strong>yes/no count over a fixed <span class="math inline">\(n\)</span></strong> in your team’s case (defective units, conversions, churned customers). Model it as Binomial, estimate <span class="math inline">\(p\)</span>, and report <span class="math inline">\(E(X)\)</span>, <span class="math inline">\(\sigma\)</span>, and one tail probability with <code>BINOM.DIST</code>.</p></li>
+<li><p><strong>Next time:</strong> A’s rate is small and <span class="math inline">\(n\)</span> is huge — there is a simpler model built exactly for <strong>rare events over an interval</strong>: the <strong>Poisson</strong> distribution.</p></li>
+</ul>
+</section></section>
+<section>
+<section id="lecture-2-the-poisson-distribution" class="title-slide slide level1 center" data-background-color="#cfb991">
+<h1>Lecture 2 — The Poisson Distribution</h1>
+
+</section>
+<section id="the-brief-lecture-2" class="slide level2 center">
+<h2>The Brief — Lecture 2</h2>
+<p><br></p>
+<blockquote>
+<p>“Installs are <strong>rare</strong> — a few per thousand impressions. Is there a model that needs only the <strong>average rate</strong>, not the full <span class="math inline">\(n\)</span> and <span class="math inline">\(p\)</span>? And does it give the same capacity answer?”</p>
+</blockquote>
+<p><br></p>
+<ul>
+<li class="fragment"><p>Yesterday we needed two numbers, <span class="math inline">\(n\)</span> and <span class="math inline">\(p\)</span>. The <strong>Poisson</strong> distribution needs only <strong>one</strong>: the mean rate <span class="math inline">\(\lambda\)</span> over an interval.</p></li>
+<li class="fragment"><p>We will introduce Poisson on its own terms, then show it is the <strong>large-<span class="math inline">\(n\)</span>, small-<span class="math inline">\(p\)</span> limit</strong> of the Binomial — and that for Vungle the two are nearly identical.</p></li>
+</ul>
+</section></section>
+<section>
+<section id="poisson-rare-events-over-an-interval" class="title-slide slide level1 center" data-background-color="#cfb991">
+<h1>Poisson: Rare Events Over an Interval</h1>
+
+</section>
+<section id="when-the-count-has-no-fixed-n" class="slide level2 center">
+<h2>When the Count Has No Fixed <span class="math inline">\(n\)</span></h2>
+<p><br></p>
+<ul>
+<li class="fragment"><p>The <strong>Poisson</strong> distribution models the number of times an event occurs over a fixed <strong>interval of time or space</strong>, when occurrences are rare and independent:</p>
+<ul>
+<li class="fragment">calls arriving at a switchboard in an hour;</li>
+<li class="fragment">flaws in 14 feet of pine board;</li>
+<li class="fragment">patients reaching an ER in 30 minutes;</li>
+<li class="fragment"><strong>installs (postbacks) hitting Vungle’s API in a one-second window</strong>.</li>
+</ul></li>
+<li class="fragment"><p>There is <strong>no natural <span class="math inline">\(n\)</span></strong> — you are not counting successes out of a fixed number of trials; you are counting <strong>arrivals</strong> over an interval.</p></li>
+</ul>
+</section>
+<section id="the-two-poisson-assumptions" class="slide level2 center">
+<h2>The Two Poisson Assumptions</h2>
+<p><br></p>
+<ol type="1">
+<li class="fragment">The probability of an occurrence is the <strong>same</strong> for any two intervals of equal length (a constant rate).</li>
+<li class="fragment">Occurrences in <strong>non-overlapping</strong> intervals are <strong>independent</strong>.</li>
+</ol>
+<p><br></p>
+<ul>
+<li class="fragment"><p>One parameter governs everything — the <strong>mean number of occurrences per interval</strong>, <span class="math inline">\(\lambda\)</span> (also written <span class="math inline">\(\mu\)</span>).</p></li>
+<li class="fragment"><p><strong>Vungle:</strong> at <span class="math inline">\(p \approx 0.0035\)</span> over 1,000 impressions, installs arrive at a mean rate <span class="math inline">\(\lambda = np = 3.5\)</span> per burst. The rate is steady within a stable burst, and one install does not trigger another — both assumptions hold.</p></li>
+</ul>
+</section>
+<section id="the-poisson-probability-function" class="slide level2 center">
+<h2>The Poisson Probability Function</h2>
+<p><br></p>
+<ul>
+<li class="fragment">The probability of exactly <span class="math inline">\(x\)</span> occurrences in an interval with mean <span class="math inline">\(\lambda\)</span>:</li>
+</ul>
+<div class="fragment">
+<p><span class="math display">\[
+f(x) = \frac{\lambda^x e^{-\lambda}}{x!}, \qquad x = 0, 1, 2, \dots \qquad (e \approx 2.71828)
+\]</span></p>
+</div>
+<ul>
+<li class="fragment">A defining property — the mean <strong>and</strong> variance are <strong>both</strong> <span class="math inline">\(\lambda\)</span>:</li>
+</ul>
+<div class="fragment">
+<p><span class="math display">\[
+E(X) = \lambda \qquad\qquad \text{Var}(X) = \lambda \qquad\qquad \sigma = \sqrt{\lambda}
+\]</span></p>
+</div>
+<ul>
+<li class="fragment">There is <strong>no upper limit</strong> on <span class="math inline">\(x\)</span>, but <span class="math inline">\(f(x)\)</span> shrinks fast — for large <span class="math inline">\(x\)</span> it is essentially zero.</li>
+</ul>
+</section>
+<section id="anchor-example-mercy-hospital" class="slide level2 center">
+<h2>Anchor Example: Mercy Hospital</h2>
+<p><br></p>
+<ul>
+<li class="fragment"><p>Patients arrive at Mercy Hospital’s ER at <strong>6 per hour</strong> on weekend evenings. What is <span class="math inline">\(P(\text{exactly 4 arrivals in 30 minutes})\)</span>?</p></li>
+<li class="fragment"><p>First <strong>rescale the rate</strong> to the interval: 6 per hour <span class="math inline">\(= 3\)</span> per half-hour, so <span class="math inline">\(\lambda = 3\)</span>.</p></li>
+</ul>
+<div class="fragment">
+<p><span class="math display">\[
+f(4) = \frac{3^4 e^{-3}}{4!} = \frac{81 \times 0.0498}{24} = 0.1680
+\]</span></p>
+</div>
+<ul>
+<li class="fragment">And the spread of arrivals: <span class="math inline">\(\text{Var}(X) = \lambda = 3\)</span>, so <span class="math inline">\(\sigma = \sqrt{3} = 1.73\)</span> patients per half-hour.</li>
+</ul>
+</section>
+<section id="mercy-hospital-the-full-distribution" class="slide level2 center">
+<h2>Mercy Hospital — the Full Distribution</h2>
+
+<img data-src="figs/poisson_pmf_mercy.png" class="quarto-figure quarto-figure-center r-stretch" style="width:72.0%"><ul>
+<li>The whole distribution comes from the <strong>single</strong> number <span class="math inline">\(\lambda = 3\)</span> — no <span class="math inline">\(n\)</span>, no <span class="math inline">\(p\)</span>.</li>
+<li><strong>Watch the units:</strong> <span class="math inline">\(\lambda\)</span> must match the interval. Six per hour and three per half-hour describe the <em>same</em> process at different scales.</li>
+</ul>
+</section>
+<section id="excel-poisson.dist" class="slide level2 center">
+<h2>Excel: <code>POISSON.DIST</code></h2>
+<p><br></p>
+<ul>
+<li class="fragment">Same TRUE/FALSE switch as the Binomial, but only <strong>one</strong> parameter (<span class="math inline">\(\lambda\)</span>, called <em>mean</em> in Excel):</li>
+</ul>
+<div class="fragment">
+<table class="caption-top">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>You want</th>
+<th>Excel</th>
+<th>Returns</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><span class="math inline">\(P(X = x)\)</span> (PMF)</td>
+<td><code>=POISSON.DIST(x, lambda, FALSE)</code></td>
+<td>exact probability</td>
+</tr>
+<tr class="even">
+<td><span class="math inline">\(P(X \leq x)\)</span> (CDF)</td>
+<td><code>=POISSON.DIST(x, lambda, TRUE)</code></td>
+<td>cumulative probability</td>
+</tr>
+<tr class="odd">
+<td><span class="math inline">\(P(X \geq N)\)</span> (tail)</td>
+<td><code>=1 - POISSON.DIST(N-1, lambda, TRUE)</code></td>
+<td>complement</td>
+</tr>
+</tbody>
+</table>
+</div>
+<ul>
+<li class="fragment"><p><code>POISSON</code> (no dot) is the legacy alias.</p></li>
+<li class="fragment"><p><strong>Mercy check:</strong> <code>=POISSON.DIST(4, 3, FALSE)</code> returns <code>0.1680</code> — the formula and Excel agree.</p></li>
+</ul>
+</section></section>
+<section>
+<section id="binomial-vs.-poisson" class="title-slide slide level1 center" data-background-color="#cfb991">
+<h1>Binomial vs.&nbsp;Poisson</h1>
+
+</section>
+<section id="the-poisson-approximation-to-the-binomial" class="slide level2 center">
+<h2>The Poisson Approximation to the Binomial</h2>
+<p><br></p>
+<ul>
+<li class="fragment">When <span class="math inline">\(n\)</span> is <strong>large</strong> and <span class="math inline">\(p\)</span> is <strong>small</strong>, the Binomial and the Poisson with <span class="math inline">\(\lambda = np\)</span> are nearly identical:</li>
+</ul>
+<div class="fragment">
+<p><span class="math display">\[
+\text{Binomial}(n, p) \;\approx\; \text{Poisson}(\lambda = np) \qquad \text{for large } n,\; \text{small } p
+\]</span></p>
+</div>
+<ul>
+<li class="fragment"><p><strong>Rule of thumb:</strong> the approximation is excellent when <span class="math inline">\(n \geq 20\)</span> and <span class="math inline">\(p \leq 0.05\)</span> (some texts use <span class="math inline">\(np \leq 7\)</span>).</p></li>
+<li class="fragment"><p>Vungle is the textbook case: <span class="math inline">\(n = 1000 \geq 20\)</span> and <span class="math inline">\(p = 0.0035 \leq 0.05\)</span>. So <span class="math inline">\(X_B \approx \text{Poisson}(3.5)\)</span> — we can drop <span class="math inline">\(n\)</span> and <span class="math inline">\(p\)</span> and work with <strong>rate alone</strong>.</p></li>
+</ul>
+</section>
+<section id="see-it-the-two-models-overlap" class="slide level2 center">
+<h2>See It: The Two Models Overlap</h2>
+
+<img data-src="figs/binom_vs_poisson.png" class="quarto-figure quarto-figure-center r-stretch" style="width:80.0%"><ul>
+<li>Binomial(<span class="math inline">\(1000\)</span>, <span class="math inline">\(0.0035\)</span>) and Poisson(<span class="math inline">\(3.5\)</span>) agree to <strong>three decimals</strong> at every <span class="math inline">\(x\)</span> — the bars sit right on top of each other.</li>
+</ul>
+</section>
+<section id="side-by-side-in-excel" class="slide level2 center">
+<h2>Side by Side in Excel</h2>
+<div class="columns">
+<div class="column" style="width:40%;">
+<p><br></p>
+<p>Put the two functions in adjacent columns:</p>
+<ul>
+<li><code>=BINOM.DIST(x, 1000, 0.0035, FALSE)</code></li>
+<li><code>=POISSON.DIST(x, 3.5, FALSE)</code></li>
+</ul>
+<p><br></p>
+<p>The columns match to 3–4 decimals. The Poisson needs <strong>one</strong> input (<span class="math inline">\(\lambda = 3.5\)</span>); the Binomial needs <strong>two</strong> (<span class="math inline">\(n, p\)</span>) — and for rare events you often only <em>know</em> the rate.</p>
+</div><div class="column" style="width:60%;">
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="figs/excel_binom_vs_poisson.png" class="quarto-figure quarto-figure-center" style="width:100.0%"></p>
+</figure>
+</div>
+</div>
+</div>
+</div></div>
+</section>
+<section id="which-model-should-you-reach-for" class="slide level2 center">
+<h2>Which Model Should You Reach For?</h2>
+<p><br></p>
+<table class="caption-top">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Situation</th>
+<th>Use</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Fixed number of trials <span class="math inline">\(n\)</span>, each success/failure at known <span class="math inline">\(p\)</span></td>
+<td><strong>Binomial</strong></td>
+</tr>
+<tr class="even">
+<td>Count of rare arrivals over an interval; no fixed <span class="math inline">\(n\)</span>; you know the <strong>rate</strong></td>
+<td><strong>Poisson</strong></td>
+</tr>
+<tr class="odd">
+<td>Large <span class="math inline">\(n\)</span>, small <span class="math inline">\(p\)</span> (e.g., installs over impressions)</td>
+<td><strong>Either</strong> — Poisson is the simpler shortcut</td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+<ul>
+<li class="fragment">For Vungle’s capacity work, <strong>Poisson is the natural choice</strong>: postbacks arrive over a <em>time</em> window, and all engineering tracks is the <strong>mean rate</strong> <span class="math inline">\(\lambda\)</span> — not a count of impressions.</li>
+</ul>
+</section></section>
+<section>
+<section id="the-vungle-pipeline-a-poisson-capacity-plan" class="title-slide slide level1 center" data-background-color="#cfb991">
+<h1>The Vungle Pipeline: A Poisson Capacity Plan</h1>
+
+</section>
+<section id="installs-per-burst-as-a-poisson-process" class="slide level2 center">
+<h2>Installs per Burst as a Poisson Process</h2>
+
+<img data-src="figs/poisson_pmf_vungle.png" class="quarto-figure quarto-figure-center r-stretch" style="width:80.0%"><ul>
+<li><span class="math inline">\(X_A \sim \text{Poisson}(4.0)\)</span> and <span class="math inline">\(X_B \sim \text{Poisson}(3.5)\)</span>.</li>
+<li>A’s higher rate means <strong>heavier tails</strong> — A overflows a fixed capacity more often than B.</li>
+</ul>
+</section>
+<section id="the-capacity-tail-both-ways-agree" class="slide level2 center">
+<h2>The Capacity Tail — Both Ways Agree</h2>
+<p><br></p>
+<ul>
+<li class="fragment">The question that sizes the pipeline: <span class="math inline">\(P(X \geq 8)\)</span> — how often does a burst exceed a single worker’s capacity of 7?</li>
+</ul>
+<div class="fragment">
+<table class="caption-top">
+<thead>
+<tr class="header">
+<th>Algorithm</th>
+<th style="text-align: right;">Binomial <span class="math inline">\(P(X \geq 8)\)</span></th>
+<th style="text-align: right;">Poisson <span class="math inline">\(P(X \geq 8)\)</span></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>B (<span class="math inline">\(\lambda = 3.5\)</span>)</td>
+<td style="text-align: right;">0.0265</td>
+<td style="text-align: right;"><strong>0.0267</strong></td>
+</tr>
+<tr class="even">
+<td>A (<span class="math inline">\(\lambda = 4.0\)</span>)</td>
+<td style="text-align: right;">0.0508</td>
+<td style="text-align: right;"><strong>0.0511</strong></td>
+</tr>
+</tbody>
+</table>
+</div>
+<ul>
+<li class="fragment"><p>Both models give the <strong>same managerial answer</strong>: ~<strong>5%</strong> of A’s bursts and ~<strong>2.7%</strong> of B’s bursts need overflow capacity.</p></li>
+<li class="fragment"><p>In Excel: <code>=1 - POISSON.DIST(7, 4, TRUE)</code> <span class="math inline">\(= 0.0511\)</span> for A.</p></li>
+</ul>
+</section>
+<section id="scaling-up-from-burst-to-pipeline" class="slide level2 center">
+<h2>Scaling Up: From Burst to Pipeline</h2>
+<p><br></p>
+<ul>
+<li class="fragment">The <strong>rate scales with the interval</strong> — that is the Poisson superpower. If a burst is 1,000 impressions and A serves ~7.9M impressions/day:</li>
+</ul>
+<div class="fragment">
+<p><span class="math display">\[
+\lambda_{\text{day}} = \frac{7{,}900{,}000}{1{,}000} \times 0.0040 \approx 31{,}600 \text{ installs/day} \quad (\text{matches the data's} \approx 31{,}700)
+\]</span></p>
+</div>
+<ul>
+<li class="fragment"><p>Want installs <strong>per second</strong>? Divide <span class="math inline">\(\lambda\)</span> by 86,400. Want <strong>per hour</strong>? Multiply by 3,600. <strong>One parameter, any interval</strong> — no need to recount impressions.</p></li>
+<li class="fragment"><p>That is why ops teams model arrivals as Poisson: provision for <span class="math inline">\(\lambda\)</span> plus a tail buffer, and re-scale instantly as traffic grows.</p></li>
+</ul>
+</section>
+<section id="team-sprint-2-plan-capacity-with-poisson" class="slide level2 center">
+<h2>⏱️ Team Sprint 2 — Plan Capacity with Poisson</h2>
+<div class="sprint">
+<p><strong>Decide:</strong> size Vungle’s postback pipeline for <strong>Algorithm A</strong> bursts using the Poisson model — and confirm it matches yesterday’s Binomial.</p>
+<p><strong>Data:</strong> <code>data/vungle_discrete.xlsx</code> · <strong>Time:</strong> ~12 min</p>
+<ol type="1">
+<li>State the model: <span class="math inline">\(X_A \sim \text{Poisson}(\lambda = 4.0)\)</span>. Note <span class="math inline">\(E(X) = \text{Var}(X) = \lambda = 4\)</span>.</li>
+<li>In Excel, build the PMF with <code>POISSON.DIST(x, 4, FALSE)</code> for <span class="math inline">\(x = 0 \dots 12\)</span>; put <code>BINOM.DIST(x, 1000, 0.004, FALSE)</code> beside it and confirm they match.</li>
+<li>Compute the tail <span class="math inline">\(P(X \geq 8) =\)</span> <code>1 - POISSON.DIST(7, 4, TRUE)</code>.</li>
+<li>Pick a capacity level <span class="math inline">\(N\)</span> so that <span class="math inline">\(P(X \geq N) &lt; 1\%\)</span> (a “five-nines minus” buffer). What is <span class="math inline">\(N\)</span>?</li>
+</ol>
+<p><strong>Hand in (1 slide):</strong> your <span class="math inline">\(\lambda\)</span>, <span class="math inline">\(P(X \geq 8)\)</span>, the chosen capacity <span class="math inline">\(N\)</span>, and a one-line plan.</p>
+</div>
+</section>
+<section id="debrief-managers-takeaway-lecture-2" class="slide level2 center">
+<h2>Debrief — Manager’s Takeaway (Lecture 2)</h2>
+<p><br></p>
+<ul>
+<li class="fragment"><p><strong>One sentence:</strong> for rare events over an interval, the <strong>Poisson(<span class="math inline">\(\lambda\)</span>)</strong> models the count from a single rate, and for Vungle’s tiny <span class="math inline">\(p\)</span> it gives the <strong>same capacity answer</strong> as the Binomial.</p></li>
+<li class="fragment"><p><strong>One number:</strong> <span class="math inline">\(P(\geq 8 \text{ installs/burst}) \approx\)</span> <strong>0.051</strong> for A (Poisson <span class="math inline">\(\lambda = 4\)</span>) — provision a second worker for ~1 burst in 20.</p></li>
+<li class="fragment"><p><strong>One caveat:</strong> Poisson assumes a <strong>constant, independent</strong> rate. A viral spike breaks both assumptions — arrivals cluster, the true tail is <em>heavier</em> than Poisson predicts, and you under-provision. Monitor for over-dispersion (variance <span class="math inline">\(&gt;\)</span> mean).</p></li>
+</ul>
+</section>
+<section id="carry-forward-lecture-2" class="slide level2 center">
+<h2>Carry-forward (Lecture 2)</h2>
+<ul>
+<li><p><strong>Your client (homework):</strong> find a <strong>rare-event count over an interval</strong> in your team’s case (defects per batch, complaints per week, arrivals per hour). Estimate <span class="math inline">\(\lambda\)</span>, build the PMF with <code>POISSON.DIST</code>, and report a tail probability that supports a capacity or staffing decision.</p></li>
+<li><p><strong>Next time:</strong> we move from <strong>discrete counts</strong> to <strong>continuous measurements</strong> — the <strong>Normal</strong> distribution, and the question <em>“what is the probability eRPM exceeds $3.50?”</em></p></li>
+</ul>
+</section></section>
+<section>
+<section id="wrap-up" class="title-slide slide level1 center" data-background-color="#cfb991">
+<h1>Wrap-up</h1>
+
+</section>
+<section id="discrete-distributions-on-one-page-the-vungle-bridge" class="slide level2 center">
+<h2>Discrete Distributions on One Page — the Vungle Bridge</h2>
+<div class="r-fit-text">
+<table class="caption-top">
+<colgroup>
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Concept</th>
+<th>Formula</th>
+<th>Applied to Vungle</th>
+<th>Excel</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Expected value</td>
+<td><span class="math inline">\(E(X) = \sum x\,f(x)\)</span></td>
+<td>mean installs per burst</td>
+<td><code>=SUMPRODUCT(x, f)</code></td>
+</tr>
+<tr class="even">
+<td>Variance</td>
+<td><span class="math inline">\(\sigma^2 = \sum (x-\mu)^2 f(x)\)</span></td>
+<td>spread / risk of the count</td>
+<td>formula cells</td>
+</tr>
+<tr class="odd">
+<td><strong>Binomial</strong></td>
+<td><span class="math inline">\(f(x) = \binom{n}{x}p^x(1-p)^{n-x}\)</span></td>
+<td>installs in <span class="math inline">\(n=1000\)</span> impressions, <span class="math inline">\(p=0.0035\)</span></td>
+<td><code>=BINOM.DIST(x,n,p,0/1)</code></td>
+</tr>
+<tr class="even">
+<td>Binomial mean/var</td>
+<td><span class="math inline">\(np,\; np(1-p)\)</span></td>
+<td><span class="math inline">\(\mu_B = 3.5,\; \sigma_B = 1.87\)</span></td>
+<td>—</td>
+</tr>
+<tr class="odd">
+<td><strong>Poisson</strong></td>
+<td><span class="math inline">\(f(x) = \lambda^x e^{-\lambda}/x!\)</span></td>
+<td>installs as rare arrivals, <span class="math inline">\(\lambda = 3.5\)</span></td>
+<td><code>=POISSON.DIST(x,λ,0/1)</code></td>
+</tr>
+<tr class="even">
+<td>Poisson mean/var</td>
+<td><span class="math inline">\(\lambda,\; \lambda\)</span></td>
+<td><span class="math inline">\(\mu_B = \sigma^2_B = 3.5\)</span></td>
+<td>—</td>
+</tr>
+<tr class="odd">
+<td>Tail (capacity)</td>
+<td><span class="math inline">\(P(X \geq N) = 1 - P(X \leq N{-}1)\)</span></td>
+<td><span class="math inline">\(P(X_A \geq 8) \approx 0.051\)</span></td>
+<td><code>=1-...DIST(N-1,...,1)</code></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="managers-takeaway" class="slide level2 center">
+<h2>Manager’s Takeaway</h2>
+<p><br></p>
+<ul>
+<li class="fragment"><p><strong>One sentence:</strong> a conversion rate plus a count structure (fixed <span class="math inline">\(n\)</span> → <strong>Binomial</strong>; rare arrivals → <strong>Poisson</strong>) gives the <strong>full probability distribution</strong> of installs — and every capacity question is a <strong>tail probability</strong>.</p></li>
+<li class="fragment"><p><strong>One number to remember:</strong> <span class="math inline">\(P(X \geq 8) \approx\)</span> <strong>0.051</strong> for Algorithm A bursts — about 1 in 20 — the number that sizes the overflow buffer.</p></li>
+<li class="fragment"><p><strong>One caveat:</strong> both models assume a <strong>constant, independent</strong> rate; real traffic spikes (viral campaigns) cluster arrivals and fatten the tail — re-estimate the rate and watch for over-dispersion.</p></li>
+<li class="fragment"><p><strong>Practice with the real data:</strong> <code>data/vungle_daily.csv</code> → estimate <span class="math inline">\(p\)</span>; <code>data/vungle_discrete.xlsx</code> → reproduce the PMF/CDF tables with <code>BINOM.DIST</code> and <code>POISSON.DIST</code>.</p></li>
+</ul>
+</section>
+<section id="summary" class="slide level2 center">
+<h2>Summary</h2>
+<p>Some key takeaways from this session:</p>
+<ul>
+<li>A <strong>random variable</strong> assigns a number to each outcome; <strong>discrete</strong> ones are counted, <strong>continuous</strong> ones measured.</li>
+<li>A valid <strong>discrete distribution</strong> has <span class="math inline">\(f(x) \geq 0\)</span> and <span class="math inline">\(\sum f(x) = 1\)</span>; from it, <span class="math inline">\(E(X) = \sum x f(x)\)</span> (center) and <span class="math inline">\(\sigma^2 = \sum (x-\mu)^2 f(x)\)</span> (risk).</li>
+<li>The <strong>Binomial</strong> counts successes in <span class="math inline">\(n\)</span> fixed Bernoulli trials: <span class="math inline">\(f(x) = \binom{n}{x}p^x(1-p)^{n-x}\)</span>, with <span class="math inline">\(\mu = np\)</span> and <span class="math inline">\(\sigma^2 = np(1-p)\)</span>.</li>
+<li>The <strong>Poisson</strong> counts rare arrivals over an interval from one rate <span class="math inline">\(\lambda\)</span>: <span class="math inline">\(f(x) = \lambda^x e^{-\lambda}/x!\)</span>, with <span class="math inline">\(\mu = \sigma^2 = \lambda\)</span>.</li>
+<li>For <strong>large <span class="math inline">\(n\)</span>, small <span class="math inline">\(p\)</span></strong>, Binomial <span class="math inline">\(\approx\)</span> Poisson(<span class="math inline">\(np\)</span>) — Vungle’s installs are the textbook case.</li>
+<li><strong>Capacity = a tail probability:</strong> <span class="math inline">\(P(X \geq N) = 1 - P(X \leq N-1)\)</span>, computed in one Excel cell.</li>
+</ul>
+</section></section>
+<section id="thank-you" class="title-slide slide level1 center" data-background-color="#cfb991">
+<h1>Thank you!</h1>
+
+
+</section>
     </div>
   <div class="quarto-auto-generated-content" style="display: none;">
 <div class="footer footer-default">
@@ -389,6 +1504,44 @@ Professor<br>Davi Moreira<br>
         ]
       });
     </script>
+    
+    <script>
+      // htmlwidgets need to know to resize themselves when slides are shown/hidden.
+      // Fire the "slideenter" event (handled by htmlwidgets.js) when the current
+      // slide changes (different for each slide format).
+      (function () {
+        // dispatch for htmlwidgets
+        function fireSlideEnter() {
+          const event = window.document.createEvent("Event");
+          event.initEvent("slideenter", true, true);
+          window.document.dispatchEvent(event);
+        }
+
+        function fireSlideChanged(previousSlide, currentSlide) {
+          fireSlideEnter();
+
+          // dispatch for shiny
+          if (window.jQuery) {
+            if (previousSlide) {
+              window.jQuery(previousSlide).trigger("hidden");
+            }
+            if (currentSlide) {
+              window.jQuery(currentSlide).trigger("shown");
+            }
+          }
+        }
+
+        // hookup for slidy
+        if (window.w3c_slidy) {
+          window.w3c_slidy.add_observer(function (slide_num) {
+            // slide_num starts at position 1
+            fireSlideChanged(null, w3c_slidy.slides[slide_num - 1]);
+          });
+        }
+
+      })();
+    </script>
+
     <script id="quarto-html-after-body" type="application/javascript">
       window.document.addEventListener("DOMContentLoaded", function (event) {
         const tabsets =  window.document.querySelectorAll(".panel-tabset-tabby")
