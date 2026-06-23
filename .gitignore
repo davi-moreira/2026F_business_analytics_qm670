@@ -26,3 +26,56 @@ _supplemental_material/
 _video/
 **/*.quarto_ipynb
 .positai
+
+# AI build instructions + instructor-only lecture guides (answer keys) — keep private
+CLAUDE.md
+lecture_guide/
+.claude/settings.local.json
+.claude/hooks/
+
+# >>> course-manager (credentials + FERPA) >>>
+# --- Brightspace MCP credentials / tokens (canonical home is ~/.brightspace-mcp/) ---
+# Tightened to credential-specific names so ordinary course material is never clobbered
+# (e.g. a "tokenization_demo.json" dataset or "secretary_notes.md" survive).
+**/.brightspace-mcp/
+.brightspace-mcp.json
+.env
+.env.*
+*.credentials
+*.secret
+secrets.*
+*-secret.*
+secrets/
+auth_token*.json
+*.token.json
+# --- FERPA safety net: unambiguous student-record / MCP-dump names (repo-wide) ---
+# This skill keeps roster/grades/submissions IN-SESSION and never writes them to disk; these
+# only catch clearly-named accidental dumps. They deliberately avoid broad globs that would
+# hit legitimate datasets. If you ever must keep an exported PII file, put it under .course/
+# (auto-ignored below) or name it *.pii.* — and never commit it.
+*.pii.*
+*-pii.*
+pii/
+student_data/
+_student_records/
+mcp_response*.json
+brightspace_*.json
+d2l_*.json
+*.d2l.json
+*.roster.cache
+submissions/
+**/submissions/
+*.ferpa
+# --- .course/ allowlist (SAFE BY DEFAULT) ---
+# Ignore everything the skill might write under .course/, then re-include ONLY the course
+# config and the four sanctioned NON-PII cache artifacts. Anything unexpected written here
+# (a roster dump, a downloaded submission, a stray cache file) stays ignored by default.
+.course/*
+!.course/config.json
+!.course/cache/
+.course/cache/*
+!.course/cache/syllabus.md
+!.course/cache/modules.json
+!.course/cache/assignments.json
+!.course/cache/diff-report.md
+# <<< course-manager (credentials + FERPA) <<<
