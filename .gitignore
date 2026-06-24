@@ -3,6 +3,9 @@
 .RData
 .Ruserdata
 
+# macOS
+.DS_Store
+
 _command_line_activity_solution.qmd
 _command_line_activity_solution.html
 _command_line_activity_solution_files/

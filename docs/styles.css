@@ -19,3 +19,12 @@ code {
   background-color: #CFB991; /* Change this to your desired color */
   /* Other styles */
 }
+
+/* Sidebar logo: always render as a clean circle, regardless of the source
+   image's shape or whether its corners are transparent (clips a square to a
+   circle; object-fit prevents distortion if a non-square image is swapped in). */
+.sidebar-logo {
+  border-radius: 50%;
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+}
