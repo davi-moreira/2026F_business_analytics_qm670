@@ -37,6 +37,13 @@ _lecture_guide/
 .claude/settings.local.json
 .claude/hooks/
 
+# Instructor/assessment content — NEVER public (answer keys, exam security, book-derived material).
+# Student-facing parts are distributed via Brightspace, not the public git site.
+_group_cases/
+_brightspace_pages/
+_homeworks/
+_exams/
+
 # >>> course-manager (credentials + FERPA) >>>
 # --- Brightspace MCP credentials / tokens (canonical home is ~/.brightspace-mcp/) ---
 # Tightened to credential-specific names so ordinary course material is never clobbered
