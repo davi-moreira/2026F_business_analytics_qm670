@@ -801,7 +801,7 @@ z_i = \frac{x_i - \bar{x}}{s}
 </table>
 </div>
 <ul>
-<li class="fragment"><p><strong>They do not always agree</strong> — the IQR rule is more sensitive in the tails. On Vungle’s B, the slow June 2 ($2.587) sits <em>below</em> the boxplot lower fence, yet its <span class="math inline">\(z = -2.53\)</span> is <em>inside</em> the <span class="math inline">\(|z|&gt;3\)</span> cutoff.</p></li>
+<li class="fragment"><p><strong>They do not always agree</strong> — the IQR rule is more sensitive in the tails. On Vungle’s B, <strong>two</strong> slow days — June 2 ($2.587) and June 3 ($2.755) — sit <em>below</em> the boxplot lower fence (≈$2.80), yet both stay <em>inside</em> the <span class="math inline">\(|z|&gt;3\)</span> cutoff (June 2’s <span class="math inline">\(z = -2.53\)</span> is the most extreme). The boxplot rule flags two days; the z-rule flags none.</p></li>
 <li class="fragment"><p><strong>A flag is an invitation to investigate, not a delete button.</strong> Ask <em>why</em> before you drop a point.</p></li>
 </ul>
 </section>
@@ -809,8 +809,8 @@ z_i = \frac{x_i - \bar{x}}{s}
 <h2>Outlier Hunt on Vungle’s B</h2>
 
 <img data-src="figs/zscores_B.png" class="quarto-figure quarto-figure-center r-stretch" style="width:78.0%"><ul>
-<li>The most extreme day is <strong>June 2 at $2.587, z = −2.53</strong> — notable, but <strong>not</strong> an outlier by the <span class="math inline">\(|z| &gt; 3\)</span> rule.</li>
-<li>By the <strong>boxplot</strong> rule it <em>would</em> be flagged (below the $2.80 fence). Same data, two rules, different verdicts — judgment decides.</li>
+<li>The most extreme day is <strong>June 2 at $2.587, z = −2.53</strong> — notable, but <strong>not</strong> an outlier by the <span class="math inline">\(|z| &gt; 3\)</span> rule (which flags <strong>no</strong> days here).</li>
+<li>The <strong>boxplot</strong> rule flags <strong>two</strong> days below the $2.80 fence — June 2 <em>and</em> <strong>June 3 ($2.755)</strong>. Same data, two rules, different verdicts — judgment decides.</li>
 </ul>
 </section></section>
 <section>
@@ -888,7 +888,7 @@ z_i = \frac{x_i - \bar{x}}{s}
 <h2>A-vs-B Boxplots Side by Side</h2>
 
 <img data-src="figs/erpm_box_compare.png" class="quarto-figure quarto-figure-center r-stretch" style="width:60.0%"><ul>
-<li>One picture carries the whole brief: <strong>B’s box is higher</strong> (greater median/mean) <strong>and taller</strong> (greater spread), with a low June 2 trailing the bottom whisker.</li>
+<li>One picture carries the whole brief: <strong>B’s box is higher</strong> (greater median/mean) <strong>and taller</strong> (greater spread), with two low days (June 2 and June 3) falling past the lower fence.</li>
 <li>This single chart will anchor your team’s dashboard.</li>
 </ul>
 </section>
@@ -1132,7 +1132,7 @@ r_{xy} = \frac{s_{xy}}{s_x \, s_y}
 <ul>
 <li class="fragment"><p><strong>Center:</strong> B’s mean eRPM ($3.459) sits about <strong>$0.11 above</strong> A’s ($3.347) — B’s edge is real <em>in this sample</em>.</p></li>
 <li class="fragment"><p><strong>Spread:</strong> B is <strong>markedly riskier</strong> — SD $0.344 vs.&nbsp;$0.217, CV 10.0% vs.&nbsp;6.5%, a wider IQR and a wider range. <strong>Higher reward comes with higher volatility.</strong></p></li>
-<li class="fragment"><p><strong>Shape:</strong> both are roughly symmetric (|skew| &lt; 0.5); no day is an outlier by the <span class="math inline">\(|z|&gt;3\)</span> rule, though B’s slow June 2 trails the boxplot’s lower whisker.</p></li>
+<li class="fragment"><p><strong>Shape:</strong> both are roughly symmetric (|skew| &lt; 0.5); no day is an outlier by the <span class="math inline">\(|z|&gt;3\)</span> rule, though B’s two slow days (June 2 &amp; June 3) fall past the boxplot’s lower fence.</p></li>
 <li class="fragment"><p><strong>The honest two-sentence read:</strong> <em>“Over 30 days, B averaged $0.11 more per 1,000 impressions than A, but with ~50% more day-to-day volatility. Whether that $0.11 edge is real signal or sampling noise is a question description alone cannot settle — that needs a hypothesis test.”</em></p></li>
 </ul>
 </section>

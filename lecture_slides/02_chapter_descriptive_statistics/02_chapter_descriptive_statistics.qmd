@@ -433,7 +433,7 @@ $$
 
 :::
 
-- **They do not always agree** — the IQR rule is more sensitive in the tails. On Vungle's B, the slow June 2 (\$2.587) sits *below* the boxplot lower fence, yet its $z = -2.53$ is *inside* the $|z|>3$ cutoff.
+- **They do not always agree** — the IQR rule is more sensitive in the tails. On Vungle's B, **two** slow days — June 2 (\$2.587) and June 3 (\$2.755) — sit *below* the boxplot lower fence (≈\$2.80), yet both stay *inside* the $|z|>3$ cutoff (June 2's $z = -2.53$ is the most extreme). The boxplot rule flags two days; the z-rule flags none.
 
 - **A flag is an invitation to investigate, not a delete button.** Ask *why* before you drop a point.
 
@@ -444,8 +444,8 @@ knitr::include_graphics("figs/zscores_B.png")
 ```
 
 ::: nonincremental
-- The most extreme day is **June 2 at \$2.587, z = −2.53** — notable, but **not** an outlier by the $|z| > 3$ rule.
-- By the **boxplot** rule it *would* be flagged (below the \$2.80 fence). Same data, two rules, different verdicts — judgment decides.
+- The most extreme day is **June 2 at \$2.587, z = −2.53** — notable, but **not** an outlier by the $|z| > 3$ rule (which flags **no** days here).
+- The **boxplot** rule flags **two** days below the \$2.80 fence — June 2 *and* **June 3 (\$2.755)**. Same data, two rules, different verdicts — judgment decides.
 :::
 
 # Five-Number Summary & Boxplot {background-color="#cfb991"}
@@ -497,7 +497,7 @@ knitr::include_graphics("figs/erpm_box_compare.png")
 ```
 
 ::: nonincremental
-- One picture carries the whole brief: **B's box is higher** (greater median/mean) **and taller** (greater spread), with a low June 2 trailing the bottom whisker.
+- One picture carries the whole brief: **B's box is higher** (greater median/mean) **and taller** (greater spread), with two low days (June 2 and June 3) falling past the lower fence.
 - This single chart will anchor your team's dashboard.
 :::
 
@@ -686,7 +686,7 @@ knitr::include_graphics("figs/xkcd.png")
 
 - **Spread:** B is **markedly riskier** — SD \$0.344 vs. \$0.217, CV 10.0% vs. 6.5%, a wider IQR and a wider range. **Higher reward comes with higher volatility.**
 
-- **Shape:** both are roughly symmetric (|skew| < 0.5); no day is an outlier by the $|z|>3$ rule, though B's slow June 2 trails the boxplot's lower whisker.
+- **Shape:** both are roughly symmetric (|skew| < 0.5); no day is an outlier by the $|z|>3$ rule, though B's two slow days (June 2 & June 3) fall past the boxplot's lower fence.
 
 - **The honest two-sentence read:** *"Over 30 days, B averaged \$0.11 more per 1,000 impressions than A, but with ~50% more day-to-day volatility. Whether that \$0.11 edge is real signal or sampling noise is a question description alone cannot settle — that needs a hypothesis test."*
 

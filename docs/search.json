@@ -1784,14 +1784,14 @@
     "href": "lecture_slides/02_chapter_descriptive_statistics/02_chapter_descriptive_statistics.html#detecting-outliers-two-rules-that-can-disagree",
     "title": " QM 6700: Business Analytics ",
     "section": "Detecting Outliers — Two Rules That Can Disagree",
-    "text": "Detecting Outliers — Two Rules That Can Disagree\n\n\nAn outlier is an unusually small or large value. It may be a recording error, a wrongly-included point, or a genuinely unusual but valid observation. Two common rules:\n\n\n\n\n\n\n\n\n\nRule\nFlags a value as an outlier when…\n\n\n\n\nz-score\n\\(|z| &gt; 3\\) (more than 3 SDs from the mean)\n\n\nBoxplot (1.5 × IQR)\nbelow \\(Q_1 - 1.5\\,\\text{IQR}\\) or above \\(Q_3 + 1.5\\,\\text{IQR}\\)\n\n\n\n\n\nThey do not always agree — the IQR rule is more sensitive in the tails. On Vungle’s B, the slow June 2 ($2.587) sits below the boxplot lower fence, yet its \\(z = -2.53\\) is inside the \\(|z|&gt;3\\) cutoff.\nA flag is an invitation to investigate, not a delete button. Ask why before you drop a point."
+    "text": "Detecting Outliers — Two Rules That Can Disagree\n\n\nAn outlier is an unusually small or large value. It may be a recording error, a wrongly-included point, or a genuinely unusual but valid observation. Two common rules:\n\n\n\n\n\n\n\n\n\nRule\nFlags a value as an outlier when…\n\n\n\n\nz-score\n\\(|z| &gt; 3\\) (more than 3 SDs from the mean)\n\n\nBoxplot (1.5 × IQR)\nbelow \\(Q_1 - 1.5\\,\\text{IQR}\\) or above \\(Q_3 + 1.5\\,\\text{IQR}\\)\n\n\n\n\n\nThey do not always agree — the IQR rule is more sensitive in the tails. On Vungle’s B, two slow days — June 2 ($2.587) and June 3 ($2.755) — sit below the boxplot lower fence (≈$2.80), yet both stay inside the \\(|z|&gt;3\\) cutoff (June 2’s \\(z = -2.53\\) is the most extreme). The boxplot rule flags two days; the z-rule flags none.\nA flag is an invitation to investigate, not a delete button. Ask why before you drop a point."
   },
   {
     "objectID": "lecture_slides/02_chapter_descriptive_statistics/02_chapter_descriptive_statistics.html#outlier-hunt-on-vungles-b",
     "href": "lecture_slides/02_chapter_descriptive_statistics/02_chapter_descriptive_statistics.html#outlier-hunt-on-vungles-b",
     "title": " QM 6700: Business Analytics ",
     "section": "Outlier Hunt on Vungle’s B",
-    "text": "Outlier Hunt on Vungle’s B\n\n\nThe most extreme day is June 2 at $2.587, z = −2.53 — notable, but not an outlier by the \\(|z| &gt; 3\\) rule.\nBy the boxplot rule it would be flagged (below the $2.80 fence). Same data, two rules, different verdicts — judgment decides."
+    "text": "Outlier Hunt on Vungle’s B\n\n\nThe most extreme day is June 2 at $2.587, z = −2.53 — notable, but not an outlier by the \\(|z| &gt; 3\\) rule (which flags no days here).\nThe boxplot rule flags two days below the $2.80 fence — June 2 and June 3 ($2.755). Same data, two rules, different verdicts — judgment decides."
   },
   {
     "objectID": "lecture_slides/02_chapter_descriptive_statistics/02_chapter_descriptive_statistics.html#the-five-number-summary",
@@ -1812,7 +1812,7 @@
     "href": "lecture_slides/02_chapter_descriptive_statistics/02_chapter_descriptive_statistics.html#a-vs-b-boxplots-side-by-side",
     "title": " QM 6700: Business Analytics ",
     "section": "A-vs-B Boxplots Side by Side",
-    "text": "A-vs-B Boxplots Side by Side\n\n\nOne picture carries the whole brief: B’s box is higher (greater median/mean) and taller (greater spread), with a low June 2 trailing the bottom whisker.\nThis single chart will anchor your team’s dashboard."
+    "text": "A-vs-B Boxplots Side by Side\n\n\nOne picture carries the whole brief: B’s box is higher (greater median/mean) and taller (greater spread), with two low days (June 2 and June 3) falling past the lower fence.\nThis single chart will anchor your team’s dashboard."
   },
   {
     "objectID": "lecture_slides/02_chapter_descriptive_statistics/02_chapter_descriptive_statistics.html#building-the-five-number-summary-in-excel",
@@ -1882,7 +1882,7 @@
     "href": "lecture_slides/02_chapter_descriptive_statistics/02_chapter_descriptive_statistics.html#what-the-dashboard-says",
     "title": " QM 6700: Business Analytics ",
     "section": "What the Dashboard Says",
-    "text": "What the Dashboard Says\n\n\nCenter: B’s mean eRPM ($3.459) sits about $0.11 above A’s ($3.347) — B’s edge is real in this sample.\nSpread: B is markedly riskier — SD $0.344 vs. $0.217, CV 10.0% vs. 6.5%, a wider IQR and a wider range. Higher reward comes with higher volatility.\nShape: both are roughly symmetric (|skew| &lt; 0.5); no day is an outlier by the \\(|z|&gt;3\\) rule, though B’s slow June 2 trails the boxplot’s lower whisker.\nThe honest two-sentence read: “Over 30 days, B averaged $0.11 more per 1,000 impressions than A, but with ~50% more day-to-day volatility. Whether that $0.11 edge is real signal or sampling noise is a question description alone cannot settle — that needs a hypothesis test.”"
+    "text": "What the Dashboard Says\n\n\nCenter: B’s mean eRPM ($3.459) sits about $0.11 above A’s ($3.347) — B’s edge is real in this sample.\nSpread: B is markedly riskier — SD $0.344 vs. $0.217, CV 10.0% vs. 6.5%, a wider IQR and a wider range. Higher reward comes with higher volatility.\nShape: both are roughly symmetric (|skew| &lt; 0.5); no day is an outlier by the \\(|z|&gt;3\\) rule, though B’s two slow days (June 2 & June 3) fall past the boxplot’s lower fence.\nThe honest two-sentence read: “Over 30 days, B averaged $0.11 more per 1,000 impressions than A, but with ~50% more day-to-day volatility. Whether that $0.11 edge is real signal or sampling noise is a question description alone cannot settle — that needs a hypothesis test.”"
   },
   {
     "objectID": "lecture_slides/02_chapter_descriptive_statistics/02_chapter_descriptive_statistics.html#managers-takeaway",
