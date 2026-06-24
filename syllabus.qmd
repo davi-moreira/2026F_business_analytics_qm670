@@ -92,29 +92,41 @@ In compliance with the Business School’s Official Grading Policy for QM 6700, 
 
 Below are the grading components and their respective weights:
 
-| **Assessment**                       | **Weight** |
-|--------------------------------------|:----------:|
-| **Attendance**                       |     5%     |
-| **Homework** (3 total, team-based)   |    30%     |
-| **Midterm** (in-class)               |    20%     |
-| **Final** (cumulative)               |    45%     |
+| **Assessment**                          | **Weight** |
+|-----------------------------------------|:----------:|
+| **Attendance**                          |     1%     |
+| **Participation**                       |     4%     |
+| **In-Class Group Cases**                |    20%     |
+| **Homework** (3 total, individual)      |    15%     |
+| **Midterm** (in-class)                  |    25%     |
+| **Final** (cumulative)                  |    35%     |
 
 
 ### Attendance 
 
-Attendance is essential for success in this course. If you do not attend class regularly, you are unlikely to succeed. According to the [University regulations](https://catalog.purdue.edu/content.php?catoid=15&navoid=18634#classes), “Scheduled courses allow students to avoid conflicts and reflect the University’s expectation that students should be present for every meeting of a class/laboratory for which they are registered.” Attendance will be recorded using iClicker, and these records will be reflected in your gradebook at the end of the semester. A minimum attendance rate of 85% is required to meet the expectations of this course.
+Attendance is essential for success in this course. If you do not attend class regularly, you are unlikely to succeed. According to the [University regulations](https://catalog.purdue.edu/content.php?catoid=15&navoid=18634#classes), “Scheduled courses allow students to avoid conflicts and reflect the University’s expectation that students should be present for every meeting of a class/laboratory for which they are registered.” Attendance will be recorded using iClicker, and these records will be reflected in your gradebook at the end of the semester. You earn the attendance credit by meeting a **minimum 85% attendance rate**.
+
+### Participation
+
+-   Participation (4%) covers the activities used to keep the course on track and responsive: in-class submissions, feedback forms, surveys, iClicker questions, and other activities announced during the term. It rewards showing up prepared and engaging with the class.
+
+### In-Class Group Cases
+
+-   You will be randomly assigned to a **fixed group** in the first week of the course. **Every class is a problem-solve** on that day's business case and dataset; your group works it together and **submits one deliverable on Brightspace before the end of class**.\
+-   Submissions are graded by the course grader against a rubric. The first case (day one) is short because of course logistics; later cases grow in length and difficulty with the material.\
+-   Bring a laptop with **Excel + the Analysis ToolPak**. A group member who does not contribute should not be listed on that day's submission.
 
 ### Homework
 
--   **Three** homework assignments, completed and submitted **as a team**; **none** are dropped.\
--   Submit on Brightspace before the deadline as a **single** PDF or Word file named **HW_X_Team_Y** (X = homework number, Y = team number), with all relevant Excel (or other) outputs included and clearly referenced.\
+-   **Three** homework assignments, completed and submitted **individually**; **none** are dropped.\
+-   Submit on Brightspace before the deadline as a **single** PDF or Word file named **HW_X_LastName** (X = homework number), with all relevant Excel (or other) outputs included and clearly referenced.\
 -   No late homework or email submissions are accepted without prior permission.\
--   Each team member is expected to understand, for each assignment, the reason for choosing a particular technique, the mechanics of the solution, and the implications of the final recommendation.\
--   If a team member does not contribute, their name should not appear on the submission and they may complete and submit the assignment separately. Teams may not cooperate with other teams; copying or duplicate submissions are considered cheating.
+-   For each assignment, you are expected to understand the reason for choosing a particular technique, the mechanics of the solution, and the implications of the final recommendation.\
+-   Homework is **individual work**: you may discuss concepts, but copying or duplicate submissions are considered cheating.
 
 ### Midterm
 
--   **One** in-class midterm exam (20%).\
+-   **One** in-class midterm exam (25%).\
 -   Exams test technical calculation skills and conceptual understanding similar to homework problems.\
 -   Calculators without internet or USB capabilities are allowed; cellphones, watches, and internet access are prohibited during the midterm and final.
 

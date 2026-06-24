@@ -2036,7 +2036,7 @@
     "href": "lecture_slides/01_chapter_data_statistics/01_chapter_data_statistics.html#overview",
     "title": " QM 6700: Business Analytics ",
     "section": "Overview",
-    "text": "Overview\n\n\n\nIntroductions & course logistics\nCase Spotlight: A/B Testing at Vungle\nThe semester roadmap: three business cases\nWhat is statistics? Where is it used?\nThe map: descriptive vs. inferential\n\n\n\nData, variables & observations — the Vungle dataset\nData types & scales of measurement\nStudy design: why Vungle ran an experiment\nA first look at the data in Excel (Excel4stats)"
+    "text": "Overview\n\n\n\nIntroductions, logistics & your group\nThe semester roadmap: two cases, one job\nCase Spotlight: A/B Testing at Vungle\nWhat is statistics? Where is it used?\nThe map: descriptive vs. inferential\n\n\n\nData, variables & observations — the Vungle dataset\nData types & scales of measurement\nStudy design: why Vungle ran an experiment\nA first look at the data in Excel (Excel4stats)"
   },
   {
     "objectID": "lecture_slides/01_chapter_data_statistics/01_chapter_data_statistics.html#instructor",
@@ -2078,7 +2078,7 @@
     "href": "lecture_slides/01_chapter_data_statistics/01_chapter_data_statistics.html#how-to-succeed-in-this-course",
     "title": " QM 6700: Business Analytics ",
     "section": "How to Succeed in This Course",
-    "text": "How to Succeed in This Course\n\n\nStart from zero, by design. No prior statistics is assumed — this is your first analytics course, and we build every method up from a real business decision.\nKeep up every week. Statistics builds on itself — today’s vocabulary becomes next week’s formulas. Falling behind compounds.\nWork with your team. Homework is team-based by design; explaining a concept to a teammate is the fastest way to learn it.\nYou’re the decision-maker. Every method we learn answers a call you have to make. Learn each one well enough to check an analyst’s work, and always ask: what decision does this number support, and would I stake money on it?\nUse Excel from day one. Install the Analysis ToolPak this week and open the course dataset — you will use it all semester."
+    "text": "How to Succeed in This Course\n\n\nStart from zero, by design. No prior statistics is assumed — this is your first analytics course, and we build every method up from a real business decision.\nKeep up every week. Statistics builds on itself — today’s vocabulary becomes next week’s formulas. Falling behind compounds.\nWork with your group. In-class cases are solved and submitted together; homework you do on your own. Explaining a method to a groupmate is the fastest way to learn it.\nYou’re the decision-maker. Every method we learn answers a call you have to make. Learn each one well enough to check an analyst’s work, and always ask: what decision does this number support, and would I stake money on it?\nUse Excel from day one. Install the Analysis ToolPak this week and open the course dataset — you will use it all semester."
   },
   {
     "objectID": "lecture_slides/01_chapter_data_statistics/01_chapter_data_statistics.html#textbook-materials",
@@ -2099,7 +2099,7 @@
     "href": "lecture_slides/01_chapter_data_statistics/01_chapter_data_statistics.html#meet-vungle-one-decision-30-days-of-data",
     "title": " QM 6700: Business Analytics ",
     "section": "Meet Vungle: One Decision, 30 Days of Data",
-    "text": "Meet Vungle: One Decision, 30 Days of Data\n\n\nVungle is a mobile ad-tech startup: it serves 15-second video ads inside other apps and earns revenue mainly when a viewer installs the advertised app.\nThe metric that pays the bills is eRPM — effective revenue per 1,000 impressions.\nIn June 2014, two analysts built a new ad-serving algorithm (B) and ran it head-to-head against the current one (A) for the whole month.\nThe CEO’s question: roll out B to all advertisers, or stay with A?\nWe will use this one decision — is B better than A? — to motivate every tool in this course."
+    "text": "Meet Vungle: One Decision, 30 Days of Data\n\n\nVungle is a mobile ad-tech startup: it serves 15-second video ads inside other apps and earns revenue mainly when a viewer installs the advertised app.\nThe metric that pays the bills is eRPM — effective revenue per 1,000 impressions.\nIn June 2014, two analysts built a new ad-serving algorithm (B) and ran it head-to-head against the current one (A) for the whole month.\nYour call as Vungle’s CEO: roll out B to all advertisers, or stay with A?\nWe will use this one decision (is B better than A?) to motivate every tool in this course."
   },
   {
     "objectID": "lecture_slides/01_chapter_data_statistics/01_chapter_data_statistics.html#the-data-behind-the-decision",
@@ -2337,14 +2337,14 @@
     "href": "lecture_slides/01_chapter_data_statistics/01_chapter_data_statistics.html#carry-forward",
     "title": " QM 6700: Business Analytics ",
     "section": "Carry-forward",
-    "text": "Carry-forward\n\nYour client (homework): as your client’s management, open its dataset and write the data audit (elements, variables, type & scale of each), then compute the mean and median of its main outcome — the first numbers you would demand before trusting any deeper analysis.\nNext time: we go deeper into describing — spread, shape, the boxplot, and how two variables move together."
+    "text": "Carry-forward\n\nToday’s submission: your group’s roll-out call is your first graded deliverable — a real decision taken on day one.\nNext time: we go deeper into describing — spread, shape, the boxplot, and how two variables move together. (Individual homework starts in a couple of weeks; watch Brightspace.)"
   },
   {
     "objectID": "lecture_slides/01_chapter_data_statistics/01_chapter_data_statistics.html#summary",
     "href": "lecture_slides/01_chapter_data_statistics/01_chapter_data_statistics.html#summary",
     "title": " QM 6700: Business Analytics ",
     "section": "Summary",
-    "text": "Summary\nThe main points from this session:\n\nYour seat all term: you are the decision-maker — you run every method yourself, but to judge the analysis and make the call, not to be the analyst.\nThree cases drive the course: Vungle A/B (describe → test, Topics 1–9), auto-parts retail (predict, Topics 10–11), and your team’s own client (the three homeworks).\nStatistics turns data into defensible business decisions; it splits into descriptive (summarize) and inferential (generalize).\nData vocabulary: elements, variables, observations; categorical vs. quantitative; the four scales of measurement — and the rule that scale determines method.\nStudy design: Vungle ran a randomized experiment, which is what licenses causal claims.\nExcel is your toolkit: install the Analysis ToolPak and meet the dataset on day one."
+    "text": "Summary\nThe main points from this session:\n\nYour seat all term: you are the decision-maker — you run every method yourself, but to judge the analysis and make the call, not to be the analyst.\nTwo cases, worked in your group: Vungle A/B (describe → test, Topics 1–9) and auto-parts retail (predict, Topics 10–11); you submit a graded group call each class, and individual homework drills the mechanics.\nStatistics turns data into defensible business decisions; it splits into descriptive (summarize) and inferential (generalize).\nData vocabulary: elements, variables, observations; categorical vs. quantitative; the four scales of measurement — and the rule that scale determines method.\nStudy design: Vungle ran a randomized experiment, which is what licenses causal claims.\nExcel is your toolkit: install the Analysis ToolPak and meet the dataset on day one."
   },
   {
     "objectID": "lecture_slides/11_chapter_multiple_regression/11_chapter_multiple_regression.html#overview",
@@ -3453,7 +3453,7 @@
     "href": "lecture_slides/01_chapter_data_statistics/01_chapter_data_statistics.html#the-roadmap-which-case-which-week",
     "title": " QM 6700: Business Analytics ",
     "section": "The Roadmap: Which Case, Which Week",
-    "text": "The Roadmap: Which Case, Which Week\nEvery case runs the same path: describe → quantify the uncertainty → test → predict. Three graded checkpoints (HW1 ≈ Topic 4, HW2 ≈ Topic 7, HW3 ≈ Topic 11) mark the way:"
+    "text": "The Roadmap: Which Case, Which Week\nEvery case runs the same path: describe → quantify the uncertainty → test → predict. You crack it in your group and submit before you leave; three individual homeworks build the mechanics:"
   },
   {
     "objectID": "lecture_slides/01_chapter_data_statistics/01_chapter_data_statistics.html#youre-the-decision-maker-three-calls-to-make",
@@ -3474,6 +3474,20 @@
     "href": "lecture_slides/01_chapter_data_statistics/01_chapter_data_statistics.html#team-sprint-pressure-test-the-analysts-claim",
     "title": " QM 6700: Business Analytics ",
     "section": "⏱️ Team Sprint — Pressure-Test the Analyst’s Claim",
-    "text": "⏱️ Team Sprint — Pressure-Test the Analyst’s Claim\n\nYou’re the management team. An analyst’s memo lands: “B’s average eRPM beat A’s, so roll it out.” Before you act on it, check it.\nData: data/vungle_daily.xlsx · Time: ~12 min\n\nReproduce it: with the ToolPak’s Descriptive Statistics, compute the mean and median eRPM for A and for B yourself. Does the analyst’s headline hold?\nAudit the inputs: name the elements, variables, and the type & scale of algorithm and erpm, so you know which numbers are even valid to compare.\nInterrogate it: how big is B’s edge? Name two reasons it might not survive scrutiny (sample size, spread, traffic, the metric itself).\n\nHand in (1 slide): your call (roll out, wait, or send it back) plus the two weaknesses you would put to the analyst."
+    "text": "⏱️ Team Sprint — Pressure-Test the Analyst’s Claim\n\nYou’re the management team. An analyst’s memo lands: “B’s average eRPM beat A’s, so roll it out.” Before you act on it, check it.\nData: data/vungle_daily.xlsx · Time: ~12 min\n\nReproduce it: with the ToolPak’s Descriptive Statistics, compute the mean and median eRPM for A and for B yourself. Does the analyst’s headline hold?\nAudit the inputs: name the elements, variables, and the type & scale of algorithm and erpm, so you know which numbers are even valid to compare.\nInterrogate it: how big is B’s edge? Name two reasons it might not survive scrutiny (sample size, spread, traffic, the metric itself).\n\nSubmit before you leave (group, 1 slide): your call (roll out, wait, or send it back) plus the two weaknesses you would put to the analyst."
+  },
+  {
+    "objectID": "lecture_slides/01_chapter_data_statistics/01_chapter_data_statistics.html#how-the-class-works",
+    "href": "lecture_slides/01_chapter_data_statistics/01_chapter_data_statistics.html#how-the-class-works",
+    "title": " QM 6700: Business Analytics ",
+    "section": "How the Class Works",
+    "text": "How the Class Works\n\n\nYour group: you’ll be randomly assigned to a fixed group this week and work every in-class case with it.\nSubmit before you leave: each class your group turns in one deliverable on Brightspace — your decision plus the evidence. A grader scores it.\nBring a laptop with Excel + the Analysis ToolPak to every session.\nHomework is individual: three problem sets that drill the mechanics, posted on Brightspace."
+  },
+  {
+    "objectID": "lecture_slides/01_chapter_data_statistics/01_chapter_data_statistics.html#youre-the-decision-maker-two-cases-to-crack",
+    "href": "lecture_slides/01_chapter_data_statistics/01_chapter_data_statistics.html#youre-the-decision-maker-two-cases-to-crack",
+    "title": " QM 6700: Business Analytics ",
+    "section": "You’re the Decision-Maker — Two Cases to Crack",
+    "text": "You’re the Decision-Maker — Two Cases to Crack\n\n\nThis course puts you in the decision-maker’s seat: the manager, CEO, or owner who has to act. You’ll work in a fixed group (assigned this week), cracking real cases in class and judging the analysis behind every call.\n\n\n\n① Vungle A/B — Topics 1–9 (up first). A mobile ad-tech startup asking roll out algorithm B, or keep A? You’ll learn to describe, quantify uncertainty, and test so you can judge that claim before betting the company on it.\n\n\n\n\n② Auto-parts retail — Topics 10–11. A 45-store chain asking where should the next dollar go? You’ll evaluate the analyst’s model that predicts store sales, then decide where to invest.\n\n\n\n\nEvery class: your group works the case live and submits its call before you leave (graded). Homework is separate and individual — problem sets that drill the mechanics."
   }
 ]

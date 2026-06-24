@@ -31,9 +31,9 @@ html-math-method:
 :::::: nonincremental
 ::::: columns
 ::: {.column style="width: 50%; text-align: center; justify-content: center; align-items: center;"}
--   Introductions & course logistics
+-   Introductions, logistics & your group
+-   **The semester roadmap: two cases, one job**
 -   **Case Spotlight: A/B Testing at Vungle**
--   **The semester roadmap: three business cases**
 -   What is statistics? Where is it used?
 -   The map: descriptive vs. inferential
 :::
@@ -148,11 +148,23 @@ knitr::include_graphics("figs/carnaval_olinda.jpg")
 
 - **Keep up every week.** Statistics builds on itself — today's vocabulary becomes next week's formulas. Falling behind compounds.
 
-- **Work with your team.** Homework is team-based by design; explaining a concept to a teammate is the fastest way to learn it.
+- **Work with your group.** In-class cases are solved and submitted together; homework you do on your own. Explaining a method to a groupmate is the fastest way to learn it.
 
 - **You're the decision-maker.** Every method we learn answers a call *you* have to make. Learn each one well enough to check an analyst's work, and always ask: *what decision does this number support, and would I stake money on it?*
 
 - **Use Excel from day one.** Install the Analysis ToolPak this week and open the course dataset — you will use it all semester.
+
+## How the Class Works
+
+<br>
+
+- **Your group:** you'll be randomly assigned to a **fixed group** this week and work every in-class case with it.
+
+- **Submit before you leave:** each class your group turns in one deliverable on **Brightspace** — your decision plus the evidence. A grader scores it.
+
+- **Bring a laptop** with **Excel + the Analysis ToolPak** to every session.
+
+- **Homework is individual:** three problem sets that drill the mechanics, posted on Brightspace.
 
 # Textbook & Software {background-color="#cfb991"}
 
@@ -191,6 +203,32 @@ knitr::include_graphics("figs/qrcode_review_survey.png")
 
 <center>[Attendance and Participation](https://forms.office.com/r/3R2VwPJAzA){target="_blank"}<br>10 min</center>
 
+# Your Semester: Two Cases, One Job {background-color="#cfb991"}
+
+## You're the Decision-Maker — Two Cases to Crack
+
+<br>
+
+- This course puts **you in the decision-maker's seat**: the manager, CEO, or owner who has to act. You'll work in a **fixed group** (assigned this week), cracking real cases in class and judging the analysis behind every call.
+
+::: fragment
+- **① Vungle A/B — Topics 1–9 (up first).** A mobile ad-tech startup asking *roll out algorithm B, or keep A?* You'll learn to **describe, quantify uncertainty, and test** so you can judge that claim before betting the company on it.
+:::
+
+::: fragment
+- **② Auto-parts retail — Topics 10–11.** A 45-store chain asking *where should the next dollar go?* You'll **evaluate the analyst's model** that predicts store sales, then decide where to invest.
+:::
+
+::: fragment
+- **Every class:** your group works the case live and **submits its call before you leave** (graded). **Homework** is separate and **individual** — problem sets that drill the mechanics.
+:::
+
+## The Roadmap: Which Case, Which Week
+
+Every case runs the same path: **describe → quantify the uncertainty → test → predict.** You crack it in your group and submit before you leave; three **individual** homeworks build the mechanics:
+
+![](figs/course_roadmap.png){.nostretch fig-align="center" width="72%"}
+
 # Case Spotlight: A/B Testing at Vungle {background-color="#cfb991"}
 
 ## Meet Vungle: One Decision, 30 Days of Data
@@ -203,9 +241,9 @@ knitr::include_graphics("figs/qrcode_review_survey.png")
 
 - In June 2014, two analysts built a new ad-serving algorithm (**B**) and ran it head-to-head against the current one (**A**) for the whole month.
 
-- **The CEO's question:** *roll out B to all advertisers, or stay with A?*
+- **Your call as Vungle's CEO:** *roll out B to all advertisers, or stay with A?*
 
-- We will use this one decision — *is B better than A?* — to motivate **every** tool in this course.
+- We will use this one decision (*is B better than A?*) to motivate **every** tool in this course.
 
 ## The Data Behind the Decision
 
@@ -231,32 +269,6 @@ knitr::include_graphics("figs/vungle_funnel.png")
   - What **kind** of data is this, and which statistics are even **valid** to compute?
 
 - Answering those is the job of this course. **Today we start at the foundation: what is this data?**
-
-# Your Semester: Three Cases, One Job {background-color="#cfb991"}
-
-## You're the Decision-Maker — Three Calls to Make
-
-<br>
-
-- This course puts **you in the decision-maker's seat**: the manager, CEO, or owner who has to act. On each case an analyst proposes; **your job is to understand the analysis well enough to check it, challenge it, and decide.** Three cases, three calls:
-
-::: fragment
-- **① Vungle A/B — Topics 1–9 (your first call).** You're the executive: *roll out algorithm B, or keep A?* The analysts say B looks better. You'll learn to **describe, quantify uncertainty, and test** so you can judge that claim before betting the company on it.
-:::
-
-::: fragment
-- **② Auto-parts retail — Topics 10–11 (your second call).** Now you run a 45-store chain: *where should the next dollar go?* You'll **evaluate the analyst's model** that predicts store sales, then decide where to invest.
-:::
-
-::: fragment
-- **③ Your team's client — every week (you own it).** Your team is the **management** of a real company. Each homework you receive an analysis, reproduce and check it, and **make the call**, graded against the textbook's own solution.
-:::
-
-## The Roadmap: Which Case, Which Week
-
-Every case runs the same path: **describe → quantify the uncertainty → test → predict.** Three graded checkpoints (**HW1 ≈ Topic 4, HW2 ≈ Topic 7, HW3 ≈ Topic 11**) mark the way:
-
-![](figs/course_roadmap.png){.nostretch fig-align="center" width="72%"}
 
 # What is Statistics? {background-color="#cfb991"}
 
@@ -679,7 +691,7 @@ knitr::include_graphics("figs/excel_desc_erpm.png")
 2. **Audit the inputs:** name the elements, variables, and the **type & scale** of `algorithm` and `erpm`, so you know which numbers are even valid to compare.
 3. **Interrogate it:** how big is B's edge? Name **two reasons** it might not survive scrutiny (sample size, spread, traffic, the metric itself).
 
-**Hand in (1 slide):** your **call** (roll out, wait, or send it back) plus the **two weaknesses** you would put to the analyst.
+**Submit before you leave (group, 1 slide):** your **call** (roll out, wait, or send it back) plus the **two weaknesses** you would put to the analyst.
 :::
 
 ## Debrief — Back to the Decision
@@ -772,9 +784,9 @@ knitr::include_graphics("figs/inference.svg")
 ## Carry-forward
 
 ::: nonincremental
-- **Your client (homework):** as your client's management, open its dataset and write the **data audit** (elements, variables, type & scale of each), then compute the **mean and median** of its main outcome — the first numbers you would demand before trusting any deeper analysis.
+- **Today's submission:** your group's roll-out call is your first graded deliverable — a real decision taken on day one.
 
-- **Next time:** we go deeper into *describing* — spread, shape, the boxplot, and how two variables move together.
+- **Next time:** we go deeper into *describing* — spread, shape, the boxplot, and how two variables move together. (Individual homework starts in a couple of weeks; watch Brightspace.)
 :::
 
 ## Summary
@@ -783,7 +795,7 @@ knitr::include_graphics("figs/inference.svg")
 The main points from this session:
 
 -   **Your seat all term:** you are the **decision-maker** — you run every method yourself, but to *judge* the analysis and make the call, not to be the analyst.
--   **Three cases drive the course:** Vungle A/B (describe → test, Topics 1–9), auto-parts retail (predict, Topics 10–11), and your team's own client (the three homeworks).
+-   **Two cases, worked in your group:** Vungle A/B (describe → test, Topics 1–9) and auto-parts retail (predict, Topics 10–11); you submit a graded group call each class, and individual homework drills the mechanics.
 -   **Statistics** turns data into defensible business decisions; it splits into **descriptive** (summarize) and **inferential** (generalize).
 -   **Data vocabulary:** elements, variables, observations; categorical vs. quantitative; the four scales of measurement — and the rule that **scale determines method**.
 -   **Study design:** Vungle ran a randomized **experiment**, which is what licenses *causal* claims.
