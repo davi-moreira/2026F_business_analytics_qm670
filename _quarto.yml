@@ -3,7 +3,7 @@ project:
   type: website
   output-dir: docs
   # Render ONLY the public site pages + slide decks.
-  # Instructor lecture guides (lecture_guide/*.md) are deliberately EXCLUDED so
+  # Instructor lecture guides (_lecture_guide/*.md) are deliberately EXCLUDED so
   # Quarto never compiles them into docs/ or indexes their text in search.json.
   render:
     - "*.qmd"
