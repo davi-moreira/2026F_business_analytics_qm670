@@ -254,7 +254,7 @@ knitr::include_graphics("figs/vungle_funnel.png")
 
 ## The Roadmap: Which Case, Which Week
 
-The same journey on every case — **describe → quantify the uncertainty → test → predict** — with three graded checkpoints (**HW1 ≈ Topic 4, HW2 ≈ Topic 7, HW3 ≈ Topic 11**) along the way:
+Every case runs the same path: **describe → quantify the uncertainty → test → predict.** Three graded checkpoints (**HW1 ≈ Topic 4, HW2 ≈ Topic 7, HW3 ≈ Topic 11**) mark the way:
 
 ![](figs/course_roadmap.png){.nostretch fig-align="center" width="72%"}
 
@@ -292,7 +292,7 @@ Statistics is the **science of collecting, organizing, analyzing, interpreting, 
 
 <br>
 
-- It turns raw numbers — like Vungle's 30 days of eRPM — into a defensible answer to a manager's question.
+- It turns raw numbers, like Vungle's 30 days of eRPM, into a defensible answer to a manager's question.
 
 - The goal is always the same: **reduce uncertainty enough to act.**
 
@@ -521,7 +521,7 @@ In an observational study, no attempt is made to control the variables of intere
 
 <br>
 
-> Researchers watching a random set of Walmart shoppers — recording time in store, gender, and amount spent — *without intervening*.
+> Researchers watch a random sample of Walmart shoppers and record time in store, gender, and amount spent, *without ever intervening*.
 :::
 
 ::: {.column style="width: 50%; text-align: center; justify-content: center; align-items: center;"}
@@ -531,7 +531,7 @@ In an experiment, the variable of interest is identified, then its levels are **
 
 <br>
 
-> The 1954 Salk polio-vaccine trial — nearly two million children randomly assigned to vaccine or placebo — is the largest experiment ever run.
+> The 1954 Salk polio-vaccine trial randomly assigned nearly two million children to vaccine or placebo. It is the largest experiment ever run.
 :::
 :::::
 
@@ -541,7 +541,7 @@ In an experiment, the variable of interest is identified, then its levels are **
 
 - The `algorithm` column is the **treatment**: each impression was randomly assigned to A or B (by an MD5 hash) **on the same days**.
 
-- Random assignment balances everything else — same market, same advertisers, same weekends — so the only systematic difference is the algorithm.
+- Random assignment balances everything else (same market, same advertisers, same weekends), so the only systematic difference is the algorithm.
 
 - That is what licenses **causal** language: *"B **caused** higher eRPM,"* not merely *"B was associated with higher eRPM."*
 
@@ -556,8 +556,8 @@ knitr::include_graphics("figs/random_assignment_sampling.png")
 ```
 
 ::: nonincremental
-- **Random sampling** — *who gets into the study* — supports generalizing to the population.
-- **Random assignment** — *who gets which treatment* — supports causal comparison.
+- **Random sampling** (*who gets into the study*) supports generalizing to the population.
+- **Random assignment** (*who gets which treatment*) supports causal comparison.
 :::
 
 # Descriptive Statistics {background-color="#cfb991"}
@@ -657,7 +657,7 @@ knitr::include_graphics("figs/excel.png")
 
 <br>
 
-The mean eRPM for A is **\$3.347**. Every row of this panel — median, SD, skewness — is a *descriptive* measure we unpack in **Topic 2**.
+The mean eRPM for A is **\$3.347**. Every row of this panel (median, SD, skewness) is a *descriptive* measure we unpack in **Topic 2**.
 :::
 
 ::: {.column width="58%"}
@@ -772,7 +772,7 @@ knitr::include_graphics("figs/inference.svg")
 ## Carry-forward
 
 ::: nonincremental
-- **Your client (homework):** open your team's case dataset and write its **data audit** — elements, variables, and the type & scale of each — then compute the **mean and median** of its key outcome.
+- **Your client (homework):** open your team's case dataset and write its **data audit** (elements, variables, and the type & scale of each), then compute the **mean and median** of its main outcome.
 
 - **Next time:** we go deeper into *describing* — spread, shape, the boxplot, and how two variables move together.
 :::
@@ -780,7 +780,7 @@ knitr::include_graphics("figs/inference.svg")
 ## Summary
 
 ::: nonincremental
-Some key takeaways from this session:
+The main points from this session:
 
 -   **Three cases drive the course:** Vungle A/B (describe → test, Topics 1–9), auto-parts retail (predict, Topics 10–11), and your team's own client (the three homeworks).
 -   **Statistics** turns data into defensible business decisions; it splits into **descriptive** (summarize) and **inferential** (generalize).

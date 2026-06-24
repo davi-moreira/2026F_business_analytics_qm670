@@ -2127,7 +2127,7 @@
     "href": "lecture_slides/01_chapter_data_statistics/01_chapter_data_statistics.html#what-is-statistics-2",
     "title": " QM 6700: Business Analytics ",
     "section": "What is Statistics?",
-    "text": "What is Statistics?\n\nStatistics is the science of collecting, organizing, analyzing, interpreting, and presenting data to make informed business decisions.\n\n\nIt turns raw numbers — like Vungle’s 30 days of eRPM — into a defensible answer to a manager’s question.\nThe goal is always the same: reduce uncertainty enough to act."
+    "text": "What is Statistics?\n\nStatistics is the science of collecting, organizing, analyzing, interpreting, and presenting data to make informed business decisions.\n\n\nIt turns raw numbers, like Vungle’s 30 days of eRPM, into a defensible answer to a manager’s question.\nThe goal is always the same: reduce uncertainty enough to act."
   },
   {
     "objectID": "lecture_slides/01_chapter_data_statistics/01_chapter_data_statistics.html#where-is-statistics-applied-in-business",
@@ -2225,21 +2225,21 @@
     "href": "lecture_slides/01_chapter_data_statistics/01_chapter_data_statistics.html#observational-vs.-experimental-studies",
     "title": " QM 6700: Business Analytics ",
     "section": "Observational vs. Experimental Studies",
-    "text": "Observational vs. Experimental Studies\n\n\nObservational\nIn an observational study, no attempt is made to control the variables of interest. A survey is the classic example.\n\n\nResearchers watching a random set of Walmart shoppers — recording time in store, gender, and amount spent — without intervening.\n\n\nExperimental\nIn an experiment, the variable of interest is identified, then its levels are set and controlled, so we can see how they influence an outcome.\n\n\nThe 1954 Salk polio-vaccine trial — nearly two million children randomly assigned to vaccine or placebo — is the largest experiment ever run."
+    "text": "Observational vs. Experimental Studies\n\n\nObservational\nIn an observational study, no attempt is made to control the variables of interest. A survey is the classic example.\n\n\nResearchers watch a random sample of Walmart shoppers and record time in store, gender, and amount spent, without ever intervening.\n\n\nExperimental\nIn an experiment, the variable of interest is identified, then its levels are set and controlled, so we can see how they influence an outcome.\n\n\nThe 1954 Salk polio-vaccine trial randomly assigned nearly two million children to vaccine or placebo. It is the largest experiment ever run."
   },
   {
     "objectID": "lecture_slides/01_chapter_data_statistics/01_chapter_data_statistics.html#vungle-ran-an-experiment-so-we-can-say-caused",
     "href": "lecture_slides/01_chapter_data_statistics/01_chapter_data_statistics.html#vungle-ran-an-experiment-so-we-can-say-caused",
     "title": " QM 6700: Business Analytics ",
     "section": "Vungle Ran an Experiment — So We Can Say “Caused”",
-    "text": "Vungle Ran an Experiment — So We Can Say “Caused”\n\n\nThe algorithm column is the treatment: each impression was randomly assigned to A or B (by an MD5 hash) on the same days.\nRandom assignment balances everything else — same market, same advertisers, same weekends — so the only systematic difference is the algorithm.\nThat is what licenses causal language: “B caused higher eRPM,” not merely “B was associated with higher eRPM.”\nPayoff: only an experiment supports a causal claim. An observational “B-days looked better” could be confounded; Vungle’s design rules that out."
+    "text": "Vungle Ran an Experiment — So We Can Say “Caused”\n\n\nThe algorithm column is the treatment: each impression was randomly assigned to A or B (by an MD5 hash) on the same days.\nRandom assignment balances everything else (same market, same advertisers, same weekends), so the only systematic difference is the algorithm.\nThat is what licenses causal language: “B caused higher eRPM,” not merely “B was associated with higher eRPM.”\nPayoff: only an experiment supports a causal claim. An observational “B-days looked better” could be confounded; Vungle’s design rules that out."
   },
   {
     "objectID": "lecture_slides/01_chapter_data_statistics/01_chapter_data_statistics.html#random-assignment-vs.-random-sampling",
     "href": "lecture_slides/01_chapter_data_statistics/01_chapter_data_statistics.html#random-assignment-vs.-random-sampling",
     "title": " QM 6700: Business Analytics ",
     "section": "Random Assignment vs. Random Sampling",
-    "text": "Random Assignment vs. Random Sampling\n\n\n\nRandom sampling — who gets into the study — supports generalizing to the population.\nRandom assignment — who gets which treatment — supports causal comparison."
+    "text": "Random Assignment vs. Random Sampling\n\n\n\nRandom sampling (who gets into the study) supports generalizing to the population.\nRandom assignment (who gets which treatment) supports causal comparison."
   },
   {
     "objectID": "lecture_slides/01_chapter_data_statistics/01_chapter_data_statistics.html#summarizing-and-presenting-data",
@@ -2288,7 +2288,7 @@
     "href": "lecture_slides/01_chapter_data_statistics/01_chapter_data_statistics.html#teaser-descriptive-statistics-on-erpm",
     "title": " QM 6700: Business Analytics ",
     "section": "Teaser: Descriptive Statistics on eRPM",
-    "text": "Teaser: Descriptive Statistics on eRPM\n\n\n\nData → Data Analysis → Descriptive Statistics\n\nInput Range: the erpm values for Algorithm A\ncheck Summary statistics\n\n\nThe mean eRPM for A is $3.347. Every row of this panel — median, SD, skewness — is a descriptive measure we unpack in Topic 2."
+    "text": "Teaser: Descriptive Statistics on eRPM\n\n\n\nData → Data Analysis → Descriptive Statistics\n\nInput Range: the erpm values for Algorithm A\ncheck Summary statistics\n\n\nThe mean eRPM for A is $3.347. Every row of this panel (median, SD, skewness) is a descriptive measure we unpack in Topic 2."
   },
   {
     "objectID": "lecture_slides/01_chapter_data_statistics/01_chapter_data_statistics.html#team-sprint-read-the-data-make-the-first-cut",
@@ -2337,14 +2337,14 @@
     "href": "lecture_slides/01_chapter_data_statistics/01_chapter_data_statistics.html#carry-forward",
     "title": " QM 6700: Business Analytics ",
     "section": "Carry-forward",
-    "text": "Carry-forward\n\nYour client (homework): open your team’s case dataset and write its data audit — elements, variables, and the type & scale of each — then compute the mean and median of its key outcome.\nNext time: we go deeper into describing — spread, shape, the boxplot, and how two variables move together."
+    "text": "Carry-forward\n\nYour client (homework): open your team’s case dataset and write its data audit (elements, variables, and the type & scale of each), then compute the mean and median of its main outcome.\nNext time: we go deeper into describing — spread, shape, the boxplot, and how two variables move together."
   },
   {
     "objectID": "lecture_slides/01_chapter_data_statistics/01_chapter_data_statistics.html#summary",
     "href": "lecture_slides/01_chapter_data_statistics/01_chapter_data_statistics.html#summary",
     "title": " QM 6700: Business Analytics ",
     "section": "Summary",
-    "text": "Summary\nSome key takeaways from this session:\n\nThree cases drive the course: Vungle A/B (describe → test, Topics 1–9), auto-parts retail (predict, Topics 10–11), and your team’s own client (the three homeworks).\nStatistics turns data into defensible business decisions; it splits into descriptive (summarize) and inferential (generalize).\nData vocabulary: elements, variables, observations; categorical vs. quantitative; the four scales of measurement — and the rule that scale determines method.\nStudy design: Vungle ran a randomized experiment, which is what licenses causal claims.\nExcel is your toolkit: install the Analysis ToolPak and meet the dataset on day one."
+    "text": "Summary\nThe main points from this session:\n\nThree cases drive the course: Vungle A/B (describe → test, Topics 1–9), auto-parts retail (predict, Topics 10–11), and your team’s own client (the three homeworks).\nStatistics turns data into defensible business decisions; it splits into descriptive (summarize) and inferential (generalize).\nData vocabulary: elements, variables, observations; categorical vs. quantitative; the four scales of measurement — and the rule that scale determines method.\nStudy design: Vungle ran a randomized experiment, which is what licenses causal claims.\nExcel is your toolkit: install the Analysis ToolPak and meet the dataset on day one."
   },
   {
     "objectID": "lecture_slides/11_chapter_multiple_regression/11_chapter_multiple_regression.html#overview",
@@ -3453,6 +3453,6 @@
     "href": "lecture_slides/01_chapter_data_statistics/01_chapter_data_statistics.html#the-roadmap-which-case-which-week",
     "title": " QM 6700: Business Analytics ",
     "section": "The Roadmap: Which Case, Which Week",
-    "text": "The Roadmap: Which Case, Which Week\nThe same journey on every case — describe → quantify the uncertainty → test → predict — with three graded checkpoints (HW1 ≈ Topic 4, HW2 ≈ Topic 7, HW3 ≈ Topic 11) along the way:"
+    "text": "The Roadmap: Which Case, Which Week\nEvery case runs the same path: describe → quantify the uncertainty → test → predict. Three graded checkpoints (HW1 ≈ Topic 4, HW2 ≈ Topic 7, HW3 ≈ Topic 11) mark the way:"
   }
 ]
