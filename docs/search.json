@@ -2036,7 +2036,7 @@
     "href": "lecture_slides/01_chapter_data_statistics/01_chapter_data_statistics.html#overview",
     "title": " QM 6700: Business Analytics ",
     "section": "Overview",
-    "text": "Overview\n\n\n\nIntroductions & course logistics\nCase Spotlight: A/B Testing at Vungle\nWhat is statistics? Where is it used?\nThe map: descriptive vs. inferential\n\n\n\nData, variables & observations — the Vungle dataset\nData types & scales of measurement\nStudy design: why Vungle ran an experiment\nA first look at the data in Excel (Excel4stats)"
+    "text": "Overview\n\n\n\nIntroductions & course logistics\nCase Spotlight: A/B Testing at Vungle\nThe semester roadmap: three business cases\nWhat is statistics? Where is it used?\nThe map: descriptive vs. inferential\n\n\n\nData, variables & observations — the Vungle dataset\nData types & scales of measurement\nStudy design: why Vungle ran an experiment\nA first look at the data in Excel (Excel4stats)"
   },
   {
     "objectID": "lecture_slides/01_chapter_data_statistics/01_chapter_data_statistics.html#instructor",
@@ -2078,7 +2078,7 @@
     "href": "lecture_slides/01_chapter_data_statistics/01_chapter_data_statistics.html#how-to-succeed-in-this-course",
     "title": " QM 6700: Business Analytics ",
     "section": "How to Succeed in This Course",
-    "text": "How to Succeed in This Course\n\n\nKeep up every week. Statistics builds on itself — today’s vocabulary becomes next week’s formulas. Falling behind compounds.\nWork with your team. Homework is team-based by design; explaining a concept to a teammate is the fastest way to learn it.\nBring the business question. Every method we learn answers a managerial decision. Always ask: what decision does this number support?\nUse Excel from day one. Install the Analysis ToolPak this week and open the course dataset — you will use it all semester."
+    "text": "How to Succeed in This Course\n\n\nStart from zero, by design. No prior statistics is assumed — this is your first analytics course, and we build every method up from a real business decision.\nKeep up every week. Statistics builds on itself — today’s vocabulary becomes next week’s formulas. Falling behind compounds.\nWork with your team. Homework is team-based by design; explaining a concept to a teammate is the fastest way to learn it.\nBring the business question. Every method we learn answers a managerial decision. Always ask: what decision does this number support?\nUse Excel from day one. Install the Analysis ToolPak this week and open the course dataset — you will use it all semester."
   },
   {
     "objectID": "lecture_slides/01_chapter_data_statistics/01_chapter_data_statistics.html#textbook-materials",
@@ -2344,7 +2344,7 @@
     "href": "lecture_slides/01_chapter_data_statistics/01_chapter_data_statistics.html#summary",
     "title": " QM 6700: Business Analytics ",
     "section": "Summary",
-    "text": "Summary\nSome key takeaways from this session:\n\nThe spine case: the Vungle A/B test — is B better than A? — will motivate every method this term.\nStatistics turns data into defensible business decisions; it splits into descriptive (summarize) and inferential (generalize).\nData vocabulary: elements, variables, observations; categorical vs. quantitative; the four scales of measurement — and the rule that scale determines method.\nStudy design: Vungle ran a randomized experiment, which is what licenses causal claims.\nExcel is your toolkit: install the Analysis ToolPak and meet the dataset on day one."
+    "text": "Summary\nSome key takeaways from this session:\n\nThree cases drive the course: Vungle A/B (describe → test, Topics 1–9), auto-parts retail (predict, Topics 10–11), and your team’s own client (the three homeworks).\nStatistics turns data into defensible business decisions; it splits into descriptive (summarize) and inferential (generalize).\nData vocabulary: elements, variables, observations; categorical vs. quantitative; the four scales of measurement — and the rule that scale determines method.\nStudy design: Vungle ran a randomized experiment, which is what licenses causal claims.\nExcel is your toolkit: install the Analysis ToolPak and meet the dataset on day one."
   },
   {
     "objectID": "lecture_slides/11_chapter_multiple_regression/11_chapter_multiple_regression.html#overview",
@@ -3440,5 +3440,19 @@
     "title": "Detailed Schedule",
     "section": "",
     "text": "Placeholder — a session-by-session detailed schedule will be developed during the course redesign.\nFor the current draft timeline, see the Schedule page."
+  },
+  {
+    "objectID": "lecture_slides/01_chapter_data_statistics/01_chapter_data_statistics.html#youre-the-analyst-three-engagements",
+    "href": "lecture_slides/01_chapter_data_statistics/01_chapter_data_statistics.html#youre-the-analyst-three-engagements",
+    "title": " QM 6700: Business Analytics ",
+    "section": "You’re the Analyst: Three Engagements",
+    "text": "You’re the Analyst: Three Engagements\n\n\nThis course runs on real business decisions, not abstract formulas. You will work as the analyst on three engagements:\n\n\n\n① Vungle A/B — Topics 1–9 (our first engagement). The case you just met. Is B really better? carries us from describing the data, through uncertainty, to testing whether a difference is real.\n\n\n\n\n② Auto-parts retail — Topics 10–11 (our second engagement). A 45-store chain asking what drives sales — where should the next dollar go? This is where we learn to predict.\n\n\n\n\n③ Your team’s client — every week (you own it). Each team adopts one real business case and applies each week’s tools to it across three homeworks, graded against the textbook’s own solution — your cumulative consulting project."
+  },
+  {
+    "objectID": "lecture_slides/01_chapter_data_statistics/01_chapter_data_statistics.html#the-roadmap-which-case-which-week",
+    "href": "lecture_slides/01_chapter_data_statistics/01_chapter_data_statistics.html#the-roadmap-which-case-which-week",
+    "title": " QM 6700: Business Analytics ",
+    "section": "The Roadmap: Which Case, Which Week",
+    "text": "The Roadmap: Which Case, Which Week\nThe same journey on every case — describe → quantify the uncertainty → test → predict — with three graded checkpoints (HW1 ≈ Topic 4, HW2 ≈ Topic 7, HW3 ≈ Topic 11) along the way:"
   }
 ]

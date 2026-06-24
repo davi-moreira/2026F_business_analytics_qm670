@@ -33,6 +33,7 @@ html-math-method:
 ::: {.column style="width: 50%; text-align: center; justify-content: center; align-items: center;"}
 -   Introductions & course logistics
 -   **Case Spotlight: A/B Testing at Vungle**
+-   **The semester roadmap: three business cases**
 -   What is statistics? Where is it used?
 -   The map: descriptive vs. inferential
 :::
@@ -143,6 +144,8 @@ knitr::include_graphics("figs/carnaval_olinda.jpg")
 
 <br>
 
+- **Start from zero, by design.** No prior statistics is assumed — this is your first analytics course, and we build every method up from a real business decision.
+
 - **Keep up every week.** Statistics builds on itself — today's vocabulary becomes next week's formulas. Falling behind compounds.
 
 - **Work with your team.** Homework is team-based by design; explaining a concept to a teammate is the fastest way to learn it.
@@ -228,6 +231,32 @@ knitr::include_graphics("figs/vungle_funnel.png")
   - What **kind** of data is this, and which statistics are even **valid** to compute?
 
 - Answering those is the job of this course. **Today we start at the foundation: what is this data?**
+
+# Your Semester: Three Cases, One Job {background-color="#cfb991"}
+
+## You're the Analyst: Three Engagements
+
+<br>
+
+- This course runs on **real business decisions**, not abstract formulas. You will work as the analyst on three engagements:
+
+::: fragment
+- **① Vungle A/B — Topics 1–9 (our first engagement).** The case you just met. *Is B really better?* carries us from **describing** the data, through **uncertainty**, to **testing** whether a difference is real.
+:::
+
+::: fragment
+- **② Auto-parts retail — Topics 10–11 (our second engagement).** A 45-store chain asking *what drives sales — where should the next dollar go?* This is where we learn to **predict**.
+:::
+
+::: fragment
+- **③ Your team's client — every week (you own it).** Each team adopts one real business case and applies each week's tools to it across **three homeworks**, graded against the textbook's own solution — your cumulative consulting project.
+:::
+
+## The Roadmap: Which Case, Which Week
+
+The same journey on every case — **describe → quantify the uncertainty → test → predict** — with three graded checkpoints (**HW1 ≈ Topic 4, HW2 ≈ Topic 7, HW3 ≈ Topic 11**) along the way:
+
+![](figs/course_roadmap.png){.nostretch fig-align="center" width="72%"}
 
 # What is Statistics? {background-color="#cfb991"}
 
@@ -753,7 +782,7 @@ knitr::include_graphics("figs/inference.svg")
 ::: nonincremental
 Some key takeaways from this session:
 
--   **The spine case:** the Vungle A/B test — *is B better than A?* — will motivate every method this term.
+-   **Three cases drive the course:** Vungle A/B (describe → test, Topics 1–9), auto-parts retail (predict, Topics 10–11), and your team's own client (the three homeworks).
 -   **Statistics** turns data into defensible business decisions; it splits into **descriptive** (summarize) and **inferential** (generalize).
 -   **Data vocabulary:** elements, variables, observations; categorical vs. quantitative; the four scales of measurement — and the rule that **scale determines method**.
 -   **Study design:** Vungle ran a randomized **experiment**, which is what licenses *causal* claims.
