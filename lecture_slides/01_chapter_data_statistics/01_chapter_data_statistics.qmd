@@ -166,6 +166,14 @@ knitr::include_graphics("figs/carnaval_olinda.jpg")
 
 - **Homework is individual:** three problem sets that drill the mechanics, posted on Brightspace.
 
+## How Every Class Runs
+
+![](figs/lecture_dynamic.png){.nostretch fig-align="center" width="92%"}
+
+::: nonincremental
+- Same five beats every meeting. The one that counts for your grade is the **Team Sprint** — your group's decision, submitted before you leave.
+:::
+
 # Textbook & Software {background-color="#cfb991"}
 
 ## Textbook & Materials
