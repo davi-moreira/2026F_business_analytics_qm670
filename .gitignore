@@ -33,6 +33,7 @@ _video/
 # AI build instructions + instructor-only lecture guides (answer keys) — keep private
 CLAUDE.md
 lecture_guide/
+_lecture_guide/
 .claude/settings.local.json
 .claude/hooks/
 
