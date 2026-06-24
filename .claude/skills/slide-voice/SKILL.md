@@ -56,3 +56,10 @@ After writing, reread EVERY sentence of every text slide and apply:
 ## Voice target (entry-level MSBAIM)
 Lead with the decision; define terms on first use; assume no prior statistics; concrete before
 abstract; professional but plain. A good test: every claim should point at the data or the decision.
+
+## Also enforced here: student ROLE (CLAUDE.md #8)
+The student is the **decision-maker** (manager/CEO/owner), **never the analyst**. The linter HARD-flags
+"you're the analyst" / "work as the analyst" / titles like "You're the Analyst", and soft-flags "like
+an analyst" / "as an analyst" addressed to students. Frame the Team Sprint as the *management team*
+reproducing and interrogating an analyst's proposal, then deciding — deliverable = a call + an
+evaluation of the analysis, not "our analysis".

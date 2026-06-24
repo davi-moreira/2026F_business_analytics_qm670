@@ -150,7 +150,7 @@ knitr::include_graphics("figs/carnaval_olinda.jpg")
 
 - **Work with your team.** Homework is team-based by design; explaining a concept to a teammate is the fastest way to learn it.
 
-- **Bring the business question.** Every method we learn answers a managerial decision. Always ask: *what decision does this number support?*
+- **You're the decision-maker.** Every method we learn answers a call *you* have to make. Learn each one well enough to check an analyst's work, and always ask: *what decision does this number support, and would I stake money on it?*
 
 - **Use Excel from day one.** Install the Analysis ToolPak this week and open the course dataset — you will use it all semester.
 
@@ -234,22 +234,22 @@ knitr::include_graphics("figs/vungle_funnel.png")
 
 # Your Semester: Three Cases, One Job {background-color="#cfb991"}
 
-## You're the Analyst: Three Engagements
+## You're the Decision-Maker — Three Calls to Make
 
 <br>
 
-- This course runs on **real business decisions**, not abstract formulas. You will work as the analyst on three engagements:
+- This course puts **you in the decision-maker's seat**: the manager, CEO, or owner who has to act. On each case an analyst proposes; **your job is to understand the analysis well enough to check it, challenge it, and decide.** Three cases, three calls:
 
 ::: fragment
-- **① Vungle A/B — Topics 1–9 (our first engagement).** The case you just met. *Is B really better?* carries us from **describing** the data, through **uncertainty**, to **testing** whether a difference is real.
+- **① Vungle A/B — Topics 1–9 (your first call).** You're the executive: *roll out algorithm B, or keep A?* The analysts say B looks better. You'll learn to **describe, quantify uncertainty, and test** so you can judge that claim before betting the company on it.
 :::
 
 ::: fragment
-- **② Auto-parts retail — Topics 10–11 (our second engagement).** A 45-store chain asking *what drives sales — where should the next dollar go?* This is where we learn to **predict**.
+- **② Auto-parts retail — Topics 10–11 (your second call).** Now you run a 45-store chain: *where should the next dollar go?* You'll **evaluate the analyst's model** that predicts store sales, then decide where to invest.
 :::
 
 ::: fragment
-- **③ Your team's client — every week (you own it).** Each team adopts one real business case and applies each week's tools to it across **three homeworks**, graded against the textbook's own solution — your cumulative consulting project.
+- **③ Your team's client — every week (you own it).** Your team is the **management** of a real company. Each homework you receive an analysis, reproduce and check it, and **make the call**, graded against the textbook's own solution.
 :::
 
 ## The Roadmap: Which Case, Which Week
@@ -366,11 +366,11 @@ knitr::include_graphics("figs/variables_observations.png")
 - A data set with $n$ elements has $n$ observations; total values = elements × variables.
 :::
 
-## Read the Vungle Data Like an Analyst
+## Read the Data Before You Trust the Analysis
 
 <br>
 
-- Here is a slice of `vungle_daily.csv` — algorithms interleaved by day:
+- A recommendation is only as good as the data under it, so a sharp manager looks first. Here is a slice of `vungle_daily.csv`, algorithms interleaved by day:
 
 ::: fragment
 | algorithm | date | impressions | completes | clicks | installs | erpm |
@@ -668,18 +668,18 @@ knitr::include_graphics("figs/excel_desc_erpm.png")
 ::::
 :::::
 
-## ⏱️ Team Sprint — Read the Data, Make the First Cut
+## ⏱️ Team Sprint — Pressure-Test the Analyst's Claim
 
 ::: {.sprint .nonincremental}
-**Decide:** what does Vungle's data *say* so far — and what can it **not** say yet?
+**You're the management team.** An analyst's memo lands: *"B's average eRPM beat A's, so roll it out."* Before you act on it, check it.
 
 **Data:** `data/vungle_daily.xlsx` · **Time:** ~12 min
 
-1. **Audit:** name the elements, the variables, and the **type & scale** of `algorithm` and `erpm`.
-2. **Summarize:** with the ToolPak's *Descriptive Statistics*, get the **mean and median eRPM for A and for B**.
-3. **Compare & question:** how big is B's edge? List **two reasons** it might *not* hold up.
+1. **Reproduce it:** with the ToolPak's *Descriptive Statistics*, compute the **mean and median eRPM for A and for B** yourself. Does the analyst's headline hold?
+2. **Audit the inputs:** name the elements, variables, and the **type & scale** of `algorithm` and `erpm`, so you know which numbers are even valid to compare.
+3. **Interrogate it:** how big is B's edge? Name **two reasons** it might not survive scrutiny (sample size, spread, traffic, the metric itself).
 
-**Hand in (1 slide):** A-vs-B mean & median, plus your two "what could go wrong?" reasons.
+**Hand in (1 slide):** your **call** (roll out, wait, or send it back) plus the **two weaknesses** you would put to the analyst.
 :::
 
 ## Debrief — Back to the Decision
@@ -690,7 +690,7 @@ knitr::include_graphics("figs/excel_desc_erpm.png")
 
 - We **cannot yet** say whether B is *really* better for all future traffic — that is **inference**, and it needs the tools in Topics 7–9.
 
-- But notice how far we have come: we know **what** the data are, **what kind** of variables they hold, and **why** the design lets us reason about cause.
+- **Your call today:** *not yet.* You can describe B's edge, but approving a company-wide roll-out needs an inference test, and that is exactly what you will demand from your analyst in Topics 7–9.
 
 # Statistical Inference {background-color="#cfb991"}
 
@@ -772,7 +772,7 @@ knitr::include_graphics("figs/inference.svg")
 ## Carry-forward
 
 ::: nonincremental
-- **Your client (homework):** open your team's case dataset and write its **data audit** (elements, variables, and the type & scale of each), then compute the **mean and median** of its main outcome.
+- **Your client (homework):** as your client's management, open its dataset and write the **data audit** (elements, variables, type & scale of each), then compute the **mean and median** of its main outcome — the first numbers you would demand before trusting any deeper analysis.
 
 - **Next time:** we go deeper into *describing* — spread, shape, the boxplot, and how two variables move together.
 :::
@@ -782,6 +782,7 @@ knitr::include_graphics("figs/inference.svg")
 ::: nonincremental
 The main points from this session:
 
+-   **Your seat all term:** you are the **decision-maker** — you run every method yourself, but to *judge* the analysis and make the call, not to be the analyst.
 -   **Three cases drive the course:** Vungle A/B (describe → test, Topics 1–9), auto-parts retail (predict, Topics 10–11), and your team's own client (the three homeworks).
 -   **Statistics** turns data into defensible business decisions; it splits into **descriptive** (summarize) and **inferential** (generalize).
 -   **Data vocabulary:** elements, variables, observations; categorical vs. quantitative; the four scales of measurement — and the rule that **scale determines method**.

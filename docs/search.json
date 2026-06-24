@@ -2078,7 +2078,7 @@
     "href": "lecture_slides/01_chapter_data_statistics/01_chapter_data_statistics.html#how-to-succeed-in-this-course",
     "title": " QM 6700: Business Analytics ",
     "section": "How to Succeed in This Course",
-    "text": "How to Succeed in This Course\n\n\nStart from zero, by design. No prior statistics is assumed — this is your first analytics course, and we build every method up from a real business decision.\nKeep up every week. Statistics builds on itself — today’s vocabulary becomes next week’s formulas. Falling behind compounds.\nWork with your team. Homework is team-based by design; explaining a concept to a teammate is the fastest way to learn it.\nBring the business question. Every method we learn answers a managerial decision. Always ask: what decision does this number support?\nUse Excel from day one. Install the Analysis ToolPak this week and open the course dataset — you will use it all semester."
+    "text": "How to Succeed in This Course\n\n\nStart from zero, by design. No prior statistics is assumed — this is your first analytics course, and we build every method up from a real business decision.\nKeep up every week. Statistics builds on itself — today’s vocabulary becomes next week’s formulas. Falling behind compounds.\nWork with your team. Homework is team-based by design; explaining a concept to a teammate is the fastest way to learn it.\nYou’re the decision-maker. Every method we learn answers a call you have to make. Learn each one well enough to check an analyst’s work, and always ask: what decision does this number support, and would I stake money on it?\nUse Excel from day one. Install the Analysis ToolPak this week and open the course dataset — you will use it all semester."
   },
   {
     "objectID": "lecture_slides/01_chapter_data_statistics/01_chapter_data_statistics.html#textbook-materials",
@@ -2302,7 +2302,7 @@
     "href": "lecture_slides/01_chapter_data_statistics/01_chapter_data_statistics.html#debrief-back-to-the-decision",
     "title": " QM 6700: Business Analytics ",
     "section": "Debrief — Back to the Decision",
-    "text": "Debrief — Back to the Decision\n\n\nWe can now describe the data cleanly: A’s mean eRPM is $3.35, B’s is $3.46, over 30 carefully-designed experimental days.\nWe cannot yet say whether B is really better for all future traffic — that is inference, and it needs the tools in Topics 7–9.\nBut notice how far we have come: we know what the data are, what kind of variables they hold, and why the design lets us reason about cause."
+    "text": "Debrief — Back to the Decision\n\n\nWe can now describe the data cleanly: A’s mean eRPM is $3.35, B’s is $3.46, over 30 carefully-designed experimental days.\nWe cannot yet say whether B is really better for all future traffic — that is inference, and it needs the tools in Topics 7–9.\nYour call today: not yet. You can describe B’s edge, but approving a company-wide roll-out needs an inference test, and that is exactly what you will demand from your analyst in Topics 7–9."
   },
   {
     "objectID": "lecture_slides/01_chapter_data_statistics/01_chapter_data_statistics.html#statistical-inference-1",
@@ -2337,14 +2337,14 @@
     "href": "lecture_slides/01_chapter_data_statistics/01_chapter_data_statistics.html#carry-forward",
     "title": " QM 6700: Business Analytics ",
     "section": "Carry-forward",
-    "text": "Carry-forward\n\nYour client (homework): open your team’s case dataset and write its data audit (elements, variables, and the type & scale of each), then compute the mean and median of its main outcome.\nNext time: we go deeper into describing — spread, shape, the boxplot, and how two variables move together."
+    "text": "Carry-forward\n\nYour client (homework): as your client’s management, open its dataset and write the data audit (elements, variables, type & scale of each), then compute the mean and median of its main outcome — the first numbers you would demand before trusting any deeper analysis.\nNext time: we go deeper into describing — spread, shape, the boxplot, and how two variables move together."
   },
   {
     "objectID": "lecture_slides/01_chapter_data_statistics/01_chapter_data_statistics.html#summary",
     "href": "lecture_slides/01_chapter_data_statistics/01_chapter_data_statistics.html#summary",
     "title": " QM 6700: Business Analytics ",
     "section": "Summary",
-    "text": "Summary\nThe main points from this session:\n\nThree cases drive the course: Vungle A/B (describe → test, Topics 1–9), auto-parts retail (predict, Topics 10–11), and your team’s own client (the three homeworks).\nStatistics turns data into defensible business decisions; it splits into descriptive (summarize) and inferential (generalize).\nData vocabulary: elements, variables, observations; categorical vs. quantitative; the four scales of measurement — and the rule that scale determines method.\nStudy design: Vungle ran a randomized experiment, which is what licenses causal claims.\nExcel is your toolkit: install the Analysis ToolPak and meet the dataset on day one."
+    "text": "Summary\nThe main points from this session:\n\nYour seat all term: you are the decision-maker — you run every method yourself, but to judge the analysis and make the call, not to be the analyst.\nThree cases drive the course: Vungle A/B (describe → test, Topics 1–9), auto-parts retail (predict, Topics 10–11), and your team’s own client (the three homeworks).\nStatistics turns data into defensible business decisions; it splits into descriptive (summarize) and inferential (generalize).\nData vocabulary: elements, variables, observations; categorical vs. quantitative; the four scales of measurement — and the rule that scale determines method.\nStudy design: Vungle ran a randomized experiment, which is what licenses causal claims.\nExcel is your toolkit: install the Analysis ToolPak and meet the dataset on day one."
   },
   {
     "objectID": "lecture_slides/11_chapter_multiple_regression/11_chapter_multiple_regression.html#overview",
@@ -3454,5 +3454,26 @@
     "title": " QM 6700: Business Analytics ",
     "section": "The Roadmap: Which Case, Which Week",
     "text": "The Roadmap: Which Case, Which Week\nEvery case runs the same path: describe → quantify the uncertainty → test → predict. Three graded checkpoints (HW1 ≈ Topic 4, HW2 ≈ Topic 7, HW3 ≈ Topic 11) mark the way:"
+  },
+  {
+    "objectID": "lecture_slides/01_chapter_data_statistics/01_chapter_data_statistics.html#youre-the-decision-maker-three-calls-to-make",
+    "href": "lecture_slides/01_chapter_data_statistics/01_chapter_data_statistics.html#youre-the-decision-maker-three-calls-to-make",
+    "title": " QM 6700: Business Analytics ",
+    "section": "You’re the Decision-Maker — Three Calls to Make",
+    "text": "You’re the Decision-Maker — Three Calls to Make\n\n\nThis course puts you in the decision-maker’s seat: the manager, CEO, or owner who has to act. On each case an analyst proposes; your job is to understand the analysis well enough to check it, challenge it, and decide. Three cases, three calls:\n\n\n\n① Vungle A/B — Topics 1–9 (your first call). You’re the executive: roll out algorithm B, or keep A? The analysts say B looks better. You’ll learn to describe, quantify uncertainty, and test so you can judge that claim before betting the company on it.\n\n\n\n\n② Auto-parts retail — Topics 10–11 (your second call). Now you run a 45-store chain: where should the next dollar go? You’ll evaluate the analyst’s model that predicts store sales, then decide where to invest.\n\n\n\n\n③ Your team’s client — every week (you own it). Your team is the management of a real company. Each homework you receive an analysis, reproduce and check it, and make the call, graded against the textbook’s own solution."
+  },
+  {
+    "objectID": "lecture_slides/01_chapter_data_statistics/01_chapter_data_statistics.html#read-the-data-before-you-trust-the-analysis",
+    "href": "lecture_slides/01_chapter_data_statistics/01_chapter_data_statistics.html#read-the-data-before-you-trust-the-analysis",
+    "title": " QM 6700: Business Analytics ",
+    "section": "Read the Data Before You Trust the Analysis",
+    "text": "Read the Data Before You Trust the Analysis\n\n\nA recommendation is only as good as the data under it, so a sharp manager looks first. Here is a slice of vungle_daily.csv, algorithms interleaved by day:\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nalgorithm\ndate\nimpressions\ncompletes\nclicks\ninstalls\nerpm\n\n\n\n\nA\n2014-06-01\n6,777,407\n5,978,434\n345,309\n31,119\n3.327\n\n\nB\n2014-06-01\n569,044\n499,235\n28,035\n2,111\n2.953\n\n\nA\n2014-06-02\n6,004,310\n5,331,727\n299,732\n24,601\n2.943\n\n\nB\n2014-06-02\n505,963\n447,695\n24,621\n1,713\n2.587\n\n\n\n\n\n\nElement = one algorithm-day (60 of them). Variables = the 7 columns. One observation = one row. Total values = 60 × 7 = 420."
+  },
+  {
+    "objectID": "lecture_slides/01_chapter_data_statistics/01_chapter_data_statistics.html#team-sprint-pressure-test-the-analysts-claim",
+    "href": "lecture_slides/01_chapter_data_statistics/01_chapter_data_statistics.html#team-sprint-pressure-test-the-analysts-claim",
+    "title": " QM 6700: Business Analytics ",
+    "section": "⏱️ Team Sprint — Pressure-Test the Analyst’s Claim",
+    "text": "⏱️ Team Sprint — Pressure-Test the Analyst’s Claim\n\nYou’re the management team. An analyst’s memo lands: “B’s average eRPM beat A’s, so roll it out.” Before you act on it, check it.\nData: data/vungle_daily.xlsx · Time: ~12 min\n\nReproduce it: with the ToolPak’s Descriptive Statistics, compute the mean and median eRPM for A and for B yourself. Does the analyst’s headline hold?\nAudit the inputs: name the elements, variables, and the type & scale of algorithm and erpm, so you know which numbers are even valid to compare.\nInterrogate it: how big is B’s edge? Name two reasons it might not survive scrutiny (sample size, spread, traffic, the metric itself).\n\nHand in (1 slide): your call (roll out, wait, or send it back) plus the two weaknesses you would put to the analyst."
   }
 ]
