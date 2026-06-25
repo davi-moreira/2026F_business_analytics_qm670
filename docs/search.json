@@ -3538,5 +3538,12 @@
     "title": " QM 6700: Business Analytics ",
     "section": "Median & Mode: When to Use Which",
     "text": "Median & Mode: When to Use Which\n\n\nMedian: the middle value (50th percentile); unmoved by outliers. Vungle: A median $3.327, B $3.434. Mean ≈ median ⟹ the eRPM distribution is roughly symmetric.\nMode: the most frequent value; the only center valid for categorical data (e.g., the most-served algorithm). For continuous eRPM every value is distinct, so the mode says nothing.\nRule of thumb: report the mean for symmetric data, the median when it is skewed or has outliers."
+  },
+  {
+    "objectID": "lecture_slides/01_chapter_data_statistics/01_chapter_data_statistics.html#one-big-call-one-question-a-week",
+    "href": "lecture_slides/01_chapter_data_statistics/01_chapter_data_statistics.html#one-big-call-one-question-a-week",
+    "title": " QM 6700: Business Analytics ",
+    "section": "One Big Call, One Question a Week",
+    "text": "One Big Call, One Question a Week\nVungle’s call (we land it in Topic 9): roll out B to all advertisers, or stay with A? Each topic answers one piece of it.\n\n\n\n\n\n\n\n\n\nTopic\nThe question we answer toward the call\n\n\n\n\n1 · Describe I\nIs B’s average eRPM really above A’s (and is the data valid to compare)?\n\n\n2 · Describe II\nIs B’s edge steady, or just more volatile?\n\n\n3 · Probability\nWhat are the odds at each step of the funnel?\n\n\n4 · Decision Analysis\nRoll out, keep A, or test more: which has the best expected value?\n\n\n5 · Discrete\nHow many installs should we expect on a given day?\n\n\n6 · Continuous\nWhat’s the chance of a high or low eRPM day?\n\n\n7 · Estimation\nFrom 30 days, what’s B’s true mean eRPM, give or take?\n\n\n8 · Testing I\nIs B’s eRPM really above the benchmark?\n\n\n9 · Testing II\nIs B really better than A?\n\n\n\n\n\n\nAuto-parts (Topics 10 and 11) runs the same way, toward where should the next dollar go?"
   }
 ]

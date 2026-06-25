@@ -203,6 +203,30 @@ The class **ends on the Team Sprint**, your group's graded submission. **Today i
 
 ![](figs/course_roadmap.png){.nostretch fig-align="center" width="92%"}
 
+## One Big Call, One Question a Week
+
+**Vungle's call (we land it in Topic 9):** *roll out B to all advertisers, or stay with A?* Each topic answers one piece of it.
+
+:::: fragment
+::: {style="font-size: 76%;"}
+| Topic | The question we answer toward the call |
+|---|---|
+| **1 · Describe I** | Is B's **average** eRPM really above A's (and is the data valid to compare)? |
+| **2 · Describe II** | Is B's edge **steady**, or just more volatile? |
+| **3 · Probability** | What are the **odds** at each step of the funnel? |
+| **4 · Decision Analysis** | Roll out, keep A, or **test more**: which has the best expected value? |
+| **5 · Discrete** | How many **installs** should we expect on a given day? |
+| **6 · Continuous** | What's the **chance** of a high or low eRPM day? |
+| **7 · Estimation** | From 30 days, what's B's **true** mean eRPM, give or take? |
+| **8 · Testing I** | Is B's eRPM really **above the benchmark**? |
+| **9 · Testing II** | **Is B really better than A?** |
+:::
+::::
+
+:::: fragment
+Auto-parts (Topics 10 and 11) runs the same way, toward *where should the next dollar go?*
+::::
+
 # Case Spotlight: A/B Testing at Vungle {background-color="#cfb991"}
 
 ## Meet Vungle: One Decision, 30 Days of Data
