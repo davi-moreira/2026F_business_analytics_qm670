@@ -177,7 +177,7 @@ Professor<br>Davi Moreira<br>
 <p><br></p>
 <ul>
 <li class="fragment"><p>We close the Vungle engagement and open a new one. Our client is a regional <strong>auto-parts retailer</strong> with <strong>45 stores</strong> and capital to open more.</p></li>
-<li class="fragment"><p>The real-estate team scores prospective sites on demographics — population, income — and on the store’s <strong>Yelp rating</strong> (a proxy for service quality once a store is open).</p></li>
+<li class="fragment"><p>The real-estate team scores prospective sites on demographics (population, income) and on the store’s <strong>Yelp rating</strong> (a proxy for service quality once a store is open).</p></li>
 <li class="fragment"><p>The question on the table: <strong>which sites will sell?</strong> The CFO wants every new lease backed by a sales forecast, not a hunch.</p></li>
 <li class="fragment"><p>We have one dataset, <code>data/autoparts.csv</code>: for each of the 45 existing stores, its <strong>2012 annual sales</strong> ($K), trade-area <strong>population</strong> and <strong>income</strong>, an <strong>end-cap</strong> placement flag, and its <strong>Yelp rating</strong>.</p></li>
 <li class="fragment"><p>Until now we <em>compared</em> two groups. Now we <em>predict</em> a number — and that is what <strong>regression</strong> does.</p></li>
@@ -227,7 +227,7 @@ Professor<br>Davi Moreira<br>
 </table>
 <p><br></p>
 <ul>
-<li class="fragment"><p>Regression develops an <strong>equation</strong> showing how a <strong>dependent variable</strong> <span class="math inline">\(y\)</span> (what we predict — sales) relates to an <strong>independent variable</strong> <span class="math inline">\(x\)</span> (the predictor — Yelp rating).</p></li>
+<li class="fragment"><p>Regression develops an <strong>equation</strong> showing how a <strong>dependent variable</strong> <span class="math inline">\(y\)</span> (what we predict, sales) relates to an <strong>independent variable</strong> <span class="math inline">\(x\)</span> (the predictor, Yelp rating).</p></li>
 <li class="fragment"><p><strong>Simple</strong> linear regression uses <strong>one</strong> predictor; the relationship is approximated by a <strong>straight line</strong>. (More predictors → multiple regression, next topic.)</p></li>
 </ul>
 </section></section>
@@ -539,7 +539,7 @@ r = (\text{sign of } b_1)\sqrt{R^2}
 <li>Write the estimated equation <span class="math inline">\(\hat{y} = b_0 + b_1 x\)</span> and interpret the <strong>slope</strong> in plain dollars-per-star.</li>
 <li>Read <strong>R Square</strong>: what fraction of the sales gap does Yelp rating explain? State the unexplained share.</li>
 </ol>
-<p><strong>Hand in (1 slide):</strong> the equation, the dollars-per-star sentence, and your <span class="math inline">\(R^2\)</span> read — would you use Yelp rating to score sites?</p>
+<p><strong>Submit before you leave (graded, one slide per group):</strong> your site-scoring call (would you use Yelp rating?) + the equation, the dollars-per-star number, and <span class="math inline">\(R^2\)</span> + the <strong>two things you would challenge</strong> in the analysis.</p>
 </div>
 </section>
 <section id="debrief-managers-takeaway-lecture-1" class="slide level2 center">
@@ -554,7 +554,7 @@ r = (\text{sign of } b_1)\sqrt{R^2}
 <section id="carry-forward-lecture-1" class="slide level2 center">
 <h2>Carry-forward (Lecture 1)</h2>
 <ul>
-<li><p><strong>Your client (homework):</strong> in your team’s case, pick a plausible numeric predictor of your key outcome. Fit the simple regression, write the slope interpretation in business units, and report <span class="math inline">\(R^2\)</span>.</p></li>
+<li><p><strong>Homework (individual):</strong> today’s tools (simple linear regression) are drilled on <strong>HW3</strong>, individual problem sets in the previous-edition format, posted on Brightspace. Run them yourself so you can check an analyst who uses them.</p></li>
 <li><p><strong>Next time:</strong> is the slope <strong>real</strong> or could it be noise? We test it, check the assumptions behind the line, and forecast a brand-new store.</p></li>
 </ul>
 </section></section>
@@ -872,7 +872,7 @@ F = 216.7 = (14.7)^2 = t^2
 <li>Glance at the <strong>residual plot</strong> (check Residual Plots in the dialog): any fan or curve that breaks the assumptions?</li>
 <li>Forecast a site at <strong>Yelp = 4.5</strong>: give the point prediction, and say whether the CFO should quote the <strong>CI</strong> or the <strong>PI</strong> for one new lease — and why.</li>
 </ol>
-<p><strong>Hand in (1 slide):</strong> the slope verdict (with CI), an assumptions one-liner, and your forecast + the interval you’d put in the lease memo.</p>
+<p><strong>Submit before you leave (graded, one slide per group):</strong> your lease-memo call (the 4.5-star forecast + which interval you’d quote) + the slope verdict with its 95% CI and an assumptions one-liner + the <strong>two things you would challenge</strong> in the analysis.</p>
 </div>
 </section>
 <section id="debrief-managers-takeaway-lecture-2" class="slide level2 center">
@@ -887,8 +887,8 @@ F = 216.7 = (14.7)^2 = t^2
 <section id="carry-forward-lecture-2" class="slide level2 center">
 <h2>Carry-forward (Lecture 2)</h2>
 <ul>
-<li><p><strong>Your client (homework):</strong> on your team’s simple regression — test the slope (report <span class="math inline">\(t\)</span>, <span class="math inline">\(p\)</span>, and the 95% CI), check the residual plot for assumption violations, and produce a point prediction <em>with the right interval</em> for one new case. State whether you’d trust the forecast.</p></li>
-<li><p><strong>Next time:</strong> sales depend on more than one thing. We add <strong>population, income, and end-cap placement</strong> to the model — <strong>Multiple Regression</strong> — and learn why a variable that looks important alone can vanish once others are in the room.</p></li>
+<li><p><strong>Homework (individual):</strong> today’s tools (testing the slope, residual checks, and prediction intervals) are drilled on <strong>HW3</strong>, individual problem sets in the previous-edition format, posted on Brightspace. Run them yourself so you can check an analyst who uses them.</p></li>
+<li><p><strong>Next time:</strong> sales depend on more than one thing. We add <strong>population, income, and end-cap placement</strong> to the model (<strong>Multiple Regression</strong>) and learn why a variable that looks important alone can vanish once others are in the room.</p></li>
 </ul>
 </section></section>
 <section>
@@ -965,7 +965,7 @@ F = 216.7 = (14.7)^2 = t^2
 <h2>Manager’s Takeaway</h2>
 <p><br></p>
 <ul>
-<li class="fragment"><p><strong>One sentence:</strong> Yelp rating predicts auto-parts store sales strongly and significantly — about <strong>$758K per star</strong>, explaining <strong>83%</strong> of the sales gap — so the real-estate team can use it to score and forecast sites.</p></li>
+<li class="fragment"><p><strong>One sentence:</strong> Yelp rating predicts auto-parts store sales strongly and significantly (about <strong>$758K per star</strong>, explaining <strong>83%</strong> of the sales gap), so the real-estate team can use it to score and forecast sites.</p></li>
 <li class="fragment"><p><strong>One number to remember:</strong> <span class="math inline">\(b_1 = 757.5\)</span> — and where it came from: <span class="math inline">\(\sum(x-\bar{x})(y-\bar{y}) / \sum(x-\bar{x})^2\)</span>.</p></li>
 <li class="fragment"><p><strong>One caveat:</strong> regression forecasts and quantifies; it does <strong>not</strong> prove causation, and 17% of sales is still unexplained — a single predictor is a start, not the answer.</p></li>
 <li class="fragment"><p><strong>Practice with the real data:</strong></p>
@@ -991,7 +991,7 @@ F = 216.7 = (14.7)^2 = t^2
 <section id="carry-forward" class="slide level2 center">
 <h2>Carry-forward</h2>
 <ul>
-<li><p><strong>Your client (homework):</strong> fit, interpret, test, validate, and forecast a simple regression on your team’s case — the full arc on one slide, ending with a forecast you’d defend.</p></li>
+<li><p><strong>Homework (individual):</strong> the full simple-regression arc (fit, interpret, test, validate, forecast) is drilled on <strong>HW3</strong>, individual problem sets in the previous-edition format, posted on Brightspace. Run them yourself so you can check an analyst who uses them.</p></li>
 <li><p><strong>Next time:</strong> we add more predictors and learn what “holding everything else constant” really means — <strong>Multiple Regression</strong> on the same auto-parts client.</p></li>
 </ul>
 </section></section>

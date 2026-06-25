@@ -24,14 +24,14 @@
     "href": "lecture_slides/04_chapter_decision_analysis/04_chapter_decision_analysis.html#overview",
     "title": " QM 6700: Business Analytics ",
     "section": "Overview",
-    "text": "Overview\n\n\n\nCase Spotlight: the Vungle rollout decision\nStructuring a decision: alternatives, states of nature, payoffs\nPayoff tables and decision trees\nExpected value (EV) — deciding under risk\n\n\n\nExpected value of perfect information (EVPI)\nSample information, Bayes revision, and EVSI\nSensitivity: how robust is the call?\nFrom inference to action: making the rollout recommendation"
+    "text": "Overview\n\n\n\nCase Spotlight: the Vungle rollout decision\nStructuring a decision: alternatives, states of nature, payoffs\nPayoff tables and decision trees\nExpected value (EV) — deciding under risk\n\n\n\nExpected value of perfect information (EVPI)\nSample information, Bayes revision, and EVSI\nSensitivity: does the call hold if the prior shifts?\nFrom inference to action: making the rollout recommendation"
   },
   {
     "objectID": "lecture_slides/04_chapter_decision_analysis/04_chapter_decision_analysis.html#rewind-before-the-ab-test",
     "href": "lecture_slides/04_chapter_decision_analysis/04_chapter_decision_analysis.html#rewind-before-the-ab-test",
     "title": " QM 6700: Business Analytics ",
     "section": "Rewind: Before the A/B Test",
-    "text": "Rewind: Before the A/B Test\n\n\nEarlier in our work with Vungle — the mobile ad-tech startup that earns revenue when viewers install an advertised app — we tested whether their new ad-serving algorithm B beat the incumbent A.\nThe verdict: B’s daily eRPM (revenue per 1,000 impressions) ran about $0.11 higher than A’s, and a paired test said that lift was real (\\(t = 3.33\\)), worth roughly $26.5K/month at June’s traffic.\nBut statistics told us what is true and how sure we are. They did not tell management what to do.\nToday we put on the manager’s hat: given that uncertainty, what is the right action?"
+    "text": "Rewind: Before the A/B Test\n\n\nEarlier in our work with Vungle (the mobile ad-tech startup that earns revenue when viewers install an advertised app) we tested whether their new ad-serving algorithm B beat the incumbent A.\nThe verdict: B’s daily eRPM (revenue per 1,000 impressions) ran about $0.11 higher than A’s, and a paired test said that lift was real (\\(t = 3.33\\)), worth roughly $26.5K/month at June’s traffic.\nBut statistics told us what is true and how sure we are. They did not tell management what to do.\nToday we put on the manager’s hat: given that uncertainty, what is the right action?"
   },
   {
     "objectID": "lecture_slides/04_chapter_decision_analysis/04_chapter_decision_analysis.html#the-brief-todays-managerial-question",
@@ -52,7 +52,7 @@
     "href": "lecture_slides/04_chapter_decision_analysis/04_chapter_decision_analysis.html#step-zero-problem-formulation",
     "title": " QM 6700: Business Analytics ",
     "section": "Step Zero: Problem Formulation",
-    "text": "Step Zero: Problem Formulation\n\n\nBefore any number, decision analysis forces three clean lists:\n\nDecision alternatives — the strategies you control.\nStates of nature — the uncertain future events you do not control. They must be mutually exclusive and collectively exhaustive.\nPayoffs — the consequence (profit, cost, time…) of each alternative × state combination.\n\nThe discipline is in the structuring: most bad business decisions come from a missing alternative or an unstated state of nature, not from arithmetic.\nThe whole apparatus — payoff tables, trees, EV — is just bookkeeping on top of these three lists."
+    "text": "Step Zero: Problem Formulation\n\n\nBefore any number, decision analysis forces three clean lists:\n\nDecision alternatives — the strategies you control.\nStates of nature — the uncertain future events you do not control. They must be mutually exclusive and collectively exhaustive.\nPayoffs — the consequence (profit, cost, time…) of each alternative × state combination.\n\nThe discipline is in the structuring: most bad business decisions come from a missing alternative or an unstated state of nature, not from arithmetic.\nThe whole apparatus (payoff tables, trees, EV) is just bookkeeping on top of these three lists."
   },
   {
     "objectID": "lecture_slides/04_chapter_decision_analysis/04_chapter_decision_analysis.html#the-vungle-decision-in-three-lists",
@@ -150,7 +150,7 @@
     "href": "lecture_slides/04_chapter_decision_analysis/04_chapter_decision_analysis.html#what-evpi-tells-the-manager",
     "title": " QM 6700: Business Analytics ",
     "section": "What EVPI Tells the Manager",
-    "text": "What EVPI Tells the Manager\n\n\n$64K is the most Vungle should ever pay to remove all doubt about B before deciding. Any real test — always imperfect — is worth less than this ceiling."
+    "text": "What EVPI Tells the Manager\n\n\n$64K is the most Vungle should ever pay to remove all doubt about B before deciding. Any real test (always imperfect) is worth less than this ceiling."
   },
   {
     "objectID": "lecture_slides/04_chapter_decision_analysis/04_chapter_decision_analysis.html#evpi-in-excel",
@@ -220,28 +220,28 @@
     "href": "lecture_slides/04_chapter_decision_analysis/04_chapter_decision_analysis.html#sensitivity-analysis",
     "title": " QM 6700: Business Analytics ",
     "section": "Sensitivity Analysis",
-    "text": "Sensitivity Analysis\n\n\n“Roll out B” wins as long as \\(P(s_1)\\) exceeds the indifference prior \\(p^{*} \\approx 0.33\\). Our prior (0.60) clears it comfortably — the decision is robust.\nBelow one-third, keep A. The call only flips if we’re very pessimistic about B."
+    "text": "Sensitivity Analysis\n\n\n“Roll out B” wins as long as \\(P(s_1)\\) exceeds the indifference prior \\(p^{*} \\approx 0.33\\). Our prior (0.60) clears it comfortably, so the call is stable.\nBelow one-third, keep A. The call only flips if we’re very pessimistic about B."
   },
   {
     "objectID": "lecture_slides/04_chapter_decision_analysis/04_chapter_decision_analysis.html#finding-the-tipping-point",
     "href": "lecture_slides/04_chapter_decision_analysis/04_chapter_decision_analysis.html#finding-the-tipping-point",
     "title": " QM 6700: Business Analytics ",
     "section": "Finding the Tipping Point",
-    "text": "Finding the Tipping Point\n\n\nThe decision flips where the two EV lines cross — set \\(EV(\\text{roll}) = EV(\\text{keep})\\) and solve for the prior \\(p = P(s_1)\\):\n\n\n\\[\np(318) + (1-p)(-160) = 0 \\;\\Longrightarrow\\; p^{*} = \\frac{160}{318 + 160} \\approx 0.335\n\\]\n\n\nA robust decision is one that stays the same under small changes in the inputs. Here, B would have to be more likely wrong than right before we’d keep A.\nThis is the real payoff of structuring the decision: we now know not just what to do, but how sure we’d have to be to change our minds. In Excel: a What-If Data Table varying \\(p\\) traces the whole line."
+    "text": "Finding the Tipping Point\n\n\nThe decision flips where the two EV lines cross — set \\(EV(\\text{roll}) = EV(\\text{keep})\\) and solve for the prior \\(p = P(s_1)\\):\n\n\n\\[\np(318) + (1-p)(-160) = 0 \\;\\Longrightarrow\\; p^{*} = \\frac{160}{318 + 160} \\approx 0.335\n\\]\n\n\nA stable decision is one that holds under small changes in the inputs. Here, B would have to be more likely wrong than right before we’d keep A.\nThis is the real payoff of structuring the decision: we now know not just what to do, but how sure we’d have to be to change our minds. In Excel: a What-If Data Table varying \\(p\\) traces the whole line."
   },
   {
     "objectID": "lecture_slides/04_chapter_decision_analysis/04_chapter_decision_analysis.html#team-sprint-build-the-rollout-tree-make-the-call",
     "href": "lecture_slides/04_chapter_decision_analysis/04_chapter_decision_analysis.html#team-sprint-build-the-rollout-tree-make-the-call",
     "title": " QM 6700: Business Analytics ",
     "section": "⏱️ Team Sprint — Build the Rollout Tree, Make the Call",
-    "text": "⏱️ Team Sprint — Build the Rollout Tree, Make the Call\n\nDecide: roll out B now, keep A, or run a bigger test? Recommend with the numbers.\nData: data/vungle_decision_analysis.xlsx (payoff table + priors + Bayes tables) · Time: ~20 min\n\nBuild the payoff table (roll out B: +318 / −160; keep A: 0/0) and compute EV of each with =SUMPRODUCT (priors 0.60 / 0.40).\nCompute EVPI — the most a perfect oracle is worth.\nUse the Bayes tables to get the posteriors, then EVSI; compare it to the $20K test cost.\nRun a quick sensitivity check: at what prior \\(p^{*}\\) would the call flip?\n\nHand in (1 slide): your recommendation — the call · the EV · the one caveat (and: should Vungle buy the bigger test?)."
+    "text": "⏱️ Team Sprint — Build the Rollout Tree, Make the Call\n\nDecide: roll out B now, keep A, or run a bigger test? Recommend with the numbers.\nData: data/vungle_decision_analysis.xlsx (payoff table + priors + Bayes tables) · Time: ~20 min\n\nBuild the payoff table (roll out B: +318 / −160; keep A: 0/0) and compute EV of each with =SUMPRODUCT (priors 0.60 / 0.40).\nCompute EVPI — the most a perfect oracle is worth.\nUse the Bayes tables to get the posteriors, then EVSI; compare it to the $20K test cost.\nRun a quick sensitivity check: at what prior \\(p^{*}\\) would the call flip?\n\nSubmit before you leave (graded, one slide per group): your rollout call (roll out B, keep A, or test) + the EV / EVPI / EVSI and the tipping-point prior \\(p^{*}\\) + the two things you would challenge in the analysis (e.g. the −160 downside, the priors)."
   },
   {
     "objectID": "lecture_slides/04_chapter_decision_analysis/04_chapter_decision_analysis.html#the-decision-on-one-page",
     "href": "lecture_slides/04_chapter_decision_analysis/04_chapter_decision_analysis.html#the-decision-on-one-page",
     "title": " QM 6700: Business Analytics ",
     "section": "The Decision on One Page",
-    "text": "The Decision on One Page\n\n\n\n\nQuestion\nTool\nAnswer\n\n\n\n\nBest option on average?\nEV\nRoll out B ($126.8K vs. $0)\n\n\nWorth knowing the truth for sure?\nEVPI\n$64K ceiling\n\n\nWorth running a bigger test?\nEVSI\n$9.84K &lt; $20K cost → no\n\n\nRobust to our prior?\nSensitivity\nflips only below \\(p^{*} = 0.33\\)\n\n\n\n\n\nRecommendation to CEO Jaffer: roll out B now. Expected value is clearly positive (+$126.8K/yr), the decision holds unless we think B is more likely wrong than right, and a further test isn’t worth its price. Caveat: there is a real −$160K downside if B disappoints — so monitor eRPM closely post-rollout and be ready to revert."
+    "text": "The Decision on One Page\n\n\n\n\nQuestion\nTool\nAnswer\n\n\n\n\nBest option on average?\nEV\nRoll out B ($126.8K vs. $0)\n\n\nWorth knowing the truth for sure?\nEVPI\n$64K ceiling\n\n\nWorth running a bigger test?\nEVSI\n$9.84K &lt; $20K cost → no\n\n\nStable to our prior?\nSensitivity\nflips only below \\(p^{*} = 0.33\\)\n\n\n\n\n\nRecommendation to CEO Jaffer: roll out B now. Expected value is clearly positive (+$126.8K/yr), the decision holds unless we think B is more likely wrong than right, and a further test isn’t worth its price. Caveat: there is a real −$160K downside if B disappoints — so monitor eRPM closely post-rollout and be ready to revert."
   },
   {
     "objectID": "lecture_slides/04_chapter_decision_analysis/04_chapter_decision_analysis.html#how-inference-and-decision-analysis-fit-together",
@@ -255,21 +255,21 @@
     "href": "lecture_slides/04_chapter_decision_analysis/04_chapter_decision_analysis.html#managers-takeaway",
     "title": " QM 6700: Business Analytics ",
     "section": "Manager’s Takeaway",
-    "text": "Manager’s Takeaway\n\n\nOne sentence: Structuring the rollout as a decision — alternatives, states, payoffs — says roll out B, because its expected value ($126.8K/yr) beats keeping A, and a further test isn’t worth its cost.\nOne number to remember: EVPI = $64K — the ceiling on what any information is worth here; the actual test cleared only $9.84K of it.\nOne caveat: EV is a long-run average. “Roll out B” still risks a −$160K year — sensitivity shows the call is robust (flips only below \\(p^{*} = 0.33\\)), but the downside is real, so monitor and stay ready to revert."
+    "text": "Manager’s Takeaway\n\n\nOne sentence: Structuring the rollout as a decision (alternatives, states, payoffs) says roll out B, because its expected value ($126.8K/yr) beats keeping A, and a further test isn’t worth its cost.\nOne number to remember: EVPI = $64K — the ceiling on what any information is worth here; the actual test cleared only $9.84K of it.\nOne caveat: EV is a long-run average. “Roll out B” still risks a −$160K year — sensitivity shows the call is stable (flips only below \\(p^{*} = 0.33\\)), but the downside is real, so monitor and stay ready to revert."
   },
   {
     "objectID": "lecture_slides/04_chapter_decision_analysis/04_chapter_decision_analysis.html#summary",
     "href": "lecture_slides/04_chapter_decision_analysis/04_chapter_decision_analysis.html#summary",
     "title": " QM 6700: Business Analytics ",
     "section": "Summary",
-    "text": "Summary\nSome key takeaways from this session:\n\nStructure first: every decision under uncertainty reduces to alternatives × states of nature → payoffs; the payoff table and decision tree are just that on a page.\nDecide by expected value: \\(EV(d_i) = \\sum_j P(s_j) V_{ij}\\); pick the best EV — but remember it’s a long-run average that hides the downside.\nValue information before buying it: EVPI is the ceiling (perfect info); EVSI is what a real, imperfect test is worth — buy a study only if its value beats its cost.\nBayes turns a signal into revised odds: prior → joint → marginal → posterior; the posteriors become the branch probabilities after the test.\nSensitivity tells you how robust the call is: find the prior \\(p^{*}\\) where the decision flips; ours holds comfortably.\nInference and decision analysis are partners: one says what’s true and how sure; the other says what to do about it."
+    "text": "Summary\nSome key takeaways from this session:\n\nStructure first: every decision under uncertainty reduces to alternatives × states of nature → payoffs; the payoff table and decision tree are just that on a page.\nDecide by expected value: \\(EV(d_i) = \\sum_j P(s_j) V_{ij}\\); pick the best EV — but remember it’s a long-run average that hides the downside.\nValue information before buying it: EVPI is the ceiling (perfect info); EVSI is what a real, imperfect test is worth — buy a study only if its value beats its cost.\nBayes turns a signal into revised odds: prior → joint → marginal → posterior; the posteriors become the branch probabilities after the test.\nSensitivity tells you how stable the call is: find the prior \\(p^{*}\\) where the decision flips; ours holds comfortably.\nInference and decision analysis are partners: one says what’s true and how sure; the other says what to do about it."
   },
   {
     "objectID": "lecture_slides/04_chapter_decision_analysis/04_chapter_decision_analysis.html#carry-forward",
     "href": "lecture_slides/04_chapter_decision_analysis/04_chapter_decision_analysis.html#carry-forward",
     "title": " QM 6700: Business Analytics ",
     "section": "Carry-forward",
-    "text": "Carry-forward\n\nYour client (homework): frame one real decision in your team’s case as a decision problem — list the alternatives, the states of nature, and a payoff table. Assign priors, compute EV, and find EVPI. State the recommendation and the tipping-point prior.\nNext time: we return to the inference arc — modeling uncertain counts (how many installs tomorrow?) with discrete probability distributions, the raw material that priors and payoffs are built from."
+    "text": "Carry-forward\n\nHomework (individual): today’s tools (payoff tables, decision trees, expected value, and EVPI/EVSI) are drilled on HW1 — individual problem sets in the previous-edition format, posted on Brightspace. Run them yourself so you can check an analyst who uses them.\nNext time: we return to the inference arc — modeling uncertain counts (how many installs tomorrow?) with discrete probability distributions, the raw material that priors and payoffs are built from."
   },
   {
     "objectID": "lecture_slides/10_chapter_simple_regression/10_chapter_simple_regression.html#overview",
@@ -283,7 +283,7 @@
     "href": "lecture_slides/10_chapter_simple_regression/10_chapter_simple_regression.html#a-new-client-where-should-the-next-store-go",
     "title": " QM 6700: Business Analytics ",
     "section": "A New Client — Where Should the Next Store Go?",
-    "text": "A New Client — Where Should the Next Store Go?\n\n\nWe close the Vungle engagement and open a new one. Our client is a regional auto-parts retailer with 45 stores and capital to open more.\nThe real-estate team scores prospective sites on demographics — population, income — and on the store’s Yelp rating (a proxy for service quality once a store is open).\nThe question on the table: which sites will sell? The CFO wants every new lease backed by a sales forecast, not a hunch.\nWe have one dataset, data/autoparts.csv: for each of the 45 existing stores, its 2012 annual sales ($K), trade-area population and income, an end-cap placement flag, and its Yelp rating.\nUntil now we compared two groups. Now we predict a number — and that is what regression does."
+    "text": "A New Client — Where Should the Next Store Go?\n\n\nWe close the Vungle engagement and open a new one. Our client is a regional auto-parts retailer with 45 stores and capital to open more.\nThe real-estate team scores prospective sites on demographics (population, income) and on the store’s Yelp rating (a proxy for service quality once a store is open).\nThe question on the table: which sites will sell? The CFO wants every new lease backed by a sales forecast, not a hunch.\nWe have one dataset, data/autoparts.csv: for each of the 45 existing stores, its 2012 annual sales ($K), trade-area population and income, an end-cap placement flag, and its Yelp rating.\nUntil now we compared two groups. Now we predict a number — and that is what regression does."
   },
   {
     "objectID": "lecture_slides/10_chapter_simple_regression/10_chapter_simple_regression.html#the-brief-todays-managerial-question",
@@ -297,7 +297,7 @@
     "href": "lecture_slides/10_chapter_simple_regression/10_chapter_simple_regression.html#from-comparing-to-predicting",
     "title": " QM 6700: Business Analytics ",
     "section": "From Comparing to Predicting",
-    "text": "From Comparing to Predicting\n\n\n\n\n\n\n\n\nWhat we did (Topics 7–9)\nWhat we do now\n\n\n\n\nEstimate / test one number (a mean, a proportion)\nModel how one variable moves with another\n\n\n“Is B’s eRPM above $3.30?”\n“How many $ of sales per Yelp star?”\n\n\nOutput: a decision (reject / fail to reject)\nOutput: an equation you can forecast with\n\n\n\n\n\nRegression develops an equation showing how a dependent variable \\(y\\) (what we predict — sales) relates to an independent variable \\(x\\) (the predictor — Yelp rating).\nSimple linear regression uses one predictor; the relationship is approximated by a straight line. (More predictors → multiple regression, next topic.)"
+    "text": "From Comparing to Predicting\n\n\n\n\n\n\n\n\nWhat we did (Topics 7–9)\nWhat we do now\n\n\n\n\nEstimate / test one number (a mean, a proportion)\nModel how one variable moves with another\n\n\n“Is B’s eRPM above $3.30?”\n“How many $ of sales per Yelp star?”\n\n\nOutput: a decision (reject / fail to reject)\nOutput: an equation you can forecast with\n\n\n\n\n\nRegression develops an equation showing how a dependent variable \\(y\\) (what we predict, sales) relates to an independent variable \\(x\\) (the predictor, Yelp rating).\nSimple linear regression uses one predictor; the relationship is approximated by a straight line. (More predictors → multiple regression, next topic.)"
   },
   {
     "objectID": "lecture_slides/10_chapter_simple_regression/10_chapter_simple_regression.html#the-brief-lecture-1",
@@ -409,7 +409,7 @@
     "href": "lecture_slides/10_chapter_simple_regression/10_chapter_simple_regression.html#team-sprint-1-fit-the-line-read-the-slope",
     "title": " QM 6700: Business Analytics ",
     "section": "⏱️ Team Sprint 1 — Fit the line, read the slope",
-    "text": "⏱️ Team Sprint 1 — Fit the line, read the slope\n\nDecide: does Yelp rating predict store sales — and what is one star worth?\nData: data/autoparts.csv · Time: ~12 min\n\nIn Excel: Data → Data Analysis → Regression (Y = sales2012_k, X = yelp_rating, check Labels).\nWrite the estimated equation \\(\\hat{y} = b_0 + b_1 x\\) and interpret the slope in plain dollars-per-star.\nRead R Square: what fraction of the sales gap does Yelp rating explain? State the unexplained share.\n\nHand in (1 slide): the equation, the dollars-per-star sentence, and your \\(R^2\\) read — would you use Yelp rating to score sites?"
+    "text": "⏱️ Team Sprint 1 — Fit the line, read the slope\n\nDecide: does Yelp rating predict store sales — and what is one star worth?\nData: data/autoparts.csv · Time: ~12 min\n\nIn Excel: Data → Data Analysis → Regression (Y = sales2012_k, X = yelp_rating, check Labels).\nWrite the estimated equation \\(\\hat{y} = b_0 + b_1 x\\) and interpret the slope in plain dollars-per-star.\nRead R Square: what fraction of the sales gap does Yelp rating explain? State the unexplained share.\n\nSubmit before you leave (graded, one slide per group): your site-scoring call (would you use Yelp rating?) + the equation, the dollars-per-star number, and \\(R^2\\) + the two things you would challenge in the analysis."
   },
   {
     "objectID": "lecture_slides/10_chapter_simple_regression/10_chapter_simple_regression.html#debrief-managers-takeaway-lecture-1",
@@ -423,7 +423,7 @@
     "href": "lecture_slides/10_chapter_simple_regression/10_chapter_simple_regression.html#carry-forward-lecture-1",
     "title": " QM 6700: Business Analytics ",
     "section": "Carry-forward (Lecture 1)",
-    "text": "Carry-forward (Lecture 1)\n\nYour client (homework): in your team’s case, pick a plausible numeric predictor of your key outcome. Fit the simple regression, write the slope interpretation in business units, and report \\(R^2\\).\nNext time: is the slope real or could it be noise? We test it, check the assumptions behind the line, and forecast a brand-new store."
+    "text": "Carry-forward (Lecture 1)\n\nHomework (individual): today’s tools (simple linear regression) are drilled on HW3, individual problem sets in the previous-edition format, posted on Brightspace. Run them yourself so you can check an analyst who uses them.\nNext time: is the slope real or could it be noise? We test it, check the assumptions behind the line, and forecast a brand-new store."
   },
   {
     "objectID": "lecture_slides/10_chapter_simple_regression/10_chapter_simple_regression.html#the-brief-lecture-2",
@@ -549,7 +549,7 @@
     "href": "lecture_slides/10_chapter_simple_regression/10_chapter_simple_regression.html#team-sprint-2-test-the-slope-forecast-a-site",
     "title": " QM 6700: Business Analytics ",
     "section": "⏱️ Team Sprint 2 — Test the slope, forecast a site",
-    "text": "⏱️ Team Sprint 2 — Test the slope, forecast a site\n\nDecide: is the Yelp–sales relationship real, and what should we forecast for a candidate 4.5-star site?\nData: data/autoparts.csv · Time: ~15 min\n\nFrom the Regression output, state \\(t\\), the \\(p\\)-value, and the 95% CI for the slope — is \\(\\beta_1\\) significantly nonzero?\nGlance at the residual plot (check Residual Plots in the dialog): any fan or curve that breaks the assumptions?\nForecast a site at Yelp = 4.5: give the point prediction, and say whether the CFO should quote the CI or the PI for one new lease — and why.\n\nHand in (1 slide): the slope verdict (with CI), an assumptions one-liner, and your forecast + the interval you’d put in the lease memo."
+    "text": "⏱️ Team Sprint 2 — Test the slope, forecast a site\n\nDecide: is the Yelp–sales relationship real, and what should we forecast for a candidate 4.5-star site?\nData: data/autoparts.csv · Time: ~15 min\n\nFrom the Regression output, state \\(t\\), the \\(p\\)-value, and the 95% CI for the slope — is \\(\\beta_1\\) significantly nonzero?\nGlance at the residual plot (check Residual Plots in the dialog): any fan or curve that breaks the assumptions?\nForecast a site at Yelp = 4.5: give the point prediction, and say whether the CFO should quote the CI or the PI for one new lease — and why.\n\nSubmit before you leave (graded, one slide per group): your lease-memo call (the 4.5-star forecast + which interval you’d quote) + the slope verdict with its 95% CI and an assumptions one-liner + the two things you would challenge in the analysis."
   },
   {
     "objectID": "lecture_slides/10_chapter_simple_regression/10_chapter_simple_regression.html#debrief-managers-takeaway-lecture-2",
@@ -563,7 +563,7 @@
     "href": "lecture_slides/10_chapter_simple_regression/10_chapter_simple_regression.html#carry-forward-lecture-2",
     "title": " QM 6700: Business Analytics ",
     "section": "Carry-forward (Lecture 2)",
-    "text": "Carry-forward (Lecture 2)\n\nYour client (homework): on your team’s simple regression — test the slope (report \\(t\\), \\(p\\), and the 95% CI), check the residual plot for assumption violations, and produce a point prediction with the right interval for one new case. State whether you’d trust the forecast.\nNext time: sales depend on more than one thing. We add population, income, and end-cap placement to the model — Multiple Regression — and learn why a variable that looks important alone can vanish once others are in the room."
+    "text": "Carry-forward (Lecture 2)\n\nHomework (individual): today’s tools (testing the slope, residual checks, and prediction intervals) are drilled on HW3, individual problem sets in the previous-edition format, posted on Brightspace. Run them yourself so you can check an analyst who uses them.\nNext time: sales depend on more than one thing. We add population, income, and end-cap placement to the model (Multiple Regression) and learn why a variable that looks important alone can vanish once others are in the room."
   },
   {
     "objectID": "lecture_slides/10_chapter_simple_regression/10_chapter_simple_regression.html#the-whole-engagement-on-one-page",
@@ -577,7 +577,7 @@
     "href": "lecture_slides/10_chapter_simple_regression/10_chapter_simple_regression.html#managers-takeaway",
     "title": " QM 6700: Business Analytics ",
     "section": "Manager’s Takeaway",
-    "text": "Manager’s Takeaway\n\n\nOne sentence: Yelp rating predicts auto-parts store sales strongly and significantly — about $758K per star, explaining 83% of the sales gap — so the real-estate team can use it to score and forecast sites.\nOne number to remember: \\(b_1 = 757.5\\) — and where it came from: \\(\\sum(x-\\bar{x})(y-\\bar{y}) / \\sum(x-\\bar{x})^2\\).\nOne caveat: regression forecasts and quantifies; it does not prove causation, and 17% of sales is still unexplained — a single predictor is a start, not the answer.\nPractice with the real data:\n\ndata/autoparts.csv + Regression tool → reproduce \\(b_1 = 757.5\\), \\(R^2 = 0.834\\), \\(t = 14.7\\).\nWorked solutions: data/autoparts_regression.xlsx."
+    "text": "Manager’s Takeaway\n\n\nOne sentence: Yelp rating predicts auto-parts store sales strongly and significantly (about $758K per star, explaining 83% of the sales gap), so the real-estate team can use it to score and forecast sites.\nOne number to remember: \\(b_1 = 757.5\\) — and where it came from: \\(\\sum(x-\\bar{x})(y-\\bar{y}) / \\sum(x-\\bar{x})^2\\).\nOne caveat: regression forecasts and quantifies; it does not prove causation, and 17% of sales is still unexplained — a single predictor is a start, not the answer.\nPractice with the real data:\n\ndata/autoparts.csv + Regression tool → reproduce \\(b_1 = 757.5\\), \\(R^2 = 0.834\\), \\(t = 14.7\\).\nWorked solutions: data/autoparts_regression.xlsx."
   },
   {
     "objectID": "lecture_slides/10_chapter_simple_regression/10_chapter_simple_regression.html#summary",
@@ -591,7 +591,7 @@
     "href": "lecture_slides/10_chapter_simple_regression/10_chapter_simple_regression.html#carry-forward",
     "title": " QM 6700: Business Analytics ",
     "section": "Carry-forward",
-    "text": "Carry-forward\n\nYour client (homework): fit, interpret, test, validate, and forecast a simple regression on your team’s case — the full arc on one slide, ending with a forecast you’d defend.\nNext time: we add more predictors and learn what “holding everything else constant” really means — Multiple Regression on the same auto-parts client."
+    "text": "Carry-forward\n\nHomework (individual): the full simple-regression arc (fit, interpret, test, validate, forecast) is drilled on HW3, individual problem sets in the previous-edition format, posted on Brightspace. Run them yourself so you can check an analyst who uses them.\nNext time: we add more predictors and learn what “holding everything else constant” really means — Multiple Regression on the same auto-parts client."
   },
   {
     "objectID": "lecture_slides/06_chapter_continuous_probability_distributions/06_chapter_continuous_probability_distributions.html#overview",
@@ -612,7 +612,7 @@
     "href": "lecture_slides/06_chapter_continuous_probability_distributions/06_chapter_continuous_probability_distributions.html#the-brief-todays-managerial-question",
     "title": " QM 6700: Business Analytics ",
     "section": "The Brief — Today’s Managerial Question",
-    "text": "The Brief — Today’s Managerial Question\n\n\n“Model B’s daily eRPM as Normal($3.46, $0.34). What’s the chance tomorrow’s eRPM tops $3.50? What eRPM marks a 90th-percentile day — and is the Normal model even trustworthy here?”\n\n\n\nCounting distributions (Binomial, Poisson) answered “how many installs?” Today’s tool answers “how much revenue per impression, and how often above a threshold?”\nHow today’s studio runs: I demo each idea on a textbook example → your team fits the Normal to Vungle eRPM (two sprints) → we debrief what the model can and cannot tell a manager.\nBy the end, your team turns a fitted distribution into a planning number — a probability and a percentile — and stress-tests the assumption behind it."
+    "text": "The Brief — Today’s Managerial Question\n\n\n“Model B’s daily eRPM as Normal($3.46, $0.34). What’s the chance tomorrow’s eRPM tops $3.50? What eRPM marks a 90th-percentile day — and is the Normal model even trustworthy here?”\n\n\n\nCounting distributions (Binomial, Poisson) answered “how many installs?” Today’s tool answers “how much revenue per impression, and how often above a threshold?”\nHow today’s studio runs: I demo each idea on a textbook example → your team fits the Normal to Vungle eRPM (two sprints) → we debrief what the model can and cannot tell a manager.\nBy the end, your team turns a fitted distribution into a planning number (a probability and a percentile) and stress-tests the assumption behind it."
   },
   {
     "objectID": "lecture_slides/06_chapter_continuous_probability_distributions/06_chapter_continuous_probability_distributions.html#how-todays-tools-answer-it",
@@ -626,7 +626,7 @@
     "href": "lecture_slides/06_chapter_continuous_probability_distributions/06_chapter_continuous_probability_distributions.html#the-brief-lecture-1",
     "title": " QM 6700: Business Analytics ",
     "section": "The Brief — Lecture 1",
-    "text": "The Brief — Lecture 1\n\n\n“Before we can ask ‘how likely is eRPM above $3.50?’, we need a model for a continuous quantity. Today: what a continuous distribution is, and the two we use most — the uniform and the Normal.”\n\n\n\nThe payoff question — \\(P(\\text{eRPM} &gt; \\$3.50)\\) — waits for Lecture 2. First we build the machinery: probability as area, the Normal shape, and the z-score that unlocks any Normal.\nAnchor examples today: Slater’s Buffet (uniform) and Pep Zone inventory (Normal). Then we fit the Normal to Vungle eRPM."
+    "text": "The Brief — Lecture 1\n\n\n“Before we can ask ‘how likely is eRPM above $3.50?’, we need a model for a continuous quantity. Today: what a continuous distribution is, and the two we use most — the uniform and the Normal.”\n\n\n\nThe payoff question \\(P(\\text{eRPM} &gt; \\$3.50)\\) waits for Lecture 2. First we build the machinery: probability as area, the Normal shape, and the z-score that handles any Normal.\nAnchor examples today: Slater’s Buffet (uniform) and Pep Zone inventory (Normal). Then we fit the Normal to Vungle eRPM."
   },
   {
     "objectID": "lecture_slides/06_chapter_continuous_probability_distributions/06_chapter_continuous_probability_distributions.html#discrete-vs.-continuous-probability-becomes-area",
@@ -661,7 +661,7 @@
     "href": "lecture_slides/06_chapter_continuous_probability_distributions/06_chapter_continuous_probability_distributions.html#slaters-buffet-probability-is-the-shaded-area",
     "title": " QM 6700: Business Analytics ",
     "section": "Slater’s Buffet — Probability Is the Shaded Area",
-    "text": "Slater’s Buffet — Probability Is the Shaded Area\n\n\n30% of customers take between 12 and 15 ounces — directly the area of the shaded rectangle, no calculus needed.\nThe same idea — probability = area — now carries over to the bell-shaped Normal, where the area is harder to compute by hand (so we lean on z-scores and Excel)."
+    "text": "Slater’s Buffet — Probability Is the Shaded Area\n\n\n30% of customers take between 12 and 15 ounces — directly the area of the shaded rectangle, no calculus needed.\nThe same idea, probability = area, now carries over to the bell-shaped Normal, where the area is harder to compute by hand (so we lean on z-scores and Excel)."
   },
   {
     "objectID": "lecture_slides/06_chapter_continuous_probability_distributions/06_chapter_continuous_probability_distributions.html#why-the-normal-matters",
@@ -731,7 +731,7 @@
     "href": "lecture_slides/06_chapter_continuous_probability_distributions/06_chapter_continuous_probability_distributions.html#team-sprint-1-fit-the-normal-to-erpm",
     "title": " QM 6700: Business Analytics ",
     "section": "⏱️ Team Sprint 1 — Fit the Normal to eRPM",
-    "text": "⏱️ Team Sprint 1 — Fit the Normal to eRPM\n\nDecide: is the Normal a sensible model for B’s daily eRPM — and what does a “typical” day look like?\nData: data/vungle_daily.csv (filter algorithm = \"B\") · Time: ~8 min\n\nIn Excel, compute \\(\\bar{x}\\) = AVERAGE and \\(s\\) = STDEV.S of the 30 B-day erpm values (target: ~3.459, ~0.344).\nApply the empirical rule: give the interval that should hold ~95% of days (\\(\\bar{x} \\pm 2s\\)).\nStandardize a $3.50 day: compute \\(z = (3.50 - \\bar{x})/s\\). Is $3.50 a good day, an average day, or a bad day?\n\nHand in (1 slide): your \\(\\bar{x}\\), \\(s\\), the 95% empirical interval, and one sentence on where $3.50 sits."
+    "text": "⏱️ Team Sprint 1 — Fit the Normal to eRPM\n\nDecide: is the Normal a sensible model for B’s daily eRPM — and what does a “typical” day look like?\nData: data/vungle_daily.csv (filter algorithm = \"B\") · Time: ~8 min\n\nIn Excel, compute \\(\\bar{x}\\) = AVERAGE and \\(s\\) = STDEV.S of the 30 B-day erpm values (target: ~3.459, ~0.344).\nApply the empirical rule: give the interval that should hold ~95% of days (\\(\\bar{x} \\pm 2s\\)).\nStandardize a $3.50 day: compute \\(z = (3.50 - \\bar{x})/s\\). Is $3.50 a good day, an average day, or a bad day?\n\nSubmit before you leave (graded, one slide per group): your call on whether Normal is a sensible model for B’s eRPM + the key numbers (\\(\\bar{x}\\), \\(s\\), the 95% empirical interval, the \\(z\\) for $3.50) + the two things you would challenge in the fit."
   },
   {
     "objectID": "lecture_slides/06_chapter_continuous_probability_distributions/06_chapter_continuous_probability_distributions.html#debrief-lecture-1-takeaway",
@@ -745,14 +745,14 @@
     "href": "lecture_slides/06_chapter_continuous_probability_distributions/06_chapter_continuous_probability_distributions.html#carry-forward-lecture-1",
     "title": " QM 6700: Business Analytics ",
     "section": "Carry-forward — Lecture 1",
-    "text": "Carry-forward — Lecture 1\n\nYour client (homework): pick a roughly continuous metric in your team’s case (price, time, spend, rating). Compute its mean and sd, and use the empirical rule to describe a typical range. Flag whether a Normal model looks plausible from the histogram.\nNext time: we cash in the model — exact tail probabilities (\\(P(\\text{eRPM} &gt; \\$3.50)\\)), the 90th-percentile day, a formal normality check, and the Normal approximation of the Binomial."
+    "text": "Carry-forward — Lecture 1\n\nHomework (individual): today’s tools (the Normal model, z-scores, and percentiles) are drilled on HW2 — individual problem sets in the previous-edition format, posted on Brightspace. Run them yourself so you can check an analyst who uses them.\nNext time: we cash in the model — exact tail probabilities (\\(P(\\text{eRPM} &gt; \\$3.50)\\)), the 90th-percentile day, a formal normality check, and the Normal approximation of the Binomial."
   },
   {
     "objectID": "lecture_slides/06_chapter_continuous_probability_distributions/06_chapter_continuous_probability_distributions.html#the-brief-lecture-2",
     "href": "lecture_slides/06_chapter_continuous_probability_distributions/06_chapter_continuous_probability_distributions.html#the-brief-lecture-2",
     "title": " QM 6700: Business Analytics ",
     "section": "The Brief — Lecture 2",
-    "text": "The Brief — Lecture 2\n\n\n“Cash in the model. Tomorrow’s eRPM is \\(\\sim N(3.459, 0.344)\\). What’s \\(P(\\text{eRPM} &gt; \\$3.50)\\)? What eRPM defines a top-10% day? And — before we trust any of it — is the Normal assumption fair?”\n\n\n\nLecture 1 built the model; today we use it: a tail probability, a percentile, an assumption check, and the bridge from counts (Binomial) to the Normal at scale.\nTools: NORM.DIST (tail areas), NORM.INV (percentiles), the QQ plot (assumption), and the Normal approximation of the Binomial (planning installs)."
+    "text": "The Brief — Lecture 2\n\n\n“Cash in the model. Tomorrow’s eRPM is \\(\\sim N(3.459, 0.344)\\). What’s \\(P(\\text{eRPM} &gt; \\$3.50)\\)? What eRPM defines a top-10% day? And before we trust any of it, is the Normal assumption fair?”\n\n\n\nLecture 1 built the model; today we use it: a tail probability, a percentile, an assumption check, and the bridge from counts (Binomial) to the Normal at scale.\nTools: NORM.DIST (tail areas), NORM.INV (percentiles), the QQ plot (assumption), and the Normal approximation of the Binomial (planning installs)."
   },
   {
     "objectID": "lecture_slides/06_chapter_continuous_probability_distributions/06_chapter_continuous_probability_distributions.html#perpm-3.50-a-right-tail-area",
@@ -773,7 +773,7 @@
     "href": "lecture_slides/06_chapter_continuous_probability_distributions/06_chapter_continuous_probability_distributions.html#excel-norm.dist-on-the-vungle-model",
     "title": " QM 6700: Business Analytics ",
     "section": "Excel: NORM.DIST on the Vungle Model",
-    "text": "Excel: NORM.DIST on the Vungle Model\n\n\nNORM.DIST(..., TRUE) returns the area to the left; subtract from 1 for a right tail.\nThe standard-Normal route — standardize to \\(z = 0.12\\), then 1 - NORM.S.DIST(0.12, TRUE) — gives the same 0.4526. Two roads, one answer."
+    "text": "Excel: NORM.DIST on the Vungle Model\n\n\nNORM.DIST(..., TRUE) returns the area to the left; subtract from 1 for a right tail.\nThe standard-Normal route (standardize to \\(z = 0.12\\), then 1 - NORM.S.DIST(0.12, TRUE)) gives the same 0.4526. Two roads, one answer."
   },
   {
     "objectID": "lecture_slides/06_chapter_continuous_probability_distributions/06_chapter_continuous_probability_distributions.html#the-90th-percentile-day",
@@ -815,7 +815,7 @@
     "href": "lecture_slides/06_chapter_continuous_probability_distributions/06_chapter_continuous_probability_distributions.html#team-sprint-2-probabilities-percentiles-a-normality-check",
     "title": " QM 6700: Business Analytics ",
     "section": "⏱️ Team Sprint 2 — Probabilities, Percentiles & a Normality Check",
-    "text": "⏱️ Team Sprint 2 — Probabilities, Percentiles & a Normality Check\n\nDecide: how often does B top $3.50, what’s a top-10% day, and is the Normal model trustworthy?\nData: data/vungle_daily.csv (filter algorithm = \"B\") · Time: ~12 min\n\nTail probability: =1 - NORM.DIST(3.50, mean, sd, TRUE). State \\(P(\\text{eRPM} &gt; \\$3.50)\\) in plain English.\nPercentile: =NORM.INV(0.90, mean, sd). Report the 90th-percentile day as a “great day” benchmark.\nCheck the assumption: sort the 30 values; eyeball them against the Normal QQ plot (provided). Do they hug the line?\n\nHand in (1 slide): \\(P(\\text{eRPM} &gt; \\$3.50)\\), the 90th-percentile eRPM, and a one-line verdict on whether the Normal model is trustworthy."
+    "text": "⏱️ Team Sprint 2 — Probabilities, Percentiles & a Normality Check\n\nDecide: how often does B top $3.50, what’s a top-10% day, and is the Normal model trustworthy?\nData: data/vungle_daily.csv (filter algorithm = \"B\") · Time: ~12 min\n\nTail probability: =1 - NORM.DIST(3.50, mean, sd, TRUE). State \\(P(\\text{eRPM} &gt; \\$3.50)\\) in plain English.\nPercentile: =NORM.INV(0.90, mean, sd). Report the 90th-percentile day as a “great day” benchmark.\nCheck the assumption: sort the 30 values; eyeball them against the Normal QQ plot (provided). Do they hug the line?\n\nSubmit before you leave (graded, one slide per group): your verdict on whether to trust the Normal model + the key numbers (\\(P(\\text{eRPM} &gt; \\$3.50)\\), the 90th-percentile eRPM, the QQ-plot read) + the two things you would challenge in the analysis."
   },
   {
     "objectID": "lecture_slides/06_chapter_continuous_probability_distributions/06_chapter_continuous_probability_distributions.html#why-approximate-counts-at-huge-scale",
@@ -871,14 +871,14 @@
     "href": "lecture_slides/06_chapter_continuous_probability_distributions/06_chapter_continuous_probability_distributions.html#summary",
     "title": " QM 6700: Business Analytics ",
     "section": "Summary",
-    "text": "Summary\nSome key takeaways from this session:\n\nFor a continuous variable, \\(P(X = x) = 0\\); probability is the area under the density \\(f(x)\\).\nThe uniform is the simplest model (probability ∝ interval length); the Normal — set by \\(\\mu\\) (location) and \\(\\sigma\\) (spread) — is the workhorse, with the empirical rule (68/95/99.7).\nStandardize with \\(z = (x - \\mu)/\\sigma\\), then read areas off the single standard Normal \\(N(0,1)\\).\nIn Excel: NORM.DIST for probabilities (tail areas), NORM.INV for percentiles — they are inverses.\nCheck the assumption with a QQ plot / Shapiro-Wilk before trusting a Normal probability.\nAt large \\(n\\) with \\(np \\ge 5\\) and \\(n(1-p) \\ge 5\\), the Binomial is well approximated by a Normal (\\(\\mu = np\\), \\(\\sigma = \\sqrt{np(1-p)}\\), with a \\(\\pm 0.5\\) continuity correction)."
+    "text": "Summary\nSome key takeaways from this session:\n\nFor a continuous variable, \\(P(X = x) = 0\\); probability is the area under the density \\(f(x)\\).\nThe uniform is the simplest model (probability ∝ interval length); the Normal, set by \\(\\mu\\) (location) and \\(\\sigma\\) (spread), is the workhorse, with the empirical rule (68/95/99.7).\nStandardize with \\(z = (x - \\mu)/\\sigma\\), then read areas off the single standard Normal \\(N(0,1)\\).\nIn Excel: NORM.DIST for probabilities (tail areas), NORM.INV for percentiles — they are inverses.\nCheck the assumption with a QQ plot / Shapiro-Wilk before trusting a Normal probability.\nAt large \\(n\\) with \\(np \\ge 5\\) and \\(n(1-p) \\ge 5\\), the Binomial is well approximated by a Normal (\\(\\mu = np\\), \\(\\sigma = \\sqrt{np(1-p)}\\), with a \\(\\pm 0.5\\) continuity correction)."
   },
   {
     "objectID": "lecture_slides/06_chapter_continuous_probability_distributions/06_chapter_continuous_probability_distributions.html#carry-forward",
     "href": "lecture_slides/06_chapter_continuous_probability_distributions/06_chapter_continuous_probability_distributions.html#carry-forward",
     "title": " QM 6700: Business Analytics ",
     "section": "Carry-forward",
-    "text": "Carry-forward\n\nYour client (homework): for your team’s continuous metric, compute \\(P(X &gt; \\text{threshold})\\) with NORM.DIST and a meaningful percentile with NORM.INV, then check normality with a QQ plot. State one decision the numbers inform.\nNext time: we stop treating these 30 days as the whole story and recognize them as a sample — Sampling & Estimation: how to estimate the true eRPM, with a margin of error."
+    "text": "Carry-forward\n\nHomework (individual): today’s tools (the Normal model, z-scores, and percentiles) are drilled on HW2 — individual problem sets in the previous-edition format, posted on Brightspace. Run them yourself so you can check an analyst who uses them.\nNext time: we stop treating these 30 days as the whole story and recognize them as a sample — Sampling & Estimation: how to estimate the true eRPM, with a margin of error."
   },
   {
     "objectID": "lecture_slides/03_chapter_probability/03_chapter_probability.html#overview",
@@ -983,7 +983,7 @@
     "href": "lecture_slides/03_chapter_probability/03_chapter_probability.html#team-sprint-build-the-funnel-tree",
     "title": " QM 6700: Business Analytics ",
     "section": "⏱️ Team Sprint — Build the Funnel Tree",
-    "text": "⏱️ Team Sprint — Build the Funnel Tree\n\nDecide: what is the chance a random impression installs — and how does each funnel step change that chance?\nData: data/vungle_probability.xlsx (or vungle_daily.csv) · Time: ~12 min\n\nWith SUMIF, total impressions, completes, clicks, installs for Algorithm B.\nCompute the three conditional rates: \\(P(\\text{comp}\\mid\\text{imp})\\), \\(P(\\text{click}\\mid\\text{comp})\\), \\(P(\\text{install}\\mid\\text{click})\\).\nMultiply them and check the product equals installs ÷ impressions (the multiplication law).\nSketch B’s funnel as a probability tree with the branch probabilities labeled.\n\nHand in (1 slide): B’s three conditional rates, the chained install rate, and a one-line read of where B leaks the most."
+    "text": "⏱️ Team Sprint — Build the Funnel Tree\n\nDecide: what is the chance a random impression installs — and how does each funnel step change that chance?\nData: data/vungle_probability.xlsx (or vungle_daily.csv) · Time: ~12 min\n\nWith SUMIF, total impressions, completes, clicks, installs for Algorithm B.\nCompute the three conditional rates: \\(P(\\text{comp}\\mid\\text{imp})\\), \\(P(\\text{click}\\mid\\text{comp})\\), \\(P(\\text{install}\\mid\\text{click})\\).\nMultiply them and check the product equals installs ÷ impressions (the multiplication law).\nSketch B’s funnel as a probability tree with the branch probabilities labeled.\n\nSubmit before you leave (graded, one slide per group): your call on where B leaks the most + B’s three conditional rates and chained install rate + the two things you would challenge in the analysis."
   },
   {
     "objectID": "lecture_slides/03_chapter_probability/03_chapter_probability.html#the-reverse-question",
@@ -1004,7 +1004,7 @@
     "href": "lecture_slides/03_chapter_probability/03_chapter_probability.html#anchor-example-a-test-market-decision",
     "title": " QM 6700: Business Analytics ",
     "section": "Anchor Example: A Test-Market Decision",
-    "text": "Anchor Example: A Test-Market Decision\n\nA bank’s new product has three possible fates. Priors from past launches: \\(P(\\text{Failure}) = 0.80\\), \\(P(\\text{Marginal}) = 0.15\\), \\(P(\\text{Major success}) = 0.05\\). A test market then returns a large share. How likely is each fate now?\n\n\n\n\n\n\n\n\n\n\nOutcome \\(A_i\\)\nPrior \\(P(A_i)\\)\nLikelihood \\(P(\\text{Large}\\mid A_i)\\)\nJoint\nPosterior \\(P(A_i\\mid\\text{Large})\\)\n\n\n\n\nFailure\n0.80\n0.02\n0.0160\n0.0160 / 0.1010 = 0.158\n\n\nMarginal\n0.15\n0.24\n0.0360\n0.356\n\n\nMajor success\n0.05\n0.98\n0.0490\n0.0490 / 0.1010 = 0.485\n\n\nTotal\n1.00\n\n$P() = $ 0.1010\n1.000\n\n\n\nA large test result lifts “Major success” from a 5% prior to a 49% posterior — nearly ten-fold — which is exactly why the test is worth running."
+    "text": "Anchor Example: A Test-Market Decision\n\nA bank’s new product has three possible fates. Priors from past launches: \\(P(\\text{Failure}) = 0.80\\), \\(P(\\text{Marginal}) = 0.15\\), \\(P(\\text{Major success}) = 0.05\\). A test market then returns a large share. How likely is each fate now?\n\n\n\n\n\n\n\n\n\n\nOutcome \\(A_i\\)\nPrior \\(P(A_i)\\)\nLikelihood \\(P(\\text{Large}\\mid A_i)\\)\nJoint\nPosterior \\(P(A_i\\mid\\text{Large})\\)\n\n\n\n\nFailure\n0.80\n0.02\n0.0160\n0.0160 / 0.1010 = 0.158\n\n\nMarginal\n0.15\n0.24\n0.0360\n0.356\n\n\nMajor success\n0.05\n0.98\n0.0490\n0.0490 / 0.1010 = 0.485\n\n\nTotal\n1.00\n\n$P() = $ 0.1010\n1.000\n\n\n\nA large test result lifts “Major success” from a 5% prior to a 49% posterior (nearly ten-fold), which is exactly why the test is worth running."
   },
   {
     "objectID": "lecture_slides/03_chapter_probability/03_chapter_probability.html#the-vungle-bayes-update-setup",
@@ -1053,28 +1053,28 @@
     "href": "lecture_slides/03_chapter_probability/03_chapter_probability.html#managers-takeaway",
     "title": " QM 6700: Business Analytics ",
     "section": "Manager’s Takeaway",
-    "text": "Manager’s Takeaway\n\n\nOne sentence: every funnel rate is a conditional probability, the end-to-end install rate is their product, and Bayes lets you read the funnel backward — from an observed install to the likely algorithm.\nOne number to remember: 0.40% — the marginal install rate — and how a single click multiplies it 20-fold to 7.93%.\nOne caveat: an install is weak evidence about which algorithm served it (\\(P(B\\mid\\text{install}) = 5.56\\%\\) vs. a \\(6.27\\%\\) prior) — base rates dominate, so never read a posterior off the likelihood alone.\nPractice with the real data: data/vungle_daily.csv + SUMIF → reproduce the funnel rates; data/vungle_probability.xlsx holds the worked funnel and Bayes tables."
+    "text": "Manager’s Takeaway\n\n\nOne sentence: every funnel rate is a conditional probability, the end-to-end install rate is their product, and Bayes lets you read the funnel backward — from an observed install to the likely algorithm.\nOne number to remember: 0.40%, the marginal install rate, and how a single click multiplies it 20-fold to 7.93%.\nOne caveat: an install is weak evidence about which algorithm served it (\\(P(B\\mid\\text{install}) = 5.56\\%\\) vs. a \\(6.27\\%\\) prior) — base rates dominate, so never read a posterior off the likelihood alone.\nPractice with the real data: data/vungle_daily.csv + SUMIF → reproduce the funnel rates; data/vungle_probability.xlsx holds the worked funnel and Bayes tables."
   },
   {
     "objectID": "lecture_slides/03_chapter_probability/03_chapter_probability.html#bonus-team-sprint-reverse-the-funnel",
     "href": "lecture_slides/03_chapter_probability/03_chapter_probability.html#bonus-team-sprint-reverse-the-funnel",
     "title": " QM 6700: Business Analytics ",
     "section": "⏱️ (Bonus) Team Sprint — Reverse the Funnel",
-    "text": "⏱️ (Bonus) Team Sprint — Reverse the Funnel\n\nDecide: given an observed install, how strongly should you believe it came from B?\nData: data/vungle_probability.xlsx · Time: ~6 min (if time allows)\n\nSet the priors \\(P(A), P(B)\\) = each algorithm’s impression share.\nSet the likelihoods = each algorithm’s install rate.\nBuild the joint column (prior × likelihood); sum to get \\(P(\\text{install})\\).\nPosterior \\(P(B\\mid\\text{install})\\) = B’s joint ÷ the sum — compare it to the prior.\n\nHand in (1 slide): the posterior \\(P(B\\mid\\text{install})\\) and one sentence on why an install is evidence against B."
+    "text": "⏱️ (Bonus) Team Sprint — Reverse the Funnel\n\nDecide: given an observed install, how strongly should you believe it came from B?\nData: data/vungle_probability.xlsx · Time: ~6 min (if time allows)\n\nSet the priors \\(P(A), P(B)\\) = each algorithm’s impression share.\nSet the likelihoods = each algorithm’s install rate.\nBuild the joint column (prior × likelihood); sum to get \\(P(\\text{install})\\).\nPosterior \\(P(B\\mid\\text{install})\\) = B’s joint ÷ the sum — compare it to the prior.\n\nSubmit before you leave (graded, one slide per group): your read on how strongly an install points to B + the posterior \\(P(B\\mid\\text{install})\\) + the two things you would challenge in the analysis."
   },
   {
     "objectID": "lecture_slides/03_chapter_probability/03_chapter_probability.html#carry-forward",
     "href": "lecture_slides/03_chapter_probability/03_chapter_probability.html#carry-forward",
     "title": " QM 6700: Business Analytics ",
     "section": "Carry-forward",
-    "text": "Carry-forward\n\nYour client (homework): in your team’s case, build a contingency table of two categorical variables, then compute one marginal, one conditional, and one Bayes (reverse) probability. State which managerial question each one answers.\nNext time: probabilities become decisions — Decision Analysis: payoffs, expected value, and the value of information, on the Vungle rollout."
+    "text": "Carry-forward\n\nHomework (individual): today’s tools (probability rules, conditional probability, and Bayes’ theorem) are drilled on HW1 — individual problem sets in the previous-edition format, posted on Brightspace. Run them yourself so you can check an analyst who uses them.\nNext time: probabilities become decisions — Decision Analysis: payoffs, expected value, and the value of information, on the Vungle rollout."
   },
   {
     "objectID": "lecture_slides/03_chapter_probability/03_chapter_probability.html#summary",
     "href": "lecture_slides/03_chapter_probability/03_chapter_probability.html#summary",
     "title": " QM 6700: Business Analytics ",
     "section": "Summary",
-    "text": "Summary\nSome key takeaways from this session:\n\nProbability vocabulary: an experiment has a sample space of outcomes; an event is a subset; probabilities live in \\([0,1]\\) and sum to 1.\nBasic relationships: complement, union (addition law subtracts the overlap), intersection (joint), and mutually exclusive.\nConditional probability \\(P(A\\mid B) = P(A\\cap B)/P(B)\\) is the engine of funnel analytics — each step conditions on surviving the last.\nThe multiplication law chains the steps into the end-to-end rate; independence is when conditioning changes nothing (the funnel steps are not independent).\nBayes’ theorem reverses the conditioning — prior → posterior — and base rates dominate: an install is only weak evidence about which algorithm served it.\nMarginal, conditional, and reverse probabilities are different numbers for the same data; match the number to the manager’s question."
+    "text": "Summary\nSome key takeaways from this session:\n\nProbability vocabulary: an experiment has a sample space of outcomes; an event is a subset; probabilities live in \\([0,1]\\) and sum to 1.\nBasic relationships: complement, union (addition law subtracts the overlap), intersection (joint), and mutually exclusive.\nConditional probability \\(P(A\\mid B) = P(A\\cap B)/P(B)\\) is the engine of funnel analytics — each step conditions on surviving the last.\nThe multiplication law chains the steps into the end-to-end rate; independence is when conditioning changes nothing (the funnel steps are not independent).\nBayes’ theorem reverses the conditioning (prior → posterior), and base rates dominate: an install is only weak evidence about which algorithm served it.\nMarginal, conditional, and reverse probabilities are different numbers for the same data; match the number to the manager’s question."
   },
   {
     "objectID": "lecture_slides/05_chapter_discrete_probability_distributions/05_chapter_discrete_probability_distributions.html#overview",
@@ -1200,7 +1200,7 @@
     "href": "lecture_slides/05_chapter_discrete_probability_distributions/05_chapter_discrete_probability_distributions.html#the-four-binomial-assumptions",
     "title": " QM 6700: Business Analytics ",
     "section": "The Four Binomial Assumptions",
-    "text": "The Four Binomial Assumptions\n\nA Binomial experiment requires all four:\n\n\nA sequence of \\(n\\) identical trials.\nExactly two outcomes per trial — success and failure.\nThe success probability \\(p\\) is constant across trials (the stationarity assumption).\nThe trials are independent.\n\n\n\n\nVungle check: \\(n\\) impressions in a burst (1) — each one installs or not (2) — the conversion rate \\(p\\) is the same within a stable burst (3) — one user installing does not change another’s odds (4). All four hold (approximately). So installs are Binomial."
+    "text": "The Four Binomial Assumptions\n\nA Binomial experiment requires all four:\n\n\nA sequence of \\(n\\) identical trials.\nExactly two outcomes per trial — success and failure.\nThe success probability \\(p\\) is constant across trials (the stationarity assumption).\nThe trials are independent.\n\n\n\n\nVungle check: \\(n\\) impressions in a burst (1); each one installs or not (2); the conversion rate \\(p\\) is the same within a stable burst (3); one user installing does not change another’s odds (4). All four hold (approximately). So installs are Binomial."
   },
   {
     "objectID": "lecture_slides/05_chapter_discrete_probability_distributions/05_chapter_discrete_probability_distributions.html#the-binomial-probability-function",
@@ -1214,7 +1214,7 @@
     "href": "lecture_slides/05_chapter_discrete_probability_distributions/05_chapter_discrete_probability_distributions.html#anchor-example-evans-electronics",
     "title": " QM 6700: Business Analytics ",
     "section": "Anchor Example: Evans Electronics",
-    "text": "Anchor Example: Evans Electronics\n\n\nEvans Electronics loses about 10% of hourly employees per year (\\(p = 0.10\\)). Choosing 3 employees at random (\\(n = 3\\)), what is \\(P(\\text{exactly 1 leaves})\\)?\nOne specific way — leaver, stayer, stayer — has probability:\n\n\n\\[\n(0.10)(0.90)(0.90) = (0.10)(0.90)^2 = 0.081\n\\]\n\n\nThere are \\(\\binom{3}{1} = 3\\) such arrangements (the leaver could be 1st, 2nd, or 3rd):\n\n\n\\[\nf(1) = \\binom{3}{1}(0.10)^1 (0.90)^2 = 3 \\times 0.081 = 0.243\n\\]"
+    "text": "Anchor Example: Evans Electronics\n\n\nEvans Electronics loses about 10% of hourly employees per year (\\(p = 0.10\\)). Choosing 3 employees at random (\\(n = 3\\)), what is \\(P(\\text{exactly 1 leaves})\\)?\nOne specific way (leaver, stayer, stayer) has probability:\n\n\n\\[\n(0.10)(0.90)(0.90) = (0.10)(0.90)^2 = 0.081\n\\]\n\n\nThere are \\(\\binom{3}{1} = 3\\) such arrangements (the leaver could be 1st, 2nd, or 3rd):\n\n\n\\[\nf(1) = \\binom{3}{1}(0.10)^1 (0.90)^2 = 3 \\times 0.081 = 0.243\n\\]"
   },
   {
     "objectID": "lecture_slides/05_chapter_discrete_probability_distributions/05_chapter_discrete_probability_distributions.html#evans-electronics-the-full-distribution",
@@ -1284,7 +1284,7 @@
     "href": "lecture_slides/05_chapter_discrete_probability_distributions/05_chapter_discrete_probability_distributions.html#team-sprint-1-size-the-burst-with-a-binomial",
     "title": " QM 6700: Business Analytics ",
     "section": "⏱️ Team Sprint 1 — Size the Burst with a Binomial",
-    "text": "⏱️ Team Sprint 1 — Size the Burst with a Binomial\n\nDecide: for a 1,000-impression burst of Algorithm A (\\(p = 0.0040\\)), how big a postback pipeline do you need?\nData: data/vungle_discrete.xlsx (or build it) · Time: ~12 min\n\nState the model: \\(X_A \\sim\\) Binomial(\\(1000\\), \\(0.0040\\)). Compute \\(E(X) = np\\) and \\(\\sigma = \\sqrt{np(1-p)}\\) by hand.\nIn Excel, build the PMF/CDF table with BINOM.DIST(x, 1000, 0.004, FALSE/TRUE) for \\(x = 0 \\dots 12\\).\nCompute the tail \\(P(X \\geq 8) =\\) 1 - BINOM.DIST(7, 1000, 0.004, TRUE).\nIf a worker absorbs 7 installs/burst, what fraction of A’s bursts overflow?\n\nHand in (1 slide): \\(E(X)\\), \\(\\sigma\\), \\(P(X \\geq 8)\\), and a one-line capacity recommendation."
+    "text": "⏱️ Team Sprint 1 — Size the Burst with a Binomial\n\nDecide: for a 1,000-impression burst of Algorithm A (\\(p = 0.0040\\)), how big a postback pipeline do you need?\nData: data/vungle_discrete.xlsx (or build it) · Time: ~12 min\n\nState the model: \\(X_A \\sim\\) Binomial(\\(1000\\), \\(0.0040\\)). Compute \\(E(X) = np\\) and \\(\\sigma = \\sqrt{np(1-p)}\\) by hand.\nIn Excel, build the PMF/CDF table with BINOM.DIST(x, 1000, 0.004, FALSE/TRUE) for \\(x = 0 \\dots 12\\).\nCompute the tail \\(P(X \\geq 8) =\\) 1 - BINOM.DIST(7, 1000, 0.004, TRUE).\nIf a worker absorbs 7 installs/burst, what fraction of A’s bursts overflow?\n\nSubmit before you leave (graded, one slide per group): your capacity call for Algorithm A + \\(E(X)\\), \\(\\sigma\\), and \\(P(X \\geq 8)\\) + the two things you would challenge in the analysis."
   },
   {
     "objectID": "lecture_slides/05_chapter_discrete_probability_distributions/05_chapter_discrete_probability_distributions.html#debrief-managers-takeaway-lecture-1",
@@ -1298,7 +1298,7 @@
     "href": "lecture_slides/05_chapter_discrete_probability_distributions/05_chapter_discrete_probability_distributions.html#carry-forward-lecture-1",
     "title": " QM 6700: Business Analytics ",
     "section": "Carry-forward (Lecture 1)",
-    "text": "Carry-forward (Lecture 1)\n\nYour client (homework): find a yes/no count over a fixed \\(n\\) in your team’s case (defective units, conversions, churned customers). Model it as Binomial, estimate \\(p\\), and report \\(E(X)\\), \\(\\sigma\\), and one tail probability with BINOM.DIST.\nNext time: A’s rate is small and \\(n\\) is huge — there is a simpler model built exactly for rare events over an interval: the Poisson distribution."
+    "text": "Carry-forward (Lecture 1)\n\nHomework (individual): today’s tools (the Binomial and Poisson models) are drilled on HW2 — individual problem sets in the previous-edition format, posted on Brightspace. Run them yourself so you can check an analyst who uses them.\nNext time: A’s rate is small and \\(n\\) is huge — there is a simpler model built exactly for rare events over an interval: the Poisson distribution."
   },
   {
     "objectID": "lecture_slides/05_chapter_discrete_probability_distributions/05_chapter_discrete_probability_distributions.html#the-brief-lecture-2",
@@ -1403,7 +1403,7 @@
     "href": "lecture_slides/05_chapter_discrete_probability_distributions/05_chapter_discrete_probability_distributions.html#team-sprint-2-plan-capacity-with-poisson",
     "title": " QM 6700: Business Analytics ",
     "section": "⏱️ Team Sprint 2 — Plan Capacity with Poisson",
-    "text": "⏱️ Team Sprint 2 — Plan Capacity with Poisson\n\nDecide: size Vungle’s postback pipeline for Algorithm A bursts using the Poisson model — and confirm it matches yesterday’s Binomial.\nData: data/vungle_discrete.xlsx · Time: ~12 min\n\nState the model: \\(X_A \\sim \\text{Poisson}(\\lambda = 4.0)\\). Note \\(E(X) = \\text{Var}(X) = \\lambda = 4\\).\nIn Excel, build the PMF with POISSON.DIST(x, 4, FALSE) for \\(x = 0 \\dots 12\\); put BINOM.DIST(x, 1000, 0.004, FALSE) beside it and confirm they match.\nCompute the tail \\(P(X \\geq 8) =\\) 1 - POISSON.DIST(7, 4, TRUE).\nPick a capacity level \\(N\\) so that \\(P(X \\geq N) &lt; 1\\%\\) (a “five-nines minus” buffer). What is \\(N\\)?\n\nHand in (1 slide): your \\(\\lambda\\), \\(P(X \\geq 8)\\), the chosen capacity \\(N\\), and a one-line plan."
+    "text": "⏱️ Team Sprint 2 — Plan Capacity with Poisson\n\nDecide: size Vungle’s postback pipeline for Algorithm A bursts using the Poisson model — and confirm it matches yesterday’s Binomial.\nData: data/vungle_discrete.xlsx · Time: ~12 min\n\nState the model: \\(X_A \\sim \\text{Poisson}(\\lambda = 4.0)\\). Note \\(E(X) = \\text{Var}(X) = \\lambda = 4\\).\nIn Excel, build the PMF with POISSON.DIST(x, 4, FALSE) for \\(x = 0 \\dots 12\\); put BINOM.DIST(x, 1000, 0.004, FALSE) beside it and confirm they match.\nCompute the tail \\(P(X \\geq 8) =\\) 1 - POISSON.DIST(7, 4, TRUE).\nPick a capacity level \\(N\\) so that \\(P(X \\geq N) &lt; 1\\%\\) (a “five-nines minus” buffer). What is \\(N\\)?\n\nSubmit before you leave (graded, one slide per group): your pipeline plan for Algorithm A + your \\(\\lambda\\), \\(P(X \\geq 8)\\), and the chosen capacity \\(N\\) + the two things you would challenge in the analysis."
   },
   {
     "objectID": "lecture_slides/05_chapter_discrete_probability_distributions/05_chapter_discrete_probability_distributions.html#debrief-managers-takeaway-lecture-2",
@@ -1417,7 +1417,7 @@
     "href": "lecture_slides/05_chapter_discrete_probability_distributions/05_chapter_discrete_probability_distributions.html#carry-forward-lecture-2",
     "title": " QM 6700: Business Analytics ",
     "section": "Carry-forward (Lecture 2)",
-    "text": "Carry-forward (Lecture 2)\n\nYour client (homework): find a rare-event count over an interval in your team’s case (defects per batch, complaints per week, arrivals per hour). Estimate \\(\\lambda\\), build the PMF with POISSON.DIST, and report a tail probability that supports a capacity or staffing decision.\nNext time: we move from discrete counts to continuous measurements — the Normal distribution, and the question “what is the probability eRPM exceeds $3.50?”"
+    "text": "Carry-forward (Lecture 2)\n\nHomework (individual): today’s tools (the Binomial and Poisson models) are drilled on HW2 — individual problem sets in the previous-edition format, posted on Brightspace. Run them yourself so you can check an analyst who uses them.\nNext time: we move from discrete counts to continuous measurements — the Normal distribution, and the question “what is the probability eRPM exceeds $3.50?”"
   },
   {
     "objectID": "lecture_slides/05_chapter_discrete_probability_distributions/05_chapter_discrete_probability_distributions.html#discrete-distributions-on-one-page-the-vungle-bridge",
@@ -1431,7 +1431,7 @@
     "href": "lecture_slides/05_chapter_discrete_probability_distributions/05_chapter_discrete_probability_distributions.html#managers-takeaway",
     "title": " QM 6700: Business Analytics ",
     "section": "Manager’s Takeaway",
-    "text": "Manager’s Takeaway\n\n\nOne sentence: a conversion rate plus a count structure (fixed \\(n\\) → Binomial; rare arrivals → Poisson) gives the full probability distribution of installs — and every capacity question is a tail probability.\nOne number to remember: \\(P(X \\geq 8) \\approx\\) 0.051 for Algorithm A bursts — about 1 in 20 — the number that sizes the overflow buffer.\nOne caveat: both models assume a constant, independent rate; real traffic spikes (viral campaigns) cluster arrivals and fatten the tail — re-estimate the rate and watch for over-dispersion.\nPractice with the real data: data/vungle_daily.csv → estimate \\(p\\); data/vungle_discrete.xlsx → reproduce the PMF/CDF tables with BINOM.DIST and POISSON.DIST."
+    "text": "Manager’s Takeaway\n\n\nOne sentence: a conversion rate plus a count structure (fixed \\(n\\) → Binomial; rare arrivals → Poisson) gives the full probability distribution of installs — and every capacity question is a tail probability.\nOne number to remember: \\(P(X \\geq 8) \\approx\\) 0.051 for Algorithm A bursts (about 1 in 20) — the number that sizes the overflow buffer.\nOne caveat: both models assume a constant, independent rate; real traffic spikes (viral campaigns) cluster arrivals and fatten the tail — re-estimate the rate and watch for over-dispersion.\nPractice with the real data: data/vungle_daily.csv → estimate \\(p\\); data/vungle_discrete.xlsx → reproduce the PMF/CDF tables with BINOM.DIST and POISSON.DIST."
   },
   {
     "objectID": "lecture_slides/05_chapter_discrete_probability_distributions/05_chapter_discrete_probability_distributions.html#summary",
@@ -1490,14 +1490,14 @@
     "href": "lecture_slides/02_chapter_descriptive_statistics/02_chapter_descriptive_statistics.html#why-spread-matters-as-much-as-center",
     "title": " QM 6700: Business Analytics ",
     "section": "Why Spread Matters as Much as Center",
-    "text": "Why Spread Matters as Much as Center\n\n\nChoosing between supplier A and supplier B, you weigh not just the average delivery time but the variability — a supplier that is fast on average but wildly inconsistent can wreck a schedule.\nSame for Vungle: an algorithm with a slightly higher mean eRPM but huge day-to-day swings is a riskier bet than a steady one.\nFive workhorse measures of variability, smallest toolkit to richest:\n\n\n\n\n\n\n\n\n\nMeasure\nWhat it captures\n\n\n\n\nRange\ntotal swing (max − min)\n\n\nIQR\nswing of the middle 50%\n\n\nVariance / SD\ntypical distance from the mean (uses all the data)\n\n\nCoefficient of variation\nspread relative to the mean (unit-free)"
+    "text": "Why Spread Matters as Much as Center\n\n\nChoosing between supplier A and supplier B, you weigh the average delivery time and the variability together: a supplier that is fast on average but wildly inconsistent can wreck a schedule.\nSame for Vungle: an algorithm with a slightly higher mean eRPM but huge day-to-day swings is a riskier bet than a steady one.\nFive workhorse measures of variability, smallest toolkit to richest:\n\n\n\n\n\n\n\n\n\nMeasure\nWhat it captures\n\n\n\n\nRange\ntotal swing (max − min)\n\n\nIQR\nswing of the middle 50%\n\n\nVariance / SD\ntypical distance from the mean (uses all the data)\n\n\nCoefficient of variation\nspread relative to the mean (unit-free)"
   },
   {
     "objectID": "lecture_slides/02_chapter_descriptive_statistics/02_chapter_descriptive_statistics.html#range-and-interquartile-range-iqr",
     "href": "lecture_slides/02_chapter_descriptive_statistics/02_chapter_descriptive_statistics.html#range-and-interquartile-range-iqr",
     "title": " QM 6700: Business Analytics ",
     "section": "Range and Interquartile Range (IQR)",
-    "text": "Range and Interquartile Range (IQR)\n\n\nRange = largest value − smallest value. Simplest measure — but driven entirely by the two extremes, so a single odd day distorts it.\n\n\n\\[\n\\text{Range} = x_{\\max} - x_{\\min}\n\\]\n\n\nInterquartile range (IQR) = the range of the middle 50% of the data:\n\n\n\\[\n\\text{IQR} = Q_3 - Q_1\n\\]\n\n\nIQR throws away the top 25% and bottom 25%, so it ignores extremes — a more robust read of “typical” spread.\nExcel: =MAX(rng)-MIN(rng) for the range; =QUARTILE.INC(rng,3)-QUARTILE.INC(rng,1) for the IQR."
+    "text": "Range and Interquartile Range (IQR)\n\n\nRange = largest value − smallest value. Simplest measure — but driven entirely by the two extremes, so a single odd day distorts it.\n\n\n\\[\n\\text{Range} = x_{\\max} - x_{\\min}\n\\]\n\n\nInterquartile range (IQR) = the range of the middle 50% of the data:\n\n\n\\[\n\\text{IQR} = Q_3 - Q_1\n\\]\n\n\nIQR throws away the top 25% and bottom 25%, so it ignores extremes — a steadier read of “typical” spread.\nExcel: =MAX(rng)-MIN(rng) for the range; =QUARTILE.INC(rng,3)-QUARTILE.INC(rng,1) for the IQR."
   },
   {
     "objectID": "lecture_slides/02_chapter_descriptive_statistics/02_chapter_descriptive_statistics.html#variance-the-average-squared-distance-from-the-mean",
@@ -1595,7 +1595,7 @@
     "href": "lecture_slides/02_chapter_descriptive_statistics/02_chapter_descriptive_statistics.html#detecting-outliers-two-rules-that-can-disagree",
     "title": " QM 6700: Business Analytics ",
     "section": "Detecting Outliers — Two Rules That Can Disagree",
-    "text": "Detecting Outliers — Two Rules That Can Disagree\n\n\nAn outlier is an unusually small or large value. It may be a recording error, a wrongly-included point, or a genuinely unusual but valid observation. Two common rules:\n\n\n\n\n\n\n\n\n\nRule\nFlags a value as an outlier when…\n\n\n\n\nz-score\n\\(|z| &gt; 3\\) (more than 3 SDs from the mean)\n\n\nBoxplot (1.5 × IQR)\nbelow \\(Q_1 - 1.5\\,\\text{IQR}\\) or above \\(Q_3 + 1.5\\,\\text{IQR}\\)\n\n\n\n\n\nThey do not always agree — the IQR rule is more sensitive in the tails. On Vungle’s B, two slow days — June 2 ($2.587) and June 3 ($2.755) — sit below the boxplot lower fence (≈$2.80), yet both stay inside the \\(|z|&gt;3\\) cutoff (June 2’s \\(z = -2.53\\) is the most extreme). The boxplot rule flags two days; the z-rule flags none.\nA flag is an invitation to investigate, not a delete button. Ask why before you drop a point."
+    "text": "Detecting Outliers — Two Rules That Can Disagree\n\n\nAn outlier is an unusually small or large value. It may be a recording error, a wrongly-included point, or a genuinely unusual but valid observation. Two common rules:\n\n\n\n\n\n\n\n\n\nRule\nFlags a value as an outlier when…\n\n\n\n\nz-score\n\\(|z| &gt; 3\\) (more than 3 SDs from the mean)\n\n\nBoxplot (1.5 × IQR)\nbelow \\(Q_1 - 1.5\\,\\text{IQR}\\) or above \\(Q_3 + 1.5\\,\\text{IQR}\\)\n\n\n\n\n\nThey do not always agree — the IQR rule is more sensitive in the tails. On Vungle’s B, two slow days (June 2 at $2.587 and June 3 at $2.755) sit below the boxplot lower fence (≈$2.80), yet both stay inside the \\(|z|&gt;3\\) cutoff (June 2’s \\(z = -2.53\\) is the most extreme). The boxplot rule flags two days; the z-rule flags none.\nA flag is an invitation to investigate, not a delete button. Ask why before you drop a point."
   },
   {
     "objectID": "lecture_slides/02_chapter_descriptive_statistics/02_chapter_descriptive_statistics.html#outlier-hunt-on-vungles-b",
@@ -1686,7 +1686,7 @@
     "href": "lecture_slides/02_chapter_descriptive_statistics/02_chapter_descriptive_statistics.html#team-sprint-build-the-a-vs-b-descriptive-dashboard",
     "title": " QM 6700: Business Analytics ",
     "section": "⏱️ Team Sprint — Build the A-vs-B Descriptive Dashboard",
-    "text": "⏱️ Team Sprint — Build the A-vs-B Descriptive Dashboard\n\nDecide: what can you honestly tell the CEO about B’s edge — center, spread, and risk?\nData: data/vungle_descriptive.xlsx (or data/vungle_daily.csv) · Time: ~18 min\n\nCenter & spread: with Data → Data Analysis → Descriptive Statistics, get the mean, median, SD, and range of erpm for A and for B; compute the CV for each (=STDEV.S/AVERAGE).\nShape & outliers: compare each mean to its median (skew?); flag any day with |z| &gt; 3 (=STANDARDIZE).\nPicture: build the five-number summary (=QUARTILE.INC) and insert a Box & Whisker chart for A and B together.\nRead it: write two sentences — (1) how A and B compare on center and spread, (2) what that means for the rollout decision.\n\nHand in (1 slide): your A-vs-B summary table + boxplot + the two-sentence read."
+    "text": "⏱️ Team Sprint — Build the A-vs-B Descriptive Dashboard\n\nDecide: what can you honestly tell the CEO about B’s edge — center, spread, and risk?\nData: data/vungle_descriptive.xlsx (or data/vungle_daily.csv) · Time: ~18 min\n\nCenter & spread: with Data → Data Analysis → Descriptive Statistics, get the mean, median, SD, and range of erpm for A and for B; compute the CV for each (=STDEV.S/AVERAGE).\nShape & outliers: compare each mean to its median (skew?); flag any day with |z| &gt; 3 (=STANDARDIZE).\nPicture: build the five-number summary (=QUARTILE.INC) and insert a Box & Whisker chart for A and B together.\nRead it: write two sentences — (1) how A and B compare on center and spread, (2) what that means for the rollout decision.\n\nSubmit before you leave (graded, one slide per group): your call to the CEO on B’s edge + the center and spread numbers behind it (means, SDs, CVs, the boxplot) + the two things you would challenge in the analysis."
   },
   {
     "objectID": "lecture_slides/02_chapter_descriptive_statistics/02_chapter_descriptive_statistics.html#what-the-dashboard-says",
@@ -1714,7 +1714,7 @@
     "href": "lecture_slides/02_chapter_descriptive_statistics/02_chapter_descriptive_statistics.html#carry-forward",
     "title": " QM 6700: Business Analytics ",
     "section": "Carry-forward",
-    "text": "Carry-forward\n\nYour client (homework): for your team’s case, build a descriptive dashboard of the key outcome — center (mean/median), spread (SD, IQR, CV), a boxplot, and the correlation between the outcome and one plausible driver. Write the two-sentence read a manager would act on.\nNext time: we move from describing uncertainty to quantifying it — Probability: the chance a random impression installs, and how that chance changes once it clicks."
+    "text": "Carry-forward\n\nHomework (individual): today’s tools (center, spread, shape, boxplots, and correlation) are drilled on HW1, individual problem sets in the previous-edition format, posted on Brightspace. Run them yourself so you can check an analyst who uses them.\nNext time: we move from describing uncertainty to quantifying it — Probability: the chance a random impression installs, and how that chance changes once it clicks."
   },
   {
     "objectID": "lecture_slides/08_chapter_hypothesis_tests/08_chapter_hypothesis_tests.html#overview",
@@ -1749,7 +1749,7 @@
     "href": "lecture_slides/08_chapter_hypothesis_tests/08_chapter_hypothesis_tests.html#h_0-is-on-trial-the-skeptics-position",
     "title": " QM 6700: Business Analytics ",
     "section": "\\(H_0\\) Is on Trial — the Skeptic’s Position",
-    "text": "\\(H_0\\) Is on Trial — the Skeptic’s Position\n\n\nThe null hypothesis \\(H_0\\) is the status quo — “nothing new here, B is no better than the $3.30 line.” It is assumed true until the data overturn it.\nThe alternative \\(H_a\\) is the research claim — “B beats $3.30” — accepted only with strong evidence. The data carry the burden of proof."
+    "text": "\\(H_0\\) Is on Trial — the Skeptic’s Position\n\n\nThe null hypothesis \\(H_0\\) is the status quo — “nothing new here, B is no better than the $3.30 line.” It is assumed true until the data overturn it.\nThe alternative \\(H_a\\) is the research claim (“B beats $3.30”), accepted only with strong evidence. The data carry the burden of proof."
   },
   {
     "objectID": "lecture_slides/08_chapter_hypothesis_tests/08_chapter_hypothesis_tests.html#which-claim-goes-where",
@@ -1896,7 +1896,7 @@
     "href": "lecture_slides/08_chapter_hypothesis_tests/08_chapter_hypothesis_tests.html#team-sprint-1-does-b-clear-the-3.30-benchmark",
     "title": " QM 6700: Business Analytics ",
     "section": "⏱️ Team Sprint 1 — Does B Clear the $3.30 Benchmark?",
-    "text": "⏱️ Team Sprint 1 — Does B Clear the $3.30 Benchmark?\n\nDecide: is algorithm B’s mean eRPM truly above the $3.30 funding benchmark?\nData: data/vungle_daily.csv (filter algorithm = B, column erpm) · Time: ~10 min\n\nRun Data → Data Analysis → Descriptive Statistics on B’s erpm to get \\(\\bar{x}\\), \\(s\\), \\(n\\).\nIn formula cells, compute \\(SE = s/\\sqrt{n}\\), then \\(t = (\\bar{x}-3.30)/SE\\), then the upper-tail \\(p\\) with =T.DIST.RT(t, 29).\nBuild the 95% CI for the mean; check that $3.30 falls below it. Decide at \\(\\alpha = 0.05\\).\n\nHand in (1 slide): your \\(t\\), \\(p\\), and CI, plus a one-line fund / don’t fund verdict for the CFO."
+    "text": "⏱️ Team Sprint 1 — Does B Clear the $3.30 Benchmark?\n\nDecide: is algorithm B’s mean eRPM truly above the $3.30 funding benchmark?\nData: data/vungle_daily.csv (filter algorithm = B, column erpm) · Time: ~10 min\n\nRun Data → Data Analysis → Descriptive Statistics on B’s erpm to get \\(\\bar{x}\\), \\(s\\), \\(n\\).\nIn formula cells, compute \\(SE = s/\\sqrt{n}\\), then \\(t = (\\bar{x}-3.30)/SE\\), then the upper-tail \\(p\\) with =T.DIST.RT(t, 29).\nBuild the 95% CI for the mean; check that $3.30 falls below it. Decide at \\(\\alpha = 0.05\\).\n\nSubmit before you leave (graded, one slide per group): your fund / don’t fund call for the CFO + your \\(t\\), \\(p\\), and CI + the two things you would challenge in the analysis."
   },
   {
     "objectID": "lecture_slides/08_chapter_hypothesis_tests/08_chapter_hypothesis_tests.html#debrief-lecture-1-managers-takeaway",
@@ -1910,7 +1910,7 @@
     "href": "lecture_slides/08_chapter_hypothesis_tests/08_chapter_hypothesis_tests.html#carry-forward-lecture-1",
     "title": " QM 6700: Business Analytics ",
     "section": "Carry-forward — Lecture 1",
-    "text": "Carry-forward — Lecture 1\n\nYour client (homework): in your team’s case, find one mean with a meaningful benchmark (a target, a historical level, a contract threshold). State \\(H_0\\)/\\(H_a\\), pick the tail from the business decision, run the one-sample \\(t\\), and write the call.\nNext lecture: the same logic for a proportion — does B’s conversion rate clear its target?"
+    "text": "Carry-forward — Lecture 1\n\nHomework (individual): today’s tools (one-sample \\(t\\) and \\(z\\) hypothesis tests) are drilled on HW3 — individual problem sets in the previous-edition format, posted on Brightspace. Run them yourself so you can check an analyst who uses them.\nNext lecture: the same logic for a proportion — does B’s conversion rate clear its target?"
   },
   {
     "objectID": "lecture_slides/08_chapter_hypothesis_tests/08_chapter_hypothesis_tests.html#the-brief-does-b-clear-the-conversion-target",
@@ -1959,7 +1959,7 @@
     "href": "lecture_slides/08_chapter_hypothesis_tests/08_chapter_hypothesis_tests.html#now-the-spine-case-bs-conversion-in-numbers",
     "title": " QM 6700: Business Analytics ",
     "section": "Now the Spine Case — B’s Conversion in Numbers",
-    "text": "Now the Spine Case — B’s Conversion in Numbers\n\n\nPlugging B’s June totals into the proportion test, with \\(p_0 = 0.0035\\):\n\n\n\\[\n\\sigma_{\\bar{p}} = \\sqrt{\\frac{0.0035(1-0.0035)}{15{,}825{,}376}} = 1.485 \\times 10^{-5}\n\\]\n\n\n\\[\nz = \\frac{0.003541 - 0.003500}{1.485 \\times 10^{-5}} = 2.733\n\\]\n\n\n\\(\\bar p\\) sits just 0.0041 percentage points above the target — a tiny gap — yet with 15.8M impressions even a tiny gap is many standard errors out."
+    "text": "Now the Spine Case — B’s Conversion in Numbers\n\n\nPlugging B’s June totals into the proportion test, with \\(p_0 = 0.0035\\):\n\n\n\\[\n\\sigma_{\\bar{p}} = \\sqrt{\\frac{0.0035(1-0.0035)}{15{,}825{,}376}} = 1.485 \\times 10^{-5}\n\\]\n\n\n\\[\nz = \\frac{0.003541 - 0.003500}{1.485 \\times 10^{-5}} = 2.733\n\\]\n\n\n\\(\\bar p\\) sits just 0.0041 percentage points above the target (a tiny gap), yet with 15.8M impressions even a tiny gap is many standard errors out."
   },
   {
     "objectID": "lecture_slides/08_chapter_hypothesis_tests/08_chapter_hypothesis_tests.html#step-4-decision",
@@ -1973,7 +1973,7 @@
     "href": "lecture_slides/08_chapter_hypothesis_tests/08_chapter_hypothesis_tests.html#excel-one-proportion-z-with-formula-cells",
     "title": " QM 6700: Business Analytics ",
     "section": "Excel: One-Proportion \\(z\\) with Formula Cells",
-    "text": "Excel: One-Proportion \\(z\\) with Formula Cells\n\n\n\nThere is no ToolPak tool for a one-proportion \\(z\\) — build it in cells:\n\n=SUM the installs and impressions for B\n\\(\\bar p = x/n\\)\n$SE = $ =SQRT(0.0035*(1-0.0035)/n)\n\\(z = (\\bar p - 0.0035)/SE\\)\n$p = $ =1-NORM.S.DIST(z, TRUE)\n\n\nWorth mastering: most real A/B metrics — click-through, conversion, churn — are proportions."
+    "text": "Excel: One-Proportion \\(z\\) with Formula Cells\n\n\n\nThere is no ToolPak tool for a one-proportion \\(z\\) — build it in cells:\n\n=SUM the installs and impressions for B\n\\(\\bar p = x/n\\)\n$SE = $ =SQRT(0.0035*(1-0.0035)/n)\n\\(z = (\\bar p - 0.0035)/SE\\)\n$p = $ =1-NORM.S.DIST(z, TRUE)\n\n\nWorth mastering: most real A/B metrics (click-through, conversion, churn) are proportions."
   },
   {
     "objectID": "lecture_slides/08_chapter_hypothesis_tests/08_chapter_hypothesis_tests.html#statistical-vs.-practical-significance",
@@ -1994,7 +1994,7 @@
     "href": "lecture_slides/08_chapter_hypothesis_tests/08_chapter_hypothesis_tests.html#team-sprint-2-does-b-clear-the-conversion-target",
     "title": " QM 6700: Business Analytics ",
     "section": "⏱️ Team Sprint 2 — Does B Clear the Conversion Target?",
-    "text": "⏱️ Team Sprint 2 — Does B Clear the Conversion Target?\n\nDecide: is algorithm B’s conversion rate (installs/impressions) above the 0.35% target?\nData: data/vungle_daily.csv (filter algorithm = B) · Time: ~12 min\n\n=SUM B’s installs and impressions; compute \\(\\bar p = x/n\\).\nIn formula cells: $SE = $ =SQRT(0.0035*(1-0.0035)/n), then \\(z = (\\bar p - 0.0035)/SE\\), then $p = $ =1-NORM.S.DIST(z, TRUE).\nDecide at \\(\\alpha = 0.05\\) — then state the effect size (how far above target, in percentage points).\nIn one sentence each: the call · the number · the caveat about statistical vs. practical significance.\n\nHand in (1 slide): your \\(z\\), \\(p\\), effect size, and a viability verdict for the ops team."
+    "text": "⏱️ Team Sprint 2 — Does B Clear the Conversion Target?\n\nDecide: is algorithm B’s conversion rate (installs/impressions) above the 0.35% target?\nData: data/vungle_daily.csv (filter algorithm = B) · Time: ~12 min\n\n=SUM B’s installs and impressions; compute \\(\\bar p = x/n\\).\nIn formula cells: $SE = $ =SQRT(0.0035*(1-0.0035)/n), then \\(z = (\\bar p - 0.0035)/SE\\), then $p = $ =1-NORM.S.DIST(z, TRUE).\nDecide at \\(\\alpha = 0.05\\) — then state the effect size (how far above target, in percentage points).\nIn one sentence each: the call · the number · the caveat about statistical vs. practical significance.\n\nSubmit before you leave (graded, one slide per group): your viable / not viable call for the ops team + your \\(z\\), \\(p\\), and effect size + the two things you would challenge in the analysis."
   },
   {
     "objectID": "lecture_slides/08_chapter_hypothesis_tests/08_chapter_hypothesis_tests.html#debrief-lecture-2-managers-takeaway",
@@ -2008,7 +2008,7 @@
     "href": "lecture_slides/08_chapter_hypothesis_tests/08_chapter_hypothesis_tests.html#carry-forward-lecture-2",
     "title": " QM 6700: Business Analytics ",
     "section": "Carry-forward — Lecture 2",
-    "text": "Carry-forward — Lecture 2\n\nYour client (homework): in your team’s case, find one proportion with a target (a pass rate, a response rate, a defect ceiling). State \\(H_0\\)/\\(H_a\\), run the one-sample \\(z\\), and report the effect size — not just the \\(p\\)-value.\nNext time: we stop testing one population against a line and start comparing two — is B better than A? — with the paired and two-sample tests of Topic 9."
+    "text": "Carry-forward — Lecture 2\n\nHomework (individual): today’s tools (one-sample \\(t\\) and \\(z\\) hypothesis tests) are drilled on HW3 — individual problem sets in the previous-edition format, posted on Brightspace. Run them yourself so you can check an analyst who uses them.\nNext time: we stop testing one population against a line and start comparing two — is B better than A? — with the paired and two-sample tests of Topic 9."
   },
   {
     "objectID": "lecture_slides/08_chapter_hypothesis_tests/08_chapter_hypothesis_tests.html#the-one-population-testing-recipe-one-page",
@@ -2029,7 +2029,7 @@
     "href": "lecture_slides/08_chapter_hypothesis_tests/08_chapter_hypothesis_tests.html#summary",
     "title": " QM 6700: Business Analytics ",
     "section": "Summary",
-    "text": "Summary\nSome key takeaways from this session:\n\n\\(H_0\\) is the skeptic on trial: put the claim you want to prove in \\(H_a\\), keep the equality in \\(H_0\\), and let the data carry the burden of proof.\nTwo errors, one knob: you set \\(\\alpha\\) (Type I risk) before the test; \\(\\beta\\) (Type II) follows. Say “fail to reject,” never “accept.”\nOne recipe, two parameters: the one-sample \\(t\\) (mean, \\(\\sigma\\) unknown) and the one-proportion \\(z\\) share the same five steps — only the standard error and reference distribution change.\nTwo roads agree: the critical-value and \\(p\\)-value approaches always reach the same decision, and both agree with the confidence interval.\nSignificance \\(\\neq\\) importance: with millions of impressions almost everything is “significant” — judge the effect size; with tiny samples real effects can hide — mind the power.\nA test answers is the parameter past a line? Comparing two populations — is B better than A? — is Topic 9."
+    "text": "Summary\nSome key takeaways from this session:\n\n\\(H_0\\) is the skeptic on trial: put the claim you want to prove in \\(H_a\\), keep the equality in \\(H_0\\), and let the data carry the burden of proof.\nTwo errors, one knob: you set \\(\\alpha\\) (Type I risk) before the test; \\(\\beta\\) (Type II) follows. Say “fail to reject,” never “accept.”\nOne recipe, two parameters: the one-sample \\(t\\) (mean, \\(\\sigma\\) unknown) and the one-proportion \\(z\\) share the same five steps — only the standard error and reference distribution change.\nTwo roads agree: the critical-value and \\(p\\)-value approaches always reach the same decision, and both agree with the confidence interval.\nSignificance \\(\\neq\\) importance: with millions of impressions almost everything is “significant,” so judge the effect size; with tiny samples real effects can hide, so mind the power.\nA test answers is the parameter past a line? Comparing two populations — is B better than A? — is Topic 9."
   },
   {
     "objectID": "lecture_slides/01_chapter_data_statistics/01_chapter_data_statistics.html#overview",
@@ -2365,7 +2365,7 @@
     "href": "lecture_slides/11_chapter_multiple_regression/11_chapter_multiple_regression.html#the-data-45-stores-four-candidate-drivers",
     "title": " QM 6700: Business Analytics ",
     "section": "The Data: 45 Stores, Four Candidate Drivers",
-    "text": "The Data: 45 Stores, Four Candidate Drivers\n\n\n\n\n\n\n\n\n\n\nColumn\nWhat it measures\nThe lever it represents\n\n\n\n\nsales2012_k\nannual store sales ($ thousands)\nthe outcome we want to grow\n\n\npopulation_3mi\nresidents within 3 miles\nlocation — market size\n\n\nincome_3mi\nmedian household income within 3 miles\nlocation — market wealth\n\n\nyelp_rating\naverage Yelp rating (1–5 stars)\nservice / customer experience\n\n\nendcap\n1 = premium endcap shelf placement, 0 = none\nmerchandising spend\n\n\n\n\n\n\nData: data/autoparts.csv — 45 rows, one per store. endcap is already coded 0/1.\nThe trap we will spring today: the two drivers a manager expects to dominate — population and income — turn out not to matter once service and merchandising are in the model."
+    "text": "The Data: 45 Stores, Four Candidate Drivers\n\n\n\n\n\n\n\n\n\n\nColumn\nWhat it measures\nThe lever it represents\n\n\n\n\nsales2012_k\nannual store sales ($ thousands)\nthe outcome we want to grow\n\n\npopulation_3mi\nresidents within 3 miles\nlocation — market size\n\n\nincome_3mi\nmedian household income within 3 miles\nlocation — market wealth\n\n\nyelp_rating\naverage Yelp rating (1–5 stars)\nservice / customer experience\n\n\nendcap\n1 = premium endcap shelf placement, 0 = none\nmerchandising spend\n\n\n\n\n\n\nData: data/autoparts.csv — 45 rows, one per store. endcap is already coded 0/1.\nThe trap we will spring today: the two drivers a manager expects to dominate (population and income) turn out not to matter once service and merchandising are in the model."
   },
   {
     "objectID": "lecture_slides/11_chapter_multiple_regression/11_chapter_multiple_regression.html#how-todays-studio-runs",
@@ -2442,7 +2442,7 @@
     "href": "lecture_slides/11_chapter_multiple_regression/11_chapter_multiple_regression.html#the-r2-trap-it-can-only-go-up",
     "title": " QM 6700: Business Analytics ",
     "section": "The \\(R^2\\) Trap: It Can Only Go Up",
-    "text": "The \\(R^2\\) Trap: It Can Only Go Up\n\n\nHere is the catch that makes \\(R^2\\) dangerous in multiple regression:\n\nAdding any predictor — even a useless, random one — can only increase \\(R^2\\) (never decrease it).\n\nWhy: a new variable gives least squares one more knob to fit noise, so \\(SSE\\) shrinks and \\(R^2\\) ticks up — whether or not the variable is real.\nSo a bigger \\(R^2\\) does not mean a better model. If we chased \\(R^2\\) alone, we would throw every variable we could find into the model.\nWe need a fit measure that charges a penalty for each predictor added. That is adjusted \\(R^2\\)."
+    "text": "The \\(R^2\\) Trap: It Can Only Go Up\n\n\nHere is the catch that makes \\(R^2\\) dangerous in multiple regression:\n\nAdding any predictor (even a useless, random one) can only increase \\(R^2\\) — never decrease it.\n\nWhy: a new variable gives least squares one more knob to fit noise, so \\(SSE\\) shrinks and \\(R^2\\) ticks up — whether or not the variable is real.\nSo a bigger \\(R^2\\) does not mean a better model. If we chased \\(R^2\\) alone, we would throw every variable we could find into the model.\nWe need a fit measure that charges a penalty for each predictor added. That is adjusted \\(R^2\\)."
   },
   {
     "objectID": "lecture_slides/11_chapter_multiple_regression/11_chapter_multiple_regression.html#adjusted-r2-pay-a-fee-per-predictor",
@@ -2484,7 +2484,7 @@
     "href": "lecture_slides/11_chapter_multiple_regression/11_chapter_multiple_regression.html#team-sprint-1-build-read-the-model",
     "title": " QM 6700: Business Analytics ",
     "section": "⏱️ Team Sprint 1 — Build & read the model",
-    "text": "⏱️ Team Sprint 1 — Build & read the model\n\nDecide: what does each driver contribute to predicted store sales, holding the others constant?\nData: data/autoparts.csv · Time: ~12 min\n\nIn Excel: Data → Data Analysis → Regression. Y = sales2012_k; X = the four columns population_3mi, income_3mi, yelp_rating, endcap (select together). Check Labels and Confidence Level 95%.\nWrite out the estimated equation \\(\\widehat{\\text{sales}} = b_0 + b_1(\\text{pop}) + \\cdots\\) from the Coefficients column.\nRecord \\(R^2\\) and Adjusted \\(R^2\\) from the top block. In one sentence, say what fraction of the sales story the model captures.\nTranslate the Yelp and endcap coefficients into plain dollars (“each extra star / an endcap is worth about $___K, holding the others fixed”).\n\nHand in (1 slide): the equation, \\(R^2\\) vs. adjusted \\(R^2\\), and your dollar reading of the two biggest drivers."
+    "text": "⏱️ Team Sprint 1 — Build & read the model\n\nDecide: what does each driver contribute to predicted store sales, holding the others constant?\nData: data/autoparts.csv · Time: ~12 min\n\nIn Excel: Data → Data Analysis → Regression. Y = sales2012_k; X = the four columns population_3mi, income_3mi, yelp_rating, endcap (select together). Check Labels and Confidence Level 95%.\nWrite out the estimated equation \\(\\widehat{\\text{sales}} = b_0 + b_1(\\text{pop}) + \\cdots\\) from the Coefficients column.\nRecord \\(R^2\\) and Adjusted \\(R^2\\) from the top block. In one sentence, say what fraction of the sales story the model captures.\nTranslate the Yelp and endcap coefficients into plain dollars (“each extra star / an endcap is worth about $___K, holding the others fixed”).\n\nSubmit before you leave (graded, one slide per group): your read of what each driver is worth (the equation + \\(R^2\\) vs. adjusted \\(R^2\\) + the Yelp and endcap dollar figures) and the two things you would challenge in this fit."
   },
   {
     "objectID": "lecture_slides/11_chapter_multiple_regression/11_chapter_multiple_regression.html#debrief-managers-takeaway-lecture-1",
@@ -2498,7 +2498,7 @@
     "href": "lecture_slides/11_chapter_multiple_regression/11_chapter_multiple_regression.html#carry-forward-to-lecture-2",
     "title": " QM 6700: Business Analytics ",
     "section": "Carry-forward (to Lecture 2)",
-    "text": "Carry-forward (to Lecture 2)\n\nYour client (homework, part 1): fit a multiple regression for your team’s case with two or more predictors. Report the estimated equation, \\(R^2\\), and adjusted \\(R^2\\); interpret each coefficient with the “holding the others constant” clause.\nNext lecture: which of these drivers are statistically real? We separate the overall \\(F\\)-test from the individual \\(t\\)-tests, put a defensible dollar value on an endcap with a dummy variable, and make the investment call."
+    "text": "Carry-forward (to Lecture 2)\n\nHomework (individual): today’s tools (multiple regression, the \\(F\\) vs. \\(t\\) tests, and dummy variables) are drilled on HW3 — individual problem sets in the previous-edition format, posted on Brightspace. Run them yourself so you can check an analyst who uses them.\nNext lecture: which of these drivers are statistically real? We separate the overall \\(F\\)-test from the individual \\(t\\)-tests, put a defensible dollar value on an endcap with a dummy variable, and make the investment call."
   },
   {
     "objectID": "lecture_slides/11_chapter_multiple_regression/11_chapter_multiple_regression.html#the-brief-lecture-2",
@@ -2617,7 +2617,7 @@
     "href": "lecture_slides/11_chapter_multiple_regression/11_chapter_multiple_regression.html#team-sprint-2-test-the-drivers-make-the-call",
     "title": " QM 6700: Business Analytics ",
     "section": "⏱️ Team Sprint 2 — Test the drivers & make the call",
-    "text": "⏱️ Team Sprint 2 — Test the drivers & make the call\n\nDecide: which drivers are real, what is an endcap worth, and where should the CFO invest?\nData: data/autoparts.csv · Time: ~15 min\n\nFrom your regression output, read Significance F (overall test) — is the model useful at all?\nIn the Coefficients table, mark each predictor significant (\\(|t| &gt; 2\\), p &lt; 0.05) or not — sort the four drivers into “real” vs. “can’t tell.”\nPrice the endcap: predict sales for a planned store (pop = 120,000, income = 55,000, yelp = 4.0) with endcap = 0 and with endcap = 1; the difference is the endcap’s dollar value.\nState the investment call in three sentences: the lever to fund · the number · the caveat.\n\nHand in (1 slide): your significant-vs-not verdict, the endcap’s dollar value, and the CFO recommendation."
+    "text": "⏱️ Team Sprint 2 — Test the drivers & make the call\n\nDecide: which drivers are real, what is an endcap worth, and where should the CFO invest?\nData: data/autoparts.csv · Time: ~15 min\n\nFrom your regression output, read Significance F (overall test) — is the model useful at all?\nIn the Coefficients table, mark each predictor significant (\\(|t| &gt; 2\\), p &lt; 0.05) or not — sort the four drivers into “real” vs. “can’t tell.”\nPrice the endcap: predict sales for a planned store (pop = 120,000, income = 55,000, yelp = 4.0) with endcap = 0 and with endcap = 1; the difference is the endcap’s dollar value.\nState the investment call in three sentences: the lever to fund · the number · the caveat.\n\nSubmit before you leave (graded, one slide per group): your CFO recommendation (which lever to fund) + the key numbers (Significance F, the significant-vs-not verdict, the endcap’s dollar value) + the two things you would challenge in the analysis."
   },
   {
     "objectID": "lecture_slides/11_chapter_multiple_regression/11_chapter_multiple_regression.html#debrief-managers-takeaway-lecture-2",
@@ -2645,7 +2645,7 @@
     "href": "lecture_slides/11_chapter_multiple_regression/11_chapter_multiple_regression.html#managers-takeaway",
     "title": " QM 6700: Business Analytics ",
     "section": "Manager’s Takeaway",
-    "text": "Manager’s Takeaway\n\n\nOne sentence: for this 45-store chain, service and merchandising — not location demographics — drive sales, so invest in Yelp rating (+$642K/star) and endcap placement (+$816K), each statistically decisive.\nOne number to remember: $816K — the value of an endcap, read straight off a dummy variable’s coefficient, holding everything else constant.\nOne caveat: the model describes 45 existing stores; it does not prove that buying an endcap will cause +$816K at a brand-new store. Correlation control is the best we can do with observational data — pilot it, then re-estimate.\nPractice with the real data: data/autoparts.csv + Excel Regression → reproduce \\(R^2 = 0.932\\), \\(F = 136.7\\), the four coefficients, and the prediction. Worked solutions: data/autoparts_regression.xlsx."
+    "text": "Manager’s Takeaway\n\n\nOne sentence: for this 45-store chain, service and merchandising drive sales, not location demographics — so invest in Yelp rating (+$642K/star) and endcap placement (+$816K), each statistically decisive.\nOne number to remember: $816K — the value of an endcap, read straight off a dummy variable’s coefficient, holding everything else constant.\nOne caveat: the model describes 45 existing stores; it does not prove that buying an endcap will cause +$816K at a brand-new store. Correlation control is the best we can do with observational data — pilot it, then re-estimate.\nPractice with the real data: data/autoparts.csv + Excel Regression → reproduce \\(R^2 = 0.932\\), \\(F = 136.7\\), the four coefficients, and the prediction. Worked solutions: data/autoparts_regression.xlsx."
   },
   {
     "objectID": "lecture_slides/11_chapter_multiple_regression/11_chapter_multiple_regression.html#summary",
@@ -2659,7 +2659,7 @@
     "href": "lecture_slides/11_chapter_multiple_regression/11_chapter_multiple_regression.html#carry-forward",
     "title": " QM 6700: Business Analytics ",
     "section": "Carry-forward",
-    "text": "Carry-forward\n\nYour client (homework, part 2): for your team’s case, run the overall \\(F\\)-test and the individual \\(t\\)-tests; if your case has a natural category, add a dummy and interpret its coefficient as a group difference. Check VIF for any predictors you suspect overlap. Close with a one-paragraph recommendation: which lever should the client pull, and what is it worth?\nWhere we’ve been: from comparing two groups (inference) to predicting with one driver (simple regression) to isolating many drivers at once (today) — the analyst’s core toolkit for turning data into a defensible business decision."
+    "text": "Carry-forward\n\nHomework (individual): today’s tools (multiple regression, the \\(F\\) vs. \\(t\\) tests, and dummy variables) are drilled on HW3 — individual problem sets in the previous-edition format, posted on Brightspace. Run them yourself so you can check an analyst who uses them.\nWhere we’ve been: from comparing two groups (inference) to predicting with one driver (simple regression) to isolating many drivers at once (today) — the analyst’s core toolkit for turning data into a defensible business decision."
   },
   {
     "objectID": "lecture_slides/07_chapter_interval_estimation/07_chapter_interval_estimation.html#overview",
@@ -2687,7 +2687,7 @@
     "href": "lecture_slides/07_chapter_interval_estimation/07_chapter_interval_estimation.html#the-brief-why-a-sample-mean-wobbles",
     "title": " QM 6700: Business Analytics ",
     "section": "The Brief — Why a Sample Mean Wobbles",
-    "text": "The Brief — Why a Sample Mean Wobbles\n\n\nA different 30 days — say, July — would give a different mean eRPM. So would any other random sample.\nThat wobble is not a mistake; it is the price of working from a sample instead of the whole population.\nLecture 1’s question: if the sample mean changes every time we sample, how can we trust any one of them? The answer is the sampling distribution — and it is surprisingly well-behaved."
+    "text": "The Brief — Why a Sample Mean Wobbles\n\n\nA different 30 days (say, July) would give a different mean eRPM. So would any other random sample.\nThat wobble is not a mistake; it is the price of working from a sample instead of the whole population.\nLecture 1’s question: if the sample mean changes every time we sample, how can we trust any one of them? The answer is the sampling distribution — and it is surprisingly well-behaved."
   },
   {
     "objectID": "lecture_slides/07_chapter_interval_estimation/07_chapter_interval_estimation.html#population-sample-inference",
@@ -2778,7 +2778,7 @@
     "href": "lecture_slides/07_chapter_interval_estimation/07_chapter_interval_estimation.html#team-sprint-1-how-trustworthy-is-30-days",
     "title": " QM 6700: Business Analytics ",
     "section": "⏱️ Team Sprint 1 — How Trustworthy Is 30 Days?",
-    "text": "⏱️ Team Sprint 1 — How Trustworthy Is 30 Days?\n\nDecide: is 30 days a precise enough sample to pin down B’s true mean eRPM — or just a noisy first look?\nData: data/vungle_estimation.xlsx (sheet eRPM_by_day) · Time: ~10 min\n\nWith the ToolPak’s Descriptive Statistics (or =AVERAGE / =STDEV.S), get \\(\\bar{x}\\) and \\(s\\) for erpm_B.\nCompute the standard error \\(s/\\sqrt{30}\\) — the typical wobble of a 30-day mean.\nCompute what the standard error would be at \\(n = 120\\) (\\(s/\\sqrt{120}\\)). By how much does it shrink, and why?\n\nHand in (1 slide): B’s \\(\\bar{x}\\), \\(s\\), the standard error at \\(n=30\\) vs. \\(n=120\\), and a one-line verdict: precise enough, or test longer?"
+    "text": "⏱️ Team Sprint 1 — How Trustworthy Is 30 Days?\n\nDecide: is 30 days a precise enough sample to pin down B’s true mean eRPM — or just a noisy first look?\nData: data/vungle_estimation.xlsx (sheet eRPM_by_day) · Time: ~10 min\n\nWith the ToolPak’s Descriptive Statistics (or =AVERAGE / =STDEV.S), get \\(\\bar{x}\\) and \\(s\\) for erpm_B.\nCompute the standard error \\(s/\\sqrt{30}\\) — the typical wobble of a 30-day mean.\nCompute what the standard error would be at \\(n = 120\\) (\\(s/\\sqrt{120}\\)). By how much does it shrink, and why?\n\nSubmit before you leave (graded, one slide per group): your call (precise enough now, or test longer) plus B’s \\(\\bar{x}\\), \\(s\\), and the standard error at \\(n=30\\) vs. \\(n=120\\), and the two things you would challenge in this read of the data."
   },
   {
     "objectID": "lecture_slides/07_chapter_interval_estimation/07_chapter_interval_estimation.html#debrief-lecture-1-takeaway",
@@ -2792,7 +2792,7 @@
     "href": "lecture_slides/07_chapter_interval_estimation/07_chapter_interval_estimation.html#carry-forward-to-lecture-2",
     "title": " QM 6700: Business Analytics ",
     "section": "Carry-forward to Lecture 2",
-    "text": "Carry-forward to Lecture 2\n\nWe can now say how much a 30-day mean wobbles. Next we turn that wobble into a confidence interval — a stated range for B’s true mean eRPM — and answer the manager’s real question: $3.46, give or take how much?"
+    "text": "Carry-forward to Lecture 2\n\nWe can now say how much a 30-day mean wobbles. Next we turn that wobble into a confidence interval (a stated range for B’s true mean eRPM) and answer the manager’s real question: $3.46, give or take how much?"
   },
   {
     "objectID": "lecture_slides/07_chapter_interval_estimation/07_chapter_interval_estimation.html#the-brief-3.46-give-or-take-how-much",
@@ -2946,14 +2946,14 @@
     "href": "lecture_slides/07_chapter_interval_estimation/07_chapter_interval_estimation.html#sample-size-for-a-proportion",
     "title": " QM 6700: Business Analytics ",
     "section": "Sample Size for a Proportion",
-    "text": "Sample Size for a Proportion\n\n\nThe proportion version, solving the same way:\n\n\n\\[\nn = \\frac{z_{\\alpha/2}^{2}\\,p^*(1-p^*)}{E^{2}}\n\\]\n\n\n\\(p^*\\) is a planning value for the proportion: a prior estimate, a pilot, or — if you know nothing — the conservative \\(p^* = 0.5\\), which maximizes \\(p^*(1-p^*)\\) and gives the largest (safest) \\(n\\).\nPSI example: for \\(E = 0.03\\) at 99% (\\(z = 2.576\\)): with \\(p^* = 0.44\\), \\(n = 1817\\); with the conservative \\(p^* = 0.5\\), \\(n = 1844\\). When unsure, plan for the larger."
+    "text": "Sample Size for a Proportion\n\n\nThe proportion version, solving the same way:\n\n\n\\[\nn = \\frac{z_{\\alpha/2}^{2}\\,p^*(1-p^*)}{E^{2}}\n\\]\n\n\n\\(p^*\\) is a planning value for the proportion: a prior estimate, a pilot, or (if you know nothing) the conservative \\(p^* = 0.5\\), which maximizes \\(p^*(1-p^*)\\) and gives the largest (safest) \\(n\\).\nPSI example: for \\(E = 0.03\\) at 99% (\\(z = 2.576\\)): with \\(p^* = 0.44\\), \\(n = 1817\\); with the conservative \\(p^* = 0.5\\), \\(n = 1844\\). When unsure, plan for the larger."
   },
   {
     "objectID": "lecture_slides/07_chapter_interval_estimation/07_chapter_interval_estimation.html#team-sprint-2-vungles-estimation-memo",
     "href": "lecture_slides/07_chapter_interval_estimation/07_chapter_interval_estimation.html#team-sprint-2-vungles-estimation-memo",
     "title": " QM 6700: Business Analytics ",
     "section": "⏱️ Team Sprint 2 — Vungle’s Estimation Memo",
-    "text": "⏱️ Team Sprint 2 — Vungle’s Estimation Memo\n\nDecide: what is B’s true mean eRPM and conversion rate (each \\(\\pm\\) a margin), and how long must the next test run for \\(\\pm\\$0.05\\) precision?\nData: data/vungle_estimation.xlsx · Time: ~14 min\n\n95% CI for mean eRPM (B): \\(\\bar{x} \\pm t_{0.025,29}\\,s/\\sqrt{30}\\) — use =CONFIDENCE.T(0.05, s, 30) for the margin.\n95% CI for the daily conversion rate (B): same steps on the conv_B_pct column.\nSample size: how many days for the eRPM margin to reach \\(\\pm\\$0.05\\)? Use =CEILING((1.96*s/0.05)^2,1).\n\nHand in (1 slide): the two intervals (with a one-line plain-English reading of each) and the required number of days — your estimation memo to Vungle."
+    "text": "⏱️ Team Sprint 2 — Vungle’s Estimation Memo\n\nDecide: what is B’s true mean eRPM and conversion rate (each \\(\\pm\\) a margin), and how long must the next test run for \\(\\pm\\$0.05\\) precision?\nData: data/vungle_estimation.xlsx · Time: ~14 min\n\n95% CI for mean eRPM (B): \\(\\bar{x} \\pm t_{0.025,29}\\,s/\\sqrt{30}\\) — use =CONFIDENCE.T(0.05, s, 30) for the margin.\n95% CI for the daily conversion rate (B): same steps on the conv_B_pct column.\nSample size: how many days for the eRPM margin to reach \\(\\pm\\$0.05\\)? Use =CEILING((1.96*s/0.05)^2,1).\n\nSubmit before you leave (graded, one slide per group): your estimation memo to Vungle — the two 95% intervals (with a one-line reading of each) and the days needed for \\(\\pm\\$0.05\\), plus the two things you would challenge before banking on these numbers."
   },
   {
     "objectID": "lecture_slides/07_chapter_interval_estimation/07_chapter_interval_estimation.html#what-the-intervals-tell-vungle",
@@ -2974,7 +2974,7 @@
     "href": "lecture_slides/07_chapter_interval_estimation/07_chapter_interval_estimation.html#managers-takeaway",
     "title": " QM 6700: Business Analytics ",
     "section": "Manager’s Takeaway",
-    "text": "Manager’s Takeaway\n\n\nOne sentence: a confidence interval turns a point estimate into a defensible range — B’s true mean eRPM is $3.46 \\(\\pm\\) $0.13 at 95% confidence — and the margin of error is the number a manager should actually negotiate over.\nOne number to remember: \\(E = t_{\\alpha/2}\\,s/\\sqrt{n}\\) — and the \\(\\sqrt{n}\\) in the denominator, which makes precision expensive.\nOne caveat: “95% confident” describes the procedure over many samples, not a probability for this one interval — and overlapping intervals do not settle a comparison."
+    "text": "Manager’s Takeaway\n\n\nOne sentence: a confidence interval turns a point estimate into a defensible range (B’s true mean eRPM is $3.46 \\(\\pm\\) $0.13 at 95% confidence) and the margin of error is the number a manager should actually negotiate over.\nOne number to remember: \\(E = t_{\\alpha/2}\\,s/\\sqrt{n}\\) — and the \\(\\sqrt{n}\\) in the denominator, which makes precision expensive.\nOne caveat: “95% confident” describes the procedure over many samples, not a probability for this one interval — and overlapping intervals do not settle a comparison."
   },
   {
     "objectID": "lecture_slides/07_chapter_interval_estimation/07_chapter_interval_estimation.html#summary",
@@ -2988,7 +2988,7 @@
     "href": "lecture_slides/07_chapter_interval_estimation/07_chapter_interval_estimation.html#carry-forward",
     "title": " QM 6700: Business Analytics ",
     "section": "Carry-forward",
-    "text": "Carry-forward\n\nYour client (homework): for your team’s case, pick one key mean and one key proportion. Build a 95% confidence interval for each, write a one-sentence plain-English reading, and compute the sample size needed to halve one of the margins. Justify your planning value.\nNext time: we stop estimating ranges and start testing claims — Hypothesis Testing: fund B only if its mean eRPM beats a benchmark. Today’s standard error and \\(t\\) tools become the test statistic."
+    "text": "Carry-forward\n\nHomework (individual): today’s tools (confidence intervals and sample-size planning) are drilled on HW2 — individual problem sets in the previous-edition format, posted on Brightspace. Build the intervals and solve for \\(n\\) yourself, so you can check an analyst who hands you a range.\nNext time: we stop estimating ranges and start testing claims — Hypothesis Testing: fund B only if its mean eRPM beats a benchmark. Today’s standard error and \\(t\\) tools become the test statistic."
   },
   {
     "objectID": "lecture_slides/09_chapter_hypothesis_tests_two_populations/09_chapter_hypothesis_tests_two_populations.html#overview",
@@ -3002,7 +3002,7 @@
     "href": "lecture_slides/09_chapter_hypothesis_tests_two_populations/09_chapter_hypothesis_tests_two_populations.html#june-30-2014-two-analysts-and-one-month-of-data",
     "title": " QM 6700: Business Analytics ",
     "section": "June 30, 2014 — Two Analysts and One Month of Data",
-    "text": "June 30, 2014 — Two Analysts and One Month of Data\n\n\nVungle is a mobile ad-tech startup: it serves 15-second video ads inside other companies’ apps and earns revenue mainly when viewers install the advertised app (cost-per-install).\nTwo Darden MBAs, Andrew Kritzer and Hammond Guerin, built a new ad-serving algorithm (B) and ran it head-to-head against the existing one (A) for the entire month of June 2014.\nThe split was random: an MD5 hash of each user ID sent 1/16 of traffic to B, the rest to A. Same market, same days, same apps — only the algorithm differs.\nThe metric that pays the bills is eRPM: effective revenue per 1,000 impressions.\nGuerin is about to become Vungle’s head of data science. His credibility — and his stock options — ride on this call."
+    "text": "June 30, 2014 — Two Analysts and One Month of Data\n\n\nVungle is a mobile ad-tech startup: it serves 15-second video ads inside other companies’ apps and earns revenue mainly when viewers install the advertised app (cost-per-install).\nTwo Darden MBAs, Andrew Kritzer and Hammond Guerin, built a new ad-serving algorithm (B) and ran it head-to-head against the existing one (A) for the entire month of June 2014.\nThe split was random: an MD5 hash of each user ID sent 1/16 of traffic to B, the rest to A. Same market, same days, same apps — only the algorithm differs.\nThe metric that pays the bills is eRPM: effective revenue per 1,000 impressions.\nGuerin is about to become Vungle’s head of data science. His credibility (and his stock options) ride on this call."
   },
   {
     "objectID": "lecture_slides/09_chapter_hypothesis_tests_two_populations/09_chapter_hypothesis_tests_two_populations.html#the-brief-todays-managerial-question",
@@ -3030,7 +3030,7 @@
     "href": "lecture_slides/09_chapter_hypothesis_tests_two_populations/09_chapter_hypothesis_tests_two_populations.html#two-ways-to-collect-the-comparison",
     "title": " QM 6700: Business Analytics ",
     "section": "Two Ways to Collect the Comparison",
-    "text": "Two Ways to Collect the Comparison\n\nSuppose you run a taste test of two flavors:\n\nPaired test (matched samples): select one random sample and let every person rate both flavors (in random order).\n\nEach sampled unit produces one pair of data values.\n\nUnpaired test (independent samples): select two random samples and let each group rate only one flavor.\n\nNo natural link between an observation in group 1 and any observation in group 2.\n\nWhich is better? The paired test tends to remove much of the extraneous variation — differences in people, days, and experimental conditions — so the flavor effect stands out."
+    "text": "Two Ways to Collect the Comparison\n\nSuppose you run a taste test of two flavors:\n\nPaired test (matched samples): select one random sample and let every person rate both flavors (in random order).\n\nEach sampled unit produces one pair of data values.\n\nUnpaired test (independent samples): select two random samples and let each group rate only one flavor.\n\nNo natural link between an observation in group 1 and any observation in group 2.\n\nWhich is better? The paired test tends to remove much of the extraneous variation (differences in people, days, and experimental conditions) so the flavor effect stands out."
   },
   {
     "objectID": "lecture_slides/09_chapter_hypothesis_tests_two_populations/09_chapter_hypothesis_tests_two_populations.html#two-designs-in-pictures",
@@ -3128,7 +3128,7 @@
     "href": "lecture_slides/09_chapter_hypothesis_tests_two_populations/09_chapter_hypothesis_tests_two_populations.html#step-2-hypotheses",
     "title": " QM 6700: Business Analytics ",
     "section": "Step 2 — Hypotheses",
-    "text": "Step 2 — Hypotheses\n\n\n\\[\nH_0: \\mu_d \\leq 0 \\qquad \\text{vs.} \\qquad H_a: \\mu_d &gt; 0 \\qquad \\text{(upper-tail)} \\qquad \\alpha = 0.05\n\\]\n\n\n\nWhy one-tailed? The business decision is asymmetric: Vungle rolls out B only if it is better. “B is worse” and “B is the same” lead to the identical action — keep A.\n\\(\\mu_d\\) = the true mean daily eRPM advantage of B over A.\nWe will also report the two-tailed \\(p\\)-value — the more conservative convention — and the conclusion will not change."
+    "text": "Step 2 — Hypotheses\n\n\n\\[\nH_0: \\mu_d \\leq 0 \\qquad \\text{vs.} \\qquad H_a: \\mu_d &gt; 0 \\qquad \\text{(upper-tail)} \\qquad \\alpha = 0.05\n\\]\n\n\n\nWhy one-tailed? The business decision is asymmetric: Vungle rolls out B only if it is better. “B is worse” and “B is the same” lead to the identical action — keep A.\n\\(\\mu_d\\) = the true mean daily eRPM advantage of B over A.\nWe will also report the two-tailed \\(p\\)-value (the more conservative convention) and the conclusion will not change."
   },
   {
     "objectID": "lecture_slides/09_chapter_hypothesis_tests_two_populations/09_chapter_hypothesis_tests_two_populations.html#step-3-test-statistic",
@@ -3170,7 +3170,7 @@
     "href": "lecture_slides/09_chapter_hypothesis_tests_two_populations/09_chapter_hypothesis_tests_two_populations.html#team-sprint-1-is-the-lift-real",
     "title": " QM 6700: Business Analytics ",
     "section": "⏱️ Team Sprint 1 — Is the lift real?",
-    "text": "⏱️ Team Sprint 1 — Is the lift real?\n\nDecide: does algorithm B truly earn more per 1,000 impressions than A?\nData: data/vungle_erpm_paired.csv · Time: ~8 min\n\nIn Excel: Data → Data Analysis → t-Test: Paired Two Sample for Means (Variable 1 = erpm_B, Variable 2 = erpm_A, α = 0.05).\nRead off t Stat and P(T&lt;=t) one-tail; build the 95% CI for the mean difference.\nDecide at α = 0.05 — is the lift real?\n\nHand in (1 slide): your \\(t\\), \\(p\\), and CI, plus a one-line verdict for Guerin."
+    "text": "⏱️ Team Sprint 1 — Is the lift real?\n\nDecide: does algorithm B truly earn more per 1,000 impressions than A?\nData: data/vungle_erpm_paired.csv · Time: ~8 min\n\nIn Excel: Data → Data Analysis → t-Test: Paired Two Sample for Means (Variable 1 = erpm_B, Variable 2 = erpm_A, α = 0.05).\nRead off t Stat and P(T&lt;=t) one-tail; build the 95% CI for the mean difference.\nDecide at α = 0.05 — is the lift real?\n\nSubmit before you leave (graded, one slide per group): your verdict on the lift (real or not) + your \\(t\\), \\(p\\), and 95% CI + the two things you would challenge in this paired analysis."
   },
   {
     "objectID": "lecture_slides/09_chapter_hypothesis_tests_two_populations/09_chapter_hypothesis_tests_two_populations.html#setup-and-point-estimate",
@@ -3296,7 +3296,7 @@
     "href": "lecture_slides/09_chapter_hypothesis_tests_two_populations/09_chapter_hypothesis_tests_two_populations.html#team-sprint-2-make-the-call",
     "title": " QM 6700: Business Analytics ",
     "section": "⏱️ Team Sprint 2 — Make the call",
-    "text": "⏱️ Team Sprint 2 — Make the call\n\nThe conflict: B earns more per impression (paired \\(t = 3.33\\)) but converts fewer installs (\\(z = -29.6\\)). Both results are statistically decisive.\nDecide (≈12 min): write CEO Jaffer’s rollout recommendation.\n\nWhich metric should drive the decision for Vungle’s business model — and why?\nWhat would you monitor after rollout, and why?\nState it in three sentences: the call · the number · the caveat.\n\nHand in (1 slide): your rollout recommendation to the CEO."
+    "text": "⏱️ Team Sprint 2 — Make the call\n\nThe conflict: B earns more per impression (paired \\(t = 3.33\\)) but converts fewer installs (\\(z = -29.6\\)). Both results are statistically decisive.\nDecide (≈12 min): write CEO Jaffer’s rollout recommendation.\n\nWhich metric should drive the decision for Vungle’s business model — and why?\nWhat would you monitor after rollout, and why?\nState it in three sentences: the call · the number · the caveat.\n\nSubmit before you leave (graded, one slide per group): your rollout recommendation to CEO Jaffer + the metric you chose and its key number (\\(t = 3.33\\) eRPM or \\(z = -29.6\\) conversion) + the two things you would challenge before committing all traffic."
   },
   {
     "objectID": "lecture_slides/09_chapter_hypothesis_tests_two_populations/09_chapter_hypothesis_tests_two_populations.html#reconciling-the-two-metrics",
@@ -3345,14 +3345,14 @@
     "href": "lecture_slides/09_chapter_hypothesis_tests_two_populations/09_chapter_hypothesis_tests_two_populations.html#summary",
     "title": " QM 6700: Business Analytics ",
     "section": "Summary",
-    "text": "Summary\nSome key takeaways from this session:\n\nDesign comes first: matched (paired) samples reduce two-sample problems to one-sample problems on the differences — and remove extraneous unit-to-unit variation.\nThe paired \\(t\\), pooled \\(t\\), Welch \\(t\\), two-sample \\(z\\), and two-proportion \\(z\\) all reuse the Topic 8 logic; only the parameter (a difference) and the standard error change.\nDefault to Welch for independent means; pool only under \\(H_0\\) for proportion tests.\nSame data, different design → different conclusion: Vungle’s lift is decisive paired (\\(t = 3.33\\)) and invisible unpaired (\\(t = 1.51\\)).\nStatistical significance ≠ practical significance: with 252M impressions everything is “significant” — judge the effect size; with \\(n = 15\\) per group, real effects can hide — mind the power.\nTest results are inputs to decisions, not decisions: the rollout call weighs the metric that matches the business model."
+    "text": "Summary\nSome key takeaways from this session:\n\nDesign comes first: matched (paired) samples reduce two-sample problems to one-sample problems on the differences — and remove extraneous unit-to-unit variation.\nThe paired \\(t\\), pooled \\(t\\), Welch \\(t\\), two-sample \\(z\\), and two-proportion \\(z\\) all reuse the Topic 8 logic; only the parameter (a difference) and the standard error change.\nDefault to Welch for independent means; pool only under \\(H_0\\) for proportion tests.\nSame data, different design → different conclusion: Vungle’s lift is decisive paired (\\(t = 3.33\\)) and invisible unpaired (\\(t = 1.51\\)).\nStatistical significance ≠ practical significance: with 252M impressions everything is “significant” (judge the effect size); with \\(n = 15\\) per group, real effects can hide — mind the power.\nTest results are inputs to decisions, not decisions: the rollout call weighs the metric that matches the business model."
   },
   {
     "objectID": "lecture_slides/09_chapter_hypothesis_tests_two_populations/09_chapter_hypothesis_tests_two_populations.html#carry-forward",
     "href": "lecture_slides/09_chapter_hypothesis_tests_two_populations/09_chapter_hypothesis_tests_two_populations.html#carry-forward",
     "title": " QM 6700: Business Analytics ",
     "section": "Carry-forward",
-    "text": "Carry-forward\n\nYour client (homework): find two groups in your team’s case — two segments, two periods, or treatment vs. control — and run the right two-sample test. Justify the design: paired or independent?\nNext time: we stop comparing and start predicting — Simple Regression (a new client: an auto-parts retailer choosing store sites)."
+    "text": "Carry-forward\n\nHomework (individual): today’s tools (two-sample tests: paired \\(t\\), independent/Welch \\(t\\), two-proportion \\(z\\)) are drilled on HW3, individual problem sets in the previous-edition format, posted on Brightspace. Run them yourself so you can check an analyst who uses them.\nNext time: we stop comparing and start predicting — Simple Regression (a new client: an auto-parts retailer choosing store sites)."
   },
   {
     "objectID": "syllabus.html#course-description-and-objectives",

@@ -606,7 +606,7 @@ E(X) = 1.20 \text{ TVs} \qquad \sigma^2 = 1.660 \qquad \sigma = \sqrt{1.660} = 1
 </div>
 <p><br></p>
 <ul>
-<li class="fragment"><strong>Vungle check:</strong> <span class="math inline">\(n\)</span> impressions in a burst (1) — each one installs or not (2) — the conversion rate <span class="math inline">\(p\)</span> is the same within a stable burst (3) — one user installing does not change another’s odds (4). All four hold (approximately). So installs are <strong>Binomial</strong>.</li>
+<li class="fragment"><strong>Vungle check:</strong> <span class="math inline">\(n\)</span> impressions in a burst (1); each one installs or not (2); the conversion rate <span class="math inline">\(p\)</span> is the same within a stable burst (3); one user installing does not change another’s odds (4). All four hold (approximately). So installs are <strong>Binomial</strong>.</li>
 </ul>
 </section>
 <section id="the-binomial-probability-function" class="slide level2 center">
@@ -639,7 +639,7 @@ f(x) = \binom{n}{x} p^x (1-p)^{n-x}, \qquad x = 0, 1, 2, \dots, n
 <p><br></p>
 <ul>
 <li class="fragment"><p>Evans Electronics loses about <strong>10%</strong> of hourly employees per year (<span class="math inline">\(p = 0.10\)</span>). Choosing <strong>3</strong> employees at random (<span class="math inline">\(n = 3\)</span>), what is <span class="math inline">\(P(\text{exactly 1 leaves})\)</span>?</p></li>
-<li class="fragment"><p>One specific way — leaver, stayer, stayer — has probability:</p></li>
+<li class="fragment"><p>One specific way (leaver, stayer, stayer) has probability:</p></li>
 </ul>
 <div class="fragment">
 <p><span class="math display">\[
@@ -852,7 +852,7 @@ X_A \sim \text{Binomial}(1000,\, 0.0040) \qquad\qquad X_B \sim \text{Binomial}(1
 <li>Compute the tail <span class="math inline">\(P(X \geq 8) =\)</span> <code>1 - BINOM.DIST(7, 1000, 0.004, TRUE)</code>.</li>
 <li>If a worker absorbs 7 installs/burst, what fraction of A’s bursts overflow?</li>
 </ol>
-<p><strong>Hand in (1 slide):</strong> <span class="math inline">\(E(X)\)</span>, <span class="math inline">\(\sigma\)</span>, <span class="math inline">\(P(X \geq 8)\)</span>, and a one-line capacity recommendation.</p>
+<p><strong>Submit before you leave (graded, one slide per group):</strong> your capacity call for Algorithm A + <span class="math inline">\(E(X)\)</span>, <span class="math inline">\(\sigma\)</span>, and <span class="math inline">\(P(X \geq 8)\)</span> + the <strong>two things you would challenge</strong> in the analysis.</p>
 </div>
 </section>
 <section id="debrief-managers-takeaway-lecture-1" class="slide level2 center">
@@ -867,7 +867,7 @@ X_A \sim \text{Binomial}(1000,\, 0.0040) \qquad\qquad X_B \sim \text{Binomial}(1
 <section id="carry-forward-lecture-1" class="slide level2 center">
 <h2>Carry-forward (Lecture 1)</h2>
 <ul>
-<li><p><strong>Your client (homework):</strong> find a <strong>yes/no count over a fixed <span class="math inline">\(n\)</span></strong> in your team’s case (defective units, conversions, churned customers). Model it as Binomial, estimate <span class="math inline">\(p\)</span>, and report <span class="math inline">\(E(X)\)</span>, <span class="math inline">\(\sigma\)</span>, and one tail probability with <code>BINOM.DIST</code>.</p></li>
+<li><p><strong>Homework (individual):</strong> today’s tools (the Binomial and Poisson models) are drilled on <strong>HW2</strong> — individual problem sets in the previous-edition format, posted on Brightspace. Run them yourself so you can check an analyst who uses them.</p></li>
 <li><p><strong>Next time:</strong> A’s rate is small and <span class="math inline">\(n\)</span> is huge — there is a simpler model built exactly for <strong>rare events over an interval</strong>: the <strong>Poisson</strong> distribution.</p></li>
 </ul>
 </section></section>
@@ -1171,7 +1171,7 @@ f(4) = \frac{3^4 e^{-3}}{4!} = \frac{81 \times 0.0498}{24} = 0.1680
 <li>Compute the tail <span class="math inline">\(P(X \geq 8) =\)</span> <code>1 - POISSON.DIST(7, 4, TRUE)</code>.</li>
 <li>Pick a capacity level <span class="math inline">\(N\)</span> so that <span class="math inline">\(P(X \geq N) &lt; 1\%\)</span> (a “five-nines minus” buffer). What is <span class="math inline">\(N\)</span>?</li>
 </ol>
-<p><strong>Hand in (1 slide):</strong> your <span class="math inline">\(\lambda\)</span>, <span class="math inline">\(P(X \geq 8)\)</span>, the chosen capacity <span class="math inline">\(N\)</span>, and a one-line plan.</p>
+<p><strong>Submit before you leave (graded, one slide per group):</strong> your pipeline plan for Algorithm A + your <span class="math inline">\(\lambda\)</span>, <span class="math inline">\(P(X \geq 8)\)</span>, and the chosen capacity <span class="math inline">\(N\)</span> + the <strong>two things you would challenge</strong> in the analysis.</p>
 </div>
 </section>
 <section id="debrief-managers-takeaway-lecture-2" class="slide level2 center">
@@ -1186,7 +1186,7 @@ f(4) = \frac{3^4 e^{-3}}{4!} = \frac{81 \times 0.0498}{24} = 0.1680
 <section id="carry-forward-lecture-2" class="slide level2 center">
 <h2>Carry-forward (Lecture 2)</h2>
 <ul>
-<li><p><strong>Your client (homework):</strong> find a <strong>rare-event count over an interval</strong> in your team’s case (defects per batch, complaints per week, arrivals per hour). Estimate <span class="math inline">\(\lambda\)</span>, build the PMF with <code>POISSON.DIST</code>, and report a tail probability that supports a capacity or staffing decision.</p></li>
+<li><p><strong>Homework (individual):</strong> today’s tools (the Binomial and Poisson models) are drilled on <strong>HW2</strong> — individual problem sets in the previous-edition format, posted on Brightspace. Run them yourself so you can check an analyst who uses them.</p></li>
 <li><p><strong>Next time:</strong> we move from <strong>discrete counts</strong> to <strong>continuous measurements</strong> — the <strong>Normal</strong> distribution, and the question <em>“what is the probability eRPM exceeds $3.50?”</em></p></li>
 </ul>
 </section></section>
@@ -1265,7 +1265,7 @@ f(4) = \frac{3^4 e^{-3}}{4!} = \frac{81 \times 0.0498}{24} = 0.1680
 <p><br></p>
 <ul>
 <li class="fragment"><p><strong>One sentence:</strong> a conversion rate plus a count structure (fixed <span class="math inline">\(n\)</span> → <strong>Binomial</strong>; rare arrivals → <strong>Poisson</strong>) gives the <strong>full probability distribution</strong> of installs — and every capacity question is a <strong>tail probability</strong>.</p></li>
-<li class="fragment"><p><strong>One number to remember:</strong> <span class="math inline">\(P(X \geq 8) \approx\)</span> <strong>0.051</strong> for Algorithm A bursts — about 1 in 20 — the number that sizes the overflow buffer.</p></li>
+<li class="fragment"><p><strong>One number to remember:</strong> <span class="math inline">\(P(X \geq 8) \approx\)</span> <strong>0.051</strong> for Algorithm A bursts (about 1 in 20) — the number that sizes the overflow buffer.</p></li>
 <li class="fragment"><p><strong>One caveat:</strong> both models assume a <strong>constant, independent</strong> rate; real traffic spikes (viral campaigns) cluster arrivals and fatten the tail — re-estimate the rate and watch for over-dispersion.</p></li>
 <li class="fragment"><p><strong>Practice with the real data:</strong> <code>data/vungle_daily.csv</code> → estimate <span class="math inline">\(p\)</span>; <code>data/vungle_discrete.xlsx</code> → reproduce the PMF/CDF tables with <code>BINOM.DIST</code> and <code>POISSON.DIST</code>.</p></li>
 </ul>

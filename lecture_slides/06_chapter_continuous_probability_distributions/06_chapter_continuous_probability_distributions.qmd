@@ -76,7 +76,7 @@ html-math-method:
 
 - **How today's studio runs:** I demo each idea on a textbook example → **your team fits the Normal to Vungle eRPM** (two sprints) → we debrief what the model can and cannot tell a manager.
 
-- By the end, **your team** turns a fitted distribution into a planning number — a probability and a percentile — and stress-tests the assumption behind it.
+- By the end, **your team** turns a fitted distribution into a planning number (a probability and a percentile) and stress-tests the assumption behind it.
 
 ## How Today's Tools Answer It
 
@@ -106,7 +106,7 @@ Every tool today maps onto the Vungle eRPM data:
 
 <br>
 
-- The payoff question — $P(\text{eRPM} > \$3.50)$ — waits for Lecture 2. First we build the machinery: **probability as area**, the **Normal** shape, and the **z-score** that unlocks any Normal.
+- The payoff question $P(\text{eRPM} > \$3.50)$ waits for Lecture 2. First we build the machinery: **probability as area**, the **Normal** shape, and the **z-score** that handles any Normal.
 
 - Anchor examples today: **Slater's Buffet** (uniform) and **Pep Zone** inventory (Normal). Then we fit the Normal to Vungle eRPM.
 
@@ -222,7 +222,7 @@ knitr::include_graphics("figs/uniform_slater.png")
 
 ::: nonincremental
 - 30% of customers take between 12 and 15 ounces — directly the **area** of the shaded rectangle, no calculus needed.
-- The same idea — **probability = area** — now carries over to the bell-shaped Normal, where the area is harder to compute by hand (so we lean on z-scores and Excel).
+- The same idea, **probability = area**, now carries over to the bell-shaped Normal, where the area is harder to compute by hand (so we lean on z-scores and Excel).
 :::
 
 # The Normal Probability Distribution {background-color="#cfb991"}
@@ -395,7 +395,7 @@ $$
 2. Apply the **empirical rule**: give the interval that should hold ~95% of days ($\bar{x} \pm 2s$).
 3. Standardize a \$3.50 day: compute $z = (3.50 - \bar{x})/s$. Is \$3.50 a good day, an average day, or a bad day?
 
-**Hand in (1 slide):** your $\bar{x}$, $s$, the 95% empirical interval, and one sentence on where \$3.50 sits.
+**Submit before you leave (graded, one slide per group):** your call on whether Normal is a sensible model for B's eRPM + the key numbers ($\bar{x}$, $s$, the 95% empirical interval, the $z$ for \$3.50) + the **two things you would challenge** in the fit.
 :::
 
 ## Debrief — Lecture 1 Takeaway
@@ -411,7 +411,7 @@ $$
 ## Carry-forward — Lecture 1
 
 ::: nonincremental
-- **Your client (homework):** pick a roughly continuous metric in your team's case (price, time, spend, rating). Compute its mean and sd, and use the **empirical rule** to describe a typical range. Flag whether a Normal model looks plausible from the histogram.
+- **Homework (individual):** today's tools (the Normal model, z-scores, and percentiles) are drilled on **HW2** — individual problem sets in the previous-edition format, posted on Brightspace. Run them yourself so you can check an analyst who uses them.
 
 - **Next time:** we cash in the model — exact tail probabilities ($P(\text{eRPM} > \$3.50)$), the **90th-percentile day**, a formal **normality check**, and the Normal approximation of the Binomial.
 :::
@@ -422,7 +422,7 @@ $$
 
 <br>
 
-> "Cash in the model. Tomorrow's eRPM is $\sim N(3.459, 0.344)$. **What's $P(\text{eRPM} > \$3.50)$? What eRPM defines a top-10% day?** And — before we trust any of it — **is the Normal assumption fair?**"
+> "Cash in the model. Tomorrow's eRPM is $\sim N(3.459, 0.344)$. **What's $P(\text{eRPM} > \$3.50)$? What eRPM defines a top-10% day?** And before we trust any of it, **is the Normal assumption fair?**"
 
 <br>
 
@@ -477,7 +477,7 @@ knitr::include_graphics("figs/excel_normdist_vungle.png")
 
 ::: nonincremental
 - `NORM.DIST(..., TRUE)` returns the area to the **left**; subtract from 1 for a right tail.
-- The standard-Normal route — standardize to $z = 0.12$, then `1 - NORM.S.DIST(0.12, TRUE)` — gives the **same** 0.4526. Two roads, one answer.
+- The standard-Normal route (standardize to $z = 0.12$, then `1 - NORM.S.DIST(0.12, TRUE)`) gives the **same** 0.4526. Two roads, one answer.
 :::
 
 # Normal Percentiles: NORM.INV {background-color="#cfb991"}
@@ -572,7 +572,7 @@ knitr::include_graphics("figs/vungle_qq.png")
 2. **Percentile:** `=NORM.INV(0.90, mean, sd)`. Report the **90th-percentile day** as a "great day" benchmark.
 3. **Check the assumption:** sort the 30 values; eyeball them against the Normal QQ plot (provided). Do they hug the line?
 
-**Hand in (1 slide):** $P(\text{eRPM} > \$3.50)$, the 90th-percentile eRPM, and a one-line verdict on whether the Normal model is trustworthy.
+**Submit before you leave (graded, one slide per group):** your verdict on whether to trust the Normal model + the key numbers ($P(\text{eRPM} > \$3.50)$, the 90th-percentile eRPM, the QQ-plot read) + the **two things you would challenge** in the analysis.
 :::
 
 # The Normal Approximation of the Binomial {background-color="#cfb991"}
@@ -695,7 +695,7 @@ knitr::include_graphics("figs/excel_normapprox_vungle.png")
 Some key takeaways from this session:
 
 - For a **continuous** variable, $P(X = x) = 0$; probability is the **area** under the density $f(x)$.
-- The **uniform** is the simplest model (probability ∝ interval length); the **Normal** — set by $\mu$ (location) and $\sigma$ (spread) — is the workhorse, with the **empirical rule** (68/95/99.7).
+- The **uniform** is the simplest model (probability ∝ interval length); the **Normal**, set by $\mu$ (location) and $\sigma$ (spread), is the workhorse, with the **empirical rule** (68/95/99.7).
 - **Standardize** with $z = (x - \mu)/\sigma$, then read areas off the single standard Normal $N(0,1)$.
 - In Excel: `NORM.DIST` for **probabilities** (tail areas), `NORM.INV` for **percentiles** — they are inverses.
 - **Check the assumption** with a QQ plot / Shapiro-Wilk before trusting a Normal probability.
@@ -705,7 +705,7 @@ Some key takeaways from this session:
 ## Carry-forward
 
 ::: nonincremental
-- **Your client (homework):** for your team's continuous metric, compute $P(X > \text{threshold})$ with `NORM.DIST` and a meaningful percentile with `NORM.INV`, then **check normality** with a QQ plot. State one decision the numbers inform.
+- **Homework (individual):** today's tools (the Normal model, z-scores, and percentiles) are drilled on **HW2** — individual problem sets in the previous-edition format, posted on Brightspace. Run them yourself so you can check an analyst who uses them.
 
 - **Next time:** we stop treating these 30 days as the whole story and recognize them as a **sample** — **Sampling & Estimation**: how to estimate the *true* eRPM, with a margin of error.
 :::

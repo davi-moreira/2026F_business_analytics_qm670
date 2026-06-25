@@ -38,7 +38,7 @@ html-math-method:
 ::: {.column style="width: 50%; text-align: center; justify-content: center; align-items: center;"}
 - Expected value of perfect information (EVPI)
 - Sample information, Bayes revision, and EVSI
-- Sensitivity: how robust is the call?
+- Sensitivity: does the call hold if the prior shifts?
 - From inference to action: making the rollout recommendation
 :::
 :::::
@@ -50,7 +50,7 @@ html-math-method:
 
 <br>
 
-- Earlier in our work with [Vungle](https://en.wikipedia.org/wiki/Liftoff_Mobile) — the mobile ad-tech startup that earns revenue when viewers **install** an advertised app — we tested whether their new ad-serving algorithm **B** beat the incumbent **A**.
+- Earlier in our work with [Vungle](https://en.wikipedia.org/wiki/Liftoff_Mobile) (the mobile ad-tech startup that earns revenue when viewers **install** an advertised app) we tested whether their new ad-serving algorithm **B** beat the incumbent **A**.
 
 - The verdict: B's daily eRPM (revenue per 1,000 impressions) ran about **\$0.11 higher** than A's, and a paired test said that lift was **real** ($t = 3.33$), worth roughly **\$26.5K/month** at June's traffic.
 
@@ -104,7 +104,7 @@ Every tool today maps onto the Vungle rollout:
 
 - The discipline is in the structuring: most bad business decisions come from a **missing alternative** or an **unstated state of nature**, not from arithmetic.
 
-- The whole apparatus — payoff tables, trees, EV — is just bookkeeping on top of these three lists.
+- The whole apparatus (payoff tables, trees, EV) is just bookkeeping on top of these three lists.
 
 ## The Vungle Decision, in Three Lists
 
@@ -355,7 +355,7 @@ knitr::include_graphics("figs/vungle_evpi.png")
 ```
 
 ::: nonincremental
-- **\$64K** is the *most* Vungle should ever pay to remove all doubt about B before deciding. Any real test — always imperfect — is worth **less** than this ceiling.
+- **\$64K** is the *most* Vungle should ever pay to remove all doubt about B before deciding. Any real test (always imperfect) is worth **less** than this ceiling.
 :::
 
 ## EVPI in Excel
@@ -541,7 +541,7 @@ knitr::include_graphics("figs/vungle_sensitivity.png")
 ```
 
 ::: nonincremental
-- "Roll out B" wins as long as $P(s_1)$ exceeds the **indifference prior** $p^{*} \approx 0.33$. Our prior (0.60) clears it comfortably — the decision is **robust**.
+- "Roll out B" wins as long as $P(s_1)$ exceeds the **indifference prior** $p^{*} \approx 0.33$. Our prior (0.60) clears it comfortably, so the call is **stable**.
 - Below one-third, keep A. The call only flips if we're *very* pessimistic about B.
 :::
 
@@ -559,7 +559,7 @@ $$
 
 :::
 
-- A **robust** decision is one that stays the same under small changes in the inputs. Here, B would have to be **more likely wrong than right** before we'd keep A.
+- A **stable** decision is one that holds under small changes in the inputs. Here, B would have to be **more likely wrong than right** before we'd keep A.
 
 - **This is the real payoff of structuring the decision:** we now know not just *what* to do, but *how sure we'd have to be to change our minds*. In Excel: a **What-If Data Table** varying $p$ traces the whole line.
 
@@ -575,7 +575,7 @@ $$
 3. Use the Bayes tables to get the posteriors, then **EVSI**; compare it to the **\$20K** test cost.
 4. Run a quick **sensitivity** check: at what prior $p^{*}$ would the call flip?
 
-**Hand in (1 slide):** your recommendation — the call · the EV · the one caveat (and: should Vungle buy the bigger test?).
+**Submit before you leave (graded, one slide per group):** your rollout call (roll out B, keep A, or test) + the **EV / EVPI / EVSI** and the tipping-point prior $p^{*}$ + the **two things you would challenge** in the analysis (e.g. the −160 downside, the priors).
 :::
 
 # Debrief — The Rollout Recommendation {background-color="#cfb991"}
@@ -589,7 +589,7 @@ $$
 | Best option on average? | EV | **Roll out B** (\$126.8K vs. \$0) |
 | Worth knowing the truth for sure? | EVPI | \$64K ceiling |
 | Worth running a bigger test? | EVSI | \$9.84K \< \$20K cost → **no** |
-| Robust to our prior? | Sensitivity | flips only below $p^{*} = 0.33$ |
+| Stable to our prior? | Sensitivity | flips only below $p^{*} = 0.33$ |
 
 <br>
 
@@ -612,11 +612,11 @@ $$
 
 <br>
 
-- **One sentence:** Structuring the rollout as a decision — alternatives, states, payoffs — says **roll out B**, because its expected value (**\$126.8K/yr**) beats keeping A, and a further test isn't worth its cost.
+- **One sentence:** Structuring the rollout as a decision (alternatives, states, payoffs) says **roll out B**, because its expected value (**\$126.8K/yr**) beats keeping A, and a further test isn't worth its cost.
 
 - **One number to remember:** **EVPI = \$64K** — the ceiling on what *any* information is worth here; the actual test cleared only \$9.84K of it.
 
-- **One caveat:** EV is a long-run average. "Roll out B" still risks a **−\$160K** year — sensitivity shows the call is robust (flips only below $p^{*} = 0.33$), but the downside is real, so monitor and stay ready to revert.
+- **One caveat:** EV is a long-run average. "Roll out B" still risks a **−\$160K** year — sensitivity shows the call is stable (flips only below $p^{*} = 0.33$), but the downside is real, so monitor and stay ready to revert.
 
 ## Summary
 
@@ -627,14 +627,14 @@ Some key takeaways from this session:
 - **Decide by expected value:** $EV(d_i) = \sum_j P(s_j) V_{ij}$; pick the best EV — but remember it's a long-run average that hides the downside.
 - **Value information before buying it:** **EVPI** is the ceiling (perfect info); **EVSI** is what a real, imperfect test is worth — buy a study only if its value beats its cost.
 - **Bayes turns a signal into revised odds:** prior → joint → marginal → posterior; the posteriors become the branch probabilities after the test.
-- **Sensitivity tells you how robust the call is:** find the prior $p^{*}$ where the decision flips; ours holds comfortably.
+- **Sensitivity tells you how stable the call is:** find the prior $p^{*}$ where the decision flips; ours holds comfortably.
 - **Inference and decision analysis are partners:** one says *what's true and how sure*; the other says *what to do about it*.
 :::
 
 ## Carry-forward
 
 ::: nonincremental
-- **Your client (homework):** frame **one real decision** in your team's case as a decision problem — list the **alternatives**, the **states of nature**, and a **payoff table**. Assign priors, compute **EV**, and find **EVPI**. State the recommendation and the tipping-point prior.
+- **Homework (individual):** today's tools (payoff tables, decision trees, expected value, and EVPI/EVSI) are drilled on **HW1** — individual problem sets in the previous-edition format, posted on Brightspace. Run them yourself so you can check an analyst who uses them.
 
 - **Next time:** we return to the inference arc — modeling **uncertain counts** (how many installs tomorrow?) with discrete probability distributions, the raw material that priors and payoffs are built from.
 :::

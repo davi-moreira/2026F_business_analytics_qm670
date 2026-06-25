@@ -346,7 +346,7 @@ A **Binomial experiment** requires all four:
 
 <br>
 
-- **Vungle check:** $n$ impressions in a burst (1) — each one installs or not (2) — the conversion rate $p$ is the same within a stable burst (3) — one user installing does not change another's odds (4). All four hold (approximately). So installs are **Binomial**.
+- **Vungle check:** $n$ impressions in a burst (1); each one installs or not (2); the conversion rate $p$ is the same within a stable burst (3); one user installing does not change another's odds (4). All four hold (approximately). So installs are **Binomial**.
 
 ## The Binomial Probability Function
 
@@ -382,7 +382,7 @@ $$
 
 - Evans Electronics loses about **10%** of hourly employees per year ($p = 0.10$). Choosing **3** employees at random ($n = 3$), what is $P(\text{exactly 1 leaves})$?
 
-- One specific way — leaver, stayer, stayer — has probability:
+- One specific way (leaver, stayer, stayer) has probability:
 
 ::: fragment
 
@@ -568,7 +568,7 @@ knitr::include_graphics("figs/excel_binom_vungle.png")
 3. Compute the tail $P(X \geq 8) =$ `1 - BINOM.DIST(7, 1000, 0.004, TRUE)`.
 4. If a worker absorbs 7 installs/burst, what fraction of A's bursts overflow?
 
-**Hand in (1 slide):** $E(X)$, $\sigma$, $P(X \geq 8)$, and a one-line capacity recommendation.
+**Submit before you leave (graded, one slide per group):** your capacity call for Algorithm A + $E(X)$, $\sigma$, and $P(X \geq 8)$ + the **two things you would challenge** in the analysis.
 :::
 
 ## Debrief — Manager's Takeaway (Lecture 1)
@@ -584,7 +584,7 @@ knitr::include_graphics("figs/excel_binom_vungle.png")
 ## Carry-forward (Lecture 1)
 
 ::: nonincremental
-- **Your client (homework):** find a **yes/no count over a fixed $n$** in your team's case (defective units, conversions, churned customers). Model it as Binomial, estimate $p$, and report $E(X)$, $\sigma$, and one tail probability with `BINOM.DIST`.
+- **Homework (individual):** today's tools (the Binomial and Poisson models) are drilled on **HW2** — individual problem sets in the previous-edition format, posted on Brightspace. Run them yourself so you can check an analyst who uses them.
 
 - **Next time:** A's rate is small and $n$ is huge — there is a simpler model built exactly for **rare events over an interval**: the **Poisson** distribution.
 :::
@@ -837,7 +837,7 @@ $$
 3. Compute the tail $P(X \geq 8) =$ `1 - POISSON.DIST(7, 4, TRUE)`.
 4. Pick a capacity level $N$ so that $P(X \geq N) < 1\%$ (a "five-nines minus" buffer). What is $N$?
 
-**Hand in (1 slide):** your $\lambda$, $P(X \geq 8)$, the chosen capacity $N$, and a one-line plan.
+**Submit before you leave (graded, one slide per group):** your pipeline plan for Algorithm A + your $\lambda$, $P(X \geq 8)$, and the chosen capacity $N$ + the **two things you would challenge** in the analysis.
 :::
 
 ## Debrief — Manager's Takeaway (Lecture 2)
@@ -853,7 +853,7 @@ $$
 ## Carry-forward (Lecture 2)
 
 ::: nonincremental
-- **Your client (homework):** find a **rare-event count over an interval** in your team's case (defects per batch, complaints per week, arrivals per hour). Estimate $\lambda$, build the PMF with `POISSON.DIST`, and report a tail probability that supports a capacity or staffing decision.
+- **Homework (individual):** today's tools (the Binomial and Poisson models) are drilled on **HW2** — individual problem sets in the previous-edition format, posted on Brightspace. Run them yourself so you can check an analyst who uses them.
 
 - **Next time:** we move from **discrete counts** to **continuous measurements** — the **Normal** distribution, and the question *"what is the probability eRPM exceeds \$3.50?"*
 :::
@@ -880,7 +880,7 @@ $$
 
 - **One sentence:** a conversion rate plus a count structure (fixed $n$ → **Binomial**; rare arrivals → **Poisson**) gives the **full probability distribution** of installs — and every capacity question is a **tail probability**.
 
-- **One number to remember:** $P(X \geq 8) \approx$ **0.051** for Algorithm A bursts — about 1 in 20 — the number that sizes the overflow buffer.
+- **One number to remember:** $P(X \geq 8) \approx$ **0.051** for Algorithm A bursts (about 1 in 20) — the number that sizes the overflow buffer.
 
 - **One caveat:** both models assume a **constant, independent** rate; real traffic spikes (viral campaigns) cluster arrivals and fatten the tail — re-estimate the rate and watch for over-dispersion.
 

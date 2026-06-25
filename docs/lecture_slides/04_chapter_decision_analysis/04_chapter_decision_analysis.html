@@ -158,7 +158,7 @@ Professor<br>Davi Moreira<br>
 <ul>
 <li>Expected value of perfect information (EVPI)</li>
 <li>Sample information, Bayes revision, and EVSI</li>
-<li>Sensitivity: how robust is the call?</li>
+<li>Sensitivity: does the call hold if the prior shifts?</li>
 <li>From inference to action: making the rollout recommendation</li>
 </ul>
 </div></div>
@@ -172,7 +172,7 @@ Professor<br>Davi Moreira<br>
 <h2>Rewind: Before the A/B Test</h2>
 <p><br></p>
 <ul>
-<li class="fragment"><p>Earlier in our work with <a href="https://en.wikipedia.org/wiki/Liftoff_Mobile">Vungle</a> — the mobile ad-tech startup that earns revenue when viewers <strong>install</strong> an advertised app — we tested whether their new ad-serving algorithm <strong>B</strong> beat the incumbent <strong>A</strong>.</p></li>
+<li class="fragment"><p>Earlier in our work with <a href="https://en.wikipedia.org/wiki/Liftoff_Mobile">Vungle</a> (the mobile ad-tech startup that earns revenue when viewers <strong>install</strong> an advertised app) we tested whether their new ad-serving algorithm <strong>B</strong> beat the incumbent <strong>A</strong>.</p></li>
 <li class="fragment"><p>The verdict: B’s daily eRPM (revenue per 1,000 impressions) ran about <strong>$0.11 higher</strong> than A’s, and a paired test said that lift was <strong>real</strong> (<span class="math inline">\(t = 3.33\)</span>), worth roughly <strong>$26.5K/month</strong> at June’s traffic.</p></li>
 <li class="fragment"><p>But statistics told us <em>what is true and how sure we are</em>. They did <strong>not</strong> tell management <strong>what to do</strong>.</p></li>
 <li class="fragment"><p>Today we put on the <strong>manager’s hat</strong>: given that uncertainty, what is the right <strong>action</strong>?</p></li>
@@ -250,7 +250,7 @@ Professor<br>Davi Moreira<br>
 <li class="fragment"><strong>Payoffs</strong> — the consequence (profit, cost, time…) of each <em>alternative × state</em> combination.</li>
 </ul></li>
 <li class="fragment"><p>The discipline is in the structuring: most bad business decisions come from a <strong>missing alternative</strong> or an <strong>unstated state of nature</strong>, not from arithmetic.</p></li>
-<li class="fragment"><p>The whole apparatus — payoff tables, trees, EV — is just bookkeeping on top of these three lists.</p></li>
+<li class="fragment"><p>The whole apparatus (payoff tables, trees, EV) is just bookkeeping on top of these three lists.</p></li>
 </ul>
 </section>
 <section id="the-vungle-decision-in-three-lists" class="slide level2 center">
@@ -553,7 +553,7 @@ EV(\text{Keep A}) = 0.60(0) + 0.40(0) = \mathbf{\$0}
 <h2>What EVPI Tells the Manager</h2>
 
 <img data-src="figs/vungle_evpi.png" class="quarto-figure quarto-figure-center r-stretch" style="width:60.0%"><ul>
-<li><strong>$64K</strong> is the <em>most</em> Vungle should ever pay to remove all doubt about B before deciding. Any real test — always imperfect — is worth <strong>less</strong> than this ceiling.</li>
+<li><strong>$64K</strong> is the <em>most</em> Vungle should ever pay to remove all doubt about B before deciding. Any real test (always imperfect) is worth <strong>less</strong> than this ceiling.</li>
 </ul>
 </section>
 <section id="evpi-in-excel" class="slide level2 center">
@@ -718,7 +718,7 @@ P(s_j \mid \text{signal}) = \frac{P(s_j)\,P(\text{signal}\mid s_j)}{\sum_k P(s_k
 <h2>Sensitivity Analysis</h2>
 
 <img data-src="figs/vungle_sensitivity.png" class="quarto-figure quarto-figure-center r-stretch" style="width:68.0%"><ul>
-<li>“Roll out B” wins as long as <span class="math inline">\(P(s_1)\)</span> exceeds the <strong>indifference prior</strong> <span class="math inline">\(p^{*} \approx 0.33\)</span>. Our prior (0.60) clears it comfortably — the decision is <strong>robust</strong>.</li>
+<li>“Roll out B” wins as long as <span class="math inline">\(P(s_1)\)</span> exceeds the <strong>indifference prior</strong> <span class="math inline">\(p^{*} \approx 0.33\)</span>. Our prior (0.60) clears it comfortably, so the call is <strong>stable</strong>.</li>
 <li>Below one-third, keep A. The call only flips if we’re <em>very</em> pessimistic about B.</li>
 </ul>
 </section>
@@ -734,7 +734,7 @@ p(318) + (1-p)(-160) = 0 \;\Longrightarrow\; p^{*} = \frac{160}{318 + 160} \appr
 \]</span></p>
 </div>
 <ul>
-<li class="fragment"><p>A <strong>robust</strong> decision is one that stays the same under small changes in the inputs. Here, B would have to be <strong>more likely wrong than right</strong> before we’d keep A.</p></li>
+<li class="fragment"><p>A <strong>stable</strong> decision is one that holds under small changes in the inputs. Here, B would have to be <strong>more likely wrong than right</strong> before we’d keep A.</p></li>
 <li class="fragment"><p><strong>This is the real payoff of structuring the decision:</strong> we now know not just <em>what</em> to do, but <em>how sure we’d have to be to change our minds</em>. In Excel: a <strong>What-If Data Table</strong> varying <span class="math inline">\(p\)</span> traces the whole line.</p></li>
 </ul>
 </section>
@@ -749,7 +749,7 @@ p(318) + (1-p)(-160) = 0 \;\Longrightarrow\; p^{*} = \frac{160}{318 + 160} \appr
 <li>Use the Bayes tables to get the posteriors, then <strong>EVSI</strong>; compare it to the <strong>$20K</strong> test cost.</li>
 <li>Run a quick <strong>sensitivity</strong> check: at what prior <span class="math inline">\(p^{*}\)</span> would the call flip?</li>
 </ol>
-<p><strong>Hand in (1 slide):</strong> your recommendation — the call · the EV · the one caveat (and: should Vungle buy the bigger test?).</p>
+<p><strong>Submit before you leave (graded, one slide per group):</strong> your rollout call (roll out B, keep A, or test) + the <strong>EV / EVPI / EVSI</strong> and the tipping-point prior <span class="math inline">\(p^{*}\)</span> + the <strong>two things you would challenge</strong> in the analysis (e.g.&nbsp;the −160 downside, the priors).</p>
 </div>
 </section></section>
 <section>
@@ -785,7 +785,7 @@ p(318) + (1-p)(-160) = 0 \;\Longrightarrow\; p^{*} = \frac{160}{318 + 160} \appr
 <td style="text-align: right;">$9.84K &lt; $20K cost → <strong>no</strong></td>
 </tr>
 <tr class="even">
-<td>Robust to our prior?</td>
+<td>Stable to our prior?</td>
 <td>Sensitivity</td>
 <td style="text-align: right;">flips only below <span class="math inline">\(p^{*} = 0.33\)</span></td>
 </tr>
@@ -813,9 +813,9 @@ p(318) + (1-p)(-160) = 0 \;\Longrightarrow\; p^{*} = \frac{160}{318 + 160} \appr
 <h2>Manager’s Takeaway</h2>
 <p><br></p>
 <ul>
-<li class="fragment"><p><strong>One sentence:</strong> Structuring the rollout as a decision — alternatives, states, payoffs — says <strong>roll out B</strong>, because its expected value (<strong>$126.8K/yr</strong>) beats keeping A, and a further test isn’t worth its cost.</p></li>
+<li class="fragment"><p><strong>One sentence:</strong> Structuring the rollout as a decision (alternatives, states, payoffs) says <strong>roll out B</strong>, because its expected value (<strong>$126.8K/yr</strong>) beats keeping A, and a further test isn’t worth its cost.</p></li>
 <li class="fragment"><p><strong>One number to remember:</strong> <strong>EVPI = $64K</strong> — the ceiling on what <em>any</em> information is worth here; the actual test cleared only $9.84K of it.</p></li>
-<li class="fragment"><p><strong>One caveat:</strong> EV is a long-run average. “Roll out B” still risks a <strong>−$160K</strong> year — sensitivity shows the call is robust (flips only below <span class="math inline">\(p^{*} = 0.33\)</span>), but the downside is real, so monitor and stay ready to revert.</p></li>
+<li class="fragment"><p><strong>One caveat:</strong> EV is a long-run average. “Roll out B” still risks a <strong>−$160K</strong> year — sensitivity shows the call is stable (flips only below <span class="math inline">\(p^{*} = 0.33\)</span>), but the downside is real, so monitor and stay ready to revert.</p></li>
 </ul>
 </section>
 <section id="summary" class="slide level2 center">
@@ -826,14 +826,14 @@ p(318) + (1-p)(-160) = 0 \;\Longrightarrow\; p^{*} = \frac{160}{318 + 160} \appr
 <li><strong>Decide by expected value:</strong> <span class="math inline">\(EV(d_i) = \sum_j P(s_j) V_{ij}\)</span>; pick the best EV — but remember it’s a long-run average that hides the downside.</li>
 <li><strong>Value information before buying it:</strong> <strong>EVPI</strong> is the ceiling (perfect info); <strong>EVSI</strong> is what a real, imperfect test is worth — buy a study only if its value beats its cost.</li>
 <li><strong>Bayes turns a signal into revised odds:</strong> prior → joint → marginal → posterior; the posteriors become the branch probabilities after the test.</li>
-<li><strong>Sensitivity tells you how robust the call is:</strong> find the prior <span class="math inline">\(p^{*}\)</span> where the decision flips; ours holds comfortably.</li>
+<li><strong>Sensitivity tells you how stable the call is:</strong> find the prior <span class="math inline">\(p^{*}\)</span> where the decision flips; ours holds comfortably.</li>
 <li><strong>Inference and decision analysis are partners:</strong> one says <em>what’s true and how sure</em>; the other says <em>what to do about it</em>.</li>
 </ul>
 </section>
 <section id="carry-forward" class="slide level2 center">
 <h2>Carry-forward</h2>
 <ul>
-<li><p><strong>Your client (homework):</strong> frame <strong>one real decision</strong> in your team’s case as a decision problem — list the <strong>alternatives</strong>, the <strong>states of nature</strong>, and a <strong>payoff table</strong>. Assign priors, compute <strong>EV</strong>, and find <strong>EVPI</strong>. State the recommendation and the tipping-point prior.</p></li>
+<li><p><strong>Homework (individual):</strong> today’s tools (payoff tables, decision trees, expected value, and EVPI/EVSI) are drilled on <strong>HW1</strong> — individual problem sets in the previous-edition format, posted on Brightspace. Run them yourself so you can check an analyst who uses them.</p></li>
 <li><p><strong>Next time:</strong> we return to the inference arc — modeling <strong>uncertain counts</strong> (how many installs tomorrow?) with discrete probability distributions, the raw material that priors and payoffs are built from.</p></li>
 </ul>
 </section></section>

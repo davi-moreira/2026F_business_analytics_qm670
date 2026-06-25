@@ -230,7 +230,7 @@ Professor<br>Davi Moreira<br>
 <h2>The Brief — Why a Sample Mean Wobbles</h2>
 <p><br></p>
 <ul>
-<li class="fragment"><p>A different 30 days — say, <strong>July</strong> — would give a <strong>different</strong> mean eRPM. So would any other random sample.</p></li>
+<li class="fragment"><p>A different 30 days (say, <strong>July</strong>) would give a <strong>different</strong> mean eRPM. So would any other random sample.</p></li>
 <li class="fragment"><p>That wobble is not a mistake; it is the price of working from a <strong>sample</strong> instead of the whole <strong>population</strong>.</p></li>
 <li class="fragment"><p><strong>Lecture 1’s question:</strong> <em>if the sample mean changes every time we sample, how can we trust any one of them?</em> The answer is the <strong>sampling distribution</strong> — and it is surprisingly well-behaved.</p></li>
 </ul>
@@ -524,7 +524,7 @@ np \geq 5 \qquad \text{and} \qquad n(1-p) \geq 5
 <li>Compute the <strong>standard error</strong> <span class="math inline">\(s/\sqrt{30}\)</span> — the typical wobble of a 30-day mean.</li>
 <li>Compute what the standard error <strong>would be at <span class="math inline">\(n = 120\)</span></strong> (<span class="math inline">\(s/\sqrt{120}\)</span>). By how much does it shrink, and why?</li>
 </ol>
-<p><strong>Hand in (1 slide):</strong> B’s <span class="math inline">\(\bar{x}\)</span>, <span class="math inline">\(s\)</span>, the standard error at <span class="math inline">\(n=30\)</span> vs.&nbsp;<span class="math inline">\(n=120\)</span>, and a one-line verdict: precise enough, or test longer?</p>
+<p><strong>Submit before you leave (graded, one slide per group):</strong> your call (precise enough now, or test longer) plus B’s <span class="math inline">\(\bar{x}\)</span>, <span class="math inline">\(s\)</span>, and the standard error at <span class="math inline">\(n=30\)</span> vs.&nbsp;<span class="math inline">\(n=120\)</span>, and the <strong>two things you would challenge</strong> in this read of the data.</p>
 </div>
 </section>
 <section id="debrief-lecture-1-takeaway" class="slide level2 center">
@@ -539,7 +539,7 @@ np \geq 5 \qquad \text{and} \qquad n(1-p) \geq 5
 <section id="carry-forward-to-lecture-2" class="slide level2 center">
 <h2>Carry-forward to Lecture 2</h2>
 <ul>
-<li>We can now say <em>how much</em> a 30-day mean wobbles. Next we turn that wobble into a <strong>confidence interval</strong> — a stated range for B’s true mean eRPM — and answer the manager’s real question: <strong>$3.46, give or take how much?</strong></li>
+<li>We can now say <em>how much</em> a 30-day mean wobbles. Next we turn that wobble into a <strong>confidence interval</strong> (a stated range for B’s true mean eRPM) and answer the manager’s real question: <strong>$3.46, give or take how much?</strong></li>
 </ul>
 </section></section>
 <section>
@@ -992,7 +992,7 @@ n = \frac{z_{\alpha/2}^{2}\,p^*(1-p^*)}{E^{2}}
 \]</span></p>
 </div>
 <ul>
-<li class="fragment"><p><span class="math inline">\(p^*\)</span> is a <strong>planning value</strong> for the proportion: a prior estimate, a pilot, or — if you know nothing — the <strong>conservative <span class="math inline">\(p^* = 0.5\)</span></strong>, which maximizes <span class="math inline">\(p^*(1-p^*)\)</span> and gives the largest (safest) <span class="math inline">\(n\)</span>.</p></li>
+<li class="fragment"><p><span class="math inline">\(p^*\)</span> is a <strong>planning value</strong> for the proportion: a prior estimate, a pilot, or (if you know nothing) the <strong>conservative <span class="math inline">\(p^* = 0.5\)</span></strong>, which maximizes <span class="math inline">\(p^*(1-p^*)\)</span> and gives the largest (safest) <span class="math inline">\(n\)</span>.</p></li>
 <li class="fragment"><p><strong>PSI example:</strong> for <span class="math inline">\(E = 0.03\)</span> at 99% (<span class="math inline">\(z = 2.576\)</span>): with <span class="math inline">\(p^* = 0.44\)</span>, <span class="math inline">\(n = 1817\)</span>; with the conservative <span class="math inline">\(p^* = 0.5\)</span>, <span class="math inline">\(n = 1844\)</span>. When unsure, plan for the larger.</p></li>
 </ul>
 </section>
@@ -1006,7 +1006,7 @@ n = \frac{z_{\alpha/2}^{2}\,p^*(1-p^*)}{E^{2}}
 <li><strong>95% CI for the daily conversion rate (B):</strong> same steps on the <code>conv_B_pct</code> column.</li>
 <li><strong>Sample size:</strong> how many days for the eRPM margin to reach <span class="math inline">\(\pm\$0.05\)</span>? Use <code>=CEILING((1.96*s/0.05)^2,1)</code>.</li>
 </ol>
-<p><strong>Hand in (1 slide):</strong> the two intervals (with a one-line plain-English reading of each) and the required number of days — your estimation memo to Vungle.</p>
+<p><strong>Submit before you leave (graded, one slide per group):</strong> your estimation memo to Vungle — the two 95% intervals (with a one-line reading of each) and the days needed for <span class="math inline">\(\pm\$0.05\)</span>, plus the <strong>two things you would challenge</strong> before banking on these numbers.</p>
 </div>
 </section></section>
 <section>
@@ -1071,7 +1071,7 @@ n = \frac{z_{\alpha/2}^{2}\,p^*(1-p^*)}{E^{2}}
 <h2>Manager’s Takeaway</h2>
 <p><br></p>
 <ul>
-<li class="fragment"><p><strong>One sentence:</strong> a confidence interval turns a point estimate into a defensible <strong>range</strong> — B’s true mean eRPM is $3.46 <span class="math inline">\(\pm\)</span> $0.13 at 95% confidence — and the <strong>margin of error</strong> is the number a manager should actually negotiate over.</p></li>
+<li class="fragment"><p><strong>One sentence:</strong> a confidence interval turns a point estimate into a defensible <strong>range</strong> (B’s true mean eRPM is $3.46 <span class="math inline">\(\pm\)</span> $0.13 at 95% confidence) and the <strong>margin of error</strong> is the number a manager should actually negotiate over.</p></li>
 <li class="fragment"><p><strong>One number to remember:</strong> <span class="math inline">\(E = t_{\alpha/2}\,s/\sqrt{n}\)</span> — and the <span class="math inline">\(\sqrt{n}\)</span> in the denominator, which makes precision expensive.</p></li>
 <li class="fragment"><p><strong>One caveat:</strong> “95% confident” describes the <strong>procedure</strong> over many samples, not a probability for this one interval — and overlapping intervals do <strong>not</strong> settle a comparison.</p></li>
 </ul>
@@ -1091,7 +1091,7 @@ n = \frac{z_{\alpha/2}^{2}\,p^*(1-p^*)}{E^{2}}
 <section id="carry-forward" class="slide level2 center">
 <h2>Carry-forward</h2>
 <ul>
-<li><p><strong>Your client (homework):</strong> for your team’s case, pick one key <strong>mean</strong> and one key <strong>proportion</strong>. Build a <strong>95% confidence interval</strong> for each, write a one-sentence plain-English reading, and compute the <strong>sample size</strong> needed to halve one of the margins. Justify your planning value.</p></li>
+<li><p><strong>Homework (individual):</strong> today’s tools (confidence intervals and sample-size planning) are drilled on <strong>HW2</strong> — individual problem sets in the previous-edition format, posted on Brightspace. Build the intervals and solve for <span class="math inline">\(n\)</span> yourself, so you can check an analyst who hands you a range.</p></li>
 <li><p><strong>Next time:</strong> we stop <em>estimating ranges</em> and start <em>testing claims</em> — <strong>Hypothesis Testing</strong>: fund B only if its mean eRPM beats a benchmark. Today’s standard error and <span class="math inline">\(t\)</span> tools become the test statistic.</p></li>
 </ul>
 </section></section>

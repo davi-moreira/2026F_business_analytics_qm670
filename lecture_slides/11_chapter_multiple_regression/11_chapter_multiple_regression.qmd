@@ -81,7 +81,7 @@ html-math-method:
 
 - Data: `data/autoparts.csv` — 45 rows, one per store. `endcap` is already coded **0/1**.
 
-- **The trap we will spring today:** the two drivers a manager *expects* to dominate — population and income — turn out **not** to matter once service and merchandising are in the model.
+- **The trap we will spring today:** the two drivers a manager *expects* to dominate (population and income) turn out **not** to matter once service and merchandising are in the model.
 
 ## How Today's Studio Runs
 
@@ -301,7 +301,7 @@ $$
 
 - Here is the catch that makes $R^2$ dangerous in multiple regression:
 
-  - **Adding *any* predictor — even a useless, random one — can only *increase* $R^2$ (never decrease it).**
+  - **Adding *any* predictor (even a useless, random one) can only *increase* $R^2$ — never decrease it.**
 
 - Why: a new variable gives least squares one more knob to fit noise, so $SSE$ shrinks and $R^2$ ticks up — whether or not the variable is real.
 
@@ -420,7 +420,7 @@ knitr::include_graphics("figs/autoparts_coef_effects.png")
 3. Record $R^2$ and **Adjusted $R^2$** from the top block. In one sentence, say what fraction of the sales story the model captures.
 4. Translate the **Yelp** and **endcap** coefficients into plain dollars ("each extra star / an endcap is worth about \$___K, holding the others fixed").
 
-**Hand in (1 slide):** the equation, $R^2$ vs. adjusted $R^2$, and your dollar reading of the two biggest drivers.
+**Submit before you leave (graded, one slide per group):** your read of what each driver is worth (the equation + $R^2$ vs. adjusted $R^2$ + the Yelp and endcap dollar figures) and the **two things you would challenge** in this fit.
 :::
 
 ## Debrief — Manager's Takeaway (Lecture 1)
@@ -436,7 +436,7 @@ knitr::include_graphics("figs/autoparts_coef_effects.png")
 ## Carry-forward (to Lecture 2)
 
 ::: nonincremental
-- **Your client (homework, part 1):** fit a multiple regression for your team's case with **two or more** predictors. Report the estimated equation, $R^2$, and adjusted $R^2$; interpret each coefficient with the "holding the others constant" clause.
+- **Homework (individual):** today's tools (multiple regression, the $F$ vs. $t$ tests, and dummy variables) are drilled on **HW3** — individual problem sets in the previous-edition format, posted on Brightspace. Run them yourself so you can check an analyst who uses them.
 
 - **Next lecture:** which of these drivers are *statistically real*? We separate the **overall $F$-test** from the **individual $t$-tests**, put a defensible **dollar value on an endcap** with a dummy variable, and make the investment call.
 :::
@@ -770,7 +770,7 @@ knitr::include_graphics("figs/autoparts_predictor_corr.png")
 3. **Price the endcap:** predict sales for a planned store (`pop = 120,000`, `income = 55,000`, `yelp = 4.0`) with `endcap = 0` and with `endcap = 1`; the difference is the endcap's dollar value.
 4. State the investment call in **three sentences**: the lever to fund · the number · the caveat.
 
-**Hand in (1 slide):** your significant-vs-not verdict, the endcap's dollar value, and the CFO recommendation.
+**Submit before you leave (graded, one slide per group):** your CFO recommendation (which lever to fund) + the key numbers (Significance F, the significant-vs-not verdict, the endcap's dollar value) + the **two things you would challenge** in the analysis.
 :::
 
 ## Debrief — Manager's Takeaway (Lecture 2)
@@ -817,7 +817,7 @@ Model: $R^2 = 0.932$, adjusted $R^2 = 0.925$, overall $F = 136.7$ (p $< 10^{-22}
 
 <br>
 
-- **One sentence:** for this 45-store chain, **service and merchandising — not location demographics — drive sales**, so invest in Yelp rating (+\$642K/star) and endcap placement (+\$816K), each statistically decisive.
+- **One sentence:** for this 45-store chain, **service and merchandising drive sales, not location demographics** — so invest in Yelp rating (+\$642K/star) and endcap placement (+\$816K), each statistically decisive.
 
 - **One number to remember:** **\$816K** — the value of an endcap, read straight off a dummy variable's coefficient, holding everything else constant.
 
@@ -842,7 +842,7 @@ Some key takeaways from this topic:
 ## Carry-forward
 
 ::: nonincremental
-- **Your client (homework, part 2):** for your team's case, run the **overall $F$-test** and the **individual $t$-tests**; if your case has a natural category, add a **dummy** and interpret its coefficient as a group difference. Check **VIF** for any predictors you suspect overlap. Close with a one-paragraph recommendation: which lever should the client pull, and what is it worth?
+- **Homework (individual):** today's tools (multiple regression, the $F$ vs. $t$ tests, and dummy variables) are drilled on **HW3** — individual problem sets in the previous-edition format, posted on Brightspace. Run them yourself so you can check an analyst who uses them.
 
 - **Where we've been:** from *comparing* two groups (inference) to *predicting* with one driver (simple regression) to *isolating many drivers at once* (today) — the analyst's core toolkit for turning data into a defensible business decision.
 :::

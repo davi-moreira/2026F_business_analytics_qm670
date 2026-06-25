@@ -56,7 +56,7 @@ html-math-method:
 
 - We close the Vungle engagement and open a new one. Our client is a regional **auto-parts retailer** with **45 stores** and capital to open more.
 
-- The real-estate team scores prospective sites on demographics — population, income — and on the store's **Yelp rating** (a proxy for service quality once a store is open).
+- The real-estate team scores prospective sites on demographics (population, income) and on the store's **Yelp rating** (a proxy for service quality once a store is open).
 
 - The question on the table: **which sites will sell?** The CFO wants every new lease backed by a sales forecast, not a hunch.
 
@@ -90,7 +90,7 @@ html-math-method:
 
 <br>
 
-- Regression develops an **equation** showing how a **dependent variable** $y$ (what we predict — sales) relates to an **independent variable** $x$ (the predictor — Yelp rating).
+- Regression develops an **equation** showing how a **dependent variable** $y$ (what we predict, sales) relates to an **independent variable** $x$ (the predictor, Yelp rating).
 
 - **Simple** linear regression uses **one** predictor; the relationship is approximated by a **straight line**. (More predictors → multiple regression, next topic.)
 
@@ -390,7 +390,7 @@ knitr::include_graphics("figs/autoparts_reg_coef.png")
 2. Write the estimated equation $\hat{y} = b_0 + b_1 x$ and interpret the **slope** in plain dollars-per-star.
 3. Read **R Square**: what fraction of the sales gap does Yelp rating explain? State the unexplained share.
 
-**Hand in (1 slide):** the equation, the dollars-per-star sentence, and your $R^2$ read — would you use Yelp rating to score sites?
+**Submit before you leave (graded, one slide per group):** your site-scoring call (would you use Yelp rating?) + the equation, the dollars-per-star number, and $R^2$ + the **two things you would challenge** in the analysis.
 :::
 
 ## Debrief — Manager's Takeaway (Lecture 1)
@@ -406,7 +406,7 @@ knitr::include_graphics("figs/autoparts_reg_coef.png")
 ## Carry-forward (Lecture 1)
 
 ::: nonincremental
-- **Your client (homework):** in your team's case, pick a plausible numeric predictor of your key outcome. Fit the simple regression, write the slope interpretation in business units, and report $R^2$.
+- **Homework (individual):** today's tools (simple linear regression) are drilled on **HW3**, individual problem sets in the previous-edition format, posted on Brightspace. Run them yourself so you can check an analyst who uses them.
 
 - **Next time:** is the slope **real** or could it be noise? We test it, check the assumptions behind the line, and forecast a brand-new store.
 :::
@@ -722,7 +722,7 @@ knitr::include_graphics("figs/autoparts_pred_band.png")
 2. Glance at the **residual plot** (check Residual Plots in the dialog): any fan or curve that breaks the assumptions?
 3. Forecast a site at **Yelp = 4.5**: give the point prediction, and say whether the CFO should quote the **CI** or the **PI** for one new lease — and why.
 
-**Hand in (1 slide):** the slope verdict (with CI), an assumptions one-liner, and your forecast + the interval you'd put in the lease memo.
+**Submit before you leave (graded, one slide per group):** your lease-memo call (the 4.5-star forecast + which interval you'd quote) + the slope verdict with its 95% CI and an assumptions one-liner + the **two things you would challenge** in the analysis.
 :::
 
 ## Debrief — Manager's Takeaway (Lecture 2)
@@ -738,9 +738,9 @@ knitr::include_graphics("figs/autoparts_pred_band.png")
 ## Carry-forward (Lecture 2)
 
 ::: nonincremental
-- **Your client (homework):** on your team's simple regression — test the slope (report $t$, $p$, and the 95% CI), check the residual plot for assumption violations, and produce a point prediction *with the right interval* for one new case. State whether you'd trust the forecast.
+- **Homework (individual):** today's tools (testing the slope, residual checks, and prediction intervals) are drilled on **HW3**, individual problem sets in the previous-edition format, posted on Brightspace. Run them yourself so you can check an analyst who uses them.
 
-- **Next time:** sales depend on more than one thing. We add **population, income, and end-cap placement** to the model — **Multiple Regression** — and learn why a variable that looks important alone can vanish once others are in the room.
+- **Next time:** sales depend on more than one thing. We add **population, income, and end-cap placement** to the model (**Multiple Regression**) and learn why a variable that looks important alone can vanish once others are in the room.
 :::
 
 # Debrief — From a Line to a Site Decision {background-color="#cfb991"}
@@ -763,7 +763,7 @@ knitr::include_graphics("figs/autoparts_pred_band.png")
 
 <br>
 
-- **One sentence:** Yelp rating predicts auto-parts store sales strongly and significantly — about **\$758K per star**, explaining **83%** of the sales gap — so the real-estate team can use it to score and forecast sites.
+- **One sentence:** Yelp rating predicts auto-parts store sales strongly and significantly (about **\$758K per star**, explaining **83%** of the sales gap), so the real-estate team can use it to score and forecast sites.
 
 - **One number to remember:** $b_1 = 757.5$ — and where it came from: $\sum(x-\bar{x})(y-\bar{y}) / \sum(x-\bar{x})^2$.
 
@@ -790,7 +790,7 @@ Some key takeaways from this session:
 ## Carry-forward
 
 ::: nonincremental
-- **Your client (homework):** fit, interpret, test, validate, and forecast a simple regression on your team's case — the full arc on one slide, ending with a forecast you'd defend.
+- **Homework (individual):** the full simple-regression arc (fit, interpret, test, validate, forecast) is drilled on **HW3**, individual problem sets in the previous-edition format, posted on Brightspace. Run them yourself so you can check an analyst who uses them.
 
 - **Next time:** we add more predictors and learn what "holding everything else constant" really means — **Multiple Regression** on the same auto-parts client.
 :::

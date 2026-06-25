@@ -302,7 +302,7 @@ knitr::include_graphics("figs/excel_conditional_cells.png")
 3. **Multiply** them and check the product equals installs ÷ impressions (the multiplication law).
 4. Sketch B's funnel as a **probability tree** with the branch probabilities labeled.
 
-**Hand in (1 slide):** B's three conditional rates, the chained install rate, and a one-line read of where B leaks the most.
+**Submit before you leave (graded, one slide per group):** your call on where B leaks the most + B's three conditional rates and chained install rate + the **two things you would challenge** in the analysis.
 :::
 
 # Bayes' Theorem: Revising a Belief {background-color="#cfb991"}
@@ -363,7 +363,7 @@ A bank's new product has three possible fates. **Priors** from past launches: $P
 | Major success | 0.05 | 0.98 | 0.0490 | 0.0490 / 0.1010 = **0.485** |
 | **Total** | **1.00** | | $P(\text{Large}) = $ **0.1010** | **1.000** |
 
-A *large* test result lifts "Major success" from a **5%** prior to a **49%** posterior — nearly ten-fold — which is exactly why the test is worth running.
+A *large* test result lifts "Major success" from a **5%** prior to a **49%** posterior (nearly ten-fold), which is exactly why the test is worth running.
 :::
 
 ## The Vungle Bayes Update — Setup
@@ -482,7 +482,7 @@ knitr::include_graphics("figs/excel_bayes_cells.png")
 
 - **One sentence:** every funnel rate is a **conditional probability**, the end-to-end install rate is their **product**, and Bayes lets you read the funnel **backward** — from an observed install to the likely algorithm.
 
-- **One number to remember:** **0.40%** — the marginal install rate — and how a single click multiplies it 20-fold to **7.93%**.
+- **One number to remember:** **0.40%**, the marginal install rate, and how a single click multiplies it 20-fold to **7.93%**.
 
 - **One caveat:** an install is *weak* evidence about which algorithm served it ($P(B\mid\text{install}) = 5.56\%$ vs. a $6.27\%$ prior) — base rates dominate, so never read a posterior off the likelihood alone.
 
@@ -500,13 +500,13 @@ knitr::include_graphics("figs/excel_bayes_cells.png")
 3. Build the **joint** column (prior × likelihood); sum to get $P(\text{install})$.
 4. Posterior $P(B\mid\text{install})$ = B's joint ÷ the sum — compare it to the prior.
 
-**Hand in (1 slide):** the posterior $P(B\mid\text{install})$ and one sentence on why an install is evidence *against* B.
+**Submit before you leave (graded, one slide per group):** your read on how strongly an install points to B + the posterior $P(B\mid\text{install})$ + the **two things you would challenge** in the analysis.
 :::
 
 ## Carry-forward
 
 ::: nonincremental
-- **Your client (homework):** in your team's case, build a **contingency table** of two categorical variables, then compute one **marginal**, one **conditional**, and one **Bayes (reverse)** probability. State which managerial question each one answers.
+- **Homework (individual):** today's tools (probability rules, conditional probability, and Bayes' theorem) are drilled on **HW1** — individual problem sets in the previous-edition format, posted on Brightspace. Run them yourself so you can check an analyst who uses them.
 
 - **Next time:** probabilities become **decisions** — Decision Analysis: payoffs, expected value, and the value of information, on the Vungle rollout.
 :::
@@ -520,7 +520,7 @@ Some key takeaways from this session:
 - **Basic relationships:** complement, union (addition law subtracts the overlap), intersection (joint), and mutually exclusive.
 - **Conditional probability** $P(A\mid B) = P(A\cap B)/P(B)$ is the engine of funnel analytics — each step conditions on surviving the last.
 - The **multiplication law** chains the steps into the end-to-end rate; **independence** is when conditioning changes nothing (the funnel steps are *not* independent).
-- **Bayes' theorem** reverses the conditioning — prior → posterior — and base rates dominate: an install is only weak evidence about which algorithm served it.
+- **Bayes' theorem** reverses the conditioning (prior → posterior), and base rates dominate: an install is only weak evidence about which algorithm served it.
 - **Marginal, conditional, and reverse probabilities are different numbers** for the same data; match the number to the manager's question.
 :::
 

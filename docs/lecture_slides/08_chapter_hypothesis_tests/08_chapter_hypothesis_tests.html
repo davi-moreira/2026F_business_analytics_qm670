@@ -251,7 +251,7 @@ Professor<br>Davi Moreira<br>
 
 <img data-src="figs/h0_courtroom.png" class="quarto-figure quarto-figure-center r-stretch" style="width:72.0%"><ul>
 <li>The <strong>null hypothesis</strong> <span class="math inline">\(H_0\)</span> is the status quo — <em>“nothing new here, B is no better than the $3.30 line.”</em> It is assumed true until the data overturn it.</li>
-<li>The <strong>alternative</strong> <span class="math inline">\(H_a\)</span> is the research claim — <em>“B beats $3.30”</em> — accepted <strong>only</strong> with strong evidence. The data carry the burden of proof.</li>
+<li>The <strong>alternative</strong> <span class="math inline">\(H_a\)</span> is the research claim (<em>“B beats $3.30”</em>), accepted <strong>only</strong> with strong evidence. The data carry the burden of proof.</li>
 </ul>
 </section>
 <section id="which-claim-goes-where" class="slide level2 center">
@@ -608,7 +608,7 @@ t = 2.529 \;&gt;\; t_{0.01,\,29} = 2.462 \quad\Rightarrow\quad \text{reject } H_
 <li>In formula cells, compute <span class="math inline">\(SE = s/\sqrt{n}\)</span>, then <span class="math inline">\(t = (\bar{x}-3.30)/SE\)</span>, then the upper-tail <span class="math inline">\(p\)</span> with <code>=T.DIST.RT(t, 29)</code>.</li>
 <li>Build the 95% CI for the mean; check that $3.30 falls below it. Decide at <span class="math inline">\(\alpha = 0.05\)</span>.</li>
 </ol>
-<p><strong>Hand in (1 slide):</strong> your <span class="math inline">\(t\)</span>, <span class="math inline">\(p\)</span>, and CI, plus a one-line <strong>fund / don’t fund</strong> verdict for the CFO.</p>
+<p><strong>Submit before you leave (graded, one slide per group):</strong> your <strong>fund / don’t fund</strong> call for the CFO + your <span class="math inline">\(t\)</span>, <span class="math inline">\(p\)</span>, and CI + the <strong>two things you would challenge</strong> in the analysis.</p>
 </div>
 </section>
 <section id="debrief-lecture-1-managers-takeaway" class="slide level2 center">
@@ -623,7 +623,7 @@ t = 2.529 \;&gt;\; t_{0.01,\,29} = 2.462 \quad\Rightarrow\quad \text{reject } H_
 <section id="carry-forward-lecture-1" class="slide level2 center">
 <h2>Carry-forward — Lecture 1</h2>
 <ul>
-<li><p><strong>Your client (homework):</strong> in your team’s case, find one <strong>mean</strong> with a meaningful <strong>benchmark</strong> (a target, a historical level, a contract threshold). State <span class="math inline">\(H_0\)</span>/<span class="math inline">\(H_a\)</span>, pick the tail from the business decision, run the one-sample <span class="math inline">\(t\)</span>, and write the call.</p></li>
+<li><p><strong>Homework (individual):</strong> today’s tools (one-sample <span class="math inline">\(t\)</span> and <span class="math inline">\(z\)</span> hypothesis tests) are drilled on <strong>HW3</strong> — individual problem sets in the previous-edition format, posted on Brightspace. Run them yourself so you can check an analyst who uses them.</p></li>
 <li><p><strong>Next lecture:</strong> the same logic for a <strong>proportion</strong> — does B’s <em>conversion rate</em> clear its target?</p></li>
 </ul>
 </section></section>
@@ -776,7 +776,7 @@ z = \frac{0.003541 - 0.003500}{1.485 \times 10^{-5}} = 2.733
 \]</span></p>
 </div>
 <ul>
-<li class="fragment"><span class="math inline">\(\bar p\)</span> sits just <strong>0.0041 percentage points</strong> above the target — a tiny gap — yet with 15.8M impressions even a tiny gap is many standard errors out.</li>
+<li class="fragment"><span class="math inline">\(\bar p\)</span> sits just <strong>0.0041 percentage points</strong> above the target (a tiny gap), yet with 15.8M impressions even a tiny gap is many standard errors out.</li>
 </ul>
 </section>
 <section id="step-4-decision" class="slide level2 center">
@@ -809,7 +809,7 @@ z = \frac{0.003541 - 0.003500}{1.485 \times 10^{-5}} = 2.733
 <li>$p = $ <code>=1-NORM.S.DIST(z, TRUE)</code></li>
 </ul>
 <p><br></p>
-<p>Worth mastering: most real A/B metrics — click-through, conversion, churn — are <strong>proportions</strong>.</p>
+<p>Worth mastering: most real A/B metrics (click-through, conversion, churn) are <strong>proportions</strong>.</p>
 </div><div class="column" style="width:60%;">
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
@@ -893,7 +893,7 @@ z = \frac{0.003541 - 0.003500}{1.485 \times 10^{-5}} = 2.733
 <li>Decide at <span class="math inline">\(\alpha = 0.05\)</span> — <strong>then</strong> state the <strong>effect size</strong> (how far above target, in percentage points).</li>
 <li>In <strong>one sentence each:</strong> the call · the number · the caveat about statistical vs.&nbsp;practical significance.</li>
 </ol>
-<p><strong>Hand in (1 slide):</strong> your <span class="math inline">\(z\)</span>, <span class="math inline">\(p\)</span>, effect size, and a viability verdict for the ops team.</p>
+<p><strong>Submit before you leave (graded, one slide per group):</strong> your <strong>viable / not viable</strong> call for the ops team + your <span class="math inline">\(z\)</span>, <span class="math inline">\(p\)</span>, and effect size + the <strong>two things you would challenge</strong> in the analysis.</p>
 </div>
 </section>
 <section id="debrief-lecture-2-managers-takeaway" class="slide level2 center">
@@ -908,7 +908,7 @@ z = \frac{0.003541 - 0.003500}{1.485 \times 10^{-5}} = 2.733
 <section id="carry-forward-lecture-2" class="slide level2 center">
 <h2>Carry-forward — Lecture 2</h2>
 <ul>
-<li><p><strong>Your client (homework):</strong> in your team’s case, find one <strong>proportion</strong> with a target (a pass rate, a response rate, a defect ceiling). State <span class="math inline">\(H_0\)</span>/<span class="math inline">\(H_a\)</span>, run the one-sample <span class="math inline">\(z\)</span>, <strong>and</strong> report the effect size — not just the <span class="math inline">\(p\)</span>-value.</p></li>
+<li><p><strong>Homework (individual):</strong> today’s tools (one-sample <span class="math inline">\(t\)</span> and <span class="math inline">\(z\)</span> hypothesis tests) are drilled on <strong>HW3</strong> — individual problem sets in the previous-edition format, posted on Brightspace. Run them yourself so you can check an analyst who uses them.</p></li>
 <li><p><strong>Next time:</strong> we stop testing <strong>one</strong> population against a line and start comparing <strong>two</strong> — <em>is B better than A?</em> — with the paired and two-sample tests of Topic 9.</p></li>
 </ul>
 </section></section>
@@ -995,7 +995,7 @@ z = \frac{0.003541 - 0.003500}{1.485 \times 10^{-5}} = 2.733
 <li><strong>Two errors, one knob:</strong> you set <span class="math inline">\(\alpha\)</span> (Type I risk) before the test; <span class="math inline">\(\beta\)</span> (Type II) follows. Say <em>“fail to reject,”</em> never <em>“accept.”</em></li>
 <li><strong>One recipe, two parameters:</strong> the one-sample <span class="math inline">\(t\)</span> (mean, <span class="math inline">\(\sigma\)</span> unknown) and the one-proportion <span class="math inline">\(z\)</span> share the same five steps — only the standard error and reference distribution change.</li>
 <li><strong>Two roads agree:</strong> the critical-value and <span class="math inline">\(p\)</span>-value approaches always reach the same decision, and both agree with the confidence interval.</li>
-<li><strong>Significance <span class="math inline">\(\neq\)</span> importance:</strong> with millions of impressions almost everything is “significant” — judge the <strong>effect size</strong>; with tiny samples real effects can hide — mind the <strong>power</strong>.</li>
+<li><strong>Significance <span class="math inline">\(\neq\)</span> importance:</strong> with millions of impressions almost everything is “significant,” so judge the <strong>effect size</strong>; with tiny samples real effects can hide, so mind the <strong>power</strong>.</li>
 <li>A test answers <em>is the parameter past a line?</em> Comparing <strong>two</strong> populations — <em>is B better than A?</em> — is Topic 9.</li>
 </ul>
 </section></section>

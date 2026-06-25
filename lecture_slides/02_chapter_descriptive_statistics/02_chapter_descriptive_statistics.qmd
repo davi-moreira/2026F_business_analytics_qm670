@@ -111,7 +111,7 @@ Each tool answers one question the CEO will ask about Vungle's data:
 
 <br>
 
-- Choosing between **supplier A and supplier B**, you weigh not just the *average* delivery time but the *variability* — a supplier that is fast on average but wildly inconsistent can wreck a schedule.
+- Choosing between **supplier A and supplier B**, you weigh the *average* delivery time and the *variability* together: a supplier that is fast on average but wildly inconsistent can wreck a schedule.
 
 - Same for Vungle: an algorithm with a slightly higher mean eRPM but **huge day-to-day swings** is a riskier bet than a steady one.
 
@@ -152,7 +152,7 @@ $$
 
 :::
 
-- IQR throws away the top 25% and bottom 25%, so it **ignores extremes** — a more robust read of "typical" spread.
+- IQR throws away the top 25% and bottom 25%, so it **ignores extremes** — a steadier read of "typical" spread.
 
 - **Excel:** `=MAX(rng)-MIN(rng)` for the range; `=QUARTILE.INC(rng,3)-QUARTILE.INC(rng,1)` for the IQR.
 
@@ -433,7 +433,7 @@ $$
 
 :::
 
-- **They do not always agree** — the IQR rule is more sensitive in the tails. On Vungle's B, **two** slow days — June 2 (\$2.587) and June 3 (\$2.755) — sit *below* the boxplot lower fence (≈\$2.80), yet both stay *inside* the $|z|>3$ cutoff (June 2's $z = -2.53$ is the most extreme). The boxplot rule flags two days; the z-rule flags none.
+- **They do not always agree** — the IQR rule is more sensitive in the tails. On Vungle's B, **two** slow days (June 2 at \$2.587 and June 3 at \$2.755) sit *below* the boxplot lower fence (≈\$2.80), yet both stay *inside* the $|z|>3$ cutoff (June 2's $z = -2.53$ is the most extreme). The boxplot rule flags two days; the z-rule flags none.
 
 - **A flag is an invitation to investigate, not a delete button.** Ask *why* before you drop a point.
 
@@ -673,7 +673,7 @@ knitr::include_graphics("figs/xkcd.png")
 3. **Picture:** build the **five-number summary** (`=QUARTILE.INC`) and insert a **Box & Whisker** chart for A and B together.
 4. **Read it:** write **two sentences** — *(1) how A and B compare on center and spread, (2) what that means for the rollout decision.*
 
-**Hand in (1 slide):** your A-vs-B summary table + boxplot + the two-sentence read.
+**Submit before you leave (graded, one slide per group):** your call to the CEO on B's edge + the **center and spread numbers** behind it (means, SDs, CVs, the boxplot) + the **two things you would challenge** in the analysis.
 :::
 
 # Debrief — The CEO Brief {background-color="#cfb991"}
@@ -718,7 +718,7 @@ Some key takeaways from this session:
 ## Carry-forward
 
 ::: nonincremental
-- **Your client (homework):** for your team's case, build a **descriptive dashboard** of the key outcome — center (mean/median), spread (SD, IQR, CV), a **boxplot**, and the **correlation** between the outcome and one plausible driver. Write the **two-sentence read** a manager would act on.
+- **Homework (individual):** today's tools (center, spread, shape, boxplots, and correlation) are drilled on **HW1**, individual problem sets in the previous-edition format, posted on Brightspace. Run them yourself so you can check an analyst who uses them.
 
 - **Next time:** we move from *describing* uncertainty to *quantifying* it — **Probability**: the chance a random impression installs, and how that chance changes once it clicks.
 :::

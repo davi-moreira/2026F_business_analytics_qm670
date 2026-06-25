@@ -104,7 +104,7 @@ knitr::include_graphics("figs/h0_courtroom.png")
 
 ::: nonincremental
 - The **null hypothesis** $H_0$ is the status quo — *"nothing new here, B is no better than the \$3.30 line."* It is assumed true until the data overturn it.
-- The **alternative** $H_a$ is the research claim — *"B beats \$3.30"* — accepted **only** with strong evidence. The data carry the burden of proof.
+- The **alternative** $H_a$ is the research claim (*"B beats \$3.30"*), accepted **only** with strong evidence. The data carry the burden of proof.
 :::
 
 ## Which Claim Goes Where?
@@ -466,7 +466,7 @@ $$
 2. In formula cells, compute $SE = s/\sqrt{n}$, then $t = (\bar{x}-3.30)/SE$, then the upper-tail $p$ with `=T.DIST.RT(t, 29)`.
 3. Build the 95% CI for the mean; check that \$3.30 falls below it. Decide at $\alpha = 0.05$.
 
-**Hand in (1 slide):** your $t$, $p$, and CI, plus a one-line **fund / don't fund** verdict for the CFO.
+**Submit before you leave (graded, one slide per group):** your **fund / don't fund** call for the CFO + your $t$, $p$, and CI + the **two things you would challenge** in the analysis.
 :::
 
 ## Debrief — Lecture 1 Manager's Takeaway
@@ -482,7 +482,7 @@ $$
 ## Carry-forward — Lecture 1
 
 ::: nonincremental
-- **Your client (homework):** in your team's case, find one **mean** with a meaningful **benchmark** (a target, a historical level, a contract threshold). State $H_0$/$H_a$, pick the tail from the business decision, run the one-sample $t$, and write the call.
+- **Homework (individual):** today's tools (one-sample $t$ and $z$ hypothesis tests) are drilled on **HW3** — individual problem sets in the previous-edition format, posted on Brightspace. Run them yourself so you can check an analyst who uses them.
 
 - **Next lecture:** the same logic for a **proportion** — does B's *conversion rate* clear its target?
 :::
@@ -638,7 +638,7 @@ $$
 
 :::
 
-- $\bar p$ sits just **0.0041 percentage points** above the target — a tiny gap — yet with 15.8M impressions even a tiny gap is many standard errors out.
+- $\bar p$ sits just **0.0041 percentage points** above the target (a tiny gap), yet with 15.8M impressions even a tiny gap is many standard errors out.
 
 ## Step 4 — Decision
 
@@ -673,7 +673,7 @@ There is **no ToolPak tool** for a one-proportion $z$ — build it in cells:
 
 <br>
 
-Worth mastering: most real A/B metrics — click-through, conversion, churn — are **proportions**.
+Worth mastering: most real A/B metrics (click-through, conversion, churn) are **proportions**.
 :::
 
 ::: {.column width="60%"}
@@ -723,7 +723,7 @@ The same statistic, re-anchored to the Vungle eRPM mean test under different ben
 3. Decide at $\alpha = 0.05$ — **then** state the **effect size** (how far above target, in percentage points).
 4. In **one sentence each:** the call · the number · the caveat about statistical vs. practical significance.
 
-**Hand in (1 slide):** your $z$, $p$, effect size, and a viability verdict for the ops team.
+**Submit before you leave (graded, one slide per group):** your **viable / not viable** call for the ops team + your $z$, $p$, and effect size + the **two things you would challenge** in the analysis.
 :::
 
 ## Debrief — Lecture 2 Manager's Takeaway
@@ -739,7 +739,7 @@ The same statistic, re-anchored to the Vungle eRPM mean test under different ben
 ## Carry-forward — Lecture 2
 
 ::: nonincremental
-- **Your client (homework):** in your team's case, find one **proportion** with a target (a pass rate, a response rate, a defect ceiling). State $H_0$/$H_a$, run the one-sample $z$, **and** report the effect size — not just the $p$-value.
+- **Homework (individual):** today's tools (one-sample $t$ and $z$ hypothesis tests) are drilled on **HW3** — individual problem sets in the previous-edition format, posted on Brightspace. Run them yourself so you can check an analyst who uses them.
 
 - **Next time:** we stop testing **one** population against a line and start comparing **two** — *is B better than A?* — with the paired and two-sample tests of Topic 9.
 :::
@@ -783,7 +783,7 @@ Some key takeaways from this session:
 - **Two errors, one knob:** you set $\alpha$ (Type I risk) before the test; $\beta$ (Type II) follows. Say *"fail to reject,"* never *"accept."*
 - **One recipe, two parameters:** the one-sample $t$ (mean, $\sigma$ unknown) and the one-proportion $z$ share the same five steps — only the standard error and reference distribution change.
 - **Two roads agree:** the critical-value and $p$-value approaches always reach the same decision, and both agree with the confidence interval.
-- **Significance $\neq$ importance:** with millions of impressions almost everything is "significant" — judge the **effect size**; with tiny samples real effects can hide — mind the **power**.
+- **Significance $\neq$ importance:** with millions of impressions almost everything is "significant," so judge the **effect size**; with tiny samples real effects can hide, so mind the **power**.
 - A test answers *is the parameter past a line?* Comparing **two** populations — *is B better than A?* — is Topic 9.
 :::
 

@@ -256,7 +256,7 @@ Professor<br>Davi Moreira<br>
 <h2>Why Spread Matters as Much as Center</h2>
 <p><br></p>
 <ul>
-<li class="fragment"><p>Choosing between <strong>supplier A and supplier B</strong>, you weigh not just the <em>average</em> delivery time but the <em>variability</em> — a supplier that is fast on average but wildly inconsistent can wreck a schedule.</p></li>
+<li class="fragment"><p>Choosing between <strong>supplier A and supplier B</strong>, you weigh the <em>average</em> delivery time and the <em>variability</em> together: a supplier that is fast on average but wildly inconsistent can wreck a schedule.</p></li>
 <li class="fragment"><p>Same for Vungle: an algorithm with a slightly higher mean eRPM but <strong>huge day-to-day swings</strong> is a riskier bet than a steady one.</p></li>
 <li class="fragment"><p>Five workhorse measures of variability, smallest toolkit to richest:</p></li>
 </ul>
@@ -313,7 +313,7 @@ Professor<br>Davi Moreira<br>
 \]</span></p>
 </div>
 <ul>
-<li class="fragment"><p>IQR throws away the top 25% and bottom 25%, so it <strong>ignores extremes</strong> — a more robust read of “typical” spread.</p></li>
+<li class="fragment"><p>IQR throws away the top 25% and bottom 25%, so it <strong>ignores extremes</strong> — a steadier read of “typical” spread.</p></li>
 <li class="fragment"><p><strong>Excel:</strong> <code>=MAX(rng)-MIN(rng)</code> for the range; <code>=QUARTILE.INC(rng,3)-QUARTILE.INC(rng,1)</code> for the IQR.</p></li>
 </ul>
 </section>
@@ -801,7 +801,7 @@ z_i = \frac{x_i - \bar{x}}{s}
 </table>
 </div>
 <ul>
-<li class="fragment"><p><strong>They do not always agree</strong> — the IQR rule is more sensitive in the tails. On Vungle’s B, <strong>two</strong> slow days — June 2 ($2.587) and June 3 ($2.755) — sit <em>below</em> the boxplot lower fence (≈$2.80), yet both stay <em>inside</em> the <span class="math inline">\(|z|&gt;3\)</span> cutoff (June 2’s <span class="math inline">\(z = -2.53\)</span> is the most extreme). The boxplot rule flags two days; the z-rule flags none.</p></li>
+<li class="fragment"><p><strong>They do not always agree</strong> — the IQR rule is more sensitive in the tails. On Vungle’s B, <strong>two</strong> slow days (June 2 at $2.587 and June 3 at $2.755) sit <em>below</em> the boxplot lower fence (≈$2.80), yet both stay <em>inside</em> the <span class="math inline">\(|z|&gt;3\)</span> cutoff (June 2’s <span class="math inline">\(z = -2.53\)</span> is the most extreme). The boxplot rule flags two days; the z-rule flags none.</p></li>
 <li class="fragment"><p><strong>A flag is an invitation to investigate, not a delete button.</strong> Ask <em>why</em> before you drop a point.</p></li>
 </ul>
 </section>
@@ -1118,7 +1118,7 @@ r_{xy} = \frac{s_{xy}}{s_x \, s_y}
 <li><strong>Picture:</strong> build the <strong>five-number summary</strong> (<code>=QUARTILE.INC</code>) and insert a <strong>Box &amp; Whisker</strong> chart for A and B together.</li>
 <li><strong>Read it:</strong> write <strong>two sentences</strong> — <em>(1) how A and B compare on center and spread, (2) what that means for the rollout decision.</em></li>
 </ol>
-<p><strong>Hand in (1 slide):</strong> your A-vs-B summary table + boxplot + the two-sentence read.</p>
+<p><strong>Submit before you leave (graded, one slide per group):</strong> your call to the CEO on B’s edge + the <strong>center and spread numbers</strong> behind it (means, SDs, CVs, the boxplot) + the <strong>two things you would challenge</strong> in the analysis.</p>
 </div>
 </section></section>
 <section>
@@ -1161,7 +1161,7 @@ r_{xy} = \frac{s_{xy}}{s_x \, s_y}
 <section id="carry-forward" class="slide level2 center">
 <h2>Carry-forward</h2>
 <ul>
-<li><p><strong>Your client (homework):</strong> for your team’s case, build a <strong>descriptive dashboard</strong> of the key outcome — center (mean/median), spread (SD, IQR, CV), a <strong>boxplot</strong>, and the <strong>correlation</strong> between the outcome and one plausible driver. Write the <strong>two-sentence read</strong> a manager would act on.</p></li>
+<li><p><strong>Homework (individual):</strong> today’s tools (center, spread, shape, boxplots, and correlation) are drilled on <strong>HW1</strong>, individual problem sets in the previous-edition format, posted on Brightspace. Run them yourself so you can check an analyst who uses them.</p></li>
 <li><p><strong>Next time:</strong> we move from <em>describing</em> uncertainty to <em>quantifying</em> it — <strong>Probability</strong>: the chance a random impression installs, and how that chance changes once it clicks.</p></li>
 </ul>
 </section></section>

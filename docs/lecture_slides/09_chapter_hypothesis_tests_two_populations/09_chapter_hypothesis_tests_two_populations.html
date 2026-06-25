@@ -180,7 +180,7 @@ Professor<br>Davi Moreira<br>
 <li class="fragment"><p>Two Darden MBAs, <strong>Andrew Kritzer</strong> and <strong>Hammond Guerin</strong>, built a new ad-serving algorithm (<strong>B</strong>) and ran it head-to-head against the existing one (<strong>A</strong>) for the entire month of June 2014.</p></li>
 <li class="fragment"><p>The split was random: an MD5 hash of each user ID sent <strong>1/16 of traffic to B</strong>, the rest to A. Same market, same days, same apps — only the algorithm differs.</p></li>
 <li class="fragment"><p>The metric that pays the bills is <strong>eRPM</strong>: effective revenue per 1,000 impressions.</p></li>
-<li class="fragment"><p>Guerin is about to become Vungle’s <strong>head of data science</strong>. His credibility — and his stock options — ride on this call.</p></li>
+<li class="fragment"><p>Guerin is about to become Vungle’s <strong>head of data science</strong>. His credibility (and his stock options) ride on this call.</p></li>
 </ul>
 </section>
 <section id="the-brief-todays-managerial-question" class="slide level2 center">
@@ -268,7 +268,7 @@ Professor<br>Davi Moreira<br>
 <ul>
 <li class="fragment">No natural link between an observation in group 1 and any observation in group 2.</li>
 </ul></li>
-<li class="fragment"><p>Which is better? The <strong>paired test tends to remove much of the extraneous variation</strong> — differences in people, days, and experimental conditions — so the flavor effect stands out.</p></li>
+<li class="fragment"><p>Which is better? The <strong>paired test tends to remove much of the extraneous variation</strong> (differences in people, days, and experimental conditions) so the flavor effect stands out.</p></li>
 </ul>
 </section>
 <section id="two-designs-in-pictures" class="slide level2 center">
@@ -611,7 +611,7 @@ H_0: \mu_d \leq 0 \qquad \text{vs.} \qquad H_a: \mu_d &gt; 0 \qquad \text{(upper
 <ul>
 <li class="fragment"><p><strong>Why one-tailed?</strong> The business decision is asymmetric: Vungle rolls out B <strong>only if it is better</strong>. “B is worse” and “B is the same” lead to the identical action — keep A.</p></li>
 <li class="fragment"><p><span class="math inline">\(\mu_d\)</span> = the true mean daily eRPM advantage of B over A.</p></li>
-<li class="fragment"><p>We will also report the two-tailed <span class="math inline">\(p\)</span>-value — the more conservative convention — and the conclusion will not change.</p></li>
+<li class="fragment"><p>We will also report the two-tailed <span class="math inline">\(p\)</span>-value (the more conservative convention) and the conclusion will not change.</p></li>
 </ul>
 </section>
 <section id="step-3-test-statistic" class="slide level2 center">
@@ -745,7 +745,7 @@ t = \frac{0.1119}{0.1843/\sqrt{30}} = \frac{0.1119}{0.0337} = 3.325
 <li>Read off <code>t Stat</code> and <code>P(T&lt;=t) one-tail</code>; build the 95% CI for the mean difference.</li>
 <li>Decide at α = 0.05 — is the lift real?</li>
 </ol>
-<p><strong>Hand in (1 slide):</strong> your <span class="math inline">\(t\)</span>, <span class="math inline">\(p\)</span>, and CI, plus a one-line verdict for Guerin.</p>
+<p><strong>Submit before you leave (graded, one slide per group):</strong> your verdict on the lift (real or not) + your <span class="math inline">\(t\)</span>, <span class="math inline">\(p\)</span>, and 95% CI + the <strong>two things you would challenge</strong> in this paired analysis.</p>
 </div>
 </section></section>
 <section>
@@ -1177,7 +1177,7 @@ z = \frac{0.003541 - 0.004025}{0.0000164} = \mathbf{-29.56}
 <li>What would you <strong>monitor</strong> after rollout, and why?</li>
 <li>State it in <strong>three sentences</strong>: the call · the number · the caveat.</li>
 </ol>
-<p><strong>Hand in (1 slide):</strong> your rollout recommendation to the CEO.</p>
+<p><strong>Submit before you leave (graded, one slide per group):</strong> your rollout recommendation to CEO Jaffer + the metric you chose and its key number (<span class="math inline">\(t = 3.33\)</span> eRPM or <span class="math inline">\(z = -29.6\)</span> conversion) + the <strong>two things you would challenge</strong> before committing all traffic.</p>
 </div>
 </section>
 <section id="reconciling-the-two-metrics" class="slide level2 center">
@@ -1344,14 +1344,14 @@ z = \frac{0.003541 - 0.004025}{0.0000164} = \mathbf{-29.56}
 <li>The paired <span class="math inline">\(t\)</span>, pooled <span class="math inline">\(t\)</span>, Welch <span class="math inline">\(t\)</span>, two-sample <span class="math inline">\(z\)</span>, and two-proportion <span class="math inline">\(z\)</span> all reuse the Topic 8 logic; only the parameter (a <strong>difference</strong>) and the standard error change.</li>
 <li><strong>Default to Welch</strong> for independent means; <strong>pool only under <span class="math inline">\(H_0\)</span></strong> for proportion tests.</li>
 <li>Same data, different design → different conclusion: Vungle’s lift is decisive paired (<span class="math inline">\(t = 3.33\)</span>) and invisible unpaired (<span class="math inline">\(t = 1.51\)</span>).</li>
-<li>Statistical significance ≠ practical significance: with 252M impressions everything is “significant” — judge the <strong>effect size</strong>; with <span class="math inline">\(n = 15\)</span> per group, real effects can hide — mind the <strong>power</strong>.</li>
+<li>Statistical significance ≠ practical significance: with 252M impressions everything is “significant” (judge the <strong>effect size</strong>); with <span class="math inline">\(n = 15\)</span> per group, real effects can hide — mind the <strong>power</strong>.</li>
 <li>Test results are <strong>inputs to decisions</strong>, not decisions: the rollout call weighs the metric that matches the business model.</li>
 </ul>
 </section>
 <section id="carry-forward" class="slide level2 center">
 <h2>Carry-forward</h2>
 <ul>
-<li><p><strong>Your client (homework):</strong> find <strong>two groups</strong> in your team’s case — two segments, two periods, or treatment vs.&nbsp;control — and run the right two-sample test. <strong>Justify the design:</strong> paired or independent?</p></li>
+<li><p><strong>Homework (individual):</strong> today’s tools (two-sample tests: paired <span class="math inline">\(t\)</span>, independent/Welch <span class="math inline">\(t\)</span>, two-proportion <span class="math inline">\(z\)</span>) are drilled on <strong>HW3</strong>, individual problem sets in the previous-edition format, posted on Brightspace. Run them yourself so you can check an analyst who uses them.</p></li>
 <li><p><strong>Next time:</strong> we stop <em>comparing</em> and start <em>predicting</em> — <strong>Simple Regression</strong> (a new client: an auto-parts retailer choosing store sites).</p></li>
 </ul>
 </section></section>

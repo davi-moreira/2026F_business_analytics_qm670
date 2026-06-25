@@ -235,7 +235,7 @@ Professor<br>Davi Moreira<br>
 <p><br></p>
 <ul>
 <li class="fragment"><p>Data: <code>data/autoparts.csv</code> — 45 rows, one per store. <code>endcap</code> is already coded <strong>0/1</strong>.</p></li>
-<li class="fragment"><p><strong>The trap we will spring today:</strong> the two drivers a manager <em>expects</em> to dominate — population and income — turn out <strong>not</strong> to matter once service and merchandising are in the model.</p></li>
+<li class="fragment"><p><strong>The trap we will spring today:</strong> the two drivers a manager <em>expects</em> to dominate (population and income) turn out <strong>not</strong> to matter once service and merchandising are in the model.</p></li>
 </ul>
 </section>
 <section id="how-todays-studio-runs" class="slide level2 center">
@@ -446,7 +446,7 @@ R^2 = \frac{SSR}{SST} = 1 - \frac{SSE}{SST}
 <ul>
 <li class="fragment"><p>Here is the catch that makes <span class="math inline">\(R^2\)</span> dangerous in multiple regression:</p>
 <ul>
-<li class="fragment"><strong>Adding <em>any</em> predictor — even a useless, random one — can only <em>increase</em> <span class="math inline">\(R^2\)</span> (never decrease it).</strong></li>
+<li class="fragment"><strong>Adding <em>any</em> predictor (even a useless, random one) can only <em>increase</em> <span class="math inline">\(R^2\)</span> — never decrease it.</strong></li>
 </ul></li>
 <li class="fragment"><p>Why: a new variable gives least squares one more knob to fit noise, so <span class="math inline">\(SSE\)</span> shrinks and <span class="math inline">\(R^2\)</span> ticks up — whether or not the variable is real.</p></li>
 <li class="fragment"><p>So a bigger <span class="math inline">\(R^2\)</span> does <strong>not</strong> mean a better model. If we chased <span class="math inline">\(R^2\)</span> alone, we would throw every variable we could find into the model.</p></li>
@@ -554,7 +554,7 @@ R^2_a = 1 - \frac{SSE/(n - p - 1)}{SST/(n - 1)} = 1 - (1 - R^2)\,\frac{n - 1}{n 
 <li>Record <span class="math inline">\(R^2\)</span> and <strong>Adjusted <span class="math inline">\(R^2\)</span></strong> from the top block. In one sentence, say what fraction of the sales story the model captures.</li>
 <li>Translate the <strong>Yelp</strong> and <strong>endcap</strong> coefficients into plain dollars (“each extra star / an endcap is worth about $___K, holding the others fixed”).</li>
 </ol>
-<p><strong>Hand in (1 slide):</strong> the equation, <span class="math inline">\(R^2\)</span> vs.&nbsp;adjusted <span class="math inline">\(R^2\)</span>, and your dollar reading of the two biggest drivers.</p>
+<p><strong>Submit before you leave (graded, one slide per group):</strong> your read of what each driver is worth (the equation + <span class="math inline">\(R^2\)</span> vs.&nbsp;adjusted <span class="math inline">\(R^2\)</span> + the Yelp and endcap dollar figures) and the <strong>two things you would challenge</strong> in this fit.</p>
 </div>
 </section>
 <section id="debrief-managers-takeaway-lecture-1" class="slide level2 center">
@@ -569,7 +569,7 @@ R^2_a = 1 - \frac{SSE/(n - p - 1)}{SST/(n - 1)} = 1 - (1 - R^2)\,\frac{n - 1}{n 
 <section id="carry-forward-to-lecture-2" class="slide level2 center">
 <h2>Carry-forward (to Lecture 2)</h2>
 <ul>
-<li><p><strong>Your client (homework, part 1):</strong> fit a multiple regression for your team’s case with <strong>two or more</strong> predictors. Report the estimated equation, <span class="math inline">\(R^2\)</span>, and adjusted <span class="math inline">\(R^2\)</span>; interpret each coefficient with the “holding the others constant” clause.</p></li>
+<li><p><strong>Homework (individual):</strong> today’s tools (multiple regression, the <span class="math inline">\(F\)</span> vs.&nbsp;<span class="math inline">\(t\)</span> tests, and dummy variables) are drilled on <strong>HW3</strong> — individual problem sets in the previous-edition format, posted on Brightspace. Run them yourself so you can check an analyst who uses them.</p></li>
 <li><p><strong>Next lecture:</strong> which of these drivers are <em>statistically real</em>? We separate the <strong>overall <span class="math inline">\(F\)</span>-test</strong> from the <strong>individual <span class="math inline">\(t\)</span>-tests</strong>, put a defensible <strong>dollar value on an endcap</strong> with a dummy variable, and make the investment call.</p></li>
 </ul>
 </section></section>
@@ -988,7 +988,7 @@ VIF_j = \frac{1}{1 - R_j^2}
 <li><strong>Price the endcap:</strong> predict sales for a planned store (<code>pop = 120,000</code>, <code>income = 55,000</code>, <code>yelp = 4.0</code>) with <code>endcap = 0</code> and with <code>endcap = 1</code>; the difference is the endcap’s dollar value.</li>
 <li>State the investment call in <strong>three sentences</strong>: the lever to fund · the number · the caveat.</li>
 </ol>
-<p><strong>Hand in (1 slide):</strong> your significant-vs-not verdict, the endcap’s dollar value, and the CFO recommendation.</p>
+<p><strong>Submit before you leave (graded, one slide per group):</strong> your CFO recommendation (which lever to fund) + the key numbers (Significance F, the significant-vs-not verdict, the endcap’s dollar value) + the <strong>two things you would challenge</strong> in the analysis.</p>
 </div>
 </section>
 <section id="debrief-managers-takeaway-lecture-2" class="slide level2 center">
@@ -1079,7 +1079,7 @@ VIF_j = \frac{1}{1 - R_j^2}
 <h2>Manager’s Takeaway</h2>
 <p><br></p>
 <ul>
-<li class="fragment"><p><strong>One sentence:</strong> for this 45-store chain, <strong>service and merchandising — not location demographics — drive sales</strong>, so invest in Yelp rating (+$642K/star) and endcap placement (+$816K), each statistically decisive.</p></li>
+<li class="fragment"><p><strong>One sentence:</strong> for this 45-store chain, <strong>service and merchandising drive sales, not location demographics</strong> — so invest in Yelp rating (+$642K/star) and endcap placement (+$816K), each statistically decisive.</p></li>
 <li class="fragment"><p><strong>One number to remember:</strong> <strong>$816K</strong> — the value of an endcap, read straight off a dummy variable’s coefficient, holding everything else constant.</p></li>
 <li class="fragment"><p><strong>One caveat:</strong> the model <em>describes</em> 45 existing stores; it does not <em>prove</em> that buying an endcap will <em>cause</em> +$816K at a brand-new store. Correlation control is the best we can do with observational data — pilot it, then re-estimate.</p></li>
 <li class="fragment"><p><strong>Practice with the real data:</strong> <code>data/autoparts.csv</code> + Excel Regression → reproduce <span class="math inline">\(R^2 = 0.932\)</span>, <span class="math inline">\(F = 136.7\)</span>, the four coefficients, and the prediction. Worked solutions: <code>data/autoparts_regression.xlsx</code>.</p></li>
@@ -1101,7 +1101,7 @@ VIF_j = \frac{1}{1 - R_j^2}
 <section id="carry-forward" class="slide level2 center">
 <h2>Carry-forward</h2>
 <ul>
-<li><p><strong>Your client (homework, part 2):</strong> for your team’s case, run the <strong>overall <span class="math inline">\(F\)</span>-test</strong> and the <strong>individual <span class="math inline">\(t\)</span>-tests</strong>; if your case has a natural category, add a <strong>dummy</strong> and interpret its coefficient as a group difference. Check <strong>VIF</strong> for any predictors you suspect overlap. Close with a one-paragraph recommendation: which lever should the client pull, and what is it worth?</p></li>
+<li><p><strong>Homework (individual):</strong> today’s tools (multiple regression, the <span class="math inline">\(F\)</span> vs.&nbsp;<span class="math inline">\(t\)</span> tests, and dummy variables) are drilled on <strong>HW3</strong> — individual problem sets in the previous-edition format, posted on Brightspace. Run them yourself so you can check an analyst who uses them.</p></li>
 <li><p><strong>Where we’ve been:</strong> from <em>comparing</em> two groups (inference) to <em>predicting</em> with one driver (simple regression) to <em>isolating many drivers at once</em> (today) — the analyst’s core toolkit for turning data into a defensible business decision.</p></li>
 </ul>
 </section></section>

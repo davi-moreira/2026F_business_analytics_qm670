@@ -193,7 +193,7 @@ Professor<br>Davi Moreira<br>
 <ul>
 <li class="fragment"><p>Counting distributions (Binomial, Poisson) answered “how many installs?” Today’s tool answers “<strong>how much revenue per impression</strong>, and how often above a threshold?”</p></li>
 <li class="fragment"><p><strong>How today’s studio runs:</strong> I demo each idea on a textbook example → <strong>your team fits the Normal to Vungle eRPM</strong> (two sprints) → we debrief what the model can and cannot tell a manager.</p></li>
-<li class="fragment"><p>By the end, <strong>your team</strong> turns a fitted distribution into a planning number — a probability and a percentile — and stress-tests the assumption behind it.</p></li>
+<li class="fragment"><p>By the end, <strong>your team</strong> turns a fitted distribution into a planning number (a probability and a percentile) and stress-tests the assumption behind it.</p></li>
 </ul>
 </section>
 <section id="how-todays-tools-answer-it" class="slide level2 center">
@@ -252,7 +252,7 @@ Professor<br>Davi Moreira<br>
 </blockquote>
 <p><br></p>
 <ul>
-<li class="fragment"><p>The payoff question — <span class="math inline">\(P(\text{eRPM} &gt; \$3.50)\)</span> — waits for Lecture 2. First we build the machinery: <strong>probability as area</strong>, the <strong>Normal</strong> shape, and the <strong>z-score</strong> that unlocks any Normal.</p></li>
+<li class="fragment"><p>The payoff question <span class="math inline">\(P(\text{eRPM} &gt; \$3.50)\)</span> waits for Lecture 2. First we build the machinery: <strong>probability as area</strong>, the <strong>Normal</strong> shape, and the <strong>z-score</strong> that handles any Normal.</p></li>
 <li class="fragment"><p>Anchor examples today: <strong>Slater’s Buffet</strong> (uniform) and <strong>Pep Zone</strong> inventory (Normal). Then we fit the Normal to Vungle eRPM.</p></li>
 </ul>
 </section></section>
@@ -352,7 +352,7 @@ P(12 \le X \le 15) = (15 - 12) \times \frac{1}{10} = 0.30
 
 <img data-src="figs/uniform_slater.png" class="quarto-figure quarto-figure-center r-stretch" style="width:72.0%"><ul>
 <li>30% of customers take between 12 and 15 ounces — directly the <strong>area</strong> of the shaded rectangle, no calculus needed.</li>
-<li>The same idea — <strong>probability = area</strong> — now carries over to the bell-shaped Normal, where the area is harder to compute by hand (so we lean on z-scores and Excel).</li>
+<li>The same idea, <strong>probability = area</strong>, now carries over to the bell-shaped Normal, where the area is harder to compute by hand (so we lean on z-scores and Excel).</li>
 </ul>
 </section></section>
 <section>
@@ -525,7 +525,7 @@ z = \frac{3.50 - 3.459}{0.344} = 0.12
 <li>Apply the <strong>empirical rule</strong>: give the interval that should hold ~95% of days (<span class="math inline">\(\bar{x} \pm 2s\)</span>).</li>
 <li>Standardize a $3.50 day: compute <span class="math inline">\(z = (3.50 - \bar{x})/s\)</span>. Is $3.50 a good day, an average day, or a bad day?</li>
 </ol>
-<p><strong>Hand in (1 slide):</strong> your <span class="math inline">\(\bar{x}\)</span>, <span class="math inline">\(s\)</span>, the 95% empirical interval, and one sentence on where $3.50 sits.</p>
+<p><strong>Submit before you leave (graded, one slide per group):</strong> your call on whether Normal is a sensible model for B’s eRPM + the key numbers (<span class="math inline">\(\bar{x}\)</span>, <span class="math inline">\(s\)</span>, the 95% empirical interval, the <span class="math inline">\(z\)</span> for $3.50) + the <strong>two things you would challenge</strong> in the fit.</p>
 </div>
 </section>
 <section id="debrief-lecture-1-takeaway" class="slide level2 center">
@@ -540,7 +540,7 @@ z = \frac{3.50 - 3.459}{0.344} = 0.12
 <section id="carry-forward-lecture-1" class="slide level2 center">
 <h2>Carry-forward — Lecture 1</h2>
 <ul>
-<li><p><strong>Your client (homework):</strong> pick a roughly continuous metric in your team’s case (price, time, spend, rating). Compute its mean and sd, and use the <strong>empirical rule</strong> to describe a typical range. Flag whether a Normal model looks plausible from the histogram.</p></li>
+<li><p><strong>Homework (individual):</strong> today’s tools (the Normal model, z-scores, and percentiles) are drilled on <strong>HW2</strong> — individual problem sets in the previous-edition format, posted on Brightspace. Run them yourself so you can check an analyst who uses them.</p></li>
 <li><p><strong>Next time:</strong> we cash in the model — exact tail probabilities (<span class="math inline">\(P(\text{eRPM} &gt; \$3.50)\)</span>), the <strong>90th-percentile day</strong>, a formal <strong>normality check</strong>, and the Normal approximation of the Binomial.</p></li>
 </ul>
 </section></section>
@@ -553,7 +553,7 @@ z = \frac{3.50 - 3.459}{0.344} = 0.12
 <h2>The Brief — Lecture 2</h2>
 <p><br></p>
 <blockquote>
-<p>“Cash in the model. Tomorrow’s eRPM is <span class="math inline">\(\sim N(3.459, 0.344)\)</span>. <strong>What’s <span class="math inline">\(P(\text{eRPM} &gt; \$3.50)\)</span>? What eRPM defines a top-10% day?</strong> And — before we trust any of it — <strong>is the Normal assumption fair?</strong>”</p>
+<p>“Cash in the model. Tomorrow’s eRPM is <span class="math inline">\(\sim N(3.459, 0.344)\)</span>. <strong>What’s <span class="math inline">\(P(\text{eRPM} &gt; \$3.50)\)</span>? What eRPM defines a top-10% day?</strong> And before we trust any of it, <strong>is the Normal assumption fair?</strong>”</p>
 </blockquote>
 <p><br></p>
 <ul>
@@ -602,7 +602,7 @@ z = \frac{3.50 - 3.459}{0.344} = 0.12 \qquad P(\text{eRPM} &gt; 3.50) = P(Z &gt;
 
 <img data-src="figs/excel_normdist_vungle.png" class="quarto-figure quarto-figure-center r-stretch" style="width:82.0%"><ul>
 <li><code>NORM.DIST(..., TRUE)</code> returns the area to the <strong>left</strong>; subtract from 1 for a right tail.</li>
-<li>The standard-Normal route — standardize to <span class="math inline">\(z = 0.12\)</span>, then <code>1 - NORM.S.DIST(0.12, TRUE)</code> — gives the <strong>same</strong> 0.4526. Two roads, one answer.</li>
+<li>The standard-Normal route (standardize to <span class="math inline">\(z = 0.12\)</span>, then <code>1 - NORM.S.DIST(0.12, TRUE)</code>) gives the <strong>same</strong> 0.4526. Two roads, one answer.</li>
 </ul>
 </section></section>
 <section>
@@ -688,7 +688,7 @@ x = \mu + z\,\sigma = 3.459 + 1.282 \times 0.344 = \$3.90
 <li><strong>Percentile:</strong> <code>=NORM.INV(0.90, mean, sd)</code>. Report the <strong>90th-percentile day</strong> as a “great day” benchmark.</li>
 <li><strong>Check the assumption:</strong> sort the 30 values; eyeball them against the Normal QQ plot (provided). Do they hug the line?</li>
 </ol>
-<p><strong>Hand in (1 slide):</strong> <span class="math inline">\(P(\text{eRPM} &gt; \$3.50)\)</span>, the 90th-percentile eRPM, and a one-line verdict on whether the Normal model is trustworthy.</p>
+<p><strong>Submit before you leave (graded, one slide per group):</strong> your verdict on whether to trust the Normal model + the key numbers (<span class="math inline">\(P(\text{eRPM} &gt; \$3.50)\)</span>, the 90th-percentile eRPM, the QQ-plot read) + the <strong>two things you would challenge</strong> in the analysis.</p>
 </div>
 </section></section>
 <section>
@@ -825,7 +825,7 @@ z = \frac{2000.5 - 1867}{43.1} = 3.10 \qquad P(\text{installs} &gt; 2000) = \tex
 <p>Some key takeaways from this session:</p>
 <ul>
 <li>For a <strong>continuous</strong> variable, <span class="math inline">\(P(X = x) = 0\)</span>; probability is the <strong>area</strong> under the density <span class="math inline">\(f(x)\)</span>.</li>
-<li>The <strong>uniform</strong> is the simplest model (probability ∝ interval length); the <strong>Normal</strong> — set by <span class="math inline">\(\mu\)</span> (location) and <span class="math inline">\(\sigma\)</span> (spread) — is the workhorse, with the <strong>empirical rule</strong> (68/95/99.7).</li>
+<li>The <strong>uniform</strong> is the simplest model (probability ∝ interval length); the <strong>Normal</strong>, set by <span class="math inline">\(\mu\)</span> (location) and <span class="math inline">\(\sigma\)</span> (spread), is the workhorse, with the <strong>empirical rule</strong> (68/95/99.7).</li>
 <li><strong>Standardize</strong> with <span class="math inline">\(z = (x - \mu)/\sigma\)</span>, then read areas off the single standard Normal <span class="math inline">\(N(0,1)\)</span>.</li>
 <li>In Excel: <code>NORM.DIST</code> for <strong>probabilities</strong> (tail areas), <code>NORM.INV</code> for <strong>percentiles</strong> — they are inverses.</li>
 <li><strong>Check the assumption</strong> with a QQ plot / Shapiro-Wilk before trusting a Normal probability.</li>
@@ -835,7 +835,7 @@ z = \frac{2000.5 - 1867}{43.1} = 3.10 \qquad P(\text{installs} &gt; 2000) = \tex
 <section id="carry-forward" class="slide level2 center">
 <h2>Carry-forward</h2>
 <ul>
-<li><p><strong>Your client (homework):</strong> for your team’s continuous metric, compute <span class="math inline">\(P(X &gt; \text{threshold})\)</span> with <code>NORM.DIST</code> and a meaningful percentile with <code>NORM.INV</code>, then <strong>check normality</strong> with a QQ plot. State one decision the numbers inform.</p></li>
+<li><p><strong>Homework (individual):</strong> today’s tools (the Normal model, z-scores, and percentiles) are drilled on <strong>HW2</strong> — individual problem sets in the previous-edition format, posted on Brightspace. Run them yourself so you can check an analyst who uses them.</p></li>
 <li><p><strong>Next time:</strong> we stop treating these 30 days as the whole story and recognize them as a <strong>sample</strong> — <strong>Sampling &amp; Estimation</strong>: how to estimate the <em>true</em> eRPM, with a margin of error.</p></li>
 </ul>
 </section></section>

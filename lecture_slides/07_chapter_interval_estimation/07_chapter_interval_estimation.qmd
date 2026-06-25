@@ -83,7 +83,7 @@ html-math-method:
 
 <br>
 
-- A different 30 days — say, **July** — would give a **different** mean eRPM. So would any other random sample.
+- A different 30 days (say, **July**) would give a **different** mean eRPM. So would any other random sample.
 
 - That wobble is not a mistake; it is the price of working from a **sample** instead of the whole **population**.
 
@@ -323,7 +323,7 @@ $$
 2. Compute the **standard error** $s/\sqrt{30}$ — the typical wobble of a 30-day mean.
 3. Compute what the standard error **would be at $n = 120$** ($s/\sqrt{120}$). By how much does it shrink, and why?
 
-**Hand in (1 slide):** B's $\bar{x}$, $s$, the standard error at $n=30$ vs. $n=120$, and a one-line verdict: precise enough, or test longer?
+**Submit before you leave (graded, one slide per group):** your call (precise enough now, or test longer) plus B's $\bar{x}$, $s$, and the standard error at $n=30$ vs. $n=120$, and the **two things you would challenge** in this read of the data.
 :::
 
 ## Debrief — Lecture 1 Takeaway
@@ -339,7 +339,7 @@ $$
 ## Carry-forward to Lecture 2
 
 ::: nonincremental
-- We can now say *how much* a 30-day mean wobbles. Next we turn that wobble into a **confidence interval** — a stated range for B's true mean eRPM — and answer the manager's real question: **\$3.46, give or take how much?**
+- We can now say *how much* a 30-day mean wobbles. Next we turn that wobble into a **confidence interval** (a stated range for B's true mean eRPM) and answer the manager's real question: **\$3.46, give or take how much?**
 :::
 
 # Lecture 2 — The Interval Estimate {background-color="#cfb991"}
@@ -749,7 +749,7 @@ $$
 
 :::
 
-- $p^*$ is a **planning value** for the proportion: a prior estimate, a pilot, or — if you know nothing — the **conservative $p^* = 0.5$**, which maximizes $p^*(1-p^*)$ and gives the largest (safest) $n$.
+- $p^*$ is a **planning value** for the proportion: a prior estimate, a pilot, or (if you know nothing) the **conservative $p^* = 0.5$**, which maximizes $p^*(1-p^*)$ and gives the largest (safest) $n$.
 
 - **PSI example:** for $E = 0.03$ at 99% ($z = 2.576$): with $p^* = 0.44$, $n = 1817$; with the conservative $p^* = 0.5$, $n = 1844$. When unsure, plan for the larger.
 
@@ -764,7 +764,7 @@ $$
 2. **95% CI for the daily conversion rate (B):** same steps on the `conv_B_pct` column.
 3. **Sample size:** how many days for the eRPM margin to reach $\pm\$0.05$? Use `=CEILING((1.96*s/0.05)^2,1)`.
 
-**Hand in (1 slide):** the two intervals (with a one-line plain-English reading of each) and the required number of days — your estimation memo to Vungle.
+**Submit before you leave (graded, one slide per group):** your estimation memo to Vungle — the two 95% intervals (with a one-line reading of each) and the days needed for $\pm\$0.05$, plus the **two things you would challenge** before banking on these numbers.
 :::
 
 # Debrief — The Estimation Memo {background-color="#cfb991"}
@@ -797,7 +797,7 @@ $$
 
 <br>
 
-- **One sentence:** a confidence interval turns a point estimate into a defensible **range** — B's true mean eRPM is \$3.46 $\pm$ \$0.13 at 95% confidence — and the **margin of error** is the number a manager should actually negotiate over.
+- **One sentence:** a confidence interval turns a point estimate into a defensible **range** (B's true mean eRPM is \$3.46 $\pm$ \$0.13 at 95% confidence) and the **margin of error** is the number a manager should actually negotiate over.
 
 - **One number to remember:** $E = t_{\alpha/2}\,s/\sqrt{n}$ — and the $\sqrt{n}$ in the denominator, which makes precision expensive.
 
@@ -819,7 +819,7 @@ Some key takeaways from this session:
 ## Carry-forward
 
 ::: nonincremental
-- **Your client (homework):** for your team's case, pick one key **mean** and one key **proportion**. Build a **95% confidence interval** for each, write a one-sentence plain-English reading, and compute the **sample size** needed to halve one of the margins. Justify your planning value.
+- **Homework (individual):** today's tools (confidence intervals and sample-size planning) are drilled on **HW2** — individual problem sets in the previous-edition format, posted on Brightspace. Build the intervals and solve for $n$ yourself, so you can check an analyst who hands you a range.
 
 - **Next time:** we stop *estimating ranges* and start *testing claims* — **Hypothesis Testing**: fund B only if its mean eRPM beats a benchmark. Today's standard error and $t$ tools become the test statistic.
 :::

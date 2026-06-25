@@ -60,7 +60,7 @@ html-math-method:
 
 - The metric that pays the bills is **eRPM**: effective revenue per 1,000 impressions.
 
-- Guerin is about to become Vungle's **head of data science**. His credibility — and his stock options — ride on this call.
+- Guerin is about to become Vungle's **head of data science**. His credibility (and his stock options) ride on this call.
 
 ## The Brief — Today's Managerial Question
 
@@ -124,7 +124,7 @@ Every tool today maps onto the Vungle dataset:
 
   - No natural link between an observation in group 1 and any observation in group 2.
 
-- Which is better? The **paired test tends to remove much of the extraneous variation** — differences in people, days, and experimental conditions — so the flavor effect stands out.
+- Which is better? The **paired test tends to remove much of the extraneous variation** (differences in people, days, and experimental conditions) so the flavor effect stands out.
 
 ## Two Designs, in Pictures
 
@@ -400,7 +400,7 @@ $$
 
 - $\mu_d$ = the true mean daily eRPM advantage of B over A.
 
-- We will also report the two-tailed $p$-value — the more conservative convention — and the conclusion will not change.
+- We will also report the two-tailed $p$-value (the more conservative convention) and the conclusion will not change.
 
 ## Step 3 — Test Statistic
 
@@ -525,7 +525,7 @@ $$
 2. Read off `t Stat` and `P(T<=t) one-tail`; build the 95% CI for the mean difference.
 3. Decide at α = 0.05 — is the lift real?
 
-**Hand in (1 slide):** your $t$, $p$, and CI, plus a one-line verdict for Guerin.
+**Submit before you leave (graded, one slide per group):** your verdict on the lift (real or not) + your $t$, $p$, and 95% CI + the **two things you would challenge** in this paired analysis.
 :::
 
 # Independent Samples: Comparing Two Means {background-color="#cfb991"}
@@ -921,7 +921,7 @@ $$
 2. What would you **monitor** after rollout, and why?
 3. State it in **three sentences**: the call · the number · the caveat.
 
-**Hand in (1 slide):** your rollout recommendation to the CEO.
+**Submit before you leave (graded, one slide per group):** your rollout recommendation to CEO Jaffer + the metric you chose and its key number ($t = 3.33$ eRPM or $z = -29.6$ conversion) + the **two things you would challenge** before committing all traffic.
 :::
 
 ## Reconciling the Two Metrics
@@ -1016,14 +1016,14 @@ Some key takeaways from this session:
 - The paired $t$, pooled $t$, Welch $t$, two-sample $z$, and two-proportion $z$ all reuse the Topic 8 logic; only the parameter (a **difference**) and the standard error change.
 - **Default to Welch** for independent means; **pool only under $H_0$** for proportion tests.
 - Same data, different design → different conclusion: Vungle's lift is decisive paired ($t = 3.33$) and invisible unpaired ($t = 1.51$).
-- Statistical significance ≠ practical significance: with 252M impressions everything is "significant" — judge the **effect size**; with $n = 15$ per group, real effects can hide — mind the **power**.
+- Statistical significance ≠ practical significance: with 252M impressions everything is "significant" (judge the **effect size**); with $n = 15$ per group, real effects can hide — mind the **power**.
 - Test results are **inputs to decisions**, not decisions: the rollout call weighs the metric that matches the business model.
 :::
 
 ## Carry-forward
 
 ::: nonincremental
-- **Your client (homework):** find **two groups** in your team's case — two segments, two periods, or treatment vs. control — and run the right two-sample test. **Justify the design:** paired or independent?
+- **Homework (individual):** today's tools (two-sample tests: paired $t$, independent/Welch $t$, two-proportion $z$) are drilled on **HW3**, individual problem sets in the previous-edition format, posted on Brightspace. Run them yourself so you can check an analyst who uses them.
 
 - **Next time:** we stop *comparing* and start *predicting* — **Simple Regression** (a new client: an auto-parts retailer choosing store sites).
 :::

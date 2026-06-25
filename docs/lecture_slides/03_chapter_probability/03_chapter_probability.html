@@ -540,7 +540,7 @@ P(A \mid B) = P(A) \quad\Longleftrightarrow\quad P(A \cap B) = P(A)\,P(B)
 <li><strong>Multiply</strong> them and check the product equals installs ÷ impressions (the multiplication law).</li>
 <li>Sketch B’s funnel as a <strong>probability tree</strong> with the branch probabilities labeled.</li>
 </ol>
-<p><strong>Hand in (1 slide):</strong> B’s three conditional rates, the chained install rate, and a one-line read of where B leaks the most.</p>
+<p><strong>Submit before you leave (graded, one slide per group):</strong> your call on where B leaks the most + B’s three conditional rates and chained install rate + the <strong>two things you would challenge</strong> in the analysis.</p>
 </div>
 </section></section>
 <section>
@@ -638,7 +638,7 @@ P(A_i \mid B) = \frac{P(A_i)\,P(B \mid A_i)}{\displaystyle\sum_{j=1}^{k} P(A_j)\
 </tr>
 </tbody>
 </table>
-<p>A <em>large</em> test result lifts “Major success” from a <strong>5%</strong> prior to a <strong>49%</strong> posterior — nearly ten-fold — which is exactly why the test is worth running.</p>
+<p>A <em>large</em> test result lifts “Major success” from a <strong>5%</strong> prior to a <strong>49%</strong> posterior (nearly ten-fold), which is exactly why the test is worth running.</p>
 </div>
 </section>
 <section id="the-vungle-bayes-update-setup" class="slide level2 center">
@@ -768,7 +768,7 @@ P(\text{install} \mid A) = 0.4025\% \qquad P(\text{install} \mid B) = 0.3541\%
 <p><br></p>
 <ul>
 <li class="fragment"><p><strong>One sentence:</strong> every funnel rate is a <strong>conditional probability</strong>, the end-to-end install rate is their <strong>product</strong>, and Bayes lets you read the funnel <strong>backward</strong> — from an observed install to the likely algorithm.</p></li>
-<li class="fragment"><p><strong>One number to remember:</strong> <strong>0.40%</strong> — the marginal install rate — and how a single click multiplies it 20-fold to <strong>7.93%</strong>.</p></li>
+<li class="fragment"><p><strong>One number to remember:</strong> <strong>0.40%</strong>, the marginal install rate, and how a single click multiplies it 20-fold to <strong>7.93%</strong>.</p></li>
 <li class="fragment"><p><strong>One caveat:</strong> an install is <em>weak</em> evidence about which algorithm served it (<span class="math inline">\(P(B\mid\text{install}) = 5.56\%\)</span> vs.&nbsp;a <span class="math inline">\(6.27\%\)</span> prior) — base rates dominate, so never read a posterior off the likelihood alone.</p></li>
 <li class="fragment"><p><strong>Practice with the real data:</strong> <code>data/vungle_daily.csv</code> + <code>SUMIF</code> → reproduce the funnel rates; <code>data/vungle_probability.xlsx</code> holds the worked funnel and Bayes tables.</p></li>
 </ul>
@@ -784,13 +784,13 @@ P(\text{install} \mid A) = 0.4025\% \qquad P(\text{install} \mid B) = 0.3541\%
 <li>Build the <strong>joint</strong> column (prior × likelihood); sum to get <span class="math inline">\(P(\text{install})\)</span>.</li>
 <li>Posterior <span class="math inline">\(P(B\mid\text{install})\)</span> = B’s joint ÷ the sum — compare it to the prior.</li>
 </ol>
-<p><strong>Hand in (1 slide):</strong> the posterior <span class="math inline">\(P(B\mid\text{install})\)</span> and one sentence on why an install is evidence <em>against</em> B.</p>
+<p><strong>Submit before you leave (graded, one slide per group):</strong> your read on how strongly an install points to B + the posterior <span class="math inline">\(P(B\mid\text{install})\)</span> + the <strong>two things you would challenge</strong> in the analysis.</p>
 </div>
 </section>
 <section id="carry-forward" class="slide level2 center">
 <h2>Carry-forward</h2>
 <ul>
-<li><p><strong>Your client (homework):</strong> in your team’s case, build a <strong>contingency table</strong> of two categorical variables, then compute one <strong>marginal</strong>, one <strong>conditional</strong>, and one <strong>Bayes (reverse)</strong> probability. State which managerial question each one answers.</p></li>
+<li><p><strong>Homework (individual):</strong> today’s tools (probability rules, conditional probability, and Bayes’ theorem) are drilled on <strong>HW1</strong> — individual problem sets in the previous-edition format, posted on Brightspace. Run them yourself so you can check an analyst who uses them.</p></li>
 <li><p><strong>Next time:</strong> probabilities become <strong>decisions</strong> — Decision Analysis: payoffs, expected value, and the value of information, on the Vungle rollout.</p></li>
 </ul>
 </section>
@@ -802,7 +802,7 @@ P(\text{install} \mid A) = 0.4025\% \qquad P(\text{install} \mid B) = 0.3541\%
 <li><strong>Basic relationships:</strong> complement, union (addition law subtracts the overlap), intersection (joint), and mutually exclusive.</li>
 <li><strong>Conditional probability</strong> <span class="math inline">\(P(A\mid B) = P(A\cap B)/P(B)\)</span> is the engine of funnel analytics — each step conditions on surviving the last.</li>
 <li>The <strong>multiplication law</strong> chains the steps into the end-to-end rate; <strong>independence</strong> is when conditioning changes nothing (the funnel steps are <em>not</em> independent).</li>
-<li><strong>Bayes’ theorem</strong> reverses the conditioning — prior → posterior — and base rates dominate: an install is only weak evidence about which algorithm served it.</li>
+<li><strong>Bayes’ theorem</strong> reverses the conditioning (prior → posterior), and base rates dominate: an install is only weak evidence about which algorithm served it.</li>
 <li><strong>Marginal, conditional, and reverse probabilities are different numbers</strong> for the same data; match the number to the manager’s question.</li>
 </ul>
 </section></section>
