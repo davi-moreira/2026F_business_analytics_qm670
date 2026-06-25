@@ -107,60 +107,50 @@ knitr::include_graphics("figs/carnaval_olinda.jpg")
 
 <br>
 
-## Students
+## Find Your Group & Meet Your Team
 
 <br>
 
-- It is your turn! - 5 minutes
+- You were **randomly assigned to a fixed group** for the whole term. Find your group number on **Brightspace → Groups**.
 
-<br>
+- **Find your group, sit together, and meet your teammates. You have 10 minutes.** Say your name, where you are from, your background, and **one book, film, song, or anything** that tells us something about you. Then pick a **group name**.
 
-- Introduce yourself to the colleague on your left or right. Then ask them to rate, on a scale from 1 (not at all) to 5 (a lot), how much they like statistics.
+- This is your team for every in-class case this semester.
 
 
 # Course Overview and Logistics {background-color="#cfb991"}
 
 ## Course Overview and Logistics
 
--   **Materials**:
+::: nonincremental
+- **Course webpage** ([link](https://davi-moreira.github.io/2026F_business_analytics_qm670){target="_blank"}): the **syllabus**, the **schedule**, every topic's **slides**, and the **datasets** to download.
 
-    -   Brightspace
+- **Brightspace** (your channel): announcements, your **group**, the **in-class group cases**, the **three homeworks**, the exams, and your grades.
 
-    -   [Course Webpage](https://davi-moreira.github.io/2026F_business_analytics_qm670){target="_blank"}
+- **Excel + the Analysis ToolPak:** install it this week; we use it every class.
 
--   **Syllabus**
-
--   **Slides**
-
--   **Podcast**
-
--   **Videos**
-
--   **Supplementary Material**
-
--   **Schedule**
+- **iClicker** for attendance (target 85%).
+:::
 
 ## How to Succeed in This Course
 
 <br>
 
-- **Start from zero, by design.** No prior statistics is assumed — this is your first analytics course, and we build every method up from a real business decision.
-
-- **Keep up every week.** Statistics builds on itself — today's vocabulary becomes next week's formulas. Falling behind compounds.
+- **Keep up every week.** Statistics builds on itself: today's vocabulary becomes next week's formulas. Falling behind compounds.
 
 - **Work with your group.** In-class cases are solved and submitted together; homework you do on your own. Explaining a method to a groupmate is the fastest way to learn it.
 
 - **You're the decision-maker.** Every method we learn answers a call *you* have to make. Learn each one well enough to check an analyst's work, and always ask: *what decision does this number support, and would I stake money on it?*
 
-- **Use Excel from day one.** Install the Analysis ToolPak this week and open the course dataset — you will use it all semester.
+- **Use Excel from day one.** Install the Analysis ToolPak this week and open the course dataset; you will use it all semester.
 
 ## How the Class Works
 
 <br>
 
-- **Your group:** you'll be randomly assigned to a **fixed group** this week and work every in-class case with it.
+- **Your group:** you were **randomly assigned to a fixed group** this week and work every in-class case with it.
 
-- **Submit before you leave:** each class your group turns in one deliverable on **Brightspace** — your decision plus the evidence. A grader scores it.
+- **Submit before you leave:** each class your group turns in one deliverable on **Brightspace**.
 
 - **Bring a laptop** with **Excel + the Analysis ToolPak** to every session.
 
@@ -168,10 +158,10 @@ knitr::include_graphics("figs/carnaval_olinda.jpg")
 
 ## How Every Class Runs
 
-![](figs/lecture_dynamic.png){.nostretch fig-align="center" width="92%"}
+![](figs/lecture_dynamic.png){.nostretch fig-align="center" width="90%"}
 
 ::: nonincremental
-- Same five beats every meeting. The one that counts for your grade is the **Team Sprint** — your group's decision, submitted before you leave.
+The class **ends on the Team Sprint** — your group's graded submission. **Today is the exception:** introductions and logistics come first, so the group case is short.
 :::
 
 # Textbook & Software {background-color="#cfb991"}
@@ -203,17 +193,17 @@ Anderson · Sweeney · Williams · Camm · Cochran — Cengage, 2020 · ISBN-13 
 
 # Survey {background-color="#cfb991"}
 
-## Survey {background-color="#cfb991"}
+## Survey: Tell Me About You {background-color="#cfb991"}
 
 ```{r  echo=FALSE, out.width = "25%", fig.align="center"}
 knitr::include_graphics("figs/qrcode_review_survey.png")
 ```
 
-<center>[Attendance and Participation](https://forms.office.com/r/3R2VwPJAzA){target="_blank"}<br>10 min</center>
+<center>[Student Profile Survey](https://forms.office.com/r/3R2VwPJAzA){target="_blank"}<br>~10 min · who you are, your background, and one **book, film, or song** that tells me something about you</center>
 
 # Your Semester: Two Cases, One Job {background-color="#cfb991"}
 
-## You're the Decision-Maker — Two Cases to Crack
+## You're the Decision-Maker: Two Cases to Crack
 
 <br>
 
@@ -228,12 +218,10 @@ knitr::include_graphics("figs/qrcode_review_survey.png")
 :::
 
 ::: fragment
-- **Every class:** your group works the case live and **submits its call before you leave** (graded). **Homework** is separate and **individual** — problem sets that drill the mechanics.
+- **Every class:** your group works in the in-class case and **submits its call before you leave** (graded).
 :::
 
-## The Roadmap: Which Case, Which Week
-
-Every case runs the same path: **describe → quantify the uncertainty → test → predict.** You crack it in your group and submit before you leave; three **individual** homeworks build the mechanics:
+## The Roadmap
 
 ![](figs/course_roadmap.png){.nostretch fig-align="center" width="72%"}
 
@@ -243,7 +231,7 @@ Every case runs the same path: **describe → quantify the uncertainty → test 
 
 <br>
 
-- [Vungle](https://en.wikipedia.org/wiki/Liftoff_Mobile) is a mobile ad-tech startup: it serves 15-second video ads inside other apps and earns revenue mainly when a viewer **installs** the advertised app.
+- **Vungle** is a mobile ad-tech startup: it serves 15-second video ads inside other apps and earns revenue mainly when a viewer **installs** the advertised app.
 
 - The metric that pays the bills is **eRPM** — effective revenue per 1,000 impressions.
 
@@ -251,7 +239,7 @@ Every case runs the same path: **describe → quantify the uncertainty → test 
 
 - **Your call as Vungle's CEO:** *roll out B to all advertisers, or stay with A?*
 
-- We will use this one decision (*is B better than A?*) to motivate **every** tool in this course.
+- We will use this one decision (*is B better than A?*) to motivate **every** tool in this course. The data is in `vungle_daily.csv` (download it from the course **Material** page).
 
 ## The Data Behind the Decision
 
@@ -261,10 +249,10 @@ knitr::include_graphics("figs/vungle_funnel.png")
 
 ::: nonincremental
 - Each ad **impression** can become a completed view, then a click, then an **install**. That chain is the *conversion funnel*.
-- 30 days, both algorithms, the full funnel — that is the dataset `vungle_daily.csv` we will analyze all term.
+- 30 days, both algorithms, the full funnel — that is the dataset `vungle_daily.csv` we will analyze.
 :::
 
-## The Tempting Answer — and Why It Is Not Enough
+## The Tempting Answer: Why It Is Not Enough
 
 <br>
 
@@ -276,7 +264,7 @@ knitr::include_graphics("figs/vungle_funnel.png")
   - Is **30 days** enough to generalize to all future traffic?
   - What **kind** of data is this, and which statistics are even **valid** to compute?
 
-- Answering those is the job of this course. **Today we start at the foundation: what is this data?**
+- Answering those is your job. **Today we start at the foundation: what is this data?**
 
 # What is Statistics? {background-color="#cfb991"}
 
@@ -360,8 +348,6 @@ knitr::include_graphics("figs/stat_analysis_scheme.png")
 <br>
 
 ::: nonincremental
-The next topic builds five summary lenses — each with an Excel tool:
-
 | Lens | Question it answers | Tool |
 |---|---|---|
 | **Location** | Where is the center? | mean, median — summary statistics |
@@ -688,21 +674,7 @@ knitr::include_graphics("figs/excel_desc_erpm.png")
 ::::
 :::::
 
-## ⏱️ Team Sprint — Pressure-Test the Analyst's Claim
-
-::: {.sprint .nonincremental}
-**You're the management team.** An analyst's memo lands: *"B's average eRPM beat A's, so roll it out."* Before you act on it, check it.
-
-**Data:** `data/vungle_daily.xlsx` · **Time:** ~12 min
-
-1. **Reproduce it:** with the ToolPak's *Descriptive Statistics*, compute the **mean and median eRPM for A and for B** yourself. Does the analyst's headline hold?
-2. **Audit the inputs:** name the elements, variables, and the **type & scale** of `algorithm` and `erpm`, so you know which numbers are even valid to compare.
-3. **Interrogate it:** how big is B's edge? Name **two reasons** it might not survive scrutiny (sample size, spread, traffic, the metric itself).
-
-**Submit before you leave (group, 1 slide):** your **call** (roll out, wait, or send it back) plus the **two weaknesses** you would put to the analyst.
-:::
-
-## Debrief — Back to the Decision
+## Debrief: Back to the Decision
 
 <br>
 
@@ -746,68 +718,42 @@ knitr::include_graphics("figs/inference.svg")
 :::::
 :::::::
 
-# Data Science, Big Data, and Data Mining {background-color="#cfb991"}
-
-## Data Science, Big Data, and Data Mining — Definitions
-
-::: nonincremental
--   **Data Science**:
-    -   The interdisciplinary field that uses scientific methods, algorithms, and systems to extract knowledge and insights from structured and unstructured data.
--   **Big Data**:
-    -   Extremely large datasets analyzed computationally to reveal patterns, trends, and associations — especially about human behavior.
--   **Data Mining**:
-    -   Examining large databases to generate new information; at the intersection of machine learning, statistics, and database systems.
-:::
-
-## How Data Science, Big Data, and Data Mining Are Used
-
-:::: nonincremental
-::: r-fit-text
--   **Data Science**:
-    -   Personalizing marketing by predicting preferences and buying behavior.
-    -   Optimizing supply chains through predictive analytics.
--   **Big Data**:
-    -   Mining customer feedback and social media to improve service and products.
-    -   Detecting fraud by monitoring transaction patterns in real time.
--   **Data Mining**:
-    -   Surfacing sales leads from past purchases and demographics.
-    -   Reducing churn by learning who is about to leave and why.
-:::
-::::
-
 # The Takeaway {background-color="#cfb991"}
 
 ## Manager's Takeaway
 
 <br>
 
-- **One sentence:** today we turned a CEO's question — *roll out B or keep A?* — into a precise data problem, and built the vocabulary to describe it.
+- **One sentence:** today we turned a CEO's question (*roll out B or keep A?*) into a precise data problem, and built the vocabulary to describe it.
 
-- **One number to remember:** **60 rows × 7 variables = 420 values** — that is Vungle's dataset, and you can name every element, variable, and observation in it.
+- **One number to remember:** **60 rows × 7 variables = 420 values**. That is Vungle's dataset, and you can name every element, variable, and observation in it.
 
-- **One principle:** the **scale of a variable** determines which statistics are valid — count `algorithm`, average `erpm`.
+- **One principle:** the **scale of a variable** determines which statistics are valid: count `algorithm`, average `erpm`.
 
 - **Practice:** open `data/vungle_daily.xlsx`, install the Analysis ToolPak, and run **Descriptive Statistics** on `erpm`. Bring one question to next class.
-
-## Carry-forward
-
-::: nonincremental
-- **Today's submission:** your group's roll-out call is your first graded deliverable — a real decision taken on day one.
-
-- **Next time:** we go deeper into *describing* — spread, shape, the boxplot, and how two variables move together. (Individual homework starts in a couple of weeks; watch Brightspace.)
-:::
 
 ## Summary
 
 ::: nonincremental
 The main points from this session:
 
--   **Your seat all term:** you are the **decision-maker** — you run every method yourself, but to *judge* the analysis and make the call, not to be the analyst.
--   **Two cases, worked in your group:** Vungle A/B (describe → test, Topics 1–9) and auto-parts retail (predict, Topics 10–11); you submit a graded group call each class, and individual homework drills the mechanics.
+-   **Your seat all term:** you are the **decision-maker**. You run every method yourself, but to *judge* the analysis and make the call, not to be the analyst.
+-   **Two cases drive the course:** Vungle A/B (describe → test, Topics 1–9) and auto-parts retail (predict, Topics 10–11). Each class your group also works a separate in-class case and submits it; individual homework drills the mechanics.
 -   **Statistics** turns data into defensible business decisions; it splits into **descriptive** (summarize) and **inferential** (generalize).
--   **Data vocabulary:** elements, variables, observations; categorical vs. quantitative; the four scales of measurement — and the rule that **scale determines method**.
+-   **Data vocabulary:** elements, variables, observations; categorical vs. quantitative; the four scales of measurement, and the rule that **scale determines method**.
 -   **Study design:** Vungle ran a randomized **experiment**, which is what licenses *causal* claims.
 -   **Excel is your toolkit:** install the Analysis ToolPak and meet the dataset on day one.
+-   **Next time:** Descriptive Statistics II — spread, shape, the boxplot, and how two variables move together.
+:::
+
+## ⏱️ Team Sprint — Your Group Case
+
+::: {.sprint .nonincremental}
+**Now it's your group's turn.** Today's in-class group case is posted on **Brightspace** (*Topic 01 Group Case*): a short business decision you make with today's tools.
+
+**What you'll use:** data **types and scales**, and the **mean, median, and mode**. **Excel:** Analysis ToolPak → Descriptive Statistics.
+
+**Submit one PDF per group before you leave** — your decision plus the numbers behind it.
 :::
 
 # Thank you! {background-color="#cfb991"}
