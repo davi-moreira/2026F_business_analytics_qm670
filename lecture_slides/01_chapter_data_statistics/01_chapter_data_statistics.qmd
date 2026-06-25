@@ -111,11 +111,11 @@ knitr::include_graphics("figs/carnaval_olinda.jpg")
 
 <br>
 
-- You were **randomly assigned to a fixed group** for the whole term. Find your group number on **Brightspace → Groups**.
+- You were **randomly assigned to a fixed group** for the whole term. Find your group number and members on **Brightspace → Groups**.
 
-- **Find your spot:** each group gathers in a **corner or the center** of the room. I'll call out which group goes where; go there and sit together.
+- **Email your group today:** start a thread with your groupmates to introduce yourselves and agree how you'll coordinate this semester.
 
-- **Meet your teammates: you have 10 minutes.** Say your name, where you are from, your background, and **one book, film, song, or anything** that tells us something about you.
+- **In your intro, share** your name, where you are from, your background, and **one book, film, song, or anything** that tells the group something about you.
 
 - This is your team for every in-class case this semester.
 
