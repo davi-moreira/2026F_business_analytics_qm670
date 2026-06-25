@@ -39,7 +39,7 @@ html-math-method:
 :::
 
 ::: {.column style="width: 50%; text-align: center; justify-content: center; align-items: center;"}
--   Data, variables & observations — the Vungle dataset
+-   Data, variables & observations: the Vungle dataset
 -   Data types & scales of measurement
 -   Study design: why Vungle ran an *experiment*
 -   A first look at the data in Excel (`Excel4stats`)
@@ -113,7 +113,7 @@ knitr::include_graphics("figs/carnaval_olinda.jpg")
 
 - You were **randomly assigned to a fixed group** for the whole term. Find your group number on **Brightspace → Groups**.
 
-- **Find your spot:** your **group number** is posted on a table in the room (lower numbers toward the front). Go there and sit with your group.
+- **Find your spot:** each group gathers in a **corner or the center** of the room. I'll call out which group goes where; go there and sit together.
 
 - **Meet your teammates: you have 10 minutes.** Say your name, where you are from, your background, and **one book, film, song, or anything** that tells us something about you.
 
@@ -147,14 +147,14 @@ knitr::include_graphics("figs/sbe_book.jpg")
 ::: nonincremental
 **_Statistics for Business and Economics_ (SBE), 14th edition**
 
-Anderson · Sweeney · Williams · Camm · Cochran — Cengage, 2020 · ISBN-13 978-1337901062
+Anderson · Sweeney · Williams · Camm · Cochran · Cengage, 2020 · ISBN-13 978-1337901062
 
 [View on Cengage](https://www.cengage.com/c/statistics-for-business-economics-14e-anderson/9781337901062/){target="_blank"}
 
 <br>
 
 - The course **schedule** lists the readings for each topic.
-- **Software:** Excel with the **Analysis ToolPak** — every worked example is Excel-first.
+- **Software:** Excel with the **Analysis ToolPak**; every worked example is Excel-first.
 :::
 :::
 :::::
@@ -176,7 +176,7 @@ Anderson · Sweeney · Williams · Camm · Cochran — Cengage, 2020 · ISBN-13 
 ![](figs/lecture_dynamic.png){.nostretch fig-align="center" width="90%"}
 
 ::: nonincremental
-The class **ends on the Team Sprint** — your group's graded submission. **Today is the exception:** introductions and logistics come first, so the group case is short.
+The class **ends on the Team Sprint**, your group's graded submission. **Today is the exception:** introductions and logistics come first, so the group case is short.
 :::
 
 # Your Semester: Two Cases, One Job {background-color="#cfb991"}
@@ -188,11 +188,11 @@ The class **ends on the Team Sprint** — your group's graded submission. **Toda
 - This course puts **you in the decision-maker's seat**: the manager, CEO, or owner who has to act. You'll work in a **fixed group** (assigned this week), cracking real cases in class and judging the analysis behind every call.
 
 ::: fragment
-- **① Vungle A/B — Topics 1–9 (up first).** A mobile ad-tech startup asking *roll out algorithm B, or keep A?* You'll learn to **describe, quantify uncertainty, and test** so you can judge that claim before betting the company on it.
+- **① Vungle A/B (Topics 1–9, up first).** A mobile ad-tech startup asking *roll out algorithm B, or keep A?* You'll learn to **describe, quantify uncertainty, and test** so you can judge that claim before betting the company on it.
 :::
 
 ::: fragment
-- **② Auto-parts retail — Topics 10–11.** A 45-store chain asking *where should the next dollar go?* You'll **evaluate the analyst's model** that predicts store sales, then decide where to invest.
+- **② Auto-parts retail (Topics 10–11).** A 45-store chain asking *where should the next dollar go?* You'll **evaluate the analyst's model** that predicts store sales, then decide where to invest.
 :::
 
 ::: fragment
@@ -211,7 +211,7 @@ The class **ends on the Team Sprint** — your group's graded submission. **Toda
 
 - **Vungle** is a mobile ad-tech startup: it serves 15-second video ads inside other apps and earns revenue mainly when a viewer **installs** the advertised app.
 
-- The metric that pays the bills is **eRPM** — effective revenue per 1,000 impressions.
+- The metric that pays the bills is **eRPM**: effective revenue per 1,000 impressions.
 
 - In June 2014, two analysts built a new ad-serving algorithm (**B**) and ran it head-to-head against the current one (**A**) for the whole month.
 
@@ -227,14 +227,14 @@ knitr::include_graphics("figs/vungle_funnel.png")
 
 ::: nonincremental
 - Each ad **impression** can become a completed view, then a click, then an **install**. That chain is the *conversion funnel*.
-- 30 days, both algorithms, the full funnel — that is the dataset `vungle_daily.csv` we will analyze.
+- 30 days, both algorithms, the full funnel; that is the dataset `vungle_daily.csv` we will analyze.
 :::
 
 ## The Tempting Answer: Why It Is Not Enough
 
 <br>
 
-- A manager glances at the data: *"B's average daily eRPM was **\$3.46** vs. A's **\$3.35** — so roll out B!"*
+- A manager glances at the data: *"B's average daily eRPM was **\$3.46** vs. A's **\$3.35**, so roll out B!"*
 
 - Not so fast. Before you can bet the company on that \$0.11 gap, you have to ask:
 
@@ -285,15 +285,15 @@ Statistics is the **science of collecting, organizing, analyzing, interpreting, 
 ## Where Is Statistics Applied in Business?
 
 ::: nonincremental
-- **Accounting** — audit sampling to test whether reported figures are accurate.
+- **Accounting:** audit sampling to test whether reported figures are accurate.
 
-- **Finance** — estimating the return and risk of portfolios; pricing default risk.
+- **Finance:** estimating the return and risk of portfolios; pricing default risk.
 
-- **Marketing** — consumer surveys, A/B testing ad creative, demand forecasting.
+- **Marketing:** consumer surveys, A/B testing ad creative, demand forecasting.
 
-- **Production / Operations** — quality control, process design, capacity planning.
+- **Production / Operations:** quality control, process design, capacity planning.
 
-- **Human Resources** — recruiting analytics, salary benchmarking, retention modeling.
+- **Human Resources:** recruiting analytics, salary benchmarking, retention modeling.
 :::
 
 ## The Map: How Statistical Analysis Works
@@ -306,9 +306,9 @@ knitr::include_graphics("figs/stat_analysis_scheme.png")
 
 <br>
 
-- **Descriptive statistics** — tabular, graphical, and numerical methods that **summarize** the data you have (means, charts, tables).
+- **Descriptive statistics:** tabular, graphical, and numerical methods that **summarize** the data you have (means, charts, tables).
 
-- **Inferential statistics** — using **sample** data to draw conclusions or make decisions about a larger **population**.
+- **Inferential statistics:** using **sample** data to draw conclusions or make decisions about a larger **population**.
 
 - Classify each Vungle statement:
 
@@ -328,7 +328,7 @@ knitr::include_graphics("figs/stat_analysis_scheme.png")
 ::: nonincremental
 | Lens | Question it answers | Tool |
 |---|---|---|
-| **Location** | Where is the center? | mean, median — summary statistics |
+| **Location** | Where is the center? | mean, median (summary stats) |
 | **Variability** | How spread out? | standard deviation, range |
 | **Shape** | Symmetric or skewed? | histogram, box plot |
 | **Empirical rule** | How much falls near the mean? | 68–95–99.7% |
@@ -387,9 +387,9 @@ knitr::include_graphics("figs/variables_observations.png")
 ::: nonincremental
 **Quantitative Data**
 
--   Indicate **how many** or **how much** — always numeric
--   **Discrete**: counts (how many) — e.g., installs
--   **Continuous**: measurements (how much) — e.g., eRPM
+-   Indicate **how many** or **how much**, always numeric
+-   **Discrete**: counts (how many), e.g., installs
+-   **Continuous**: measurements (how much), e.g., eRPM
 -   Ordinary arithmetic (+, −, ×, ÷) is meaningful
 :::
 ::::
@@ -412,7 +412,7 @@ knitr::include_graphics("figs/variables_observations.png")
 ::: r-fit-text
 -   **Nominal** categorizes with no inherent order (Vungle's `algorithm`: A vs. B).
 -   **Ordinal** categorizes with a meaningful order but no consistent gap between levels.
--   **Quantitative** is numeric — *discrete* values are countable (`installs`); *continuous* values can take any value in a range (`erpm`).
+-   **Quantitative** is numeric: *discrete* values are countable (`installs`); *continuous* values can take any value in a range (`erpm`).
 :::
 
 ## Scales of Measurement
@@ -426,7 +426,7 @@ knitr::include_graphics("figs/scale_measurement.png")
 ::::: columns
 ::: {.column style="width: 50%; text-align: center; justify-content: center; align-items: center;"}
 ::: nonincremental
-1.  **Categorical Data** — sortable into groups.
+1.  **Categorical Data:** sortable into groups.
     -   **Nominal**: no inherent order (gender, car type, nationality, **ad algorithm**).
     -   **Ordinal**: a meaningful order, but no consistent difference between levels (satisfaction level; education level; job rank).
 :::
@@ -434,7 +434,7 @@ knitr::include_graphics("figs/scale_measurement.png")
 
 ::: {.column style="width: 50%; text-align: center; justify-content: center; align-items: center;"}
 ::: nonincremental
-2.  **Quantitative Data** — measured numerically.
+2.  **Quantitative Data:** measured numerically.
     -   **Interval**: meaningful differences, **no true zero** (temperature in °C/°F).
     -   **Ratio**: meaningful differences **and a true zero** (height, weight, revenue, **eRPM**, **installs**).
 :::
@@ -445,15 +445,15 @@ knitr::include_graphics("figs/scale_measurement.png")
 
 <br>
 
-- Before any analysis, audit every column — because **the scale determines which statistics are valid**:
+- Before any analysis, audit every column, because **the scale determines which statistics are valid**:
 
 ::: fragment
 | Variable | Type | Scale | What you may compute |
 |---|---|---|---|
-| `algorithm` | Categorical | Nominal | counts, proportions — **not** a mean |
+| `algorithm` | Categorical | Nominal | counts, proportions (**not** a mean) |
 | `date` | Categorical (ordered) | Ordinal / Interval | ordering, time gaps |
-| `impressions`, `completes`, `clicks`, `installs` | Quantitative — discrete | Ratio | counts, sums, means, rates |
-| `erpm` | Quantitative — continuous | Ratio | mean, SD, t-tests — the primary KPI |
+| `impressions`, `completes`, `clicks`, `installs` | Quantitative, discrete | Ratio | counts, sums, means, rates |
+| `erpm` | Quantitative, continuous | Ratio | mean, SD, t-tests (the primary KPI) |
 :::
 
 ::: fragment
@@ -465,17 +465,17 @@ knitr::include_graphics("figs/scale_measurement.png")
 <br>
 
 ::: nonincremental
-- **Existing sources** — internal records (Vungle's ad server logs), public/government databases, industry reports.
+- **Existing sources:** internal records (Vungle's ad server logs), public/government databases, industry reports.
 
 - **Collection by study:**
-  - **Observational** — record what happens without intervening (a customer survey).
-  - **Experimental** — set the conditions on purpose, then measure (Vungle *assigns* traffic to A or B).
+  - **Observational:** record what happens without intervening (a customer survey).
+  - **Experimental:** set the conditions on purpose, then measure (Vungle *assigns* traffic to A or B).
 
-- **Cross-sectional** — many elements at **one** point in time.
-- **Time series** — **one** element across **many** time periods.
+- **Cross-sectional:** many elements at **one** point in time.
+- **Time series:** **one** element across **many** time periods.
 :::
 
-## Cross-Sectional vs. Time Series — the Vungle Data
+## Cross-Sectional vs. Time Series: the Vungle Data
 
 <br>
 
@@ -484,7 +484,7 @@ knitr::include_graphics("figs/scale_measurement.png")
 
 - Tracking **one algorithm across the 30 days** is a **time series**.
 
-- The full dataset is a **panel** — repeated cross-sections over time.
+- The full dataset is a **panel**: repeated cross-sections over time.
 :::
 
 ```{r  echo=FALSE, out.width = "42%",fig.align="center"}
@@ -517,7 +517,7 @@ In an experiment, the variable of interest is identified, then its levels are **
 :::
 :::::
 
-## Vungle Ran an Experiment — So We Can Say "Caused"
+## Vungle Ran an Experiment, So We Can Say "Caused"
 
 <br>
 
@@ -573,7 +573,7 @@ knitr::include_graphics("figs/vungle_erpm_box.png")
 ```
 
 ::: nonincremental
-- A picture already tells a story: **B's mean is higher** (white diamonds), but B is **more spread out** — a hint that "B is better" may not be the whole truth.
+- A picture already tells a story: **B's mean is higher** (white diamonds), but B is **more spread out**, a hint that "B is better" may not be the whole truth.
 - Describing is step one; *deciding* whether that gap is real comes later (Topics 7–9).
 :::
 
@@ -581,7 +581,7 @@ knitr::include_graphics("figs/vungle_erpm_box.png")
 
 <br>
 
-- The first job of *describing* is finding the **center**. The workhorse is the **mean** — add the values, divide by the count:
+- The first job of *describing* is finding the **center**. The workhorse is the **mean**: add the values, divide by the count:
 
 ::: fragment
 $$
@@ -590,20 +590,20 @@ $$
 :::
 
 ::: fragment
-- Vungle's 30-day mean eRPM: **A = \$3.347**, **B = \$3.459** — B's center sits **\$0.11 higher**.
+- Vungle's 30-day mean eRPM: **A = \$3.347**, **B = \$3.459**; B's center sits **\$0.11 higher**.
 :::
 
 ::: fragment
-- That \$3.459 is a **point estimate** of B's *true* mean eRPM — the number we will later put to the test.
+- That \$3.459 is a **point estimate** of B's *true* mean eRPM, the number we will later put to the test.
 :::
 
-## Median & Mode — and When to Use Which
+## Median & Mode: When to Use Which
 
 <br>
 
 ::: nonincremental
-- **Median** — the middle value (50th percentile); unmoved by outliers. Vungle: A median **\$3.327**, B **\$3.434**. Mean ≈ median ⟹ the eRPM distribution is roughly **symmetric**.
-- **Mode** — the most frequent value; the only center valid for **categorical** data (e.g., the most-served `algorithm`). For continuous eRPM every value is distinct, so the mode says nothing.
+- **Median:** the middle value (50th percentile); unmoved by outliers. Vungle: A median **\$3.327**, B **\$3.434**. Mean ≈ median ⟹ the eRPM distribution is roughly **symmetric**.
+- **Mode:** the most frequent value; the only center valid for **categorical** data (e.g., the most-served `algorithm`). For continuous eRPM every value is distinct, so the mode says nothing.
 - **Rule of thumb:** report the **mean** for symmetric data, the **median** when it is skewed or has outliers.
 :::
 
@@ -623,7 +623,7 @@ knitr::include_graphics("figs/excel.png")
 
 - Then every analysis lives under **Data → Data Analysis**.
 
-- Do this **this week** with `vungle_daily.xlsx` open — it is the dataset for the whole term.
+- Do this **this week** with `vungle_daily.xlsx` open; it is the dataset for the whole term.
 
 ## Teaser: Descriptive Statistics on eRPM
 
@@ -656,7 +656,7 @@ knitr::include_graphics("figs/excel_desc_erpm.png")
 
 - We can now **describe** the data cleanly: A's mean eRPM is **\$3.35**, B's is **\$3.46**, over 30 carefully-designed experimental days.
 
-- We **cannot yet** say whether B is *really* better for all future traffic — that is **inference**, and it needs the tools in Topics 7–9.
+- We **cannot yet** say whether B is *really* better for all future traffic; that is **inference**, and it needs the tools in Topics 7–9.
 
 - **Your call today:** *not yet.* You can describe B's edge, but approving a company-wide roll-out needs an inference test, and that is exactly what you will demand from your analyst in Topics 7–9.
 
@@ -708,6 +708,18 @@ knitr::include_graphics("figs/inference.svg")
 
 - **Practice:** open `data/vungle_daily.xlsx`, install the Analysis ToolPak, and run **Descriptive Statistics** on `erpm`. Bring one question to next class.
 
+## ⏱️ Team Sprint: Your Group Case
+
+::: {.sprint .nonincremental}
+**Now it's your group's turn.** Today's in-class group case is posted on **Brightspace** (*Topic 01 Group Case*): a short business decision you make with today's tools.
+
+**What you'll use:** data **types and scales**, and the **mean, median, and mode**. **Excel:** Analysis ToolPak → Descriptive Statistics.
+
+**Submit one PDF per group before you leave:** your decision plus the numbers behind it.
+:::
+
+# Wrap-up {background-color="#cfb991"}
+
 ## Summary
 
 ::: nonincremental
@@ -719,17 +731,7 @@ The main points from this session:
 -   **Data vocabulary:** elements, variables, observations; categorical vs. quantitative; the four scales of measurement, and the rule that **scale determines method**.
 -   **Study design:** Vungle ran a randomized **experiment**, which is what licenses *causal* claims.
 -   **Excel is your toolkit:** install the Analysis ToolPak and meet the dataset on day one.
--   **Next time:** Descriptive Statistics II — spread, shape, the boxplot, and how two variables move together.
-:::
-
-## ⏱️ Team Sprint — Your Group Case
-
-::: {.sprint .nonincremental}
-**Now it's your group's turn.** Today's in-class group case is posted on **Brightspace** (*Topic 01 Group Case*): a short business decision you make with today's tools.
-
-**What you'll use:** data **types and scales**, and the **mean, median, and mode**. **Excel:** Analysis ToolPak → Descriptive Statistics.
-
-**Submit one PDF per group before you leave:** your decision plus the numbers behind it.
+-   **Next time:** Descriptive Statistics II: spread, shape, the boxplot, and how two variables move together.
 :::
 
 # Thank you! {background-color="#cfb991"}

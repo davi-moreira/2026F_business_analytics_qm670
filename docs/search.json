@@ -2036,7 +2036,7 @@
     "href": "lecture_slides/01_chapter_data_statistics/01_chapter_data_statistics.html#overview",
     "title": " QM 6700: Business Analytics ",
     "section": "Overview",
-    "text": "Overview\n\n\n\nIntroductions, logistics & your group\nThe semester roadmap: two cases, one job\nCase Spotlight: A/B Testing at Vungle\nWhat is statistics? Where is it used?\nThe map: descriptive vs. inferential\n\n\n\nData, variables & observations — the Vungle dataset\nData types & scales of measurement\nStudy design: why Vungle ran an experiment\nA first look at the data in Excel (Excel4stats)"
+    "text": "Overview\n\n\n\nIntroductions, logistics & your group\nThe semester roadmap: two cases, one job\nCase Spotlight: A/B Testing at Vungle\nWhat is statistics? Where is it used?\nThe map: descriptive vs. inferential\n\n\n\nData, variables & observations: the Vungle dataset\nData types & scales of measurement\nStudy design: why Vungle ran an experiment\nA first look at the data in Excel (Excel4stats)"
   },
   {
     "objectID": "lecture_slides/01_chapter_data_statistics/01_chapter_data_statistics.html#instructor",
@@ -2085,7 +2085,7 @@
     "href": "lecture_slides/01_chapter_data_statistics/01_chapter_data_statistics.html#textbook-materials",
     "title": " QM 6700: Business Analytics ",
     "section": "Textbook & Materials",
-    "text": "Textbook & Materials\n\n\n\n\n\n\n\n\n\n\n\n\nStatistics for Business and Economics (SBE), 14th edition\nAnderson · Sweeney · Williams · Camm · Cochran — Cengage, 2020 · ISBN-13 978-1337901062\nView on Cengage\n\n\nThe course schedule lists the readings for each topic.\nSoftware: Excel with the Analysis ToolPak — every worked example is Excel-first."
+    "text": "Textbook & Materials\n\n\n\n\n\n\n\n\n\n\n\n\nStatistics for Business and Economics (SBE), 14th edition\nAnderson · Sweeney · Williams · Camm · Cochran · Cengage, 2020 · ISBN-13 978-1337901062\nView on Cengage\n\n\nThe course schedule lists the readings for each topic.\nSoftware: Excel with the Analysis ToolPak; every worked example is Excel-first."
   },
   {
     "objectID": "lecture_slides/01_chapter_data_statistics/01_chapter_data_statistics.html#survey-1",
@@ -2099,14 +2099,14 @@
     "href": "lecture_slides/01_chapter_data_statistics/01_chapter_data_statistics.html#meet-vungle-one-decision-30-days-of-data",
     "title": " QM 6700: Business Analytics ",
     "section": "Meet Vungle: One Decision, 30 Days of Data",
-    "text": "Meet Vungle: One Decision, 30 Days of Data\n\n\nVungle is a mobile ad-tech startup: it serves 15-second video ads inside other apps and earns revenue mainly when a viewer installs the advertised app.\nThe metric that pays the bills is eRPM — effective revenue per 1,000 impressions.\nIn June 2014, two analysts built a new ad-serving algorithm (B) and ran it head-to-head against the current one (A) for the whole month.\nYour call as Vungle’s CEO: roll out B to all advertisers, or stay with A?\nWe will use this one decision (is B better than A?) to motivate every tool in this course. The data is in vungle_daily.csv (download it from the course Material page)."
+    "text": "Meet Vungle: One Decision, 30 Days of Data\n\n\nVungle is a mobile ad-tech startup: it serves 15-second video ads inside other apps and earns revenue mainly when a viewer installs the advertised app.\nThe metric that pays the bills is eRPM: effective revenue per 1,000 impressions.\nIn June 2014, two analysts built a new ad-serving algorithm (B) and ran it head-to-head against the current one (A) for the whole month.\nYour call as Vungle’s CEO: roll out B to all advertisers, or stay with A?\nWe will use this one decision (is B better than A?) to motivate every tool in this course. The data is in vungle_daily.csv (download it from the course Material page)."
   },
   {
     "objectID": "lecture_slides/01_chapter_data_statistics/01_chapter_data_statistics.html#the-data-behind-the-decision",
     "href": "lecture_slides/01_chapter_data_statistics/01_chapter_data_statistics.html#the-data-behind-the-decision",
     "title": " QM 6700: Business Analytics ",
     "section": "The Data Behind the Decision",
-    "text": "The Data Behind the Decision\n\n\nEach ad impression can become a completed view, then a click, then an install. That chain is the conversion funnel.\n30 days, both algorithms, the full funnel — that is the dataset vungle_daily.csv we will analyze."
+    "text": "The Data Behind the Decision\n\n\nEach ad impression can become a completed view, then a click, then an install. That chain is the conversion funnel.\n30 days, both algorithms, the full funnel; that is the dataset vungle_daily.csv we will analyze."
   },
   {
     "objectID": "lecture_slides/01_chapter_data_statistics/01_chapter_data_statistics.html#the-tempting-answer-and-why-it-is-not-enough",
@@ -2134,7 +2134,7 @@
     "href": "lecture_slides/01_chapter_data_statistics/01_chapter_data_statistics.html#where-is-statistics-applied-in-business",
     "title": " QM 6700: Business Analytics ",
     "section": "Where Is Statistics Applied in Business?",
-    "text": "Where Is Statistics Applied in Business?\n\nAccounting — audit sampling to test whether reported figures are accurate.\nFinance — estimating the return and risk of portfolios; pricing default risk.\nMarketing — consumer surveys, A/B testing ad creative, demand forecasting.\nProduction / Operations — quality control, process design, capacity planning.\nHuman Resources — recruiting analytics, salary benchmarking, retention modeling."
+    "text": "Where Is Statistics Applied in Business?\n\nAccounting: audit sampling to test whether reported figures are accurate.\nFinance: estimating the return and risk of portfolios; pricing default risk.\nMarketing: consumer surveys, A/B testing ad creative, demand forecasting.\nProduction / Operations: quality control, process design, capacity planning.\nHuman Resources: recruiting analytics, salary benchmarking, retention modeling."
   },
   {
     "objectID": "lecture_slides/01_chapter_data_statistics/01_chapter_data_statistics.html#the-map-how-statistical-analysis-works",
@@ -2148,14 +2148,14 @@
     "href": "lecture_slides/01_chapter_data_statistics/01_chapter_data_statistics.html#descriptive-vs.-inferential-statistics",
     "title": " QM 6700: Business Analytics ",
     "section": "Descriptive vs. Inferential Statistics",
-    "text": "Descriptive vs. Inferential Statistics\n\n\nDescriptive statistics — tabular, graphical, and numerical methods that summarize the data you have (means, charts, tables).\nInferential statistics — using sample data to draw conclusions or make decisions about a larger population.\nClassify each Vungle statement:\n\n\n\n\n\n\n\n\n\nStatement\nDescriptive or Inferential?\n\n\n\n\n“Over the 30 test days, B’s mean eRPM was $3.46.”\nDescriptive (summarizes the sample)\n\n\n“If rolled out to all traffic, B will earn more than A.”\nInferential (a claim about the population)\n\n\n“26 of 30 days favored B.”\nDescriptive\n\n\n“B’s true conversion rate differs from A’s.”\nInferential"
+    "text": "Descriptive vs. Inferential Statistics\n\n\nDescriptive statistics: tabular, graphical, and numerical methods that summarize the data you have (means, charts, tables).\nInferential statistics: using sample data to draw conclusions or make decisions about a larger population.\nClassify each Vungle statement:\n\n\n\n\n\n\n\n\n\nStatement\nDescriptive or Inferential?\n\n\n\n\n“Over the 30 test days, B’s mean eRPM was $3.46.”\nDescriptive (summarizes the sample)\n\n\n“If rolled out to all traffic, B will earn more than A.”\nInferential (a claim about the population)\n\n\n“26 of 30 days favored B.”\nDescriptive\n\n\n“B’s true conversion rate differs from A’s.”\nInferential"
   },
   {
     "objectID": "lecture_slides/01_chapter_data_statistics/01_chapter_data_statistics.html#roadmap-what-descriptive-covers",
     "href": "lecture_slides/01_chapter_data_statistics/01_chapter_data_statistics.html#roadmap-what-descriptive-covers",
     "title": " QM 6700: Business Analytics ",
     "section": "Roadmap: What “Descriptive” Covers",
-    "text": "Roadmap: What “Descriptive” Covers\n\n\n\n\n\n\n\n\n\nLens\nQuestion it answers\nTool\n\n\n\n\nLocation\nWhere is the center?\nmean, median — summary statistics\n\n\nVariability\nHow spread out?\nstandard deviation, range\n\n\nShape\nSymmetric or skewed?\nhistogram, box plot\n\n\nEmpirical rule\nHow much falls near the mean?\n68–95–99.7%\n\n\nAssociation\nDo two variables move together?\nscatter plot, correlation"
+    "text": "Roadmap: What “Descriptive” Covers\n\n\n\n\n\n\n\n\n\nLens\nQuestion it answers\nTool\n\n\n\n\nLocation\nWhere is the center?\nmean, median (summary stats)\n\n\nVariability\nHow spread out?\nstandard deviation, range\n\n\nShape\nSymmetric or skewed?\nhistogram, box plot\n\n\nEmpirical rule\nHow much falls near the mean?\n68–95–99.7%\n\n\nAssociation\nDo two variables move together?\nscatter plot, correlation"
   },
   {
     "objectID": "lecture_slides/01_chapter_data_statistics/01_chapter_data_statistics.html#elements-variables-and-observations",
@@ -2176,14 +2176,14 @@
     "href": "lecture_slides/01_chapter_data_statistics/01_chapter_data_statistics.html#data-types",
     "title": " QM 6700: Business Analytics ",
     "section": "Data Types",
-    "text": "Data Types\n\n\nCategorical (Qualitative) Data\n\nLabels or names that identify an attribute of each element\nUse the nominal or ordinal scale\nCan be numeric or non-numeric\nOnly limited arithmetic is meaningful (counts, proportions)\n\n\nQuantitative Data\n\nIndicate how many or how much — always numeric\nDiscrete: counts (how many) — e.g., installs\nContinuous: measurements (how much) — e.g., eRPM\nOrdinary arithmetic (+, −, ×, ÷) is meaningful"
+    "text": "Data Types\n\n\nCategorical (Qualitative) Data\n\nLabels or names that identify an attribute of each element\nUse the nominal or ordinal scale\nCan be numeric or non-numeric\nOnly limited arithmetic is meaningful (counts, proportions)\n\n\nQuantitative Data\n\nIndicate how many or how much, always numeric\nDiscrete: counts (how many), e.g., installs\nContinuous: measurements (how much), e.g., eRPM\nOrdinary arithmetic (+, −, ×, ÷) is meaningful"
   },
   {
     "objectID": "lecture_slides/01_chapter_data_statistics/01_chapter_data_statistics.html#data-types-examples",
     "href": "lecture_slides/01_chapter_data_statistics/01_chapter_data_statistics.html#data-types-examples",
     "title": " QM 6700: Business Analytics ",
     "section": "Data Types: Examples",
-    "text": "Data Types: Examples\n\n\n\n\n\n\n\n\n\nCategorical: Nominal\nCategorical: Ordinal\nQuantitative: Continuous or Discrete\n\n\n\n\nAd algorithm (A/B)\nSatisfaction Level\neRPM (revenue / 1,000 impr.)\n\n\nVehicle Type\nEducation Level\nNumber of Installs\n\n\nMusic Genre\nCustomer Feedback\nRevenue\n\n\nNationality\nJob Position\nProduct Weight\n\n\nOperating System\nPriority Level\nMarket Share\n\n\n\n\n\n\nNominal categorizes with no inherent order (Vungle’s algorithm: A vs. B).\nOrdinal categorizes with a meaningful order but no consistent gap between levels.\nQuantitative is numeric — discrete values are countable (installs); continuous values can take any value in a range (erpm)."
+    "text": "Data Types: Examples\n\n\n\n\n\n\n\n\n\nCategorical: Nominal\nCategorical: Ordinal\nQuantitative: Continuous or Discrete\n\n\n\n\nAd algorithm (A/B)\nSatisfaction Level\neRPM (revenue / 1,000 impr.)\n\n\nVehicle Type\nEducation Level\nNumber of Installs\n\n\nMusic Genre\nCustomer Feedback\nRevenue\n\n\nNationality\nJob Position\nProduct Weight\n\n\nOperating System\nPriority Level\nMarket Share\n\n\n\n\n\n\nNominal categorizes with no inherent order (Vungle’s algorithm: A vs. B).\nOrdinal categorizes with a meaningful order but no consistent gap between levels.\nQuantitative is numeric: discrete values are countable (installs); continuous values can take any value in a range (erpm)."
   },
   {
     "objectID": "lecture_slides/01_chapter_data_statistics/01_chapter_data_statistics.html#scales-of-measurement",
@@ -2197,28 +2197,28 @@
     "href": "lecture_slides/01_chapter_data_statistics/01_chapter_data_statistics.html#scales-of-measurement-1",
     "title": " QM 6700: Business Analytics ",
     "section": "Scales of Measurement",
-    "text": "Scales of Measurement\n\n\n\nCategorical Data — sortable into groups.\n\nNominal: no inherent order (gender, car type, nationality, ad algorithm).\nOrdinal: a meaningful order, but no consistent difference between levels (satisfaction level; education level; job rank).\n\n\n\n\nQuantitative Data — measured numerically.\n\nInterval: meaningful differences, no true zero (temperature in °C/°F).\nRatio: meaningful differences and a true zero (height, weight, revenue, eRPM, installs)."
+    "text": "Scales of Measurement\n\n\n\nCategorical Data: sortable into groups.\n\nNominal: no inherent order (gender, car type, nationality, ad algorithm).\nOrdinal: a meaningful order, but no consistent difference between levels (satisfaction level; education level; job rank).\n\n\n\n\nQuantitative Data: measured numerically.\n\nInterval: meaningful differences, no true zero (temperature in °C/°F).\nRatio: meaningful differences and a true zero (height, weight, revenue, eRPM, installs)."
   },
   {
     "objectID": "lecture_slides/01_chapter_data_statistics/01_chapter_data_statistics.html#classify-vungles-variables",
     "href": "lecture_slides/01_chapter_data_statistics/01_chapter_data_statistics.html#classify-vungles-variables",
     "title": " QM 6700: Business Analytics ",
     "section": "Classify Vungle’s Variables",
-    "text": "Classify Vungle’s Variables\n\n\nBefore any analysis, audit every column — because the scale determines which statistics are valid:\n\n\n\n\n\n\n\n\n\n\n\nVariable\nType\nScale\nWhat you may compute\n\n\n\n\nalgorithm\nCategorical\nNominal\ncounts, proportions — not a mean\n\n\ndate\nCategorical (ordered)\nOrdinal / Interval\nordering, time gaps\n\n\nimpressions, completes, clicks, installs\nQuantitative — discrete\nRatio\ncounts, sums, means, rates\n\n\nerpm\nQuantitative — continuous\nRatio\nmean, SD, t-tests — the primary KPI\n\n\n\n\n\n\nAsking for the “average algorithm” is meaningless; asking for the “average erpm” is the whole point. Scale sets your toolbox."
+    "text": "Classify Vungle’s Variables\n\n\nBefore any analysis, audit every column, because the scale determines which statistics are valid:\n\n\n\n\n\n\n\n\n\n\n\nVariable\nType\nScale\nWhat you may compute\n\n\n\n\nalgorithm\nCategorical\nNominal\ncounts, proportions (not a mean)\n\n\ndate\nCategorical (ordered)\nOrdinal / Interval\nordering, time gaps\n\n\nimpressions, completes, clicks, installs\nQuantitative, discrete\nRatio\ncounts, sums, means, rates\n\n\nerpm\nQuantitative, continuous\nRatio\nmean, SD, t-tests (the primary KPI)\n\n\n\n\n\n\nAsking for the “average algorithm” is meaningless; asking for the “average erpm” is the whole point. Scale sets your toolbox."
   },
   {
     "objectID": "lecture_slides/01_chapter_data_statistics/01_chapter_data_statistics.html#where-data-comes-from",
     "href": "lecture_slides/01_chapter_data_statistics/01_chapter_data_statistics.html#where-data-comes-from",
     "title": " QM 6700: Business Analytics ",
     "section": "Where Data Comes From",
-    "text": "Where Data Comes From\n\n\nExisting sources — internal records (Vungle’s ad server logs), public/government databases, industry reports.\nCollection by study:\n\nObservational — record what happens without intervening (a customer survey).\nExperimental — set the conditions on purpose, then measure (Vungle assigns traffic to A or B).\n\nCross-sectional — many elements at one point in time.\nTime series — one element across many time periods."
+    "text": "Where Data Comes From\n\n\nExisting sources: internal records (Vungle’s ad server logs), public/government databases, industry reports.\nCollection by study:\n\nObservational: record what happens without intervening (a customer survey).\nExperimental: set the conditions on purpose, then measure (Vungle assigns traffic to A or B).\n\nCross-sectional: many elements at one point in time.\nTime series: one element across many time periods."
   },
   {
     "objectID": "lecture_slides/01_chapter_data_statistics/01_chapter_data_statistics.html#cross-sectional-vs.-time-series-the-vungle-data",
     "href": "lecture_slides/01_chapter_data_statistics/01_chapter_data_statistics.html#cross-sectional-vs.-time-series-the-vungle-data",
     "title": " QM 6700: Business Analytics ",
-    "section": "Cross-Sectional vs. Time Series — the Vungle Data",
-    "text": "Cross-Sectional vs. Time Series — the Vungle Data\n\n\nOn any single day, comparing A vs. B is a cross-sectional snapshot (two entities, one moment).\nTracking one algorithm across the 30 days is a time series.\nThe full dataset is a panel — repeated cross-sections over time."
+    "section": "Cross-Sectional vs. Time Series: the Vungle Data",
+    "text": "Cross-Sectional vs. Time Series: the Vungle Data\n\n\nOn any single day, comparing A vs. B is a cross-sectional snapshot (two entities, one moment).\nTracking one algorithm across the 30 days is a time series.\nThe full dataset is a panel: repeated cross-sections over time."
   },
   {
     "objectID": "lecture_slides/01_chapter_data_statistics/01_chapter_data_statistics.html#observational-vs.-experimental-studies",
@@ -2231,8 +2231,8 @@
     "objectID": "lecture_slides/01_chapter_data_statistics/01_chapter_data_statistics.html#vungle-ran-an-experiment-so-we-can-say-caused",
     "href": "lecture_slides/01_chapter_data_statistics/01_chapter_data_statistics.html#vungle-ran-an-experiment-so-we-can-say-caused",
     "title": " QM 6700: Business Analytics ",
-    "section": "Vungle Ran an Experiment — So We Can Say “Caused”",
-    "text": "Vungle Ran an Experiment — So We Can Say “Caused”\n\n\nThe algorithm column is the treatment: each impression was randomly assigned to A or B (by an MD5 hash) on the same days.\nRandom assignment balances everything else (same market, same advertisers, same weekends), so the only systematic difference is the algorithm.\nThat is what licenses causal language: “B caused higher eRPM,” not merely “B was associated with higher eRPM.”\nPayoff: only an experiment supports a causal claim. An observational “B-days looked better” could be confounded; Vungle’s design rules that out."
+    "section": "Vungle Ran an Experiment, So We Can Say “Caused”",
+    "text": "Vungle Ran an Experiment, So We Can Say “Caused”\n\n\nThe algorithm column is the treatment: each impression was randomly assigned to A or B (by an MD5 hash) on the same days.\nRandom assignment balances everything else (same market, same advertisers, same weekends), so the only systematic difference is the algorithm.\nThat is what licenses causal language: “B caused higher eRPM,” not merely “B was associated with higher eRPM.”\nPayoff: only an experiment supports a causal claim. An observational “B-days looked better” could be confounded; Vungle’s design rules that out."
   },
   {
     "objectID": "lecture_slides/01_chapter_data_statistics/01_chapter_data_statistics.html#random-assignment-vs.-random-sampling",
@@ -2260,14 +2260,14 @@
     "href": "lecture_slides/01_chapter_data_statistics/01_chapter_data_statistics.html#a-first-look-at-erpm",
     "title": " QM 6700: Business Analytics ",
     "section": "A First Look at eRPM",
-    "text": "A First Look at eRPM\n\n\nA picture already tells a story: B’s mean is higher (white diamonds), but B is more spread out — a hint that “B is better” may not be the whole truth.\nDescribing is step one; deciding whether that gap is real comes later (Topics 7–9)."
+    "text": "A First Look at eRPM\n\n\nA picture already tells a story: B’s mean is higher (white diamonds), but B is more spread out, a hint that “B is better” may not be the whole truth.\nDescribing is step one; deciding whether that gap is real comes later (Topics 7–9)."
   },
   {
     "objectID": "lecture_slides/01_chapter_data_statistics/01_chapter_data_statistics.html#measures-of-location-the-mean",
     "href": "lecture_slides/01_chapter_data_statistics/01_chapter_data_statistics.html#measures-of-location-the-mean",
     "title": " QM 6700: Business Analytics ",
     "section": "Measures of Location: the Mean",
-    "text": "Measures of Location: the Mean\n\n\nThe first job of describing is finding the center. The workhorse is the mean — add the values, divide by the count:\n\n\n\\[\n\\bar{x} = \\frac{\\sum_{i=1}^{n} x_i}{n}\n\\]\n\n\n\nVungle’s 30-day mean eRPM: A = $3.347, B = $3.459 — B’s center sits $0.11 higher.\n\n\n\n\nThat $3.459 is a point estimate of B’s true mean eRPM — the number we will later put to the test."
+    "text": "Measures of Location: the Mean\n\n\nThe first job of describing is finding the center. The workhorse is the mean: add the values, divide by the count:\n\n\n\\[\n\\bar{x} = \\frac{\\sum_{i=1}^{n} x_i}{n}\n\\]\n\n\n\nVungle’s 30-day mean eRPM: A = $3.347, B = $3.459; B’s center sits $0.11 higher.\n\n\n\n\nThat $3.459 is a point estimate of B’s true mean eRPM, the number we will later put to the test."
   },
   {
     "objectID": "lecture_slides/01_chapter_data_statistics/01_chapter_data_statistics.html#median-mode-and-when-to-use-which",
@@ -2281,7 +2281,7 @@
     "href": "lecture_slides/01_chapter_data_statistics/01_chapter_data_statistics.html#your-excel-toolkit-the-analysis-toolpak",
     "title": " QM 6700: Business Analytics ",
     "section": "Your Excel Toolkit: the Analysis ToolPak",
-    "text": "Your Excel Toolkit: the Analysis ToolPak\n\n\n\ndata/vungle_daily.xlsx\n\n\n\nInstall it once: File → Options → Add-ins → Analysis ToolPak (and Analysis ToolPak-VBA) → Go.\nThen every analysis lives under Data → Data Analysis.\nDo this this week with vungle_daily.xlsx open — it is the dataset for the whole term."
+    "text": "Your Excel Toolkit: the Analysis ToolPak\n\n\n\ndata/vungle_daily.xlsx\n\n\n\nInstall it once: File → Options → Add-ins → Analysis ToolPak (and Analysis ToolPak-VBA) → Go.\nThen every analysis lives under Data → Data Analysis.\nDo this this week with vungle_daily.xlsx open; it is the dataset for the whole term."
   },
   {
     "objectID": "lecture_slides/01_chapter_data_statistics/01_chapter_data_statistics.html#teaser-descriptive-statistics-on-erpm",
@@ -2302,7 +2302,7 @@
     "href": "lecture_slides/01_chapter_data_statistics/01_chapter_data_statistics.html#debrief-back-to-the-decision",
     "title": " QM 6700: Business Analytics ",
     "section": "Debrief: Back to the Decision",
-    "text": "Debrief: Back to the Decision\n\n\nWe can now describe the data cleanly: A’s mean eRPM is $3.35, B’s is $3.46, over 30 carefully-designed experimental days.\nWe cannot yet say whether B is really better for all future traffic — that is inference, and it needs the tools in Topics 7–9.\nYour call today: not yet. You can describe B’s edge, but approving a company-wide roll-out needs an inference test, and that is exactly what you will demand from your analyst in Topics 7–9."
+    "text": "Debrief: Back to the Decision\n\n\nWe can now describe the data cleanly: A’s mean eRPM is $3.35, B’s is $3.46, over 30 carefully-designed experimental days.\nWe cannot yet say whether B is really better for all future traffic; that is inference, and it needs the tools in Topics 7–9.\nYour call today: not yet. You can describe B’s edge, but approving a company-wide roll-out needs an inference test, and that is exactly what you will demand from your analyst in Topics 7–9."
   },
   {
     "objectID": "lecture_slides/01_chapter_data_statistics/01_chapter_data_statistics.html#statistical-inference-1",
@@ -2344,7 +2344,7 @@
     "href": "lecture_slides/01_chapter_data_statistics/01_chapter_data_statistics.html#summary",
     "title": " QM 6700: Business Analytics ",
     "section": "Summary",
-    "text": "Summary\nThe main points from this session:\n\nYour seat all term: you are the decision-maker. You run every method yourself, but to judge the analysis and make the call, not to be the analyst.\nTwo cases drive the course: Vungle A/B (describe → test, Topics 1–9) and auto-parts retail (predict, Topics 10–11). Each class your group also works a separate in-class case and submits it; individual homework drills the mechanics.\nStatistics turns data into defensible business decisions; it splits into descriptive (summarize) and inferential (generalize).\nData vocabulary: elements, variables, observations; categorical vs. quantitative; the four scales of measurement, and the rule that scale determines method.\nStudy design: Vungle ran a randomized experiment, which is what licenses causal claims.\nExcel is your toolkit: install the Analysis ToolPak and meet the dataset on day one.\nNext time: Descriptive Statistics II — spread, shape, the boxplot, and how two variables move together."
+    "text": "Summary\nThe main points from this session:\n\nYour seat all term: you are the decision-maker. You run every method yourself, but to judge the analysis and make the call, not to be the analyst.\nTwo cases drive the course: Vungle A/B (describe → test, Topics 1–9) and auto-parts retail (predict, Topics 10–11). Each class your group also works a separate in-class case and submits it; individual homework drills the mechanics.\nStatistics turns data into defensible business decisions; it splits into descriptive (summarize) and inferential (generalize).\nData vocabulary: elements, variables, observations; categorical vs. quantitative; the four scales of measurement, and the rule that scale determines method.\nStudy design: Vungle ran a randomized experiment, which is what licenses causal claims.\nExcel is your toolkit: install the Analysis ToolPak and meet the dataset on day one.\nNext time: Descriptive Statistics II: spread, shape, the boxplot, and how two variables move together."
   },
   {
     "objectID": "lecture_slides/11_chapter_multiple_regression/11_chapter_multiple_regression.html#overview",
@@ -3488,21 +3488,21 @@
     "href": "lecture_slides/01_chapter_data_statistics/01_chapter_data_statistics.html#youre-the-decision-maker-two-cases-to-crack",
     "title": " QM 6700: Business Analytics ",
     "section": "You’re the Decision-Maker: Two Cases to Crack",
-    "text": "You’re the Decision-Maker: Two Cases to Crack\n\n\nThis course puts you in the decision-maker’s seat: the manager, CEO, or owner who has to act. You’ll work in a fixed group (assigned this week), cracking real cases in class and judging the analysis behind every call.\n\n\n\n① Vungle A/B — Topics 1–9 (up first). A mobile ad-tech startup asking roll out algorithm B, or keep A? You’ll learn to describe, quantify uncertainty, and test so you can judge that claim before betting the company on it.\n\n\n\n\n② Auto-parts retail — Topics 10–11. A 45-store chain asking where should the next dollar go? You’ll evaluate the analyst’s model that predicts store sales, then decide where to invest.\n\n\n\n\nEvery class: your group works in the in-class case and submits its call before you leave (graded)."
+    "text": "You’re the Decision-Maker: Two Cases to Crack\n\n\nThis course puts you in the decision-maker’s seat: the manager, CEO, or owner who has to act. You’ll work in a fixed group (assigned this week), cracking real cases in class and judging the analysis behind every call.\n\n\n\n① Vungle A/B (Topics 1–9, up first). A mobile ad-tech startup asking roll out algorithm B, or keep A? You’ll learn to describe, quantify uncertainty, and test so you can judge that claim before betting the company on it.\n\n\n\n\n② Auto-parts retail (Topics 10–11). A 45-store chain asking where should the next dollar go? You’ll evaluate the analyst’s model that predicts store sales, then decide where to invest.\n\n\n\n\nEvery class: your group works in the in-class case and submits its call before you leave (graded)."
   },
   {
     "objectID": "lecture_slides/01_chapter_data_statistics/01_chapter_data_statistics.html#how-every-class-runs",
     "href": "lecture_slides/01_chapter_data_statistics/01_chapter_data_statistics.html#how-every-class-runs",
     "title": " QM 6700: Business Analytics ",
     "section": "How Every Class Runs",
-    "text": "How Every Class Runs\n\n\n\n\n\nThe class ends on the Team Sprint — your group’s graded submission. Today is the exception: introductions and logistics come first, so the group case is short."
+    "text": "How Every Class Runs\n\n\n\n\n\nThe class ends on the Team Sprint, your group’s graded submission. Today is the exception: introductions and logistics come first, so the group case is short."
   },
   {
     "objectID": "lecture_slides/01_chapter_data_statistics/01_chapter_data_statistics.html#find-your-group-meet-your-team",
     "href": "lecture_slides/01_chapter_data_statistics/01_chapter_data_statistics.html#find-your-group-meet-your-team",
     "title": " QM 6700: Business Analytics ",
     "section": "Find Your Group & Meet Your Team",
-    "text": "Find Your Group & Meet Your Team\n\n\nYou were randomly assigned to a fixed group for the whole term. Find your group number on Brightspace → Groups.\nFind your spot: your group number is posted on a table in the room (lower numbers toward the front). Go there and sit with your group.\nMeet your teammates: you have 10 minutes. Say your name, where you are from, your background, and one book, film, song, or anything that tells us something about you.\nThis is your team for every in-class case this semester."
+    "text": "Find Your Group & Meet Your Team\n\n\nYou were randomly assigned to a fixed group for the whole term. Find your group number on Brightspace → Groups.\nFind your spot: each group gathers in a corner or the center of the room. I’ll call out which group goes where; go there and sit together.\nMeet your teammates: you have 10 minutes. Say your name, where you are from, your background, and one book, film, song, or anything that tells us something about you.\nThis is your team for every in-class case this semester."
   },
   {
     "objectID": "lecture_slides/01_chapter_data_statistics/01_chapter_data_statistics.html#survey-tell-me-about-you",
@@ -3523,13 +3523,20 @@
     "href": "lecture_slides/01_chapter_data_statistics/01_chapter_data_statistics.html#the-tempting-answer-why-it-is-not-enough",
     "title": " QM 6700: Business Analytics ",
     "section": "The Tempting Answer: Why It Is Not Enough",
-    "text": "The Tempting Answer: Why It Is Not Enough\n\n\nA manager glances at the data: “B’s average daily eRPM was $3.46 vs. A’s $3.35 — so roll out B!”\nNot so fast. Before you can bet the company on that $0.11 gap, you have to ask:\n\nIs $0.11 a real difference, or just day-to-day noise?\nIs 30 days enough to generalize to all future traffic?\nWhat kind of data is this, and which statistics are even valid to compute?\n\nAnswering those is your job. Today we start at the foundation: what is this data?"
+    "text": "The Tempting Answer: Why It Is Not Enough\n\n\nA manager glances at the data: “B’s average daily eRPM was $3.46 vs. A’s $3.35, so roll out B!”\nNot so fast. Before you can bet the company on that $0.11 gap, you have to ask:\n\nIs $0.11 a real difference, or just day-to-day noise?\nIs 30 days enough to generalize to all future traffic?\nWhat kind of data is this, and which statistics are even valid to compute?\n\nAnswering those is your job. Today we start at the foundation: what is this data?"
   },
   {
     "objectID": "lecture_slides/01_chapter_data_statistics/01_chapter_data_statistics.html#team-sprint-your-group-case",
     "href": "lecture_slides/01_chapter_data_statistics/01_chapter_data_statistics.html#team-sprint-your-group-case",
     "title": " QM 6700: Business Analytics ",
-    "section": "⏱️ Team Sprint — Your Group Case",
-    "text": "⏱️ Team Sprint — Your Group Case\n\nNow it’s your group’s turn. Today’s in-class group case is posted on Brightspace (Topic 01 Group Case): a short business decision you make with today’s tools.\nWhat you’ll use: data types and scales, and the mean, median, and mode. Excel: Analysis ToolPak → Descriptive Statistics.\nSubmit one PDF per group before you leave: your decision plus the numbers behind it."
+    "section": "⏱️ Team Sprint: Your Group Case",
+    "text": "⏱️ Team Sprint: Your Group Case\n\nNow it’s your group’s turn. Today’s in-class group case is posted on Brightspace (Topic 01 Group Case): a short business decision you make with today’s tools.\nWhat you’ll use: data types and scales, and the mean, median, and mode. Excel: Analysis ToolPak → Descriptive Statistics.\nSubmit one PDF per group before you leave: your decision plus the numbers behind it."
+  },
+  {
+    "objectID": "lecture_slides/01_chapter_data_statistics/01_chapter_data_statistics.html#median-mode-when-to-use-which",
+    "href": "lecture_slides/01_chapter_data_statistics/01_chapter_data_statistics.html#median-mode-when-to-use-which",
+    "title": " QM 6700: Business Analytics ",
+    "section": "Median & Mode: When to Use Which",
+    "text": "Median & Mode: When to Use Which\n\n\nMedian: the middle value (50th percentile); unmoved by outliers. Vungle: A median $3.327, B $3.434. Mean ≈ median ⟹ the eRPM distribution is roughly symmetric.\nMode: the most frequent value; the only center valid for categorical data (e.g., the most-served algorithm). For continuous eRPM every value is distinct, so the mode says nothing.\nRule of thumb: report the mean for symmetric data, the median when it is skewed or has outliers."
   }
 ]
