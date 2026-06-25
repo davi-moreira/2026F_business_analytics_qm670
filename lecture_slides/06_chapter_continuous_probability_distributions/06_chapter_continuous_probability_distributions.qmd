@@ -50,7 +50,7 @@ html-math-method:
 
 # Case Spotlight: A/B Testing at Vungle {background-color="#cfb991"}
 
-## Back to Vungle — Now We Model the *Distribution*
+## Back to Vungle: Now We Model the *Distribution*
 
 <br>
 
@@ -58,25 +58,27 @@ html-math-method:
 
 - The metric that pays the bills is **eRPM**: effective revenue per 1,000 impressions. Algorithm **B** is the new ad-serving engine the team is evaluating.
 
-- So far we have **summarized** eRPM (center, spread) and modeled **counts** (installs) with the Binomial and Poisson. Today we model a **continuous** quantity — the dollar value of eRPM itself.
+- So far we have **summarized** eRPM (center, spread) and modeled **counts** (installs) with the Binomial and Poisson. Today we model a **continuous** quantity: the dollar value of eRPM itself.
 
 - Over 30 days of June 2014, B's daily eRPM averaged **\$3.46** with a standard deviation of **\$0.34**. The histogram is a bell.
 
-- **Today's move:** treat daily eRPM as a draw from a **Normal distribution** — then we can answer *forward-looking* questions about days we have not yet seen.
+- **Today's move:** treat daily eRPM as a draw from a **Normal distribution**, then we can answer *forward-looking* questions about days we have not yet seen.
 
-## The Brief — Today's Managerial Question
+## The Brief: Today's CEO Question
 
 <br>
 
-> "Model B's daily eRPM as Normal(\$3.46, \$0.34). What's the chance tomorrow's eRPM **tops \$3.50**? What eRPM marks a **90th-percentile day** — and is the Normal model even **trustworthy** here?"
+- **The big call (Vungle A/B):** roll out algorithm B, or stay with A? Topic 9 settles it; today answers one piece: **what's the chance of a high or low eRPM day?**
+
+> "Model B's daily eRPM as Normal(\$3.46, \$0.34). What's the chance tomorrow's eRPM **tops \$3.50**? What eRPM marks a **90th-percentile day**, and is the Normal model even **trustworthy** here?"
 
 <br>
 
 - Counting distributions (Binomial, Poisson) answered "how many installs?" Today's tool answers "**how much revenue per impression**, and how often above a threshold?"
 
-- **How today's studio runs:** I demo each idea on a textbook example → **your team fits the Normal to Vungle eRPM** (two sprints) → we debrief what the model can and cannot tell a manager.
+- **How today's studio runs:** I demo each idea on a textbook example, then your group reproduces and interrogates the fitted Normal on the in-class group case, then we debrief what the model can and cannot tell the CEO.
 
-- By the end, **your team** turns a fitted distribution into a planning number (a probability and a percentile) and stress-tests the assumption behind it.
+- By the end you can turn a fitted distribution into a planning number (a probability and a percentile) and stress-test the assumption behind it.
 
 ## How Today's Tools Answer It
 
@@ -86,23 +88,25 @@ Every tool today maps onto the Vungle eRPM data:
 
 | The managerial question | The tool |
 |---|---|
-| "What does a *typical* day look like?" | **Normal model** — mean \$3.46, sd \$0.34 |
+| "What does a *typical* day look like?" | **Normal model** (mean \$3.46, sd \$0.34) |
 | "How likely is eRPM above \$3.50?" | **z-score + `NORM.DIST`** (a tail area) |
-| "What's a great day — the top 10%?" | **`NORM.INV`** (a percentile) |
+| "What's a great day, the top 10%?" | **`NORM.INV`** (a percentile) |
 | "Is 'Normal' even a fair assumption?" | **Normal-probability (QQ) plot** |
 | "Plan for installs at huge scale" | **Normal approximation of the Binomial** |
 
 <br>
 
-- One dataset, one bell curve — and from it, every probability and percentile a manager needs.
+- One dataset, one bell curve, and from it every probability and percentile the CEO needs.
 
-# Lecture 1 — Continuous Variables, the Uniform, and the Normal {background-color="#cfb991"}
+# Lecture 1: Continuous Variables, the Uniform, and the Normal {background-color="#cfb991"}
 
-## The Brief — Lecture 1
+## The Brief: Lecture 1
 
 <br>
 
-> "Before we can ask *'how likely is eRPM above \$3.50?'*, we need a **model** for a continuous quantity. Today: what a continuous distribution *is*, and the two we use most — the **uniform** and the **Normal**."
+- **The big call (Vungle A/B):** roll out B, or stay with A? Today's piece for the CEO: **what's the chance of a high or low value (and can we fit a Normal to it)?**
+
+> "Before we can ask *'how likely is eRPM above \$3.50?'*, we need a **model** for a continuous quantity. Today: what a continuous distribution *is*, and the two we use most, the **uniform** and the **Normal**."
 
 <br>
 
@@ -128,7 +132,7 @@ $$
 
 :::
 
-- Instead we ask about an **interval**: $P(x_1 \le X \le x_2)$. The eRPM is never *exactly* \$3.50 — but it can be *between* \$3.40 and \$3.60.
+- Instead we ask about an **interval**: $P(x_1 \le X \le x_2)$. The eRPM is never *exactly* \$3.50, but it can be *between* \$3.40 and \$3.60.
 
 - For a continuous variable, probability is the **area under a curve** called the **probability density function** $f(x)$.
 
@@ -148,7 +152,7 @@ $$
 
 :::
 
-- **Key subtlety:** $f(x)$ is a *density*, **not** a probability — it can exceed 1. Only **areas** are probabilities.
+- **Key subtlety:** $f(x)$ is a *density*, **not** a probability; it can exceed 1. Only **areas** are probabilities.
 
 - The probability $X$ lands between $x_1$ and $x_2$ is the area under $f(x)$ across that interval:
 
@@ -166,7 +170,7 @@ $$
 
 <br>
 
-- A variable is **uniformly distributed** when the probability is **proportional to the length** of the interval — every equal-width slice is equally likely.
+- A variable is **uniformly distributed** when the probability is **proportional to the length** of the interval: every equal-width slice is equally likely.
 
 ::: fragment
 
@@ -176,7 +180,7 @@ $$
 
 :::
 
-- The density is a **flat rectangle** of height $1/(b-a)$ — and the rectangle's total area is exactly 1.
+- The density is a **flat rectangle** of height $1/(b-a)$, and the rectangle's total area is exactly 1.
 
 - Mean and variance:
 
@@ -204,7 +208,7 @@ $$
 
 :::
 
-- **What is $P(12 \le X \le 15)$ — a heaping plate?** Area = base $\times$ height:
+- **What is $P(12 \le X \le 15)$, a heaping plate?** Area = base $\times$ height:
 
 ::: fragment
 
@@ -214,14 +218,14 @@ $$
 
 :::
 
-## Slater's Buffet — Probability Is the Shaded Area
+## Slater's Buffet: Probability Is the Shaded Area
 
 ```{r  echo=FALSE, out.width = "72%",fig.align="center"}
 knitr::include_graphics("figs/uniform_slater.png")
 ```
 
 ::: nonincremental
-- 30% of customers take between 12 and 15 ounces — directly the **area** of the shaded rectangle, no calculus needed.
+- 30% of customers take between 12 and 15 ounces, directly the **area** of the shaded rectangle, no calculus needed.
 - The same idea, **probability = area**, now carries over to the bell-shaped Normal, where the area is harder to compute by hand (so we lean on z-scores and Excel).
 :::
 
@@ -231,7 +235,7 @@ knitr::include_graphics("figs/uniform_slater.png")
 
 <br>
 
-- The **Normal** is the most important distribution for a continuous variable — it describes heights, test scores, measurement errors, rainfall, **and** daily revenue metrics like eRPM.
+- The **Normal** is the most important distribution for a continuous variable: it describes heights, test scores, measurement errors, rainfall, **and** daily revenue metrics like eRPM.
 
 - It is the backbone of statistical inference (the next several topics), and it **approximates** the Binomial and Poisson at large $n$.
 
@@ -245,7 +249,7 @@ $$
 
 :::
 
-- **Don't tattoo this on your arm.** You will never plug numbers into it by hand — z-scores and Excel do the work. It is here so you see *where the bell comes from*: two parameters, $\mu$ and $\sigma$.
+- **Don't tattoo this on your arm.** You will never plug numbers into it by hand; z-scores and Excel do the work. It is here so you see *where the bell comes from*: two parameters, $\mu$ and $\sigma$.
 
 ## What the Two Parameters Do
 
@@ -254,7 +258,7 @@ knitr::include_graphics("figs/normal_shapes.png")
 ```
 
 ::: nonincremental
-- The **mean $\mu$** sets the **location** (the peak); it can be any value — negative, zero, or positive.
+- The **mean $\mu$** sets the **location** (the peak); it can be any value: negative, zero, or positive.
 - The **standard deviation $\sigma$** sets the **spread**: larger $\sigma$ → wider, flatter curve.
 - Every Normal is **symmetric** and **bell-shaped**, with **mean = median = mode**, and an (in principle) infinite range.
 :::
@@ -277,7 +281,7 @@ knitr::include_graphics("figs/empirical_rule.png")
 
 <br>
 
-- There are infinitely many Normal curves (one per $\mu, \sigma$). We standardize them all to a **single reference**: the **standard Normal**, $Z \sim N(0, 1)$ — mean 0, standard deviation 1.
+- There are infinitely many Normal curves (one per $\mu, \sigma$). We standardize them all to a **single reference**: the **standard Normal**, $Z \sim N(0, 1)$: mean 0, standard deviation 1.
 
 - **Standardization** converts any $x$ to a $z$:
 
@@ -300,7 +304,7 @@ knitr::include_graphics("figs/standardization.png")
 ```
 
 ::: nonincremental
-- The **shape and the shaded area are identical** before and after standardizing — only the axis labels change.
+- The **shape and the shaded area are identical** before and after standardizing; only the axis labels change.
 - Compute $z$, then read the area off $N(0,1)$. This is the move behind every Normal probability you will ever calculate.
 :::
 
@@ -310,7 +314,7 @@ knitr::include_graphics("figs/standardization.png")
 
 - Pep Zone reorders motor oil when stock hits **20 gallons**. Demand during the replenishment lead time is **Normal with mean 15, sd 6**: $X \sim N(15, 6)$.
 
-- **What is the probability of a stockout** — that demand *exceeds* 20 before the new stock arrives?
+- **What is the probability of a stockout**, that demand *exceeds* 20 before the new stock arrives?
 
 ::: fragment
 
@@ -320,9 +324,9 @@ $$
 
 :::
 
-- About a **20% chance** of running out on each cycle — the store manager wants that lower.
+- About a **20% chance** of running out on each cycle, and the store manager wants that lower.
 
-## Pep Zone — the Stockout Area
+## Pep Zone: the Stockout Area
 
 ```{r  echo=FALSE, out.width = "70%",fig.align="center"}
 knitr::include_graphics("figs/pepzone_stockout.png")
@@ -363,15 +367,15 @@ $$
 
 :::
 
-- A \$3.50 day is barely above average — only **0.12 SD** up. That hints (we'll confirm next time) that beating \$3.50 is close to a coin flip.
+- A \$3.50 day is barely above average, only **0.12 SD** up. That hints (we'll confirm next time) that beating \$3.50 is close to a coin flip.
 
 ::::
 
-## Normal Probabilities in Excel — Two Functions
+## Normal Probabilities in Excel: Two Functions
 
 <br>
 
-- The ToolPak is not needed for Normal probabilities — two worksheet functions do everything:
+- The ToolPak is not needed for Normal probabilities; two worksheet functions do everything:
 
   - `=NORM.DIST(x, mean, sd, TRUE)` → the **cumulative** probability $P(X \le x)$.
   - `=NORM.INV(p, mean, sd)` → the **inverse**: the $x$ with $P(X \le x) = p$ (a percentile).
@@ -382,45 +386,35 @@ $$
 
 - **Workhorses:** `NORM.DIST` and `NORM.INV` (real units). The `.S.` versions are for when you have already standardized to a $z$.
 
-- We put them to work in Lecture 2 — for now, your team just **fits the model and reads its shape**.
+- We put them to work in Lecture 2; for now your group just **fits the model and reads its shape**.
 
-## ⏱️ Team Sprint 1 — Fit the Normal to eRPM
-
-::: {.sprint .nonincremental}
-**Decide:** is the Normal a sensible model for B's daily eRPM — and what does a "typical" day look like?
-
-**Data:** `data/vungle_daily.csv` (filter `algorithm = "B"`) · **Time:** ~8 min
-
-1. In Excel, compute $\bar{x}$ = `AVERAGE` and $s$ = `STDEV.S` of the 30 B-day `erpm` values (target: ~3.459, ~0.344).
-2. Apply the **empirical rule**: give the interval that should hold ~95% of days ($\bar{x} \pm 2s$).
-3. Standardize a \$3.50 day: compute $z = (3.50 - \bar{x})/s$. Is \$3.50 a good day, an average day, or a bad day?
-
-**Submit before you leave (graded, one slide per group):** your call on whether Normal is a sensible model for B's eRPM + the key numbers ($\bar{x}$, $s$, the 95% empirical interval, the $z$ for \$3.50) + the **two things you would challenge** in the fit.
-:::
-
-## Debrief — Lecture 1 Takeaway
+## The CEO's Takeaway: Lecture 1
 
 <br>
 
-- **One sentence:** B's daily eRPM is well described by a Normal centered at **\$3.46** with spread **\$0.34** — and standardizing ($z = (x-\mu)/\sigma$) turns any eRPM question into a single standard-Normal area.
+- **One sentence:** B's daily eRPM is well described by a Normal centered at **\$3.46** with spread **\$0.34**, and standardizing ($z = (x-\mu)/\sigma$) turns any eRPM question into a single standard-Normal area.
 
-- **One number:** $z = 0.12$ for a \$3.50 day — barely above average, so "beating \$3.50" is roughly a coin flip (we'll nail the exact probability next time).
+- **One number:** $z = 0.12$ for a \$3.50 day, barely above average, so "beating \$3.50" is roughly a coin flip (we'll nail the exact probability next time).
 
 - **One caveat:** the empirical rule and z-scores are only as good as the **Normal assumption**. We have *assumed* the bell; Lecture 2 we **check** it with a QQ plot before betting a decision on it.
 
-## Carry-forward — Lecture 1
+## ⏱️ Team Sprint: Your Group Case (Lecture 1)
 
-::: nonincremental
-- **Homework (individual):** today's tools (the Normal model, z-scores, and percentiles) are drilled on **HW2** — individual problem sets in the previous-edition format, posted on Brightspace. Run them yourself so you can check an analyst who uses them.
+::: {.sprint .nonincremental}
+**Now it's your group's turn.** Today's in-class group case is posted on **Brightspace** (*Topic 06 Group Case, Lecture 1*): a separate business decision you make with today's tools.
 
-- **Next time:** we cash in the model — exact tail probabilities ($P(\text{eRPM} > \$3.50)$), the **90th-percentile day**, a formal **normality check**, and the Normal approximation of the Binomial.
+**What you'll use:** the **Normal model**, the **empirical rule**, and a **z-score** ($z = (x - \bar{x})/s$) to place a value. **Excel:** Analysis ToolPak → Descriptive Statistics for $\bar{x}$ and $s$.
+
+**Submit one PDF per group before you leave:** your decision plus the numbers behind it.
 :::
 
-# Lecture 2 — Normal Applications & the Normal Approximation {background-color="#cfb991"}
+# Lecture 2: Normal Applications & the Normal Approximation {background-color="#cfb991"}
 
-## The Brief — Lecture 2
+## The Brief: Lecture 2
 
 <br>
+
+- **The big call (Vungle A/B):** roll out B, or stay with A? Today's piece for the CEO: **what probability and percentile does the Normal give, and is the model fair?**
 
 > "Cash in the model. Tomorrow's eRPM is $\sim N(3.459, 0.344)$. **What's $P(\text{eRPM} > \$3.50)$? What eRPM defines a top-10% day?** And before we trust any of it, **is the Normal assumption fair?**"
 
@@ -432,7 +426,7 @@ $$
 
 # Normal Probabilities: Tails {background-color="#cfb991"}
 
-## P(eRPM > \$3.50) — a Right-Tail Area
+## P(eRPM > \$3.50): a Right-Tail Area
 
 <br>
 
@@ -456,7 +450,7 @@ $$
 
 :::
 
-- **Read it for the manager:** on roughly **45 of every 100 days**, B's eRPM tops \$3.50. A \$3.50 day is *not* exceptional — it is just shy of a coin flip.
+- **Read it for the manager:** on roughly **45 of every 100 days**, B's eRPM tops \$3.50. A \$3.50 day is *not* exceptional; it is just shy of a coin flip.
 
 ## The Tail Area, Visualized
 
@@ -466,7 +460,7 @@ knitr::include_graphics("figs/vungle_pgt350.png")
 
 ::: nonincremental
 - The shaded right tail beyond \$3.50 is **0.4526** of the total area.
-- Same machine for a **bad day**: $P(\text{eRPM} < \$3.00) =$ `NORM.DIST(3.00, 3.459, 0.344, TRUE)` $= 0.091$ — about a **1-in-11** chance B dips below \$3.00.
+- Same machine for a **bad day**: $P(\text{eRPM} < \$3.00) =$ `NORM.DIST(3.00, 3.459, 0.344, TRUE)` $= 0.091$, about a **1-in-11** chance B dips below \$3.00.
 :::
 
 ## Excel: NORM.DIST on the Vungle Model
@@ -486,7 +480,7 @@ knitr::include_graphics("figs/excel_normdist_vungle.png")
 
 <br>
 
-- Flip the question. Instead of "what area is above \$3.50?", ask "**what eRPM marks the top 10% of days?**" — the 90th percentile.
+- Flip the question. Instead of "what area is above \$3.50?", ask "**what eRPM marks the top 10% of days?**": the 90th percentile.
 
 - **Inverse Normal:** find $x$ with $P(X \le x) = 0.90$. By hand, $z_{0.90} = 1.282$, then back-convert:
 
@@ -508,7 +502,7 @@ $$
 
 :::
 
-- **For the manager:** a **\$3.90** day is a genuine top-10% performance — a useful internal benchmark for "a great day."
+- **For the manager:** a **\$3.90** day is a genuine top-10% performance, a useful internal benchmark for "a great day."
 
 ## The Percentile, Visualized
 
@@ -521,14 +515,14 @@ knitr::include_graphics("figs/vungle_pct90.png")
 - `NORM.DIST` and `NORM.INV` are **inverses**: `NORM.DIST(3.90, …)` $\approx 0.90$, and `NORM.INV(0.90, …)` $\approx 3.90$. One asks "what area?", the other "what value?".
 :::
 
-## Excel: NORM.INV — Percentiles & Tails
+## Excel: NORM.INV, Percentiles & Tails
 
 ```{r  echo=FALSE, out.width = "82%",fig.align="center"}
 knitr::include_graphics("figs/excel_norminv_vungle.png")
 ```
 
 ::: nonincremental
-- The median equals the mean ($\$3.46$) for a symmetric Normal — `NORM.INV(0.50, …)` confirms it.
+- The median equals the mean ($\$3.46$) for a symmetric Normal; `NORM.INV(0.50, …)` confirms it.
 - Percentiles turn an abstract distribution into **decision thresholds**: a 75th-percentile day (\$3.69) is "good," a 90th (\$3.90) is "great." Same model, business-ready language.
 :::
 
@@ -547,7 +541,7 @@ knitr::include_graphics("figs/excel_norminv_vungle.png")
   - Points hug a **straight line** → Normal is a reasonable model.
   - Systematic curves, S-shapes, or fat tails → Normal is suspect.
 
-- A formal companion is the **Shapiro-Wilk test** ($H_0$: the data are Normal). A *large* p-value means "**no evidence against** Normal" — exactly what we want here.
+- A formal companion is the **Shapiro-Wilk test** ($H_0$: the data are Normal). A *large* p-value means "**no evidence against** Normal", exactly what we want here.
 
 ## The QQ Plot for eRPM (Algorithm B)
 
@@ -556,23 +550,9 @@ knitr::include_graphics("figs/vungle_qq.png")
 ```
 
 ::: nonincremental
-- The 30 B-day points **track the line** closely — no fat tails, no S-curve.
+- The 30 B-day points **track the line** closely: no fat tails, no S-curve.
 - Shapiro-Wilk: **W = 0.961, p = 0.33** → we **do not reject** Normality. The model is fair to use.
 - *Honest caveat:* $n = 30$ is modest; the QQ plot can't *prove* Normal, only fail to flag a problem. For business decisions, "Normal is a reasonable working model" is the right standard.
-:::
-
-## ⏱️ Team Sprint 2 — Probabilities, Percentiles & a Normality Check
-
-::: {.sprint .nonincremental}
-**Decide:** how often does B top \$3.50, what's a top-10% day, and is the Normal model trustworthy?
-
-**Data:** `data/vungle_daily.csv` (filter `algorithm = "B"`) · **Time:** ~12 min
-
-1. **Tail probability:** `=1 - NORM.DIST(3.50, mean, sd, TRUE)`. State $P(\text{eRPM} > \$3.50)$ in plain English.
-2. **Percentile:** `=NORM.INV(0.90, mean, sd)`. Report the **90th-percentile day** as a "great day" benchmark.
-3. **Check the assumption:** sort the 30 values; eyeball them against the Normal QQ plot (provided). Do they hug the line?
-
-**Submit before you leave (graded, one slide per group):** your verdict on whether to trust the Normal model + the key numbers ($P(\text{eRPM} > \$3.50)$, the 90th-percentile eRPM, the QQ-plot read) + the **two things you would challenge** in the analysis.
 :::
 
 # The Normal Approximation of the Binomial {background-color="#cfb991"}
@@ -581,9 +561,9 @@ knitr::include_graphics("figs/vungle_qq.png")
 
 <br>
 
-- Recall installs are **counts**: each impression either installs (success) or not — a Binomial with huge $n$. On a typical B-traffic day, $n \approx 527{,}000$ impressions, $p \approx 0.0035$.
+- Recall installs are **counts**: each impression either installs (success) or not: a Binomial with huge $n$. On a typical B-traffic day, $n \approx 527{,}000$ impressions, $p \approx 0.0035$.
 
-- The exact Binomial is **unwieldy** at that scale — but a smooth **Normal** matches it beautifully.
+- The exact Binomial is **unwieldy** at that scale, but a smooth **Normal** matches it beautifully.
 
 - **Conditions to approximate** $\text{Binomial}(n, p)$ with a Normal:
 
@@ -613,7 +593,7 @@ knitr::include_graphics("figs/normal_approx_binomial.png")
 
 ::: nonincremental
 - Textbook anchor: $\text{Binomial}(100, 0.4)$ → $\mu = 40$, $\sigma = 4.90$. The Normal curve traces the tops of the bars.
-- The bigger $n$ gets, the better the fit — which is why a 527,000-impression install count is essentially Normal.
+- The bigger $n$ gets, the better the fit, which is why a 527,000-impression install count is essentially Normal.
 :::
 
 ## Continuity Correction: Bars Have Width
@@ -623,8 +603,8 @@ knitr::include_graphics("figs/continuity_correction.png")
 ```
 
 ::: nonincremental
-- A discrete count of exactly 10 occupies the **continuous interval [9.5, 10.5]** — so $P(X = 10) \approx P(9.5 \le X \le 10.5)$.
-- Add/subtract **0.5** at the edges. For $P(30 \le X \le 50)$ use $P(29.5 \le X \le 50.5)$ — this $\pm 0.5$ "continuity correction" sharpens the approximation (most relevant when $n$ is moderate).
+- A discrete count of exactly 10 occupies the **continuous interval [9.5, 10.5]**, so $P(X = 10) \approx P(9.5 \le X \le 10.5)$.
+- Add/subtract **0.5** at the edges. For $P(30 \le X \le 50)$ use $P(29.5 \le X \le 50.5)$; this $\pm 0.5$ "continuity correction" sharpens the approximation (most relevant when $n$ is moderate).
 :::
 
 ## Vungle Installs as a Planning Number
@@ -644,7 +624,7 @@ $$
 z = \frac{2000.5 - 1867}{43.1} = 3.10 \qquad P(\text{installs} > 2000) = \texttt{1 - NORM.DIST(2000.5, 1867, 43.1, TRUE)} = 0.0010
 $$
 
-**Manager's translation.** *A 2,000-install B-day is rare — about a 1-in-1,000 event under current traffic. Capacity planned to 2,000 installs is comfortable; the constraint is impressions, not the install spike.*
+**Manager's translation.** *A 2,000-install B-day is rare, about a 1-in-1,000 event under current traffic. Capacity planned to 2,000 installs is comfortable; the constraint is impressions, not the install spike.*
 :::
 
 ## Excel: Normal Approximation Formula Sheet
@@ -655,10 +635,10 @@ knitr::include_graphics("figs/excel_normapprox_vungle.png")
 
 ::: nonincremental
 - Five cells: compute $np$ and $n(1-p)$ (the condition check), then $\mu = np$, $\sigma = \sqrt{np(1-p)}$, and the tail with `NORM.DIST`.
-- This is the bridge from Topic 5's **counting** distributions to today's **continuous** Normal — at scale, the Binomial *becomes* a Normal.
+- This is the bridge from Topic 5's **counting** distributions to today's **continuous** Normal; at scale, the Binomial *becomes* a Normal.
 :::
 
-# Debrief — From Distribution to Decision {background-color="#cfb991"}
+# Debrief: From Distribution to Decision {background-color="#cfb991"}
 
 ## Three Answers, One Model
 
@@ -666,28 +646,42 @@ knitr::include_graphics("figs/excel_normapprox_vungle.png")
 
 | Question | Tool | Vungle answer |
 |---|---|---|
-| How often does eRPM top \$3.50? | $z$ + `NORM.DIST` | $P = 0.453$ — almost a coin flip |
-| What's a top-10% day? | `NORM.INV(0.90)` | **\$3.90** — the "great day" benchmark |
-| Is the Normal model fair? | QQ plot + Shapiro | Yes — $W = 0.96$, $p = 0.33$ |
-| Plan installs at scale | Normal approx. Binomial | $P(>2000) = 0.001$ — rare |
+| How often does eRPM top \$3.50? | $z$ + `NORM.DIST` | $P = 0.453$ (almost a coin flip) |
+| What's a top-10% day? | `NORM.INV(0.90)` | **\$3.90** (the "great day" benchmark) |
+| Is the Normal model fair? | QQ plot + Shapiro | Yes: $W = 0.96$, $p = 0.33$ |
+| Plan installs at scale | Normal approx. Binomial | $P(>2000) = 0.001$ (rare) |
 
 <br>
 
-- Every row came from **one** fitted distribution, $N(3.459, 0.344)$ — the model turns 30 observed days into statements about days we have not yet seen.
+- Every row came from **one** fitted distribution, $N(3.459, 0.344)$: the model turns 30 observed days into statements about days we have not yet seen.
 
-## Manager's Takeaway
+## The CEO's Takeaway
 
 <br>
 
-- **One sentence:** Model B's daily eRPM as $N(\$3.46, \$0.34)$ and the whole business vocabulary follows — "beats \$3.50" happens **45%** of days, a "great day" is **\$3.90**, and a sub-\$3.00 day is a **1-in-11** disappointment.
+- **One sentence:** Model B's daily eRPM as $N(\$3.46, \$0.34)$ and the whole business vocabulary follows: "beats \$3.50" happens **45%** of days, a "great day" is **\$3.90**, and a sub-\$3.00 day is a **1-in-11** disappointment.
 
-- **One number to remember:** $z = (x - \mu)/\sigma$ — the single move that turns *any* Normal question into a standard-Normal area.
+- **One number to remember:** $z = (x - \mu)/\sigma$, the single move that turns *any* Normal question into a standard-Normal area.
 
-- **One caveat:** the model is only as good as its assumption. **Check it** (QQ plot, Shapiro) before you bet a decision on a Normal probability — and remember that at huge $n$, even the Binomial *becomes* Normal.
+- **One caveat:** the model is only as good as its assumption. **Check it** (QQ plot, Shapiro) before you bet a decision on a Normal probability, and remember that at huge $n$, even the Binomial *becomes* Normal.
+
+- **Today's call:** the Normal is a fair working model for B's eRPM, and it says a \$3.50 day is roughly a coin flip; the roll-out call still waits for the inference tests in Topics 7–9.
 
 - **Practice with the real data:**
-  - `data/vungle_daily.csv` (filter B) + `NORM.DIST` / `NORM.INV` → reproduce $P(>3.50) = 0.453$ and the \$3.90 percentile.
+  - `data/vungle_daily.csv` (filter B) + `NORM.DIST` / `NORM.INV` to reproduce $P(>3.50) = 0.453$ and the \$3.90 percentile.
   - Worked solutions: `data/vungle_normal_analysis.xlsx`.
+
+## ⏱️ Team Sprint: Your Group Case (Lecture 2)
+
+::: {.sprint .nonincremental}
+**Now it's your group's turn.** Today's in-class group case is posted on **Brightspace** (*Topic 06 Group Case, Lecture 2*): a separate business decision you make with today's tools.
+
+**What you'll use:** the **Normal model**, **z-scores** / Normal probabilities (`NORM.DIST`), **percentiles** (`NORM.INV`), and a **normality check** (QQ plot / Shapiro-Wilk). **Excel:** Analysis ToolPak → Descriptive Statistics for $\bar{x}$ and $s$.
+
+**Submit one PDF per group before you leave:** your decision plus the numbers behind it.
+:::
+
+# Wrap-up {background-color="#cfb991"}
 
 ## Summary
 
@@ -697,17 +691,11 @@ Some key takeaways from this session:
 - For a **continuous** variable, $P(X = x) = 0$; probability is the **area** under the density $f(x)$.
 - The **uniform** is the simplest model (probability ∝ interval length); the **Normal**, set by $\mu$ (location) and $\sigma$ (spread), is the workhorse, with the **empirical rule** (68/95/99.7).
 - **Standardize** with $z = (x - \mu)/\sigma$, then read areas off the single standard Normal $N(0,1)$.
-- In Excel: `NORM.DIST` for **probabilities** (tail areas), `NORM.INV` for **percentiles** — they are inverses.
+- In Excel: `NORM.DIST` for **probabilities** (tail areas), `NORM.INV` for **percentiles**; they are inverses.
 - **Check the assumption** with a QQ plot / Shapiro-Wilk before trusting a Normal probability.
 - At large $n$ with $np \ge 5$ and $n(1-p) \ge 5$, the **Binomial is well approximated by a Normal** ($\mu = np$, $\sigma = \sqrt{np(1-p)}$, with a $\pm 0.5$ continuity correction).
-:::
-
-## Carry-forward
-
-::: nonincremental
-- **Homework (individual):** today's tools (the Normal model, z-scores, and percentiles) are drilled on **HW2** — individual problem sets in the previous-edition format, posted on Brightspace. Run them yourself so you can check an analyst who uses them.
-
-- **Next time:** we stop treating these 30 days as the whole story and recognize them as a **sample** — **Sampling & Estimation**: how to estimate the *true* eRPM, with a margin of error.
+- **Homework (individual):** HW2 drills the Normal model, z-scores, and percentiles (previous-edition problem sets on Brightspace).
+- **Next time:** we stop treating these 30 days as the whole story and recognize them as a **sample**, Sampling & Estimation: how to estimate the *true* eRPM, with a margin of error.
 :::
 
 # Thank you! {background-color="#cfb991"}

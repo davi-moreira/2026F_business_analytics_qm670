@@ -50,33 +50,37 @@ html-math-method:
 
 # Case Spotlight: Auto-Parts Retail {background-color="#cfb991"}
 
-## A New Client — Where Should the Next Store Go?
+## A New Case: Where Should the Next Store Go?
 
 <br>
 
-- We close the Vungle engagement and open a new one. Our client is a regional **auto-parts retailer** with **45 stores** and capital to open more.
+- We close the Vungle engagement and open a new one. **You are now the Owner** of a regional **auto-parts retailer** with **45 stores** and capital to open more.
 
 - The real-estate team scores prospective sites on demographics (population, income) and on the store's **Yelp rating** (a proxy for service quality once a store is open).
 
-- The question on the table: **which sites will sell?** The CFO wants every new lease backed by a sales forecast, not a hunch.
+- The question on the table: **which sites will sell?** As Owner you want every new lease backed by a sales forecast, not a hunch.
 
 - We have one dataset, `data/autoparts.csv`: for each of the 45 existing stores, its **2012 annual sales** (\$K), trade-area **population** and **income**, an **end-cap** placement flag, and its **Yelp rating**.
 
-- Until now we *compared* two groups. Now we *predict* a number — and that is what **regression** does.
+- Until now we *compared* two groups. Now we *predict* a number, and that is what **regression** does.
 
-## The Brief — Today's Managerial Question
-
-<br>
-
-> "Does a store's **Yelp rating** predict its **annual sales**? If so, by how much — and how confident are we when we forecast a brand-new store?"
+## The Brief: Where Should the Next Dollar Go?
 
 <br>
 
-- **Lecture 1** builds and reads the model: fit `sales ~ yelp_rating`, interpret the slope (dollars per star), and measure fit with $R^2$.
+- **The Owner's big call (we land it across Topics 10–11):** *where should the next dollar go?* Every new lease commits capital, so the Owner wants sales forecast before signing.
 
-- **Lecture 2** asks whether the relationship is *real* (a $t$-test on the slope), checks the model's **assumptions**, and turns the line into a **site-selection forecast**.
+::: fragment
+- **Today's question, Lecture 1:** *does one driver, a store's Yelp rating, predict its annual sales?*
+:::
 
-- **How the studio runs:** I demo each step on a textbook anchor (**Armand's Pizza**) and on the auto-parts data → **your team** fits the model and makes the site call.
+::: fragment
+- **Today's question, Lecture 2:** *is that slope real, and can we forecast a brand-new site?*
+:::
+
+::: fragment
+- **How the studio runs:** I demo each step on a textbook anchor (**Armand's Pizza**) and on the auto-parts data, then **your group** reproduces the model, stress-tests it, and makes the site call.
+:::
 
 ## From Comparing to Predicting
 
@@ -94,19 +98,19 @@ html-math-method:
 
 - **Simple** linear regression uses **one** predictor; the relationship is approximated by a **straight line**. (More predictors → multiple regression, next topic.)
 
-# Lecture 1 — The Model, Least Squares, and $R^2$ {background-color="#cfb991"}
+# Lecture 1: The Model, Least Squares, and $R^2$ {background-color="#cfb991"}
 
-## The Brief — Lecture 1
-
-<br>
-
-> "Fit a straight line to `sales ~ yelp_rating`. What does the slope mean in dollars, and how much of the store-to-store sales gap does Yelp rating explain?"
+## The Brief: Lecture 1
 
 <br>
 
-- By the end of Lecture 1 **your team** will have a fitted equation, a dollars-per-star interpretation, and an $R^2$ — the raw material for a site score.
+> "Does one driver, a store's **Yelp rating**, predict its **annual sales**? Fit a straight line to `sales ~ yelp_rating`: what does the slope mean in dollars, and how much of the store-to-store sales gap does Yelp rating explain?"
 
-- The decision it feeds: **rank prospective sites** by predicted sales.
+<br>
+
+- By the end of Lecture 1 **your group** will have a fitted equation, a dollars-per-star interpretation, and an $R^2$: the raw material for a site score.
+
+- The Owner's decision it feeds: **rank prospective sites** by predicted sales.
 
 ## The Simple Linear Regression Model
 
@@ -124,7 +128,7 @@ $$
 
 - $\beta_0$ (intercept) and $\beta_1$ (slope) are unknown **population parameters**; $\varepsilon$ captures everything about sales that Yelp rating does **not** explain.
 
-- We never see $\beta_0, \beta_1$ — we **estimate** them from our 45-store sample. The estimated equation is
+- We never see $\beta_0, \beta_1$; we **estimate** them from our 45-store sample. The estimated equation is
 
 ::: fragment
 
@@ -142,11 +146,11 @@ $$
 
 - The sign of $\beta_1$ sets the story:
 
-  - $\beta_1 > 0$ — **positive** relationship: higher $x$ goes with higher $y$ (we expect this for Yelp → sales).
-  - $\beta_1 < 0$ — **negative** relationship: higher $x$ goes with lower $y$.
-  - $\beta_1 = 0$ — **no** linear relationship: $x$ tells you nothing about $y$.
+  - $\beta_1 > 0$, a **positive** relationship: higher $x$ goes with higher $y$ (we expect this for Yelp → sales).
+  - $\beta_1 < 0$, a **negative** relationship: higher $x$ goes with lower $y$.
+  - $\beta_1 = 0$, **no** linear relationship: $x$ tells you nothing about $y$.
 
-- **Honest caveat — regression is not causation.** A line that fits well says rating and sales *move together*; it does **not** prove better service *causes* sales. We will return to this when we test significance.
+- **Honest caveat, regression is not causation.** A line that fits well says rating and sales *move together*; it does **not** prove better service *causes* sales. We will return to this when we test significance.
 
 ## The Data: Just Look First
 
@@ -155,7 +159,7 @@ knitr::include_graphics("figs/autoparts_scatter.png")
 ```
 
 ::: nonincremental
-- 45 stores. Higher-rated stores clearly tend to sell more — but the cloud has spread. We need a **line** to summarize the trend and a **number** to summarize how tight it is.
+- 45 stores. Higher-rated stores clearly tend to sell more, but the cloud has spread. We need a **line** to summarize the trend and a **number** to summarize how tight it is.
 :::
 
 ## Least Squares: Define "Best Fit"
@@ -191,7 +195,7 @@ $$
 <br>
 
 :::: {style="font-size: 90%;"}
-- **Slope** — the workhorse:
+- **Slope**, the workhorse:
 
 ::: fragment
 
@@ -201,7 +205,7 @@ $$
 
 :::
 
-- **Intercept** — forces the line through the point of averages $(\bar{x}, \bar{y})$:
+- **Intercept**, which forces the line through the point of averages $(\bar{x}, \bar{y})$:
 
 ::: fragment
 
@@ -245,7 +249,7 @@ $$
 :::
 ::::
 
-## Armand's — Reading the Line
+## Armand's: Reading the Line
 
 ```{r  echo=FALSE, out.width = "58%",fig.align="center"}
 knitr::include_graphics("figs/armands_fit.png")
@@ -253,7 +257,7 @@ knitr::include_graphics("figs/armands_fit.png")
 
 ::: nonincremental
 - **Slope $b_1 = 5$:** each additional **1,000 students** in the trade area is associated with **\$5,000** more quarterly sales.
-- **Intercept $b_0 = 60$:** the line's height at $x = 0$ — outside the data range, so read it as a fitting constant, not "sales with zero students."
+- **Intercept $b_0 = 60$:** the line's height at $x = 0$, outside the data range, so read it as a fitting constant, not "sales with zero students."
 :::
 
 ## The Auto-Parts Fit
@@ -276,11 +280,11 @@ $$
 
 - **Slope $b_1 = +757.5$:** each additional **Yelp star** is associated with about **\$757.5K** more in annual sales. *This is the number the real-estate team can use to score sites.*
 
-- **Intercept $b_0 = +332.8$:** the line's height at a rating of zero. No store has a zero rating, so do **not** interpret it as "sales of a zero-star store" — it just anchors the line.
+- **Intercept $b_0 = +332.8$:** the line's height at a rating of zero. No store has a zero rating, so do **not** interpret it as "sales of a zero-star store"; it just anchors the line.
 
-- **Manager's translation:** *Moving a store from a 3.0 to a 4.0 Yelp rating is worth roughly three-quarters of a million dollars in predicted annual sales.*
+- **The Owner's translation:** *Moving a store from a 3.0 to a 4.0 Yelp rating is worth roughly three-quarters of a million dollars in predicted annual sales.*
 
-- **Sanity check:** the slope is positive and large — consistent with the upward cloud. Good.
+- **Sanity check:** the slope is positive and large, consistent with the upward cloud. Good.
 
 ## $R^2$: How Much Does the Line Explain?
 
@@ -325,7 +329,7 @@ $$
 
 :::
 
-- **Interpretation:** Yelp rating alone explains **83.4%** of the store-to-store variation in annual sales — strong for a single predictor.
+- **Interpretation:** Yelp rating alone explains **83.4%** of the store-to-store variation in annual sales, strong for a single predictor.
 
 - The remaining **16.6%** is everything else (location, merchandising, competition). *That gap is exactly what motivates adding more predictors next topic.*
 
@@ -345,7 +349,7 @@ $$
 
 :::
 
-- Here $b_1 > 0$ and $R^2 = 0.834$, so $r = +\sqrt{0.834} = +0.913$ — a strong positive correlation, the same fact $R^2$ reports.
+- Here $b_1 > 0$ and $R^2 = 0.834$, so $r = +\sqrt{0.834} = +0.913$, a strong positive correlation, the same fact $R^2$ reports.
 
 - **Correlation** measures the *tightness and direction* of the linear association; **$R^2$** measures the *share of variation explained*. Same coin, two faces.
 
@@ -364,7 +368,7 @@ $$
 
 <br>
 
-The top block is **Regression Statistics** — `Multiple R`, `R Square`, `Standard Error`, `Observations`.
+The top block is **Regression Statistics**: `Multiple R`, `R Square`, `Standard Error`, `Observations`.
 :::
 
 ::: {.column width="60%"}
@@ -379,51 +383,39 @@ knitr::include_graphics("figs/autoparts_reg_coef.png")
 ::::
 :::::
 
-## ⏱️ Team Sprint 1 — Fit the line, read the slope
+## The Owner's Takeaway (Lecture 1)
+
+<br>
+
+- **One sentence:** Yelp rating is a strong predictor of store sales: each star is worth about **\$757K** in predicted annual sales.
+
+- **One number:** $R^2 = 0.834$: Yelp rating alone explains **83%** of the sales differences across stores.
+
+- **One caveat:** "explains" is **association, not cause**, and 17% is still unexplained; one variable is rarely the whole story. We have a *fitted* line, but we have not yet asked whether it is **statistically real** or whether the model's **assumptions** hold. That is Lecture 2.
+
+## ⏱️ Team Sprint: Your Group Case (Lecture 1)
 
 ::: {.sprint .nonincremental}
-**Decide:** does Yelp rating predict store sales — and what is one star worth?
+**Now it's your group's turn.** Today's in-class group case is posted on **Brightspace** (*Topic 10 Group Case, Lecture 1*): a separate business decision you make with today's tools.
 
-**Data:** `data/autoparts.csv` · **Time:** ~12 min
+**What you'll use:** simple linear regression (fit the line, interpret the slope in business units, and read $R^2$). **Excel:** Analysis ToolPak → Regression.
 
-1. In Excel: **Data → Data Analysis → Regression** (Y = `sales2012_k`, X = `yelp_rating`, check **Labels**).
-2. Write the estimated equation $\hat{y} = b_0 + b_1 x$ and interpret the **slope** in plain dollars-per-star.
-3. Read **R Square**: what fraction of the sales gap does Yelp rating explain? State the unexplained share.
-
-**Submit before you leave (graded, one slide per group):** your site-scoring call (would you use Yelp rating?) + the equation, the dollars-per-star number, and $R^2$ + the **two things you would challenge** in the analysis.
+**Submit one PDF per group before you leave:** your decision plus the numbers behind it.
 :::
 
-## Debrief — Manager's Takeaway (Lecture 1)
+# Lecture 2: Inference, Assumptions, and Prediction {background-color="#cfb991"}
+
+## The Brief: Lecture 2
 
 <br>
 
-- **One sentence:** Yelp rating is a strong predictor of store sales — each star is worth about **\$757K** in predicted annual sales.
-
-- **One number:** $R^2 = 0.834$ — Yelp rating alone explains **83%** of the sales differences across stores.
-
-- **One caveat:** "explains" is **association, not cause**, and 17% is still unexplained — one variable is rarely the whole story. We have a *fitted* line, but we have not yet asked whether it is **statistically real** or whether the model's **assumptions** hold. That is Lecture 2.
-
-## Carry-forward (Lecture 1)
-
-::: nonincremental
-- **Homework (individual):** today's tools (simple linear regression) are drilled on **HW3**, individual problem sets in the previous-edition format, posted on Brightspace. Run them yourself so you can check an analyst who uses them.
-
-- **Next time:** is the slope **real** or could it be noise? We test it, check the assumptions behind the line, and forecast a brand-new store.
-:::
-
-# Lecture 2 — Inference, Assumptions, and Prediction {background-color="#cfb991"}
-
-## The Brief — Lecture 2
-
-<br>
-
-> "The fitted slope is +757.5 \$K per star. But our 45 stores are a **sample**. Is the Yelp–sales relationship **real**, do the model's assumptions hold, and what sales should we **forecast** for a specific new site?"
+> "Is the slope **real**, and can we **forecast** a new site? The fitted slope is +757.5 \$K per star, but our 45 stores are a **sample**. Is the Yelp–sales relationship real, do the model's assumptions hold, and what sales should we forecast for a specific new site?"
 
 <br>
 
 - Lecture 1 *described* the sample. Lecture 2 does **inference**: from these 45 stores to the population of all possible stores.
 
-- Three jobs: (1) **test** the slope, (2) **validate** the assumptions with residuals, (3) **predict** a new store with an honest margin of error.
+- Three jobs the Owner needs settled before signing a lease: (1) **test** the slope, (2) **validate** the assumptions with residuals, (3) **predict** a new store with an honest margin of error.
 
 ## The Assumptions Behind the Line
 
@@ -431,12 +423,12 @@ knitr::include_graphics("figs/autoparts_reg_coef.png")
 
 - Everything we are about to do (tests, intervals) rests on four assumptions about the error term $\varepsilon$:
 
-  1. **Mean zero:** $E(\varepsilon) = 0$ — the line is right on average.
+  1. **Mean zero:** $E(\varepsilon) = 0$, so the line is right on average.
   2. **Constant variance:** $\text{Var}(\varepsilon) = \sigma^2$ is the same for all $x$ (**homoscedasticity**).
   3. **Independence:** the errors for different stores are independent.
   4. **Normality:** $\varepsilon$ is normally distributed.
 
-- If these are badly violated, the $p$-values and intervals can mislead. We will **check** them with residual plots after we test — but they are the foundation, so flag them first.
+- If these are badly violated, the $p$-values and intervals can mislead. We will **check** them with residual plots after we test, but they are the foundation, so flag them first.
 
 ## Estimating $\sigma$: the Standard Error of the Estimate
 
@@ -452,7 +444,7 @@ $$
 
 :::
 
-- Its square root, $s = \sqrt{\text{MSE}}$, is the **standard error of the estimate** — the typical vertical miss of the line, in the units of $y$:
+- Its square root, $s = \sqrt{\text{MSE}}$, is the **standard error of the estimate**: the typical vertical miss of the line, in the units of $y$:
 
 ::: fragment
 
@@ -468,7 +460,7 @@ $$
 
 <br>
 
-- If $\beta_1 = 0$, $x$ has **no** linear effect on $y$ — there is no relationship to forecast with. So we test:
+- If $\beta_1 = 0$, $x$ has **no** linear effect on $y$, so there is no relationship to forecast with. We test:
 
 ::: fragment
 
@@ -507,7 +499,7 @@ $p\text{-value} \approx 0.000 \le 0.05$ → **reject $H_0$**.
 
 <br>
 
-Student population is a **significant** predictor of restaurant sales — the slope is not zero.
+Student population is a **significant** predictor of restaurant sales: the slope is not zero.
 :::
 
 ::: {.column width="60%"}
@@ -556,7 +548,7 @@ $$
 
 - We are 95% confident each Yelp star is worth between **\$654K and \$861K** in annual sales.
 
-- The interval is **entirely above zero** — the same conclusion as the test (reject $H_0$), now with a magnitude a manager can plan around.
+- The interval is **entirely above zero**: the same conclusion as the test (reject $H_0$), now with a magnitude the Owner can plan around.
 
 - **Equivalence:** reject $H_0: \beta_1 = 0$ at $\alpha = 0.05$ $\iff$ zero is **not** in the 95% CI. Read directly off the **Lower 95% / Upper 95%** columns of the output.
 
@@ -566,7 +558,7 @@ $$
 
 - The Regression output also reports an **F test** (the ANOVA block): $F = \text{MSR}/\text{MSE}$, testing the same $H_0: \beta_1 = 0$.
 
-- In **simple** regression (one predictor) the $F$ and $t$ tests are **equivalent** — in fact $F = t^2$:
+- In **simple** regression (one predictor) the $F$ and $t$ tests are **equivalent**; in fact $F = t^2$:
 
 ::: fragment
 
@@ -576,17 +568,17 @@ $$
 
 :::
 
-- Same conclusion, same $p$-value. (When we add predictors next topic, $F$ tests the model *as a whole* while each $t$ tests one variable — then they differ.)
+- Same conclusion, same $p$-value. (When we add predictors next topic, $F$ tests the model *as a whole* while each $t$ tests one variable, and then they differ.)
 
 ## Significance Is Not Causation
 
 <br>
 
-- Rejecting $H_0: \beta_1 = 0$ tells us the **relationship is statistically significant** — Yelp and sales move together more than chance would explain.
+- Rejecting $H_0: \beta_1 = 0$ tells us the **relationship is statistically significant**: Yelp and sales move together more than chance would explain.
 
 - It does **not** establish that **better service causes** higher sales. Reverse causation (busy, well-stocked stores earn better reviews) and lurking variables (a great location drives *both*) are live alternatives.
 
-- It also does **not** prove the relationship is truly **linear** outside the range we observed — extrapolating a 6-star store is meaningless.
+- It also does **not** prove the relationship is **linear** outside the range we observed; extrapolating a 6-star store is meaningless.
 
 - *Use regression to forecast and to quantify; use judgment and design to claim causation.*
 
@@ -594,7 +586,7 @@ $$
 
 <br>
 
-- A significant slope is worthless if the model is the **wrong shape**. **Residuals** are our window onto the error term — they should look like random noise.
+- A significant slope is worthless if the model is the **wrong shape**. **Residuals** are our window onto the error term; they should look like random noise.
 
 - The core diagnostic: **plot residuals against $x$** (or against $\hat{y}$). We want a **horizontal band of points centered at zero** with no pattern.
 
@@ -615,9 +607,9 @@ knitr::include_graphics("figs/autoparts_residual_plot.png")
 
 ## Standardized Residuals and Outliers
 
-- Dividing each residual by its standard deviation gives a **standardized residual** — on a $z$-like scale.
+- Dividing each residual by its standard deviation gives a **standardized residual**, on a $z$-like scale.
 
-- **Rule of thumb:** a standardized residual with $|z| > 2$ flags an **outlier** — a store that performs far off-trend for its rating. Investigate; don't auto-delete.
+- **Rule of thumb:** a standardized residual with $|z| > 2$ flags an **outlier**, a store that performs far off-trend for its rating. Investigate; don't auto-delete.
 
 ::: fragment
 
@@ -631,14 +623,14 @@ knitr::include_graphics("figs/autoparts_std_residual_plot.png")
 
 <br>
 
-- Two stores sit just past $\pm 2$ — both rated **5.0 stars**:
+- Two stores sit just past $\pm 2$, both rated **5.0 stars**:
 
   - One **under-performs** badly (sales far below the \$4.1M its rating predicts).
   - One **over-performs** (sales well above the line).
 
-- These are **not data errors** — they are real stores the model can't fully explain with rating alone.
+- These are **not data errors**; they are real stores the model can't fully explain with rating alone.
 
-- *What might separate two 5-star stores?* End-cap placement, local income, population. **That is the teaser for multiple regression** — adding the variables that explain the residuals.
+- *What might separate two 5-star stores?* End-cap placement, local income, population. **That is the teaser for multiple regression:** adding the variables that explain the residuals.
 
 ## Forecasting a New Store: Point Prediction
 
@@ -654,17 +646,17 @@ $$
 
 :::
 
-- That single number is the **point prediction** — but a point with no margin of error is a trap. Two different questions need two different intervals:
+- That single number is the **point prediction**, but a point with no margin of error is a trap. Two different questions need two different intervals:
 
-  - **Confidence interval** — the **mean** sales of *all* stores rated 4.5.
-  - **Prediction interval** — the sales of **this one** new store.
+  - **Confidence interval:** the **mean** sales of *all* stores rated 4.5.
+  - **Prediction interval:** the sales of **this one** new store.
 
 ## Confidence Interval vs. Prediction Interval
 
 <br>
 
 :::: {style="font-size: 86%;"}
-- **Confidence interval** for the mean response at $x^*$ — narrower:
+- **Confidence interval** for the mean response at $x^*$, narrower:
 
 ::: fragment
 
@@ -674,7 +666,7 @@ $$
 
 :::
 
-- **Prediction interval** for one new store at $x^*$ — wider (note the extra **1**):
+- **Prediction interval** for one new store at $x^*$, wider (note the extra **1**):
 
 ::: fragment
 
@@ -684,7 +676,7 @@ $$
 
 :::
 
-- The PI carries the **individual store's** own scatter ($s$) *on top of* the uncertainty in the line — that is the extra "1."
+- The PI carries the **individual store's** own scatter ($s$) *on top of* the uncertainty in the line; that is the extra "1."
 ::::
 
 ## The Two Intervals, in a Picture
@@ -695,7 +687,7 @@ knitr::include_graphics("figs/autoparts_pred_band.png")
 
 ::: nonincremental
 - At Yelp = 4.5: point \$3.74M; **CI** $(\$3{,}543\text{K},\; \$3{,}940\text{K})$ for the average such store; **PI** $(\$2{,}786\text{K},\; \$4{,}698\text{K})$ for one specific new store.
-- Both bands are **narrowest near $\bar{x}$** and flare out at the edges — forecasts far from the data are less certain.
+- Both bands are **narrowest near $\bar{x}$** and flare out at the edges; forecasts far from the data are less certain.
 :::
 
 ## What Makes a Forecast Tighter or Looser
@@ -704,46 +696,24 @@ knitr::include_graphics("figs/autoparts_pred_band.png")
 
 - Four levers set the width of these intervals:
 
-  1. **Confidence level** $(1-\alpha)$ — more confidence → wider.
-  2. **Data spread** $s$ — noisier data → wider.
-  3. **Sample size** $n$ — more stores → narrower.
-  4. **Distance of $x^*$ from $\bar{x}$** — forecasting far from the average rating → wider.
+  1. **Confidence level** $(1-\alpha)$: more confidence → wider.
+  2. **Data spread** $s$: noisier data → wider.
+  3. **Sample size** $n$: more stores → narrower.
+  4. **Distance of $x^*$ from $\bar{x}$**: forecasting far from the average rating → wider.
 
-- **Manager's lesson:** a confident forecast comes from a tight model ($s$ small), lots of data ($n$ large), and a site that looks like the stores we already have ($x^*$ near $\bar{x}$). Forecasting an exotic site is a guess dressed as a number.
+- **The Owner's lesson:** a confident forecast comes from a tight model ($s$ small), lots of data ($n$ large), and a site that looks like the stores we already have ($x^*$ near $\bar{x}$). Forecasting an exotic site is a guess dressed as a number.
 
-## ⏱️ Team Sprint 2 — Test the slope, forecast a site
-
-::: {.sprint .nonincremental}
-**Decide:** is the Yelp–sales relationship real, and what should we forecast for a candidate 4.5-star site?
-
-**Data:** `data/autoparts.csv` · **Time:** ~15 min
-
-1. From the Regression output, state $t$, the $p$-value, and the **95% CI for the slope** — is $\beta_1$ significantly nonzero?
-2. Glance at the **residual plot** (check Residual Plots in the dialog): any fan or curve that breaks the assumptions?
-3. Forecast a site at **Yelp = 4.5**: give the point prediction, and say whether the CFO should quote the **CI** or the **PI** for one new lease — and why.
-
-**Submit before you leave (graded, one slide per group):** your lease-memo call (the 4.5-star forecast + which interval you'd quote) + the slope verdict with its 95% CI and an assumptions one-liner + the **two things you would challenge** in the analysis.
-:::
-
-## Debrief — Manager's Takeaway (Lecture 2)
+## The Owner's Takeaway (Lecture 2)
 
 <br>
 
 - **One sentence:** the Yelp–sales slope is overwhelmingly significant ($t = 14.7$, $p < 0.0001$); a 4.5-star site is forecast at **\$3.74M**, and for *one* lease we quote the **prediction interval** $(\$2.79\text{M}, \$4.70\text{M})$.
 
-- **One number:** 95% CI for the slope = **(\$654K, \$861K)** per star — the magnitude the real-estate team plans around.
+- **One number:** 95% CI for the slope = **(\$654K, \$861K)** per star: the magnitude the real-estate team plans around.
 
-- **One caveat:** the model assumes the new site behaves like our 45 stores; the two off-trend 5-star outliers warn that rating alone misses something — which is exactly why we add predictors next.
+- **One caveat:** the model assumes the new site behaves like our 45 stores; the two off-trend 5-star outliers warn that rating alone misses something, which is exactly why we add predictors next.
 
-## Carry-forward (Lecture 2)
-
-::: nonincremental
-- **Homework (individual):** today's tools (testing the slope, residual checks, and prediction intervals) are drilled on **HW3**, individual problem sets in the previous-edition format, posted on Brightspace. Run them yourself so you can check an analyst who uses them.
-
-- **Next time:** sales depend on more than one thing. We add **population, income, and end-cap placement** to the model (**Multiple Regression**) and learn why a variable that looks important alone can vanish once others are in the room.
-:::
-
-# Debrief — From a Line to a Site Decision {background-color="#cfb991"}
+# Debrief: From a Line to a Site Decision {background-color="#cfb991"}
 
 ## The Whole Engagement on One Page
 
@@ -752,47 +722,51 @@ knitr::include_graphics("figs/autoparts_pred_band.png")
 |---|---|---|---|
 | Fit | What's the line? | Least squares | $\hat{y} = 332.8 + 757.5\,x$ |
 | Interpret | What's a star worth? | Slope $b_1$ | **+\$757.5K** per Yelp star |
-| Explain | How good is the fit? | $R^2$ | **0.834** — 83% of sales variation |
+| Explain | How good is the fit? | $R^2$ | **0.834** (83% of sales variation) |
 | Test | Is it real? | $t$ test on slope | $t = 14.7$, $p < .0001$ → reject $H_0$ |
 | Quantify | How big, plausibly? | 95% CI for slope | (\$654K, \$861K) per star |
 | Validate | Do assumptions hold? | Residual plot | Horizontal band → OK (2 outliers) |
 | Forecast | What will a new site sell? | Point + PI | \$3.74M; PI (\$2.79M, \$4.70M) at 4.5 stars |
 :::
 
-## Manager's Takeaway
+## The Owner's Takeaway
 
 <br>
 
 - **One sentence:** Yelp rating predicts auto-parts store sales strongly and significantly (about **\$758K per star**, explaining **83%** of the sales gap), so the real-estate team can use it to score and forecast sites.
 
-- **One number to remember:** $b_1 = 757.5$ — and where it came from: $\sum(x-\bar{x})(y-\bar{y}) / \sum(x-\bar{x})^2$.
+- **One number to remember:** $b_1 = 757.5$, and where it came from: $\sum(x-\bar{x})(y-\bar{y}) / \sum(x-\bar{x})^2$.
 
-- **One caveat:** regression forecasts and quantifies; it does **not** prove causation, and 17% of sales is still unexplained — a single predictor is a start, not the answer.
+- **One caveat:** regression forecasts and quantifies; it does **not** prove causation, and 17% of sales is still unexplained; a single predictor is a start, not the answer.
 
 - **Practice with the real data:**
   - `data/autoparts.csv` + Regression tool → reproduce $b_1 = 757.5$, $R^2 = 0.834$, $t = 14.7$.
   - Worked solutions: `data/autoparts_regression.xlsx`.
 
+## ⏱️ Team Sprint: Your Group Case (Lecture 2)
+
+::: {.sprint .nonincremental}
+**Now it's your group's turn.** Today's in-class group case is posted on **Brightspace** (*Topic 10 Group Case, Lecture 2*): a separate business decision you make with today's tools.
+
+**What you'll use:** testing the slope (the $t$-test and 95% CI), a residual check, and a prediction interval for a new case. **Excel:** Analysis ToolPak → Regression.
+
+**Submit one PDF per group before you leave:** your decision plus the numbers behind it.
+:::
+
+# Wrap-up {background-color="#cfb991"}
+
 ## Summary
 
 ::: nonincremental
-Some key takeaways from this session:
+The main points from this session:
 
 - **Regression predicts**, where comparison only contrasts: the estimated line $\hat{y} = b_0 + b_1 x$ turns a relationship into a forecast.
 - **Least squares** picks the unique line that minimizes $\sum (y_i - \hat{y}_i)^2$; the **slope** is the business number (\$757.5K per Yelp star), the **intercept** just anchors the line.
 - **$R^2 = \text{SSR}/\text{SST}$** is the share of variation the line explains (0.834 here); $r = (\text{sign } b_1)\sqrt{R^2}$ ties it to correlation.
 - **Inference** asks if the slope is real: $t = b_1/s_{b_1}$ with $df = n-2$ (and $F = t^2$); the 95% CI gives the plausible magnitude.
-- **Residual plots** validate the assumptions — look for a horizontal band; a curve means nonlinearity, a fan means non-constant variance.
+- **Residual plots** validate the assumptions: look for a horizontal band; a curve means nonlinearity, a fan means non-constant variance.
 - **Prediction** needs the right interval: a **CI** for the mean response, a **wider PI** for one new store; both widen as $x^*$ leaves $\bar{x}$.
-- Significance $\neq$ causation, and one predictor is rarely enough — the bridge to multiple regression.
-:::
-
-## Carry-forward
-
-::: nonincremental
-- **Homework (individual):** the full simple-regression arc (fit, interpret, test, validate, forecast) is drilled on **HW3**, individual problem sets in the previous-edition format, posted on Brightspace. Run them yourself so you can check an analyst who uses them.
-
-- **Next time:** we add more predictors and learn what "holding everything else constant" really means — **Multiple Regression** on the same auto-parts client.
+- **Next topic: Multiple Regression** on the same auto-parts data: add population, income, and end-cap placement, and learn what "holding everything else constant" means.
 :::
 
 # Thank you! {background-color="#cfb991"}

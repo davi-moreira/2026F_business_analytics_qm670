@@ -150,17 +150,17 @@ Professor<br>Davi Moreira<br>
 <div class="column" style="width: 50%; text-align: center; justify-content: center; align-items: center;">
 <ul>
 <li>Case Spotlight: A/B Testing at Vungle</li>
-<li><strong>Lecture 1</strong> — sampling, point estimation</li>
+<li><strong>Lecture 1:</strong> sampling, point estimation</li>
 <li>The sampling distribution of <span class="math inline">\(\bar{x}\)</span> and <span class="math inline">\(\bar{p}\)</span></li>
 <li>The Central Limit Theorem &amp; standard error</li>
 <li>How sure can 30 days make us?</li>
 </ul>
 </div><div class="column" style="width: 50%; text-align: center; justify-content: center; align-items: center;">
 <ul>
-<li><strong>Lecture 2</strong> — the interval estimate</li>
+<li><strong>Lecture 2:</strong> the interval estimate</li>
 <li>Confidence intervals for a mean (<span class="math inline">\(t\)</span>) and a proportion</li>
-<li>The margin of error — and the three levers that set it</li>
-<li>How many days for <span class="math inline">\(\pm\$0.05\)</span>? — sample size</li>
+<li>The margin of error and the three levers that set it</li>
+<li>How many days for <span class="math inline">\(\pm\$0.05\)</span>? Sample size</li>
 <li>The estimation memo for Vungle</li>
 </ul>
 </div></div>
@@ -171,23 +171,23 @@ Professor<br>Davi Moreira<br>
 
 </section>
 <section id="the-brief-30-days-is-a-sample" class="slide level2 center">
-<h2>The Brief — 30 Days Is a <em>Sample</em></h2>
+<h2>The Brief: 30 Days Is a <em>Sample</em></h2>
 <p><br></p>
 <blockquote>
-<p>“We ran algorithm B for <strong>30 days</strong> and saw a mean eRPM of about <strong>$3.46</strong>. But June is over. What is B’s <strong>true</strong> mean eRPM going forward — and how close can 30 days really get us?”</p>
+<p>“We ran algorithm B for <strong>30 days</strong> and saw a mean eRPM of about <strong>$3.46</strong>. But June is over. What is B’s <strong>true</strong> mean eRPM going forward, and how close can 30 days really get us?”</p>
 </blockquote>
 <p><br></p>
 <ul>
-<li class="fragment"><p>Until now we have <strong>described</strong> the 30 days we have. Today we <strong>generalize</strong> to the days we <em>don’t</em> have — every future impression B will ever serve.</p></li>
-<li class="fragment"><p>The 30-day mean $3.46 is a single <strong>point estimate</strong>. By itself it hides the most important question a manager can ask: <strong><em>how much could it be off?</em></strong></p></li>
-<li class="fragment"><p><strong>Today’s job:</strong> turn “$3.46” into “$3.46, give or take a known <strong>margin of error</strong>” — and decide whether 30 days is even enough.</p></li>
+<li class="fragment"><p><strong>The big call you own as CEO:</strong> <em>roll out B, or stay with A?</em> You cannot make it on a single 30-day number whose error you can’t name.</p></li>
+<li class="fragment"><p><strong>Today’s question (Lecture 1):</strong> <em>how trustworthy is a 30-day sample mean?</em> Until now we <strong>described</strong> the 30 days we have; today we <strong>generalize</strong> to the days we <em>don’t</em> have, every future impression B will serve.</p></li>
+<li class="fragment"><p>The 30-day mean $3.46 is a single <strong>point estimate</strong>. By itself it hides the question the CEO must ask: <strong><em>how much could it be off?</em></strong> This lecture quantifies that wobble; the next turns it into a range.</p></li>
 </ul>
 </section>
 <section id="how-todays-studio-runs" class="slide level2 center">
 <h2>How Today’s Studio Runs</h2>
 <p><br></p>
 <ul>
-<li class="fragment">This is a <strong>two-lecture</strong> topic. Each lecture runs the same loop: <strong>I demo → your team sprints on the Vungle data → we debrief the call.</strong></li>
+<li class="fragment">This is a <strong>two-lecture</strong> topic. Each lecture runs the same loop: <strong>the Brief (your decision) → Method Studio (I demo on Vungle) → Debrief (we land the call) → Team Sprint (your group case, submitted before you leave).</strong></li>
 </ul>
 <div class="fragment">
 <table class="caption-top">
@@ -206,41 +206,41 @@ Professor<br>Davi Moreira<br>
 <tbody>
 <tr class="odd">
 <td><strong>1</strong></td>
-<td>Why does a <em>sample</em> mean wobble — and by how much?</td>
+<td>How trustworthy is a 30-day sample mean?</td>
 <td>Sampling distribution, standard error, the CLT</td>
 </tr>
 <tr class="even">
 <td><strong>2</strong></td>
-<td>What is B’s <em>true</em> mean eRPM, <span class="math inline">\(\pm\)</span> how much? How many days do we need?</td>
+<td>What is B’s <em>true</em> mean eRPM, give or take? How many days do we need?</td>
 <td>Confidence intervals, margin of error, sample size</td>
 </tr>
 </tbody>
 </table>
 </div>
 <ul>
-<li class="fragment">By the end, <strong>your team</strong> writes Vungle’s <strong>estimation memo</strong>: the true mean eRPM and conversion rate, each with a 95% interval, plus the days needed for a tighter test.</li>
+<li class="fragment">By the end, you can write Vungle’s <strong>estimation memo</strong>: the true mean eRPM and conversion rate, each with a 95% interval, plus the days needed for a tighter test.</li>
 </ul>
 </section></section>
 <section>
 <section id="lecture-1-samples-estimates-the-sampling-distribution" class="title-slide slide level1 center" data-background-color="#cfb991">
-<h1>Lecture 1 — Samples, Estimates &amp; the Sampling Distribution</h1>
+<h1>Lecture 1: Samples, Estimates &amp; the Sampling Distribution</h1>
 
 </section>
 <section id="the-brief-why-a-sample-mean-wobbles" class="slide level2 center">
-<h2>The Brief — Why a Sample Mean Wobbles</h2>
+<h2>The Brief: Why a Sample Mean Wobbles</h2>
 <p><br></p>
 <ul>
 <li class="fragment"><p>A different 30 days (say, <strong>July</strong>) would give a <strong>different</strong> mean eRPM. So would any other random sample.</p></li>
 <li class="fragment"><p>That wobble is not a mistake; it is the price of working from a <strong>sample</strong> instead of the whole <strong>population</strong>.</p></li>
-<li class="fragment"><p><strong>Lecture 1’s question:</strong> <em>if the sample mean changes every time we sample, how can we trust any one of them?</em> The answer is the <strong>sampling distribution</strong> — and it is surprisingly well-behaved.</p></li>
+<li class="fragment"><p><strong>Lecture 1’s question:</strong> <em>if the sample mean changes every time we sample, how can the CEO trust any one of them?</em> The answer is the <strong>sampling distribution</strong>, and it is surprisingly well-behaved.</p></li>
 </ul>
 </section>
 <section id="population-sample-inference" class="slide level2 center">
 <h2>Population, Sample, Inference</h2>
 
 <img data-src="figs/population_sample_inference.png" class="quarto-figure quarto-figure-center r-stretch" style="width:78.0%"><ul>
-<li><strong>Population:</strong> every future impression B will serve — its true mean eRPM <span class="math inline">\(\mu\)</span> is <strong>unknown</strong>.</li>
-<li><strong>Sample:</strong> the 30 June days. We use them to <strong>estimate</strong> <span class="math inline">\(\mu\)</span> — first with a point, later with an interval.</li>
+<li><strong>Population:</strong> every future impression B will serve; its true mean eRPM <span class="math inline">\(\mu\)</span> is <strong>unknown</strong>.</li>
+<li><strong>Sample:</strong> the 30 June days. We use them to <strong>estimate</strong> <span class="math inline">\(\mu\)</span>, first with a point, later with an interval.</li>
 </ul>
 </section></section>
 <section>
@@ -280,14 +280,14 @@ Professor<br>Davi Moreira<br>
 </div>
 <ul>
 <li class="fragment"><p><strong>Point estimation</strong> uses one sample to compute a single number as our best guess of the parameter.</p></li>
-<li class="fragment"><p>A different random sample gives a different estimate — so a point estimate alone never tells us <strong>how close</strong> we are.</p></li>
+<li class="fragment"><p>A different random sample gives a different estimate, so a point estimate alone never tells us <strong>how close</strong> we are.</p></li>
 </ul>
 </section>
 <section id="anchor-example-st.-andrews-college" class="slide level2 center">
 <h2>Anchor Example: St.&nbsp;Andrew’s College</h2>
 <p><br></p>
 <ul>
-<li class="fragment"><p>St.&nbsp;Andrew’s received <strong>900 applications</strong>. The Director wants the <strong>mean SAT score</strong> and the <strong>proportion</strong> wanting on-campus housing — <em>before</em> the full data are entered.</p></li>
+<li class="fragment"><p>St.&nbsp;Andrew’s received <strong>900 applications</strong>. The Director wants the <strong>mean SAT score</strong> and the <strong>proportion</strong> wanting on-campus housing, <em>before</em> the full data are entered.</p></li>
 <li class="fragment"><p>She draws a <strong>simple random sample</strong> of <span class="math inline">\(n = 30\)</span> applicants:</p></li>
 </ul>
 <div class="fragment">
@@ -319,7 +319,7 @@ Professor<br>Davi Moreira<br>
 </table>
 </div>
 <ul>
-<li class="fragment">Each estimate is <strong>close but not exact</strong> — and a <em>different</em> 30 applicants would have landed elsewhere. That variability is exactly what the sampling distribution describes.</li>
+<li class="fragment">Each estimate is <strong>close but not exact</strong>, and a <em>different</em> 30 applicants would have landed elsewhere. That variability is exactly what the sampling distribution describes.</li>
 </ul>
 </section>
 <section id="the-vungle-point-estimates" class="slide level2 center">
@@ -353,7 +353,7 @@ Professor<br>Davi Moreira<br>
 </table>
 </div>
 <ul>
-<li class="fragment">These are our spears. The rest of the topic builds the <strong>net</strong> — the interval that quantifies how far off the spear might be.</li>
+<li class="fragment">These three numbers are our best single guesses. The rest of the topic builds the <strong>interval</strong> that quantifies how far off each guess might be.</li>
 </ul>
 </section></section>
 <section>
@@ -366,7 +366,7 @@ Professor<br>Davi Moreira<br>
 <p><br></p>
 <ul>
 <li class="fragment"><p>Imagine drawing <strong>many</strong> random samples of size <span class="math inline">\(n\)</span>, computing <span class="math inline">\(\bar{x}\)</span> for each. Collect all those <span class="math inline">\(\bar{x}\)</span> values.</p></li>
-<li class="fragment"><p>Their distribution is the <strong>sampling distribution of <span class="math inline">\(\bar{x}\)</span></strong> — the probability distribution of the sample mean.</p></li>
+<li class="fragment"><p>Their distribution is the <strong>sampling distribution of <span class="math inline">\(\bar{x}\)</span></strong>, the probability distribution of the sample mean.</p></li>
 <li class="fragment"><p><strong>Do not confuse two distributions:</strong></p>
 <ul>
 <li class="fragment">the distribution of the <strong>raw data</strong> in one sample (30 daily eRPMs), versus</li>
@@ -379,7 +379,7 @@ Professor<br>Davi Moreira<br>
 <h2>Center and Spread of <span class="math inline">\(\bar{x}\)</span></h2>
 <p><br></p>
 <ul>
-<li class="fragment"><strong>Center (unbiased):</strong> on average, the sample mean equals the population mean —</li>
+<li class="fragment"><strong>Center (unbiased):</strong> on average, the sample mean equals the population mean:</li>
 </ul>
 <div class="fragment">
 <p><span class="math display">\[
@@ -387,7 +387,7 @@ E(\bar{x}) = \mu
 \]</span></p>
 </div>
 <ul>
-<li class="fragment"><strong>Spread (the standard error):</strong> the standard deviation of <span class="math inline">\(\bar{x}\)</span> is the <strong>standard error of the mean</strong> —</li>
+<li class="fragment"><strong>Spread (the standard error):</strong> the standard deviation of <span class="math inline">\(\bar{x}\)</span> is the <strong>standard error of the mean</strong>:</li>
 </ul>
 <div class="fragment">
 <p><span class="math display">\[
@@ -433,7 +433,7 @@ E(\bar{x}) = \mu
 <h2>Seeing the Sampling Distribution</h2>
 
 <img data-src="figs/sampling_dist_xbar.png" class="quarto-figure quarto-figure-center r-stretch" style="width:80.0%"><ul>
-<li>Repeatedly averaging 10 Vungle A-days: the <strong>individual days</strong> are scattered, but their <strong>averages</strong> pile up tightly in a bell around <span class="math inline">\(\mu\)</span> — narrower than the raw data, and roughly Normal.</li>
+<li>Repeatedly averaging 10 Vungle A-days: the <strong>individual days</strong> are scattered, but their <strong>averages</strong> pile up tightly in a bell around <span class="math inline">\(\mu\)</span>, narrower than the raw data and roughly Normal.</li>
 </ul>
 </section></section>
 <section>
@@ -442,7 +442,7 @@ E(\bar{x}) = \mu
 
 </section>
 <section id="the-clt-why-the-bell-always-appears" class="slide level2 center">
-<h2>The CLT — Why the Bell Always Appears</h2>
+<h2>The CLT: Why the Bell Always Appears</h2>
 <p><br></p>
 <ul>
 <li class="fragment"><strong>Central Limit Theorem:</strong> for random samples of size <span class="math inline">\(n\)</span> from <em>any</em> population with mean <span class="math inline">\(\mu\)</span> and SD <span class="math inline">\(\sigma\)</span>, the sampling distribution of <span class="math inline">\(\bar{x}\)</span> is approximately</li>
@@ -453,7 +453,7 @@ E(\bar{x}) = \mu
 \]</span></p>
 </div>
 <ul>
-<li class="fragment"><p>It works <strong>regardless of the population’s shape</strong> — skewed, uniform, lumpy, it does not matter.</p></li>
+<li class="fragment"><p>It works <strong>regardless of the population’s shape</strong>: skewed, uniform, or lumpy, it does not matter.</p></li>
 <li class="fragment"><p><strong>Rule of thumb:</strong> <span class="math inline">\(n \geq 30\)</span> is usually enough; <span class="math inline">\(n \geq 50\)</span> if the population is highly skewed or has outliers. Vungle’s <span class="math inline">\(n = 30\)</span> sits right on the line.</p></li>
 </ul>
 </section>
@@ -480,7 +480,7 @@ z = \frac{10}{15.96} = 0.63
 P(1687 \le \bar{x} \le 1707) = P(-0.63 \le Z \le 0.63) = 0.4691
 \]</span></p>
 </div>
-<p><strong>Read it:</strong> a single sample of 30 has only about a <strong>47% chance</strong> of landing within 10 SAT points of the truth — precision you can now <em>quantify</em>, and improve by raising <span class="math inline">\(n\)</span>. In Excel: <code>=NORM.S.DIST(0.63,TRUE)-NORM.S.DIST(-0.63,TRUE)</code>.</p>
+<p><strong>Read it:</strong> a single sample of 30 has only about a <strong>47% chance</strong> of landing within 10 SAT points of the truth: precision you can now <em>quantify</em>, and improve by raising <span class="math inline">\(n\)</span>. In Excel: <code>=NORM.S.DIST(0.63,TRUE)-NORM.S.DIST(-0.63,TRUE)</code>.</p>
 </div>
 </section></section>
 <section>
@@ -511,51 +511,41 @@ np \geq 5 \qquad \text{and} \qquad n(1-p) \geq 5
 \]</span></p>
 </div>
 <ul>
-<li class="fragment">St.&nbsp;Andrew’s: <span class="math inline">\(n = 30\)</span>, <span class="math inline">\(p = 0.72\)</span> → <span class="math inline">\(np = 21.6 \geq 5\)</span> and <span class="math inline">\(n(1-p) = 8.4 \geq 5\)</span> ✓ — the normal approximation is acceptable.</li>
+<li class="fragment">St.&nbsp;Andrew’s: <span class="math inline">\(n = 30\)</span>, <span class="math inline">\(p = 0.72\)</span> → <span class="math inline">\(np = 21.6 \geq 5\)</span> and <span class="math inline">\(n(1-p) = 8.4 \geq 5\)</span> ✓, so the normal approximation is acceptable.</li>
 </ul>
-</section>
-<section id="team-sprint-1-how-trustworthy-is-30-days" class="slide level2 center">
-<h2>⏱️ Team Sprint 1 — How Trustworthy Is 30 Days?</h2>
-<div class="sprint">
-<p><strong>Decide:</strong> is 30 days a <em>precise</em> enough sample to pin down B’s true mean eRPM — or just a noisy first look?</p>
-<p><strong>Data:</strong> <code>data/vungle_estimation.xlsx</code> (sheet <code>eRPM_by_day</code>) · <strong>Time:</strong> ~10 min</p>
-<ol type="1">
-<li>With the ToolPak’s <strong>Descriptive Statistics</strong> (or <code>=AVERAGE</code> / <code>=STDEV.S</code>), get <span class="math inline">\(\bar{x}\)</span> and <span class="math inline">\(s\)</span> for <code>erpm_B</code>.</li>
-<li>Compute the <strong>standard error</strong> <span class="math inline">\(s/\sqrt{30}\)</span> — the typical wobble of a 30-day mean.</li>
-<li>Compute what the standard error <strong>would be at <span class="math inline">\(n = 120\)</span></strong> (<span class="math inline">\(s/\sqrt{120}\)</span>). By how much does it shrink, and why?</li>
-</ol>
-<p><strong>Submit before you leave (graded, one slide per group):</strong> your call (precise enough now, or test longer) plus B’s <span class="math inline">\(\bar{x}\)</span>, <span class="math inline">\(s\)</span>, and the standard error at <span class="math inline">\(n=30\)</span> vs.&nbsp;<span class="math inline">\(n=120\)</span>, and the <strong>two things you would challenge</strong> in this read of the data.</p>
-</div>
 </section>
 <section id="debrief-lecture-1-takeaway" class="slide level2 center">
-<h2>Debrief — Lecture 1 Takeaway</h2>
+<h2>Debrief: Lecture 1 Takeaway</h2>
 <p><br></p>
 <ul>
-<li class="fragment"><p><strong>One sentence:</strong> a sample mean is an <strong>unbiased</strong> estimate of the truth, but it <strong>wobbles</strong> by a standard error of <span class="math inline">\(\sigma/\sqrt{n}\)</span> — and thanks to the CLT, that wobble is <strong>Normal</strong> for <span class="math inline">\(n \geq 30\)</span>.</p></li>
-<li class="fragment"><p><strong>One number:</strong> B’s standard error is <span class="math inline">\(s/\sqrt{30} = 0.344/\sqrt{30} \approx \$0.063\)</span> — the typical gap between a 30-day mean and the truth.</p></li>
-<li class="fragment"><p><strong>One caveat:</strong> precision is bought with <span class="math inline">\(n\)</span>, and only as <span class="math inline">\(\sqrt{n}\)</span> — quadrupling the days only halves the error.</p></li>
+<li class="fragment"><p><strong>One sentence:</strong> a sample mean is an <strong>unbiased</strong> estimate of the truth, but it <strong>wobbles</strong> by a standard error of <span class="math inline">\(\sigma/\sqrt{n}\)</span>; thanks to the CLT, that wobble is <strong>Normal</strong> for <span class="math inline">\(n \geq 30\)</span>.</p></li>
+<li class="fragment"><p><strong>One number:</strong> B’s standard error is <span class="math inline">\(s/\sqrt{30} = 0.344/\sqrt{30} \approx \$0.063\)</span>, the typical gap between a 30-day mean and the truth.</p></li>
+<li class="fragment"><p><strong>One caveat:</strong> precision is bought with <span class="math inline">\(n\)</span>, and only as <span class="math inline">\(\sqrt{n}\)</span>; quadrupling the days only halves the error.</p></li>
 </ul>
 </section>
-<section id="carry-forward-to-lecture-2" class="slide level2 center">
-<h2>Carry-forward to Lecture 2</h2>
-<ul>
-<li>We can now say <em>how much</em> a 30-day mean wobbles. Next we turn that wobble into a <strong>confidence interval</strong> (a stated range for B’s true mean eRPM) and answer the manager’s real question: <strong>$3.46, give or take how much?</strong></li>
-</ul>
+<section id="team-sprint-your-group-case-lecture-1" class="slide level2 center">
+<h2>⏱️ Team Sprint: Your Group Case (Lecture 1)</h2>
+<div class="sprint">
+<p><strong>Now it’s your group’s turn.</strong> Today’s in-class group case is posted on <strong>Brightspace</strong> (<em>Topic 07 Group Case, Lecture 1</em>): a separate business decision you make with today’s tools.</p>
+<p><strong>What you’ll use:</strong> the <strong>standard error</strong> <span class="math inline">\(s/\sqrt{n}\)</span> and the <strong>sampling distribution</strong> of <span class="math inline">\(\bar{x}\)</span> (CLT, <span class="math inline">\(n \geq 30\)</span>). <strong>Excel:</strong> Analysis ToolPak → Descriptive Statistics.</p>
+<p><strong>Submit one PDF per group before you leave:</strong> your decision plus the numbers behind it.</p>
+</div>
 </section></section>
 <section>
 <section id="lecture-2-the-interval-estimate" class="title-slide slide level1 center" data-background-color="#cfb991">
-<h1>Lecture 2 — The Interval Estimate</h1>
+<h1>Lecture 2: The Interval Estimate</h1>
 
 </section>
 <section id="the-brief-3.46-give-or-take-how-much" class="slide level2 center">
-<h2>The Brief — $3.46, Give or Take How Much?</h2>
+<h2>The Brief: $3.46, Give or Take How Much?</h2>
 <p><br></p>
 <blockquote>
-<p>“Don’t just tell me B earns $3.46. Tell me the <strong>range</strong> I can bank on — and tell me how many test-days it would take to cut that range in half.”</p>
+<p>“Don’t just tell me B earns $3.46. Tell me the <strong>range</strong> I can bank on, and tell me how many test-days it would take to cut that range in half.”</p>
 </blockquote>
 <p><br></p>
 <ul>
-<li class="fragment"><p>A point estimate with no range is half an answer. Today we attach a <strong>margin of error</strong> and report an <strong>interval</strong> we are 95% confident contains the truth.</p></li>
+<li class="fragment"><p><strong>The big call you still own as CEO:</strong> <em>roll out B, or stay with A?</em> A single $3.46 with no range cannot support it.</p></li>
+<li class="fragment"><p><strong>Today’s question (Lecture 2):</strong> <em>what is B’s true mean (and conversion rate), give or take, and how big a sample do we need?</em> We attach a <strong>margin of error</strong> and report an <strong>interval</strong> we are 95% confident contains the truth.</p></li>
 <li class="fragment"><p>Then we <strong>invert</strong> the question: pick the precision first (<span class="math inline">\(\pm\$0.05\)</span>), and solve for the <strong>sample size</strong> that delivers it.</p></li>
 </ul>
 </section>
@@ -590,7 +580,7 @@ E = (\text{a multiplier}) \times (\text{standard error})
 <h2>Why <span class="math inline">\(t\)</span>, Not <span class="math inline">\(z\)</span></h2>
 <p><br></p>
 <ul>
-<li class="fragment"><p>In real data we never know <span class="math inline">\(\sigma\)</span> — we estimate it with the sample SD <span class="math inline">\(s\)</span>. That extra uncertainty makes the bell <strong>fatter in the tails</strong>: the <strong><span class="math inline">\(t\)</span> distribution</strong>.</p></li>
+<li class="fragment"><p>In real data we never know <span class="math inline">\(\sigma\)</span>; we estimate it with the sample SD <span class="math inline">\(s\)</span>. That extra uncertainty makes the bell <strong>fatter in the tails</strong>: the <strong><span class="math inline">\(t\)</span> distribution</strong>.</p></li>
 <li class="fragment"><p>A <span class="math inline">\(t\)</span> distribution is indexed by its <strong>degrees of freedom</strong> <span class="math inline">\(df = n - 1\)</span> (the <span class="math inline">\(n\)</span> observations, minus one used up estimating <span class="math inline">\(s\)</span>).</p></li>
 <li class="fragment"><p>As <span class="math inline">\(df\)</span> grows, <span class="math inline">\(t\)</span> converges to <span class="math inline">\(z\)</span>: by <span class="math inline">\(df = 29\)</span> they are nearly identical, and beyond <span class="math inline">\(df = 100\)</span> the difference is negligible.</p></li>
 </ul>
@@ -653,9 +643,9 @@ E = 2.131 \times 13.75 = 29.31
 </div>
 </section>
 <section id="the-vungle-erpm-interval-the-five-steps" class="slide level2 center">
-<h2>The Vungle eRPM Interval — the Five Steps</h2>
+<h2>The Vungle eRPM Interval: the Five Steps</h2>
 <div class="r-fit-text">
-<p><strong>1. Business context.</strong> B’s true mean eRPM drives every revenue projection; we need a defensible range, not a single number.</p>
+<p><strong>1. Business context.</strong> B’s true mean eRPM drives every revenue projection; the CEO needs a defensible range, not a single number.</p>
 <p><strong>2. Setup.</strong> <span class="math inline">\(n = 30\)</span> days, <span class="math inline">\(\sigma\)</span> unknown, <span class="math inline">\(\bar{x}_B = \$3.459\)</span>, <span class="math inline">\(s_B = \$0.344\)</span>, <span class="math inline">\(df = 29\)</span>, 95% confidence.</p>
 <p><strong>3. Compute.</strong></p>
 <p><span class="math display">\[
@@ -666,14 +656,14 @@ t_{0.025,\,29} = 2.045,
 E = 2.045 \times 0.0629 = 0.1286
 \]</span></p>
 <p><strong>4. Interval.</strong> <span class="math inline">\(3.459 \pm 0.129 = (\$3.330,\; \$3.588)\)</span>.</p>
-<p><strong>5. Manager’s Translation.</strong> <em>We are 95% confident B’s true mean eRPM is between $3.33 and $3.59. The $0.13 margin is wide relative to the $0.11 gap over A — a first hint that 30 days may not yet settle the A-vs-B question.</em></p>
+<p><strong>5. CEO’s Translation.</strong> <em>We are 95% confident B’s true mean eRPM is between $3.33 and $3.59. The $0.13 margin is wide relative to the $0.11 gap over A, a first hint that 30 days may not yet settle the A-vs-B question.</em></p>
 </div>
 </section>
 <section id="the-two-intervals-side-by-side" class="slide level2 center">
 <h2>The Two Intervals, Side by Side</h2>
 
 <img data-src="figs/vungle_erpm_ci.png" class="quarto-figure quarto-figure-center r-stretch" style="width:78.0%"><ul>
-<li>A’s interval is <strong>($3.27, $3.43)</strong>, B’s is <strong>($3.33, $3.59)</strong> — they <strong>overlap</strong>. Estimation alone cannot yet declare a winner; that is the job of <strong>hypothesis testing</strong>, next topic.</li>
+<li>A’s interval is <strong>($3.27, $3.43)</strong>, B’s is <strong>($3.33, $3.59)</strong>, and they <strong>overlap</strong>. Estimation alone cannot yet declare a winner; that is the job of <strong>hypothesis testing</strong>, next topic.</li>
 </ul>
 </section>
 <section id="vungle-erpm-ci-in-excel" class="slide level2 center">
@@ -713,7 +703,7 @@ E = 2.045 \times 0.0629 = 0.1286
 </ul></li>
 </ul>
 <ul>
-<li class="fragment">Vungle’s eRPM is roughly symmetric (mean <span class="math inline">\(\approx\)</span> median in our descriptives), so <span class="math inline">\(n = 30\)</span> clears the bar — the interval is trustworthy; it is just <strong>wide</strong>.</li>
+<li class="fragment">Vungle’s eRPM is roughly symmetric (mean <span class="math inline">\(\approx\)</span> median in our descriptives), so <span class="math inline">\(n = 30\)</span> clears the bar; the interval is trustworthy, it is just <strong>wide</strong>.</li>
 </ul>
 </section></section>
 <section>
@@ -725,7 +715,7 @@ E = 2.045 \times 0.0629 = 0.1286
 <h2>The Proportion Interval</h2>
 <p><br></p>
 <ul>
-<li class="fragment">For a population proportion <span class="math inline">\(p\)</span>, the interval uses <span class="math inline">\(\bar{p}\)</span> and the <strong><span class="math inline">\(z\)</span></strong> multiplier (no <span class="math inline">\(t\)</span> — there is no separate SD to estimate):</li>
+<li class="fragment">For a population proportion <span class="math inline">\(p\)</span>, the interval uses <span class="math inline">\(\bar{p}\)</span> and the <strong><span class="math inline">\(z\)</span></strong> multiplier (no <span class="math inline">\(t\)</span>, since there is no separate SD to estimate):</li>
 </ul>
 <div class="fragment">
 <p><span class="math display">\[
@@ -753,14 +743,14 @@ E = 1.96 \times 0.0222 = 0.0435
 0.44 \pm 0.0435 \;=\; (0.3965,\; 0.4835)
 \]</span></p>
 </div>
-<p><strong>Read it:</strong> <em>PSI is 95% confident that between 39.6% and 48.4% of all voters favor the candidate.</em> The interval straddles 50% from below — too close to call a lead.</p>
+<p><strong>Read it:</strong> <em>PSI is 95% confident that between 39.6% and 48.4% of all voters favor the candidate.</em> The interval straddles 50% from below: too close to call a lead.</p>
 </div>
 </section>
 <section id="vungle-conversion-rate-a-proportion-in-practice" class="slide level2 center">
-<h2>Vungle Conversion Rate — a Proportion in Practice</h2>
+<h2>Vungle Conversion Rate: a Proportion in Practice</h2>
 <p><br></p>
 <ul>
-<li class="fragment">Each impression either becomes an install or not — a proportion. We estimate B’s <strong>true mean daily conversion rate</strong> from the 30 daily rates (a <span class="math inline">\(t\)</span>-interval on the daily percentages keeps the unit the <strong>day</strong>, parallel to eRPM):</li>
+<li class="fragment">Each impression either becomes an install or not, a proportion. We estimate B’s <strong>true mean daily conversion rate</strong> from the 30 daily rates (a <span class="math inline">\(t\)</span>-interval on the daily percentages keeps the unit the <strong>day</strong>, parallel to eRPM):</li>
 </ul>
 <div class="fragment">
 <table class="caption-top">
@@ -795,7 +785,7 @@ E = 1.96 \times 0.0222 = 0.0435
 </table>
 </div>
 <ul>
-<li class="fragment"><strong>Read it:</strong> we are 95% confident B converts between <strong>0.345% and 0.362%</strong> of impressions to installs — a tight interval, because day-to-day conversion is very stable.</li>
+<li class="fragment"><strong>Read it:</strong> we are 95% confident B converts between <strong>0.345% and 0.362%</strong> of impressions to installs, a tight interval because day-to-day conversion is very stable.</li>
 </ul>
 </section>
 <section id="vungle-conversion-ci-in-excel" class="slide level2 center">
@@ -803,7 +793,7 @@ E = 1.96 \times 0.0222 = 0.0435
 <div class="columns">
 <div class="column" style="width:40%;">
 <p><br></p>
-<p>Same machinery as the mean eRPM interval — just run it on the <strong>daily conversion-rate</strong> column:</p>
+<p>Same machinery as the mean eRPM interval, just run it on the <strong>daily conversion-rate</strong> column:</p>
 <ul>
 <li><span class="math inline">\(\bar{x}\)</span>, <span class="math inline">\(s\)</span> on <code>conv_B_pct</code></li>
 <li><span class="math inline">\(t_{0.025,29} = 2.045\)</span></li>
@@ -862,7 +852,7 @@ E = 1.96 \times 0.0222 = 0.0435
 <tr class="odd">
 <td><strong>Sample size</strong> (<span class="math inline">\(n\)</span>)</td>
 <td><strong>narrower</strong> (as <span class="math inline">\(\sqrt{n}\)</span>)</td>
-<td><strong>yes — buy more data</strong></td>
+<td><strong>yes: buy more data</strong></td>
 </tr>
 </tbody>
 </table>
@@ -927,7 +917,7 @@ n = \left(\frac{z_{\alpha/2}\,s}{E}\right)^{2}
 \]</span></p>
 </div>
 <ul>
-<li class="fragment"><p><strong>Always round up</strong> — a fractional person or day cannot be sampled, and rounding down would miss the target precision.</p></li>
+<li class="fragment"><p><strong>Always round up:</strong> a fractional person or day cannot be sampled, and rounding down would miss the target precision.</p></li>
 <li class="fragment"><p>Planning value for <span class="math inline">\(s\)</span>: a prior study, a pilot sample, or a best guess. Here we use B’s pilot <span class="math inline">\(s = \$0.344\)</span>.</p></li>
 </ul>
 </section>
@@ -945,7 +935,7 @@ n_{0.10} = \left(\frac{1.96 \times 0.344}{0.10}\right)^{2} = 45.6 \;\rightarrow\
 n_{0.05} = \left(\frac{1.96 \times 0.344}{0.05}\right)^{2} = 182.3 \;\rightarrow\; \mathbf{183 \text{ days}}
 \]</span></p>
 </div>
-<p><strong>The lesson:</strong> halving the margin (<span class="math inline">\(\$0.10 \rightarrow \$0.05\)</span>) takes <strong>four times</strong> the days (<span class="math inline">\(46 \rightarrow 183\)</span>). Precision is expensive — and the manager must decide whether $0.05 of precision is worth six months of testing.</p>
+<p><strong>The lesson:</strong> halving the margin (<span class="math inline">\(\$0.10 \rightarrow \$0.05\)</span>) takes <strong>four times</strong> the days (<span class="math inline">\(46 \rightarrow 183\)</span>). Precision is expensive, and the CEO must decide whether $0.05 of precision is worth six months of testing.</p>
 </div>
 </section>
 <section id="margin-of-error-vs.-sample-size" class="slide level2 center">
@@ -995,23 +985,10 @@ n = \frac{z_{\alpha/2}^{2}\,p^*(1-p^*)}{E^{2}}
 <li class="fragment"><p><span class="math inline">\(p^*\)</span> is a <strong>planning value</strong> for the proportion: a prior estimate, a pilot, or (if you know nothing) the <strong>conservative <span class="math inline">\(p^* = 0.5\)</span></strong>, which maximizes <span class="math inline">\(p^*(1-p^*)\)</span> and gives the largest (safest) <span class="math inline">\(n\)</span>.</p></li>
 <li class="fragment"><p><strong>PSI example:</strong> for <span class="math inline">\(E = 0.03\)</span> at 99% (<span class="math inline">\(z = 2.576\)</span>): with <span class="math inline">\(p^* = 0.44\)</span>, <span class="math inline">\(n = 1817\)</span>; with the conservative <span class="math inline">\(p^* = 0.5\)</span>, <span class="math inline">\(n = 1844\)</span>. When unsure, plan for the larger.</p></li>
 </ul>
-</section>
-<section id="team-sprint-2-vungles-estimation-memo" class="slide level2 center">
-<h2>⏱️ Team Sprint 2 — Vungle’s Estimation Memo</h2>
-<div class="sprint">
-<p><strong>Decide:</strong> what is B’s true mean eRPM and conversion rate (each <span class="math inline">\(\pm\)</span> a margin), and how long must the next test run for <span class="math inline">\(\pm\$0.05\)</span> precision?</p>
-<p><strong>Data:</strong> <code>data/vungle_estimation.xlsx</code> · <strong>Time:</strong> ~14 min</p>
-<ol type="1">
-<li><strong>95% CI for mean eRPM (B):</strong> <span class="math inline">\(\bar{x} \pm t_{0.025,29}\,s/\sqrt{30}\)</span> — use <code>=CONFIDENCE.T(0.05, s, 30)</code> for the margin.</li>
-<li><strong>95% CI for the daily conversion rate (B):</strong> same steps on the <code>conv_B_pct</code> column.</li>
-<li><strong>Sample size:</strong> how many days for the eRPM margin to reach <span class="math inline">\(\pm\$0.05\)</span>? Use <code>=CEILING((1.96*s/0.05)^2,1)</code>.</li>
-</ol>
-<p><strong>Submit before you leave (graded, one slide per group):</strong> your estimation memo to Vungle — the two 95% intervals (with a one-line reading of each) and the days needed for <span class="math inline">\(\pm\$0.05\)</span>, plus the <strong>two things you would challenge</strong> before banking on these numbers.</p>
-</div>
 </section></section>
 <section>
 <section id="debrief-the-estimation-memo" class="title-slide slide level1 center" data-background-color="#cfb991">
-<h1>Debrief — The Estimation Memo</h1>
+<h1>Debrief: The Estimation Memo</h1>
 
 </section>
 <section id="what-the-intervals-tell-vungle" class="slide level2 center">
@@ -1047,7 +1024,7 @@ n = \frac{z_{\alpha/2}^{2}\,p^*(1-p^*)}{E^{2}}
 </tr>
 <tr class="odd">
 <td>Days for <span class="math inline">\(\pm\$0.05\)</span> eRPM</td>
-<td style="text-align: right;">—</td>
+<td style="text-align: right;">(n/a)</td>
 <td style="text-align: right;"><span class="math inline">\(n = 183\)</span></td>
 <td>six months to halve the margin</td>
 </tr>
@@ -1063,18 +1040,31 @@ n = \frac{z_{\alpha/2}^{2}\,p^*(1-p^*)}{E^{2}}
 <p><br></p>
 <ul>
 <li class="fragment"><p>B’s eRPM interval <strong>($3.33, $3.59)</strong> and A’s <strong>($3.27, $3.43)</strong> <strong>overlap</strong>. The $0.11 sample gap is real in <em>this</em> sample, but the intervals do not, by themselves, prove B’s <em>true</em> mean beats A’s.</p></li>
-<li class="fragment"><p>Estimation answers <em>“how big, and how sure are we about that size?”</em> — it does <strong>not</strong> directly answer <em>“is B better than A?”</em></p></li>
-<li class="fragment"><p>That comparison question — <strong>does B beat a benchmark, and does B beat A?</strong> — is <strong>hypothesis testing</strong>, the next two topics. Today’s standard error and <span class="math inline">\(t\)</span> machinery carry straight over.</p></li>
+<li class="fragment"><p>Estimation answers <em>“how big, and how sure are we about that size?”</em>; it does <strong>not</strong> directly answer <em>“is B better than A?”</em></p></li>
+<li class="fragment"><p>That comparison question (<strong>does B beat a benchmark, and does B beat A?</strong>) is <strong>hypothesis testing</strong>, the next two topics. Today’s standard error and <span class="math inline">\(t\)</span> machinery carry straight over.</p></li>
 </ul>
 </section>
-<section id="managers-takeaway" class="slide level2 center">
-<h2>Manager’s Takeaway</h2>
+<section id="the-ceos-takeaway" class="slide level2 center">
+<h2>The CEO’s Takeaway</h2>
 <p><br></p>
 <ul>
-<li class="fragment"><p><strong>One sentence:</strong> a confidence interval turns a point estimate into a defensible <strong>range</strong> (B’s true mean eRPM is $3.46 <span class="math inline">\(\pm\)</span> $0.13 at 95% confidence) and the <strong>margin of error</strong> is the number a manager should actually negotiate over.</p></li>
-<li class="fragment"><p><strong>One number to remember:</strong> <span class="math inline">\(E = t_{\alpha/2}\,s/\sqrt{n}\)</span> — and the <span class="math inline">\(\sqrt{n}\)</span> in the denominator, which makes precision expensive.</p></li>
-<li class="fragment"><p><strong>One caveat:</strong> “95% confident” describes the <strong>procedure</strong> over many samples, not a probability for this one interval — and overlapping intervals do <strong>not</strong> settle a comparison.</p></li>
+<li class="fragment"><p><strong>One sentence:</strong> a confidence interval turns a point estimate into a defensible <strong>range</strong> (B’s true mean eRPM is $3.46 <span class="math inline">\(\pm\)</span> $0.13 at 95% confidence), and the <strong>margin of error</strong> is the number the CEO should actually negotiate over.</p></li>
+<li class="fragment"><p><strong>One number to remember:</strong> <span class="math inline">\(E = t_{\alpha/2}\,s/\sqrt{n}\)</span>, with the <span class="math inline">\(\sqrt{n}\)</span> in the denominator that makes precision expensive.</p></li>
+<li class="fragment"><p><strong>One caveat:</strong> “95% confident” describes the <strong>procedure</strong> over many samples, not a probability for this one interval; overlapping intervals do <strong>not</strong> settle a comparison.</p></li>
 </ul>
+</section>
+<section id="team-sprint-your-group-case-lecture-2" class="slide level2 center">
+<h2>⏱️ Team Sprint: Your Group Case (Lecture 2)</h2>
+<div class="sprint">
+<p><strong>Now it’s your group’s turn.</strong> Today’s in-class group case is posted on <strong>Brightspace</strong> (<em>Topic 07 Group Case, Lecture 2</em>): a separate business decision you make with today’s tools.</p>
+<p><strong>What you’ll use:</strong> <strong>confidence intervals</strong> for a mean (<span class="math inline">\(t\)</span>) and a proportion (<span class="math inline">\(z\)</span>), the <strong>margin of error</strong>, and <strong>sample size</strong> planning. <strong>Excel:</strong> Analysis ToolPak, plus <code>=CONFIDENCE.T</code> and <code>=CEILING</code>.</p>
+<p><strong>Submit one PDF per group before you leave:</strong> your decision plus the numbers behind it.</p>
+</div>
+</section></section>
+<section>
+<section id="wrap-up" class="title-slide slide level1 center" data-background-color="#cfb991">
+<h1>Wrap-up</h1>
+
 </section>
 <section id="summary" class="slide level2 center">
 <h2>Summary</h2>
@@ -1084,15 +1074,9 @@ n = \frac{z_{\alpha/2}^{2}\,p^*(1-p^*)}{E^{2}}
 <li>The <strong>sampling distribution</strong> of <span class="math inline">\(\bar{x}\)</span> is centered at <span class="math inline">\(\mu\)</span> with standard error <span class="math inline">\(\sigma/\sqrt{n}\)</span>; the <strong>CLT</strong> makes it Normal for <span class="math inline">\(n \geq 30\)</span>, whatever the population’s shape.</li>
 <li>A <strong>confidence interval</strong> = point estimate <span class="math inline">\(\pm\)</span> margin of error; use <strong><span class="math inline">\(t\)</span></strong> for a mean (<span class="math inline">\(\sigma\)</span> unknown), <strong><span class="math inline">\(z\)</span></strong> for a proportion.</li>
 <li>The margin of error has <strong>three levers</strong>: confidence level (up → wider), variability <span class="math inline">\(s\)</span> (up → wider), sample size <span class="math inline">\(n\)</span> (up → narrower, as <span class="math inline">\(\sqrt{n}\)</span>).</li>
-<li><strong>Sample size</strong> inverts the margin formula: pick the precision, solve for <span class="math inline">\(n\)</span>, round up — halving the margin costs ~4× the data.</li>
-<li>“95% confident” is a statement about the <strong>method</strong>, not a probability for one interval — and overlapping intervals do not prove a difference.</li>
-</ul>
-</section>
-<section id="carry-forward" class="slide level2 center">
-<h2>Carry-forward</h2>
-<ul>
-<li><p><strong>Homework (individual):</strong> today’s tools (confidence intervals and sample-size planning) are drilled on <strong>HW2</strong> — individual problem sets in the previous-edition format, posted on Brightspace. Build the intervals and solve for <span class="math inline">\(n\)</span> yourself, so you can check an analyst who hands you a range.</p></li>
-<li><p><strong>Next time:</strong> we stop <em>estimating ranges</em> and start <em>testing claims</em> — <strong>Hypothesis Testing</strong>: fund B only if its mean eRPM beats a benchmark. Today’s standard error and <span class="math inline">\(t\)</span> tools become the test statistic.</p></li>
+<li><strong>Sample size</strong> inverts the margin formula: pick the precision, solve for <span class="math inline">\(n\)</span>, round up; halving the margin costs ~4× the data.</li>
+<li>“95% confident” is a statement about the <strong>method</strong>, not a probability for one interval, and overlapping intervals do not prove a difference.</li>
+<li><strong>Next time:</strong> we stop <em>estimating ranges</em> and start <em>testing claims</em> (<strong>Hypothesis Testing</strong>: fund B only if its mean eRPM clears a benchmark); today’s standard error and <span class="math inline">\(t\)</span> become the test statistic.</li>
 </ul>
 </section></section>
 <section id="thank-you" class="title-slide slide level1 center" data-background-color="#cfb991">

@@ -173,28 +173,33 @@ Professor<br>Davi Moreira<br>
 
 </section>
 <section id="recap-where-we-left-off" class="slide level2 center">
-<h2>Recap — Where We Left Off</h2>
+<h2>Recap: Where We Left Off</h2>
 <p><br></p>
 <ul>
 <li class="fragment"><p><a href="https://en.wikipedia.org/wiki/Liftoff_Mobile">Vungle</a> is a mobile ad-tech startup: it serves 15-second video ads inside other apps and earns revenue mainly when a viewer <strong>installs</strong> the advertised app.</p></li>
-<li class="fragment"><p>The metric that pays the bills is <strong>eRPM</strong> — effective revenue per 1,000 impressions.</p></li>
+<li class="fragment"><p>The metric that pays the bills is <strong>eRPM</strong>: effective revenue per 1,000 impressions.</p></li>
 <li class="fragment"><p>Two analysts built a new ad-serving algorithm (<strong>B</strong>) and ran it head-to-head against the current one (<strong>A</strong>) for the whole month of June 2014.</p></li>
-<li class="fragment"><p>Last time we computed the <strong>centers</strong>: A’s mean eRPM is <strong>$3.347</strong>, B’s is <strong>$3.459</strong> — B’s average sits <strong>$0.11 higher</strong>.</p></li>
-<li class="fragment"><p>A manager glances at that gap and says: <em>“B wins — roll it out.”</em></p></li>
+<li class="fragment"><p>Last time we computed the <strong>centers</strong>: A’s mean eRPM is <strong>$3.347</strong>, B’s is <strong>$3.459</strong>; B’s average sits <strong>$0.11 higher</strong>.</p></li>
+<li class="fragment"><p>A manager glances at that gap and says: <em>“B wins, roll it out.”</em></p></li>
 </ul>
 </section>
-<section id="the-brief-todays-managerial-question" class="slide level2 center">
-<h2>The Brief — Today’s Managerial Question</h2>
-<p><br></p>
-<blockquote>
-<p>“B’s average daily eRPM ran about <strong>$0.11 higher</strong> than A’s. Before I brief the CEO — is B’s edge <strong>real</strong>, or is it just <strong>noise</strong>? How confident can I be in that one number?”</p>
-</blockquote>
+<section id="the-brief-todays-ceo-question" class="slide level2 center">
+<h2>The Brief: Today’s CEO Question</h2>
 <p><br></p>
 <ul>
-<li class="fragment"><p>The <strong>mean is only half the story.</strong> A center tells you <em>where</em> the data sit; it says nothing about how <em>spread out</em>, <em>lopsided</em>, or <em>risky</em> they are.</p></li>
-<li class="fragment"><p>Two algorithms can share the <strong>same average</strong> and behave completely differently day to day.</p></li>
-<li class="fragment"><p><strong>How today’s studio runs:</strong> I demo each measure on a textbook anchor → <strong>your team builds an A-vs-B descriptive dashboard</strong> on the Vungle data → we debrief what you can honestly tell the CEO.</p></li>
+<li class="fragment"><p><strong>The big call (we land it in Topic 9):</strong> roll out algorithm B to all advertisers, or stay with A? Last time you saw B’s average eRPM sits <strong>$0.11 higher</strong>.</p></li>
+<li class="fragment"><p><strong>Today’s piece of that call:</strong> <em>is B’s edge steady, or just more volatile?</em> As Vungle’s CEO, you cannot bet the company on an average that hides wild day-to-day swings.</p></li>
 </ul>
+<div class="fragment">
+<blockquote>
+<p>“B’s average daily eRPM ran about <strong>$0.11 higher</strong> than A’s. Before I act: is that edge <strong>steady</strong>, or does B just bounce around more? How confident am I in that one number?”</p>
+</blockquote>
+</div>
+<div class="fragment">
+<ul>
+<li class="fragment">The <strong>mean is only half the story.</strong> A center tells you <em>where</em> the data sit; it says nothing about how <em>spread out</em>, <em>lopsided</em>, or <em>risky</em> they are. Two algorithms can share the <strong>same average</strong> and behave completely differently day to day.</li>
+</ul>
+</div>
 </section>
 <section id="why-the-mean-alone-misleads" class="slide level2 center">
 <h2>Why the Mean Alone Misleads</h2>
@@ -244,7 +249,7 @@ Professor<br>Davi Moreira<br>
 </table>
 <p><br></p>
 <ul>
-<li class="fragment">By the end, your team turns these into a <strong>one-screen A-vs-B dashboard</strong> — the manager’s first honest read.</li>
+<li class="fragment">By the end, your team turns these into a <strong>one-screen A-vs-B dashboard</strong>, the CEO’s first honest read.</li>
 </ul>
 </section></section>
 <section>
@@ -297,7 +302,7 @@ Professor<br>Davi Moreira<br>
 <h2>Range and Interquartile Range (IQR)</h2>
 <p><br></p>
 <ul>
-<li class="fragment"><strong>Range</strong> = largest value − smallest value. Simplest measure — but <strong>driven entirely by the two extremes</strong>, so a single odd day distorts it.</li>
+<li class="fragment"><strong>Range</strong> = largest value − smallest value. Simplest measure, but <strong>driven entirely by the two extremes</strong>, so a single odd day distorts it.</li>
 </ul>
 <div class="fragment">
 <p><span class="math display">\[
@@ -313,12 +318,12 @@ Professor<br>Davi Moreira<br>
 \]</span></p>
 </div>
 <ul>
-<li class="fragment"><p>IQR throws away the top 25% and bottom 25%, so it <strong>ignores extremes</strong> — a steadier read of “typical” spread.</p></li>
+<li class="fragment"><p>IQR throws away the top 25% and bottom 25%, so it <strong>ignores extremes</strong>: a steadier read of “typical” spread.</p></li>
 <li class="fragment"><p><strong>Excel:</strong> <code>=MAX(rng)-MIN(rng)</code> for the range; <code>=QUARTILE.INC(rng,3)-QUARTILE.INC(rng,1)</code> for the IQR.</p></li>
 </ul>
 </section>
 <section id="variance-the-average-squared-distance-from-the-mean" class="slide level2 center">
-<h2>Variance — the Average Squared Distance from the Mean</h2>
+<h2>Variance: the Average Squared Distance from the Mean</h2>
 <p><br></p>
 <ul>
 <li class="fragment">Variance uses <strong>every</strong> observation: it averages the <strong>squared deviations</strong> from the mean. Squaring keeps positives and negatives from cancelling and punishes big misses.</li>
@@ -332,14 +337,14 @@ Professor<br>Davi Moreira<br>
 </div>
 <ul>
 <li class="fragment"><p><strong>Why divide by <span class="math inline">\(n-1\)</span> for a sample?</strong> We “spend” one degree of freedom estimating <span class="math inline">\(\bar{x}\)</span> from the same data; dividing by <span class="math inline">\(n-1\)</span> corrects the bias so <span class="math inline">\(s^2\)</span> is an honest estimate of <span class="math inline">\(\sigma^2\)</span>.</p></li>
-<li class="fragment"><p>The catch: variance is in <strong>squared units</strong> (dollars²) — hard to interpret directly. That is what the standard deviation fixes.</p></li>
+<li class="fragment"><p>The catch: variance is in <strong>squared units</strong> (dollars²), hard to interpret directly. That is what the standard deviation fixes.</p></li>
 </ul>
 </section>
 <section id="standard-deviation-and-the-notation-table" class="slide level2 center">
 <h2>Standard Deviation and the Notation Table</h2>
 <p><br></p>
 <ul>
-<li class="fragment"><strong>Standard deviation</strong> = the positive square root of the variance — back in the <strong>original units</strong> (dollars), so it reads as “a typical day lands about this far from the mean.”</li>
+<li class="fragment"><strong>Standard deviation</strong> = the positive square root of the variance, back in the <strong>original units</strong> (dollars), so it reads as “a typical day lands about this far from the mean.”</li>
 </ul>
 <div class="fragment">
 <p><span class="math display">\[
@@ -379,7 +384,7 @@ s = \sqrt{s^2} \qquad\qquad \sigma = \sqrt{\sigma^2}
 </ul>
 </section>
 <section id="coefficient-of-variation-spread-relative-to-size" class="slide level2 center">
-<h2>Coefficient of Variation — Spread Relative to Size</h2>
+<h2>Coefficient of Variation: Spread Relative to Size</h2>
 <p><br></p>
 <ul>
 <li class="fragment">A standard deviation of $0.34 is large for eRPM but trivial for a stock price. The <strong>coefficient of variation (CV)</strong> rescales spread by the mean, so you can compare <strong>differently-sized series</strong>:</li>
@@ -390,15 +395,15 @@ s = \sqrt{s^2} \qquad\qquad \sigma = \sqrt{\sigma^2}
 \]</span></p>
 </div>
 <ul>
-<li class="fragment"><p>It is <strong>unit-free</strong> (a percentage) — “the SD is X% of the mean.”</p></li>
-<li class="fragment"><p><strong>Vungle read:</strong> even before testing, CV tells you which algorithm is <em>relatively</em> more volatile — exactly the risk question the CEO cares about.</p></li>
+<li class="fragment"><p>It is <strong>unit-free</strong> (a percentage): “the SD is X% of the mean.”</p></li>
+<li class="fragment"><p><strong>Vungle read:</strong> even before testing, CV tells you which algorithm is <em>relatively</em> more volatile, exactly the risk question you, the CEO, care about.</p></li>
 <li class="fragment"><p><strong>Excel:</strong> <code>=STDEV.S(rng)/AVERAGE(rng)</code>.</p></li>
 </ul>
 </section>
 <section id="anchor-example-two-suppliers-delivery-times" class="slide level2 center">
 <h2>Anchor Example: Two Suppliers’ Delivery Times</h2>
 <div class="r-fit-text">
-<p>A purchasing manager compares delivery times (hours) from two carriers over five shipments. <strong>Same mean — very different reliability.</strong></p>
+<p>A purchasing manager compares delivery times (hours) from two carriers over five shipments. <strong>Same mean, very different reliability.</strong></p>
 <table class="caption-top" style="width:100%;">
 <colgroup>
 <col style="width: 7%">
@@ -455,9 +460,9 @@ s = \sqrt{s^2} \qquad\qquad \sigma = \sqrt{\sigma^2}
 </table>
 <div class="fragment">
 <ul>
-<li class="fragment"><strong>Identical average (15 hrs)</strong> — but A’s range is 2 hours and B’s is 12.</li>
+<li class="fragment"><strong>Identical average (15 hrs)</strong>, but A’s range is 2 hours and B’s is 12.</li>
 <li class="fragment">A’s CV is 4.7%; B’s is 32.3%. <strong>A is the dependable carrier</strong>; B is a gamble.</li>
-<li class="fragment"><em>The mean could not tell them apart — variability did.</em> This is the lesson we now take to Vungle.</li>
+<li class="fragment"><em>The mean could not tell them apart; variability did.</em> This is the lesson we now take to Vungle.</li>
 </ul>
 </div>
 </div>
@@ -523,7 +528,7 @@ s = \sqrt{s^2} \qquad\qquad \sigma = \sqrt{\sigma^2}
 <p><br></p>
 <div class="fragment">
 <ul>
-<li class="fragment"><strong>B earns more on average — and is markedly riskier.</strong> Higher mean, higher spread.</li>
+<li class="fragment"><strong>B earns more on average, and is markedly riskier.</strong> Higher mean, higher spread.</li>
 <li class="fragment">That is the real headline for the CEO: <em>“B’s edge comes with more volatility.”</em> The mean hid it; variability reveals it.</li>
 </ul>
 </div>
@@ -540,7 +545,7 @@ s = \sqrt{s^2} \qquad\qquad \sigma = \sqrt{\sigma^2}
 <li>check <strong>Summary statistics</strong></li>
 </ul>
 <p><br></p>
-<p>One run returns <strong>mean, SE, median, SD, variance, skewness, kurtosis, range, min, max</strong> — the entire numerical toolkit of today’s lecture in a single panel.</p>
+<p>One run returns <strong>mean, SE, median, SD, variance, skewness, kurtosis, range, min, max</strong>: the entire numerical toolkit of today’s lecture in a single panel.</p>
 </div><div class="column" style="width:60%;">
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
@@ -559,7 +564,7 @@ s = \sqrt{s^2} \qquad\qquad \sigma = \sqrt{\sigma^2}
 
 </section>
 <section id="skewness-is-the-distribution-lopsided" class="slide level2 center">
-<h2>Skewness — Is the Distribution Lopsided?</h2>
+<h2>Skewness: Is the Distribution Lopsided?</h2>
 <p><br></p>
 <ul>
 <li class="fragment">Center and spread still miss one thing: <strong>symmetry</strong>. <strong>Skewness</strong> measures the lopsidedness of a distribution.</li>
@@ -648,8 +653,8 @@ s = \sqrt{s^2} \qquad\qquad \sigma = \sqrt{\sigma^2}
 </table>
 </div>
 <ul>
-<li class="fragment"><p>Both are <strong>close to symmetric</strong> (|skew| well under 1) — good news, because the Empirical Rule we are about to use assumes a roughly bell shape.</p></li>
-<li class="fragment"><p>B’s slight <strong>left</strong> skew traces to a couple of weak early days (a slow June 2–3) — worth flagging, not alarming.</p></li>
+<li class="fragment"><p>Both are <strong>close to symmetric</strong> (|skew| well under 1): good news, because the Empirical Rule we are about to use assumes a roughly bell shape.</p></li>
+<li class="fragment"><p>B’s slight <strong>left</strong> skew traces to a couple of weak early days (a slow June 2–3): worth flagging, not alarming.</p></li>
 </ul>
 </section>
 <section id="boxplots-show-shape-at-a-glance" class="slide level2 center">
@@ -660,10 +665,10 @@ s = \sqrt{s^2} \qquad\qquad \sigma = \sqrt{\sigma^2}
 </ul>
 </section>
 <section id="z-scores-how-unusual-is-one-day" class="slide level2 center">
-<h2>z-Scores — How Unusual Is One Day?</h2>
+<h2>z-Scores: How Unusual Is One Day?</h2>
 <p><br></p>
 <ul>
-<li class="fragment">A <strong>z-score</strong> (standardized value) reports how many <strong>standard deviations</strong> a value sits from the mean — a unit-free measure of <strong>relative location</strong>:</li>
+<li class="fragment">A <strong>z-score</strong> (standardized value) reports how many <strong>standard deviations</strong> a value sits from the mean, a unit-free measure of <strong>relative location</strong>:</li>
 </ul>
 <div class="fragment">
 <p><span class="math display">\[
@@ -672,12 +677,12 @@ z_i = \frac{x_i - \bar{x}}{s}
 </div>
 <ul>
 <li class="fragment"><p><span class="math inline">\(z &lt; 0\)</span> → below the mean; <span class="math inline">\(z &gt; 0\)</span> → above; <span class="math inline">\(z = 0\)</span> → exactly at the mean. A <span class="math inline">\(z\)</span> of <span class="math inline">\(+2\)</span> means “two SDs above average.”</p></li>
-<li class="fragment"><p>It lets you compare positions <strong>across different scales</strong> — a $4.07 eRPM day and a 38,000-install day both become “how many SDs from typical?”</p></li>
+<li class="fragment"><p>It lets you compare positions <strong>across different scales</strong>: a $4.07 eRPM day and a 38,000-install day both become “how many SDs from typical?”</p></li>
 <li class="fragment"><p><strong>Excel:</strong> <code>=STANDARDIZE(x, mean, standard_deviation)</code>.</p></li>
 </ul>
 </section>
 <section id="the-empirical-rule-for-bell-shaped-data" class="slide level2 center">
-<h2>The Empirical Rule — for Bell-Shaped Data</h2>
+<h2>The Empirical Rule: for Bell-Shaped Data</h2>
 
 <img data-src="figs/empirical_rule.png" class="quarto-figure quarto-figure-center r-stretch" style="width:68.0%"><ul>
 <li>When data are roughly <strong>bell-shaped</strong>: ≈<strong>68%</strong> fall within ±1 SD, ≈<strong>95%</strong> within ±2 SD, ≈<strong>99.7%</strong> within ±3 SD of the mean.</li>
@@ -724,11 +729,11 @@ z_i = \frac{x_i - \bar{x}}{s}
 </div>
 <ul>
 <li class="fragment"><p>The observed shares track the rule closely → B’s eRPM is <strong>well-approximated by a bell shape</strong>. (We will <em>fit</em> that bell formally in a later topic.)</p></li>
-<li class="fragment"><p><strong>Practical use:</strong> a day outside $2.77–$4.15 is in the rare 5% tail — worth a second look.</p></li>
+<li class="fragment"><p><strong>Practical use:</strong> a day outside $2.77–$4.15 is in the rare 5% tail, worth a second look.</p></li>
 </ul>
 </section>
 <section id="chebyshev-when-you-cant-assume-a-bell" class="slide level2 center">
-<h2>Chebyshev — When You Can’t Assume a Bell</h2>
+<h2>Chebyshev: When You Can’t Assume a Bell</h2>
 <p><br></p>
 <ul>
 <li class="fragment">The Empirical Rule needs a <strong>bell shape</strong>. <strong>Chebyshev’s Theorem</strong> makes a weaker promise that holds for <strong>any</strong> distribution:</li>
@@ -771,7 +776,7 @@ z_i = \frac{x_i - \bar{x}}{s}
 </ul>
 </section>
 <section id="detecting-outliers-two-rules-that-can-disagree" class="slide level2 center">
-<h2>Detecting Outliers — Two Rules That Can Disagree</h2>
+<h2>Detecting Outliers: Two Rules That Can Disagree</h2>
 <p><br></p>
 <ul>
 <li class="fragment">An <strong>outlier</strong> is an unusually small or large value. It may be a recording error, a wrongly-included point, or a <strong>genuinely unusual but valid</strong> observation. Two common rules:</li>
@@ -801,7 +806,7 @@ z_i = \frac{x_i - \bar{x}}{s}
 </table>
 </div>
 <ul>
-<li class="fragment"><p><strong>They do not always agree</strong> — the IQR rule is more sensitive in the tails. On Vungle’s B, <strong>two</strong> slow days (June 2 at $2.587 and June 3 at $2.755) sit <em>below</em> the boxplot lower fence (≈$2.80), yet both stay <em>inside</em> the <span class="math inline">\(|z|&gt;3\)</span> cutoff (June 2’s <span class="math inline">\(z = -2.53\)</span> is the most extreme). The boxplot rule flags two days; the z-rule flags none.</p></li>
+<li class="fragment"><p><strong>They do not always agree:</strong> the IQR rule is more sensitive in the tails. On Vungle’s B, <strong>two</strong> slow days (June 2 at $2.587 and June 3 at $2.755) sit <em>below</em> the boxplot lower fence (≈$2.80), yet both stay <em>inside</em> the <span class="math inline">\(|z|&gt;3\)</span> cutoff (June 2’s <span class="math inline">\(z = -2.53\)</span> is the most extreme). The boxplot rule flags two days; the z-rule flags none.</p></li>
 <li class="fragment"><p><strong>A flag is an invitation to investigate, not a delete button.</strong> Ask <em>why</em> before you drop a point.</p></li>
 </ul>
 </section>
@@ -809,8 +814,8 @@ z_i = \frac{x_i - \bar{x}}{s}
 <h2>Outlier Hunt on Vungle’s B</h2>
 
 <img data-src="figs/zscores_B.png" class="quarto-figure quarto-figure-center r-stretch" style="width:78.0%"><ul>
-<li>The most extreme day is <strong>June 2 at $2.587, z = −2.53</strong> — notable, but <strong>not</strong> an outlier by the <span class="math inline">\(|z| &gt; 3\)</span> rule (which flags <strong>no</strong> days here).</li>
-<li>The <strong>boxplot</strong> rule flags <strong>two</strong> days below the $2.80 fence — June 2 <em>and</em> <strong>June 3 ($2.755)</strong>. Same data, two rules, different verdicts — judgment decides.</li>
+<li>The most extreme day is <strong>June 2 at $2.587, z = −2.53</strong>: notable, but <strong>not</strong> an outlier by the <span class="math inline">\(|z| &gt; 3\)</span> rule (which flags <strong>no</strong> days here).</li>
+<li>The <strong>boxplot</strong> rule flags <strong>two</strong> days below the $2.80 fence: June 2 <em>and</em> <strong>June 3 ($2.755)</strong>. Same data, two rules, different verdicts; judgment decides.</li>
 </ul>
 </section></section>
 <section>
@@ -822,7 +827,7 @@ z_i = \frac{x_i - \bar{x}}{s}
 <h2>The Five-Number Summary</h2>
 <p><br></p>
 <ul>
-<li class="fragment">Five numbers summarize a whole distribution — center, spread, and shape in one compact line:</li>
+<li class="fragment">Five numbers summarize a whole distribution: center, spread, and shape in one compact line:</li>
 </ul>
 <div class="fragment">
 <p><span class="math display">\[
@@ -897,7 +902,7 @@ z_i = \frac{x_i - \bar{x}}{s}
 <div class="columns">
 <div class="column" style="width:42%;">
 <p><br></p>
-<p>Five formula cells per column give the whole summary — then <strong>Insert → Box and Whisker</strong> draws it.</p>
+<p>Five formula cells per column give the whole summary; then <strong>Insert → Box and Whisker</strong> draws it.</p>
 <p><br></p>
 <ul>
 <li>IQR and CV drop straight out of the same cells.</li>
@@ -956,19 +961,19 @@ z_i = \frac{x_i - \bar{x}}{s}
 </table>
 </div>
 <ul>
-<li class="fragment">Start with a <strong>scatter plot</strong> — always look before you compute.</li>
+<li class="fragment">Start with a <strong>scatter plot</strong>: always look before you compute.</li>
 </ul>
 </section>
 <section id="a-scatter-plot-comes-first" class="slide level2 center">
 <h2>A Scatter Plot Comes First</h2>
 
 <img data-src="figs/scatter_clicks_installs.png" class="quarto-figure quarto-figure-center r-stretch" style="width:56.0%"><ul>
-<li>Each dot is one day for Algorithm A: its clicks (x) and installs (y). The cloud slopes <strong>up</strong> — more clicks, more installs.</li>
+<li>Each dot is one day for Algorithm A: its clicks (x) and installs (y). The cloud slopes <strong>up</strong>: more clicks, more installs.</li>
 <li>A scatter plot reveals the <strong>direction, strength, and any non-linearity</strong> the single numbers might hide.</li>
 </ul>
 </section>
 <section id="covariance-direction-of-the-relationship" class="slide level2 center">
-<h2>Covariance — Direction of the Relationship</h2>
+<h2>Covariance: Direction of the Relationship</h2>
 <p><br></p>
 <ul>
 <li class="fragment">Covariance averages the <strong>product of paired deviations</strong> from each variable’s mean:</li>
@@ -982,12 +987,12 @@ z_i = \frac{x_i - \bar{x}}{s}
 </div>
 <ul>
 <li class="fragment"><p><strong>Sign is the message:</strong> positive → the variables move <strong>together</strong>; negative → they move <strong>opposite</strong>; near zero → no linear relationship.</p></li>
-<li class="fragment"><p><strong>But the magnitude is uninterpretable:</strong> covariance depends on the units. Rescale clicks from raw counts to thousands and the number changes — it captures <strong>direction, not strength</strong>.</p></li>
+<li class="fragment"><p><strong>But the magnitude is uninterpretable:</strong> covariance depends on the units. Rescale clicks from raw counts to thousands and the number changes; it captures <strong>direction, not strength</strong>.</p></li>
 <li class="fragment"><p><strong>Excel:</strong> <code>=COVARIANCE.S(array1, array2)</code> (sample) or <code>=COVARIANCE.P(...)</code> (population).</p></li>
 </ul>
 </section>
 <section id="correlation-direction-and-strength" class="slide level2 center">
-<h2>Correlation — Direction <em>and</em> Strength</h2>
+<h2>Correlation: Direction <em>and</em> Strength</h2>
 <p><br></p>
 <ul>
 <li class="fragment">The <strong>correlation coefficient</strong> divides covariance by the two standard deviations, stripping out the units:</li>
@@ -1026,10 +1031,10 @@ r_{xy} = \frac{s_{xy}}{s_x \, s_y}
 </ul>
 </section>
 <section id="reading-r-a-visual-gallery" class="slide level2 center">
-<h2>Reading r — a Visual Gallery</h2>
+<h2>Reading r: a Visual Gallery</h2>
 
 <img data-src="figs/correlation_gallery.png" class="quarto-figure quarto-figure-center r-stretch" style="width:90.0%"><ul>
-<li>As <span class="math inline">\(|r|\)</span> grows, the cloud tightens toward a line. <span class="math inline">\(r\)</span> captures <strong>linear</strong> association only — a perfect U-shape can have <span class="math inline">\(r \approx 0\)</span>.</li>
+<li>As <span class="math inline">\(|r|\)</span> grows, the cloud tightens toward a line. <span class="math inline">\(r\)</span> captures <strong>linear</strong> association only; a perfect U-shape can have <span class="math inline">\(r \approx 0\)</span>.</li>
 </ul>
 </section>
 <section id="vungle-association-clicks-vs.-installs" class="slide level2 center">
@@ -1076,8 +1081,8 @@ r_{xy} = \frac{s_{xy}}{s_x \, s_y}
 <div class="fragment">
 <ul>
 <li class="fragment">Covariance is <strong>positive</strong> → clicks and installs move together. But “163.7” means nothing on its own.</li>
-<li class="fragment">Correlation <strong>+0.915</strong> says the same direction <em>and</em> that the relationship is <strong>strong</strong> — check: <span class="math inline">\(163.7 / (48.69 \times 3.67) = 0.915\)</span>.</li>
-<li class="fragment"><strong>Managerial read:</strong> days with more clicks reliably bring more installs — the funnel holds together.</li>
+<li class="fragment">Correlation <strong>+0.915</strong> says the same direction <em>and</em> that the relationship is <strong>strong</strong>; check: <span class="math inline">\(163.7 / (48.69 \times 3.67) = 0.915\)</span>.</li>
+<li class="fragment"><strong>Managerial read:</strong> days with more clicks reliably bring more installs; the funnel holds together.</li>
 </ul>
 </div>
 </div>
@@ -1087,10 +1092,10 @@ r_{xy} = \frac{s_{xy}}{s_x \, s_y}
 <div class="columns">
 <div class="column" style="width: 55%; justify-content: center; align-items: center;">
 <ul>
-<li><p>A high <span class="math inline">\(r\)</span> means two variables <strong>move together</strong> — <em>not</em> that one <strong>causes</strong> the other.</p></li>
-<li><p>Clicks and installs are both partly driven by <strong>daily traffic volume</strong> — a lurking third variable.</p></li>
+<li><p>A high <span class="math inline">\(r\)</span> means two variables <strong>move together</strong>, <em>not</em> that one <strong>causes</strong> the other.</p></li>
+<li><p>Clicks and installs are both partly driven by <strong>daily traffic volume</strong>, a lurking third variable.</p></li>
 <li><p>The internet is full of nonsense high correlations (cheese consumption vs.&nbsp;bedsheet accidents).</p></li>
-<li><p><strong>Only the experimental design</strong> (random assignment of A vs.&nbsp;B) licenses causal claims — correlation alone never does.</p></li>
+<li><p><strong>Only the experimental design</strong> (random assignment of A vs.&nbsp;B) licenses causal claims; correlation alone never does.</p></li>
 </ul>
 </div><div class="column" style="width: 45%; text-align: center; justify-content: center; align-items: center;">
 <div class="cell" data-layout-align="center">
@@ -1106,63 +1111,56 @@ r_{xy} = \frac{s_{xy}}{s_x \, s_y}
 <p><a href="https://www.tylervigen.com/spurious-correlations">Spurious Correlations</a></p>
 </div>
 </div></div>
-</section>
-<section id="team-sprint-build-the-a-vs-b-descriptive-dashboard" class="slide level2 center">
-<h2>⏱️ Team Sprint — Build the A-vs-B Descriptive Dashboard</h2>
-<div class="sprint">
-<p><strong>Decide:</strong> what can you honestly tell the CEO about B’s edge — center, spread, and risk?</p>
-<p><strong>Data:</strong> <code>data/vungle_descriptive.xlsx</code> (or <code>data/vungle_daily.csv</code>) · <strong>Time:</strong> ~18 min</p>
-<ol type="1">
-<li><strong>Center &amp; spread:</strong> with <strong>Data → Data Analysis → Descriptive Statistics</strong>, get the <strong>mean, median, SD, and range</strong> of <code>erpm</code> for A and for B; compute the <strong>CV</strong> for each (<code>=STDEV.S/AVERAGE</code>).</li>
-<li><strong>Shape &amp; outliers:</strong> compare each mean to its median (skew?); flag any day with <strong>|z| &gt; 3</strong> (<code>=STANDARDIZE</code>).</li>
-<li><strong>Picture:</strong> build the <strong>five-number summary</strong> (<code>=QUARTILE.INC</code>) and insert a <strong>Box &amp; Whisker</strong> chart for A and B together.</li>
-<li><strong>Read it:</strong> write <strong>two sentences</strong> — <em>(1) how A and B compare on center and spread, (2) what that means for the rollout decision.</em></li>
-</ol>
-<p><strong>Submit before you leave (graded, one slide per group):</strong> your call to the CEO on B’s edge + the <strong>center and spread numbers</strong> behind it (means, SDs, CVs, the boxplot) + the <strong>two things you would challenge</strong> in the analysis.</p>
-</div>
 </section></section>
 <section>
 <section id="debrief-the-ceo-brief" class="title-slide slide level1 center" data-background-color="#cfb991">
-<h1>Debrief — The CEO Brief</h1>
+<h1>Debrief: The CEO Brief</h1>
 
 </section>
 <section id="what-the-dashboard-says" class="slide level2 center">
 <h2>What the Dashboard Says</h2>
 <p><br></p>
 <ul>
-<li class="fragment"><p><strong>Center:</strong> B’s mean eRPM ($3.459) sits about <strong>$0.11 above</strong> A’s ($3.347) — B’s edge is real <em>in this sample</em>.</p></li>
-<li class="fragment"><p><strong>Spread:</strong> B is <strong>markedly riskier</strong> — SD $0.344 vs.&nbsp;$0.217, CV 10.0% vs.&nbsp;6.5%, a wider IQR and a wider range. <strong>Higher reward comes with higher volatility.</strong></p></li>
+<li class="fragment"><p><strong>Center:</strong> B’s mean eRPM ($3.459) sits about <strong>$0.11 above</strong> A’s ($3.347); B’s edge is real <em>in this sample</em>.</p></li>
+<li class="fragment"><p><strong>Spread:</strong> B is <strong>markedly riskier</strong>: SD $0.344 vs.&nbsp;$0.217, CV 10.0% vs.&nbsp;6.5%, a wider IQR and a wider range. <strong>Higher reward comes with higher volatility.</strong></p></li>
 <li class="fragment"><p><strong>Shape:</strong> both are roughly symmetric (|skew| &lt; 0.5); no day is an outlier by the <span class="math inline">\(|z|&gt;3\)</span> rule, though B’s two slow days (June 2 &amp; June 3) fall past the boxplot’s lower fence.</p></li>
-<li class="fragment"><p><strong>The honest two-sentence read:</strong> <em>“Over 30 days, B averaged $0.11 more per 1,000 impressions than A, but with ~50% more day-to-day volatility. Whether that $0.11 edge is real signal or sampling noise is a question description alone cannot settle — that needs a hypothesis test.”</em></p></li>
+<li class="fragment"><p><strong>The honest two-sentence read:</strong> <em>“Over 30 days, B averaged $0.11 more per 1,000 impressions than A, but with ~50% more day-to-day volatility. Whether that $0.11 edge is real signal or sampling noise is a question description alone cannot settle; that needs a hypothesis test.”</em></p></li>
 </ul>
 </section>
-<section id="managers-takeaway" class="slide level2 center">
-<h2>Manager’s Takeaway</h2>
+<section id="the-ceos-takeaway" class="slide level2 center">
+<h2>The CEO’s Takeaway</h2>
 <p><br></p>
 <ul>
-<li class="fragment"><p><strong>One sentence:</strong> B earns <strong>more on average</strong> ($3.46 vs.&nbsp;$3.35) but is <strong>more volatile</strong> (SD $0.34 vs.&nbsp;$0.22, CV 10% vs.&nbsp;6.5%) — the mean was only half the story.</p></li>
-<li class="fragment"><p><strong>One number to remember:</strong> <strong>CV</strong> — Algorithm B’s spread is <strong>10% of its mean</strong> vs.&nbsp;A’s 6.5%; that is the risk the CEO must weigh against the $0.11 reward.</p></li>
-<li class="fragment"><p><strong>One caveat:</strong> description <strong>summarizes the 30 days we have</strong>; it <strong>cannot</strong> tell us whether B’s $0.11 edge generalizes to all future traffic. <em>Is the edge real or noise?</em> is an <strong>inference</strong> question — the heart of Topics 7–9.</p></li>
-<li class="fragment"><p><strong>Practice with the real data:</strong> <code>data/vungle_daily.csv</code> + the Analysis ToolPak → reproduce the A-vs-B dashboard. Worked solutions: <code>data/vungle_descriptive.xlsx</code>.</p></li>
+<li class="fragment"><p><strong>One sentence:</strong> B earns <strong>more on average</strong> ($3.46 vs.&nbsp;$3.35) but is <strong>more volatile</strong> (SD $0.34 vs.&nbsp;$0.22, CV 10% vs.&nbsp;6.5%); the mean was only half the story.</p></li>
+<li class="fragment"><p><strong>One number to remember:</strong> <strong>CV</strong>. Algorithm B’s spread is <strong>10% of its mean</strong> vs.&nbsp;A’s 6.5%; that is the risk you, the CEO, must weigh against the $0.11 reward.</p></li>
+<li class="fragment"><p><strong>One caveat:</strong> description <strong>summarizes the 30 days we have</strong>; it <strong>cannot</strong> tell us whether B’s $0.11 edge generalizes to all future traffic. <em>Is the edge real or noise?</em> is an <strong>inference</strong> question, the heart of Topics 7–9.</p></li>
+<li class="fragment"><p><strong>Practice with the real data:</strong> <code>data/vungle_daily.csv</code> + the Analysis ToolPak, then reproduce the A-vs-B dashboard. Worked solutions: <code>data/vungle_descriptive.xlsx</code>.</p></li>
 </ul>
+</section>
+<section id="team-sprint-your-group-case" class="slide level2 center">
+<h2>⏱️ Team Sprint: Your Group Case</h2>
+<div class="sprint">
+<p><strong>Now it’s your group’s turn.</strong> Today’s in-class group case is posted on <strong>Brightspace</strong> (<em>Topic 02 Group Case</em>): a separate business decision you make with today’s tools.</p>
+<p><strong>What you’ll use:</strong> center, spread, shape, boxplots, and correlation. <strong>Excel:</strong> Analysis ToolPak, then Descriptive Statistics and a Box &amp; Whisker chart.</p>
+<p><strong>Submit one PDF per group before you leave:</strong> your decision plus the numbers behind it.</p>
+</div>
+</section></section>
+<section>
+<section id="wrap-up" class="title-slide slide level1 center" data-background-color="#cfb991">
+<h1>Wrap-up</h1>
+
 </section>
 <section id="summary" class="slide level2 center">
 <h2>Summary</h2>
 <p>Some key takeaways from this session:</p>
 <ul>
-<li><strong>The center is only half the story.</strong> Range, IQR, variance, SD, and CV describe <strong>spread</strong> — and two algorithms with the same mean can carry very different risk.</li>
+<li><strong>The center is only half the story.</strong> Range, IQR, variance, SD, and CV describe <strong>spread</strong>; two algorithms with the same mean can carry very different risk.</li>
 <li><strong>Standard deviation</strong> puts spread back in the data’s own units; <strong>CV</strong> makes spread comparable across differently-sized series.</li>
 <li><strong>Shape</strong> (skewness) and <strong>relative location</strong> (z-scores, Empirical Rule, Chebyshev) tell you whether a value is unusual; <strong>outlier rules can disagree</strong>, so investigate before you delete.</li>
-<li>The <strong>five-number summary</strong> and <strong>boxplot</strong> compress center, spread, and shape into one picture — ideal for an A-vs-B comparison.</li>
-<li><strong>Covariance</strong> gives the direction of a relationship; <strong>correlation</strong> (<span class="math inline">\(-1\)</span> to <span class="math inline">\(+1\)</span>) gives direction <em>and</em> strength — but <strong>correlation is not causation</strong>.</li>
-<li>For Vungle: <strong>B earns more but is riskier</strong> — and whether its $0.11 edge is <em>real</em> is the inference question we tackle next.</li>
-</ul>
-</section>
-<section id="carry-forward" class="slide level2 center">
-<h2>Carry-forward</h2>
-<ul>
-<li><p><strong>Homework (individual):</strong> today’s tools (center, spread, shape, boxplots, and correlation) are drilled on <strong>HW1</strong>, individual problem sets in the previous-edition format, posted on Brightspace. Run them yourself so you can check an analyst who uses them.</p></li>
-<li><p><strong>Next time:</strong> we move from <em>describing</em> uncertainty to <em>quantifying</em> it — <strong>Probability</strong>: the chance a random impression installs, and how that chance changes once it clicks.</p></li>
+<li>The <strong>five-number summary</strong> and <strong>boxplot</strong> compress center, spread, and shape into one picture, ideal for an A-vs-B comparison.</li>
+<li><strong>Covariance</strong> gives the direction of a relationship; <strong>correlation</strong> (<span class="math inline">\(-1\)</span> to <span class="math inline">\(+1\)</span>) gives direction <em>and</em> strength; but <strong>correlation is not causation</strong>.</li>
+<li>For Vungle: <strong>B earns more but is riskier</strong>, and whether its $0.11 edge is <em>real</em> is the inference question we tackle next.</li>
+<li><strong>Next time:</strong> <strong>Probability</strong>, the chance a random impression installs and how that chance shifts once a viewer clicks.</li>
 </ul>
 </section></section>
 <section id="thank-you" class="title-slide slide level1 center" data-background-color="#cfb991">

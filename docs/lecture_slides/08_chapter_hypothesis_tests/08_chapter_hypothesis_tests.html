@@ -157,8 +157,8 @@ Professor<br>Davi Moreira<br>
 </ul>
 </div><div class="column" style="width: 50%; text-align: center; justify-content: center; align-items: center;">
 <ul>
-<li><strong>Lecture 1:</strong> one-sample <span class="math inline">\(t\)</span> about a <strong>mean</strong> — is B’s eRPM above $3.30?</li>
-<li><strong>Lecture 2:</strong> one-sample <span class="math inline">\(z\)</span> about a <strong>proportion</strong> — does B clear the conversion target?</li>
+<li><strong>Lecture 1:</strong> one-sample <span class="math inline">\(t\)</span> about a <strong>mean</strong> (is B’s eRPM above $3.30?)</li>
+<li><strong>Lecture 2:</strong> one-sample <span class="math inline">\(z\)</span> about a <strong>proportion</strong> (does B clear the conversion target?)</li>
 <li>Reading <span class="math inline">\(p\)</span>-values like a manager</li>
 <li>The rule that sets up Topic 9: testing <strong>two</strong> populations</li>
 </ul>
@@ -170,33 +170,34 @@ Professor<br>Davi Moreira<br>
 
 </section>
 <section id="june-2014-one-month-of-data-one-funding-decision" class="slide level2 center">
-<h2>June 2014 — One Month of Data, One Funding Decision</h2>
+<h2>June 2014: One Month of Data, One Funding Decision</h2>
 <p><br></p>
 <ul>
 <li class="fragment"><p><a href="https://en.wikipedia.org/wiki/Liftoff_Mobile">Vungle</a> is a mobile ad-tech startup: it serves 15-second video ads inside other companies’ apps and earns revenue mainly when a viewer <strong>installs</strong> the advertised app (cost-per-install).</p></li>
-<li class="fragment"><p>Two analysts built a new ad-serving algorithm (<strong>B</strong>) and ran it head-to-head against the existing one (<strong>A</strong>) for the entire month of June 2014. The metric that pays the bills is <strong>eRPM</strong> — effective revenue per 1,000 impressions.</p></li>
-<li class="fragment"><p>We have already <strong>described</strong> the data (Topics 1–2) and <strong>estimated</strong> B’s true mean eRPM with a confidence interval (Topic 7). Now the CFO needs a <strong>yes/no decision</strong>.</p></li>
-<li class="fragment"><p>Up to now we asked <em>“what is B’s true eRPM?”</em> Today we ask a sharper question: <em>“is it above a line we care about?”</em> — and we answer with a <strong>test</strong>.</p></li>
+<li class="fragment"><p>Two analysts built a new ad-serving algorithm (<strong>B</strong>) and ran it head-to-head against the existing one (<strong>A</strong>) for the entire month of June 2014. The metric that pays the bills is <strong>eRPM</strong>, effective revenue per 1,000 impressions.</p></li>
+<li class="fragment"><p>We have already <strong>described</strong> the data (Topics 1–2) and <strong>estimated</strong> B’s true mean eRPM with a confidence interval (Topic 7). Now, as Vungle’s CEO, you need a <strong>yes/no decision</strong>.</p></li>
+<li class="fragment"><p>Up to now we asked <em>“what is B’s true eRPM?”</em> Today we ask a sharper question: <em>“is it above a line we care about?”</em>, and we answer with a <strong>test</strong>.</p></li>
 </ul>
 </section>
-<section id="the-brief-todays-managerial-question" class="slide level2 center">
-<h2>The Brief — Today’s Managerial Question</h2>
+<section id="the-brief-roll-out-b-or-stay-with-a" class="slide level2 center">
+<h2>The Brief: Roll Out B, or Stay With A?</h2>
 <p><br></p>
 <blockquote>
-<p>“The CFO will <strong>fund algorithm B</strong> only if its mean eRPM clears the historical <strong>$3.30 benchmark</strong> that algorithm A has long delivered. B’s 30-day average looks like $3.46 — but is that <strong>really</strong> above $3.30, or could a sample of 30 noisy days land there by luck? <strong>Test it.</strong>”</p>
+<p>“We fund <strong>algorithm B</strong> only if its mean eRPM clears the historical <strong>$3.30 benchmark</strong> that algorithm A has long delivered. B’s 30-day average looks like $3.46, but is that <strong>really</strong> above $3.30, or could a sample of 30 noisy days land there by luck? <strong>Test it.</strong>”</p>
 </blockquote>
 <p><br></p>
 <ul>
-<li class="fragment"><p>This is the canonical one-population question in business: <strong>is a parameter on the right side of a line?</strong> — a benchmark, a target, a contractual threshold.</p></li>
-<li class="fragment"><p><strong>How today’s studio runs:</strong> I demo each test on a textbook example <span class="math inline">\(\rightarrow\)</span> <strong>your team runs it on the Vungle data</strong> <span class="math inline">\(\rightarrow\)</span> we debrief the funding call together. Two lectures, two tests.</p></li>
-<li class="fragment"><p>By the end, <strong>your team</strong> makes the funding recommendation — with the statistics to back it up.</p></li>
+<li class="fragment"><p>The big call is <em>roll out B, or stay with A?</em> This topic answers the first piece of it. <strong>Today’s question:</strong> <em>is the mean really above the benchmark?</em></p></li>
+<li class="fragment"><p>This is the canonical one-population question in business: <strong>is a parameter on the right side of a line?</strong> A benchmark, a target, a contractual threshold.</p></li>
+<li class="fragment"><p><strong>How today’s studio runs:</strong> I demo each test on a textbook example, then a good analyst’s work goes up for you to reproduce and interrogate, then we debrief the funding call together. Two lectures, two tests.</p></li>
+<li class="fragment"><p>By the end, <strong>you</strong> make the funding recommendation, with the statistics to back it up.</p></li>
 </ul>
 </section>
 <section id="estimation-vs.-testing-two-jobs-for-the-same-sample" class="slide level2 center">
-<h2>Estimation vs.&nbsp;Testing — Two Jobs for the Same Sample</h2>
+<h2>Estimation vs.&nbsp;Testing: Two Jobs for the Same Sample</h2>
 <p><br></p>
 <ul>
-<li class="fragment"><p>In Topic 7 we <strong>estimated</strong>: built a confidence interval — a range of plausible values for B’s true mean eRPM.</p></li>
+<li class="fragment"><p>In Topic 7 we <strong>estimated</strong>: built a confidence interval, a range of plausible values for B’s true mean eRPM.</p></li>
 <li class="fragment"><p>Today we <strong>test</strong>: weigh the evidence for a <strong>specific claim</strong> about that mean.</p></li>
 </ul>
 <div class="fragment">
@@ -238,7 +239,7 @@ Professor<br>Davi Moreira<br>
 </table>
 </div>
 <ul>
-<li class="fragment">They are two views of the <strong>same</strong> sampling logic — and we will see at the end they agree.</li>
+<li class="fragment">They are two views of the <strong>same</strong> sampling logic, and we will see at the end they agree.</li>
 </ul>
 </section></section>
 <section>
@@ -247,10 +248,10 @@ Professor<br>Davi Moreira<br>
 
 </section>
 <section id="h_0-is-on-trial-the-skeptics-position" class="slide level2 center">
-<h2><span class="math inline">\(H_0\)</span> Is on Trial — the Skeptic’s Position</h2>
+<h2><span class="math inline">\(H_0\)</span> Is on Trial: the Skeptic’s Position</h2>
 
 <img data-src="figs/h0_courtroom.png" class="quarto-figure quarto-figure-center r-stretch" style="width:72.0%"><ul>
-<li>The <strong>null hypothesis</strong> <span class="math inline">\(H_0\)</span> is the status quo — <em>“nothing new here, B is no better than the $3.30 line.”</em> It is assumed true until the data overturn it.</li>
+<li>The <strong>null hypothesis</strong> <span class="math inline">\(H_0\)</span> is the status quo: <em>“nothing new here, B is no better than the $3.30 line.”</em> It is assumed true until the data overturn it.</li>
 <li>The <strong>alternative</strong> <span class="math inline">\(H_a\)</span> is the research claim (<em>“B beats $3.30”</em>), accepted <strong>only</strong> with strong evidence. The data carry the burden of proof.</li>
 </ul>
 </section>
@@ -261,8 +262,8 @@ Professor<br>Davi Moreira<br>
 <li class="fragment"><p><strong>Rule:</strong> put what you <strong>want to prove</strong> in <span class="math inline">\(H_a\)</span>; the equality always lives in <span class="math inline">\(H_0\)</span>.</p></li>
 <li class="fragment"><p>Two ways the question arrives in business:</p>
 <ul>
-<li class="fragment"><strong>Research hypothesis</strong> — gather evidence <em>for</em> something new (new algorithm, new bonus plan, new drug). Start with <span class="math inline">\(H_a\)</span>: <em>“the new thing works.”</em></li>
-<li class="fragment"><strong>Challenge an assumption</strong> — test whether a long-held claim still holds (a label says 67.6 oz; a goal is 12 minutes). Start with <span class="math inline">\(H_0\)</span>: <em>“the claim is true.”</em></li>
+<li class="fragment"><strong>Research hypothesis:</strong> gather evidence <em>for</em> something new (new algorithm, new bonus plan, new drug). Start with <span class="math inline">\(H_a\)</span>: <em>“the new thing works.”</em></li>
+<li class="fragment"><strong>Challenge an assumption:</strong> test whether a long-held claim still holds (a label says 67.6 oz; a goal is 12 minutes). Start with <span class="math inline">\(H_0\)</span>: <em>“the claim is true.”</em></li>
 </ul></li>
 <li class="fragment"><p>Vungle is a <strong>research</strong> case: we want evidence that B clears $3.30, so that claim is <span class="math inline">\(H_a\)</span>.</p></li>
 </ul>
@@ -273,10 +274,10 @@ H_0: \mu \leq 3.30 \qquad \text{vs.} \qquad H_a: \mu &gt; 3.30
 </div>
 </section>
 <section id="three-forms-the-business-question-picks-the-tail" class="slide level2 center">
-<h2>Three Forms — the Business Question Picks the Tail</h2>
+<h2>Three Forms: the Business Question Picks the Tail</h2>
 
 <img data-src="figs/hypothesis_forms.png" class="quarto-figure quarto-figure-center r-stretch" style="width:80.0%"><ul>
-<li><strong>Upper-tail</strong> (Vungle): we only act if B is <strong>better</strong> — “worse” and “same” lead to the same decision (don’t fund).</li>
+<li><strong>Upper-tail</strong> (Vungle): we only act if B is <strong>better</strong>; “worse” and “same” lead to the same decision (don’t fund).</li>
 <li><strong>Lower-tail</strong>: we act if the parameter falls <strong>below</strong> a line (a defect rate above a ceiling, response time over a goal).</li>
 <li><strong>Two-tailed</strong>: any <strong>difference</strong> matters (a fill weight that is too high <em>or</em> too low).</li>
 </ul>
@@ -297,7 +298,7 @@ H_0: \mu \leq 3.30 \qquad \text{vs.} \qquad H_a: \mu &gt; 3.30
 \]</span></p>
 </div>
 <ul>
-<li class="fragment"><p>The <strong>equality</strong> (<span class="math inline">\(=\)</span>, <span class="math inline">\(\leq\)</span>, <span class="math inline">\(\geq\)</span>) is always part of <span class="math inline">\(H_0\)</span> — it is the value we compute the test statistic <em>against</em>.</p></li>
+<li class="fragment"><p>The <strong>equality</strong> (<span class="math inline">\(=\)</span>, <span class="math inline">\(\leq\)</span>, <span class="math inline">\(\geq\)</span>) is always part of <span class="math inline">\(H_0\)</span>: it is the value we compute the test statistic <em>against</em>.</p></li>
 <li class="fragment"><p>The direction of <span class="math inline">\(H_a\)</span> comes from the <strong>business decision</strong>, not from peeking at the data.</p></li>
 </ul>
 </section></section>
@@ -310,40 +311,41 @@ H_0: \mu \leq 3.30 \qquad \text{vs.} \qquad H_a: \mu &gt; 3.30
 <h2>Type I and Type II Errors</h2>
 
 <img data-src="figs/type_I_II_errors_studio.png" class="quarto-figure quarto-figure-center r-stretch" style="width:62.0%"><ul>
-<li><strong>Type I error:</strong> reject <span class="math inline">\(H_0\)</span> when it is true — fund B though it really <em>isn’t</em> above $3.30 (a costly false alarm).</li>
-<li><strong>Type II error:</strong> fail to reject <span class="math inline">\(H_0\)</span> when it is false — <em>miss</em> a genuinely better B (a missed opportunity).</li>
+<li><strong>Type I error:</strong> reject <span class="math inline">\(H_0\)</span> when it is true (fund B though it really <em>isn’t</em> above $3.30, a costly false alarm).</li>
+<li><strong>Type II error:</strong> fail to reject <span class="math inline">\(H_0\)</span> when it is false (<em>miss</em> a genuinely better B, a missed opportunity).</li>
 </ul>
 </section>
 <section id="you-control-alpha-beta-follows" class="slide level2 center">
 <h2>You Control <span class="math inline">\(\alpha\)</span>; <span class="math inline">\(\beta\)</span> Follows</h2>
 <p><br></p>
 <ul>
-<li class="fragment"><p>The <strong>level of significance</strong> <span class="math inline">\(\alpha\)</span> = the probability of a <strong>Type I error</strong> you are willing to tolerate. You set it <strong>before</strong> seeing the data — usually <span class="math inline">\(\alpha = 0.05\)</span> (sometimes <span class="math inline">\(0.01\)</span> or <span class="math inline">\(0.10\)</span>).</p></li>
+<li class="fragment"><p>The <strong>level of significance</strong> <span class="math inline">\(\alpha\)</span> = the probability of a <strong>Type I error</strong> you are willing to tolerate. You set it <strong>before</strong> seeing the data; usually <span class="math inline">\(\alpha = 0.05\)</span> (sometimes <span class="math inline">\(0.01\)</span> or <span class="math inline">\(0.10\)</span>).</p></li>
 <li class="fragment"><p><span class="math inline">\(\beta\)</span> = the probability of a <strong>Type II error</strong>. You do <strong>not</strong> set it directly; it follows from <span class="math inline">\(\alpha\)</span>, the sample size, and how far the truth is from <span class="math inline">\(H_0\)</span>.</p></li>
 <li class="fragment"><p><strong>The trade-off:</strong> for a fixed sample, lowering <span class="math inline">\(\alpha\)</span> (fewer false alarms) <strong>raises</strong> <span class="math inline">\(\beta\)</span> (more missed effects). The only way to shrink both is a <strong>larger sample</strong>.</p></li>
-<li class="fragment"><p><strong>Language rule:</strong> when the evidence is weak we say <em>“fail to reject <span class="math inline">\(H_0\)</span>,”</em> never <em>“accept <span class="math inline">\(H_0\)</span>.”</em> Absence of proof is not proof of absence — we just did not gather enough evidence to overturn the skeptic.</p></li>
+<li class="fragment"><p><strong>Language rule:</strong> when the evidence is weak we say <em>“fail to reject <span class="math inline">\(H_0\)</span>,”</em> never <em>“accept <span class="math inline">\(H_0\)</span>.”</em> Absence of proof is not proof of absence; we just did not gather enough evidence to overturn the skeptic.</p></li>
 </ul>
 </section>
 <section id="why-the-asymmetry-matters-for-vungle" class="slide level2 center">
 <h2>Why the Asymmetry Matters for Vungle</h2>
 <p><br></p>
 <ul>
-<li class="fragment"><p>A <strong>Type I error</strong> funds an algorithm that is not actually better — the company spends on a non-improvement and the analyst’s credibility takes the hit.</p></li>
-<li class="fragment"><p>A <strong>Type II error</strong> walks away from a real improvement — money left on the table, but no bad rollout.</p></li>
-<li class="fragment"><p>The CFO decides which mistake is worse and sets <span class="math inline">\(\alpha\)</span> accordingly. Here a false “fund it” is the headline risk, so we hold <span class="math inline">\(\alpha = 0.05\)</span>.</p></li>
+<li class="fragment"><p>A <strong>Type I error</strong> funds an algorithm that is not actually better: the company spends on a non-improvement and the analyst’s credibility takes the hit.</p></li>
+<li class="fragment"><p>A <strong>Type II error</strong> walks away from a real improvement: money left on the table, but no bad rollout.</p></li>
+<li class="fragment"><p>As CEO you decide which mistake is worse and set <span class="math inline">\(\alpha\)</span> accordingly. Here a false “fund it” is the headline risk, so we hold <span class="math inline">\(\alpha = 0.05\)</span>.</p></li>
 <li class="fragment"><p>This is why <span class="math inline">\(H_0\)</span> is conservative: the test protects the <strong>status quo</strong> until the evidence is strong enough to justify the change.</p></li>
 </ul>
 </section></section>
 <section>
 <section id="lecture-1-one-sample-test-about-a-mean" class="title-slide slide level1 center" data-background-color="#cfb991">
-<h1>Lecture 1 — One-Sample Test About a Mean</h1>
+<h1>Lecture 1: One-Sample Test About a Mean</h1>
 
 </section>
-<section id="the-brief-is-bs-erpm-above-the-3.30-benchmark" class="slide level2 center">
-<h2>The Brief — Is B’s eRPM Above the $3.30 Benchmark?</h2>
+<section id="the-brief-is-the-mean-really-above-the-benchmark" class="slide level2 center">
+<h2>The Brief: Is the Mean Really Above the Benchmark?</h2>
 <p><br></p>
 <ul>
-<li class="fragment"><p>We do <strong>not</strong> know the true population standard deviation <span class="math inline">\(\sigma\)</span> of B’s daily eRPM — so we estimate it from the sample with <span class="math inline">\(s\)</span> and use the <strong><span class="math inline">\(t\)</span>-distribution</strong>.</p></li>
+<li class="fragment"><p>The big call is <em>roll out B, or stay with A?</em> <strong>Lecture 1’s piece:</strong> <em>is B’s mean eRPM really above the $3.30 benchmark, or could a noisy 30-day sample land there by luck?</em></p></li>
+<li class="fragment"><p>We do <strong>not</strong> know the true population standard deviation <span class="math inline">\(\sigma\)</span> of B’s daily eRPM, so we estimate it from the sample with <span class="math inline">\(s\)</span> and use the <strong><span class="math inline">\(t\)</span>-distribution</strong>.</p></li>
 <li class="fragment"><p>The decision is asymmetric (fund only if <strong>better</strong>), so it is an <strong>upper-tail</strong> test:</p></li>
 </ul>
 <div class="fragment">
@@ -353,7 +355,7 @@ H_0: \mu \leq 3.30 \qquad \text{vs.} \qquad H_a: \mu &gt; 3.30 \qquad \alpha = 0
 </div>
 <ul>
 <li class="fragment"><p><span class="math inline">\(\mu\)</span> = the <strong>true</strong> mean daily eRPM B would deliver across <em>all</em> future traffic; the 30 June days are our sample.</p></li>
-<li class="fragment"><p><strong>Today’s plan:</strong> demo the mechanics on a textbook airport-rating case, then your team runs it on Vungle.</p></li>
+<li class="fragment"><p><strong>Today’s plan:</strong> demo the mechanics on a textbook airport-rating case, then a good analyst’s work on Vungle goes up for you to reproduce and stress-test.</p></li>
 </ul>
 </section>
 <section id="the-test-statistic-how-many-standard-errors-above-the-line" class="slide level2 center">
@@ -369,7 +371,7 @@ t = \frac{\bar{x} - \mu_0}{s / \sqrt{n}}, \qquad df = n - 1
 </div>
 <ul>
 <li class="fragment"><p><span class="math inline">\(\bar{x}\)</span> = sample mean · <span class="math inline">\(\mu_0\)</span> = the benchmark in <span class="math inline">\(H_0\)</span> · <span class="math inline">\(s\)</span> = sample standard deviation · <span class="math inline">\(n\)</span> = sample size.</p></li>
-<li class="fragment"><p>A <strong>big</strong> <span class="math inline">\(t\)</span> means the sample mean is many standard errors above the line — hard to explain as luck if <span class="math inline">\(H_0\)</span> were true.</p></li>
+<li class="fragment"><p>A <strong>big</strong> <span class="math inline">\(t\)</span> means the sample mean is many standard errors above the line: hard to explain as luck if <span class="math inline">\(H_0\)</span> were true.</p></li>
 <li class="fragment"><p>Because <span class="math inline">\(\sigma\)</span> is unknown and replaced by <span class="math inline">\(s\)</span>, the statistic follows a <strong><span class="math inline">\(t\)</span> distribution</strong> with <span class="math inline">\(n-1\)</span> degrees of freedom (slightly heavier tails than the normal).</p></li>
 </ul>
 </section>
@@ -389,7 +391,7 @@ t = \frac{\bar{x} - \mu_0}{s / \sqrt{n}}, \qquad df = n - 1
 \]</span></p>
 </div>
 <ul>
-<li class="fragment"><p><strong><span class="math inline">\(p\)</span>-value approach:</strong> compute the probability, <em>if <span class="math inline">\(H_0\)</span> were true</em>, of a test statistic at least this extreme — then reject <span class="math inline">\(H_0\)</span> if <span class="math inline">\(p \leq \alpha\)</span>.</p></li>
+<li class="fragment"><p><strong><span class="math inline">\(p\)</span>-value approach:</strong> compute the probability, <em>if <span class="math inline">\(H_0\)</span> were true</em>, of a test statistic at least this extreme, then reject <span class="math inline">\(H_0\)</span> if <span class="math inline">\(p \leq \alpha\)</span>.</p></li>
 <li class="fragment"><p>Both always agree. Excel: <code>=T.INV(1-α, df)</code> for the critical value, <code>=T.DIST.RT(t, df)</code> for an upper-tail <span class="math inline">\(p\)</span>-value.</p></li>
 </ul>
 </section>
@@ -397,7 +399,7 @@ t = \frac{\bar{x} - \mu_0}{s / \sqrt{n}}, \qquad df = n - 1
 <h2>What the <span class="math inline">\(p\)</span>-Value Actually Means</h2>
 <p><br></p>
 <ul>
-<li class="fragment"><p>The <span class="math inline">\(p\)</span>-value is <strong><span class="math inline">\(P(\text{evidence this extreme} \mid H_0 \text{ true})\)</span></strong> — <em>not</em> the probability that <span class="math inline">\(H_0\)</span> is true.</p></li>
+<li class="fragment"><p>The <span class="math inline">\(p\)</span>-value is <strong><span class="math inline">\(P(\text{evidence this extreme} \mid H_0 \text{ true})\)</span></strong>, <em>not</em> the probability that <span class="math inline">\(H_0\)</span> is true.</p></li>
 <li class="fragment"><p>Read it as: <em>“if B were really only at the $3.30 line, how often would 30 days look this good by luck?”</em> Small <span class="math inline">\(p\)</span> <span class="math inline">\(\Rightarrow\)</span> that luck is implausible <span class="math inline">\(\Rightarrow\)</span> doubt <span class="math inline">\(H_0\)</span>.</p></li>
 <li class="fragment"><p>A manager’s verbal scale for the strength of evidence against <span class="math inline">\(H_0\)</span>:</p></li>
 </ul>
@@ -445,7 +447,7 @@ H_0: \mu \leq 7 \qquad H_a: \mu &gt; 7 \qquad \alpha = 0.05
 </div>
 </section>
 <section id="heathrow-the-five-steps" class="slide level2 center">
-<h2>Heathrow — the Five Steps</h2>
+<h2>Heathrow: the Five Steps</h2>
 <div class="r-fit-text">
 <p><strong>1. Business context.</strong> Classify the airport; only a true mean above 7 earns the “superior service” badge.</p>
 <p><strong>2. Hypotheses</strong> (upper-tail): <span class="math inline">\(H_0: \mu \leq 7\)</span> vs.&nbsp;<span class="math inline">\(H_a: \mu &gt; 7\)</span>, <span class="math inline">\(\alpha = 0.05\)</span>.</p>
@@ -454,18 +456,18 @@ H_0: \mu \leq 7 \qquad H_a: \mu &gt; 7 \qquad \alpha = 0.05
 t = \frac{\bar{x} - \mu_0}{s/\sqrt{n}} = \frac{7.25 - 7}{1.052/\sqrt{60}} = \frac{0.25}{0.1358} = 1.84, \qquad df = 59
 \]</span></p>
 <p><strong>4. Decision.</strong> Critical value: <span class="math inline">\(t_{0.05,\,59} = 1.671\)</span>; since <span class="math inline">\(1.84 \geq 1.671\)</span> <span class="math inline">\(\rightarrow\)</span> <strong>reject <span class="math inline">\(H_0\)</span></strong>. Equivalently, <span class="math inline">\(p\text{-value} = 0.035 \leq 0.05\)</span> <span class="math inline">\(\rightarrow\)</span> <strong>reject <span class="math inline">\(H_0\)</span></strong>.</p>
-<p><strong>5. Manager’s Translation.</strong> <em>The data give us at least 95% confidence that Heathrow’s mean traveler rating tops 7 — classify it “superior service.” The evidence is strong but not overwhelming (<span class="math inline">\(p \approx 0.035\)</span>).</em></p>
+<p><strong>5. Manager’s Translation.</strong> <em>The data give us at least 95% confidence that Heathrow’s mean traveler rating tops 7, so classify it “superior service.” The evidence is strong but not overwhelming (<span class="math inline">\(p \approx 0.035\)</span>).</em></p>
 </div>
 </section>
 <section id="now-the-spine-case-bs-erpm-in-numbers" class="slide level2 center">
-<h2>Now the Spine Case — B’s eRPM in Numbers</h2>
+<h2>Now the Spine Case: B’s eRPM in Numbers</h2>
 
 <img data-src="figs/erpm_B_vs_benchmark.png" class="quarto-figure quarto-figure-center r-stretch" style="width:80.0%"><ul>
-<li>21 of 30 days clear the $3.30 line, and the sample mean sits well above it — but a noisy 30-day sample <em>could</em> land here even if the true mean were exactly $3.30. The test settles it.</li>
+<li>21 of 30 days clear the $3.30 line, and the sample mean sits well above it, but a noisy 30-day sample <em>could</em> land here even if the true mean were exactly $3.30. The test settles it.</li>
 </ul>
 </section>
 <section id="step-3-compute-the-test-statistic" class="slide level2 center">
-<h2>Step 3 — Compute the Test Statistic</h2>
+<h2>Step 3: Compute the Test Statistic</h2>
 <p><br></p>
 <p>From the 30 daily eRPM values for Algorithm B in <code>data/vungle_daily.csv</code>:</p>
 <div class="fragment">
@@ -515,15 +517,15 @@ t = \frac{3.4590 - 3.30}{0.3444/\sqrt{30}} = \frac{0.1590}{0.0629} = 2.529
 </div>
 </section>
 <section id="step-4-decision-critical-value" class="slide level2 center">
-<h2>Step 4 — Decision (Critical Value)</h2>
+<h2>Step 4: Decision (Critical Value)</h2>
 
 <img data-src="figs/t_dist_critical_vungle.png" class="quarto-figure quarto-figure-center r-stretch" style="width:74.0%"><ul>
 <li><strong>Critical value:</strong> <span class="math inline">\(t_{0.05,\,29} = 1.699\)</span>. Since <span class="math inline">\(t = 2.529 \geq 1.699\)</span> <span class="math inline">\(\rightarrow\)</span> <strong>reject <span class="math inline">\(H_0\)</span></strong>.</li>
-<li>The observed <span class="math inline">\(t\)</span> lands deep in the gold rejection region — a sample mean this far above $3.30 is hard to explain as luck.</li>
+<li>The observed <span class="math inline">\(t\)</span> lands deep in the gold rejection region; a sample mean this far above $3.30 is hard to explain as luck.</li>
 </ul>
 </section>
 <section id="step-4-decision-p-value" class="slide level2 center">
-<h2>Step 4 — Decision (<span class="math inline">\(p\)</span>-Value)</h2>
+<h2>Step 4: Decision (<span class="math inline">\(p\)</span>-Value)</h2>
 
 <img data-src="figs/t_dist_pvalue_vungle.png" class="quarto-figure quarto-figure-center r-stretch" style="width:74.0%"><ul>
 <li><strong><span class="math inline">\(p\)</span>-value:</strong> <span class="math inline">\(P(T_{29} &gt; 2.529) = 0.009\)</span>. Since <span class="math inline">\(0.009 \leq 0.05\)</span> <span class="math inline">\(\rightarrow\)</span> <strong>reject <span class="math inline">\(H_0\)</span></strong>.</li>
@@ -531,11 +533,11 @@ t = \frac{3.4590 - 3.30}{0.3444/\sqrt{30}} = \frac{0.1590}{0.0629} = 2.529
 </ul>
 </section>
 <section id="the-threshold-matters-a-teaching-moment" class="slide level2 center">
-<h2>The Threshold Matters — a Teaching Moment</h2>
+<h2>The Threshold Matters: a Teaching Moment</h2>
 <p><br></p>
 <ul>
 <li class="fragment"><p>At <span class="math inline">\(\alpha = 0.05\)</span> the call is clear: <span class="math inline">\(p = 0.009 \leq 0.05\)</span>, reject.</p></li>
-<li class="fragment"><p>At a stricter <span class="math inline">\(\alpha = 0.01\)</span>? The critical value rises to <span class="math inline">\(t_{0.01,\,29} = 2.462\)</span>. Our <span class="math inline">\(t = 2.529\)</span> still clears it — but <strong>just barely</strong>.</p></li>
+<li class="fragment"><p>At a stricter <span class="math inline">\(\alpha = 0.01\)</span>? The critical value rises to <span class="math inline">\(t_{0.01,\,29} = 2.462\)</span>. Our <span class="math inline">\(t = 2.529\)</span> still clears it, but <strong>just barely</strong>.</p></li>
 </ul>
 <div class="fragment">
 <p><span class="math display">\[
@@ -543,7 +545,7 @@ t = 2.529 \;&gt;\; t_{0.01,\,29} = 2.462 \quad\Rightarrow\quad \text{reject } H_
 \]</span></p>
 </div>
 <ul>
-<li class="fragment"><strong>Lesson:</strong> how strict you set <span class="math inline">\(\alpha\)</span> can flip a close call. Here B clears even the demanding 1% bar — but a result like <span class="math inline">\(p = 0.03\)</span> would reject at 5% and <em>fail</em> at 1%. <strong>Decide <span class="math inline">\(\alpha\)</span> before you test, and report it.</strong></li>
+<li class="fragment"><strong>Lesson:</strong> how strict you set <span class="math inline">\(\alpha\)</span> can flip a close call. Here B clears even the demanding 1% bar, but a result like <span class="math inline">\(p = 0.03\)</span> would reject at 5% and <em>fail</em> at 1%. <strong>Decide <span class="math inline">\(\alpha\)</span> before you test, and report it.</strong></li>
 </ul>
 </section>
 <section id="excel-build-the-one-sample-t-with-formula-cells" class="slide level2 center">
@@ -559,7 +561,7 @@ t = 2.529 \;&gt;\; t_{0.01,\,29} = 2.462 \quad\Rightarrow\quad \text{reject } H_
 <li><code>=T.DIST.RT(t, 29)</code> for the upper-tail <span class="math inline">\(p\)</span></li>
 </ul>
 <p><br></p>
-<p>(First run <strong>Descriptive Statistics</strong> on the <code>erpm</code> B column to read <span class="math inline">\(\bar{x}\)</span>, <span class="math inline">\(s\)</span>, <span class="math inline">\(n\)</span> — then wire the test cells to it.)</p>
+<p>(First run <strong>Descriptive Statistics</strong> on the <code>erpm</code> B column to read <span class="math inline">\(\bar{x}\)</span>, <span class="math inline">\(s\)</span>, <span class="math inline">\(n\)</span>, then wire the test cells to it.)</p>
 </div><div class="column" style="width:60%;">
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
@@ -584,60 +586,50 @@ t = 2.529 \;&gt;\; t_{0.01,\,29} = 2.462 \quad\Rightarrow\quad \text{reject } H_
 \]</span></p>
 </div>
 <ul>
-<li class="fragment"><p>The benchmark <strong>$3.30 sits below the entire interval</strong> — consistent with rejecting <span class="math inline">\(H_0: \mu \leq 3.30\)</span>.</p></li>
+<li class="fragment"><p>The benchmark <strong>$3.30 sits below the entire interval</strong>, consistent with rejecting <span class="math inline">\(H_0: \mu \leq 3.30\)</span>.</p></li>
 <li class="fragment"><p>This is the <strong>duality</strong>: a value outside the CI is exactly a value the test would reject. Estimation and testing tell one story.</p></li>
-<li class="fragment"><p>Even the lower bound, $3.33, is above the line — at Vungle’s scale of hundreds of millions of impressions, a few cents per 1,000 is real money.</p></li>
+<li class="fragment"><p>Even the lower bound, $3.33, is above the line: at Vungle’s scale of hundreds of millions of impressions, a few cents per 1,000 is real money.</p></li>
 </ul>
 </section>
 <section id="step-5-managers-translation" class="slide level2 center">
-<h2>Step 5 — Manager’s Translation</h2>
+<h2>Step 5: Manager’s Translation</h2>
 <p><br></p>
 <ul>
-<li class="fragment"><p><em>“If algorithm B were truly no better than the $3.30 benchmark, we would see 30 days average this high only about <strong>9 times in 1,000</strong>. That is overwhelming evidence B clears the line — its true mean eRPM is plausibly between $3.33 and $3.59. <strong>Fund B.</strong>”</em></p></li>
-<li class="fragment"><p><strong>One number, one caveat:</strong> the call rests on <span class="math inline">\(t = 2.53\)</span> (<span class="math inline">\(p = 0.009\)</span>) — and on the assumption that June’s 30 days are <strong>representative</strong> of future traffic. A new month with different seasonality could shift the mean.</p></li>
-<li class="fragment"><p>This answers <em>“is B above the line?”</em> — but the CFO’s deeper question is <em>“is B better than <strong>A</strong>?”</em> That comparison of <strong>two</strong> populations is Topic 9.</p></li>
+<li class="fragment"><p><em>“If algorithm B were truly no better than the $3.30 benchmark, we would see 30 days average this high only about <strong>9 times in 1,000</strong>. That is overwhelming evidence B clears the line; its true mean eRPM is plausibly between $3.33 and $3.59. <strong>Fund B.</strong>”</em></p></li>
+<li class="fragment"><p><strong>One number, one caveat:</strong> the call rests on <span class="math inline">\(t = 2.53\)</span> (<span class="math inline">\(p = 0.009\)</span>), and on the assumption that June’s 30 days are <strong>representative</strong> of future traffic. A new month with different seasonality could shift the mean.</p></li>
+<li class="fragment"><p>This answers <em>“is B above the line?”</em>, but the deeper question is <em>“is B better than <strong>A</strong>?”</em> That comparison of <strong>two</strong> populations is Topic 9.</p></li>
 </ul>
 </section>
-<section id="team-sprint-1-does-b-clear-the-3.30-benchmark" class="slide level2 center">
-<h2>⏱️ Team Sprint 1 — Does B Clear the $3.30 Benchmark?</h2>
+<section id="the-ceos-takeaway-lecture-1" class="slide level2 center">
+<h2>The CEO’s Takeaway: Lecture 1</h2>
+<p><br></p>
+<ul>
+<li class="fragment"><p><strong>One sentence:</strong> algorithm B’s mean daily eRPM is above the $3.30 benchmark; the one-sample <span class="math inline">\(t\)</span>-test rejects “no better” with overwhelming evidence (<span class="math inline">\(p = 0.009\)</span>). <strong>Fund B.</strong></p></li>
+<li class="fragment"><p><strong>One number to remember:</strong> <span class="math inline">\(t = 2.53\)</span>, and where it came from: <span class="math inline">\((\bar{x} - \mu_0)/(s/\sqrt{n})\)</span>.</p></li>
+<li class="fragment"><p><strong>One caveat:</strong> the test says B beats the <strong>$3.30 line</strong>, not that B beats <strong>A</strong>, and it assumes June is representative. Comparing B to A directly is Topic 9.</p></li>
+<li class="fragment"><p><strong>Homework (individual):</strong> today’s one-sample <span class="math inline">\(t\)</span> is drilled on <strong>HW3</strong>, previous-edition problem sets on Brightspace. Run it yourself so you can check an analyst who uses it.</p></li>
+</ul>
+</section>
+<section id="team-sprint-your-group-case-lecture-1" class="slide level2 center">
+<h2>⏱️ Team Sprint: Your Group Case (Lecture 1)</h2>
 <div class="sprint">
-<p><strong>Decide:</strong> is algorithm B’s mean eRPM truly above the $3.30 funding benchmark?</p>
-<p><strong>Data:</strong> <code>data/vungle_daily.csv</code> (filter <code>algorithm = B</code>, column <code>erpm</code>) · <strong>Time:</strong> ~10 min</p>
-<ol type="1">
-<li>Run <strong>Data → Data Analysis → Descriptive Statistics</strong> on B’s <code>erpm</code> to get <span class="math inline">\(\bar{x}\)</span>, <span class="math inline">\(s\)</span>, <span class="math inline">\(n\)</span>.</li>
-<li>In formula cells, compute <span class="math inline">\(SE = s/\sqrt{n}\)</span>, then <span class="math inline">\(t = (\bar{x}-3.30)/SE\)</span>, then the upper-tail <span class="math inline">\(p\)</span> with <code>=T.DIST.RT(t, 29)</code>.</li>
-<li>Build the 95% CI for the mean; check that $3.30 falls below it. Decide at <span class="math inline">\(\alpha = 0.05\)</span>.</li>
-</ol>
-<p><strong>Submit before you leave (graded, one slide per group):</strong> your <strong>fund / don’t fund</strong> call for the CFO + your <span class="math inline">\(t\)</span>, <span class="math inline">\(p\)</span>, and CI + the <strong>two things you would challenge</strong> in the analysis.</p>
+<p><strong>Now it’s your group’s turn.</strong> Today’s in-class group case is posted on <strong>Brightspace</strong> (<em>Topic 08 Group Case, Lecture 1</em>): a separate business decision you make with today’s tools.</p>
+<p><strong>What you’ll use:</strong> a one-sample <span class="math inline">\(t\)</span>-test about a <strong>mean</strong>. <strong>Excel:</strong> Analysis ToolPak → Descriptive Statistics, then formula cells for <span class="math inline">\(SE\)</span>, <span class="math inline">\(t\)</span>, and the upper-tail <span class="math inline">\(p\)</span> (<code>=T.DIST.RT</code>).</p>
+<p><strong>Submit one PDF per group before you leave:</strong> your decision plus the numbers behind it.</p>
 </div>
-</section>
-<section id="debrief-lecture-1-managers-takeaway" class="slide level2 center">
-<h2>Debrief — Lecture 1 Manager’s Takeaway</h2>
-<p><br></p>
-<ul>
-<li class="fragment"><p><strong>One sentence:</strong> algorithm B’s mean daily eRPM is above the $3.30 benchmark — the one-sample <span class="math inline">\(t\)</span>-test rejects “no better” with overwhelming evidence (<span class="math inline">\(p = 0.009\)</span>). <strong>Fund B.</strong></p></li>
-<li class="fragment"><p><strong>One number to remember:</strong> <span class="math inline">\(t = 2.53\)</span> — and where it came from: <span class="math inline">\((\bar{x} - \mu_0)/(s/\sqrt{n})\)</span>.</p></li>
-<li class="fragment"><p><strong>One caveat:</strong> the test says B beats the <strong>$3.30 line</strong>, not that B beats <strong>A</strong> — and it assumes June is representative. Comparing B to A directly is Topic 9.</p></li>
-</ul>
-</section>
-<section id="carry-forward-lecture-1" class="slide level2 center">
-<h2>Carry-forward — Lecture 1</h2>
-<ul>
-<li><p><strong>Homework (individual):</strong> today’s tools (one-sample <span class="math inline">\(t\)</span> and <span class="math inline">\(z\)</span> hypothesis tests) are drilled on <strong>HW3</strong> — individual problem sets in the previous-edition format, posted on Brightspace. Run them yourself so you can check an analyst who uses them.</p></li>
-<li><p><strong>Next lecture:</strong> the same logic for a <strong>proportion</strong> — does B’s <em>conversion rate</em> clear its target?</p></li>
-</ul>
 </section></section>
 <section>
 <section id="lecture-2-one-sample-test-about-a-proportion" class="title-slide slide level1 center" data-background-color="#cfb991">
-<h1>Lecture 2 — One-Sample Test About a Proportion</h1>
+<h1>Lecture 2: One-Sample Test About a Proportion</h1>
 
 </section>
-<section id="the-brief-does-b-clear-the-conversion-target" class="slide level2 center">
-<h2>The Brief — Does B Clear the Conversion Target?</h2>
+<section id="the-brief-is-the-proportion-really-above-the-target" class="slide level2 center">
+<h2>The Brief: Is the Proportion Really Above the Target?</h2>
 <p><br></p>
 <ul>
+<li class="fragment"><p>The big call is still <em>roll out B, or stay with A?</em> <strong>Lecture 2’s piece:</strong> <em>is B’s conversion rate really above the 0.35% target?</em></p></li>
 <li class="fragment"><p>eRPM is revenue per impression. The ops team also watches the <strong>conversion rate</strong>: installs ÷ impressions. Any algorithm must clear a minimum <strong>0.35%</strong> conversion target to be viable.</p></li>
-<li class="fragment"><p>Now the parameter is a <strong>proportion</strong> <span class="math inline">\(p\)</span>, not a mean — but the machinery is the same: state <span class="math inline">\(H_0\)</span>/<span class="math inline">\(H_a\)</span>, compute a test statistic, get a <span class="math inline">\(p\)</span>-value, decide at <span class="math inline">\(\alpha\)</span>.</p></li>
+<li class="fragment"><p>Now the parameter is a <strong>proportion</strong> <span class="math inline">\(p\)</span>, not a mean, but the machinery is the same: state <span class="math inline">\(H_0\)</span>/<span class="math inline">\(H_a\)</span>, compute a test statistic, get a <span class="math inline">\(p\)</span>-value, decide at <span class="math inline">\(\alpha\)</span>.</p></li>
 </ul>
 <div class="fragment">
 <p><span class="math display">\[
@@ -652,7 +644,7 @@ H_0: p \leq 0.0035 \qquad \text{vs.} \qquad H_a: p &gt; 0.0035 \qquad \alpha = 0
 <h2>The Unit of Observation Just Changed</h2>
 <p><br></p>
 <ul>
-<li class="fragment"><p>For <strong>eRPM</strong> the unit was the <strong>day</strong> (<span class="math inline">\(n = 30\)</span>). For <strong>conversion</strong> the unit is the <strong>impression</strong> — each one a Bernoulli trial (install / no install).</p></li>
+<li class="fragment"><p>For <strong>eRPM</strong> the unit was the <strong>day</strong> (<span class="math inline">\(n = 30\)</span>). For <strong>conversion</strong> the unit is the <strong>impression</strong>, each one a Bernoulli trial (install / no install).</p></li>
 <li class="fragment"><p>So <span class="math inline">\(n\)</span> is now <strong>15.8 million</strong>, not 30. The “sample” exploded in size.</p></li>
 <li class="fragment"><p>We aggregate June’s B rows: total installs ÷ total impressions.</p></li>
 </ul>
@@ -681,7 +673,7 @@ H_0: p \leq 0.0035 \qquad \text{vs.} \qquad H_a: p &gt; 0.0035 \qquad \alpha = 0
 </table>
 </div>
 <ul>
-<li class="fragment"><em>Honest caveat:</em> impressions within a day are not perfectly independent — beyond today’s scope, but a fair question to ask any A/B platform.</li>
+<li class="fragment"><em>Honest caveat:</em> impressions within a day are not perfectly independent (beyond today’s scope), but a fair question to ask any A/B platform.</li>
 </ul>
 </section>
 <section id="the-proportion-test-statistic" class="slide level2 center">
@@ -696,7 +688,7 @@ H_0: p \leq 0.0035 \qquad \text{vs.} \qquad H_a: p &gt; 0.0035 \qquad \alpha = 0
 \]</span></p>
 </div>
 <ul>
-<li class="fragment">Test statistic — a <strong><span class="math inline">\(z\)</span></strong>, because for large <span class="math inline">\(n\)</span> the sampling distribution of <span class="math inline">\(\bar p\)</span> is approximately normal:</li>
+<li class="fragment">Test statistic, a <strong><span class="math inline">\(z\)</span></strong>, because for large <span class="math inline">\(n\)</span> the sampling distribution of <span class="math inline">\(\bar p\)</span> is approximately normal:</li>
 </ul>
 <div class="fragment">
 <p><span class="math display">\[
@@ -704,7 +696,7 @@ z = \frac{\bar{p} - p_0}{\sigma_{\bar{p}}}
 \]</span></p>
 </div>
 <ul>
-<li class="fragment"><strong>Large-sample condition:</strong> <span class="math inline">\(np_0 \geq 5\)</span> and <span class="math inline">\(n(1-p_0) \geq 5\)</span>. Here <span class="math inline">\(np_0 \approx 55{,}000 \gg 5\)</span> — easily satisfied.</li>
+<li class="fragment"><strong>Large-sample condition:</strong> <span class="math inline">\(np_0 \geq 5\)</span> and <span class="math inline">\(n(1-p_0) \geq 5\)</span>. Here <span class="math inline">\(np_0 \approx 55{,}000 \gg 5\)</span>, easily satisfied.</li>
 </ul>
 </section>
 <section id="decision-rules-for-a-proportion" class="slide level2 center">
@@ -744,7 +736,7 @@ z = \frac{0.25 - 0.20}{0.02} = 2.50
 </div>
 </section>
 <section id="pine-creek-decision" class="slide level2 center">
-<h2>Pine Creek — Decision</h2>
+<h2>Pine Creek: Decision</h2>
 <p><br></p>
 <ul>
 <li class="fragment"><p><strong>Critical value:</strong> <span class="math inline">\(z_{0.05} = 1.645\)</span>. Since <span class="math inline">\(z = 2.50 \geq 1.645\)</span> <span class="math inline">\(\rightarrow\)</span> <strong>reject <span class="math inline">\(H_0\)</span></strong>.</p></li>
@@ -756,11 +748,11 @@ z = \frac{0.25 - 0.20}{0.02} = 2.50
 </blockquote>
 </div>
 <ul>
-<li class="fragment">Notice the parallel to the airport case: same five steps, same two roads — only the standard error formula and the reference distribution (normal vs.&nbsp;<span class="math inline">\(t\)</span>) changed.</li>
+<li class="fragment">Notice the parallel to the airport case: same five steps, same two roads; only the standard error formula and the reference distribution (normal vs.&nbsp;<span class="math inline">\(t\)</span>) changed.</li>
 </ul>
 </section>
 <section id="now-the-spine-case-bs-conversion-in-numbers" class="slide level2 center">
-<h2>Now the Spine Case — B’s Conversion in Numbers</h2>
+<h2>Now the Spine Case: B’s Conversion in Numbers</h2>
 <p><br></p>
 <ul>
 <li class="fragment">Plugging B’s June totals into the proportion test, with <span class="math inline">\(p_0 = 0.0035\)</span>:</li>
@@ -780,7 +772,7 @@ z = \frac{0.003541 - 0.003500}{1.485 \times 10^{-5}} = 2.733
 </ul>
 </section>
 <section id="step-4-decision" class="slide level2 center">
-<h2>Step 4 — Decision</h2>
+<h2>Step 4: Decision</h2>
 <p><br></p>
 <ul>
 <li class="fragment"><p><strong>Critical value:</strong> <span class="math inline">\(z_{0.05} = 1.645\)</span>. Since <span class="math inline">\(z = 2.733 \geq 1.645\)</span> <span class="math inline">\(\rightarrow\)</span> <strong>reject <span class="math inline">\(H_0\)</span></strong>.</p></li>
@@ -792,7 +784,7 @@ z = \frac{0.003541 - 0.003500}{1.485 \times 10^{-5}} = 2.733
 </blockquote>
 </div>
 <ul>
-<li class="fragment"><strong>But pause on the magnitude:</strong> the <em>effect size</em> is 0.0041 percentage points. With <span class="math inline">\(n\)</span> in the millions the test was almost <strong>guaranteed</strong> to be “significant” — which raises the question we tackle next.</li>
+<li class="fragment"><strong>But pause on the magnitude:</strong> the <em>effect size</em> is 0.0041 percentage points. With <span class="math inline">\(n\)</span> in the millions the test was almost <strong>guaranteed</strong> to be “significant,” which raises the question we tackle next.</li>
 </ul>
 </section>
 <section id="excel-one-proportion-z-with-formula-cells" class="slide level2 center">
@@ -800,7 +792,7 @@ z = \frac{0.003541 - 0.003500}{1.485 \times 10^{-5}} = 2.733
 <div class="columns">
 <div class="column" style="width:40%;">
 <p><br></p>
-<p>There is <strong>no ToolPak tool</strong> for a one-proportion <span class="math inline">\(z\)</span> — build it in cells:</p>
+<p>There is <strong>no ToolPak tool</strong> for a one-proportion <span class="math inline">\(z\)</span>, so build it in cells:</p>
 <ul>
 <li><code>=SUM</code> the installs and impressions for B</li>
 <li><span class="math inline">\(\bar p = x/n\)</span></li>
@@ -827,7 +819,7 @@ z = \frac{0.003541 - 0.003500}{1.485 \times 10^{-5}} = 2.733
 <p><br></p>
 <ul>
 <li class="fragment"><p>With <span class="math inline">\(n\)</span> in the <strong>millions</strong>, the conversion test was nearly guaranteed to reject: at this scale even a microscopic gap produces a large <span class="math inline">\(z\)</span>.</p></li>
-<li class="fragment"><p><span class="math inline">\(z = 2.73\)</span> tells you the gap is <strong>real</strong>; it does <strong>not</strong> tell you the gap <strong>matters</strong>. Always pair the test with the <strong>effect size</strong> — here +0.0041 percentage points above target.</p></li>
+<li class="fragment"><p><span class="math inline">\(z = 2.73\)</span> tells you the gap is <strong>real</strong>; it does <strong>not</strong> tell you the gap <strong>matters</strong>. Always pair the test with the <strong>effect size</strong>: here +0.0041 percentage points above target.</p></li>
 <li class="fragment"><p>Flip side, from small samples: a real effect can be <strong>invisible</strong> when <span class="math inline">\(n\)</span> is tiny (low power <span class="math inline">\(\rightarrow\)</span> Type II error). <strong>Large <span class="math inline">\(n\)</span>: almost everything is significant. Small <span class="math inline">\(n\)</span>: almost nothing is.</strong></p></li>
 <li class="fragment"><p>Neither replaces judgment about <strong>magnitude</strong>. <em>“Is it real?”</em> and <em>“is it big enough to act on?”</em> are different questions.</p></li>
 </ul>
@@ -835,7 +827,7 @@ z = \frac{0.003541 - 0.003500}{1.485 \times 10^{-5}} = 2.733
 <section id="reading-p-values-like-a-manager" class="slide level2 center">
 <h2>Reading <span class="math inline">\(p\)</span>-Values Like a Manager</h2>
 <div class="r-fit-text">
-<p>The same statistic, re-anchored to the Vungle eRPM mean test under different benchmarks — what would the verdict be?</p>
+<p>The same statistic, re-anchored to the Vungle eRPM mean test under different benchmarks: what would the verdict be?</p>
 <table class="caption-top">
 <colgroup>
 <col style="width: 17%">
@@ -859,58 +851,46 @@ z = \frac{0.003541 - 0.003500}{1.485 \times 10^{-5}} = 2.733
 <td style="text-align: right;">2.53</td>
 <td style="text-align: right;"><strong>0.009</strong></td>
 <td>Overwhelming</td>
-<td>Clear the line decisively — fund B</td>
+<td>Clear the line decisively, fund B</td>
 </tr>
 <tr class="even">
 <td><span class="math inline">\(\mu_0 = 3.35\)</span></td>
 <td style="text-align: right;">1.73</td>
 <td style="text-align: right;"><strong>0.047</strong></td>
 <td>Strong</td>
-<td>Significant at 5%, not at 1% — fund, but watch it</td>
+<td>Significant at 5%, not at 1%; fund, but watch it</td>
 </tr>
 <tr class="odd">
 <td><span class="math inline">\(\mu_0 = 3.40\)</span></td>
 <td style="text-align: right;">0.94</td>
 <td style="text-align: right;"><strong>0.178</strong></td>
 <td>Insufficient</td>
-<td>Cannot distinguish B from 3.40 — hold</td>
+<td>Cannot distinguish B from 3.40, so hold</td>
 </tr>
 </tbody>
 </table>
 </div>
 <ul>
-<li class="fragment">The <strong>same data</strong> support very different conclusions depending on <strong>where you draw the line</strong> — which is why the benchmark is a <em>business</em> decision, set before the test.</li>
+<li class="fragment">The <strong>same data</strong> support very different conclusions depending on <strong>where you draw the line</strong>, which is why the benchmark is a <em>business</em> decision, set before the test.</li>
 </ul>
 </section>
-<section id="team-sprint-2-does-b-clear-the-conversion-target" class="slide level2 center">
-<h2>⏱️ Team Sprint 2 — Does B Clear the Conversion Target?</h2>
-<div class="sprint">
-<p><strong>Decide:</strong> is algorithm B’s conversion rate (installs/impressions) above the 0.35% target?</p>
-<p><strong>Data:</strong> <code>data/vungle_daily.csv</code> (filter <code>algorithm = B</code>) · <strong>Time:</strong> ~12 min</p>
-<ol type="1">
-<li><code>=SUM</code> B’s <code>installs</code> and <code>impressions</code>; compute <span class="math inline">\(\bar p = x/n\)</span>.</li>
-<li>In formula cells: $SE = $ <code>=SQRT(0.0035*(1-0.0035)/n)</code>, then <span class="math inline">\(z = (\bar p - 0.0035)/SE\)</span>, then $p = $ <code>=1-NORM.S.DIST(z, TRUE)</code>.</li>
-<li>Decide at <span class="math inline">\(\alpha = 0.05\)</span> — <strong>then</strong> state the <strong>effect size</strong> (how far above target, in percentage points).</li>
-<li>In <strong>one sentence each:</strong> the call · the number · the caveat about statistical vs.&nbsp;practical significance.</li>
-</ol>
-<p><strong>Submit before you leave (graded, one slide per group):</strong> your <strong>viable / not viable</strong> call for the ops team + your <span class="math inline">\(z\)</span>, <span class="math inline">\(p\)</span>, and effect size + the <strong>two things you would challenge</strong> in the analysis.</p>
-</div>
-</section>
-<section id="debrief-lecture-2-managers-takeaway" class="slide level2 center">
-<h2>Debrief — Lecture 2 Manager’s Takeaway</h2>
+<section id="the-ceos-takeaway-lecture-2" class="slide level2 center">
+<h2>The CEO’s Takeaway: Lecture 2</h2>
 <p><br></p>
 <ul>
-<li class="fragment"><p><strong>One sentence:</strong> B’s conversion rate clears the 0.35% target — the one-proportion <span class="math inline">\(z\)</span>-test rejects “below target” (<span class="math inline">\(z = 2.73\)</span>, <span class="math inline">\(p = 0.003\)</span>). Viable on conversion, too.</p></li>
-<li class="fragment"><p><strong>One number to remember:</strong> <span class="math inline">\(z = 2.73\)</span> — same machinery as the <span class="math inline">\(t\)</span>, with <span class="math inline">\(\sigma_{\bar p} = \sqrt{p_0(1-p_0)/n}\)</span> in the denominator.</p></li>
+<li class="fragment"><p><strong>One sentence:</strong> B’s conversion rate clears the 0.35% target; the one-proportion <span class="math inline">\(z\)</span>-test rejects “below target” (<span class="math inline">\(z = 2.73\)</span>, <span class="math inline">\(p = 0.003\)</span>). Viable on conversion, too.</p></li>
+<li class="fragment"><p><strong>One number to remember:</strong> <span class="math inline">\(z = 2.73\)</span>, same machinery as the <span class="math inline">\(t\)</span>, with <span class="math inline">\(\sigma_{\bar p} = \sqrt{p_0(1-p_0)/n}\)</span> in the denominator.</p></li>
 <li class="fragment"><p><strong>One caveat:</strong> with 15.8M impressions, <em>significance was almost automatic</em>. The honest headline is the <strong>effect size</strong> (+0.0041 pts), not the <span class="math inline">\(z\)</span>. Statistical significance <span class="math inline">\(\neq\)</span> practical importance.</p></li>
+<li class="fragment"><p><strong>Homework (individual):</strong> today’s one-proportion <span class="math inline">\(z\)</span> is drilled on <strong>HW3</strong>, previous-edition problem sets on Brightspace. Run it yourself so you can check an analyst who uses it.</p></li>
 </ul>
 </section>
-<section id="carry-forward-lecture-2" class="slide level2 center">
-<h2>Carry-forward — Lecture 2</h2>
-<ul>
-<li><p><strong>Homework (individual):</strong> today’s tools (one-sample <span class="math inline">\(t\)</span> and <span class="math inline">\(z\)</span> hypothesis tests) are drilled on <strong>HW3</strong> — individual problem sets in the previous-edition format, posted on Brightspace. Run them yourself so you can check an analyst who uses them.</p></li>
-<li><p><strong>Next time:</strong> we stop testing <strong>one</strong> population against a line and start comparing <strong>two</strong> — <em>is B better than A?</em> — with the paired and two-sample tests of Topic 9.</p></li>
-</ul>
+<section id="team-sprint-your-group-case-lecture-2" class="slide level2 center">
+<h2>⏱️ Team Sprint: Your Group Case (Lecture 2)</h2>
+<div class="sprint">
+<p><strong>Now it’s your group’s turn.</strong> Today’s in-class group case is posted on <strong>Brightspace</strong> (<em>Topic 08 Group Case, Lecture 2</em>): a separate business decision you make with today’s tools.</p>
+<p><strong>What you’ll use:</strong> a one-proportion <span class="math inline">\(z\)</span>-test. <strong>Excel:</strong> Analysis ToolPak for any summaries, then formula cells for <span class="math inline">\(SE\)</span>, <span class="math inline">\(z\)</span>, and the upper-tail <span class="math inline">\(p\)</span> (<code>=1-NORM.S.DIST</code>).</p>
+<p><strong>Submit one PDF per group before you leave:</strong> your decision plus the numbers behind it.</p>
+</div>
 </section></section>
 <section>
 <section id="wrap-up" class="title-slide slide level1 center" data-background-color="#cfb991">
@@ -918,7 +898,7 @@ z = \frac{0.003541 - 0.003500}{1.485 \times 10^{-5}} = 2.733
 
 </section>
 <section id="the-one-population-testing-recipe-one-page" class="slide level2 center">
-<h2>The One-Population Testing Recipe — One Page</h2>
+<h2>The One-Population Testing Recipe: One Page</h2>
 <div class="r-fit-text">
 <table class="caption-top">
 <colgroup>
@@ -966,20 +946,20 @@ z = \frac{0.003541 - 0.003500}{1.485 \times 10^{-5}} = 2.733
 </tr>
 <tr class="odd">
 <td><strong>Vungle result</strong></td>
-<td><span class="math inline">\(t = 2.53\)</span>, <span class="math inline">\(p = 0.009\)</span> — fund B</td>
-<td><span class="math inline">\(z = 2.73\)</span>, <span class="math inline">\(p = 0.003\)</span> — clears target</td>
+<td><span class="math inline">\(t = 2.53\)</span>, <span class="math inline">\(p = 0.009\)</span> (fund B)</td>
+<td><span class="math inline">\(z = 2.73\)</span>, <span class="math inline">\(p = 0.003\)</span> (clears target)</td>
 </tr>
 </tbody>
 </table>
 </div>
 </section>
-<section id="managers-takeaway" class="slide level2 center">
-<h2>Manager’s Takeaway</h2>
+<section id="the-ceos-takeaway" class="slide level2 center">
+<h2>The CEO’s Takeaway</h2>
 <p><br></p>
 <ul>
-<li class="fragment"><p><strong>One sentence:</strong> Algorithm B’s mean eRPM ($3.46) is above the $3.30 funding benchmark and its conversion clears the 0.35% target — both one-sample tests reject the skeptic, so <strong>fund B</strong>.</p></li>
-<li class="fragment"><p><strong>One number to remember:</strong> <span class="math inline">\(t = 2.53\)</span> for the eRPM test — and the recipe behind it: <span class="math inline">\((\bar{x} - \mu_0)/(s/\sqrt{n})\)</span>.</p></li>
-<li class="fragment"><p><strong>One caveat:</strong> these tests say B beats a <strong>line</strong>, not that B beats <strong>A</strong> — and a large <span class="math inline">\(n\)</span> can make a tiny gap “significant.” Always report the <strong>effect size</strong> and check whether the benchmark is the right line.</p></li>
+<li class="fragment"><p><strong>One sentence:</strong> Algorithm B’s mean eRPM ($3.46) is above the $3.30 funding benchmark and its conversion clears the 0.35% target; both one-sample tests reject the skeptic, so <strong>fund B</strong>.</p></li>
+<li class="fragment"><p><strong>One number to remember:</strong> <span class="math inline">\(t = 2.53\)</span> for the eRPM test, and the recipe behind it: <span class="math inline">\((\bar{x} - \mu_0)/(s/\sqrt{n})\)</span>.</p></li>
+<li class="fragment"><p><strong>One caveat:</strong> these tests say B beats a <strong>line</strong>, not that B beats <strong>A</strong>, and a large <span class="math inline">\(n\)</span> can make a tiny gap “significant.” Always report the <strong>effect size</strong> and check whether the benchmark is the right line.</p></li>
 <li class="fragment"><p><strong>Practice with the real data:</strong></p>
 <ul>
 <li class="fragment"><code>data/vungle_daily.csv</code> + formula cells <span class="math inline">\(\rightarrow\)</span> reproduce <span class="math inline">\(t = 2.53\)</span> (eRPM) and <span class="math inline">\(z = 2.73\)</span> (conversion).</li>
@@ -993,10 +973,10 @@ z = \frac{0.003541 - 0.003500}{1.485 \times 10^{-5}} = 2.733
 <ul>
 <li><strong><span class="math inline">\(H_0\)</span> is the skeptic on trial:</strong> put the claim you want to prove in <span class="math inline">\(H_a\)</span>, keep the equality in <span class="math inline">\(H_0\)</span>, and let the data carry the burden of proof.</li>
 <li><strong>Two errors, one knob:</strong> you set <span class="math inline">\(\alpha\)</span> (Type I risk) before the test; <span class="math inline">\(\beta\)</span> (Type II) follows. Say <em>“fail to reject,”</em> never <em>“accept.”</em></li>
-<li><strong>One recipe, two parameters:</strong> the one-sample <span class="math inline">\(t\)</span> (mean, <span class="math inline">\(\sigma\)</span> unknown) and the one-proportion <span class="math inline">\(z\)</span> share the same five steps — only the standard error and reference distribution change.</li>
+<li><strong>One recipe, two parameters:</strong> the one-sample <span class="math inline">\(t\)</span> (mean, <span class="math inline">\(\sigma\)</span> unknown) and the one-proportion <span class="math inline">\(z\)</span> share the same five steps; only the standard error and reference distribution change.</li>
 <li><strong>Two roads agree:</strong> the critical-value and <span class="math inline">\(p\)</span>-value approaches always reach the same decision, and both agree with the confidence interval.</li>
 <li><strong>Significance <span class="math inline">\(\neq\)</span> importance:</strong> with millions of impressions almost everything is “significant,” so judge the <strong>effect size</strong>; with tiny samples real effects can hide, so mind the <strong>power</strong>.</li>
-<li>A test answers <em>is the parameter past a line?</em> Comparing <strong>two</strong> populations — <em>is B better than A?</em> — is Topic 9.</li>
+<li>A test answers <em>is the parameter past a line?</em> Comparing <strong>two</strong> populations (<em>is B better than A?</em>) is Topic 9.</li>
 </ul>
 </section></section>
 <section id="thank-you" class="title-slide slide level1 center" data-background-color="#cfb991">

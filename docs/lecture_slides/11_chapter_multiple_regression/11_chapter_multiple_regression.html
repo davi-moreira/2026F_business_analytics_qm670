@@ -173,17 +173,17 @@ Professor<br>Davi Moreira<br>
 <h2>Last Topic We Predicted with One Variable. Now We Have Four.</h2>
 <p><br></p>
 <ul>
-<li class="fragment"><p>Our client is a regional <strong>auto-parts retail chain</strong> — 45 stores, deciding where to put its next dollar.</p></li>
+<li class="fragment"><p>You own a regional <strong>auto-parts retail chain</strong>: 45 stores, deciding where to put the next dollar.</p></li>
 <li class="fragment"><p>Last time we found a single strong predictor of a store’s annual sales: its <strong>Yelp rating</strong>. Each extra star was worth roughly <strong>+$758K</strong> a year. A clean simple-regression story.</p></li>
-<li class="fragment"><p>But a Yelp rating is a <em>symptom</em>, not a lever you can pull directly. The CFO’s real question is sharper:</p></li>
+<li class="fragment"><p>But a Yelp rating is a <em>symptom</em>, not a lever you can pull directly. Your real question as Owner is sharper:</p></li>
 </ul>
 <div class="fragment">
 <blockquote>
-<p>“We can invest in <strong>location</strong> (open stores in bigger, richer markets), in <strong>service</strong> (raise the customer experience), or in <strong>merchandising</strong> (pay for premium <strong>endcap</strong> shelf placement). <strong>Which actually drives sales — and where should the money go?</strong>”</p>
+<p>“We can invest in <strong>location</strong> (open stores in bigger, richer markets), in <strong>service</strong> (raise the customer experience), or in <strong>merchandising</strong> (pay for premium <strong>endcap</strong> shelf placement). <strong>Which actually drives sales, and where should the money go?</strong>”</p>
 </blockquote>
 </div>
 <ul>
-<li class="fragment">Answering that needs <strong>several predictors at once</strong> — and a way to isolate the effect of each one. That is today’s tool: <strong>multiple regression</strong>.</li>
+<li class="fragment">Answering that needs <strong>several predictors at once</strong>, plus a way to isolate the effect of each one. That is today’s tool: <strong>multiple regression</strong>.</li>
 </ul>
 </section>
 <section id="the-data-45-stores-four-candidate-drivers" class="slide level2 center">
@@ -212,12 +212,12 @@ Professor<br>Davi Moreira<br>
 <tr class="even">
 <td><code>population_3mi</code></td>
 <td>residents within 3 miles</td>
-<td>location — market size</td>
+<td>location: market size</td>
 </tr>
 <tr class="odd">
 <td><code>income_3mi</code></td>
 <td>median household income within 3 miles</td>
-<td>location — market wealth</td>
+<td>location: market wealth</td>
 </tr>
 <tr class="even">
 <td><code>yelp_rating</code></td>
@@ -234,8 +234,8 @@ Professor<br>Davi Moreira<br>
 </div>
 <p><br></p>
 <ul>
-<li class="fragment"><p>Data: <code>data/autoparts.csv</code> — 45 rows, one per store. <code>endcap</code> is already coded <strong>0/1</strong>.</p></li>
-<li class="fragment"><p><strong>The trap we will spring today:</strong> the two drivers a manager <em>expects</em> to dominate (population and income) turn out <strong>not</strong> to matter once service and merchandising are in the model.</p></li>
+<li class="fragment"><p>Data: <code>data/autoparts.csv</code>, 45 rows, one per store. <code>endcap</code> is already coded <strong>0/1</strong>.</p></li>
+<li class="fragment"><p><strong>The trap we will spring today:</strong> the two drivers you might <em>expect</em> to dominate (population and income) turn out <strong>not</strong> to matter once service and merchandising are in the model.</p></li>
 </ul>
 </section>
 <section id="how-todays-studio-runs" class="slide level2 center">
@@ -244,28 +244,31 @@ Professor<br>Davi Moreira<br>
 <ul>
 <li class="fragment"><p><strong>Two lectures, two halves of the decision:</strong></p>
 <ul>
-<li class="fragment"><p><strong>Lecture 1 — Build &amp; read the model.</strong> Fit sales on all four drivers; interpret each <strong>partial</strong> coefficient (“holding the others constant”); judge overall fit with <span class="math inline">\(R^2\)</span> and adjusted <span class="math inline">\(R^2\)</span>. Anchor: <strong>Butler Trucking</strong>.</p></li>
-<li class="fragment"><p><strong>Lecture 2 — Test &amp; decide.</strong> Which drivers are <em>real</em> (<span class="math inline">\(F\)</span>-test vs.&nbsp;<span class="math inline">\(t\)</span>-tests)? Put a <strong>dollar value on an endcap</strong> with a dummy variable; check the predictors don’t overlap (multicollinearity); make the investment call.</p></li>
+<li class="fragment"><p><strong>Lecture 1, build &amp; read the model.</strong> Fit sales on all four drivers; interpret each <strong>partial</strong> coefficient (“holding the others constant”); judge overall fit with <span class="math inline">\(R^2\)</span> and adjusted <span class="math inline">\(R^2\)</span>. Anchor: <strong>Butler Trucking</strong>.</p></li>
+<li class="fragment"><p><strong>Lecture 2, test &amp; decide.</strong> Which drivers are <em>real</em> (<span class="math inline">\(F\)</span>-test vs.&nbsp;<span class="math inline">\(t\)</span>-tests)? Put a <strong>dollar value on an endcap</strong> with a dummy variable; check the predictors don’t overlap (multicollinearity); make the investment call.</p></li>
 </ul></li>
-<li class="fragment"><p>I demo each idea on a small textbook anchor → <strong>your team runs it on the auto-parts data</strong> → we debrief the recommendation together.</p></li>
-<li class="fragment"><p>By the end, <strong>your team</strong> tells the CFO where to invest — with the regression to back it.</p></li>
+<li class="fragment"><p>A good analyst demos each idea on a small textbook anchor; <strong>your team reproduces it on the auto-parts data</strong>, then we debrief the recommendation together.</p></li>
+<li class="fragment"><p>By the end, <strong>you</strong> decide where to invest, with the regression to back the call.</p></li>
 </ul>
 </section></section>
 <section>
 <section id="lecture-1-building-reading-the-model" class="title-slide slide level1 center" data-background-color="#cfb991">
-<h1>Lecture 1 — Building &amp; Reading the Model</h1>
+<h1>Lecture 1: Building &amp; Reading the Model</h1>
 
 </section>
 <section id="the-brief-lecture-1" class="slide level2 center">
-<h2>The Brief — Lecture 1</h2>
+<h2>The Brief: Lecture 1</h2>
 <p><br></p>
+<ul>
+<li class="fragment"><strong>The big call you own:</strong> <em>where should the next dollar go?</em> <strong>Today’s piece of it:</strong> <em>which drivers move sales once the others are held constant?</em></li>
+</ul>
 <blockquote>
-<p>“Fit a model for store sales using <strong>all four</strong> drivers at once. For each driver, tell me its effect on sales <strong>holding the others fixed</strong> — and tell me how much of the sales story the model captures.”</p>
+<p>“Fit a model for store sales using <strong>all four</strong> drivers at once. For each driver, tell me its effect on sales <strong>holding the others fixed</strong>, and tell me how much of the sales story the model captures.”</p>
 </blockquote>
 <p><br></p>
 <ul>
-<li class="fragment"><p>Simple regression answered “does Yelp predict sales?” in isolation. But stores with high Yelp ratings might also sit in richer markets — so the simple slope can <strong>mix two effects together</strong>.</p></li>
-<li class="fragment"><p>Multiple regression’s superpower: estimate the effect of <strong>each</strong> driver <strong>while statistically holding the others constant</strong> — the closest thing we have to a controlled comparison from observational data.</p></li>
+<li class="fragment"><p>Simple regression answered “does Yelp predict sales?” in isolation. But stores with high Yelp ratings might also sit in richer markets, so the simple slope can <strong>mix two effects together</strong>.</p></li>
+<li class="fragment"><p>Multiple regression estimates the effect of <strong>each</strong> driver <strong>while statistically holding the others constant</strong>: the closest thing we have to a controlled comparison from observational data.</p></li>
 <li class="fragment"><p>First we build the machine and learn to read its output. Testing and the dollar decision come in Lecture 2.</p></li>
 </ul>
 </section></section>
@@ -302,7 +305,7 @@ E(y) = \beta_0 + \beta_1 x_1 + \beta_2 x_2 + \cdots + \beta_p x_p
 <h2>A Plane, Not a Line</h2>
 
 <img data-src="figs/multiple_regression_plot.png" class="quarto-figure quarto-figure-center r-stretch" style="width:62.0%"><ul>
-<li>With two predictors, <span class="math inline">\(E(y) = \beta_0 + \beta_1 x_1 + \beta_2 x_2\)</span> traces a <strong>plane</strong> in 3-D space; with <span class="math inline">\(p\)</span> predictors it is a <em>hyperplane</em> we can no longer draw — but the algebra is identical.</li>
+<li>With two predictors, <span class="math inline">\(E(y) = \beta_0 + \beta_1 x_1 + \beta_2 x_2\)</span> traces a <strong>plane</strong> in 3-D space; with <span class="math inline">\(p\)</span> predictors it is a <em>hyperplane</em> we can no longer draw, but the algebra is identical.</li>
 <li>The vertical gap from a point to the plane is the error <span class="math inline">\(\epsilon\)</span>; least squares tilts the plane to make those gaps as small as possible.</li>
 </ul>
 </section>
@@ -318,7 +321,7 @@ E(y) = \beta_0 + \beta_1 x_1 + \beta_2 x_2 + \cdots + \beta_p x_p
 \]</span></p>
 </div>
 <ul>
-<li class="fragment">Same criterion as simple regression — pick the <span class="math inline">\(b\)</span>’s that <strong>minimize the sum of squared residuals</strong>:</li>
+<li class="fragment">Same criterion as simple regression: pick the <span class="math inline">\(b\)</span>’s that <strong>minimize the sum of squared residuals</strong>:</li>
 </ul>
 <div class="fragment">
 <p><span class="math display">\[
@@ -326,11 +329,11 @@ E(y) = \beta_0 + \beta_1 x_1 + \beta_2 x_2 + \cdots + \beta_p x_p
 \]</span></p>
 </div>
 <ul>
-<li class="fragment">The closed-form solution needs matrix algebra, so we let <strong>Excel</strong> do the arithmetic. Our job is to <strong>read and interpret</strong> the output — that is where the business judgment lives.</li>
+<li class="fragment">The closed-form solution needs matrix algebra, so we let <strong>Excel</strong> do the arithmetic. Your job is to <strong>read and interpret</strong> the output; that is where the business judgment lives.</li>
 </ul>
 </section>
 <section id="the-partial-coefficient-the-key-idea" class="slide level2 center">
-<h2>The Partial Coefficient — the Key Idea</h2>
+<h2>The Partial Coefficient: the Key Idea</h2>
 <p><br></p>
 <ul>
 <li class="fragment"><p>In simple regression, <span class="math inline">\(b_1\)</span> was <em>the</em> effect of <span class="math inline">\(x\)</span> on <span class="math inline">\(y\)</span>.</p></li>
@@ -339,7 +342,7 @@ E(y) = \beta_0 + \beta_1 x_1 + \beta_2 x_2 + \cdots + \beta_p x_p
 <ul>
 <li class="fragment">“<span class="math inline">\(b_j\)</span> = the predicted change in <span class="math inline">\(y\)</span> for a one-unit increase in <span class="math inline">\(x_j\)</span>, <strong>holding all other variables constant.</strong>”</li>
 </ul></li>
-<li class="fragment"><p>This is why a predictor can look important alone yet vanish in the full model — its apparent effect was really the work of a variable it travels with. (We will watch exactly this happen to population and income.)</p></li>
+<li class="fragment"><p>This is why a predictor can look important alone yet vanish in the full model: its apparent effect was really the work of a variable it travels with. (We will watch exactly this happen to population and income.)</p></li>
 </ul>
 </section></section>
 <section>
@@ -348,7 +351,7 @@ E(y) = \beta_0 + \beta_1 x_1 + \beta_2 x_2 + \cdots + \beta_p x_p
 
 </section>
 <section id="butler-trucking-two-predictors-of-travel-time" class="slide level2 center">
-<h2>Butler Trucking — Two Predictors of Travel Time</h2>
+<h2>Butler Trucking: Two Predictors of Travel Time</h2>
 <p><br></p>
 <ul>
 <li class="fragment"><p>Managers at <strong>Butler Trucking</strong> want better driver schedules. They believe a driver’s <strong>total daily travel time</strong> (<span class="math inline">\(y\)</span>, hours) depends on two things about the route:</p>
@@ -364,11 +367,11 @@ y = \beta_0 + \beta_1 x_1 + \beta_2 x_2 + \epsilon \qquad (n = 10,\; p = 2)
 \]</span></p>
 </div>
 <ul>
-<li class="fragment">A small, clean example — perfect for learning to read the output table before we scale up to 45 stores and four predictors.</li>
+<li class="fragment">A small, clean example: it teaches you to read the output table before we scale up to 45 stores and four predictors.</li>
 </ul>
 </section>
 <section id="butler-the-estimated-equation" class="slide level2 center">
-<h2>Butler — the Estimated Equation</h2>
+<h2>Butler: the Estimated Equation</h2>
 <div class="columns">
 <div class="column" style="width:46%;">
 <p><br></p>
@@ -396,11 +399,11 @@ y = \beta_0 + \beta_1 x_1 + \beta_2 x_2 + \epsilon \qquad (n = 10,\; p = 2)
 </div></div>
 </section>
 <section id="butler-reading-the-partial-coefficients" class="slide level2 center">
-<h2>Butler — Reading the Partial Coefficients</h2>
+<h2>Butler: Reading the Partial Coefficients</h2>
 <p><br></p>
 <ul>
-<li class="fragment"><p><span class="math inline">\(b_1 = +0.0611\)</span> (miles): each <strong>additional mile</strong> adds about <strong>0.061 hour</strong> (~3.7 min) to travel time — <strong>holding the number of deliveries constant.</strong></p></li>
-<li class="fragment"><p><span class="math inline">\(b_2 = +0.923\)</span> (deliveries): each <strong>additional delivery</strong> adds about <strong>0.92 hour</strong> — <strong>holding miles constant.</strong></p></li>
+<li class="fragment"><p><span class="math inline">\(b_1 = +0.0611\)</span> (miles): each <strong>additional mile</strong> adds about <strong>0.061 hour</strong> (~3.7 min) to travel time, <strong>holding the number of deliveries constant.</strong></p></li>
+<li class="fragment"><p><span class="math inline">\(b_2 = +0.923\)</span> (deliveries): each <strong>additional delivery</strong> adds about <strong>0.92 hour</strong>, <strong>holding miles constant.</strong></p></li>
 <li class="fragment"><p><strong>Predict</strong> assignment #1 (<span class="math inline">\(x_1=100\)</span>, <span class="math inline">\(x_2=4\)</span>):</p></li>
 </ul>
 <div class="fragment">
@@ -437,7 +440,7 @@ R^2 = \frac{SSR}{SST} = 1 - \frac{SSE}{SST}
 \]</span></p>
 </div>
 <ul>
-<li class="fragment">For Butler: <span class="math inline">\(R^2 = 21.60 / 23.90 = 0.904\)</span> — miles and deliveries together explain about <strong>90%</strong> of the variation in travel time.</li>
+<li class="fragment">For Butler: <span class="math inline">\(R^2 = 21.60 / 23.90 = 0.904\)</span>: miles and deliveries together explain about <strong>90%</strong> of the variation in travel time.</li>
 </ul>
 </section>
 <section id="the-r2-trap-it-can-only-go-up" class="slide level2 center">
@@ -446,15 +449,15 @@ R^2 = \frac{SSR}{SST} = 1 - \frac{SSE}{SST}
 <ul>
 <li class="fragment"><p>Here is the catch that makes <span class="math inline">\(R^2\)</span> dangerous in multiple regression:</p>
 <ul>
-<li class="fragment"><strong>Adding <em>any</em> predictor (even a useless, random one) can only <em>increase</em> <span class="math inline">\(R^2\)</span> — never decrease it.</strong></li>
+<li class="fragment"><strong>Adding <em>any</em> predictor (even a useless, random one) can only <em>increase</em> <span class="math inline">\(R^2\)</span>, never decrease it.</strong></li>
 </ul></li>
-<li class="fragment"><p>Why: a new variable gives least squares one more knob to fit noise, so <span class="math inline">\(SSE\)</span> shrinks and <span class="math inline">\(R^2\)</span> ticks up — whether or not the variable is real.</p></li>
+<li class="fragment"><p>Why: a new variable gives least squares one more knob to fit noise, so <span class="math inline">\(SSE\)</span> shrinks and <span class="math inline">\(R^2\)</span> ticks up, whether or not the variable is real.</p></li>
 <li class="fragment"><p>So a bigger <span class="math inline">\(R^2\)</span> does <strong>not</strong> mean a better model. If we chased <span class="math inline">\(R^2\)</span> alone, we would throw every variable we could find into the model.</p></li>
 <li class="fragment"><p>We need a fit measure that <strong>charges a penalty</strong> for each predictor added. That is <strong>adjusted <span class="math inline">\(R^2\)</span>.</strong></p></li>
 </ul>
 </section>
 <section id="adjusted-r2-pay-a-fee-per-predictor" class="slide level2 center">
-<h2>Adjusted <span class="math inline">\(R^2\)</span> — Pay a Fee per Predictor</h2>
+<h2>Adjusted <span class="math inline">\(R^2\)</span>: Pay a Fee per Predictor</h2>
 <div style="font-size: 90%;">
 <ul>
 <li class="fragment">Adjusted <span class="math inline">\(R^2\)</span> replaces the raw sums of squares with their <strong>per-degree-of-freedom</strong> versions:</li>
@@ -471,7 +474,7 @@ R^2_a = 1 - \frac{SSE/(n - p - 1)}{SST/(n - 1)} = 1 - (1 - R^2)\,\frac{n - 1}{n 
 <li class="fragment"><span class="math inline">\(R^2_a\)</span> goes <strong>up only if a new predictor reduces the error variance <span class="math inline">\(s^2\)</span> (= MSE) more than the penalty costs.</strong></li>
 </ul></li>
 <li class="fragment"><p>That makes <span class="math inline">\(R^2_a\)</span> a real <strong>model-building criterion</strong>: compare candidate models, prefer the higher <span class="math inline">\(R^2_a\)</span>.</p></li>
-<li class="fragment"><p>Butler: <span class="math inline">\(R^2 = 0.904\)</span> but <span class="math inline">\(R^2_a = 0.876\)</span> — the gap is the fee for using two predictors on only ten observations.</p></li>
+<li class="fragment"><p>Butler: <span class="math inline">\(R^2 = 0.904\)</span> but <span class="math inline">\(R^2_a = 0.876\)</span>; the gap is the fee for using two predictors on only ten observations.</p></li>
 </ul>
 </div>
 </section></section>
@@ -488,7 +491,7 @@ R^2_a = 1 - \frac{SSE/(n - p - 1)}{SST/(n - 1)} = 1 - (1 - R^2)\,\frac{n - 1}{n 
 <p><strong>Data → Data Analysis → Regression</strong></p>
 <ul>
 <li>Input Y Range: <code>sales2012_k</code></li>
-<li>Input X Range: all <strong>four</strong> predictor columns (<code>population_3mi</code>, <code>income_3mi</code>, <code>yelp_rating</code>, <code>endcap</code>) — selected together</li>
+<li>Input X Range: all <strong>four</strong> predictor columns (<code>population_3mi</code>, <code>income_3mi</code>, <code>yelp_rating</code>, <code>endcap</code>), selected together</li>
 <li>Labels ✓, Confidence Level 95% ✓</li>
 </ul>
 <p><br></p>
@@ -516,9 +519,9 @@ R^2_a = 1 - \frac{SSE/(n - p - 1)}{SST/(n - 1)} = 1 - (1 - R^2)\,\frac{n - 1}{n 
 </div>
 <p><br></p>
 <ul>
-<li class="fragment"><p><strong>Fit:</strong> <span class="math inline">\(R^2 = 0.932\)</span>, adjusted <span class="math inline">\(R^2 = 0.925\)</span> — the four drivers together explain about <strong>93%</strong> of the variation in store sales, and that holds up after the per-predictor penalty.</p></li>
+<li class="fragment"><p><strong>Fit:</strong> <span class="math inline">\(R^2 = 0.932\)</span>, adjusted <span class="math inline">\(R^2 = 0.925\)</span>: the four drivers together explain about <strong>93%</strong> of the variation in store sales, and that holds up after the per-predictor penalty.</p></li>
 <li class="fragment"><p>Standard error <span class="math inline">\(s = \$308.5\text{K}\)</span>: a rough “typical miss” of the model’s sales prediction.</p></li>
-<li class="fragment"><p>Now the interpretation — and the surprise.</p></li>
+<li class="fragment"><p>Now the interpretation, and the surprise.</p></li>
 </ul>
 </section>
 <section id="reading-the-partial-effects" class="slide level2 center">
@@ -526,14 +529,14 @@ R^2_a = 1 - \frac{SSE/(n - p - 1)}{SST/(n - 1)} = 1 - (1 - R^2)\,\frac{n - 1}{n 
 
 <img data-src="figs/autoparts_coef_effects.png" class="quarto-figure quarto-figure-center r-stretch" style="width:82.0%"><ul>
 <li>Each <strong>Yelp star</strong> predicts <strong>+$642K</strong> in annual sales, holding location and merchandising fixed. An <strong>endcap</strong> predicts <strong>+$816K</strong>, holding everything else fixed.</li>
-<li>The two location drivers (population, income) move the needle far less — we will test whether they matter at all next lecture.</li>
+<li>The two location drivers (population, income) move the needle far less; we will test whether they matter at all next lecture.</li>
 </ul>
 </section>
 <section id="the-surprise-bigger-market-more-sales" class="slide level2 center">
 <h2>The Surprise: Bigger Market ≠ More Sales</h2>
 <p><br></p>
 <ul>
-<li class="fragment"><p>A manager’s intuition says <strong>population</strong> and <strong>income</strong> should dominate — more people, more money, more sales.</p></li>
+<li class="fragment"><p>Intuition says <strong>population</strong> and <strong>income</strong> should dominate: more people, more money, more sales.</p></li>
 <li class="fragment"><p>But the partial coefficients say otherwise:</p>
 <ul>
 <li class="fragment"><strong>Population:</strong> <span class="math inline">\(+0.00035\)</span> → about <strong>+$0.35K per extra 1,000 residents</strong>. Essentially flat.</li>
@@ -543,46 +546,36 @@ R^2_a = 1 - \frac{SSE/(n - p - 1)}{SST/(n - 1)} = 1 - (1 - R^2)\,\frac{n - 1}{n 
 <li class="fragment"><p><strong>Why the intuition fails:</strong> in simple regression a market-size variable can look strong because it travels with the variables that <em>really</em> matter. Once those are in the model, “holding the others constant” strips the borrowed credit away. We will confirm this with formal tests in Lecture 2.</p></li>
 </ul>
 </section>
-<section id="team-sprint-1-build-read-the-model" class="slide level2 center">
-<h2>⏱️ Team Sprint 1 — Build &amp; read the model</h2>
-<div class="sprint">
-<p><strong>Decide:</strong> what does each driver contribute to predicted store sales, holding the others constant?</p>
-<p><strong>Data:</strong> <code>data/autoparts.csv</code> · <strong>Time:</strong> ~12 min</p>
-<ol type="1">
-<li>In Excel: <strong>Data → Data Analysis → Regression.</strong> Y = <code>sales2012_k</code>; X = the four columns <code>population_3mi</code>, <code>income_3mi</code>, <code>yelp_rating</code>, <code>endcap</code> (select together). Check <strong>Labels</strong> and <strong>Confidence Level 95%</strong>.</li>
-<li>Write out the estimated equation <span class="math inline">\(\widehat{\text{sales}} = b_0 + b_1(\text{pop}) + \cdots\)</span> from the <strong>Coefficients</strong> column.</li>
-<li>Record <span class="math inline">\(R^2\)</span> and <strong>Adjusted <span class="math inline">\(R^2\)</span></strong> from the top block. In one sentence, say what fraction of the sales story the model captures.</li>
-<li>Translate the <strong>Yelp</strong> and <strong>endcap</strong> coefficients into plain dollars (“each extra star / an endcap is worth about $___K, holding the others fixed”).</li>
-</ol>
-<p><strong>Submit before you leave (graded, one slide per group):</strong> your read of what each driver is worth (the equation + <span class="math inline">\(R^2\)</span> vs.&nbsp;adjusted <span class="math inline">\(R^2\)</span> + the Yelp and endcap dollar figures) and the <strong>two things you would challenge</strong> in this fit.</p>
-</div>
-</section>
-<section id="debrief-managers-takeaway-lecture-1" class="slide level2 center">
-<h2>Debrief — Manager’s Takeaway (Lecture 1)</h2>
+<section id="the-owners-takeaway-lecture-1" class="slide level2 center">
+<h2>The Owner’s Takeaway (Lecture 1)</h2>
 <p><br></p>
 <ul>
-<li class="fragment"><p><strong>One sentence:</strong> four drivers explain <strong>93%</strong> of store-sales variation, and the effects that matter are <strong>service (Yelp, +$642K/star)</strong> and <strong>merchandising (endcap, +$816K)</strong> — <em>not</em> the market-size variables a manager would bet on.</p></li>
-<li class="fragment"><p><strong>One number:</strong> <strong>adjusted <span class="math inline">\(R^2 = 0.925\)</span></strong> — high fit that <em>survives</em> the penalty for using four predictors, so the model isn’t just padded with noise.</p></li>
-<li class="fragment"><p><strong>One caveat:</strong> “holding the others constant” is doing heavy lifting. A coefficient near zero (population, income) doesn’t prove the variable is irrelevant in the world — only that it adds little <strong>once the others are in.</strong> Next lecture we make that rigorous with the <span class="math inline">\(F\)</span>- and <span class="math inline">\(t\)</span>-tests.</p></li>
+<li class="fragment"><p><strong>One sentence:</strong> four drivers explain <strong>93%</strong> of store-sales variation, and the effects that matter are <strong>service (Yelp, +$642K/star)</strong> and <strong>merchandising (endcap, +$816K)</strong>, <em>not</em> the market-size variables you might bet on.</p></li>
+<li class="fragment"><p><strong>One number:</strong> <strong>adjusted <span class="math inline">\(R^2 = 0.925\)</span></strong>: high fit that <em>survives</em> the penalty for using four predictors, so the model isn’t just padded with noise.</p></li>
+<li class="fragment"><p><strong>One caveat:</strong> “holding the others constant” is doing heavy lifting. A coefficient near zero (population, income) doesn’t prove the variable is irrelevant in the world, only that it adds little <strong>once the others are in.</strong> Next lecture we make that rigorous with the <span class="math inline">\(F\)</span>- and <span class="math inline">\(t\)</span>-tests, and put a defensible dollar value on an endcap.</p></li>
 </ul>
 </section>
-<section id="carry-forward-to-lecture-2" class="slide level2 center">
-<h2>Carry-forward (to Lecture 2)</h2>
-<ul>
-<li><p><strong>Homework (individual):</strong> today’s tools (multiple regression, the <span class="math inline">\(F\)</span> vs.&nbsp;<span class="math inline">\(t\)</span> tests, and dummy variables) are drilled on <strong>HW3</strong> — individual problem sets in the previous-edition format, posted on Brightspace. Run them yourself so you can check an analyst who uses them.</p></li>
-<li><p><strong>Next lecture:</strong> which of these drivers are <em>statistically real</em>? We separate the <strong>overall <span class="math inline">\(F\)</span>-test</strong> from the <strong>individual <span class="math inline">\(t\)</span>-tests</strong>, put a defensible <strong>dollar value on an endcap</strong> with a dummy variable, and make the investment call.</p></li>
-</ul>
+<section id="team-sprint-your-group-case-lecture-1" class="slide level2 center">
+<h2>⏱️ Team Sprint: Your Group Case (Lecture 1)</h2>
+<div class="sprint">
+<p><strong>Now it’s your group’s turn.</strong> Today’s in-class group case is posted on <strong>Brightspace</strong> (<em>Topic 11 Group Case: Lecture 1</em>): a separate business decision you make with today’s tools.</p>
+<p><strong>What you’ll use:</strong> the multiple regression equation and its <strong>partial</strong> coefficients (“holding the others constant”), plus <span class="math inline">\(R^2\)</span> vs.&nbsp;adjusted <span class="math inline">\(R^2\)</span>. <strong>Excel:</strong> Analysis ToolPak → Regression.</p>
+<p><strong>Submit one PDF per group before you leave:</strong> your decision plus the numbers behind it.</p>
+</div>
 </section></section>
 <section>
 <section id="lecture-2-testing-the-investment-call" class="title-slide slide level1 center" data-background-color="#cfb991">
-<h1>Lecture 2 — Testing &amp; the Investment Call</h1>
+<h1>Lecture 2: Testing &amp; the Investment Call</h1>
 
 </section>
 <section id="the-brief-lecture-2" class="slide level2 center">
-<h2>The Brief — Lecture 2</h2>
+<h2>The Brief: Lecture 2</h2>
 <p><br></p>
+<ul>
+<li class="fragment"><strong>The big call you own:</strong> <em>where should the next dollar go?</em> <strong>Today’s piece of it:</strong> <em>which levers are worth investing in</em>, weighing <span class="math inline">\(F\)</span> vs.&nbsp;<span class="math inline">\(t\)</span>, the dummy, and multicollinearity?</li>
+</ul>
 <blockquote>
-<p>“The model fits well — but is each driver <em>real</em>, or could its coefficient be noise? Put a <strong>dollar figure on an endcap</strong> we can defend in a budget meeting. Then tell me: invest in <strong>location, service, or merchandising</strong>?”</p>
+<p>“The model fits well, but is each driver <em>real</em>, or could its coefficient be noise? Put a <strong>dollar figure on an endcap</strong> we can defend in a budget meeting. Then tell me: invest in <strong>location, service, or merchandising</strong>?”</p>
 </blockquote>
 <p><br></p>
 <ul>
@@ -599,20 +592,20 @@ R^2_a = 1 - \frac{SSE/(n - p - 1)}{SST/(n - 1)} = 1 - (1 - R^2)\,\frac{n - 1}{n 
 <h2><span class="math inline">\(F\)</span> vs.&nbsp;<span class="math inline">\(t\)</span>: Different Jobs Now</h2>
 <p><br></p>
 <ul>
-<li class="fragment"><p>In <strong>simple</strong> regression, the <span class="math inline">\(F\)</span>-test and the <span class="math inline">\(t\)</span>-test gave the <strong>same</strong> answer — there was only one predictor to judge.</p></li>
+<li class="fragment"><p>In <strong>simple</strong> regression, the <span class="math inline">\(F\)</span>-test and the <span class="math inline">\(t\)</span>-test gave the <strong>same</strong> answer: there was only one predictor to judge.</p></li>
 <li class="fragment"><p>In <strong>multiple</strong> regression they split into two distinct jobs:</p>
 <ul>
-<li class="fragment"><strong><span class="math inline">\(F\)</span>-test (overall):</strong> is the model <strong>as a whole</strong> useful — does <strong>at least one</strong> predictor carry information?</li>
+<li class="fragment"><strong><span class="math inline">\(F\)</span>-test (overall):</strong> is the model <strong>as a whole</strong> useful, does <strong>at least one</strong> predictor carry information?</li>
 <li class="fragment"><strong><span class="math inline">\(t\)</span>-tests (individual):</strong> taken <strong>one at a time</strong>, which specific predictors are pulling their weight?</li>
 </ul></li>
 <li class="fragment"><p>You always read them in that order: <strong><span class="math inline">\(F\)</span> first</strong> (is anything here?), then <strong><span class="math inline">\(t\)</span>’s</strong> (which things?).</p></li>
 </ul>
 </section>
 <section id="the-f-test-hypotheses-and-statistic" class="slide level2 center">
-<h2>The <span class="math inline">\(F\)</span>-Test — Hypotheses and Statistic</h2>
+<h2>The <span class="math inline">\(F\)</span>-Test: Hypotheses and Statistic</h2>
 <p><br></p>
 <ul>
-<li class="fragment"><strong>Hypotheses</strong> — <span class="math inline">\(H_0\)</span> says <em>every</em> slope is zero (the model explains nothing):</li>
+<li class="fragment"><strong>Hypotheses.</strong> <span class="math inline">\(H_0\)</span> says <em>every</em> slope is zero (the model explains nothing):</li>
 </ul>
 <div class="fragment">
 <p><span class="math display">\[
@@ -620,7 +613,7 @@ H_0: \beta_1 = \beta_2 = \cdots = \beta_p = 0 \qquad H_a: \text{at least one } \
 \]</span></p>
 </div>
 <ul>
-<li class="fragment"><strong>Test statistic</strong> — the ratio of explained to unexplained variation, each per degree of freedom:</li>
+<li class="fragment"><strong>Test statistic:</strong> the ratio of explained to unexplained variation, each per degree of freedom:</li>
 </ul>
 <div class="fragment">
 <p><span class="math display">\[
@@ -677,7 +670,7 @@ F = \frac{MSR}{MSE} = \frac{13{,}008{,}346}{95{,}166} = 136.7, \qquad \text{Sign
 \]</span></p>
 </div>
 <ul>
-<li class="fragment"><span class="math inline">\(F = 136.7\)</span> with p-value far below any <span class="math inline">\(\alpha\)</span> → <strong>reject <span class="math inline">\(H_0\)</span></strong>: the model is overwhelmingly useful — <strong>at least one</strong> driver carries real information. Now, <em>which ones?</em></li>
+<li class="fragment"><span class="math inline">\(F = 136.7\)</span> with p-value far below any <span class="math inline">\(\alpha\)</span> → <strong>reject <span class="math inline">\(H_0\)</span></strong>: the model is decisively useful, so <strong>at least one</strong> driver carries real information. Now, <em>which ones?</em></li>
 </ul>
 </section></section>
 <section>
@@ -698,7 +691,7 @@ H_0: \beta_j = 0 \qquad H_a: \beta_j \neq 0 \qquad t = \frac{b_j}{s_{b_j}}, \qua
 </div>
 <ul>
 <li class="fragment"><p><span class="math inline">\(s_{b_j}\)</span> is the standard error of the coefficient (Excel’s “Standard Error” column). Reject <span class="math inline">\(H_0\)</span> when the p-value <span class="math inline">\(\le \alpha\)</span>, i.e.&nbsp;roughly when <span class="math inline">\(|t| \gtrsim 2\)</span>.</p></li>
-<li class="fragment"><p><strong>Critical subtlety:</strong> each <span class="math inline">\(t\)</span>-test is <em>conditional on the other predictors being in the model.</em> A predictor can be significant alone and insignificant here — because a teammate is already explaining its share.</p></li>
+<li class="fragment"><p><strong>Critical subtlety:</strong> each <span class="math inline">\(t\)</span>-test is <em>conditional on the other predictors being in the model.</em> A predictor can be significant alone and insignificant here, because a teammate is already explaining its share.</p></li>
 </ul>
 </section>
 <section id="reading-the-coefficient-table" class="slide level2 center">
@@ -712,7 +705,7 @@ H_0: \beta_j = 0 \qquad H_a: \beta_j \neq 0 \qquad t = \frac{b_j}{s_{b_j}}, \qua
 <li><span class="math inline">\(|t| &lt; 2\)</span> (p &gt; 0.05) → <strong>not significant</strong> <em>in this model</em></li>
 </ul>
 <p><br></p>
-<p>Scan the <strong>t Stat</strong> column top to bottom and sort the drivers into “real” vs.&nbsp;“can’t tell.”</p>
+<p>Scan the <strong>t Stat</strong> column top to bottom and sort the four drivers into “real” vs.&nbsp;“can’t tell.”</p>
 </div><div class="column" style="width:60%;">
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
@@ -772,7 +765,7 @@ H_0: \beta_j = 0 \qquad H_a: \beta_j \neq 0 \qquad t = \frac{b_j}{s_{b_j}}, \qua
 </table>
 </div>
 <ul>
-<li class="fragment"><p>The model is highly significant overall (<span class="math inline">\(F = 136.7\)</span>) — yet <strong>two of its four predictors are individually insignificant.</strong></p></li>
+<li class="fragment"><p>The model is highly significant overall (<span class="math inline">\(F = 136.7\)</span>), yet <strong>two of its four predictors are individually insignificant.</strong></p></li>
 <li class="fragment"><p><strong>The lesson:</strong> a significant <span class="math inline">\(F\)</span> does <strong>not</strong> mean every variable matters. Here all the explanatory power comes from <strong>service (Yelp)</strong> and <strong>merchandising (endcap)</strong>; the location variables are statistical passengers.</p></li>
 <li class="fragment"><p><em>Significance ≠ importance, and importance ≠ significance.</em> Judge each on its own evidence.</p></li>
 </ul>
@@ -789,7 +782,7 @@ H_0: \beta_j = 0 \qquad H_a: \beta_j \neq 0 \qquad t = \frac{b_j}{s_{b_j}}, \qua
 <li><strong>Add Endcap:</strong> it climbs again.</li>
 </ul>
 <p><br></p>
-<p>The location variables a manager would buy first are the ones that move the model <strong>least</strong>.</p>
+<p>The location variables you would buy first are the ones that move the model <strong>least</strong>.</p>
 </div><div class="column" style="width:60%;">
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
@@ -811,13 +804,13 @@ H_0: \beta_j = 0 \qquad H_a: \beta_j \neq 0 \qquad t = \frac{b_j}{s_{b_j}}, \qua
 <h2>A Switch, Not a Dial: Encoding “Has an Endcap”</h2>
 <p><br></p>
 <ul>
-<li class="fragment"><p><code>endcap</code> isn’t a number you can have more or less of — it is a <strong>category</strong>: a store either has premium endcap placement or it doesn’t.</p></li>
+<li class="fragment"><p><code>endcap</code> isn’t a number you can have more or less of; it is a <strong>category</strong>: a store either has premium endcap placement or it doesn’t.</p></li>
 <li class="fragment"><p>We encode it as a <strong>dummy (indicator) variable</strong>: <span class="math inline">\(1\)</span> = has an endcap, <span class="math inline">\(0\)</span> = none. The <span class="math inline">\(0\)</span> category is the <strong>reference</strong> (baseline) level.</p></li>
-<li class="fragment"><p>Excel treats the 0/1 column <strong>like any other predictor</strong> — no special tool. Its coefficient has a special meaning:</p>
+<li class="fragment"><p>Excel treats the 0/1 column <strong>like any other predictor</strong>, with no special tool. Its coefficient has a special meaning:</p>
 <ul>
 <li class="fragment"><span class="math inline">\(b_{\text{endcap}}\)</span> = the <strong>average difference in sales between an endcap store and a non-endcap store, holding the other predictors constant.</strong></li>
 </ul></li>
-<li class="fragment"><p>In other words, the dummy coefficient is the <strong>dollar value of an endcap</strong> — exactly what the CFO asked for.</p></li>
+<li class="fragment"><p>In other words, the dummy coefficient is the <strong>dollar value of an endcap</strong>: exactly what you asked your analyst to find.</p></li>
 </ul>
 </section>
 <section id="what-the-dummy-does-to-the-equation" class="slide level2 center">
@@ -835,15 +828,15 @@ H_0: \beta_j = 0 \qquad H_a: \beta_j \neq 0 \qquad t = \frac{b_j}{s_{b_j}}, \qua
 \]</span></p>
 </div>
 <ul>
-<li class="fragment"><p>Same slope on every other variable — only the <strong>intercept shifts up by $816.5K.</strong></p></li>
-<li class="fragment"><p>A dummy gives the two groups <strong>parallel lines</strong>: identical response to Yelp, location, income — but a fixed <strong>level gap</strong> between them.</p></li>
+<li class="fragment"><p>Same slope on every other variable; only the <strong>intercept shifts up by $816.5K.</strong></p></li>
+<li class="fragment"><p>A dummy gives the two groups <strong>parallel lines</strong>: identical response to Yelp, location, income, but a fixed <strong>level gap</strong> between them.</p></li>
 </ul>
 </section>
 <section id="the-endcap-gap-drawn" class="slide level2 center">
 <h2>The Endcap Gap, Drawn</h2>
 
 <img data-src="figs/autoparts_endcap_dummy.png" class="quarto-figure quarto-figure-center r-stretch" style="width:74.0%"><ul>
-<li>Two parallel lines, separated by a constant <strong>$816K</strong> — the endcap premium, holding population, income, and Yelp fixed.</li>
+<li>Two parallel lines, separated by a constant <strong>$816K</strong>: the endcap premium, holding population, income, and Yelp fixed.</li>
 <li><span class="math inline">\(t = 6.98\)</span>, p &lt; 0.0001 → this gap is <strong>not</strong> noise. An endcap is a real, sizeable lever.</li>
 </ul>
 </section>
@@ -890,8 +883,8 @@ H_0: \beta_j = 0 \qquad H_a: \beta_j \neq 0 \qquad t = \frac{b_j}{s_{b_j}}, \qua
 <ul>
 <li class="fragment">A categorical variable with <span class="math inline">\(k\)</span> levels needs <span class="math inline">\(\mathbf{k - 1}\)</span> dummy variables (one level is the reference).</li>
 </ul></li>
-<li class="fragment"><p>Example — three store <strong>formats</strong> (Standard, Express, Flagship): use <strong>two</strong> dummies (<code>Express</code> 0/1, <code>Flagship</code> 0/1); “Standard” is the reference. Each dummy coefficient is that format’s sales gap <strong>versus Standard</strong>.</p></li>
-<li class="fragment"><p><strong>Do not</strong> encode categories as a single 1/2/3 number — that would falsely force the levels to be evenly spaced and ordered. Always use separate 0/1 columns.</p></li>
+<li class="fragment"><p>Example, three store <strong>formats</strong> (Standard, Express, Flagship): use <strong>two</strong> dummies (<code>Express</code> 0/1, <code>Flagship</code> 0/1); “Standard” is the reference. Each dummy coefficient is that format’s sales gap <strong>versus Standard</strong>.</p></li>
+<li class="fragment"><p><strong>Do not</strong> encode categories as a single 1/2/3 number; that would falsely force the levels to be evenly spaced and ordered. Always use separate 0/1 columns.</p></li>
 </ul>
 </section></section>
 <section>
@@ -908,9 +901,9 @@ H_0: \beta_j = 0 \qquad H_a: \beta_j \neq 0 \qquad t = \frac{b_j}{s_{b_j}}, \qua
 <ul>
 <li class="fragment">coefficient <strong>standard errors inflate</strong> → wide CIs, small <span class="math inline">\(t\)</span>’s;</li>
 <li class="fragment">coefficients become <strong>unstable</strong> and can flip sign;</li>
-<li class="fragment">an <em>important</em> predictor can look insignificant — not because it’s useless, but because a correlated partner is absorbing its credit.</li>
+<li class="fragment">an <em>important</em> predictor can look insignificant, not because it’s useless, but because a correlated partner is absorbing its credit.</li>
 </ul></li>
-<li class="fragment"><p>It rarely hurts <strong>prediction</strong>, but it muddies <strong>interpretation</strong> — and interpretation is exactly what the CFO is buying.</p></li>
+<li class="fragment"><p>It rarely hurts <strong>prediction</strong>, but it muddies <strong>interpretation</strong>, and interpretation is exactly what you are buying from the analyst.</p></li>
 </ul>
 </section>
 <section id="detecting-it-correlations-and-vif" class="slide level2 center">
@@ -939,10 +932,10 @@ VIF_j = \frac{1}{1 - R_j^2}
 </div></div>
 </section>
 <section id="our-model-is-clean-so-the-verdict-stands" class="slide level2 center">
-<h2>Our Model Is Clean — So the Verdict Stands</h2>
+<h2>Our Model Is Clean, So the Verdict Stands</h2>
 <p><br></p>
 <ul>
-<li class="fragment">For the auto-parts model every pairwise correlation is small (largest: income–endcap at <span class="math inline">\(-0.47\)</span>) and <strong>every VIF is below 1.7</strong> — far under the threshold of 5.</li>
+<li class="fragment">For the auto-parts model every pairwise correlation is small (largest: income–endcap at <span class="math inline">\(-0.47\)</span>) and <strong>every VIF is below 1.7</strong>, far under the threshold of 5.</li>
 </ul>
 <div class="fragment">
 <table class="caption-top">
@@ -973,36 +966,13 @@ VIF_j = \frac{1}{1 - R_j^2}
 </table>
 </div>
 <ul>
-<li class="fragment"><p>So population and income are insignificant for an <strong>honest</strong> reason — they genuinely add little once service and merchandising are in the model. This is <strong>not</strong> a multicollinearity artifact; the verdict is trustworthy.</p></li>
-<li class="fragment"><p><em>Contrast:</em> had population and income been highly correlated, we’d have to be cautious — their small <span class="math inline">\(t\)</span>’s could have been an overlap symptom rather than true irrelevance.</p></li>
-</ul>
-</section>
-<section id="team-sprint-2-test-the-drivers-make-the-call" class="slide level2 center">
-<h2>⏱️ Team Sprint 2 — Test the drivers &amp; make the call</h2>
-<div class="sprint">
-<p><strong>Decide:</strong> which drivers are <em>real</em>, what is an endcap worth, and where should the CFO invest?</p>
-<p><strong>Data:</strong> <code>data/autoparts.csv</code> · <strong>Time:</strong> ~15 min</p>
-<ol type="1">
-<li>From your regression output, read <strong>Significance F</strong> (overall test) — is the model useful at all?</li>
-<li>In the <strong>Coefficients</strong> table, mark each predictor <strong>significant</strong> (<span class="math inline">\(|t| &gt; 2\)</span>, p &lt; 0.05) or <strong>not</strong> — sort the four drivers into “real” vs.&nbsp;“can’t tell.”</li>
-<li><strong>Price the endcap:</strong> predict sales for a planned store (<code>pop = 120,000</code>, <code>income = 55,000</code>, <code>yelp = 4.0</code>) with <code>endcap = 0</code> and with <code>endcap = 1</code>; the difference is the endcap’s dollar value.</li>
-<li>State the investment call in <strong>three sentences</strong>: the lever to fund · the number · the caveat.</li>
-</ol>
-<p><strong>Submit before you leave (graded, one slide per group):</strong> your CFO recommendation (which lever to fund) + the key numbers (Significance F, the significant-vs-not verdict, the endcap’s dollar value) + the <strong>two things you would challenge</strong> in the analysis.</p>
-</div>
-</section>
-<section id="debrief-managers-takeaway-lecture-2" class="slide level2 center">
-<h2>Debrief — Manager’s Takeaway (Lecture 2)</h2>
-<p><br></p>
-<ul>
-<li class="fragment"><p><strong>One sentence:</strong> the overall model is decisive (<span class="math inline">\(F = 136.7\)</span>), but only <strong>service (Yelp)</strong> and <strong>merchandising (endcap)</strong> survive their individual <span class="math inline">\(t\)</span>-tests — so the budget goes there, not into bigger-market real estate.</p></li>
-<li class="fragment"><p><strong>One number:</strong> <strong>$816K</strong> — an endcap’s value, straight off the dummy coefficient; defensible against any lease under that figure.</p></li>
-<li class="fragment"><p><strong>One caveat:</strong> every coefficient is read “holding the other three constant” and the model is <em>descriptive</em> — pilot the endcap, then re-estimate before betting the chain on it.</p></li>
+<li class="fragment"><p>So population and income are insignificant for an <strong>honest</strong> reason: they genuinely add little once service and merchandising are in the model. This is <strong>not</strong> a multicollinearity artifact; the verdict is trustworthy.</p></li>
+<li class="fragment"><p><em>Contrast:</em> had population and income been highly correlated, we’d have to be cautious; their small <span class="math inline">\(t\)</span>’s could have been an overlap symptom rather than true irrelevance.</p></li>
 </ul>
 </section></section>
 <section>
 <section id="debrief-the-investment-call" class="title-slide slide level1 center" data-background-color="#cfb991">
-<h1>Debrief — The Investment Call</h1>
+<h1>Debrief: The Investment Call</h1>
 
 </section>
 <section id="the-whole-picture-on-one-page" class="slide level2 center">
@@ -1059,50 +1029,56 @@ VIF_j = \frac{1}{1 - R_j^2}
 <p>Model: <span class="math inline">\(R^2 = 0.932\)</span>, adjusted <span class="math inline">\(R^2 = 0.925\)</span>, overall <span class="math inline">\(F = 136.7\)</span> (p <span class="math inline">\(&lt; 10^{-22}\)</span>), <span class="math inline">\(s = \$308.5\)</span>K, all VIF <span class="math inline">\(&lt; 1.7\)</span>.</p>
 </div>
 <ul>
-<li class="fragment"><strong>Recommendation to the CFO:</strong> stop chasing big, rich markets — <strong>location demographics don’t move sales</strong> in this chain. The money belongs in <strong>service quality</strong> (every Yelp star ≈ +$642K/yr) and in <strong>endcap merchandising</strong> (≈ +$816K/yr, well worth a sub-$816K lease). Both effects are statistically rock-solid and not a multicollinearity mirage.</li>
+<li class="fragment"><strong>Your recommendation as Owner:</strong> stop chasing big, rich markets; <strong>location demographics don’t move sales</strong> in this chain. The money belongs in <strong>service quality</strong> (every Yelp star ≈ +$642K/yr) and in <strong>endcap merchandising</strong> (≈ +$816K/yr, well worth a sub-$816K lease). Both effects are statistically rock-solid and not a multicollinearity mirage.</li>
 </ul>
 </section>
 <section id="f-vs.-t-the-lesson-that-travels" class="slide level2 center">
-<h2><span class="math inline">\(F\)</span> vs.&nbsp;<span class="math inline">\(t\)</span> — the Lesson That Travels</h2>
+<h2><span class="math inline">\(F\)</span> vs.&nbsp;<span class="math inline">\(t\)</span>: the Lesson That Travels</h2>
 <p><br></p>
 <ul>
 <li class="fragment"><p><strong>The <span class="math inline">\(F\)</span>-test and the <span class="math inline">\(t\)</span>-tests answer different questions, and you need both:</strong></p>
 <ul>
-<li class="fragment"><span class="math inline">\(F\)</span> said the model <strong>as a whole</strong> is useful — but that alone could have tempted us to keep all four variables.</li>
+<li class="fragment"><span class="math inline">\(F\)</span> said the model <strong>as a whole</strong> is useful, but that alone could have tempted us to keep all four variables.</li>
 <li class="fragment">The <span class="math inline">\(t\)</span>-tests revealed that <strong>half the predictors were dead weight</strong>, steering the budget toward the two that actually pay.</li>
 </ul></li>
 <li class="fragment"><p><strong>Significance is conditional.</strong> Every coefficient and every <span class="math inline">\(t\)</span> here means “…<em>holding the other three constant.</em>” Change the set of predictors and the story can change.</p></li>
-<li class="fragment"><p><strong>Significance ≠ importance.</strong> With huge samples trivial effects turn “significant”; with small samples real effects can hide. Always pair the test with the <strong>dollar size</strong> of the effect — that is the number a manager decides on.</p></li>
+<li class="fragment"><p><strong>Significance ≠ importance.</strong> With huge samples trivial effects turn “significant”; with small samples real effects can hide. Always pair the test with the <strong>dollar size</strong> of the effect: that is the number you decide on as Owner.</p></li>
 </ul>
 </section>
-<section id="managers-takeaway" class="slide level2 center">
-<h2>Manager’s Takeaway</h2>
+<section id="the-owners-takeaway" class="slide level2 center">
+<h2>The Owner’s Takeaway</h2>
 <p><br></p>
 <ul>
-<li class="fragment"><p><strong>One sentence:</strong> for this 45-store chain, <strong>service and merchandising drive sales, not location demographics</strong> — so invest in Yelp rating (+$642K/star) and endcap placement (+$816K), each statistically decisive.</p></li>
-<li class="fragment"><p><strong>One number to remember:</strong> <strong>$816K</strong> — the value of an endcap, read straight off a dummy variable’s coefficient, holding everything else constant.</p></li>
-<li class="fragment"><p><strong>One caveat:</strong> the model <em>describes</em> 45 existing stores; it does not <em>prove</em> that buying an endcap will <em>cause</em> +$816K at a brand-new store. Correlation control is the best we can do with observational data — pilot it, then re-estimate.</p></li>
+<li class="fragment"><p><strong>One sentence:</strong> for this 45-store chain, <strong>service and merchandising drive sales, not location demographics</strong>, so invest in Yelp rating (+$642K/star) and endcap placement (+$816K), each statistically decisive.</p></li>
+<li class="fragment"><p><strong>One number to remember:</strong> <strong>$816K</strong>, the value of an endcap, read straight off a dummy variable’s coefficient, holding everything else constant.</p></li>
+<li class="fragment"><p><strong>One caveat:</strong> the model <em>describes</em> 45 existing stores; it does not <em>prove</em> that buying an endcap will <em>cause</em> +$816K at a brand-new store. Correlation control is the best we can do with observational data: pilot it, then re-estimate.</p></li>
 <li class="fragment"><p><strong>Practice with the real data:</strong> <code>data/autoparts.csv</code> + Excel Regression → reproduce <span class="math inline">\(R^2 = 0.932\)</span>, <span class="math inline">\(F = 136.7\)</span>, the four coefficients, and the prediction. Worked solutions: <code>data/autoparts_regression.xlsx</code>.</p></li>
 </ul>
+</section>
+<section id="team-sprint-your-group-case-lecture-2" class="slide level2 center">
+<h2>⏱️ Team Sprint: Your Group Case (Lecture 2)</h2>
+<div class="sprint">
+<p><strong>Now it’s your group’s turn.</strong> Today’s in-class group case is posted on <strong>Brightspace</strong> (<em>Topic 11 Group Case: Lecture 2</em>): a separate business decision you make with today’s tools.</p>
+<p><strong>What you’ll use:</strong> the overall <strong><span class="math inline">\(F\)</span>-test</strong> vs.&nbsp;the individual <strong><span class="math inline">\(t\)</span>-tests</strong>, a <strong>dummy</strong> variable, and a <strong>VIF</strong> check, then translate the coefficients into a dollar call. <strong>Excel:</strong> Analysis ToolPak → Regression.</p>
+<p><strong>Submit one PDF per group before you leave:</strong> your decision plus the numbers behind it.</p>
+</div>
+</section></section>
+<section>
+<section id="wrap-up" class="title-slide slide level1 center" data-background-color="#cfb991">
+<h1>Wrap-up</h1>
+
 </section>
 <section id="summary" class="slide level2 center">
 <h2>Summary</h2>
 <p>Some key takeaways from this topic:</p>
 <ul>
-<li><strong>Multiple regression</strong> estimates the effect of each predictor <strong>holding the others constant</strong> — observational data’s closest move to a controlled comparison.</li>
+<li><strong>Multiple regression</strong> estimates the effect of each predictor <strong>holding the others constant</strong>: observational data’s closest move to a controlled comparison.</li>
 <li>A <strong>partial coefficient</strong> can differ wildly from its simple-regression cousin: population and income looked plausible but added nothing once Yelp and endcap were in.</li>
 <li><strong><span class="math inline">\(R^2\)</span> only ever rises</strong> when you add predictors → judge model size with <strong>adjusted <span class="math inline">\(R^2\)</span></strong>, which charges a fee per predictor.</li>
 <li><strong><span class="math inline">\(F\)</span> first, then <span class="math inline">\(t\)</span>:</strong> <span class="math inline">\(F\)</span> asks “is the model useful at all?”; the <span class="math inline">\(t\)</span>-tests ask “which predictors carry their weight?” A significant <span class="math inline">\(F\)</span> does not bless every coefficient.</li>
-<li>A <strong>dummy variable</strong> (0/1) prices a category — the endcap coefficient <em>is</em> the dollar value of an endcap; <span class="math inline">\(k\)</span> levels need <span class="math inline">\(k-1\)</span> dummies.</li>
+<li>A <strong>dummy variable</strong> (0/1) prices a category: the endcap coefficient <em>is</em> the dollar value of an endcap; <span class="math inline">\(k\)</span> levels need <span class="math inline">\(k-1\)</span> dummies.</li>
 <li><strong>Multicollinearity</strong> (overlapping predictors; check VIF &gt; 5) muddies interpretation; here every VIF &lt; 1.7, so the verdict holds.</li>
-<li>Regression output is an <strong>input to a decision</strong>: translate coefficients into dollars and weigh them against costs.</li>
-</ul>
-</section>
-<section id="carry-forward" class="slide level2 center">
-<h2>Carry-forward</h2>
-<ul>
-<li><p><strong>Homework (individual):</strong> today’s tools (multiple regression, the <span class="math inline">\(F\)</span> vs.&nbsp;<span class="math inline">\(t\)</span> tests, and dummy variables) are drilled on <strong>HW3</strong> — individual problem sets in the previous-edition format, posted on Brightspace. Run them yourself so you can check an analyst who uses them.</p></li>
-<li><p><strong>Where we’ve been:</strong> from <em>comparing</em> two groups (inference) to <em>predicting</em> with one driver (simple regression) to <em>isolating many drivers at once</em> (today) — the analyst’s core toolkit for turning data into a defensible business decision.</p></li>
+<li><strong>This closes the prediction arc:</strong> from <em>comparing</em> two groups, to <em>predicting</em> with one driver, to <em>isolating many drivers at once</em> (today).</li>
 </ul>
 </section></section>
 <section id="thank-you" class="title-slide slide level1 center" data-background-color="#cfb991">

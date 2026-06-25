@@ -32,7 +32,7 @@ html-math-method:
 - Case Spotlight: the Vungle rollout decision
 - Structuring a decision: alternatives, states of nature, payoffs
 - Payoff tables and decision trees
-- Expected value (EV) — deciding under risk
+- Expected value (EV): deciding under risk
 :::
 
 ::: {.column style="width: 50%; text-align: center; justify-content: center; align-items: center;"}
@@ -56,21 +56,23 @@ html-math-method:
 
 - But statistics told us *what is true and how sure we are*. They did **not** tell management **what to do**.
 
-- Today we put on the **manager's hat**: given that uncertainty, what is the right **action**?
+- Today you put on the **CEO's hat**: given that uncertainty, what is the right **action**?
 
-## The Brief — Today's Managerial Question
-
-<br>
-
-> "Algorithm B looks better — but we're not certain. Do we **roll out B** to all traffic now, **keep A** and play it safe, or **run a bigger test** before committing? Quantify it and make the call."
+## The Brief: Today's CEO Question
 
 <br>
 
-- Rolling out B and being **wrong** degrades *all* of Vungle's revenue — not a 1/16 slice. Keeping A forgoes a real upside. Testing more costs time and money.
+- **The big call** running through Vungle is one decision: *roll out algorithm B to all traffic, or stay with A?* **Today's piece of it:** roll out, keep A, or test more, which has the best **expected value**?
 
-- **How today's studio runs:** I demo each tool on a textbook anchor → **your team builds the Vungle rollout tree** (one sprint) → we debrief the recommendation together.
+> "Algorithm B looks better, but we're not certain. Do we **roll out B** to all traffic now, **keep A** and play it safe, or **run a bigger test** before committing? Quantify it and make the call."
 
-- By the end of class, **your team** makes the call — with the decision math to back it up.
+<br>
+
+- Rolling out B and being **wrong** degrades *all* of Vungle's revenue, not a 1/16 slice. Keeping A forgoes a real upside. Testing more costs time and money.
+
+- **How today's studio runs:** I demo each tool on a textbook anchor; you reproduce the Vungle rollout tree and interrogate it; we debrief the recommendation together.
+
+- By the end of class, **you** make the call, with the decision math to back it up.
 
 ## How Today's Tools Answer It
 
@@ -78,7 +80,7 @@ html-math-method:
 
 Every tool today maps onto the Vungle rollout:
 
-| The managerial question | The tool |
+| The CEO's question | The tool |
 |---|---|
 | What are my options, and what could happen? | **Payoff table** (alternatives × states) |
 | What's the sequence of choice and chance? | **Decision tree** |
@@ -88,7 +90,7 @@ Every tool today maps onto the Vungle rollout:
 
 <br>
 
-- One decision, five tools — and they all build on the **probability** logic from earlier in the course.
+- One decision, five tools, and they all build on the **probability** logic from earlier in the course.
 
 # Structuring the Decision {background-color="#cfb991"}
 
@@ -98,9 +100,9 @@ Every tool today maps onto the Vungle rollout:
 
 - Before any number, **decision analysis** forces three clean lists:
 
-  - **Decision alternatives** — the strategies *you* control.
-  - **States of nature** — the uncertain future events *you do not* control. They must be **mutually exclusive** and **collectively exhaustive**.
-  - **Payoffs** — the consequence (profit, cost, time…) of each *alternative × state* combination.
+  - **Decision alternatives:** the strategies *you* control.
+  - **States of nature:** the uncertain future events *you do not* control. They must be **mutually exclusive** and **collectively exhaustive**.
+  - **Payoffs:** the consequence (profit, cost, time…) of each *alternative × state* combination.
 
 - The discipline is in the structuring: most bad business decisions come from a **missing alternative** or an **unstated state of nature**, not from arithmetic.
 
@@ -127,13 +129,13 @@ Every tool today maps onto the Vungle rollout:
 
 - These two states are mutually exclusive and exhaustive: exactly one is true, we just don't know which.
 
-- **Payoffs** come next — and we'll build them from the data we already have.
+- **Payoffs** come next, and we'll build them from the data we already have.
 
 ## Where Do the Payoffs Come From? The Data
 
 <br>
 
-- We don't invent payoffs — we **anchor them in the eRPM evidence**:
+- We don't invent payoffs; we **anchor them in the eRPM evidence**:
 
   - The mean lift was **+\$0.112** per 1,000 impressions; A served **≈ 236.5M** impressions/month.
   - At that scale: $\dfrac{236{,}459{,}402}{1{,}000} \times \$0.112 \approx \$26.5\text{K/month} \approx \$318\text{K/year}$.
@@ -149,13 +151,13 @@ Every tool today maps onto the Vungle rollout:
 
 - **Keep A** is the baseline: **\$0** in both states (no gain, no loss).
 
-- *(The −160 is management's estimate of the downside of replacing a working algorithm with a worse one — about half the upside. We'll stress-test it later.)*
+- *(The −160 is management's estimate of the downside of replacing a working algorithm with a worse one, about half the upside. We'll stress-test it later.)*
 
 ## The Payoff Table
 
 <br>
 
-The payoff table is the whole problem on one page — rows are **alternatives**, columns are **states of nature**:
+The payoff table is the whole problem on one page; rows are **alternatives**, columns are **states of nature**:
 
 ::: fragment
 
@@ -170,7 +172,7 @@ The payoff table is the whole problem on one page — rows are **alternatives**,
 
 - Read a cell as: "*if I choose this row and that state occurs, this is what I get*."
 
-- A payoff table with no probabilities supports only crude rules (best-case, worst-case). To do better, we need the **odds** on the states — that is the next ingredient.
+- A payoff table with no probabilities supports only crude rules (best-case, worst-case). To do better, we need the **odds** on the states; that is the next ingredient.
 
 ## Decision Trees: Sequencing Choice and Chance
 
@@ -203,7 +205,7 @@ $$
 
   - $P(s_1) = 0.60$ (B truly better) and $P(s_2) = 0.40$ (not better).
 
-- These can come from the **classical**, **relative-frequency**, or **subjective** method. Here they are an informed subjective judgment — and we will **test how much they matter** at the end.
+- These can come from the **classical**, **relative-frequency**, or **subjective** method. Here they are an informed subjective judgment, and we will **test how much they matter** at the end.
 
 ## The Expected Value Approach
 
@@ -250,7 +252,7 @@ knitr::include_graphics("figs/vungle_decision_tree.png")
 ```
 
 ::: nonincremental
-- The square is Vungle's choice; the circle is nature deciding whether B is truly better. To pick a branch, we **fold the tree back** — replace each chance node by its EV.
+- The square is Vungle's choice; the circle is nature deciding whether B is truly better. To pick a branch, we **fold the tree back**: replace each chance node by its EV.
 :::
 
 ## Folding Back: EV of Each Vungle Alternative
@@ -297,9 +299,9 @@ knitr::include_graphics("figs/vungle_ev_bars.png")
 
 - **EV is a long-run average, not a guaranteed outcome.** If Vungle faced this exact decision many times, "roll out B" would net +\$126.8K *per decision on average*.
 
-- The actual result will be **either** +\$318K **or** −\$160K — never \$126.8K. The expected value is a **ranking device**, not a forecast of what happens this once.
+- The actual result will be **either** +\$318K **or** −\$160K, never \$126.8K. The expected value is a **ranking device**, not a forecast of what happens this once.
 
-- This is exactly why managers also ask: *what would it be worth to know the true state before deciding?* That question has a precise answer — **EVPI**.
+- This is exactly why a CEO also asks: *what would it be worth to know the true state before deciding?* That question has a precise answer: **EVPI**.
 
 # The Value of Information {background-color="#cfb991"}
 
@@ -321,34 +323,34 @@ $$
 
 :::
 
-- where **EVwoPI** is the best EV **without** information — what we just computed (\$126.8K).
+- where **EVwoPI** is the best EV **without** information, what we just computed (\$126.8K).
 
 - EVPI is an **upper bound** on the value of *any* study, survey, or test: no information can beat perfect information.
 
-## EVPI — the Three Steps (Vungle)
+## EVPI: the Three Steps (Vungle)
 
 ::: r-fit-text
-**Step 1 — best payoff in each state** (look down each column of the payoff table):
+**Step 1, best payoff in each state** (look down each column of the payoff table):
 
 | State | Best choice if you knew | Best payoff |
 |---|---|---:|
 | $s_1$: B truly better (0.60) | Roll out B | +\$318K |
 | $s_2$: B not better (0.40) | Keep A | \$0 |
 
-**Step 2 — expected value of those best returns:**
+**Step 2, expected value of those best returns:**
 
 $$
 \text{EVwPI} = 0.60(318) + 0.40(0) = \$190.8\text{K}
 $$
 
-**Step 3 — subtract the best EV without information:**
+**Step 3, subtract the best EV without information:**
 
 $$
 \text{EVPI} = 190.8 - 126.8 = \mathbf{\$64K}
 $$
 :::
 
-## What EVPI Tells the Manager
+## What EVPI Tells the CEO
 
 ```{r  echo=FALSE, out.width = "60%",fig.align="center"}
 knitr::include_graphics("figs/vungle_evpi.png")
@@ -390,7 +392,7 @@ knitr::include_graphics("figs/excel_evpi.png")
 
 <br>
 
-- Vungle's real third option, $d_3$, is to **buy information** — run a larger, longer A/B test before committing.
+- Vungle's real third option, $d_3$, is to **buy information**: run a larger, longer A/B test before committing.
 
 - A test is **imperfect** (sample) information: it returns a **signal**, not the truth.
 
@@ -413,7 +415,7 @@ $$
 
 <br>
 
-- We have **priors** $P(s_j)$ and **conditionals** $P(\text{signal} \mid s_j)$. We want the **posterior** — the revised odds *after* seeing the signal:
+- We have **priors** $P(s_j)$ and **conditionals** $P(\text{signal} \mid s_j)$. We want the **posterior**, the revised odds *after* seeing the signal:
 
 ::: fragment
 
@@ -423,11 +425,11 @@ $$
 
 :::
 
-- This is **Bayes' theorem** — the same updating logic from earlier in the course, now feeding a decision tree.
+- This is **Bayes' theorem**, the same updating logic from earlier in the course, now feeding a decision tree.
 
 - A simple **tabular** layout does the arithmetic: **prior → joint → marginal → posterior**. The posteriors become the **branch probabilities** on the tree after the test.
 
-## Bayes Revision — Favorable Report
+## Bayes Revision: Favorable Report
 
 ```{r  echo=FALSE, out.width = "70%",fig.align="center"}
 knitr::include_graphics("figs/excel_bayes_favorable.png")
@@ -438,7 +440,7 @@ knitr::include_graphics("figs/excel_bayes_favorable.png")
 - A favorable report lifts the odds B is truly better from **0.60 → 0.828**.
 :::
 
-## Bayes Revision — Unfavorable Report
+## Bayes Revision: Unfavorable Report
 
 ```{r  echo=FALSE, out.width = "70%",fig.align="center"}
 knitr::include_graphics("figs/excel_bayes_unfavorable.png")
@@ -501,8 +503,8 @@ knitr::include_graphics("figs/vungle_evsi.png")
 ```
 
 ::: nonincremental
-- **Efficiency** $= \text{EVSI}/\text{EVPI} = 9.84/64 \approx 15\%$ — this imperfect test captures only 15% of perfect information's value.
-- The test costs **≈ \$20K** to run, but is worth only **\$9.84K** → **net −\$10K**. **Do not run the bigger test.** (Compare: the textbook's Burger Prince survey also failed this test — EVSI \< its price.)
+- **Efficiency** $= \text{EVSI}/\text{EVPI} = 9.84/64 \approx 15\%$: this imperfect test captures only 15% of perfect information's value.
+- The test costs **≈ \$20K** to run, but is worth only **\$9.84K** → **net −\$10K**. **Do not run the bigger test.** (Compare: the textbook's Burger Prince survey also failed this test, EVSI \< its price.)
 :::
 
 ## EVSI in Excel
@@ -549,7 +551,7 @@ knitr::include_graphics("figs/vungle_sensitivity.png")
 
 <br>
 
-- The decision flips where the two EV lines cross — set $EV(\text{roll}) = EV(\text{keep})$ and solve for the prior $p = P(s_1)$:
+- The decision flips where the two EV lines cross: set $EV(\text{roll}) = EV(\text{keep})$ and solve for the prior $p = P(s_1)$:
 
 ::: fragment
 
@@ -563,22 +565,7 @@ $$
 
 - **This is the real payoff of structuring the decision:** we now know not just *what* to do, but *how sure we'd have to be to change our minds*. In Excel: a **What-If Data Table** varying $p$ traces the whole line.
 
-## ⏱️ Team Sprint — Build the Rollout Tree, Make the Call
-
-::: {.sprint .nonincremental}
-**Decide:** roll out B now, keep A, or run a bigger test? Recommend with the numbers.
-
-**Data:** `data/vungle_decision_analysis.xlsx` (payoff table + priors + Bayes tables) · **Time:** ~20 min
-
-1. Build the **payoff table** (roll out B: +318 / −160; keep A: 0/0) and compute **EV** of each with `=SUMPRODUCT` (priors 0.60 / 0.40).
-2. Compute **EVPI** — the most a perfect oracle is worth.
-3. Use the Bayes tables to get the posteriors, then **EVSI**; compare it to the **\$20K** test cost.
-4. Run a quick **sensitivity** check: at what prior $p^{*}$ would the call flip?
-
-**Submit before you leave (graded, one slide per group):** your rollout call (roll out B, keep A, or test) + the **EV / EVPI / EVSI** and the tipping-point prior $p^{*}$ + the **two things you would challenge** in the analysis (e.g. the −160 downside, the priors).
-:::
-
-# Debrief — The Rollout Recommendation {background-color="#cfb991"}
+# Debrief: The Rollout Recommendation {background-color="#cfb991"}
 
 ## The Decision on One Page
 
@@ -593,7 +580,7 @@ $$
 
 <br>
 
-- **Recommendation to CEO Jaffer:** **roll out B now.** Expected value is clearly positive (+\$126.8K/yr), the decision holds unless we think B is more likely wrong than right, and a further test isn't worth its price. **Caveat:** there is a real **−\$160K** downside if B disappoints — so monitor eRPM closely post-rollout and be ready to revert.
+- **Recommendation to CEO Jaffer:** **roll out B now.** Expected value is clearly positive (+\$126.8K/yr), the decision holds unless we think B is more likely wrong than right, and a further test isn't worth its price. **Caveat:** there is a real **−\$160K** downside if B disappoints, so monitor eRPM closely post-rollout and be ready to revert.
 
 ## How Inference and Decision Analysis Fit Together
 
@@ -606,17 +593,29 @@ $$
 
 - The test result was an **input** to the decision, not the decision itself. The paired $t$ said "the lift is real"; the EV said "and acting on it is worth +\$126.8K."
 
-- A good analyst can do both — and knows which question they're answering.
+- A good analyst can do both, and knows which question they're answering.
 
-## Manager's Takeaway
+## The CEO's Takeaway
 
 <br>
 
 - **One sentence:** Structuring the rollout as a decision (alternatives, states, payoffs) says **roll out B**, because its expected value (**\$126.8K/yr**) beats keeping A, and a further test isn't worth its cost.
 
-- **One number to remember:** **EVPI = \$64K** — the ceiling on what *any* information is worth here; the actual test cleared only \$9.84K of it.
+- **One number to remember:** **EVPI = \$64K**, the ceiling on what *any* information is worth here; the actual test cleared only \$9.84K of it.
 
-- **One caveat:** EV is a long-run average. "Roll out B" still risks a **−\$160K** year — sensitivity shows the call is stable (flips only below $p^{*} = 0.33$), but the downside is real, so monitor and stay ready to revert.
+- **One caveat:** EV is a long-run average. "Roll out B" still risks a **−\$160K** year; sensitivity shows the call is stable (flips only below $p^{*} = 0.33$), but the downside is real, so monitor and stay ready to revert.
+
+## ⏱️ Team Sprint: Your Group Case
+
+::: {.sprint .nonincremental}
+**Now it's your group's turn.** Today's in-class group case is posted on **Brightspace** (*Topic 04 Group Case*): a separate business decision you make with today's tools.
+
+**What you'll use:** payoff tables, decision trees, **EV**, and **EVPI / EVSI**. **Excel:** Analysis ToolPak → `=SUMPRODUCT` for EV, `=MAX` per state for EVPI.
+
+**Submit one PDF per group before you leave:** your decision plus the numbers behind it.
+:::
+
+# Wrap-up {background-color="#cfb991"}
 
 ## Summary
 
@@ -624,19 +623,12 @@ $$
 Some key takeaways from this session:
 
 - **Structure first:** every decision under uncertainty reduces to **alternatives × states of nature → payoffs**; the payoff table and decision tree are just that on a page.
-- **Decide by expected value:** $EV(d_i) = \sum_j P(s_j) V_{ij}$; pick the best EV — but remember it's a long-run average that hides the downside.
-- **Value information before buying it:** **EVPI** is the ceiling (perfect info); **EVSI** is what a real, imperfect test is worth — buy a study only if its value beats its cost.
+- **Decide by expected value:** $EV(d_i) = \sum_j P(s_j) V_{ij}$; pick the best EV, but remember it's a long-run average that hides the downside.
+- **Value information before buying it:** **EVPI** is the ceiling (perfect info); **EVSI** is what a real, imperfect test is worth; buy a study only if its value beats its cost.
 - **Bayes turns a signal into revised odds:** prior → joint → marginal → posterior; the posteriors become the branch probabilities after the test.
 - **Sensitivity tells you how stable the call is:** find the prior $p^{*}$ where the decision flips; ours holds comfortably.
 - **Inference and decision analysis are partners:** one says *what's true and how sure*; the other says *what to do about it*.
-:::
-
-## Carry-forward
-
-::: nonincremental
-- **Homework (individual):** today's tools (payoff tables, decision trees, expected value, and EVPI/EVSI) are drilled on **HW1** — individual problem sets in the previous-edition format, posted on Brightspace. Run them yourself so you can check an analyst who uses them.
-
-- **Next time:** we return to the inference arc — modeling **uncertain counts** (how many installs tomorrow?) with discrete probability distributions, the raw material that priors and payoffs are built from.
+- **Next time:** modeling **uncertain counts** (how many installs tomorrow?) with discrete probability distributions, the raw material priors and payoffs are built from.
 :::
 
 # Thank you! {background-color="#cfb991"}

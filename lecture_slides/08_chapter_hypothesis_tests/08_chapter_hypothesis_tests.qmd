@@ -37,8 +37,8 @@ html-math-method:
 :::
 
 ::: {.column style="width: 50%; text-align: center; justify-content: center; align-items: center;"}
-- **Lecture 1:** one-sample $t$ about a **mean** — is B's eRPM above \$3.30?
-- **Lecture 2:** one-sample $z$ about a **proportion** — does B clear the conversion target?
+- **Lecture 1:** one-sample $t$ about a **mean** (is B's eRPM above \$3.30?)
+- **Lecture 2:** one-sample $z$ about a **proportion** (does B clear the conversion target?)
 - Reading $p$-values like a manager
 - The rule that sets up Topic 9: testing **two** populations
 :::
@@ -47,37 +47,39 @@ html-math-method:
 
 # Case Spotlight: A/B Testing at Vungle {background-color="#cfb991"}
 
-## June 2014 — One Month of Data, One Funding Decision
+## June 2014: One Month of Data, One Funding Decision
 
 <br>
 
 - [Vungle](https://en.wikipedia.org/wiki/Liftoff_Mobile) is a mobile ad-tech startup: it serves 15-second video ads inside other companies' apps and earns revenue mainly when a viewer **installs** the advertised app (cost-per-install).
 
-- Two analysts built a new ad-serving algorithm (**B**) and ran it head-to-head against the existing one (**A**) for the entire month of June 2014. The metric that pays the bills is **eRPM** — effective revenue per 1,000 impressions.
+- Two analysts built a new ad-serving algorithm (**B**) and ran it head-to-head against the existing one (**A**) for the entire month of June 2014. The metric that pays the bills is **eRPM**, effective revenue per 1,000 impressions.
 
-- We have already **described** the data (Topics 1–2) and **estimated** B's true mean eRPM with a confidence interval (Topic 7). Now the CFO needs a **yes/no decision**.
+- We have already **described** the data (Topics 1–2) and **estimated** B's true mean eRPM with a confidence interval (Topic 7). Now, as Vungle's CEO, you need a **yes/no decision**.
 
-- Up to now we asked *"what is B's true eRPM?"* Today we ask a sharper question: *"is it above a line we care about?"* — and we answer with a **test**.
+- Up to now we asked *"what is B's true eRPM?"* Today we ask a sharper question: *"is it above a line we care about?"*, and we answer with a **test**.
 
-## The Brief — Today's Managerial Question
-
-<br>
-
-> "The CFO will **fund algorithm B** only if its mean eRPM clears the historical **\$3.30 benchmark** that algorithm A has long delivered. B's 30-day average looks like \$3.46 — but is that **really** above \$3.30, or could a sample of 30 noisy days land there by luck? **Test it.**"
+## The Brief: Roll Out B, or Stay With A?
 
 <br>
 
-- This is the canonical one-population question in business: **is a parameter on the right side of a line?** — a benchmark, a target, a contractual threshold.
-
-- **How today's studio runs:** I demo each test on a textbook example $\rightarrow$ **your team runs it on the Vungle data** $\rightarrow$ we debrief the funding call together. Two lectures, two tests.
-
-- By the end, **your team** makes the funding recommendation — with the statistics to back it up.
-
-## Estimation vs. Testing — Two Jobs for the Same Sample
+> "We fund **algorithm B** only if its mean eRPM clears the historical **\$3.30 benchmark** that algorithm A has long delivered. B's 30-day average looks like \$3.46, but is that **really** above \$3.30, or could a sample of 30 noisy days land there by luck? **Test it.**"
 
 <br>
 
-- In Topic 7 we **estimated**: built a confidence interval — a range of plausible values for B's true mean eRPM.
+- The big call is *roll out B, or stay with A?* This topic answers the first piece of it. **Today's question:** *is the mean really above the benchmark?*
+
+- This is the canonical one-population question in business: **is a parameter on the right side of a line?** A benchmark, a target, a contractual threshold.
+
+- **How today's studio runs:** I demo each test on a textbook example, then a good analyst's work goes up for you to reproduce and interrogate, then we debrief the funding call together. Two lectures, two tests.
+
+- By the end, **you** make the funding recommendation, with the statistics to back it up.
+
+## Estimation vs. Testing: Two Jobs for the Same Sample
+
+<br>
+
+- In Topic 7 we **estimated**: built a confidence interval, a range of plausible values for B's true mean eRPM.
 
 - Today we **test**: weigh the evidence for a **specific claim** about that mean.
 
@@ -92,18 +94,18 @@ html-math-method:
 
 :::
 
-- They are two views of the **same** sampling logic — and we will see at the end they agree.
+- They are two views of the **same** sampling logic, and we will see at the end they agree.
 
 # Developing the Hypotheses {background-color="#cfb991"}
 
-## $H_0$ Is on Trial — the Skeptic's Position
+## $H_0$ Is on Trial: the Skeptic's Position
 
 ```{r  echo=FALSE, out.width = "72%",fig.align="center"}
 knitr::include_graphics("figs/h0_courtroom.png")
 ```
 
 ::: nonincremental
-- The **null hypothesis** $H_0$ is the status quo — *"nothing new here, B is no better than the \$3.30 line."* It is assumed true until the data overturn it.
+- The **null hypothesis** $H_0$ is the status quo: *"nothing new here, B is no better than the \$3.30 line."* It is assumed true until the data overturn it.
 - The **alternative** $H_a$ is the research claim (*"B beats \$3.30"*), accepted **only** with strong evidence. The data carry the burden of proof.
 :::
 
@@ -115,8 +117,8 @@ knitr::include_graphics("figs/h0_courtroom.png")
 
 - Two ways the question arrives in business:
 
-  - **Research hypothesis** — gather evidence *for* something new (new algorithm, new bonus plan, new drug). Start with $H_a$: *"the new thing works."*
-  - **Challenge an assumption** — test whether a long-held claim still holds (a label says 67.6 oz; a goal is 12 minutes). Start with $H_0$: *"the claim is true."*
+  - **Research hypothesis:** gather evidence *for* something new (new algorithm, new bonus plan, new drug). Start with $H_a$: *"the new thing works."*
+  - **Challenge an assumption:** test whether a long-held claim still holds (a label says 67.6 oz; a goal is 12 minutes). Start with $H_0$: *"the claim is true."*
 
 - Vungle is a **research** case: we want evidence that B clears \$3.30, so that claim is $H_a$.
 
@@ -128,14 +130,14 @@ $$
 
 :::
 
-## Three Forms — the Business Question Picks the Tail
+## Three Forms: the Business Question Picks the Tail
 
 ```{r  echo=FALSE, out.width = "80%",fig.align="center"}
 knitr::include_graphics("figs/hypothesis_forms.png")
 ```
 
 ::: nonincremental
-- **Upper-tail** (Vungle): we only act if B is **better** — "worse" and "same" lead to the same decision (don't fund).
+- **Upper-tail** (Vungle): we only act if B is **better**; "worse" and "same" lead to the same decision (don't fund).
 - **Lower-tail**: we act if the parameter falls **below** a line (a defect rate above a ceiling, response time over a goal).
 - **Two-tailed**: any **difference** matters (a fill weight that is too high *or* too low).
 :::
@@ -158,7 +160,7 @@ $$
 
 :::
 
-- The **equality** ($=$, $\leq$, $\geq$) is always part of $H_0$ — it is the value we compute the test statistic *against*.
+- The **equality** ($=$, $\leq$, $\geq$) is always part of $H_0$: it is the value we compute the test statistic *against*.
 
 - The direction of $H_a$ comes from the **business decision**, not from peeking at the data.
 
@@ -171,41 +173,43 @@ knitr::include_graphics("figs/type_I_II_errors_studio.png")
 ```
 
 ::: nonincremental
-- **Type I error:** reject $H_0$ when it is true — fund B though it really *isn't* above \$3.30 (a costly false alarm).
-- **Type II error:** fail to reject $H_0$ when it is false — *miss* a genuinely better B (a missed opportunity).
+- **Type I error:** reject $H_0$ when it is true (fund B though it really *isn't* above \$3.30, a costly false alarm).
+- **Type II error:** fail to reject $H_0$ when it is false (*miss* a genuinely better B, a missed opportunity).
 :::
 
 ## You Control $\alpha$; $\beta$ Follows
 
 <br>
 
-- The **level of significance** $\alpha$ = the probability of a **Type I error** you are willing to tolerate. You set it **before** seeing the data — usually $\alpha = 0.05$ (sometimes $0.01$ or $0.10$).
+- The **level of significance** $\alpha$ = the probability of a **Type I error** you are willing to tolerate. You set it **before** seeing the data; usually $\alpha = 0.05$ (sometimes $0.01$ or $0.10$).
 
 - $\beta$ = the probability of a **Type II error**. You do **not** set it directly; it follows from $\alpha$, the sample size, and how far the truth is from $H_0$.
 
 - **The trade-off:** for a fixed sample, lowering $\alpha$ (fewer false alarms) **raises** $\beta$ (more missed effects). The only way to shrink both is a **larger sample**.
 
-- **Language rule:** when the evidence is weak we say *"fail to reject $H_0$,"* never *"accept $H_0$."* Absence of proof is not proof of absence — we just did not gather enough evidence to overturn the skeptic.
+- **Language rule:** when the evidence is weak we say *"fail to reject $H_0$,"* never *"accept $H_0$."* Absence of proof is not proof of absence; we just did not gather enough evidence to overturn the skeptic.
 
 ## Why the Asymmetry Matters for Vungle
 
 <br>
 
-- A **Type I error** funds an algorithm that is not actually better — the company spends on a non-improvement and the analyst's credibility takes the hit.
+- A **Type I error** funds an algorithm that is not actually better: the company spends on a non-improvement and the analyst's credibility takes the hit.
 
-- A **Type II error** walks away from a real improvement — money left on the table, but no bad rollout.
+- A **Type II error** walks away from a real improvement: money left on the table, but no bad rollout.
 
-- The CFO decides which mistake is worse and sets $\alpha$ accordingly. Here a false "fund it" is the headline risk, so we hold $\alpha = 0.05$.
+- As CEO you decide which mistake is worse and set $\alpha$ accordingly. Here a false "fund it" is the headline risk, so we hold $\alpha = 0.05$.
 
 - This is why $H_0$ is conservative: the test protects the **status quo** until the evidence is strong enough to justify the change.
 
-# Lecture 1 — One-Sample Test About a Mean {background-color="#cfb991"}
+# Lecture 1: One-Sample Test About a Mean {background-color="#cfb991"}
 
-## The Brief — Is B's eRPM Above the \$3.30 Benchmark?
+## The Brief: Is the Mean Really Above the Benchmark?
 
 <br>
 
-- We do **not** know the true population standard deviation $\sigma$ of B's daily eRPM — so we estimate it from the sample with $s$ and use the **$t$-distribution**.
+- The big call is *roll out B, or stay with A?* **Lecture 1's piece:** *is B's mean eRPM really above the \$3.30 benchmark, or could a noisy 30-day sample land there by luck?*
+
+- We do **not** know the true population standard deviation $\sigma$ of B's daily eRPM, so we estimate it from the sample with $s$ and use the **$t$-distribution**.
 
 - The decision is asymmetric (fund only if **better**), so it is an **upper-tail** test:
 
@@ -219,7 +223,7 @@ $$
 
 - $\mu$ = the **true** mean daily eRPM B would deliver across *all* future traffic; the 30 June days are our sample.
 
-- **Today's plan:** demo the mechanics on a textbook airport-rating case, then your team runs it on Vungle.
+- **Today's plan:** demo the mechanics on a textbook airport-rating case, then a good analyst's work on Vungle goes up for you to reproduce and stress-test.
 
 ## The Test Statistic: How Many Standard Errors Above the Line?
 
@@ -237,7 +241,7 @@ $$
 
 - $\bar{x}$ = sample mean · $\mu_0$ = the benchmark in $H_0$ · $s$ = sample standard deviation · $n$ = sample size.
 
-- A **big** $t$ means the sample mean is many standard errors above the line — hard to explain as luck if $H_0$ were true.
+- A **big** $t$ means the sample mean is many standard errors above the line: hard to explain as luck if $H_0$ were true.
 
 - Because $\sigma$ is unknown and replaced by $s$, the statistic follows a **$t$ distribution** with $n-1$ degrees of freedom (slightly heavier tails than the normal).
 
@@ -259,7 +263,7 @@ $$
 
 :::
 
-- **$p$-value approach:** compute the probability, *if $H_0$ were true*, of a test statistic at least this extreme — then reject $H_0$ if $p \leq \alpha$.
+- **$p$-value approach:** compute the probability, *if $H_0$ were true*, of a test statistic at least this extreme, then reject $H_0$ if $p \leq \alpha$.
 
 - Both always agree. Excel: `=T.INV(1-α, df)` for the critical value, `=T.DIST.RT(t, df)` for an upper-tail $p$-value.
 
@@ -267,7 +271,7 @@ $$
 
 <br>
 
-- The $p$-value is **$P(\text{evidence this extreme} \mid H_0 \text{ true})$** — *not* the probability that $H_0$ is true.
+- The $p$-value is **$P(\text{evidence this extreme} \mid H_0 \text{ true})$**, *not* the probability that $H_0$ is true.
 
 - Read it as: *"if B were really only at the \$3.30 line, how often would 30 days look this good by luck?"* Small $p$ $\Rightarrow$ that luck is implausible $\Rightarrow$ doubt $H_0$.
 
@@ -302,7 +306,7 @@ $$
 
 :::
 
-## Heathrow — the Five Steps
+## Heathrow: the Five Steps
 
 ::: r-fit-text
 **1. Business context.** Classify the airport; only a true mean above 7 earns the "superior service" badge.
@@ -317,20 +321,20 @@ $$
 
 **4. Decision.** Critical value: $t_{0.05,\,59} = 1.671$; since $1.84 \geq 1.671$ $\rightarrow$ **reject $H_0$**. Equivalently, $p\text{-value} = 0.035 \leq 0.05$ $\rightarrow$ **reject $H_0$**.
 
-**5. Manager's Translation.** *The data give us at least 95% confidence that Heathrow's mean traveler rating tops 7 — classify it "superior service." The evidence is strong but not overwhelming ($p \approx 0.035$).*
+**5. Manager's Translation.** *The data give us at least 95% confidence that Heathrow's mean traveler rating tops 7, so classify it "superior service." The evidence is strong but not overwhelming ($p \approx 0.035$).*
 :::
 
-## Now the Spine Case — B's eRPM in Numbers
+## Now the Spine Case: B's eRPM in Numbers
 
 ```{r  echo=FALSE, out.width = "80%",fig.align="center"}
 knitr::include_graphics("figs/erpm_B_vs_benchmark.png")
 ```
 
 ::: nonincremental
-- 21 of 30 days clear the \$3.30 line, and the sample mean sits well above it — but a noisy 30-day sample *could* land here even if the true mean were exactly \$3.30. The test settles it.
+- 21 of 30 days clear the \$3.30 line, and the sample mean sits well above it, but a noisy 30-day sample *could* land here even if the true mean were exactly \$3.30. The test settles it.
 :::
 
-## Step 3 — Compute the Test Statistic
+## Step 3: Compute the Test Statistic
 
 <br>
 
@@ -358,7 +362,7 @@ $$
 
 :::
 
-## Step 4 — Decision (Critical Value)
+## Step 4: Decision (Critical Value)
 
 ```{r  echo=FALSE, out.width = "74%",fig.align="center"}
 knitr::include_graphics("figs/t_dist_critical_vungle.png")
@@ -366,10 +370,10 @@ knitr::include_graphics("figs/t_dist_critical_vungle.png")
 
 ::: nonincremental
 - **Critical value:** $t_{0.05,\,29} = 1.699$. Since $t = 2.529 \geq 1.699$ $\rightarrow$ **reject $H_0$**.
-- The observed $t$ lands deep in the gold rejection region — a sample mean this far above \$3.30 is hard to explain as luck.
+- The observed $t$ lands deep in the gold rejection region; a sample mean this far above \$3.30 is hard to explain as luck.
 :::
 
-## Step 4 — Decision ($p$-Value)
+## Step 4: Decision ($p$-Value)
 
 ```{r  echo=FALSE, out.width = "74%",fig.align="center"}
 knitr::include_graphics("figs/t_dist_pvalue_vungle.png")
@@ -380,13 +384,13 @@ knitr::include_graphics("figs/t_dist_pvalue_vungle.png")
 - On the manager's scale, $p \leq 0.01$ is **overwhelming** evidence against the \$3.30 line.
 :::
 
-## The Threshold Matters — a Teaching Moment
+## The Threshold Matters: a Teaching Moment
 
 <br>
 
 - At $\alpha = 0.05$ the call is clear: $p = 0.009 \leq 0.05$, reject.
 
-- At a stricter $\alpha = 0.01$? The critical value rises to $t_{0.01,\,29} = 2.462$. Our $t = 2.529$ still clears it — but **just barely**.
+- At a stricter $\alpha = 0.01$? The critical value rises to $t_{0.01,\,29} = 2.462$. Our $t = 2.529$ still clears it, but **just barely**.
 
 ::: fragment
 
@@ -396,7 +400,7 @@ $$
 
 :::
 
-- **Lesson:** how strict you set $\alpha$ can flip a close call. Here B clears even the demanding 1% bar — but a result like $p = 0.03$ would reject at 5% and *fail* at 1%. **Decide $\alpha$ before you test, and report it.**
+- **Lesson:** how strict you set $\alpha$ can flip a close call. Here B clears even the demanding 1% bar, but a result like $p = 0.03$ would reject at 5% and *fail* at 1%. **Decide $\alpha$ before you test, and report it.**
 
 ## Excel: Build the One-Sample $t$ with Formula Cells
 
@@ -414,7 +418,7 @@ The ToolPak's $t$-tests are all **two-sample**, so a one-sample test is five for
 
 <br>
 
-(First run **Descriptive Statistics** on the `erpm` B column to read $\bar{x}$, $s$, $n$ — then wire the test cells to it.)
+(First run **Descriptive Statistics** on the `erpm` B column to read $\bar{x}$, $s$, $n$, then wire the test cells to it.)
 :::
 
 ::: {.column width="60%"}
@@ -439,63 +443,55 @@ $$
 
 :::
 
-- The benchmark **\$3.30 sits below the entire interval** — consistent with rejecting $H_0: \mu \leq 3.30$.
+- The benchmark **\$3.30 sits below the entire interval**, consistent with rejecting $H_0: \mu \leq 3.30$.
 
 - This is the **duality**: a value outside the CI is exactly a value the test would reject. Estimation and testing tell one story.
 
-- Even the lower bound, \$3.33, is above the line — at Vungle's scale of hundreds of millions of impressions, a few cents per 1,000 is real money.
+- Even the lower bound, \$3.33, is above the line: at Vungle's scale of hundreds of millions of impressions, a few cents per 1,000 is real money.
 
-## Step 5 — Manager's Translation
+## Step 5: Manager's Translation
 
 <br>
 
-- *"If algorithm B were truly no better than the \$3.30 benchmark, we would see 30 days average this high only about **9 times in 1,000**. That is overwhelming evidence B clears the line — its true mean eRPM is plausibly between \$3.33 and \$3.59. **Fund B.**"*
+- *"If algorithm B were truly no better than the \$3.30 benchmark, we would see 30 days average this high only about **9 times in 1,000**. That is overwhelming evidence B clears the line; its true mean eRPM is plausibly between \$3.33 and \$3.59. **Fund B.**"*
 
-- **One number, one caveat:** the call rests on $t = 2.53$ ($p = 0.009$) — and on the assumption that June's 30 days are **representative** of future traffic. A new month with different seasonality could shift the mean.
+- **One number, one caveat:** the call rests on $t = 2.53$ ($p = 0.009$), and on the assumption that June's 30 days are **representative** of future traffic. A new month with different seasonality could shift the mean.
 
-- This answers *"is B above the line?"* — but the CFO's deeper question is *"is B better than **A**?"* That comparison of **two** populations is Topic 9.
+- This answers *"is B above the line?"*, but the deeper question is *"is B better than **A**?"* That comparison of **two** populations is Topic 9.
 
-## ⏱️ Team Sprint 1 — Does B Clear the \$3.30 Benchmark?
+## The CEO's Takeaway: Lecture 1
+
+<br>
+
+- **One sentence:** algorithm B's mean daily eRPM is above the \$3.30 benchmark; the one-sample $t$-test rejects "no better" with overwhelming evidence ($p = 0.009$). **Fund B.**
+
+- **One number to remember:** $t = 2.53$, and where it came from: $(\bar{x} - \mu_0)/(s/\sqrt{n})$.
+
+- **One caveat:** the test says B beats the **\$3.30 line**, not that B beats **A**, and it assumes June is representative. Comparing B to A directly is Topic 9.
+
+- **Homework (individual):** today's one-sample $t$ is drilled on **HW3**, previous-edition problem sets on Brightspace. Run it yourself so you can check an analyst who uses it.
+
+## ⏱️ Team Sprint: Your Group Case (Lecture 1)
 
 ::: {.sprint .nonincremental}
-**Decide:** is algorithm B's mean eRPM truly above the \$3.30 funding benchmark?
+**Now it's your group's turn.** Today's in-class group case is posted on **Brightspace** (*Topic 08 Group Case, Lecture 1*): a separate business decision you make with today's tools.
 
-**Data:** `data/vungle_daily.csv` (filter `algorithm = B`, column `erpm`) · **Time:** ~10 min
+**What you'll use:** a one-sample $t$-test about a **mean**. **Excel:** Analysis ToolPak → Descriptive Statistics, then formula cells for $SE$, $t$, and the upper-tail $p$ (`=T.DIST.RT`).
 
-1. Run **Data → Data Analysis → Descriptive Statistics** on B's `erpm` to get $\bar{x}$, $s$, $n$.
-2. In formula cells, compute $SE = s/\sqrt{n}$, then $t = (\bar{x}-3.30)/SE$, then the upper-tail $p$ with `=T.DIST.RT(t, 29)`.
-3. Build the 95% CI for the mean; check that \$3.30 falls below it. Decide at $\alpha = 0.05$.
-
-**Submit before you leave (graded, one slide per group):** your **fund / don't fund** call for the CFO + your $t$, $p$, and CI + the **two things you would challenge** in the analysis.
+**Submit one PDF per group before you leave:** your decision plus the numbers behind it.
 :::
 
-## Debrief — Lecture 1 Manager's Takeaway
+# Lecture 2: One-Sample Test About a Proportion {background-color="#cfb991"}
+
+## The Brief: Is the Proportion Really Above the Target?
 
 <br>
 
-- **One sentence:** algorithm B's mean daily eRPM is above the \$3.30 benchmark — the one-sample $t$-test rejects "no better" with overwhelming evidence ($p = 0.009$). **Fund B.**
-
-- **One number to remember:** $t = 2.53$ — and where it came from: $(\bar{x} - \mu_0)/(s/\sqrt{n})$.
-
-- **One caveat:** the test says B beats the **\$3.30 line**, not that B beats **A** — and it assumes June is representative. Comparing B to A directly is Topic 9.
-
-## Carry-forward — Lecture 1
-
-::: nonincremental
-- **Homework (individual):** today's tools (one-sample $t$ and $z$ hypothesis tests) are drilled on **HW3** — individual problem sets in the previous-edition format, posted on Brightspace. Run them yourself so you can check an analyst who uses them.
-
-- **Next lecture:** the same logic for a **proportion** — does B's *conversion rate* clear its target?
-:::
-
-# Lecture 2 — One-Sample Test About a Proportion {background-color="#cfb991"}
-
-## The Brief — Does B Clear the Conversion Target?
-
-<br>
+- The big call is still *roll out B, or stay with A?* **Lecture 2's piece:** *is B's conversion rate really above the 0.35% target?*
 
 - eRPM is revenue per impression. The ops team also watches the **conversion rate**: installs ÷ impressions. Any algorithm must clear a minimum **0.35%** conversion target to be viable.
 
-- Now the parameter is a **proportion** $p$, not a mean — but the machinery is the same: state $H_0$/$H_a$, compute a test statistic, get a $p$-value, decide at $\alpha$.
+- Now the parameter is a **proportion** $p$, not a mean, but the machinery is the same: state $H_0$/$H_a$, compute a test statistic, get a $p$-value, decide at $\alpha$.
 
 ::: fragment
 
@@ -511,7 +507,7 @@ $$
 
 <br>
 
-- For **eRPM** the unit was the **day** ($n = 30$). For **conversion** the unit is the **impression** — each one a Bernoulli trial (install / no install).
+- For **eRPM** the unit was the **day** ($n = 30$). For **conversion** the unit is the **impression**, each one a Bernoulli trial (install / no install).
 
 - So $n$ is now **15.8 million**, not 30. The "sample" exploded in size.
 
@@ -527,7 +523,7 @@ $$
 
 :::
 
-- *Honest caveat:* impressions within a day are not perfectly independent — beyond today's scope, but a fair question to ask any A/B platform.
+- *Honest caveat:* impressions within a day are not perfectly independent (beyond today's scope), but a fair question to ask any A/B platform.
 
 ## The Proportion Test Statistic
 
@@ -543,7 +539,7 @@ $$
 
 :::
 
-- Test statistic — a **$z$**, because for large $n$ the sampling distribution of $\bar p$ is approximately normal:
+- Test statistic, a **$z$**, because for large $n$ the sampling distribution of $\bar p$ is approximately normal:
 
 ::: fragment
 
@@ -553,7 +549,7 @@ $$
 
 :::
 
-- **Large-sample condition:** $np_0 \geq 5$ and $n(1-p_0) \geq 5$. Here $np_0 \approx 55{,}000 \gg 5$ — easily satisfied.
+- **Large-sample condition:** $np_0 \geq 5$ and $n(1-p_0) \geq 5$. Here $np_0 \approx 55{,}000 \gg 5$, easily satisfied.
 
 ## Decision Rules for a Proportion
 
@@ -600,7 +596,7 @@ $$
 
 :::
 
-## Pine Creek — Decision
+## Pine Creek: Decision
 
 <br>
 
@@ -614,9 +610,9 @@ $$
 
 :::
 
-- Notice the parallel to the airport case: same five steps, same two roads — only the standard error formula and the reference distribution (normal vs. $t$) changed.
+- Notice the parallel to the airport case: same five steps, same two roads; only the standard error formula and the reference distribution (normal vs. $t$) changed.
 
-## Now the Spine Case — B's Conversion in Numbers
+## Now the Spine Case: B's Conversion in Numbers
 
 <br>
 
@@ -640,7 +636,7 @@ $$
 
 - $\bar p$ sits just **0.0041 percentage points** above the target (a tiny gap), yet with 15.8M impressions even a tiny gap is many standard errors out.
 
-## Step 4 — Decision
+## Step 4: Decision
 
 <br>
 
@@ -654,7 +650,7 @@ $$
 
 :::
 
-- **But pause on the magnitude:** the *effect size* is 0.0041 percentage points. With $n$ in the millions the test was almost **guaranteed** to be "significant" — which raises the question we tackle next.
+- **But pause on the magnitude:** the *effect size* is 0.0041 percentage points. With $n$ in the millions the test was almost **guaranteed** to be "significant," which raises the question we tackle next.
 
 ## Excel: One-Proportion $z$ with Formula Cells
 
@@ -663,7 +659,7 @@ $$
 ::: {.column width="40%"}
 <br>
 
-There is **no ToolPak tool** for a one-proportion $z$ — build it in cells:
+There is **no ToolPak tool** for a one-proportion $z$, so build it in cells:
 
 - `=SUM` the installs and impressions for B
 - $\bar p = x/n$
@@ -690,7 +686,7 @@ knitr::include_graphics("figs/excel_one_prop_z_vungle.png")
 
 - With $n$ in the **millions**, the conversion test was nearly guaranteed to reject: at this scale even a microscopic gap produces a large $z$.
 
-- $z = 2.73$ tells you the gap is **real**; it does **not** tell you the gap **matters**. Always pair the test with the **effect size** — here +0.0041 percentage points above target.
+- $z = 2.73$ tells you the gap is **real**; it does **not** tell you the gap **matters**. Always pair the test with the **effect size**: here +0.0041 percentage points above target.
 
 - Flip side, from small samples: a real effect can be **invisible** when $n$ is tiny (low power $\rightarrow$ Type II error). **Large $n$: almost everything is significant. Small $n$: almost nothing is.**
 
@@ -699,54 +695,43 @@ knitr::include_graphics("figs/excel_one_prop_z_vungle.png")
 ## Reading $p$-Values Like a Manager
 
 ::: r-fit-text
-The same statistic, re-anchored to the Vungle eRPM mean test under different benchmarks — what would the verdict be?
+The same statistic, re-anchored to the Vungle eRPM mean test under different benchmarks: what would the verdict be?
 
 | If the benchmark were... | $t$ | $p$-value | Rubric label | Manager's read |
 |---|---:|---:|---|---|
-| $\mu_0 = 3.30$ (our case) | 2.53 | **0.009** | Overwhelming | Clear the line decisively — fund B |
-| $\mu_0 = 3.35$ | 1.73 | **0.047** | Strong | Significant at 5%, not at 1% — fund, but watch it |
-| $\mu_0 = 3.40$ | 0.94 | **0.178** | Insufficient | Cannot distinguish B from 3.40 — hold |
+| $\mu_0 = 3.30$ (our case) | 2.53 | **0.009** | Overwhelming | Clear the line decisively, fund B |
+| $\mu_0 = 3.35$ | 1.73 | **0.047** | Strong | Significant at 5%, not at 1%; fund, but watch it |
+| $\mu_0 = 3.40$ | 0.94 | **0.178** | Insufficient | Cannot distinguish B from 3.40, so hold |
 
 :::
 
-- The **same data** support very different conclusions depending on **where you draw the line** — which is why the benchmark is a *business* decision, set before the test.
+- The **same data** support very different conclusions depending on **where you draw the line**, which is why the benchmark is a *business* decision, set before the test.
 
-## ⏱️ Team Sprint 2 — Does B Clear the Conversion Target?
-
-::: {.sprint .nonincremental}
-**Decide:** is algorithm B's conversion rate (installs/impressions) above the 0.35% target?
-
-**Data:** `data/vungle_daily.csv` (filter `algorithm = B`) · **Time:** ~12 min
-
-1. `=SUM` B's `installs` and `impressions`; compute $\bar p = x/n$.
-2. In formula cells: $SE = $ `=SQRT(0.0035*(1-0.0035)/n)`, then $z = (\bar p - 0.0035)/SE$, then $p = $ `=1-NORM.S.DIST(z, TRUE)`.
-3. Decide at $\alpha = 0.05$ — **then** state the **effect size** (how far above target, in percentage points).
-4. In **one sentence each:** the call · the number · the caveat about statistical vs. practical significance.
-
-**Submit before you leave (graded, one slide per group):** your **viable / not viable** call for the ops team + your $z$, $p$, and effect size + the **two things you would challenge** in the analysis.
-:::
-
-## Debrief — Lecture 2 Manager's Takeaway
+## The CEO's Takeaway: Lecture 2
 
 <br>
 
-- **One sentence:** B's conversion rate clears the 0.35% target — the one-proportion $z$-test rejects "below target" ($z = 2.73$, $p = 0.003$). Viable on conversion, too.
+- **One sentence:** B's conversion rate clears the 0.35% target; the one-proportion $z$-test rejects "below target" ($z = 2.73$, $p = 0.003$). Viable on conversion, too.
 
-- **One number to remember:** $z = 2.73$ — same machinery as the $t$, with $\sigma_{\bar p} = \sqrt{p_0(1-p_0)/n}$ in the denominator.
+- **One number to remember:** $z = 2.73$, same machinery as the $t$, with $\sigma_{\bar p} = \sqrt{p_0(1-p_0)/n}$ in the denominator.
 
 - **One caveat:** with 15.8M impressions, *significance was almost automatic*. The honest headline is the **effect size** (+0.0041 pts), not the $z$. Statistical significance $\neq$ practical importance.
 
-## Carry-forward — Lecture 2
+- **Homework (individual):** today's one-proportion $z$ is drilled on **HW3**, previous-edition problem sets on Brightspace. Run it yourself so you can check an analyst who uses it.
 
-::: nonincremental
-- **Homework (individual):** today's tools (one-sample $t$ and $z$ hypothesis tests) are drilled on **HW3** — individual problem sets in the previous-edition format, posted on Brightspace. Run them yourself so you can check an analyst who uses them.
+## ⏱️ Team Sprint: Your Group Case (Lecture 2)
 
-- **Next time:** we stop testing **one** population against a line and start comparing **two** — *is B better than A?* — with the paired and two-sample tests of Topic 9.
+::: {.sprint .nonincremental}
+**Now it's your group's turn.** Today's in-class group case is posted on **Brightspace** (*Topic 08 Group Case, Lecture 2*): a separate business decision you make with today's tools.
+
+**What you'll use:** a one-proportion $z$-test. **Excel:** Analysis ToolPak for any summaries, then formula cells for $SE$, $z$, and the upper-tail $p$ (`=1-NORM.S.DIST`).
+
+**Submit one PDF per group before you leave:** your decision plus the numbers behind it.
 :::
 
 # Wrap-up {background-color="#cfb991"}
 
-## The One-Population Testing Recipe — One Page
+## The One-Population Testing Recipe: One Page
 
 ::: r-fit-text
 | Step | Mean ($\sigma$ unknown) | Proportion (large $n$) |
@@ -757,18 +742,18 @@ The same statistic, re-anchored to the Vungle eRPM mean test under different ben
 | **4. Decision** | reject if $\lvert t\rvert \geq t_{crit}$ or $p \leq \alpha$ | reject if $\lvert z\rvert \geq z_{crit}$ or $p \leq \alpha$ |
 | **5. Translate** | back to the business call + effect size | back to the business call + effect size |
 | **Excel** | `T.DIST.RT`, `T.INV` (+ Descriptive Stats) | `NORM.S.DIST`, `NORM.S.INV` (formula cells) |
-| **Vungle result** | $t = 2.53$, $p = 0.009$ — fund B | $z = 2.73$, $p = 0.003$ — clears target |
+| **Vungle result** | $t = 2.53$, $p = 0.009$ (fund B) | $z = 2.73$, $p = 0.003$ (clears target) |
 :::
 
-## Manager's Takeaway
+## The CEO's Takeaway
 
 <br>
 
-- **One sentence:** Algorithm B's mean eRPM (\$3.46) is above the \$3.30 funding benchmark and its conversion clears the 0.35% target — both one-sample tests reject the skeptic, so **fund B**.
+- **One sentence:** Algorithm B's mean eRPM (\$3.46) is above the \$3.30 funding benchmark and its conversion clears the 0.35% target; both one-sample tests reject the skeptic, so **fund B**.
 
-- **One number to remember:** $t = 2.53$ for the eRPM test — and the recipe behind it: $(\bar{x} - \mu_0)/(s/\sqrt{n})$.
+- **One number to remember:** $t = 2.53$ for the eRPM test, and the recipe behind it: $(\bar{x} - \mu_0)/(s/\sqrt{n})$.
 
-- **One caveat:** these tests say B beats a **line**, not that B beats **A** — and a large $n$ can make a tiny gap "significant." Always report the **effect size** and check whether the benchmark is the right line.
+- **One caveat:** these tests say B beats a **line**, not that B beats **A**, and a large $n$ can make a tiny gap "significant." Always report the **effect size** and check whether the benchmark is the right line.
 
 - **Practice with the real data:**
   - `data/vungle_daily.csv` + formula cells $\rightarrow$ reproduce $t = 2.53$ (eRPM) and $z = 2.73$ (conversion).
@@ -781,10 +766,10 @@ Some key takeaways from this session:
 
 - **$H_0$ is the skeptic on trial:** put the claim you want to prove in $H_a$, keep the equality in $H_0$, and let the data carry the burden of proof.
 - **Two errors, one knob:** you set $\alpha$ (Type I risk) before the test; $\beta$ (Type II) follows. Say *"fail to reject,"* never *"accept."*
-- **One recipe, two parameters:** the one-sample $t$ (mean, $\sigma$ unknown) and the one-proportion $z$ share the same five steps — only the standard error and reference distribution change.
+- **One recipe, two parameters:** the one-sample $t$ (mean, $\sigma$ unknown) and the one-proportion $z$ share the same five steps; only the standard error and reference distribution change.
 - **Two roads agree:** the critical-value and $p$-value approaches always reach the same decision, and both agree with the confidence interval.
 - **Significance $\neq$ importance:** with millions of impressions almost everything is "significant," so judge the **effect size**; with tiny samples real effects can hide, so mind the **power**.
-- A test answers *is the parameter past a line?* Comparing **two** populations — *is B better than A?* — is Topic 9.
+- A test answers *is the parameter past a line?* Comparing **two** populations (*is B better than A?*) is Topic 9.
 :::
 
 # Thank you! {background-color="#cfb991"}

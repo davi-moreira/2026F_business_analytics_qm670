@@ -48,7 +48,7 @@ html-math-method:
 
 # Case Spotlight: A/B Testing at Vungle {background-color="#cfb991"}
 
-## June 30, 2014 — Two Analysts and One Month of Data
+## June 30, 2014: Two Analysts and One Month of Data
 
 <br>
 
@@ -56,25 +56,27 @@ html-math-method:
 
 - Two Darden MBAs, **Andrew Kritzer** and **Hammond Guerin**, built a new ad-serving algorithm (**B**) and ran it head-to-head against the existing one (**A**) for the entire month of June 2014.
 
-- The split was random: an MD5 hash of each user ID sent **1/16 of traffic to B**, the rest to A. Same market, same days, same apps — only the algorithm differs.
+- The split was random: an MD5 hash of each user ID sent **1/16 of traffic to B**, the rest to A. Same market, same days, same apps; only the algorithm differs.
 
 - The metric that pays the bills is **eRPM**: effective revenue per 1,000 impressions.
 
 - Guerin is about to become Vungle's **head of data science**. His credibility (and his stock options) ride on this call.
 
-## The Brief — Today's Managerial Question
+## The Brief: Today's Managerial Question
 
 <br>
 
-> "B's daily eRPM averaged about **\$0.11 higher** than A's. Is that a **real improvement** — or just month-to-month **noise**? Should Vungle **roll out B** to all traffic?"
+- **The big call you own as Vungle's CEO:** *roll out algorithm B, or stay with A?* We have built toward it all term; today we settle it.
+
+> "B's daily eRPM averaged about **\$0.11 higher** than A's. Is that a **real improvement**, or just month-to-month **noise**? Should Vungle **roll out B** to all traffic?"
 
 <br>
 
-- In Topic 8 we tested **one** population against a benchmark ("is B's mean eRPM above \$3.30?"). Today's is the canonical business question: **is B better than A?** — comparing **two** populations.
+- In Topic 8 we tested **one** population against a benchmark ("is B's mean eRPM above \$3.30?"). Today's question is the one that decides the rollout: **is B really better than A?**, comparing **two** populations.
 
-- **How today's studio runs:** I demo each test on a textbook example → **your team runs it on the Vungle data** (two sprints) → we debrief the rollout call together.
+- **How today's studio runs:** I demo each test on a textbook example, then on the Vungle data; you debrief the rollout call; then your group runs a fresh case and submits its own call.
 
-- By the end of class, **your team** makes the rollout recommendation — with the statistics to back it up.
+- By the end of class you, the CEO, will have the recommendation, with the statistics to back it up.
 
 ## How Today's Tools Answer It
 
@@ -85,13 +87,13 @@ Every tool today maps onto the Vungle dataset:
 | Feature of the Vungle test | The tool |
 |---|---|
 | Same 30 days observed under both A and B | **Matched samples → paired $t$-test** |
-| What if we (wrongly) ignored the day pairing? | **Independent samples $t$-test** — a cautionary contrast |
+| What if we (wrongly) ignored the day pairing? | **Independent samples $t$-test** (a cautionary contrast) |
 | Millions of impressions → installs (yes/no) | **Two-proportion $z$-test** |
 | "Roll out or not?" | Test results become **decision signals** (Decision Analysis, Topic 4) |
 
 <br>
 
-- One dataset, three tests — and they will **not** all point the same way. That tension is today's managerial lesson.
+- One dataset, three tests, and they will **not** all point the same way. That tension is today's managerial lesson.
 
 # Comparing Two Groups: Design First {background-color="#cfb991"}
 
@@ -133,7 +135,7 @@ knitr::include_graphics("figs/ab_test_design_schematic.png")
 ```
 
 ::: nonincremental
-- **Paired is preferred when feasible** — but it requires that every unit *can* be measured under both conditions.
+- **Paired is preferred when feasible**, but it requires that every unit *can* be measured under both conditions.
 - When the units come from genuinely separate populations (bankrupt vs. non-bankrupt firms), only the **independent** design exists.
 :::
 
@@ -141,7 +143,7 @@ knitr::include_graphics("figs/ab_test_design_schematic.png")
 
 <br>
 
-- All of today's tests reuse the Topic 8 logic — the only change is the **parameter**: it is now a **difference**.
+- All of today's tests reuse the Topic 8 logic; the only change is the **parameter**: it is now a **difference**.
 
 ::: fragment
 
@@ -173,7 +175,7 @@ knitr::include_graphics("figs/decision_tree_test_selection.png")
 | Independent, $\sigma_1,\sigma_2$ known | **Two-sample $z$** | $z = \dfrac{(\bar{x}_1-\bar{x}_2) - D_0}{\sqrt{\sigma_1^2/n_1 + \sigma_2^2/n_2}}$ | $N(0,1)$ | ToolPak: *z-Test: Two Sample for Means* |
 | Independent, $\sigma$ unknown, assumed equal | **Pooled $t$** | $t = \dfrac{(\bar{x}_1-\bar{x}_2) - D_0}{s_p\sqrt{1/n_1 + 1/n_2}}$ | $t$, $df = n_1+n_2-2$ | ToolPak: *t-Test: Two-Sample Assuming Equal Variances* |
 | Independent, $\sigma$ unknown, not assumed equal | **Welch $t$** *(default)* | $t = \dfrac{(\bar{x}_1-\bar{x}_2) - D_0}{\sqrt{s_1^2/n_1 + s_2^2/n_2}}$ | $t$, Satterthwaite $df$ | ToolPak: *t-Test: Two-Sample Assuming Unequal Variances* |
-| Two proportions (large samples) | **Two-proportion $z$** | $z = \dfrac{\bar{p}_1-\bar{p}_2}{\sqrt{\bar{p}(1-\bar{p})(1/n_1+1/n_2)}}$ | $N(0,1)$ | No built-in tool — formula cells |
+| Two proportions (large samples) | **Two-proportion $z$** | $z = \dfrac{\bar{p}_1-\bar{p}_2}{\sqrt{\bar{p}(1-\bar{p})(1/n_1+1/n_2)}}$ | $N(0,1)$ | No built-in tool; formula cells |
 :::
 
 # Matched Samples: the Paired $t$-Test {background-color="#cfb991"}
@@ -194,7 +196,7 @@ $$
 
 :::
 
-- The two-sample problem becomes a **one-sample** problem about the mean difference $\mu_d$ — and we can apply *exactly* the single-population procedures from Topic 8.
+- The two-sample problem becomes a **one-sample** problem about the mean difference $\mu_d$, and we can apply *exactly* the single-population procedures from Topic 8.
 
 - Point estimate of $\mu_d$:
 
@@ -269,7 +271,7 @@ $$
 
 :::: nonincremental
 ::: r-fit-text
-To compare delivery times of two express services, **UPX** and **INTEX**, two reports were sent to each of **ten district offices** — one carried by UPX, the other by INTEX. *Same origin, same destination, same day: a natural pair.*
+To compare delivery times of two express services, **UPX** and **INTEX**, two reports were sent to each of **ten district offices**: one carried by UPX, the other by INTEX. *Same origin, same destination, same day: a natural pair.*
 
 | District Office | UPX | INTEX | Difference $d_i$ |
 |---|---:|---:|---:|
@@ -288,7 +290,7 @@ To compare delivery times of two express services, **UPX** and **INTEX**, two re
 :::
 ::::
 
-## Express Deliveries — the Five Steps
+## Express Deliveries: the Five Steps
 
 ::: r-fit-text
 **1. Business context.** Choosing a carrier; the metric is delivery time (hours); slower deliveries cost client goodwill.
@@ -305,9 +307,9 @@ $$
 \bar{d} = 2.70, \quad s_d = 2.908, \quad SE = \frac{2.908}{\sqrt{10}} = 0.920, \quad t = \frac{2.70}{0.920} = 2.94, \quad df = 9
 $$
 
-**4. Decision.** $p\text{-value} = 0.017 \leq \alpha = 0.05$ → **reject $H_0$**. Also: 95% CI for $\mu_d$ = $(0.620,\; 4.780)$ hours — zero is not a plausible mean difference.
+**4. Decision.** $p\text{-value} = 0.017 \leq \alpha = 0.05$ → **reject $H_0$**. Also: 95% CI for $\mu_d$ = $(0.620,\; 4.780)$ hours; zero is not a plausible mean difference.
 
-**5. Manager's Translation.** *UPX averages about 2.7 hours slower than INTEX on identical routes — a real difference, not noise. If speed matters, route the volume to INTEX (then negotiate with UPX).*
+**5. The CEO's Translation.** *UPX averages about 2.7 hours slower than INTEX on identical routes: a real difference, not noise. If speed matters, route the volume to INTEX (then negotiate with UPX).*
 :::
 
 ## Express Deliveries in Excel
@@ -339,15 +341,15 @@ knitr::include_graphics("figs/excel_paired_express.png")
 
 # The Vungle Test: Is B Really Better? {background-color="#cfb991"}
 
-## Step 1 — Business Context: Why a Paired Design?
+## Step 1, Business Context: Why a Paired Design?
 
 <br>
 
-- Each of the **30 days of June 2014** is a natural experimental unit: on any given day, **the same advertising market** operates — same advertisers, same user pool, same day-of-week effects.
+- Each of the **30 days of June 2014** is a natural experimental unit: on any given day, **the same advertising market** operates (same advertisers, same user pool, same day-of-week effects).
 
 - Users were randomly split **within each day**: A and B ran **side by side**.
 
-- So each day yields **one pair**: $(\text{eRPM}_A, \text{eRPM}_B)$ — and one difference
+- So each day yields **one pair**, $(\text{eRPM}_A, \text{eRPM}_B)$, and one difference
 
 ::: fragment
 
@@ -359,7 +361,7 @@ $$
 
 - Pairing **subtracts out day-specific noise** (weekend dips, late-June seasonality) and isolates the pure algorithm effect.
 
-- Data: `data/vungle_erpm_paired.csv` — 30 rows, columns `erpm_A`, `erpm_B`, `diff_B_minus_A`.
+- Data: `data/vungle_erpm_paired.csv`, 30 rows, columns `erpm_A`, `erpm_B`, `diff_B_minus_A`.
 
 ## The Data: 30 Days of eRPM
 
@@ -368,7 +370,7 @@ knitr::include_graphics("figs/erpm_time_series.png")
 ```
 
 ::: nonincremental
-- B starts *below* A, then pulls ahead for most of the month. Eyeballing is suggestive — but Guerin needs more than an eyeball to bet his job on.
+- B starts *below* A, then pulls ahead for most of the month. Eyeballing is suggestive, but Guerin needs more than an eyeball to bet his job on.
 :::
 
 ## The Differences: $d = B - A$
@@ -382,7 +384,7 @@ knitr::include_graphics("figs/erpm_diff_daily.png")
 - The paired $t$-test asks: *could a mean difference this large arise by chance if the true difference were zero?*
 :::
 
-## Step 2 — Hypotheses
+## Step 2: Hypotheses
 
 <br>
 
@@ -396,13 +398,13 @@ $$
 
 <br>
 
-- **Why one-tailed?** The business decision is asymmetric: Vungle rolls out B **only if it is better**. "B is worse" and "B is the same" lead to the identical action — keep A.
+- **Why one-tailed?** The business decision is asymmetric: Vungle rolls out B **only if it is better**. "B is worse" and "B is the same" lead to the identical action: keep A.
 
 - $\mu_d$ = the true mean daily eRPM advantage of B over A.
 
 - We will also report the two-tailed $p$-value (the more conservative convention) and the conclusion will not change.
 
-## Step 3 — Test Statistic
+## Step 3: Test Statistic
 
 <br>
 
@@ -462,7 +464,7 @@ knitr::include_graphics("figs/excel_paired_vungle.png")
 ::::
 :::::
 
-## Step 4 — Decision
+## Step 4: Decision
 
 ```{r  echo=FALSE, out.width = "75%",fig.align="center"}
 knitr::include_graphics("figs/t_dist_paired_vungle.png")
@@ -488,17 +490,17 @@ $$
 
 :::
 
-- The entire interval is **above zero** — consistent with rejecting $H_0$.
+- The entire interval is **above zero**, consistent with rejecting $H_0$.
 
 - Even the **lower bound** (\$0.043 per 1,000 impressions) is a meaningful lift at Vungle's scale.
 
 - In Excel: `=T.INV(0.975, 29)` → 2.045; bounds with formula cells from $\bar d$ and $SE$.
 
-## Step 5 — Manager's Translation: Back to the Decision
+## Step 5, the CEO's Translation: Back to the Decision
 
 <br>
 
-- *"A difference this large would arise by chance only about 1 in 1,000 times if B were no better than A — so we reject the 'no difference' story. On a typical day, B earns between \$0.04 and \$0.18 more per 1,000 impressions than A."*
+- *"A difference this large would arise by chance only about 1 in 1,000 times if B were no better than A, so we reject the 'no difference' story. On a typical day, B earns between \$0.04 and \$0.18 more per 1,000 impressions than A."*
 
 - **Scale it:** A served ≈ 236.5M impressions in June. Had B served that traffic:
 
@@ -510,22 +512,22 @@ $$
 
 :::
 
-- Even at the CI lower bound (\$0.043), the lift is ≈ \$10K/month — material for a startup with \$25.5M raised.
+- Even at the CI lower bound (\$0.043), the lift is ≈ \$10K/month, material for a startup with \$25.5M raised.
 
-- **Discussion hook:** the daily gap is noisy — the first week even favored A, and after two weeks B's lead was only ≈ \$0.04, still well below the full-month \$0.11. Stopping the test early could have hidden the effect. (Sequential testing — beyond today's scope, but exactly what real A/B platforms wrestle with.)
+- **Discussion hook:** the daily gap is noisy. The first week even favored A, and after two weeks B's lead was only ≈ \$0.04, still well below the full-month \$0.11. Stopping the test early could have hidden the effect. (Sequential testing is beyond today's scope, but exactly what real A/B platforms wrestle with.)
 
-## ⏱️ Team Sprint 1 — Is the lift real?
+## Studio Check: Reproduce the Paired Test
 
-::: {.sprint .nonincremental}
-**Decide:** does algorithm B truly earn more per 1,000 impressions than A?
+::: {.nonincremental}
+**Reproduce what the analyst did**, so you can verify the lift is real before you stake the rollout on it.
 
-**Data:** `data/vungle_erpm_paired.csv` · **Time:** ~8 min
+**Data:** `data/vungle_erpm_paired.csv`
 
 1. In Excel: **Data → Data Analysis → t-Test: Paired Two Sample for Means** (Variable 1 = `erpm_B`, Variable 2 = `erpm_A`, α = 0.05).
 2. Read off `t Stat` and `P(T<=t) one-tail`; build the 95% CI for the mean difference.
-3. Decide at α = 0.05 — is the lift real?
+3. Decide at α = 0.05: is the lift real?
 
-**Submit before you leave (graded, one slide per group):** your verdict on the lift (real or not) + your $t$, $p$, and 95% CI + the **two things you would challenge** in this paired analysis.
+You should land on $t = 3.325$, one-tail $p \approx 0.0012$, 95% CI ≈ (\$0.043, \$0.181). The two things worth challenging: the one-tailed framing and whether 30 days generalizes.
 :::
 
 # Independent Samples: Comparing Two Means {background-color="#cfb991"}
@@ -548,9 +550,9 @@ $$
 
 :::
 
-- Which test statistic you use depends on what you know about $\sigma_1, \sigma_2$ — the three cases that follow.
+- Which test statistic you use depends on what you know about $\sigma_1, \sigma_2$: the three cases that follow.
 
-## Case 1 — $\sigma_1, \sigma_2$ Known: the Two-Sample $z$
+## Case 1, $\sigma_1, \sigma_2$ Known: the Two-Sample $z$
 
 <br>
 
@@ -570,9 +572,9 @@ $$
 
 - **Excel:** Data Analysis → *z-Test: Two Sample for Means* (requires the two known variances as inputs); $p$-values via `=NORM.S.DIST`.
 
-- Note: the worksheet function `=Z.TEST` is for **one** sample only — the two-sample version needs the ToolPak tool or formula cells.
+- Note: the worksheet function `=Z.TEST` is for **one** sample only; the two-sample version needs the ToolPak tool or formula cells.
 
-## Case 2 — $\sigma$ Unknown, Assumed Equal: the Pooled $t$
+## Case 2, $\sigma$ Unknown, Assumed Equal: the Pooled $t$
 
 <br>
 
@@ -599,12 +601,12 @@ $$
 
 - **Excel:** Data Analysis → *t-Test: Two-Sample Assuming Equal Variances*.
 
-## Case 3 — $\sigma$ Unknown, Not Assumed Equal: the Welch $t$
+## Case 3, $\sigma$ Unknown, Not Assumed Equal: the Welch $t$
 
 <br>
 
 :::: {style="font-size: 80%;"}
-- Drop the equal-variance assumption — each sample keeps its own variance:
+- Drop the equal-variance assumption; each sample keeps its own variance:
 
 ::: fragment
 
@@ -614,7 +616,7 @@ $$
 
 :::
 
-- Degrees of freedom (Satterthwaite approximation; typically non-integer — round **down**):
+- Degrees of freedom (Satterthwaite approximation; typically non-integer, so round **down**):
 
 ::: fragment
 
@@ -635,19 +637,19 @@ $$
 
 - **Excel:** Data Analysis → *t-Test: Two-Sample Assuming Unequal Variances*.
 
-- Reading any ToolPak $t$-test output — the same rows every time:
+- Reading any ToolPak $t$-test output, the same rows every time:
 
-  - `Mean`, `Variance`, `Observations` — the summary statistics per group
-  - `df` — degrees of freedom used
-  - `t Stat` — the test statistic
-  - `P(T<=t) one-tail` / `two-tail` — your $p$-values
-  - `t Critical one-tail` / `two-tail` — the cutoffs for $\alpha$
+  - `Mean`, `Variance`, `Observations`: the summary statistics per group
+  - `df`: degrees of freedom used
+  - `t Stat`: the test statistic
+  - `P(T<=t) one-tail` / `two-tail`: your $p$-values
+  - `t Critical one-tail` / `two-tail`: the cutoffs for $\alpha$
 
 ## Anchor Example: Start-up Owner's Equity
 
 <br>
 
-**Two populations** (no pairing is possible — a firm is either bankrupt or it isn't):
+**Two populations** (no pairing is possible, since a firm is either bankrupt or it isn't):
 
 ::: nonincremental
 1. Small business firms that went **bankrupt** within the first year
@@ -667,7 +669,7 @@ $$
 
 **Question:** is there a difference in average owner's equity between bankrupt and non-bankrupt firms?
 
-## Owner's Equity — the Five Steps
+## Owner's Equity: the Five Steps
 
 ::: r-fit-text
 **1. Business context.** Does thin capitalization at founding predict first-year failure? (Lender screening, founder advice.)
@@ -680,9 +682,9 @@ $$
 t = \frac{(5.73 - 7.87) - 0}{\sqrt{\dfrac{3.33^2}{15} + \dfrac{2.61^2}{15}}} = \frac{-2.14}{1.093} = -1.96, \qquad df \approx 26
 $$
 
-**4. Decision.** $p$-value (two-tail) $\approx 0.061 > \alpha = 0.05$ → **fail to reject $H_0$**. 95% CI for $\mu_1 - \mu_2$: $(-4.4,\; 0.1)$ — barely includes zero.
+**4. Decision.** $p$-value (two-tail) $\approx 0.061 > \alpha = 0.05$ → **fail to reject $H_0$**. 95% CI for $\mu_1 - \mu_2$: $(-4.4,\; 0.1)$, which barely includes zero.
 
-**5. Manager's Translation.** *Bankrupt firms started with about \$2.1K less equity on average, but with only 15 firms per group we cannot rule out chance at the 5% level. A borderline result — worth a bigger sample before building lending policy on it.*
+**5. The Owner's Translation.** *Bankrupt firms started with about \$2.1K less equity on average, but with only 15 firms per group we cannot rule out chance at the 5% level. A borderline result, worth a bigger sample before building lending policy on it.*
 :::
 
 ## Owner's Equity in Excel
@@ -702,7 +704,7 @@ $$
 
 **"Fail to reject" ≠ "the means are equal."** With $n = 15$ per group the test has **low power**; a \$2K average gap may be economically real yet statistically undetectable here.
 
-(With equal $n$, the pooled $t$ gives the same $t$-statistic with $df = 28$ — same conclusion.)
+(With equal $n$, the pooled $t$ gives the same $t$-statistic with $df = 28$, same conclusion.)
 :::
 
 ::: {.column width="62%"}
@@ -722,7 +724,7 @@ knitr::include_graphics("figs/excel_equity_welch.png")
 ::: {.column width="38%"}
 <br>
 
-Treat the 30 A-days and 30 B-days as **two independent samples** (Welch) — *wrong design, same data*:
+Treat the 30 A-days and 30 B-days as **two independent samples** (Welch), *wrong design, same data*:
 
 - $\bar{x}_A = 3.347$, $s_A = 0.217$
 - $\bar{x}_B = 3.459$, $s_B = 0.344$
@@ -732,7 +734,7 @@ Treat the 30 A-days and 30 B-days as **two independent samples** (Welch) — *wr
 
 **Fail to reject $H_0$** at $\alpha = 0.05$. The \$0.11 lift "disappears."
 
-*(ToolPak: Variable 1 = `erpm_B`, Variable 2 = `erpm_A` — same order as the paired test, so $t$ is positive.)*
+*(ToolPak: Variable 1 = `erpm_B`, Variable 2 = `erpm_A`, same order as the paired test, so $t$ is positive.)*
 :::
 
 ::: {.column width="62%"}
@@ -751,7 +753,7 @@ knitr::include_graphics("figs/excel_welch_vungle.png")
 |---|---:|---:|
 | Test statistic | **3.33** | 1.51 |
 | $p$-value (two-tail) | **0.0024** | 0.138 |
-| Decision at $\alpha = .05$ | Reject $H_0$ — B wins | Fail to reject |
+| Decision at $\alpha = .05$ | Reject $H_0$ (B wins) | Fail to reject |
 
 <br>
 
@@ -759,7 +761,7 @@ knitr::include_graphics("figs/excel_welch_vungle.png")
 
 - Why: day-to-day market swings (weekends, seasonality) inflate the independent-samples noise ($s \approx 0.22$–$0.34$), while pairing cancels them ($s_d = 0.18$ on the *differences*, and the A/B series are correlated at $r = 0.88$).
 
-- The design decision was made **before any data were collected** — when Vungle chose to run A and B *in parallel within each day*. Good analysis starts at design, not at the formula sheet.
+- The design decision was made **before any data were collected**, when Vungle chose to run A and B *in parallel within each day*. Good analysis starts at design, not at the formula sheet.
 
 # Comparing Two Proportions {background-color="#cfb991"}
 
@@ -789,16 +791,16 @@ knitr::include_graphics("figs/excel_welch_vungle.png")
 
 <br>
 
-- Careful — the "sample size" just changed by seven orders of magnitude:
+- Careful: the "sample size" just changed by seven orders of magnitude:
 
   - For **eRPM**, the unit was the **day**: $n = 30$ paired days.
   - For **conversion**, the unit is the **impression**: each one is a Bernoulli trial (install / no install), so $n_1 \approx 236$M and $n_2 \approx 16$M.
 
 - Large-sample conditions easily satisfied: $n\bar{p} \geq 5$ and $n(1-\bar{p}) \geq 5$ for both groups (e.g., $n_2\bar{p}_2 = 56{,}031 \gg 5$).
 
-- Also note the **traffic imbalance**: A got ~15× B's impressions (the 1/16 hash split). That is exactly why we compare **rates**, never raw counts — B's 56K installs vs. A's 952K says nothing by itself.
+- Also note the **traffic imbalance**: A got ~15× B's impressions (the 1/16 hash split). That is exactly why we compare **rates**, never raw counts: B's 56K installs vs. A's 952K says nothing by itself.
 
-- *Honest caveat:* impressions within a day are not perfectly independent (time structure). Beyond today's scope — but a good question to ask any A/B platform.
+- *Honest caveat:* impressions within a day are not perfectly independent (time structure). Beyond today's scope, but a good question to ask any A/B platform.
 
 ## Estimating $p_1 - p_2$
 
@@ -808,7 +810,7 @@ knitr::include_graphics("figs/excel_welch_vungle.png")
 
 - Point estimate: $\bar{p}_1 - \bar{p}_2$.
 
-- Confidence interval — each group keeps its **own** variance (do **not** pool for CIs):
+- Confidence interval, where each group keeps its **own** variance (do **not** pool for CIs):
 
 ::: fragment
 
@@ -822,7 +824,7 @@ $$
 
 <br>
 
-- Under $H_0$ the two proportions are the **same** $p$ — so the best estimate of it uses **all** the data:
+- Under $H_0$ the two proportions are the **same** $p$, so the best estimate of it uses **all** the data:
 
 ::: fragment
 
@@ -855,7 +857,7 @@ $$
 ::: {.column width="34%"}
 <br>
 
-The Data Analysis ToolPak has **no two-proportion z tool** — five formula cells do the job.
+The Data Analysis ToolPak has **no two-proportion z tool**; five formula cells do the job.
 
 <br>
 
@@ -870,7 +872,7 @@ knitr::include_graphics("figs/excel_prop_z.png")
 ::::
 :::::
 
-## Vungle Conversion — the Five Steps
+## Vungle Conversion: the Five Steps
 
 ::: r-fit-text
 **1. Business context.** Advertisers pay mostly per install; conversion rate signals how well ads match users.
@@ -890,7 +892,7 @@ $$
 
 **4. Decision.** $|z| = 29.56 \gg z_{0.025} = 1.96$; $p$-value $< 0.0001$ → **reject $H_0$** overwhelmingly.
 
-**5. Manager's Translation.** *B converts impressions to installs at a genuinely lower rate than A — 0.354% vs. 0.403%, a 12% relative drop. This is not noise.*
+**5. The CEO's Translation.** *B converts impressions to installs at a genuinely lower rate than A: 0.354% vs. 0.403%, a 12% relative drop. This is not noise.*
 :::
 
 ## The Surprise: B Converts Less but Earns More
@@ -904,24 +906,24 @@ $$
 
 <br>
 
-- Both results are statistically decisive — and they **point in opposite directions**.
+- Both results are statistically decisive, and they **point in opposite directions**.
 
 - This is not a data error. It is the most realistic moment in this course: **real decisions face multiple metrics that disagree.**
 
 - So which metric should drive the rollout?
 
-## ⏱️ Team Sprint 2 — Make the call
+## Make the Call: Which Metric Wins?
 
-::: {.sprint .nonincremental}
-**The conflict:** B **earns more** per impression (paired $t = 3.33$) but **converts fewer** installs ($z = -29.6$). Both results are statistically decisive.
+::: {.nonincremental}
+**The conflict you face as CEO:** B **earns more** per impression (paired $t = 3.33$) but **converts fewer** installs ($z = -29.6$). Both results are statistically decisive.
 
-**Decide (≈12 min):** write CEO Jaffer's **rollout recommendation**.
+Before the debrief, settle three questions:
 
-1. Which metric should drive the decision for Vungle's **business model** — and why?
+1. Which metric should drive the decision for Vungle's **business model**, and why?
 2. What would you **monitor** after rollout, and why?
-3. State it in **three sentences**: the call · the number · the caveat.
+3. State the call in **three sentences**: the call, the number, the caveat.
 
-**Submit before you leave (graded, one slide per group):** your rollout recommendation to CEO Jaffer + the metric you chose and its key number ($t = 3.33$ eRPM or $z = -29.6$ conversion) + the **two things you would challenge** before committing all traffic.
+The metric that matches the business model wins, not the bigger number. We resolve it on the next slide, then land the full rollout call in the Debrief.
 :::
 
 ## Reconciling the Two Metrics
@@ -930,9 +932,9 @@ $$
 
 - eRPM rewards **revenue per impression**, not installs per impression.
 
-- The case tells us eRPM varied **from \$2 to \$7 per campaign**, and the vast majority of Vungle's ads were **CPI** — advertisers pay per install, at very different prices.
+- The case tells us eRPM varied **from \$2 to \$7 per campaign**, and the vast majority of Vungle's ads were **CPI**: advertisers pay per install, at very different prices.
 
-- So B apparently **selects higher-value campaigns**: fewer installs, but each install is worth more — a richer optimization target than raw conversion.
+- So B apparently **selects higher-value campaigns**: fewer installs, but each install is worth more, a richer optimization target than raw conversion.
 
 - Analogy: a salesperson who closes fewer deals at much higher margins.
 
@@ -946,11 +948,11 @@ $$
 
 - $z = -29.56$ tells you the difference is *real*; it does **not** tell you the difference *matters*.
 
-- Always pair the test with the **effect size**: -0.048 percentage points (a 12% relative drop in conversion) — that is the number a manager should debate.
+- Always pair the test with the **effect size**: -0.048 percentage points (a 12% relative drop in conversion). That is the number the CEO should debate.
 
 - Flip side from the equity example: small samples can make real effects invisible (low power). **Large $n$: everything is significant. Small $n$: nothing is.** Neither replaces judgment about magnitude.
 
-# Debrief — The Rollout Call {background-color="#cfb991"}
+# Debrief: The Rollout Call {background-color="#cfb991"}
 
 ## Three Tests, One Decision
 
@@ -958,13 +960,13 @@ $$
 
 | Test | Result | Decision signal |
 |---|---|---|
-| Paired $t$ — eRPM (B vs. A) | $t = 3.33$, $p = 0.0024$ | B earns more per impression. **Roll out.** |
-| Independent $t$ — same data, wrong design | $t = 1.51$, $p = 0.138$ | (Cautionary: wrong design would have hidden the lift.) |
-| Two-proportion $z$ — conversion | $z = -29.56$, $p < 0.0001$ | B converts less. **Monitor.** |
+| Paired $t$, eRPM (B vs. A) | $t = 3.33$, $p = 0.0024$ | B earns more per impression. **Roll out.** |
+| Independent $t$, same data, wrong design | $t = 1.51$, $p = 0.138$ | (Cautionary: wrong design would have hidden the lift.) |
+| Two-proportion $z$, conversion | $z = -29.56$, $p < 0.0001$ | B converts less. **Monitor.** |
 
 <br>
 
-- **Recommendation to CEO Jaffer:** roll out B — eRPM is the metric aligned with Vungle's business model, the lift is statistically solid (\$0.04–\$0.18 per 1,000), and it is worth ≈ \$26.5K/month on June's traffic. Track the install funnel weekly post-rollout in case the lower conversion rate erodes advertiser satisfaction.
+- **Your recommendation as CEO:** roll out B. eRPM is the metric aligned with Vungle's business model, the lift is statistically solid (\$0.04–\$0.18 per 1,000), and it is worth ≈ \$26.5K/month on June's traffic. Track the install funnel weekly post-rollout in case the lower conversion rate erodes advertiser satisfaction.
 
 ## From Inference to Decision Analysis
 
@@ -973,32 +975,32 @@ $$
 - In Topic 4 you computed expected values for *roll out / keep A / test first*. Today's output feeds straight into that framework:
 
   - The CI $(\$0.043, \$0.181)$ per 1,000 impressions is the **range of payoffs** for the "roll out" branch.
-  - The $p$-value bounds the probability of the bad state ("B is not actually better") — the input Bayesian revision needs.
+  - The $p$-value bounds the probability of the bad state ("B is not actually better"), the input Bayesian revision needs.
 
 - This is the division of labor in analytics:
 
   - **Inference** (Topics 7–9): *what is true, and how sure are we?*
   - **Decision analysis** (Topic 4): *given that uncertainty, what should we do?*
 
-## Two-Population Tests on One Page — the Vungle Bridge Table
+## Two-Population Tests on One Page: the Vungle Bridge Table
 
 ::: r-fit-text
 | Test | $H_0$ | Applied to Vungle | Statistic | Conclusion |
 |---|---|---|---|---|
-| Paired $t$ | $\mu_d = 0$ | Daily eRPM, B - A, 30 paired days | $t = 3.33$, $p = .0024$ | Reject — B earns more |
-| Welch $t$ (independent) | $\mu_1 - \mu_2 = 0$ | Same eRPM data, pairing ignored | $t = 1.51$, $p = .138$ | Fail to reject — wrong design hides the lift |
-| Pooled $t$ | $\mu_1 - \mu_2 = 0$ | (Owner's-equity anchor; equal-variance variant) | $t = -1.96$, $p = .060$ | Fail to reject — low power at $n = 15$ |
-| Two-sample $z$ ($\sigma$ known) | $\mu_1 - \mu_2 = 0$ | Rare; completeness of the decision tree | — | Use when $\sigma_1, \sigma_2$ truly known |
-| Two-proportion $z$ | $p_1 - p_2 = 0$ | Conversion: installs/impressions, 252M trials | $z = -29.56$, $p < .0001$ | Reject — B converts less |
+| Paired $t$ | $\mu_d = 0$ | Daily eRPM, B - A, 30 paired days | $t = 3.33$, $p = .0024$ | Reject: B earns more |
+| Welch $t$ (independent) | $\mu_1 - \mu_2 = 0$ | Same eRPM data, pairing ignored | $t = 1.51$, $p = .138$ | Fail to reject: wrong design hides the lift |
+| Pooled $t$ | $\mu_1 - \mu_2 = 0$ | (Owner's-equity anchor; equal-variance variant) | $t = -1.96$, $p = .060$ | Fail to reject: low power at $n = 15$ |
+| Two-sample $z$ ($\sigma$ known) | $\mu_1 - \mu_2 = 0$ | Rare; completeness of the decision tree | n/a | Use when $\sigma_1, \sigma_2$ truly known |
+| Two-proportion $z$ | $p_1 - p_2 = 0$ | Conversion: installs/impressions, 252M trials | $z = -29.56$, $p < .0001$ | Reject: B converts less |
 :::
 
-## Manager's Takeaway
+## The CEO's Takeaway
 
 <br>
 
-- **One sentence:** Algorithm B earns about **\$0.11 more per 1,000 impressions** than A, and the paired test says that lift is real, not luck ($p < 0.01$) — roll out B.
+- **One sentence:** Algorithm B earns about **\$0.11 more per 1,000 impressions** than A, and the paired test says that lift is real, not luck ($p < 0.01$): roll out B.
 
-- **One number to remember:** $t = 3.33$ — and where it came from: $\bar{d}/(s_d/\sqrt{n})$.
+- **One number to remember:** $t = 3.33$, and where it came from: $\bar{d}/(s_d/\sqrt{n})$.
 
 - **One caveat:** B's conversion rate is **lower** ($z = -29.6$); monitor the install funnel after rollout, because the eRPM advantage depends on high-value campaigns continuing to bid.
 
@@ -1007,25 +1009,30 @@ $$
   - `data/vungle_daily.csv` + five formula cells → reproduce $z = -29.56$.
   - Worked solutions: `data/vungle_ab_analysis.xlsx`.
 
+## ⏱️ Team Sprint: Your Group Case
+
+::: {.sprint .nonincremental}
+**Now it's your group's turn.** Today's in-class group case is posted on **Brightspace** (*Topic 09 Group Case*): a separate business decision you make with today's tools.
+
+**What you'll use:** two-sample tests (paired $t$, Welch $t$, two-proportion $z$). **Excel:** Analysis ToolPak → the matching *t-Test* tool, or formula cells for the proportion test.
+
+**Submit one PDF per group before you leave:** your decision plus the numbers behind it.
+:::
+
+# Wrap-up {background-color="#cfb991"}
+
 ## Summary
 
 ::: nonincremental
 Some key takeaways from this session:
 
-- **Design comes first:** matched (paired) samples reduce two-sample problems to one-sample problems on the differences — and remove extraneous unit-to-unit variation.
+- **Design comes first:** matched (paired) samples reduce two-sample problems to one-sample problems on the differences, and remove extraneous unit-to-unit variation.
 - The paired $t$, pooled $t$, Welch $t$, two-sample $z$, and two-proportion $z$ all reuse the Topic 8 logic; only the parameter (a **difference**) and the standard error change.
 - **Default to Welch** for independent means; **pool only under $H_0$** for proportion tests.
 - Same data, different design → different conclusion: Vungle's lift is decisive paired ($t = 3.33$) and invisible unpaired ($t = 1.51$).
-- Statistical significance ≠ practical significance: with 252M impressions everything is "significant" (judge the **effect size**); with $n = 15$ per group, real effects can hide — mind the **power**.
+- Statistical significance ≠ practical significance: with 252M impressions everything is "significant" (judge the **effect size**); with $n = 15$ per group, real effects can hide, so mind the **power**.
 - Test results are **inputs to decisions**, not decisions: the rollout call weighs the metric that matches the business model.
-:::
-
-## Carry-forward
-
-::: nonincremental
-- **Homework (individual):** today's tools (two-sample tests: paired $t$, independent/Welch $t$, two-proportion $z$) are drilled on **HW3**, individual problem sets in the previous-edition format, posted on Brightspace. Run them yourself so you can check an analyst who uses them.
-
-- **Next time:** we stop *comparing* and start *predicting* — **Simple Regression** (a new client: an auto-parts retailer choosing store sites).
+- **Next time:** we stop *comparing* and start *predicting* with **Simple Regression** (an auto-parts retailer choosing store sites).
 :::
 
 # Thank you! {background-color="#cfb991"}

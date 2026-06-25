@@ -30,17 +30,17 @@ html-math-method:
 ::::: columns
 ::: {.column style="width: 50%; text-align: center; justify-content: center; align-items: center;"}
 - Case Spotlight: A/B Testing at Vungle
-- **Lecture 1** — sampling, point estimation
+- **Lecture 1:** sampling, point estimation
 - The sampling distribution of $\bar{x}$ and $\bar{p}$
 - The Central Limit Theorem & standard error
 - How sure can 30 days make us?
 :::
 
 ::: {.column style="width: 50%; text-align: center; justify-content: center; align-items: center;"}
-- **Lecture 2** — the interval estimate
+- **Lecture 2:** the interval estimate
 - Confidence intervals for a mean ($t$) and a proportion
-- The margin of error — and the three levers that set it
-- How many days for $\pm\$0.05$? — sample size
+- The margin of error and the three levers that set it
+- How many days for $\pm\$0.05$? Sample size
 - The estimation memo for Vungle
 :::
 :::::
@@ -48,38 +48,38 @@ html-math-method:
 
 # Case Spotlight: A/B Testing at Vungle {background-color="#cfb991"}
 
-## The Brief — 30 Days Is a *Sample*
+## The Brief: 30 Days Is a *Sample*
 
 <br>
 
-> "We ran algorithm B for **30 days** and saw a mean eRPM of about **\$3.46**. But June is over. What is B's **true** mean eRPM going forward — and how close can 30 days really get us?"
+> "We ran algorithm B for **30 days** and saw a mean eRPM of about **\$3.46**. But June is over. What is B's **true** mean eRPM going forward, and how close can 30 days really get us?"
 
 <br>
 
-- Until now we have **described** the 30 days we have. Today we **generalize** to the days we *don't* have — every future impression B will ever serve.
+- **The big call you own as CEO:** *roll out B, or stay with A?* You cannot make it on a single 30-day number whose error you can't name.
 
-- The 30-day mean \$3.46 is a single **point estimate**. By itself it hides the most important question a manager can ask: ***how much could it be off?***
+- **Today's question (Lecture 1):** *how trustworthy is a 30-day sample mean?* Until now we **described** the 30 days we have; today we **generalize** to the days we *don't* have, every future impression B will serve.
 
-- **Today's job:** turn "\$3.46" into "\$3.46, give or take a known **margin of error**" — and decide whether 30 days is even enough.
+- The 30-day mean \$3.46 is a single **point estimate**. By itself it hides the question the CEO must ask: ***how much could it be off?*** This lecture quantifies that wobble; the next turns it into a range.
 
 ## How Today's Studio Runs
 
 <br>
 
-- This is a **two-lecture** topic. Each lecture runs the same loop: **I demo → your team sprints on the Vungle data → we debrief the call.**
+- This is a **two-lecture** topic. Each lecture runs the same loop: **the Brief (your decision) → Method Studio (I demo on Vungle) → Debrief (we land the call) → Team Sprint (your group case, submitted before you leave).**
 
 ::: fragment
 | Lecture | The question | The tool |
 |---|---|---|
-| **1** | Why does a *sample* mean wobble — and by how much? | Sampling distribution, standard error, the CLT |
-| **2** | What is B's *true* mean eRPM, $\pm$ how much? How many days do we need? | Confidence intervals, margin of error, sample size |
+| **1** | How trustworthy is a 30-day sample mean? | Sampling distribution, standard error, the CLT |
+| **2** | What is B's *true* mean eRPM, give or take? How many days do we need? | Confidence intervals, margin of error, sample size |
 :::
 
-- By the end, **your team** writes Vungle's **estimation memo**: the true mean eRPM and conversion rate, each with a 95% interval, plus the days needed for a tighter test.
+- By the end, you can write Vungle's **estimation memo**: the true mean eRPM and conversion rate, each with a 95% interval, plus the days needed for a tighter test.
 
-# Lecture 1 — Samples, Estimates & the Sampling Distribution {background-color="#cfb991"}
+# Lecture 1: Samples, Estimates & the Sampling Distribution {background-color="#cfb991"}
 
-## The Brief — Why a Sample Mean Wobbles
+## The Brief: Why a Sample Mean Wobbles
 
 <br>
 
@@ -87,7 +87,7 @@ html-math-method:
 
 - That wobble is not a mistake; it is the price of working from a **sample** instead of the whole **population**.
 
-- **Lecture 1's question:** *if the sample mean changes every time we sample, how can we trust any one of them?* The answer is the **sampling distribution** — and it is surprisingly well-behaved.
+- **Lecture 1's question:** *if the sample mean changes every time we sample, how can the CEO trust any one of them?* The answer is the **sampling distribution**, and it is surprisingly well-behaved.
 
 ## Population, Sample, Inference
 
@@ -96,8 +96,8 @@ knitr::include_graphics("figs/population_sample_inference.png")
 ```
 
 ::: nonincremental
-- **Population:** every future impression B will serve — its true mean eRPM $\mu$ is **unknown**.
-- **Sample:** the 30 June days. We use them to **estimate** $\mu$ — first with a point, later with an interval.
+- **Population:** every future impression B will serve; its true mean eRPM $\mu$ is **unknown**.
+- **Sample:** the 30 June days. We use them to **estimate** $\mu$, first with a point, later with an interval.
 :::
 
 # Point Estimation {background-color="#cfb991"}
@@ -118,13 +118,13 @@ knitr::include_graphics("figs/population_sample_inference.png")
 
 - **Point estimation** uses one sample to compute a single number as our best guess of the parameter.
 
-- A different random sample gives a different estimate — so a point estimate alone never tells us **how close** we are.
+- A different random sample gives a different estimate, so a point estimate alone never tells us **how close** we are.
 
 ## Anchor Example: St. Andrew's College
 
 <br>
 
-- St. Andrew's received **900 applications**. The Director wants the **mean SAT score** and the **proportion** wanting on-campus housing — *before* the full data are entered.
+- St. Andrew's received **900 applications**. The Director wants the **mean SAT score** and the **proportion** wanting on-campus housing, *before* the full data are entered.
 
 - She draws a **simple random sample** of $n = 30$ applicants:
 
@@ -136,7 +136,7 @@ knitr::include_graphics("figs/population_sample_inference.png")
 | Proportion housing $p$ | 0.72 | $\bar{p} = 0.67$ |
 :::
 
-- Each estimate is **close but not exact** — and a *different* 30 applicants would have landed elsewhere. That variability is exactly what the sampling distribution describes.
+- Each estimate is **close but not exact**, and a *different* 30 applicants would have landed elsewhere. That variability is exactly what the sampling distribution describes.
 
 ## The Vungle Point Estimates
 
@@ -152,7 +152,7 @@ knitr::include_graphics("figs/population_sample_inference.png")
 | Mean daily conversion rate, B | $\bar{x} = 0.354\%$ |
 :::
 
-- These are our spears. The rest of the topic builds the **net** — the interval that quantifies how far off the spear might be.
+- These three numbers are our best single guesses. The rest of the topic builds the **interval** that quantifies how far off each guess might be.
 
 # The Sampling Distribution of $\bar{x}$ {background-color="#cfb991"}
 
@@ -162,7 +162,7 @@ knitr::include_graphics("figs/population_sample_inference.png")
 
 - Imagine drawing **many** random samples of size $n$, computing $\bar{x}$ for each. Collect all those $\bar{x}$ values.
 
-- Their distribution is the **sampling distribution of $\bar{x}$** — the probability distribution of the sample mean.
+- Their distribution is the **sampling distribution of $\bar{x}$**, the probability distribution of the sample mean.
 
 - **Do not confuse two distributions:**
 
@@ -175,7 +175,7 @@ knitr::include_graphics("figs/population_sample_inference.png")
 
 <br>
 
-- **Center (unbiased):** on average, the sample mean equals the population mean —
+- **Center (unbiased):** on average, the sample mean equals the population mean:
 
 ::: fragment
 
@@ -185,7 +185,7 @@ $$
 
 :::
 
-- **Spread (the standard error):** the standard deviation of $\bar{x}$ is the **standard error of the mean** —
+- **Spread (the standard error):** the standard deviation of $\bar{x}$ is the **standard error of the mean**:
 
 ::: fragment
 
@@ -221,12 +221,12 @@ knitr::include_graphics("figs/sampling_dist_xbar.png")
 ```
 
 ::: nonincremental
-- Repeatedly averaging 10 Vungle A-days: the **individual days** are scattered, but their **averages** pile up tightly in a bell around $\mu$ — narrower than the raw data, and roughly Normal.
+- Repeatedly averaging 10 Vungle A-days: the **individual days** are scattered, but their **averages** pile up tightly in a bell around $\mu$, narrower than the raw data and roughly Normal.
 :::
 
 # The Central Limit Theorem {background-color="#cfb991"}
 
-## The CLT — Why the Bell Always Appears
+## The CLT: Why the Bell Always Appears
 
 <br>
 
@@ -240,7 +240,7 @@ $$
 
 :::
 
-- It works **regardless of the population's shape** — skewed, uniform, lumpy, it does not matter.
+- It works **regardless of the population's shape**: skewed, uniform, or lumpy, it does not matter.
 
 - **Rule of thumb:** $n \geq 30$ is usually enough; $n \geq 50$ if the population is highly skewed or has outliers. Vungle's $n = 30$ sits right on the line.
 
@@ -277,7 +277,7 @@ $$
 
 :::
 
-**Read it:** a single sample of 30 has only about a **47% chance** of landing within 10 SAT points of the truth — precision you can now *quantify*, and improve by raising $n$. In Excel: `=NORM.S.DIST(0.63,TRUE)-NORM.S.DIST(-0.63,TRUE)`.
+**Read it:** a single sample of 30 has only about a **47% chance** of landing within 10 SAT points of the truth: precision you can now *quantify*, and improve by raising $n$. In Excel: `=NORM.S.DIST(0.63,TRUE)-NORM.S.DIST(-0.63,TRUE)`.
 :::
 
 # The Sampling Distribution of $\bar{p}$ {background-color="#cfb991"}
@@ -310,49 +310,41 @@ $$
 
 :::
 
-- St. Andrew's: $n = 30$, $p = 0.72$ → $np = 21.6 \geq 5$ and $n(1-p) = 8.4 \geq 5$ ✓ — the normal approximation is acceptable.
+- St. Andrew's: $n = 30$, $p = 0.72$ → $np = 21.6 \geq 5$ and $n(1-p) = 8.4 \geq 5$ ✓, so the normal approximation is acceptable.
 
-## ⏱️ Team Sprint 1 — How Trustworthy Is 30 Days?
+## Debrief: Lecture 1 Takeaway
+
+<br>
+
+- **One sentence:** a sample mean is an **unbiased** estimate of the truth, but it **wobbles** by a standard error of $\sigma/\sqrt{n}$; thanks to the CLT, that wobble is **Normal** for $n \geq 30$.
+
+- **One number:** B's standard error is $s/\sqrt{30} = 0.344/\sqrt{30} \approx \$0.063$, the typical gap between a 30-day mean and the truth.
+
+- **One caveat:** precision is bought with $n$, and only as $\sqrt{n}$; quadrupling the days only halves the error.
+
+## ⏱️ Team Sprint: Your Group Case (Lecture 1)
 
 ::: {.sprint .nonincremental}
-**Decide:** is 30 days a *precise* enough sample to pin down B's true mean eRPM — or just a noisy first look?
+**Now it's your group's turn.** Today's in-class group case is posted on **Brightspace** (*Topic 07 Group Case, Lecture 1*): a separate business decision you make with today's tools.
 
-**Data:** `data/vungle_estimation.xlsx` (sheet `eRPM_by_day`) · **Time:** ~10 min
+**What you'll use:** the **standard error** $s/\sqrt{n}$ and the **sampling distribution** of $\bar{x}$ (CLT, $n \geq 30$). **Excel:** Analysis ToolPak → Descriptive Statistics.
 
-1. With the ToolPak's **Descriptive Statistics** (or `=AVERAGE` / `=STDEV.S`), get $\bar{x}$ and $s$ for `erpm_B`.
-2. Compute the **standard error** $s/\sqrt{30}$ — the typical wobble of a 30-day mean.
-3. Compute what the standard error **would be at $n = 120$** ($s/\sqrt{120}$). By how much does it shrink, and why?
-
-**Submit before you leave (graded, one slide per group):** your call (precise enough now, or test longer) plus B's $\bar{x}$, $s$, and the standard error at $n=30$ vs. $n=120$, and the **two things you would challenge** in this read of the data.
+**Submit one PDF per group before you leave:** your decision plus the numbers behind it.
 :::
 
-## Debrief — Lecture 1 Takeaway
+# Lecture 2: The Interval Estimate {background-color="#cfb991"}
+
+## The Brief: \$3.46, Give or Take How Much?
 
 <br>
 
-- **One sentence:** a sample mean is an **unbiased** estimate of the truth, but it **wobbles** by a standard error of $\sigma/\sqrt{n}$ — and thanks to the CLT, that wobble is **Normal** for $n \geq 30$.
-
-- **One number:** B's standard error is $s/\sqrt{30} = 0.344/\sqrt{30} \approx \$0.063$ — the typical gap between a 30-day mean and the truth.
-
-- **One caveat:** precision is bought with $n$, and only as $\sqrt{n}$ — quadrupling the days only halves the error.
-
-## Carry-forward to Lecture 2
-
-::: nonincremental
-- We can now say *how much* a 30-day mean wobbles. Next we turn that wobble into a **confidence interval** (a stated range for B's true mean eRPM) and answer the manager's real question: **\$3.46, give or take how much?**
-:::
-
-# Lecture 2 — The Interval Estimate {background-color="#cfb991"}
-
-## The Brief — \$3.46, Give or Take How Much?
+> "Don't just tell me B earns \$3.46. Tell me the **range** I can bank on, and tell me how many test-days it would take to cut that range in half."
 
 <br>
 
-> "Don't just tell me B earns \$3.46. Tell me the **range** I can bank on — and tell me how many test-days it would take to cut that range in half."
+- **The big call you still own as CEO:** *roll out B, or stay with A?* A single \$3.46 with no range cannot support it.
 
-<br>
-
-- A point estimate with no range is half an answer. Today we attach a **margin of error** and report an **interval** we are 95% confident contains the truth.
+- **Today's question (Lecture 2):** *what is B's true mean (and conversion rate), give or take, and how big a sample do we need?* We attach a **margin of error** and report an **interval** we are 95% confident contains the truth.
 
 - Then we **invert** the question: pick the precision first ($\pm\$0.05$), and solve for the **sample size** that delivers it.
 
@@ -385,7 +377,7 @@ $$
 
 <br>
 
-- In real data we never know $\sigma$ — we estimate it with the sample SD $s$. That extra uncertainty makes the bell **fatter in the tails**: the **$t$ distribution**.
+- In real data we never know $\sigma$; we estimate it with the sample SD $s$. That extra uncertainty makes the bell **fatter in the tails**: the **$t$ distribution**.
 
 - A $t$ distribution is indexed by its **degrees of freedom** $df = n - 1$ (the $n$ observations, minus one used up estimating $s$).
 
@@ -460,10 +452,10 @@ $$
 **Read it:** *we are 95% confident the true mean rent for one-bedroom apartments near campus is between \$721 and \$779.* In Excel: `=CONFIDENCE.T(0.05, 55, 16)` returns the margin \$29.31 directly.
 :::
 
-## The Vungle eRPM Interval — the Five Steps
+## The Vungle eRPM Interval: the Five Steps
 
 ::: r-fit-text
-**1. Business context.** B's true mean eRPM drives every revenue projection; we need a defensible range, not a single number.
+**1. Business context.** B's true mean eRPM drives every revenue projection; the CEO needs a defensible range, not a single number.
 
 **2. Setup.** $n = 30$ days, $\sigma$ unknown, $\bar{x}_B = \$3.459$, $s_B = \$0.344$, $df = 29$, 95% confidence.
 
@@ -479,7 +471,7 @@ $$
 
 **4. Interval.** $3.459 \pm 0.129 = (\$3.330,\; \$3.588)$.
 
-**5. Manager's Translation.** *We are 95% confident B's true mean eRPM is between \$3.33 and \$3.59. The \$0.13 margin is wide relative to the \$0.11 gap over A — a first hint that 30 days may not yet settle the A-vs-B question.*
+**5. CEO's Translation.** *We are 95% confident B's true mean eRPM is between \$3.33 and \$3.59. The \$0.13 margin is wide relative to the \$0.11 gap over A, a first hint that 30 days may not yet settle the A-vs-B question.*
 :::
 
 ## The Two Intervals, Side by Side
@@ -489,7 +481,7 @@ knitr::include_graphics("figs/vungle_erpm_ci.png")
 ```
 
 ::: nonincremental
-- A's interval is **(\$3.27, \$3.43)**, B's is **(\$3.33, \$3.59)** — they **overlap**. Estimation alone cannot yet declare a winner; that is the job of **hypothesis testing**, next topic.
+- A's interval is **(\$3.27, \$3.43)**, B's is **(\$3.33, \$3.59)**, and they **overlap**. Estimation alone cannot yet declare a winner; that is the job of **hypothesis testing**, next topic.
 :::
 
 ## Vungle eRPM CI in Excel
@@ -529,7 +521,7 @@ knitr::include_graphics("figs/excel_ci_mean.png")
   - $n < 15$ only if the population is approximately Normal.
 :::
 
-- Vungle's eRPM is roughly symmetric (mean $\approx$ median in our descriptives), so $n = 30$ clears the bar — the interval is trustworthy; it is just **wide**.
+- Vungle's eRPM is roughly symmetric (mean $\approx$ median in our descriptives), so $n = 30$ clears the bar; the interval is trustworthy, it is just **wide**.
 
 # Confidence Interval for a Proportion {background-color="#cfb991"}
 
@@ -537,7 +529,7 @@ knitr::include_graphics("figs/excel_ci_mean.png")
 
 <br>
 
-- For a population proportion $p$, the interval uses $\bar{p}$ and the **$z$** multiplier (no $t$ — there is no separate SD to estimate):
+- For a population proportion $p$, the interval uses $\bar{p}$ and the **$z$** multiplier (no $t$, since there is no separate SD to estimate):
 
 ::: fragment
 
@@ -574,14 +566,14 @@ $$
 
 :::
 
-**Read it:** *PSI is 95% confident that between 39.6% and 48.4% of all voters favor the candidate.* The interval straddles 50% from below — too close to call a lead.
+**Read it:** *PSI is 95% confident that between 39.6% and 48.4% of all voters favor the candidate.* The interval straddles 50% from below: too close to call a lead.
 :::
 
-## Vungle Conversion Rate — a Proportion in Practice
+## Vungle Conversion Rate: a Proportion in Practice
 
 <br>
 
-- Each impression either becomes an install or not — a proportion. We estimate B's **true mean daily conversion rate** from the 30 daily rates (a $t$-interval on the daily percentages keeps the unit the **day**, parallel to eRPM):
+- Each impression either becomes an install or not, a proportion. We estimate B's **true mean daily conversion rate** from the 30 daily rates (a $t$-interval on the daily percentages keeps the unit the **day**, parallel to eRPM):
 
 ::: fragment
 | Quantity | Algorithm B |
@@ -593,7 +585,7 @@ $$
 | **95% CI** | $(0.345\%,\; 0.362\%)$ |
 :::
 
-- **Read it:** we are 95% confident B converts between **0.345% and 0.362%** of impressions to installs — a tight interval, because day-to-day conversion is very stable.
+- **Read it:** we are 95% confident B converts between **0.345% and 0.362%** of impressions to installs, a tight interval because day-to-day conversion is very stable.
 
 ## Vungle Conversion CI in Excel
 
@@ -602,7 +594,7 @@ $$
 ::: {.column width="40%"}
 <br>
 
-Same machinery as the mean eRPM interval — just run it on the **daily conversion-rate** column:
+Same machinery as the mean eRPM interval, just run it on the **daily conversion-rate** column:
 
 - $\bar{x}$, $s$ on `conv_B_pct`
 - $t_{0.025,29} = 2.045$
@@ -634,7 +626,7 @@ knitr::include_graphics("figs/excel_ci_prop.png")
 |---|---|---|
 | **Confidence level** ($1-\alpha$) | **wider** (bigger multiplier) | choose it |
 | **Variability** ($s$) | **wider** | not directly |
-| **Sample size** ($n$) | **narrower** (as $\sqrt{n}$) | **yes — buy more data** |
+| **Sample size** ($n$) | **narrower** (as $\sqrt{n}$) | **yes: buy more data** |
 :::
 
 - The only lever a manager freely controls is **$n$**. Want a tighter interval at the same confidence? Collect more days.
@@ -671,7 +663,7 @@ $$
 
 :::
 
-- **Always round up** — a fractional person or day cannot be sampled, and rounding down would miss the target precision.
+- **Always round up:** a fractional person or day cannot be sampled, and rounding down would miss the target precision.
 
 - Planning value for $s$: a prior study, a pilot sample, or a best guess. Here we use B's pilot $s = \$0.344$.
 
@@ -696,7 +688,7 @@ $$
 
 :::
 
-**The lesson:** halving the margin ($\$0.10 \rightarrow \$0.05$) takes **four times** the days ($46 \rightarrow 183$). Precision is expensive — and the manager must decide whether \$0.05 of precision is worth six months of testing.
+**The lesson:** halving the margin ($\$0.10 \rightarrow \$0.05$) takes **four times** the days ($46 \rightarrow 183$). Precision is expensive, and the CEO must decide whether \$0.05 of precision is worth six months of testing.
 :::
 
 ## Margin of Error vs. Sample Size
@@ -753,21 +745,7 @@ $$
 
 - **PSI example:** for $E = 0.03$ at 99% ($z = 2.576$): with $p^* = 0.44$, $n = 1817$; with the conservative $p^* = 0.5$, $n = 1844$. When unsure, plan for the larger.
 
-## ⏱️ Team Sprint 2 — Vungle's Estimation Memo
-
-::: {.sprint .nonincremental}
-**Decide:** what is B's true mean eRPM and conversion rate (each $\pm$ a margin), and how long must the next test run for $\pm\$0.05$ precision?
-
-**Data:** `data/vungle_estimation.xlsx` · **Time:** ~14 min
-
-1. **95% CI for mean eRPM (B):** $\bar{x} \pm t_{0.025,29}\,s/\sqrt{30}$ — use `=CONFIDENCE.T(0.05, s, 30)` for the margin.
-2. **95% CI for the daily conversion rate (B):** same steps on the `conv_B_pct` column.
-3. **Sample size:** how many days for the eRPM margin to reach $\pm\$0.05$? Use `=CEILING((1.96*s/0.05)^2,1)`.
-
-**Submit before you leave (graded, one slide per group):** your estimation memo to Vungle — the two 95% intervals (with a one-line reading of each) and the days needed for $\pm\$0.05$, plus the **two things you would challenge** before banking on these numbers.
-:::
-
-# Debrief — The Estimation Memo {background-color="#cfb991"}
+# Debrief: The Estimation Memo {background-color="#cfb991"}
 
 ## What the Intervals Tell Vungle
 
@@ -777,7 +755,7 @@ $$
 |---|---:|---:|---|
 | Mean eRPM (B) | \$3.459 | (\$3.330, \$3.588) | true earning power, $\pm\$0.13$ |
 | Conversion rate (B) | 0.354% | (0.345%, 0.362%) | very stable, $\pm 0.009$pt |
-| Days for $\pm\$0.05$ eRPM | — | $n = 183$ | six months to halve the margin |
+| Days for $\pm\$0.05$ eRPM | (n/a) | $n = 183$ | six months to halve the margin |
 
 <br>
 
@@ -789,19 +767,31 @@ $$
 
 - B's eRPM interval **(\$3.33, \$3.59)** and A's **(\$3.27, \$3.43)** **overlap**. The \$0.11 sample gap is real in *this* sample, but the intervals do not, by themselves, prove B's *true* mean beats A's.
 
-- Estimation answers *"how big, and how sure are we about that size?"* — it does **not** directly answer *"is B better than A?"*
+- Estimation answers *"how big, and how sure are we about that size?"*; it does **not** directly answer *"is B better than A?"*
 
-- That comparison question — **does B beat a benchmark, and does B beat A?** — is **hypothesis testing**, the next two topics. Today's standard error and $t$ machinery carry straight over.
+- That comparison question (**does B beat a benchmark, and does B beat A?**) is **hypothesis testing**, the next two topics. Today's standard error and $t$ machinery carry straight over.
 
-## Manager's Takeaway
+## The CEO's Takeaway
 
 <br>
 
-- **One sentence:** a confidence interval turns a point estimate into a defensible **range** (B's true mean eRPM is \$3.46 $\pm$ \$0.13 at 95% confidence) and the **margin of error** is the number a manager should actually negotiate over.
+- **One sentence:** a confidence interval turns a point estimate into a defensible **range** (B's true mean eRPM is \$3.46 $\pm$ \$0.13 at 95% confidence), and the **margin of error** is the number the CEO should actually negotiate over.
 
-- **One number to remember:** $E = t_{\alpha/2}\,s/\sqrt{n}$ — and the $\sqrt{n}$ in the denominator, which makes precision expensive.
+- **One number to remember:** $E = t_{\alpha/2}\,s/\sqrt{n}$, with the $\sqrt{n}$ in the denominator that makes precision expensive.
 
-- **One caveat:** "95% confident" describes the **procedure** over many samples, not a probability for this one interval — and overlapping intervals do **not** settle a comparison.
+- **One caveat:** "95% confident" describes the **procedure** over many samples, not a probability for this one interval; overlapping intervals do **not** settle a comparison.
+
+## ⏱️ Team Sprint: Your Group Case (Lecture 2)
+
+::: {.sprint .nonincremental}
+**Now it's your group's turn.** Today's in-class group case is posted on **Brightspace** (*Topic 07 Group Case, Lecture 2*): a separate business decision you make with today's tools.
+
+**What you'll use:** **confidence intervals** for a mean ($t$) and a proportion ($z$), the **margin of error**, and **sample size** planning. **Excel:** Analysis ToolPak, plus `=CONFIDENCE.T` and `=CEILING`.
+
+**Submit one PDF per group before you leave:** your decision plus the numbers behind it.
+:::
+
+# Wrap-up {background-color="#cfb991"}
 
 ## Summary
 
@@ -812,16 +802,9 @@ Some key takeaways from this session:
 - The **sampling distribution** of $\bar{x}$ is centered at $\mu$ with standard error $\sigma/\sqrt{n}$; the **CLT** makes it Normal for $n \geq 30$, whatever the population's shape.
 - A **confidence interval** = point estimate $\pm$ margin of error; use **$t$** for a mean ($\sigma$ unknown), **$z$** for a proportion.
 - The margin of error has **three levers**: confidence level (up → wider), variability $s$ (up → wider), sample size $n$ (up → narrower, as $\sqrt{n}$).
-- **Sample size** inverts the margin formula: pick the precision, solve for $n$, round up — halving the margin costs ~4× the data.
-- "95% confident" is a statement about the **method**, not a probability for one interval — and overlapping intervals do not prove a difference.
-:::
-
-## Carry-forward
-
-::: nonincremental
-- **Homework (individual):** today's tools (confidence intervals and sample-size planning) are drilled on **HW2** — individual problem sets in the previous-edition format, posted on Brightspace. Build the intervals and solve for $n$ yourself, so you can check an analyst who hands you a range.
-
-- **Next time:** we stop *estimating ranges* and start *testing claims* — **Hypothesis Testing**: fund B only if its mean eRPM beats a benchmark. Today's standard error and $t$ tools become the test statistic.
+- **Sample size** inverts the margin formula: pick the precision, solve for $n$, round up; halving the margin costs ~4× the data.
+- "95% confident" is a statement about the **method**, not a probability for one interval, and overlapping intervals do not prove a difference.
+- **Next time:** we stop *estimating ranges* and start *testing claims* (**Hypothesis Testing**: fund B only if its mean eRPM clears a benchmark); today's standard error and $t$ become the test statistic.
 :::
 
 # Thank you! {background-color="#cfb991"}
