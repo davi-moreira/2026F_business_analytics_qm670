@@ -113,7 +113,9 @@ knitr::include_graphics("figs/carnaval_olinda.jpg")
 
 - You were **randomly assigned to a fixed group** for the whole term. Find your group number on **Brightspace → Groups**.
 
-- **Find your group, sit together, and meet your teammates. You have 10 minutes.** Say your name, where you are from, your background, and **one book, film, song, or anything** that tells us something about you. Then pick a **group name**.
+- **Find your spot:** your **group number** is posted on a table in the room (lower numbers toward the front). Go there and sit with your group.
+
+- **Meet your teammates: you have 10 minutes.** Say your name, where you are from, your background, and **one book, film, song, or anything** that tells us something about you.
 
 - This is your team for every in-class case this semester.
 
@@ -125,46 +127,12 @@ knitr::include_graphics("figs/carnaval_olinda.jpg")
 ::: nonincremental
 - **Course webpage** ([link](https://davi-moreira.github.io/2026F_business_analytics_qm670){target="_blank"}): the **syllabus**, the **schedule**, every topic's **slides**, and the **datasets** to download.
 
-- **Brightspace** (your channel): announcements, your **group**, the **in-class group cases**, the **three homeworks**, the exams, and your grades.
+- **Brightspace** (your official channel): announcements, your **group**, the **in-class group cases**, the **three homeworks**, the exams, and your grades.
 
 - **Excel + the Analysis ToolPak:** install it this week; we use it every class.
 
-- **iClicker** for attendance (target 85%).
+- **iClicker** for attendance.
 :::
-
-## How to Succeed in This Course
-
-<br>
-
-- **Keep up every week.** Statistics builds on itself: today's vocabulary becomes next week's formulas. Falling behind compounds.
-
-- **Work with your group.** In-class cases are solved and submitted together; homework you do on your own. Explaining a method to a groupmate is the fastest way to learn it.
-
-- **You're the decision-maker.** Every method we learn answers a call *you* have to make. Learn each one well enough to check an analyst's work, and always ask: *what decision does this number support, and would I stake money on it?*
-
-- **Use Excel from day one.** Install the Analysis ToolPak this week and open the course dataset; you will use it all semester.
-
-## How the Class Works
-
-<br>
-
-- **Your group:** you were **randomly assigned to a fixed group** this week and work every in-class case with it.
-
-- **Submit before you leave:** each class your group turns in one deliverable on **Brightspace**.
-
-- **Bring a laptop** with **Excel + the Analysis ToolPak** to every session.
-
-- **Homework is individual:** three problem sets that drill the mechanics, posted on Brightspace.
-
-## How Every Class Runs
-
-![](figs/lecture_dynamic.png){.nostretch fig-align="center" width="90%"}
-
-::: nonincremental
-The class **ends on the Team Sprint** — your group's graded submission. **Today is the exception:** introductions and logistics come first, so the group case is short.
-:::
-
-# Textbook & Software {background-color="#cfb991"}
 
 ## Textbook & Materials
 
@@ -191,15 +159,25 @@ Anderson · Sweeney · Williams · Camm · Cochran — Cengage, 2020 · ISBN-13 
 :::
 :::::
 
-# Survey {background-color="#cfb991"}
+## How to Succeed in This Course
 
-## Survey: Tell Me About You {background-color="#cfb991"}
+<br>
 
-```{r  echo=FALSE, out.width = "25%", fig.align="center"}
-knitr::include_graphics("figs/qrcode_review_survey.png")
-```
+- **Keep up every week.** Statistics builds on itself: today's vocabulary becomes next week's formulas. Falling behind compounds.
 
-<center>[Student Profile Survey](https://forms.office.com/r/3R2VwPJAzA){target="_blank"}<br>~10 min · who you are, your background, and one **book, film, or song** that tells me something about you</center>
+- **Work with your group.** In-class cases are solved and submitted together; homework you do on your own. Explaining a method to a groupmate is the fastest way to learn it.
+
+- **You're the decision-maker.** Every method we learn answers a call *you* have to make. Learn each one well enough to check an analyst's work, and always ask: *what decision does this number support, and would I stake money on it?*
+
+- **Use Excel from day one.** Install the Analysis ToolPak this week and open the course dataset; you will use it all semester.
+
+## How Every Class Runs
+
+![](figs/lecture_dynamic.png){.nostretch fig-align="center" width="90%"}
+
+::: nonincremental
+The class **ends on the Team Sprint** — your group's graded submission. **Today is the exception:** introductions and logistics come first, so the group case is short.
+:::
 
 # Your Semester: Two Cases, One Job {background-color="#cfb991"}
 
@@ -223,7 +201,7 @@ knitr::include_graphics("figs/qrcode_review_survey.png")
 
 ## The Roadmap
 
-![](figs/course_roadmap.png){.nostretch fig-align="center" width="72%"}
+![](figs/course_roadmap.png){.nostretch fig-align="center" width="92%"}
 
 # Case Spotlight: A/B Testing at Vungle {background-color="#cfb991"}
 
@@ -445,25 +423,23 @@ knitr::include_graphics("figs/scale_measurement.png")
 
 ## Scales of Measurement
 
-:::::::: columns
-::::: {.column style="width: 50%; text-align: center; justify-content: center; align-items: center;"}
-:::: nonincremental
-::: r-fit-text
+::::: columns
+::: {.column style="width: 50%; text-align: center; justify-content: center; align-items: center;"}
+::: nonincremental
 1.  **Categorical Data** — sortable into groups.
     -   **Nominal**: no inherent order (gender, car type, nationality, **ad algorithm**).
     -   **Ordinal**: a meaningful order, but no consistent difference between levels (satisfaction level; education level; job rank).
 :::
-::::
-:::::
+:::
 
-:::: {.column style="width: 50%; text-align: center; justify-content: center; align-items: center;"}
+::: {.column style="width: 50%; text-align: center; justify-content: center; align-items: center;"}
 ::: nonincremental
 2.  **Quantitative Data** — measured numerically.
     -   **Interval**: meaningful differences, **no true zero** (temperature in °C/°F).
     -   **Ratio**: meaningful differences **and a true zero** (height, weight, revenue, **eRPM**, **installs**).
 :::
-::::
-::::::::
+:::
+:::::
 
 ## Classify Vungle's Variables
 
@@ -753,7 +729,7 @@ The main points from this session:
 
 **What you'll use:** data **types and scales**, and the **mean, median, and mode**. **Excel:** Analysis ToolPak → Descriptive Statistics.
 
-**Submit one PDF per group before you leave** — your decision plus the numbers behind it.
+**Submit one PDF per group before you leave:** your decision plus the numbers behind it.
 :::
 
 # Thank you! {background-color="#cfb991"}

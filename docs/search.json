@@ -2071,7 +2071,7 @@
     "href": "lecture_slides/01_chapter_data_statistics/01_chapter_data_statistics.html#course-overview-and-logistics-1",
     "title": " QM 6700: Business Analytics ",
     "section": "Course Overview and Logistics",
-    "text": "Course Overview and Logistics\n\nCourse webpage (link): the syllabus, the schedule, every topic’s slides, and the datasets to download.\nBrightspace (your channel): announcements, your group, the in-class group cases, the three homeworks, the exams, and your grades.\nExcel + the Analysis ToolPak: install it this week; we use it every class.\niClicker for attendance (target 85%)."
+    "text": "Course Overview and Logistics\n\nCourse webpage (link): the syllabus, the schedule, every topic’s slides, and the datasets to download.\nBrightspace (your official channel): announcements, your group, the in-class group cases, the three homeworks, the exams, and your grades.\nExcel + the Analysis ToolPak: install it this week; we use it every class.\niClicker for attendance."
   },
   {
     "objectID": "lecture_slides/01_chapter_data_statistics/01_chapter_data_statistics.html#how-to-succeed-in-this-course",
@@ -2197,7 +2197,7 @@
     "href": "lecture_slides/01_chapter_data_statistics/01_chapter_data_statistics.html#scales-of-measurement-1",
     "title": " QM 6700: Business Analytics ",
     "section": "Scales of Measurement",
-    "text": "Scales of Measurement\n\n\n\n\nCategorical Data — sortable into groups.\n\nNominal: no inherent order (gender, car type, nationality, ad algorithm).\nOrdinal: a meaningful order, but no consistent difference between levels (satisfaction level; education level; job rank).\n\n\n\n\n\nQuantitative Data — measured numerically.\n\nInterval: meaningful differences, no true zero (temperature in °C/°F).\nRatio: meaningful differences and a true zero (height, weight, revenue, eRPM, installs)."
+    "text": "Scales of Measurement\n\n\n\nCategorical Data — sortable into groups.\n\nNominal: no inherent order (gender, car type, nationality, ad algorithm).\nOrdinal: a meaningful order, but no consistent difference between levels (satisfaction level; education level; job rank).\n\n\n\n\nQuantitative Data — measured numerically.\n\nInterval: meaningful differences, no true zero (temperature in °C/°F).\nRatio: meaningful differences and a true zero (height, weight, revenue, eRPM, installs)."
   },
   {
     "objectID": "lecture_slides/01_chapter_data_statistics/01_chapter_data_statistics.html#classify-vungles-variables",
@@ -3502,7 +3502,7 @@
     "href": "lecture_slides/01_chapter_data_statistics/01_chapter_data_statistics.html#find-your-group-meet-your-team",
     "title": " QM 6700: Business Analytics ",
     "section": "Find Your Group & Meet Your Team",
-    "text": "Find Your Group & Meet Your Team\n\n\nYou were randomly assigned to a fixed group for the whole term. Find your group number on Brightspace → Groups.\nFind your group, sit together, and meet your teammates. You have 10 minutes. Say your name, where you are from, your background, and one book, film, song, or anything that tells us something about you. Then pick a group name.\nThis is your team for every in-class case this semester."
+    "text": "Find Your Group & Meet Your Team\n\n\nYou were randomly assigned to a fixed group for the whole term. Find your group number on Brightspace → Groups.\nFind your spot: your group number is posted on a table in the room (lower numbers toward the front). Go there and sit with your group.\nMeet your teammates: you have 10 minutes. Say your name, where you are from, your background, and one book, film, song, or anything that tells us something about you.\nThis is your team for every in-class case this semester."
   },
   {
     "objectID": "lecture_slides/01_chapter_data_statistics/01_chapter_data_statistics.html#survey-tell-me-about-you",
@@ -3530,6 +3530,6 @@
     "href": "lecture_slides/01_chapter_data_statistics/01_chapter_data_statistics.html#team-sprint-your-group-case",
     "title": " QM 6700: Business Analytics ",
     "section": "⏱️ Team Sprint — Your Group Case",
-    "text": "⏱️ Team Sprint — Your Group Case\n\nNow it’s your group’s turn. Today’s in-class group case is posted on Brightspace (Topic 01 Group Case): a short business decision you make with today’s tools.\nWhat you’ll use: data types and scales, and the mean, median, and mode. Excel: Analysis ToolPak → Descriptive Statistics.\nSubmit one PDF per group before you leave — your decision plus the numbers behind it."
+    "text": "⏱️ Team Sprint — Your Group Case\n\nNow it’s your group’s turn. Today’s in-class group case is posted on Brightspace (Topic 01 Group Case): a short business decision you make with today’s tools.\nWhat you’ll use: data types and scales, and the mean, median, and mode. Excel: Analysis ToolPak → Descriptive Statistics.\nSubmit one PDF per group before you leave: your decision plus the numbers behind it."
   }
 ]
