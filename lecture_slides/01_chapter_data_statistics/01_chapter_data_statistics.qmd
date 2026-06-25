@@ -185,7 +185,7 @@ The class **ends on the Team Sprint**, your group's graded submission. **Today i
 
 <br>
 
-- This course puts **you in the decision-maker's seat**: the manager, CEO, or owner who has to act. You'll work in a **fixed group** (assigned this week), cracking real cases in class and judging the analysis behind every call.
+- This course puts **you in the decision-maker's seat**: the **CEO or owner** who has to act. You'll work in a **fixed group** (assigned this week), cracking real cases in class and judging the analysis behind every call.
 
 ::: fragment
 - **① Vungle A/B (Topics 1–9, up first).** A mobile ad-tech startup asking *roll out algorithm B, or keep A?* You'll learn to **describe, quantify uncertainty, and test** so you can judge that claim before betting the company on it.
@@ -203,30 +203,6 @@ The class **ends on the Team Sprint**, your group's graded submission. **Today i
 
 ![](figs/course_roadmap.png){.nostretch fig-align="center" width="92%"}
 
-## One Big Call, One Question a Week
-
-**Vungle's call (we land it in Topic 9):** *roll out B to all advertisers, or stay with A?* Each topic answers one piece of it.
-
-:::: fragment
-::: {style="font-size: 76%;"}
-| Topic | The question we answer toward the call |
-|---|---|
-| **1 · Describe I** | Is B's **average** eRPM really above A's (and is the data valid to compare)? |
-| **2 · Describe II** | Is B's edge **steady**, or just more volatile? |
-| **3 · Probability** | What are the **odds** at each step of the funnel? |
-| **4 · Decision Analysis** | Roll out, keep A, or **test more**: which has the best expected value? |
-| **5 · Discrete** | How many **installs** should we expect on a given day? |
-| **6 · Continuous** | What's the **chance** of a high or low eRPM day? |
-| **7 · Estimation** | From 30 days, what's B's **true** mean eRPM, give or take? |
-| **8 · Testing I** | Is B's eRPM really **above the benchmark**? |
-| **9 · Testing II** | **Is B really better than A?** |
-:::
-::::
-
-:::: fragment
-Auto-parts (Topics 10 and 11) runs the same way, toward *where should the next dollar go?*
-::::
-
 # Case Spotlight: A/B Testing at Vungle {background-color="#cfb991"}
 
 ## Meet Vungle: One Decision, 30 Days of Data
@@ -241,7 +217,27 @@ Auto-parts (Topics 10 and 11) runs the same way, toward *where should the next d
 
 - **Your call as Vungle's CEO:** *roll out B to all advertisers, or stay with A?*
 
-- We will use this one decision (*is B better than A?*) to motivate **every** tool in this course. The data is in `vungle_daily.csv` (download it from the course **Material** page).
+- We will use this one decision (*is B better than A?*) to motivate **every** tool in this course. The data is in `vungle_daily.csv`.
+
+## One Big Call, One Question a Week
+
+**Vungle's call (we land it in Topic 9):** *roll out B to all advertisers, or stay with A?* Each topic answers one piece of it.
+
+:::: fragment
+::: {style="font-size: 76%;"}
+| Topic | The question we answer toward the call |
+|---|---|
+| **1 · Describe I** | Is B's **average** eRPM above A's (and is the data valid to compare)? |
+| **2 · Describe II** | Is B's edge **steady**, or just more volatile? |
+| **3 · Probability** | What are the **odds** at each step of the funnel? |
+| **4 · Decision Analysis** | Roll out, keep A, or **test more**: which has the best expected value? |
+| **5 · Discrete** | How many **installs** should we expect on a given day? |
+| **6 · Continuous** | What's the **chance** of a high or low eRPM day? |
+| **7 · Estimation** | From 30 days, what's B's **true** mean eRPM, give or take? |
+| **8 · Testing I** | Is B's eRPM really **above the benchmark**? |
+| **9 · Testing II** | **Is B really better than A?** |
+:::
+::::
 
 ## The Data Behind the Decision
 
@@ -258,7 +254,7 @@ knitr::include_graphics("figs/vungle_funnel.png")
 
 <br>
 
-- A manager glances at the data: *"B's average daily eRPM was **\$3.46** vs. A's **\$3.35**, so roll out B!"*
+- A quick glance is tempting: *"B's average eRPM looks higher, so roll out B!"*
 
 - Not so fast. Before you can bet the company on that \$0.11 gap, you have to ask:
 
@@ -302,7 +298,7 @@ Statistics is the **science of collecting, organizing, analyzing, interpreting, 
 
 <br>
 
-- It turns raw numbers, like Vungle's 30 days of eRPM, into a defensible answer to a manager's question.
+- It turns raw numbers, like Vungle's 30 days of eRPM, into a defensible answer to the CEO's question.
 
 - The goal is always the same: **reduce uncertainty enough to act.**
 
@@ -378,7 +374,7 @@ knitr::include_graphics("figs/variables_observations.png")
 
 <br>
 
-- A recommendation is only as good as the data under it, so a sharp manager looks first. Here is a slice of `vungle_daily.csv`, algorithms interleaved by day:
+- A recommendation is only as good as the data under it, so a sharp CEO looks first. Here is a slice of `vungle_daily.csv`, algorithms interleaved by day:
 
 ::: fragment
 | algorithm | date | impressions | completes | clicks | installs | erpm |
@@ -720,11 +716,11 @@ knitr::include_graphics("figs/inference.svg")
 
 # The Takeaway {background-color="#cfb991"}
 
-## Manager's Takeaway
+## The CEO's Takeaway
 
 <br>
 
-- **One sentence:** today we turned a CEO's question (*roll out B or keep A?*) into a precise data problem, and built the vocabulary to describe it.
+- **One sentence:** today we turned the CEO's question (*roll out B or keep A?*) into a precise data problem, and found B's average eRPM (**\$3.46**) edges A's (**\$3.35**) by **\$0.11**; whether that edge is *real* is the inference question (Topics 7–9).
 
 - **One number to remember:** **60 rows × 7 variables = 420 values**. That is Vungle's dataset, and you can name every element, variable, and observation in it.
 

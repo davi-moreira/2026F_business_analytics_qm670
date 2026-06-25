@@ -2099,7 +2099,7 @@
     "href": "lecture_slides/01_chapter_data_statistics/01_chapter_data_statistics.html#meet-vungle-one-decision-30-days-of-data",
     "title": " QM 6700: Business Analytics ",
     "section": "Meet Vungle: One Decision, 30 Days of Data",
-    "text": "Meet Vungle: One Decision, 30 Days of Data\n\n\nVungle is a mobile ad-tech startup: it serves 15-second video ads inside other apps and earns revenue mainly when a viewer installs the advertised app.\nThe metric that pays the bills is eRPM: effective revenue per 1,000 impressions.\nIn June 2014, two analysts built a new ad-serving algorithm (B) and ran it head-to-head against the current one (A) for the whole month.\nYour call as Vungle’s CEO: roll out B to all advertisers, or stay with A?\nWe will use this one decision (is B better than A?) to motivate every tool in this course. The data is in vungle_daily.csv (download it from the course Material page)."
+    "text": "Meet Vungle: One Decision, 30 Days of Data\n\n\nVungle is a mobile ad-tech startup: it serves 15-second video ads inside other apps and earns revenue mainly when a viewer installs the advertised app.\nThe metric that pays the bills is eRPM: effective revenue per 1,000 impressions.\nIn June 2014, two analysts built a new ad-serving algorithm (B) and ran it head-to-head against the current one (A) for the whole month.\nYour call as Vungle’s CEO: roll out B to all advertisers, or stay with A?\nWe will use this one decision (is B better than A?) to motivate every tool in this course. The data is in vungle_daily.csv."
   },
   {
     "objectID": "lecture_slides/01_chapter_data_statistics/01_chapter_data_statistics.html#the-data-behind-the-decision",
@@ -2127,7 +2127,7 @@
     "href": "lecture_slides/01_chapter_data_statistics/01_chapter_data_statistics.html#what-is-statistics-2",
     "title": " QM 6700: Business Analytics ",
     "section": "What is Statistics?",
-    "text": "What is Statistics?\n\nStatistics is the science of collecting, organizing, analyzing, interpreting, and presenting data to make informed business decisions.\n\n\nIt turns raw numbers, like Vungle’s 30 days of eRPM, into a defensible answer to a manager’s question.\nThe goal is always the same: reduce uncertainty enough to act."
+    "text": "What is Statistics?\n\nStatistics is the science of collecting, organizing, analyzing, interpreting, and presenting data to make informed business decisions.\n\n\nIt turns raw numbers, like Vungle’s 30 days of eRPM, into a defensible answer to the CEO’s question.\nThe goal is always the same: reduce uncertainty enough to act."
   },
   {
     "objectID": "lecture_slides/01_chapter_data_statistics/01_chapter_data_statistics.html#where-is-statistics-applied-in-business",
@@ -3467,7 +3467,7 @@
     "href": "lecture_slides/01_chapter_data_statistics/01_chapter_data_statistics.html#read-the-data-before-you-trust-the-analysis",
     "title": " QM 6700: Business Analytics ",
     "section": "Read the Data Before You Trust the Analysis",
-    "text": "Read the Data Before You Trust the Analysis\n\n\nA recommendation is only as good as the data under it, so a sharp manager looks first. Here is a slice of vungle_daily.csv, algorithms interleaved by day:\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nalgorithm\ndate\nimpressions\ncompletes\nclicks\ninstalls\nerpm\n\n\n\n\nA\n2014-06-01\n6,777,407\n5,978,434\n345,309\n31,119\n3.327\n\n\nB\n2014-06-01\n569,044\n499,235\n28,035\n2,111\n2.953\n\n\nA\n2014-06-02\n6,004,310\n5,331,727\n299,732\n24,601\n2.943\n\n\nB\n2014-06-02\n505,963\n447,695\n24,621\n1,713\n2.587\n\n\n\n\n\n\nElement = one algorithm-day (60 of them). Variables = the 7 columns. One observation = one row. Total values = 60 × 7 = 420."
+    "text": "Read the Data Before You Trust the Analysis\n\n\nA recommendation is only as good as the data under it, so a sharp CEO looks first. Here is a slice of vungle_daily.csv, algorithms interleaved by day:\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nalgorithm\ndate\nimpressions\ncompletes\nclicks\ninstalls\nerpm\n\n\n\n\nA\n2014-06-01\n6,777,407\n5,978,434\n345,309\n31,119\n3.327\n\n\nB\n2014-06-01\n569,044\n499,235\n28,035\n2,111\n2.953\n\n\nA\n2014-06-02\n6,004,310\n5,331,727\n299,732\n24,601\n2.943\n\n\nB\n2014-06-02\n505,963\n447,695\n24,621\n1,713\n2.587\n\n\n\n\n\n\nElement = one algorithm-day (60 of them). Variables = the 7 columns. One observation = one row. Total values = 60 × 7 = 420."
   },
   {
     "objectID": "lecture_slides/01_chapter_data_statistics/01_chapter_data_statistics.html#team-sprint-pressure-test-the-analysts-claim",
@@ -3488,7 +3488,7 @@
     "href": "lecture_slides/01_chapter_data_statistics/01_chapter_data_statistics.html#youre-the-decision-maker-two-cases-to-crack",
     "title": " QM 6700: Business Analytics ",
     "section": "You’re the Decision-Maker: Two Cases to Crack",
-    "text": "You’re the Decision-Maker: Two Cases to Crack\n\n\nThis course puts you in the decision-maker’s seat: the manager, CEO, or owner who has to act. You’ll work in a fixed group (assigned this week), cracking real cases in class and judging the analysis behind every call.\n\n\n\n① Vungle A/B (Topics 1–9, up first). A mobile ad-tech startup asking roll out algorithm B, or keep A? You’ll learn to describe, quantify uncertainty, and test so you can judge that claim before betting the company on it.\n\n\n\n\n② Auto-parts retail (Topics 10–11). A 45-store chain asking where should the next dollar go? You’ll evaluate the analyst’s model that predicts store sales, then decide where to invest.\n\n\n\n\nEvery class: your group works in the in-class case and submits its call before you leave (graded)."
+    "text": "You’re the Decision-Maker: Two Cases to Crack\n\n\nThis course puts you in the decision-maker’s seat: the CEO or owner who has to act. You’ll work in a fixed group (assigned this week), cracking real cases in class and judging the analysis behind every call.\n\n\n\n① Vungle A/B (Topics 1–9, up first). A mobile ad-tech startup asking roll out algorithm B, or keep A? You’ll learn to describe, quantify uncertainty, and test so you can judge that claim before betting the company on it.\n\n\n\n\n② Auto-parts retail (Topics 10–11). A 45-store chain asking where should the next dollar go? You’ll evaluate the analyst’s model that predicts store sales, then decide where to invest.\n\n\n\n\nEvery class: your group works in the in-class case and submits its call before you leave (graded)."
   },
   {
     "objectID": "lecture_slides/01_chapter_data_statistics/01_chapter_data_statistics.html#how-every-class-runs",
@@ -3523,7 +3523,7 @@
     "href": "lecture_slides/01_chapter_data_statistics/01_chapter_data_statistics.html#the-tempting-answer-why-it-is-not-enough",
     "title": " QM 6700: Business Analytics ",
     "section": "The Tempting Answer: Why It Is Not Enough",
-    "text": "The Tempting Answer: Why It Is Not Enough\n\n\nA manager glances at the data: “B’s average daily eRPM was $3.46 vs. A’s $3.35, so roll out B!”\nNot so fast. Before you can bet the company on that $0.11 gap, you have to ask:\n\nIs $0.11 a real difference, or just day-to-day noise?\nIs 30 days enough to generalize to all future traffic?\nWhat kind of data is this, and which statistics are even valid to compute?\n\nAnswering those is your job. Today we start at the foundation: what is this data?"
+    "text": "The Tempting Answer: Why It Is Not Enough\n\n\nA quick glance is tempting: “B’s average eRPM looks higher, so roll out B!”\nNot so fast. Before you can bet the company on that $0.11 gap, you have to ask:\n\nIs $0.11 a real difference, or just day-to-day noise?\nIs 30 days enough to generalize to all future traffic?\nWhat kind of data is this, and which statistics are even valid to compute?\n\nAnswering those is your job. Today we start at the foundation: what is this data?"
   },
   {
     "objectID": "lecture_slides/01_chapter_data_statistics/01_chapter_data_statistics.html#team-sprint-your-group-case",
@@ -3544,6 +3544,13 @@
     "href": "lecture_slides/01_chapter_data_statistics/01_chapter_data_statistics.html#one-big-call-one-question-a-week",
     "title": " QM 6700: Business Analytics ",
     "section": "One Big Call, One Question a Week",
-    "text": "One Big Call, One Question a Week\nVungle’s call (we land it in Topic 9): roll out B to all advertisers, or stay with A? Each topic answers one piece of it.\n\n\n\n\n\n\n\n\n\nTopic\nThe question we answer toward the call\n\n\n\n\n1 · Describe I\nIs B’s average eRPM really above A’s (and is the data valid to compare)?\n\n\n2 · Describe II\nIs B’s edge steady, or just more volatile?\n\n\n3 · Probability\nWhat are the odds at each step of the funnel?\n\n\n4 · Decision Analysis\nRoll out, keep A, or test more: which has the best expected value?\n\n\n5 · Discrete\nHow many installs should we expect on a given day?\n\n\n6 · Continuous\nWhat’s the chance of a high or low eRPM day?\n\n\n7 · Estimation\nFrom 30 days, what’s B’s true mean eRPM, give or take?\n\n\n8 · Testing I\nIs B’s eRPM really above the benchmark?\n\n\n9 · Testing II\nIs B really better than A?\n\n\n\n\n\n\nAuto-parts (Topics 10 and 11) runs the same way, toward where should the next dollar go?"
+    "text": "One Big Call, One Question a Week\nVungle’s call (we land it in Topic 9): roll out B to all advertisers, or stay with A? Each topic answers one piece of it.\n\n\n\n\n\n\n\n\n\nTopic\nThe question we answer toward the call\n\n\n\n\n1 · Describe I\nIs B’s average eRPM above A’s (and is the data valid to compare)?\n\n\n2 · Describe II\nIs B’s edge steady, or just more volatile?\n\n\n3 · Probability\nWhat are the odds at each step of the funnel?\n\n\n4 · Decision Analysis\nRoll out, keep A, or test more: which has the best expected value?\n\n\n5 · Discrete\nHow many installs should we expect on a given day?\n\n\n6 · Continuous\nWhat’s the chance of a high or low eRPM day?\n\n\n7 · Estimation\nFrom 30 days, what’s B’s true mean eRPM, give or take?\n\n\n8 · Testing I\nIs B’s eRPM really above the benchmark?\n\n\n9 · Testing II\nIs B really better than A?"
+  },
+  {
+    "objectID": "lecture_slides/01_chapter_data_statistics/01_chapter_data_statistics.html#the-ceos-takeaway",
+    "href": "lecture_slides/01_chapter_data_statistics/01_chapter_data_statistics.html#the-ceos-takeaway",
+    "title": " QM 6700: Business Analytics ",
+    "section": "The CEO’s Takeaway",
+    "text": "The CEO’s Takeaway\n\n\nOne sentence: today we turned the CEO’s question (roll out B or keep A?) into a precise data problem, and found B’s average eRPM ($3.46) edges A’s ($3.35) by $0.11; whether that edge is real is the inference question (Topics 7–9).\nOne number to remember: 60 rows × 7 variables = 420 values. That is Vungle’s dataset, and you can name every element, variable, and observation in it.\nOne principle: the scale of a variable determines which statistics are valid: count algorithm, average erpm.\nPractice: open data/vungle_daily.xlsx, install the Analysis ToolPak, and run Descriptive Statistics on erpm. Bring one question to next class."
   }
 ]
