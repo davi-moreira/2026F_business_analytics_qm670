@@ -39,41 +39,43 @@ editor: visual
 
 <center>
 
-*DRAFT — Fall 2026 skeleton (MWF, 90 min, Aug 24 – Oct 9). Topic sequence mirrors the previous edition; sections, dates, and materials to be finalized during the course redesign.*
+*Fall 2026 · MWF, 90-minute sessions · Aug 24 – Oct 9.*
 
 </center>
+
+**Every lecture runs an in-class group case** — assigned and submitted on **Brightspace**, where your fixed group turns in one graded deliverable before class ends (see the **Assignment** column). **Datasets** for each session are linked in the **Data** column; you can also download [**all course datasets (.zip)**](/data/qm6700_datasets.zip) at once.
 
 <br>
 
 ::: overflow-table
-| **Week** | **Day** | **Date** | **Topic** | **Book Sections\*** | **Slides** | **Data** | **Supplementary Materials** |
-|--------|--------|--------|--------|--------|--------|--------|--------------------|
-| **1** | **M** | Aug 24 | Course Intro & Descriptive Statistics | Syl.; Ch. 1, 3 | [slides](/lecture_slides/01_chapter_data_statistics/01_chapter_data_statistics.html){target="_blank"} | . | . |
-| **1** | **W** | Aug 26 | Descriptive Statistics | Ch. 3 | [slides](/lecture_slides/02_chapter_descriptive_statistics/02_chapter_descriptive_statistics.html){target="_blank"} | . | . |
-| **1** | **F** | Aug 28 | Probability | Ch. 4 | [slides](/lecture_slides/03_chapter_probability/03_chapter_probability.html){target="_blank"} | . | . |
-| **2** | **M** | Aug 31 | Decision Analysis | Ch. 19 | [slides](/lecture_slides/04_chapter_decision_analysis/04_chapter_decision_analysis.html){target="_blank"} | . | **Homework 1 assigned** |
-| **2** | **W** | Sep 02 | Discrete Probability Distributions | Ch. 5 | [slides](/lecture_slides/05_chapter_discrete_probability_distributions/05_chapter_discrete_probability_distributions.html){target="_blank"} | . | . |
-| **2** | **F** | Sep 04 | Discrete Probability Distributions | Ch. 5 | [slides](/lecture_slides/05_chapter_discrete_probability_distributions/05_chapter_discrete_probability_distributions.html){target="_blank"} | . | . |
-| **3** | **M** | Sep 07 | **LABOR DAY — No Class** | — | . | . | . |
-| **3** | **W** | Sep 09 | Continuous Probability Distributions | Ch. 6 | [slides](/lecture_slides/06_chapter_continuous_probability_distributions/06_chapter_continuous_probability_distributions.html){target="_blank"} | . | . |
-| **3** | **F** | Sep 11 | Continuous Probability Distributions | Ch. 6 | [slides](/lecture_slides/06_chapter_continuous_probability_distributions/06_chapter_continuous_probability_distributions.html){target="_blank"} | . | . |
-| **4** | **M** | Sep 14 | Sampling Distributions & Interval Estimation | Ch. 7, 8 | [slides](/lecture_slides/07_chapter_interval_estimation/07_chapter_interval_estimation.html){target="_blank"} | . | **Homework 2 assigned** |
-| **4** | **W** | Sep 16 | Sampling Distributions & Interval Estimation | Ch. 7, 8 | [slides](/lecture_slides/07_chapter_interval_estimation/07_chapter_interval_estimation.html){target="_blank"} | . | . |
-| **4** | **F** | Sep 18 | **Midterm Review** | Cumulative (to date) | . | . | . |
-| **5** | **M** | Sep 21 | **In-Class Midterm** | — | . | . | **Midterm Exam** |
-| **5** | **W** | Sep 23 | Hypothesis Testing I | Ch. 9 | [slides](/lecture_slides/08_chapter_hypothesis_tests/08_chapter_hypothesis_tests.html){target="_blank"} | . | . |
-| **5** | **F** | Sep 25 | Hypothesis Testing I | Ch. 9 | [slides](/lecture_slides/08_chapter_hypothesis_tests/08_chapter_hypothesis_tests.html){target="_blank"} | . | . |
-| **6** | **M** | Sep 28 | Hypothesis Testing II — Two Populations | Ch. 10 | [slides](/lecture_slides/09_chapter_hypothesis_tests_two_populations/09_chapter_hypothesis_tests_two_populations.html){target="_blank"} | . | . |
-| **6** | **W** | Sep 30 | Simple Regression | Ch. 14 | [slides](/lecture_slides/10_chapter_simple_regression/10_chapter_simple_regression.html){target="_blank"} | . | . |
-| **6** | **F** | Oct 02 | Simple Regression | Ch. 14 | [slides](/lecture_slides/10_chapter_simple_regression/10_chapter_simple_regression.html){target="_blank"} | . | . |
-| **7** | **M** | Oct 05 | Multiple Regression | Ch. 15 | [slides](/lecture_slides/11_chapter_multiple_regression/11_chapter_multiple_regression.html){target="_blank"} | . | **Homework 3 assigned** |
-| **7** | **W** | Oct 07 | Multiple Regression | Ch. 15 | [slides](/lecture_slides/11_chapter_multiple_regression/11_chapter_multiple_regression.html){target="_blank"} | . | . |
-| **7** | **F** | Oct 09 | **Final Review** | Cumulative | . | . | . |
-| **—** | — | TBD | **Final Exam (Details in the Course Syllabus)** | Cumulative | . | . | **Final Exam** |
+| **Week** | **Day** | **Date** | **Topic** | **Book Sections\*** | **Slides** | **Data** | **Assignment\*\*** | **Supplementary Materials** |
+|------|------|------|------|------|------|------|------|------|
+| **1** | **M** | Aug 24 | Course Intro & Descriptive Statistics | Syl.; Ch. 1, 3 | [slides](/lecture_slides/01_chapter_data_statistics/01_chapter_data_statistics.html){target="_blank"} | [vungle_daily.csv](/data/vungle_daily.csv) | Group case (Brightspace) | . |
+| **1** | **W** | Aug 26 | Descriptive Statistics | Ch. 3 | [slides](/lecture_slides/02_chapter_descriptive_statistics/02_chapter_descriptive_statistics.html){target="_blank"} | [vungle_daily.csv](/data/vungle_daily.csv) | Group case (Brightspace) | . |
+| **1** | **F** | Aug 28 | Probability | Ch. 4 | [slides](/lecture_slides/03_chapter_probability/03_chapter_probability.html){target="_blank"} | [vungle_daily.csv](/data/vungle_daily.csv) | Group case (Brightspace) | . |
+| **2** | **M** | Aug 31 | Decision Analysis | Ch. 19 | [slides](/lecture_slides/04_chapter_decision_analysis/04_chapter_decision_analysis.html){target="_blank"} | [vungle_daily.csv](/data/vungle_daily.csv) | Group case (Brightspace) · **Homework 1 assigned** | . |
+| **2** | **W** | Sep 02 | Discrete Probability Distributions | Ch. 5 | [slides](/lecture_slides/05_chapter_discrete_probability_distributions/05_chapter_discrete_probability_distributions.html){target="_blank"} | [vungle_daily.csv](/data/vungle_daily.csv) | Group case (Brightspace) | . |
+| **2** | **F** | Sep 04 | Discrete Probability Distributions | Ch. 5 | [slides](/lecture_slides/05_chapter_discrete_probability_distributions/05_chapter_discrete_probability_distributions.html){target="_blank"} | [vungle_daily.csv](/data/vungle_daily.csv) | Group case (Brightspace) | . |
+| **3** | **M** | Sep 07 | **LABOR DAY — No Class** | — | . | . | . | . |
+| **3** | **W** | Sep 09 | Continuous Probability Distributions | Ch. 6 | [slides](/lecture_slides/06_chapter_continuous_probability_distributions/06_chapter_continuous_probability_distributions.html){target="_blank"} | [vungle_daily.csv](/data/vungle_daily.csv) | Group case (Brightspace) | . |
+| **3** | **F** | Sep 11 | Continuous Probability Distributions | Ch. 6 | [slides](/lecture_slides/06_chapter_continuous_probability_distributions/06_chapter_continuous_probability_distributions.html){target="_blank"} | [vungle_daily.csv](/data/vungle_daily.csv) | Group case (Brightspace) | . |
+| **4** | **M** | Sep 14 | Sampling Distributions & Interval Estimation | Ch. 7, 8 | [slides](/lecture_slides/07_chapter_interval_estimation/07_chapter_interval_estimation.html){target="_blank"} | [vungle_daily.csv](/data/vungle_daily.csv) | Group case (Brightspace) · **Homework 2 assigned** | . |
+| **4** | **W** | Sep 16 | Sampling Distributions & Interval Estimation | Ch. 7, 8 | [slides](/lecture_slides/07_chapter_interval_estimation/07_chapter_interval_estimation.html){target="_blank"} | [vungle_daily.csv](/data/vungle_daily.csv) | Group case (Brightspace) | . |
+| **4** | **F** | Sep 18 | **Midterm Review** | Cumulative (to date) | . | . | . | . |
+| **5** | **M** | Sep 21 | **In-Class Midterm** | — | . | . | **Midterm Exam** | . |
+| **5** | **W** | Sep 23 | Hypothesis Testing I | Ch. 9 | [slides](/lecture_slides/08_chapter_hypothesis_tests/08_chapter_hypothesis_tests.html){target="_blank"} | [vungle_daily.csv](/data/vungle_daily.csv) | Group case (Brightspace) | . |
+| **5** | **F** | Sep 25 | Hypothesis Testing I | Ch. 9 | [slides](/lecture_slides/08_chapter_hypothesis_tests/08_chapter_hypothesis_tests.html){target="_blank"} | [vungle_daily.csv](/data/vungle_daily.csv) | Group case (Brightspace) | . |
+| **6** | **M** | Sep 28 | Hypothesis Testing II — Two Populations | Ch. 10 | [slides](/lecture_slides/09_chapter_hypothesis_tests_two_populations/09_chapter_hypothesis_tests_two_populations.html){target="_blank"} | [vungle_erpm_paired.csv](/data/vungle_erpm_paired.csv) · [vungle_daily.csv](/data/vungle_daily.csv) | Group case (Brightspace) | . |
+| **6** | **W** | Sep 30 | Simple Regression | Ch. 14 | [slides](/lecture_slides/10_chapter_simple_regression/10_chapter_simple_regression.html){target="_blank"} | [autoparts.csv](/data/autoparts.csv) | Group case (Brightspace) | . |
+| **6** | **F** | Oct 02 | Simple Regression | Ch. 14 | [slides](/lecture_slides/10_chapter_simple_regression/10_chapter_simple_regression.html){target="_blank"} | [autoparts.csv](/data/autoparts.csv) | Group case (Brightspace) | . |
+| **7** | **M** | Oct 05 | Multiple Regression | Ch. 15 | [slides](/lecture_slides/11_chapter_multiple_regression/11_chapter_multiple_regression.html){target="_blank"} | [autoparts.csv](/data/autoparts.csv) | Group case (Brightspace) · **Homework 3 assigned** | . |
+| **7** | **W** | Oct 07 | Multiple Regression | Ch. 15 | [slides](/lecture_slides/11_chapter_multiple_regression/11_chapter_multiple_regression.html){target="_blank"} | [autoparts.csv](/data/autoparts.csv) | Group case (Brightspace) | . |
+| **7** | **F** | Oct 09 | **Final Review** | Cumulative | . | . | . | . |
+| **—** | — | TBD | **Final Exam (Details in the Course Syllabus)** | Cumulative | . | [all datasets (.zip)](/data/qm6700_datasets.zip) | **Final Exam** | . |
 :::
 
 ::: below-table
-\* Section numbers refer to chapters in the course textbook (to be confirmed during the redesign).
+\* Section numbers refer to chapters in the course textbook: Anderson, Sweeney, Williams, Camm & Cochran, *Statistics for Business and Economics*, 14th ed.
 
-Slides were adapted from previous course editions and will be revised for QM 6700. Podcast/video and supplementary links will be added as materials are developed.
+\*\* **Assignment** is the graded work tied to each session: the in-class **group case** (worked in your fixed group and submitted on Brightspace before class ends), plus the dates the three **individual homeworks** are assigned and the **midterm/final** are held. Slides open in the **Slides** column; datasets in the **Data** column. **Supplementary Materials** (podcasts, videos, extra readings) will be posted to Brightspace as they become available.
 :::

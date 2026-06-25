@@ -19,11 +19,11 @@ subtitle: "Mitch. Daniels School of Business, Purdue University"
 
 ### Course Description and Objectives
 
-This course develops the quantitative and data-analysis skills managers need to make data-driven decisions. Coverage includes descriptive statistics, probability and probability distributions, decision analysis, sampling distributions and interval estimation, hypothesis testing, and applied regression analysis (simple and multiple). *(Scope to be finalized during the course redesign.)*
+This course develops the quantitative and data-analysis skills managers need to make data-driven decisions. Coverage includes descriptive statistics, probability and probability distributions, decision analysis, sampling distributions and interval estimation, hypothesis testing, and applied regression analysis (simple and multiple).
 
 Our main goal is to instill the basic quantitative and data analysis skills needed by managers in modern business, where Business Analytics and Data Science have become essential. These skills will aid in data-driven decision-making, risk assessments, and policy formulation, and will enable managers to collaborate effectively with data analysis teams to enhance business performance.
 
-Since modern data analysis is primarily performed using computers and various sophisticated software, this course will also emphasize software applications (such as Minitab, R, or Python). However, Microsoft Excel is the primary software tool demonstrated in this course.
+The course is **Excel-first**: every method is demonstrated in **Microsoft Excel** with the **Analysis ToolPak**, the standard tool for the analyses we cover.
 
 **Course Website**: [https://davi-moreira.github.io/2026F_business_analytics_qm670/](https://davi-moreira.github.io/2026F_business_analytics_qm670/){target="_blank"}
 
@@ -44,14 +44,13 @@ By the end of this course, students will be able to:
 
 ### Prerequisite
 
--   Admission to the MS in Business Analytics & Information Management (MSBAIM), or an equivalent background in introductory statistics. *(To be confirmed.)*
+-   Admission to the MS in Business Analytics & Information Management (MSBAIM), or an equivalent background in introductory statistics.
 
 ### Course Materials
 
--   **Textbook** *(to be confirmed during the course redesign)*:\
+-   **Textbook**:\
     Anderson, Sweeney, Williams, Camm, and Cochran.\
-    *Statistics for Business and Economics*, 14th Edition, Cengage Learning, Inc.\
-    (Used in the previous edition.)
+    *Statistics for Business and Economics*, 14th Edition, Cengage Learning, Inc.
 
 -   **Handouts**:\
     Lecture Slides and Supplementary Materials (available on Brightspace).\

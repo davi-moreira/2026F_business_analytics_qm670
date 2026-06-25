@@ -36,7 +36,7 @@ author: "Davi Moreira"
 
 ## Course Description and Objectives
 
-This course develops the quantitative and data-analysis skills managers need to make data-driven decisions. Coverage includes descriptive statistics, probability and probability distributions, decision analysis, sampling distributions and interval estimation, hypothesis testing, and applied regression analysis (simple and multiple). *(Scope to be finalized during the course redesign.)*
+This course develops the quantitative and data-analysis skills managers need to make data-driven decisions. Coverage includes descriptive statistics, probability and probability distributions, decision analysis, sampling distributions and interval estimation, hypothesis testing, and applied regression analysis (simple and multiple).
 
 Our primary goal is to instill in students the quantitative and data analysis skills essential in modern business, where Business Analytics and Data Science are increasingly important. These skills will empower managers to make data-based decisions, perform risk assessments, develop policies, and collaborate effectively with analytics teams to boost business performance.
 
@@ -64,10 +64,9 @@ By the end of this course, students will be able to:
 
 ## Course Materials
 
-1.  **Textbook** *(to be confirmed during the course redesign)*
+1.  **Textbook**
     -   Anderson, Sweeney, Williams, Camm, and Cochran.\
-        *Statistics for Business and Economics*, 14th edition. Cengage Learning, Inc.\
-        – Used in the previous edition; the required textbook for QM 6700 will be confirmed.
+        *Statistics for Business and Economics*, 14th edition. Cengage Learning, Inc.
 2.  **Handouts**
     -   Presentation slides and supplementary materials posted on Brightspace:\
         Brightspace → Content → Table of Contents → …

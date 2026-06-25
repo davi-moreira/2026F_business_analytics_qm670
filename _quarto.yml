@@ -8,7 +8,12 @@ project:
   render:
     - "*.qmd"
     - "lecture_slides/**/*.qmd"
-  
+  # Public course datasets — copied to docs/data/ so students can download them
+  # from the Material and Schedule pages (raw data only; worked-solution workbooks
+  # are kept out of the public site).
+  resources:
+    - "data/**"
+
 
 website:
   title: "QM 6700: Business Analytics"

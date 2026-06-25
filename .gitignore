@@ -90,3 +90,9 @@ submissions/
 !.course/cache/assignments.json
 !.course/cache/diff-report.md
 # <<< course-manager (credentials + FERPA) <<<
+
+# Quarto copies each deck's own data/ (which includes WORKED-SOLUTION workbooks like
+# vungle_descriptive.xlsx) into docs/ at render time. Keep those OUT of the public site —
+# students get raw datasets from the root data/ folder, linked on Material/Schedule.
+docs/lecture_slides/*/data/
+docs/lecture_slides/_parked/

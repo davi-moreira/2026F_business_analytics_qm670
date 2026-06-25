@@ -35,26 +35,30 @@ author: "Davi Moreira"
 
 <center>
 
-*All 11 topics have been rebuilt for QM 6700 in the active "Analytics Studio" format. Datasets and supplementary materials will be linked as the term approaches.*
+*All 11 topics are built for QM 6700 in the active "Analytics Studio" format.*
 
 </center>
+
+**In-class group cases.** Every lecture runs an **in-class group case**, assigned and submitted on **Brightspace**. Your fixed group works that day's business case and turns in one graded deliverable before class ends.
+
+**Datasets.** Download everything once — [**all course datasets (.zip)**](/data/qm6700_datasets.zip) — or grab the file you need per topic in the table below. The **Vungle A/B** data drives Topics 1–9; the **auto-parts retail** data drives Topics 10–11. (The `.csv` files open directly in Excel.)
 
 <br>
 
 ::: overflow-table
 | Topic | Slides | Data | Supplementary Materials |
 |--------------------|-----------------|---------|---------------------------------|
-| **T01 · Descriptive Statistics I** | [slides](/lecture_slides/01_chapter_data_statistics/01_chapter_data_statistics.html){target="_blank"} | . | . |
-| **T02 · Descriptive Statistics II** | [slides](/lecture_slides/02_chapter_descriptive_statistics/02_chapter_descriptive_statistics.html){target="_blank"} | . | . |
-| **T03 · Probability** | [slides](/lecture_slides/03_chapter_probability/03_chapter_probability.html){target="_blank"} | . | . |
-| **T04 · Decision Analysis** | [slides](/lecture_slides/04_chapter_decision_analysis/04_chapter_decision_analysis.html){target="_blank"} | . | . |
-| **T05 · Discrete Probability Distributions** | [slides](/lecture_slides/05_chapter_discrete_probability_distributions/05_chapter_discrete_probability_distributions.html){target="_blank"} | . | . |
-| **T06 · Continuous Probability Distributions** | [slides](/lecture_slides/06_chapter_continuous_probability_distributions/06_chapter_continuous_probability_distributions.html){target="_blank"} | . | . |
-| **T07 · Sampling Distributions & Interval Estimation** | [slides](/lecture_slides/07_chapter_interval_estimation/07_chapter_interval_estimation.html){target="_blank"} | . | . |
-| **T08 · Hypothesis Testing I** | [slides](/lecture_slides/08_chapter_hypothesis_tests/08_chapter_hypothesis_tests.html){target="_blank"} | . | . |
-| **T09 · Hypothesis Testing II — Two Populations** | [slides](/lecture_slides/09_chapter_hypothesis_tests_two_populations/09_chapter_hypothesis_tests_two_populations.html){target="_blank"} | . | . |
-| **T10 · Simple Regression** | [slides](/lecture_slides/10_chapter_simple_regression/10_chapter_simple_regression.html){target="_blank"} | . | . |
-| **T11 · Multiple Regression** | [slides](/lecture_slides/11_chapter_multiple_regression/11_chapter_multiple_regression.html){target="_blank"} | . | . |
+| **T01 · Descriptive Statistics I** | [slides](/lecture_slides/01_chapter_data_statistics/01_chapter_data_statistics.html){target="_blank"} | [vungle_daily.csv](/data/vungle_daily.csv) | . |
+| **T02 · Descriptive Statistics II** | [slides](/lecture_slides/02_chapter_descriptive_statistics/02_chapter_descriptive_statistics.html){target="_blank"} | [vungle_daily.csv](/data/vungle_daily.csv) | . |
+| **T03 · Probability** | [slides](/lecture_slides/03_chapter_probability/03_chapter_probability.html){target="_blank"} | [vungle_daily.csv](/data/vungle_daily.csv) | . |
+| **T04 · Decision Analysis** | [slides](/lecture_slides/04_chapter_decision_analysis/04_chapter_decision_analysis.html){target="_blank"} | [vungle_daily.csv](/data/vungle_daily.csv) | . |
+| **T05 · Discrete Probability Distributions** | [slides](/lecture_slides/05_chapter_discrete_probability_distributions/05_chapter_discrete_probability_distributions.html){target="_blank"} | [vungle_daily.csv](/data/vungle_daily.csv) | . |
+| **T06 · Continuous Probability Distributions** | [slides](/lecture_slides/06_chapter_continuous_probability_distributions/06_chapter_continuous_probability_distributions.html){target="_blank"} | [vungle_daily.csv](/data/vungle_daily.csv) | . |
+| **T07 · Sampling Distributions & Interval Estimation** | [slides](/lecture_slides/07_chapter_interval_estimation/07_chapter_interval_estimation.html){target="_blank"} | [vungle_daily.csv](/data/vungle_daily.csv) | . |
+| **T08 · Hypothesis Testing I** | [slides](/lecture_slides/08_chapter_hypothesis_tests/08_chapter_hypothesis_tests.html){target="_blank"} | [vungle_daily.csv](/data/vungle_daily.csv) | . |
+| **T09 · Hypothesis Testing II — Two Populations** | [slides](/lecture_slides/09_chapter_hypothesis_tests_two_populations/09_chapter_hypothesis_tests_two_populations.html){target="_blank"} | [vungle_erpm_paired.csv](/data/vungle_erpm_paired.csv) · [vungle_daily.csv](/data/vungle_daily.csv) | . |
+| **T10 · Simple Regression** | [slides](/lecture_slides/10_chapter_simple_regression/10_chapter_simple_regression.html){target="_blank"} | [autoparts.csv](/data/autoparts.csv) | . |
+| **T11 · Multiple Regression** | [slides](/lecture_slides/11_chapter_multiple_regression/11_chapter_multiple_regression.html){target="_blank"} | [autoparts.csv](/data/autoparts.csv) | . |
 :::
 
 ::: below-table
