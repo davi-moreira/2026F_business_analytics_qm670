@@ -535,7 +535,7 @@ Professor: Davi Moreira
 <h2>A Question That Often Comes Up</h2>
 <div class="faq">
 <p><strong>A question that often comes up at this point:</strong></p>
-<p><em>If we already have all 30 days of data, why can’t we just compute the answer? Why do we need “inference” at all?</em></p>
+<p><strong>If we already have all 30 days of data, why can’t we just compute the answer? Why do we need “inference” at all?</strong></p>
 <div class="fragment">
 <p><strong>Short answer:</strong> those 30 days are a <strong>sample</strong> of all the future traffic B would ever serve. Describing what happened in June is certain; claiming B will keep winning next month is a leap from sample to population, and that leap is exactly what <strong>inference</strong> (Topics 7–9) is for.</p>
 </div>
@@ -901,7 +901,7 @@ Professor: Davi Moreira
 <h2>A Question That Often Comes Up</h2>
 <div class="faq">
 <p><strong>A question that often comes up at this point:</strong></p>
-<p><em>We randomly assigned impressions to A or B, but we did not randomly sample all of next year’s traffic. So what can we actually claim from these 30 days?</em></p>
+<p><strong>We randomly assigned impressions to A or B, but we did not randomly sample all of next year’s traffic. So what can we actually claim from these 30 days?</strong></p>
 <div class="fragment">
 <p><strong>Short answer:</strong> two different guarantees. Random <strong>assignment</strong> lets you say B <em>caused</em> the higher eRPM on these days; random <strong>sampling</strong> would let you generalize to all future traffic. You have the first, not the second, which is why a company-wide roll-out still needs an inference test (Topics 7–9).</p>
 </div>
@@ -941,7 +941,7 @@ Professor: Davi Moreira
 <h2>A Question That Often Comes Up</h2>
 <div class="faq">
 <p><strong>A question that often comes up at this point:</strong></p>
-<p><em>Why does Vungle judge the algorithms on eRPM instead of total revenue or total installs?</em></p>
+<p><strong>Why does Vungle judge the algorithms on eRPM instead of total revenue or total installs?</strong></p>
 <div class="fragment">
 <p><strong>Short answer:</strong> eRPM is revenue per 1,000 impressions, so it compares A and B <strong>fairly</strong> even when they served different amounts of traffic. Total revenue would just crown whichever algorithm happened to run more often; eRPM is the per-impression efficiency the business actually optimizes.</p>
 </div>
@@ -982,7 +982,7 @@ Professor: Davi Moreira
 <h2>A Question That Often Comes Up</h2>
 <div class="faq">
 <p><strong>A question that often comes up at this point:</strong></p>
-<p><em>Vungle’s mean and median eRPM are almost equal, so why bother computing both?</em></p>
+<p><strong>Vungle’s mean and median eRPM are almost equal, so why bother computing both?</strong></p>
 <div class="fragment">
 <p><strong>Short answer:</strong> their <strong>agreement</strong> is itself information. Mean ≈ median tells you the eRPM distribution is roughly symmetric with no extreme days, so the mean is trustworthy here. When the two pull apart, that gap is your early warning of skew or an outlier day, which is exactly what we dissect next class.</p>
 </div>
