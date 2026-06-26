@@ -4153,60 +4153,81 @@
     "href": "lecture_slides/02_chapter_descriptive_statistics/02_chapter_descriptive_statistics.html#a-question-that-often-comes-up-6",
     "title": " QM 6700: Business Analytics ",
     "section": "A Question That Often Comes Up",
-    "text": "A Question That Often Comes Up\n\nA question that often comes up at this point:\nA $4.07 eRPM day and a 38,000-install day are on totally different scales. How can one z-score compare them?\n\nShort answer: the z-score strips out the units. It does not ask “how many dollars” or “how many installs”; it asks “how many standard deviations from this series’ own mean.” A z of +2 means two SDs above typical whether the variable is eRPM, installs, or clicks, so a strong eRPM day and a strong install day become directly comparable on one ruler."
+    "text": "A Question That Often Comes Up\n\nA question that often comes up at this point:\nWe already computed B’s skewness as −0.47. Why also read shape off the boxplot instead of just trusting that number?\n\nShort answer: the boxplot shows you where the lopsidedness lives, not just that it exists. B’s median ($3.434) sits a touch above the center of its box and the lower whisker runs longer, reaching down to the two slow days near $2.80: that is the left skew the −0.47 reported, made visible. The number tells you the direction; the picture tells you which days are pulling the tail, which is what you actually investigate."
   },
   {
     "objectID": "lecture_slides/02_chapter_descriptive_statistics/02_chapter_descriptive_statistics.html#a-question-that-often-comes-up-7",
     "href": "lecture_slides/02_chapter_descriptive_statistics/02_chapter_descriptive_statistics.html#a-question-that-often-comes-up-7",
     "title": " QM 6700: Business Analytics ",
     "section": "A Question That Often Comes Up",
-    "text": "A Question That Often Comes Up\n\nA question that often comes up at this point:\nThe rule predicts 68% within one SD but B actually had 70%, and 95% predicted vs 93% observed. Did the rule fail?\n\nShort answer: no, the rule is an approximation for bell-shaped data, not an exact count. With only 30 days, each day is about 3 percentage points, so 70% vs 68% is one day off. The shares tracking the rule this closely is the evidence that B’s eRPM is well-approximated by a bell, which is what lets you read the $2.77-$4.15 band as the everyday range."
+    "text": "A Question That Often Comes Up\n\nA question that often comes up at this point:\nA $4.07 eRPM day and a 38,000-install day are on totally different scales. How can one z-score compare them?\n\nShort answer: the z-score strips out the units. It does not ask “how many dollars” or “how many installs”; it asks “how many standard deviations from this series’ own mean.” A z of +2 means two SDs above typical whether the variable is eRPM, installs, or clicks, so a strong eRPM day and a strong install day become directly comparable on one ruler."
   },
   {
     "objectID": "lecture_slides/02_chapter_descriptive_statistics/02_chapter_descriptive_statistics.html#a-question-that-often-comes-up-8",
     "href": "lecture_slides/02_chapter_descriptive_statistics/02_chapter_descriptive_statistics.html#a-question-that-often-comes-up-8",
     "title": " QM 6700: Business Analytics ",
     "section": "A Question That Often Comes Up",
-    "text": "A Question That Often Comes Up\n\nA question that often comes up at this point:\nIf Chebyshev works for any shape, why not always use it and skip the bell-shape check?\n\nShort answer: because Chebyshev’s safety costs you precision. At two SDs it only promises at least 75%, while the Empirical Rule says about 95% once you have earned the bell assumption. For B, where the shape check passed, the tighter 95% band is far more useful for spotting a rare day. Use Chebyshev when the data are lopsided or you do not know the shape."
+    "text": "A Question That Often Comes Up\n\nA question that often comes up at this point:\nThe rule predicts 68% within one SD but B actually had 70%, and 95% predicted vs 93% observed. Did the rule fail?\n\nShort answer: no, the rule is an approximation for bell-shaped data, not an exact count. With only 30 days, each day is about 3 percentage points, so 70% vs 68% is one day off. The shares tracking the rule this closely is the evidence that B’s eRPM is well-approximated by a bell, which is what lets you read the $2.77-$4.15 band as the everyday range."
   },
   {
     "objectID": "lecture_slides/02_chapter_descriptive_statistics/02_chapter_descriptive_statistics.html#a-question-that-often-comes-up-9",
     "href": "lecture_slides/02_chapter_descriptive_statistics/02_chapter_descriptive_statistics.html#a-question-that-often-comes-up-9",
     "title": " QM 6700: Business Analytics ",
     "section": "A Question That Often Comes Up",
-    "text": "A Question That Often Comes Up\n\nA question that often comes up at this point:\nThe two rules disagree on June 2 and June 3. Which one is right, and should I drop those days?\n\nShort answer: neither is “right”: the 1.5×IQR rule is simply more sensitive in the tails than the |z| &gt; 3 rule. A flag is an invitation to investigate, not a delete button. Check whether June 2 and 3 were genuine slow days before you ever drop them."
+    "text": "A Question That Often Comes Up\n\nA question that often comes up at this point:\nIf Chebyshev works for any shape, why not always use it and skip the bell-shape check?\n\nShort answer: because Chebyshev’s safety costs you precision. At two SDs it only promises at least 75%, while the Empirical Rule says about 95% once you have earned the bell assumption. For B, where the shape check passed, the tighter 95% band is far more useful for spotting a rare day. Use Chebyshev when the data are lopsided or you do not know the shape."
   },
   {
     "objectID": "lecture_slides/02_chapter_descriptive_statistics/02_chapter_descriptive_statistics.html#a-question-that-often-comes-up-10",
     "href": "lecture_slides/02_chapter_descriptive_statistics/02_chapter_descriptive_statistics.html#a-question-that-often-comes-up-10",
     "title": " QM 6700: Business Analytics ",
     "section": "A Question That Often Comes Up",
-    "text": "A Question That Often Comes Up\n\nA question that often comes up at this point:\nWe already computed mean, SD, skewness and z-scores for B. Why collapse everything back into just five numbers?\n\nShort answer: the five numbers are not a replacement, they are the picture-ready summary. Min, Q1, median, Q3, max carry center, spread, and shape in one line, and they map straight onto a boxplot you can put side by side for A and B. Compare B’s row (2.587, 3.324, 3.434, 3.674, 4.073) to A’s and you see B sitting higher and reaching lower at a glance."
+    "text": "A Question That Often Comes Up\n\nA question that often comes up at this point:\nThe two rules disagree on June 2 and June 3. Which one is right, and should I drop those days?\n\nShort answer: neither is “right”: the 1.5×IQR rule is simply more sensitive in the tails than the |z| &gt; 3 rule. A flag is an invitation to investigate, not a delete button. Check whether June 2 and 3 were genuine slow days before you ever drop them."
   },
   {
     "objectID": "lecture_slides/02_chapter_descriptive_statistics/02_chapter_descriptive_statistics.html#a-question-that-often-comes-up-11",
     "href": "lecture_slides/02_chapter_descriptive_statistics/02_chapter_descriptive_statistics.html#a-question-that-often-comes-up-11",
     "title": " QM 6700: Business Analytics ",
     "section": "A Question That Often Comes Up",
-    "text": "A Question That Often Comes Up\n\nA question that often comes up at this point:\nB’s box is both higher and taller. As the manager, which of those two facts should drive my decision?\n\nShort answer: both, together. “Higher” is B’s reward (greater median eRPM); “taller” is B’s risk (wider middle 50%, plus two low days past the fence). The whole point of today is that you cannot act on one without the other. The boxplot puts the trade-off in a single picture so you weigh the $0.11 edge against the extra spread before you commit."
+    "text": "A Question That Often Comes Up\n\nA question that often comes up at this point:\nWe already computed mean, SD, skewness and z-scores for B. Why collapse everything back into just five numbers?\n\nShort answer: the five numbers are not a replacement, they are the picture-ready summary. Min, Q1, median, Q3, max carry center, spread, and shape in one line, and they map straight onto a boxplot you can put side by side for A and B. Compare B’s row (2.587, 3.324, 3.434, 3.674, 4.073) to A’s and you see B sitting higher and reaching lower at a glance."
   },
   {
     "objectID": "lecture_slides/02_chapter_descriptive_statistics/02_chapter_descriptive_statistics.html#a-question-that-often-comes-up-12",
     "href": "lecture_slides/02_chapter_descriptive_statistics/02_chapter_descriptive_statistics.html#a-question-that-often-comes-up-12",
     "title": " QM 6700: Business Analytics ",
     "section": "A Question That Often Comes Up",
-    "text": "A Question That Often Comes Up\n\nA question that often comes up at this point:\nAlgorithm A’s covariance of clicks and installs is +163.7. Is that a strong relationship?\n\nShort answer: you cannot tell from 163.7 alone. Covariance reads the direction (positive, so clicks and installs rise together) but its size depends on the units. Measure clicks in raw counts instead of thousands and the number changes completely, with no change in the actual relationship. To judge strength you need correlation, which rescales covariance onto a fixed -1 to +1 range."
+    "text": "A Question That Often Comes Up\n\nA question that often comes up at this point:\nB’s box is both higher and taller. As the manager, which of those two facts should drive my decision?\n\nShort answer: both, together. “Higher” is B’s reward (greater median eRPM); “taller” is B’s risk (wider middle 50%, plus two low days past the fence). The whole point of today is that you cannot act on one without the other. The boxplot puts the trade-off in a single picture so you weigh the $0.11 edge against the extra spread before you commit."
   },
   {
     "objectID": "lecture_slides/02_chapter_descriptive_statistics/02_chapter_descriptive_statistics.html#a-question-that-often-comes-up-13",
     "href": "lecture_slides/02_chapter_descriptive_statistics/02_chapter_descriptive_statistics.html#a-question-that-often-comes-up-13",
     "title": " QM 6700: Business Analytics ",
     "section": "A Question That Often Comes Up",
-    "text": "A Question That Often Comes Up\n\nA question that often comes up at this point:\nA’s clicks and installs correlate at +0.915. Is that “high” enough to count as a strong relationship?\n\nShort answer: yes, and the fixed scale is why you can say so. Because r always lands between -1 and +1, +0.915 reads the same in any context: very close to a perfect line. For the funnel it means days with more clicks reliably bring more installs. There is no universal cutoff, but near +0.9 the two variables move together about as tightly as business data ever does."
+    "text": "A Question That Often Comes Up\n\nA question that often comes up at this point:\nExcel will give me the covariance and correlation in one cell each. Why spend a slide plotting the dots first?\n\nShort answer: because both numbers assume the relationship is a straight line, and only the picture tells you whether that assumption holds. If A’s clicks-vs-installs cloud bent into a U, the single number could read near zero and hide a real pattern. Here the cloud slopes cleanly up, which earns you the right to trust the +0.915 correlation you are about to compute. Look first, then compute."
   },
   {
     "objectID": "lecture_slides/02_chapter_descriptive_statistics/02_chapter_descriptive_statistics.html#a-question-that-often-comes-up-14",
     "href": "lecture_slides/02_chapter_descriptive_statistics/02_chapter_descriptive_statistics.html#a-question-that-often-comes-up-14",
+    "title": " QM 6700: Business Analytics ",
+    "section": "A Question That Often Comes Up",
+    "text": "A Question That Often Comes Up\n\nA question that often comes up at this point:\nAlgorithm A’s covariance of clicks and installs is +163.7. Is that a strong relationship?\n\nShort answer: you cannot tell from 163.7 alone. Covariance reads the direction (positive, so clicks and installs rise together) but its size depends on the units. Measure clicks in raw counts instead of thousands and the number changes completely, with no change in the actual relationship. To judge strength you need correlation, which rescales covariance onto a fixed -1 to +1 range."
+  },
+  {
+    "objectID": "lecture_slides/02_chapter_descriptive_statistics/02_chapter_descriptive_statistics.html#a-question-that-often-comes-up-15",
+    "href": "lecture_slides/02_chapter_descriptive_statistics/02_chapter_descriptive_statistics.html#a-question-that-often-comes-up-15",
+    "title": " QM 6700: Business Analytics ",
+    "section": "A Question That Often Comes Up",
+    "text": "A Question That Often Comes Up\n\nA question that often comes up at this point:\nA’s clicks and installs correlate at +0.915. Is that “high” enough to count as a strong relationship?\n\nShort answer: yes, and the fixed scale is why you can say so. Because r always lands between -1 and +1, +0.915 reads the same in any context: very close to a perfect line. For the funnel it means days with more clicks reliably bring more installs. There is no universal cutoff, but near +0.9 the two variables move together about as tightly as business data ever does."
+  },
+  {
+    "objectID": "lecture_slides/02_chapter_descriptive_statistics/02_chapter_descriptive_statistics.html#a-question-that-often-comes-up-16",
+    "href": "lecture_slides/02_chapter_descriptive_statistics/02_chapter_descriptive_statistics.html#a-question-that-often-comes-up-16",
+    "title": " QM 6700: Business Analytics ",
+    "section": "A Question That Often Comes Up",
+    "text": "A Question That Often Comes Up\n\nA question that often comes up at this point:\nIf a U-shaped cloud can give r near 0, could Vungle’s clicks and installs really be related even when r looks small?\n\nShort answer: yes, which is exactly why the scatter plot came first. A near-zero r only rules out a straight-line relationship, not every relationship; a strong curve can hide behind it. For A’s clicks and installs the plot showed a clean upward line, so here the high r (+0.915) is trustworthy. The rule for the manager: never read r without the plot that earns it."
+  },
+  {
+    "objectID": "lecture_slides/02_chapter_descriptive_statistics/02_chapter_descriptive_statistics.html#a-question-that-often-comes-up-17",
+    "href": "lecture_slides/02_chapter_descriptive_statistics/02_chapter_descriptive_statistics.html#a-question-that-often-comes-up-17",
     "title": " QM 6700: Business Analytics ",
     "section": "A Question That Often Comes Up",
     "text": "A Question That Often Comes Up\n\nA question that often comes up at this point:\nClicks and installs correlate at +0.92. So more clicks cause more installs?\n\nShort answer: not from the correlation alone. Clicks and installs are both driven by daily traffic volume, a lurking third variable. Only Vungle’s randomized A/B design licenses a causal claim; r just says the two move together."

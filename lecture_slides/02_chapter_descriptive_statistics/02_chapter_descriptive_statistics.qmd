@@ -423,6 +423,18 @@ knitr::include_graphics("figs/shape_boxplot_map.png")
 - **Where the median line sits inside the box tells you the skew:** centered → symmetric; pushed toward $Q_3$ with a long lower whisker → skewed left; pushed toward $Q_1$ with a long upper whisker → skewed right.
 :::
 
+## A Question That Often Comes Up
+
+:::: {.faq}
+**A question that often comes up at this point:**
+
+[We already computed B's skewness as −0.47. Why also read shape off the boxplot instead of just trusting that number?]{.faq-q}
+
+::: {.fragment .faq-a}
+**Short answer:** the boxplot shows you *where* the lopsidedness lives, not just that it exists. B's median (\$3.434) sits a touch above the center of its box and the lower whisker runs longer, reaching down to the two slow days near \$2.80: that is the left skew the −0.47 reported, made visible. The number tells you the direction; the picture tells you which days are pulling the tail, which is what you actually investigate.
+:::
+::::
+
 ## z-Scores: How Unusual Is One Day?
 
 <br>
@@ -710,6 +722,18 @@ knitr::include_graphics("figs/scatter_clicks_installs.png")
 - A scatter plot reveals the **direction, strength, and any non-linearity** the single numbers might hide.
 :::
 
+## A Question That Often Comes Up
+
+:::: {.faq}
+**A question that often comes up at this point:**
+
+[Excel will give me the covariance and correlation in one cell each. Why spend a slide plotting the dots first?]{.faq-q}
+
+::: {.fragment .faq-a}
+**Short answer:** because both numbers assume the relationship is a straight line, and only the picture tells you whether that assumption holds. If A's clicks-vs-installs cloud bent into a U, the single number could read near zero and hide a real pattern. Here the cloud slopes cleanly up, which earns you the right to trust the +0.915 correlation you are about to compute. Look first, then compute.
+:::
+::::
+
 ## Covariance: Direction of the Relationship
 
 <br>
@@ -791,6 +815,18 @@ knitr::include_graphics("figs/correlation_gallery.png")
 ::: nonincremental
 - As $|r|$ grows, the cloud tightens toward a line. $r$ captures **linear** association only; a perfect U-shape can have $r \approx 0$.
 :::
+
+## A Question That Often Comes Up
+
+:::: {.faq}
+**A question that often comes up at this point:**
+
+[If a U-shaped cloud can give r near 0, could Vungle's clicks and installs really be related even when r looks small?]{.faq-q}
+
+::: {.fragment .faq-a}
+**Short answer:** yes, which is exactly why the scatter plot came first. A near-zero r only rules out a *straight-line* relationship, not every relationship; a strong curve can hide behind it. For A's clicks and installs the plot showed a clean upward line, so here the high r (+0.915) is trustworthy. The rule for the manager: never read r without the plot that earns it.
+:::
+::::
 
 ## Vungle Association: Clicks vs. Installs
 

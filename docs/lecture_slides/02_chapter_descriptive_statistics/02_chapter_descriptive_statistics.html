@@ -733,6 +733,16 @@ s = \sqrt{s^2} \qquad\qquad \sigma = \sqrt{\sigma^2}
 <li><strong>Where the median line sits inside the box tells you the skew:</strong> centered → symmetric; pushed toward <span class="math inline">\(Q_3\)</span> with a long lower whisker → skewed left; pushed toward <span class="math inline">\(Q_1\)</span> with a long upper whisker → skewed right.</li>
 </ul>
 </section>
+<section id="a-question-that-often-comes-up-6" class="slide level2 center">
+<h2>A Question That Often Comes Up</h2>
+<div class="faq">
+<p><strong>A question that often comes up at this point:</strong></p>
+<p><span class="faq-q">We already computed B’s skewness as −0.47. Why also read shape off the boxplot instead of just trusting that number?</span></p>
+<div class="fragment faq-a">
+<p><strong>Short answer:</strong> the boxplot shows you <em>where</em> the lopsidedness lives, not just that it exists. B’s median ($3.434) sits a touch above the center of its box and the lower whisker runs longer, reaching down to the two slow days near $2.80: that is the left skew the −0.47 reported, made visible. The number tells you the direction; the picture tells you which days are pulling the tail, which is what you actually investigate.</p>
+</div>
+</div>
+</section>
 <section id="z-scores-how-unusual-is-one-day" class="slide level2 center">
 <h2>z-Scores: How Unusual Is One Day?</h2>
 <p><br></p>
@@ -750,7 +760,7 @@ z_i = \frac{x_i - \bar{x}}{s}
 <li class="fragment"><p><strong>Excel:</strong> <code>=STANDARDIZE(x, mean, standard_deviation)</code>.</p></li>
 </ul>
 </section>
-<section id="a-question-that-often-comes-up-6" class="slide level2 center">
+<section id="a-question-that-often-comes-up-7" class="slide level2 center">
 <h2>A Question That Often Comes Up</h2>
 <div class="faq">
 <p><strong>A question that often comes up at this point:</strong></p>
@@ -811,7 +821,7 @@ z_i = \frac{x_i - \bar{x}}{s}
 <li class="fragment"><p><strong>Practical use:</strong> a day outside $2.77–$4.15 is in the rare 5% tail, worth a second look.</p></li>
 </ul>
 </section>
-<section id="a-question-that-often-comes-up-7" class="slide level2 center">
+<section id="a-question-that-often-comes-up-8" class="slide level2 center">
 <h2>A Question That Often Comes Up</h2>
 <div class="faq">
 <p><strong>A question that often comes up at this point:</strong></p>
@@ -864,7 +874,7 @@ z_i = \frac{x_i - \bar{x}}{s}
 <li class="fragment">Chebyshev is the <strong>safe, conservative</strong> bound; the Empirical Rule is <strong>tighter but only valid for bell-shaped data</strong>. Check the shape, then pick the rule.</li>
 </ul>
 </section>
-<section id="a-question-that-often-comes-up-8" class="slide level2 center">
+<section id="a-question-that-often-comes-up-9" class="slide level2 center">
 <h2>A Question That Often Comes Up</h2>
 <div class="faq">
 <p><strong>A question that often comes up at this point:</strong></p>
@@ -917,7 +927,7 @@ z_i = \frac{x_i - \bar{x}}{s}
 <li>The <strong>boxplot</strong> rule flags <strong>two</strong> days below the $2.80 fence: June 2 <em>and</em> <strong>June 3 ($2.755)</strong>. Same data, two rules, different verdicts; judgment decides.</li>
 </ul>
 </section>
-<section id="a-question-that-often-comes-up-9" class="slide level2 center">
+<section id="a-question-that-often-comes-up-10" class="slide level2 center">
 <h2>A Question That Often Comes Up</h2>
 <div class="faq">
 <p><strong>A question that often comes up at this point:</strong></p>
@@ -979,7 +989,7 @@ z_i = \frac{x_i - \bar{x}}{s}
 <li class="fragment"><strong>Excel:</strong> <code>=MIN</code>, <code>=QUARTILE.INC(rng,1)</code>, <code>=MEDIAN</code>, <code>=QUARTILE.INC(rng,3)</code>, <code>=MAX</code>.</li>
 </ul>
 </section>
-<section id="a-question-that-often-comes-up-10" class="slide level2 center">
+<section id="a-question-that-often-comes-up-11" class="slide level2 center">
 <h2>A Question That Often Comes Up</h2>
 <div class="faq">
 <p><strong>A question that often comes up at this point:</strong></p>
@@ -1016,7 +1026,7 @@ z_i = \frac{x_i - \bar{x}}{s}
 <li>This single chart will anchor your team’s dashboard.</li>
 </ul>
 </section>
-<section id="a-question-that-often-comes-up-11" class="slide level2 center">
+<section id="a-question-that-often-comes-up-12" class="slide level2 center">
 <h2>A Question That Often Comes Up</h2>
 <div class="faq">
 <p><strong>A question that often comes up at this point:</strong></p>
@@ -1101,6 +1111,16 @@ z_i = \frac{x_i - \bar{x}}{s}
 <li>A scatter plot reveals the <strong>direction, strength, and any non-linearity</strong> the single numbers might hide.</li>
 </ul>
 </section>
+<section id="a-question-that-often-comes-up-13" class="slide level2 center">
+<h2>A Question That Often Comes Up</h2>
+<div class="faq">
+<p><strong>A question that often comes up at this point:</strong></p>
+<p><span class="faq-q">Excel will give me the covariance and correlation in one cell each. Why spend a slide plotting the dots first?</span></p>
+<div class="fragment faq-a">
+<p><strong>Short answer:</strong> because both numbers assume the relationship is a straight line, and only the picture tells you whether that assumption holds. If A’s clicks-vs-installs cloud bent into a U, the single number could read near zero and hide a real pattern. Here the cloud slopes cleanly up, which earns you the right to trust the +0.915 correlation you are about to compute. Look first, then compute.</p>
+</div>
+</div>
+</section>
 <section id="covariance-direction-of-the-relationship" class="slide level2 center">
 <h2>Covariance: Direction of the Relationship</h2>
 <p><br></p>
@@ -1120,7 +1140,7 @@ z_i = \frac{x_i - \bar{x}}{s}
 <li class="fragment"><p><strong>Excel:</strong> <code>=COVARIANCE.S(array1, array2)</code> (sample) or <code>=COVARIANCE.P(...)</code> (population).</p></li>
 </ul>
 </section>
-<section id="a-question-that-often-comes-up-12" class="slide level2 center">
+<section id="a-question-that-often-comes-up-14" class="slide level2 center">
 <h2>A Question That Often Comes Up</h2>
 <div class="faq">
 <p><strong>A question that often comes up at this point:</strong></p>
@@ -1169,7 +1189,7 @@ r_{xy} = \frac{s_{xy}}{s_x \, s_y}
 <li class="fragment">Always between <strong>−1 and +1</strong>, <strong>unit-free</strong>, so it compares across any two variables. <strong>Excel:</strong> <code>=CORREL(array1, array2)</code>.</li>
 </ul>
 </section>
-<section id="a-question-that-often-comes-up-13" class="slide level2 center">
+<section id="a-question-that-often-comes-up-15" class="slide level2 center">
 <h2>A Question That Often Comes Up</h2>
 <div class="faq">
 <p><strong>A question that often comes up at this point:</strong></p>
@@ -1185,6 +1205,16 @@ r_{xy} = \frac{s_{xy}}{s_x \, s_y}
 <img data-src="figs/correlation_gallery.png" class="quarto-figure quarto-figure-center r-stretch" style="width:90.0%"><ul>
 <li>As <span class="math inline">\(|r|\)</span> grows, the cloud tightens toward a line. <span class="math inline">\(r\)</span> captures <strong>linear</strong> association only; a perfect U-shape can have <span class="math inline">\(r \approx 0\)</span>.</li>
 </ul>
+</section>
+<section id="a-question-that-often-comes-up-16" class="slide level2 center">
+<h2>A Question That Often Comes Up</h2>
+<div class="faq">
+<p><strong>A question that often comes up at this point:</strong></p>
+<p><span class="faq-q">If a U-shaped cloud can give r near 0, could Vungle’s clicks and installs really be related even when r looks small?</span></p>
+<div class="fragment faq-a">
+<p><strong>Short answer:</strong> yes, which is exactly why the scatter plot came first. A near-zero r only rules out a <em>straight-line</em> relationship, not every relationship; a strong curve can hide behind it. For A’s clicks and installs the plot showed a clean upward line, so here the high r (+0.915) is trustworthy. The rule for the manager: never read r without the plot that earns it.</p>
+</div>
+</div>
 </section>
 <section id="vungle-association-clicks-vs.-installs" class="slide level2 center">
 <h2>Vungle Association: Clicks vs.&nbsp;Installs</h2>
@@ -1261,7 +1291,7 @@ r_{xy} = \frac{s_{xy}}{s_x \, s_y}
 </div>
 </div></div>
 </section>
-<section id="a-question-that-often-comes-up-14" class="slide level2 center">
+<section id="a-question-that-often-comes-up-17" class="slide level2 center">
 <h2>A Question That Often Comes Up</h2>
 <div class="faq">
 <p><strong>A question that often comes up at this point:</strong></p>
