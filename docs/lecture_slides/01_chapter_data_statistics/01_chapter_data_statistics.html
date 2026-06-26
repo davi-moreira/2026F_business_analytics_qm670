@@ -32,7 +32,7 @@
       vertical-align: middle;
     }
   </style>
-  <link rel="stylesheet" href="../../site_libs/revealjs/dist/theme/quarto-6d24586c8a08f06a640bebab2ea24d81.css">
+  <link rel="stylesheet" href="../../site_libs/revealjs/dist/theme/quarto-a3205ea70b41524e40e5878d96ffe16a.css">
   <link href="../../site_libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
   <link href="../../site_libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
   <link href="../../site_libs/revealjs/plugin/reveal-menu/quarto-menu.css" rel="stylesheet">
@@ -536,7 +536,7 @@ Professor: Davi Moreira
 <div class="faq">
 <p><strong>A question that often comes up at this point:</strong></p>
 <p><span class="faq-q">If we already have all 30 days of data, why can’t we just compute the answer? Why do we need “inference” at all?</span></p>
-<div class="fragment">
+<div class="fragment faq-a">
 <p><strong>Short answer:</strong> those 30 days are a <strong>sample</strong> of all the future traffic B would ever serve. Describing what happened in June is certain; claiming B will keep winning next month is a leap from sample to population, and that leap is exactly what <strong>inference</strong> (Topics 7–9) is for.</p>
 </div>
 </div>
@@ -902,8 +902,8 @@ Professor: Davi Moreira
 <div class="faq">
 <p><strong>A question that often comes up at this point:</strong></p>
 <p><span class="faq-q">We randomly assigned impressions to A or B, but we did not randomly sample all of next year’s traffic. So what can we actually claim from these 30 days?</span></p>
-<div class="fragment">
-<p><strong>Short answer:</strong> two different guarantees. Random <strong>assignment</strong> lets you say B <em>caused</em> the higher eRPM on these days; random <strong>sampling</strong> would let you generalize to all future traffic. You have the first, not the second, which is why a company-wide roll-out still needs an inference test (Topics 7–9).</p>
+<div class="fragment faq-a">
+<p><strong>Short answer:</strong> two different guarantees. Random <strong>assignment</strong> lets you say B <strong>caused</strong> the higher eRPM on these days; random <strong>sampling</strong> would let you generalize to all future traffic. You have the first, not the second, which is why a company-wide roll-out still needs an inference test (Topics 7–9).</p>
 </div>
 </div>
 </section></section>
@@ -942,7 +942,7 @@ Professor: Davi Moreira
 <div class="faq">
 <p><strong>A question that often comes up at this point:</strong></p>
 <p><span class="faq-q">Why does Vungle judge the algorithms on eRPM instead of total revenue or total installs?</span></p>
-<div class="fragment">
+<div class="fragment faq-a">
 <p><strong>Short answer:</strong> eRPM is revenue per 1,000 impressions, so it compares A and B <strong>fairly</strong> even when they served different amounts of traffic. Total revenue would just crown whichever algorithm happened to run more often; eRPM is the per-impression efficiency the business actually optimizes.</p>
 </div>
 </div>
@@ -983,7 +983,7 @@ Professor: Davi Moreira
 <div class="faq">
 <p><strong>A question that often comes up at this point:</strong></p>
 <p><span class="faq-q">Vungle’s mean and median eRPM are almost equal, so why bother computing both?</span></p>
-<div class="fragment">
+<div class="fragment faq-a">
 <p><strong>Short answer:</strong> their <strong>agreement</strong> is itself information. Mean ≈ median tells you the eRPM distribution is roughly symmetric with no extreme days, so the mean is trustworthy here. When the two pull apart, that gap is your early warning of skew or an outlier day, which is exactly what we dissect next class.</p>
 </div>
 </div>

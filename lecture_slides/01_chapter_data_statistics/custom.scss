@@ -119,3 +119,6 @@ code {
 .reveal .faq > p:first-child { font-size: 0.92em; }
 /* the anticipated question itself: bold + black, slightly larger (stands out from the grey lead-in/labels) */
 .reveal .faq .faq-q, .reveal .faq .faq-q strong { color: #000; font-weight: 700; font-size: 1.06em; }
+/* the answer: black + italic (crisp like the question; italic sets the answer apart from the bold question) */
+.reveal .faq .faq-a, .reveal .faq .faq-a strong { color: #000; }
+.reveal .faq .faq-a { font-style: italic; }
