@@ -191,7 +191,7 @@ Professor<br>Davi Moreira<br>
 </blockquote>
 <p><br></p>
 <ul>
-<li class="fragment"><p>So far we have <em>described</em> and <em>compared</em> data. Today we <strong>model</strong> it: as the CEO you put a <strong>probability distribution</strong> on a random count, then read off the chance of any outcome you care about.</p></li>
+<li class="fragment"><p>So far we have <em>described</em> and <em>compared</em> data. Today we <strong>model</strong> it: as the manager you put a <strong>probability distribution</strong> on a random count, then read off the chance of any outcome you care about.</p></li>
 <li class="fragment"><p><strong>How today’s studio runs:</strong> I demo each distribution on a textbook example, then your group cracks a separate posted case (one sprint per class), then we debrief the capacity call.</p></li>
 <li class="fragment"><p>By the end you turn a conversion rate into a defensible <strong>capacity plan</strong>, with the probabilities to back it up.</p></li>
 </ul>
@@ -251,7 +251,7 @@ Professor<br>Davi Moreira<br>
 </blockquote>
 <p><br></p>
 <ul>
-<li class="fragment"><p>As the CEO you build the machinery in three steps: (1) name the <strong>random variable</strong>, (2) get its <strong>expected value and variance</strong>, (3) recognize it as a <strong>Binomial</strong> and compute exact probabilities in Excel.</p></li>
+<li class="fragment"><p>As the manager you build the machinery in three steps: (1) name the <strong>random variable</strong>, (2) get its <strong>expected value and variance</strong>, (3) recognize it as a <strong>Binomial</strong> and compute exact probabilities in Excel.</p></li>
 <li class="fragment"><p>The number that drives everything is Vungle’s conversion rate: <span class="math inline">\(p \approx 0.0035\)</span> for B, <span class="math inline">\(p \approx 0.0040\)</span> for A.</p></li>
 </ul>
 </section></section>
@@ -847,8 +847,8 @@ X_A \sim \text{Binomial}(1000,\, 0.0040) \qquad\qquad X_B \sim \text{Binomial}(1
 </div>
 </div></div>
 </section>
-<section id="the-ceos-takeaway-lecture-1" class="slide level2 center">
-<h2>The CEO’s Takeaway (Lecture 1)</h2>
+<section id="the-managers-takeaway-lecture-1" class="slide level2 center">
+<h2>The Manager’s Takeaway (Lecture 1)</h2>
 <p><br></p>
 <ul>
 <li class="fragment"><p><strong>One sentence:</strong> model installs over a fixed batch of impressions as <strong>Binomial(<span class="math inline">\(n\)</span>, <span class="math inline">\(p\)</span>)</strong>, and every capacity question becomes a tail probability you read off <code>BINOM.DIST</code>.</p></li>
@@ -1156,8 +1156,8 @@ f(4) = \frac{3^4 e^{-3}}{4!} = \frac{81 \times 0.0498}{24} = 0.1680
 <li class="fragment"><p>That is why ops teams model arrivals as Poisson: provision for <span class="math inline">\(\lambda\)</span> plus a tail buffer, and re-scale instantly as traffic grows.</p></li>
 </ul>
 </section>
-<section id="the-ceos-takeaway-lecture-2" class="slide level2 center">
-<h2>The CEO’s Takeaway (Lecture 2)</h2>
+<section id="the-managers-takeaway-lecture-2" class="slide level2 center">
+<h2>The Manager’s Takeaway (Lecture 2)</h2>
 <p><br></p>
 <ul>
 <li class="fragment"><p><strong>One sentence:</strong> for rare events over an interval, the <strong>Poisson(<span class="math inline">\(\lambda\)</span>)</strong> models the count from a single rate, and for Vungle’s tiny <span class="math inline">\(p\)</span> it gives the <strong>same capacity answer</strong> as the Binomial.</p></li>
@@ -1235,8 +1235,8 @@ f(4) = \frac{3^4 e^{-3}}{4!} = \frac{81 \times 0.0498}{24} = 0.1680
 </table>
 </div>
 </section>
-<section id="the-ceos-takeaway" class="slide level2 center">
-<h2>The CEO’s Takeaway</h2>
+<section id="the-managers-takeaway" class="slide level2 center">
+<h2>The Manager’s Takeaway</h2>
 <p><br></p>
 <ul>
 <li class="fragment"><p><strong>One sentence:</strong> a conversion rate plus a count structure (fixed <span class="math inline">\(n\)</span> → <strong>Binomial</strong>; rare arrivals → <strong>Poisson</strong>) gives the <strong>full probability distribution</strong> of installs, and every capacity question is a <strong>tail probability</strong>.</p></li>

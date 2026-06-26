@@ -175,7 +175,7 @@ Professor<br>Davi Moreira<br>
 <ul>
 <li class="fragment"><p><a href="https://en.wikipedia.org/wiki/Liftoff_Mobile">Vungle</a> is a mobile ad-tech startup: it serves 15-second video ads inside other companies’ apps and earns revenue mainly when a viewer <strong>installs</strong> the advertised app (cost-per-install).</p></li>
 <li class="fragment"><p>Two analysts built a new ad-serving algorithm (<strong>B</strong>) and ran it head-to-head against the existing one (<strong>A</strong>) for the entire month of June 2014. The metric that pays the bills is <strong>eRPM</strong>, effective revenue per 1,000 impressions.</p></li>
-<li class="fragment"><p>We have already <strong>described</strong> the data (Topics 1–2) and <strong>estimated</strong> B’s true mean eRPM with a confidence interval (Topic 7). Now, as Vungle’s CEO, you need a <strong>yes/no decision</strong>.</p></li>
+<li class="fragment"><p>We have already <strong>described</strong> the data (Topics 1–2) and <strong>estimated</strong> B’s true mean eRPM with a confidence interval (Topic 7). Now, as Vungle’s manager, you need a <strong>yes/no decision</strong>.</p></li>
 <li class="fragment"><p>Up to now we asked <em>“what is B’s true eRPM?”</em> Today we ask a sharper question: <em>“is it above a line we care about?”</em>, and we answer with a <strong>test</strong>.</p></li>
 </ul>
 </section>
@@ -331,7 +331,7 @@ H_0: \mu \leq 3.30 \qquad \text{vs.} \qquad H_a: \mu &gt; 3.30
 <ul>
 <li class="fragment"><p>A <strong>Type I error</strong> funds an algorithm that is not actually better: the company spends on a non-improvement and the analyst’s credibility takes the hit.</p></li>
 <li class="fragment"><p>A <strong>Type II error</strong> walks away from a real improvement: money left on the table, but no bad rollout.</p></li>
-<li class="fragment"><p>As CEO you decide which mistake is worse and set <span class="math inline">\(\alpha\)</span> accordingly. Here a false “fund it” is the headline risk, so we hold <span class="math inline">\(\alpha = 0.05\)</span>.</p></li>
+<li class="fragment"><p>As the manager you decide which mistake is worse and set <span class="math inline">\(\alpha\)</span> accordingly. Here a false “fund it” is the headline risk, so we hold <span class="math inline">\(\alpha = 0.05\)</span>.</p></li>
 <li class="fragment"><p>This is why <span class="math inline">\(H_0\)</span> is conservative: the test protects the <strong>status quo</strong> until the evidence is strong enough to justify the change.</p></li>
 </ul>
 </section></section>
@@ -600,8 +600,8 @@ t = 2.529 \;&gt;\; t_{0.01,\,29} = 2.462 \quad\Rightarrow\quad \text{reject } H_
 <li class="fragment"><p>This answers <em>“is B above the line?”</em>, but the deeper question is <em>“is B better than <strong>A</strong>?”</em> That comparison of <strong>two</strong> populations is Topic 9.</p></li>
 </ul>
 </section>
-<section id="the-ceos-takeaway-lecture-1" class="slide level2 center">
-<h2>The CEO’s Takeaway: Lecture 1</h2>
+<section id="the-managers-takeaway-lecture-1" class="slide level2 center">
+<h2>The Manager’s Takeaway: Lecture 1</h2>
 <p><br></p>
 <ul>
 <li class="fragment"><p><strong>One sentence:</strong> algorithm B’s mean daily eRPM is above the $3.30 benchmark; the one-sample <span class="math inline">\(t\)</span>-test rejects “no better” with overwhelming evidence (<span class="math inline">\(p = 0.009\)</span>). <strong>Fund B.</strong></p></li>
@@ -874,8 +874,8 @@ z = \frac{0.003541 - 0.003500}{1.485 \times 10^{-5}} = 2.733
 <li class="fragment">The <strong>same data</strong> support very different conclusions depending on <strong>where you draw the line</strong>, which is why the benchmark is a <em>business</em> decision, set before the test.</li>
 </ul>
 </section>
-<section id="the-ceos-takeaway-lecture-2" class="slide level2 center">
-<h2>The CEO’s Takeaway: Lecture 2</h2>
+<section id="the-managers-takeaway-lecture-2" class="slide level2 center">
+<h2>The Manager’s Takeaway: Lecture 2</h2>
 <p><br></p>
 <ul>
 <li class="fragment"><p><strong>One sentence:</strong> B’s conversion rate clears the 0.35% target; the one-proportion <span class="math inline">\(z\)</span>-test rejects “below target” (<span class="math inline">\(z = 2.73\)</span>, <span class="math inline">\(p = 0.003\)</span>). Viable on conversion, too.</p></li>
@@ -953,8 +953,8 @@ z = \frac{0.003541 - 0.003500}{1.485 \times 10^{-5}} = 2.733
 </table>
 </div>
 </section>
-<section id="the-ceos-takeaway" class="slide level2 center">
-<h2>The CEO’s Takeaway</h2>
+<section id="the-managers-takeaway" class="slide level2 center">
+<h2>The Manager’s Takeaway</h2>
 <p><br></p>
 <ul>
 <li class="fragment"><p><strong>One sentence:</strong> Algorithm B’s mean eRPM ($3.46) is above the $3.30 funding benchmark and its conversion clears the 0.35% target; both one-sample tests reject the skeptic, so <strong>fund B</strong>.</p></li>

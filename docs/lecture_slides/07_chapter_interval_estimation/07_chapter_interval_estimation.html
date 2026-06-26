@@ -178,9 +178,9 @@ Professor<br>Davi Moreira<br>
 </blockquote>
 <p><br></p>
 <ul>
-<li class="fragment"><p><strong>The big call you own as CEO:</strong> <em>roll out B, or stay with A?</em> You cannot make it on a single 30-day number whose error you can’t name.</p></li>
+<li class="fragment"><p><strong>The big call you own as the manager:</strong> <em>roll out B, or stay with A?</em> You cannot make it on a single 30-day number whose error you can’t name.</p></li>
 <li class="fragment"><p><strong>Today’s question (Lecture 1):</strong> <em>how trustworthy is a 30-day sample mean?</em> Until now we <strong>described</strong> the 30 days we have; today we <strong>generalize</strong> to the days we <em>don’t</em> have, every future impression B will serve.</p></li>
-<li class="fragment"><p>The 30-day mean $3.46 is a single <strong>point estimate</strong>. By itself it hides the question the CEO must ask: <strong><em>how much could it be off?</em></strong> This lecture quantifies that wobble; the next turns it into a range.</p></li>
+<li class="fragment"><p>The 30-day mean $3.46 is a single <strong>point estimate</strong>. By itself it hides the question the manager must ask: <strong><em>how much could it be off?</em></strong> This lecture quantifies that wobble; the next turns it into a range.</p></li>
 </ul>
 </section>
 <section id="how-todays-studio-runs" class="slide level2 center">
@@ -232,7 +232,7 @@ Professor<br>Davi Moreira<br>
 <ul>
 <li class="fragment"><p>A different 30 days (say, <strong>July</strong>) would give a <strong>different</strong> mean eRPM. So would any other random sample.</p></li>
 <li class="fragment"><p>That wobble is not a mistake; it is the price of working from a <strong>sample</strong> instead of the whole <strong>population</strong>.</p></li>
-<li class="fragment"><p><strong>Lecture 1’s question:</strong> <em>if the sample mean changes every time we sample, how can the CEO trust any one of them?</em> The answer is the <strong>sampling distribution</strong>, and it is surprisingly well-behaved.</p></li>
+<li class="fragment"><p><strong>Lecture 1’s question:</strong> <em>if the sample mean changes every time we sample, how can the manager trust any one of them?</em> The answer is the <strong>sampling distribution</strong>, and it is surprisingly well-behaved.</p></li>
 </ul>
 </section>
 <section id="population-sample-inference" class="slide level2 center">
@@ -544,7 +544,7 @@ np \geq 5 \qquad \text{and} \qquad n(1-p) \geq 5
 </blockquote>
 <p><br></p>
 <ul>
-<li class="fragment"><p><strong>The big call you still own as CEO:</strong> <em>roll out B, or stay with A?</em> A single $3.46 with no range cannot support it.</p></li>
+<li class="fragment"><p><strong>The big call you still own as the manager:</strong> <em>roll out B, or stay with A?</em> A single $3.46 with no range cannot support it.</p></li>
 <li class="fragment"><p><strong>Today’s question (Lecture 2):</strong> <em>what is B’s true mean (and conversion rate), give or take, and how big a sample do we need?</em> We attach a <strong>margin of error</strong> and report an <strong>interval</strong> we are 95% confident contains the truth.</p></li>
 <li class="fragment"><p>Then we <strong>invert</strong> the question: pick the precision first (<span class="math inline">\(\pm\$0.05\)</span>), and solve for the <strong>sample size</strong> that delivers it.</p></li>
 </ul>
@@ -645,7 +645,7 @@ E = 2.131 \times 13.75 = 29.31
 <section id="the-vungle-erpm-interval-the-five-steps" class="slide level2 center">
 <h2>The Vungle eRPM Interval: the Five Steps</h2>
 <div class="r-fit-text">
-<p><strong>1. Business context.</strong> B’s true mean eRPM drives every revenue projection; the CEO needs a defensible range, not a single number.</p>
+<p><strong>1. Business context.</strong> B’s true mean eRPM drives every revenue projection; the manager needs a defensible range, not a single number.</p>
 <p><strong>2. Setup.</strong> <span class="math inline">\(n = 30\)</span> days, <span class="math inline">\(\sigma\)</span> unknown, <span class="math inline">\(\bar{x}_B = \$3.459\)</span>, <span class="math inline">\(s_B = \$0.344\)</span>, <span class="math inline">\(df = 29\)</span>, 95% confidence.</p>
 <p><strong>3. Compute.</strong></p>
 <p><span class="math display">\[
@@ -656,7 +656,7 @@ t_{0.025,\,29} = 2.045,
 E = 2.045 \times 0.0629 = 0.1286
 \]</span></p>
 <p><strong>4. Interval.</strong> <span class="math inline">\(3.459 \pm 0.129 = (\$3.330,\; \$3.588)\)</span>.</p>
-<p><strong>5. CEO’s Translation.</strong> <em>We are 95% confident B’s true mean eRPM is between $3.33 and $3.59. The $0.13 margin is wide relative to the $0.11 gap over A, a first hint that 30 days may not yet settle the A-vs-B question.</em></p>
+<p><strong>5. Manager’s Translation.</strong> <em>We are 95% confident B’s true mean eRPM is between $3.33 and $3.59. The $0.13 margin is wide relative to the $0.11 gap over A, a first hint that 30 days may not yet settle the A-vs-B question.</em></p>
 </div>
 </section>
 <section id="the-two-intervals-side-by-side" class="slide level2 center">
@@ -935,7 +935,7 @@ n_{0.10} = \left(\frac{1.96 \times 0.344}{0.10}\right)^{2} = 45.6 \;\rightarrow\
 n_{0.05} = \left(\frac{1.96 \times 0.344}{0.05}\right)^{2} = 182.3 \;\rightarrow\; \mathbf{183 \text{ days}}
 \]</span></p>
 </div>
-<p><strong>The lesson:</strong> halving the margin (<span class="math inline">\(\$0.10 \rightarrow \$0.05\)</span>) takes <strong>four times</strong> the days (<span class="math inline">\(46 \rightarrow 183\)</span>). Precision is expensive, and the CEO must decide whether $0.05 of precision is worth six months of testing.</p>
+<p><strong>The lesson:</strong> halving the margin (<span class="math inline">\(\$0.10 \rightarrow \$0.05\)</span>) takes <strong>four times</strong> the days (<span class="math inline">\(46 \rightarrow 183\)</span>). Precision is expensive, and the manager must decide whether $0.05 of precision is worth six months of testing.</p>
 </div>
 </section>
 <section id="margin-of-error-vs.-sample-size" class="slide level2 center">
@@ -1044,11 +1044,11 @@ n = \frac{z_{\alpha/2}^{2}\,p^*(1-p^*)}{E^{2}}
 <li class="fragment"><p>That comparison question (<strong>does B beat a benchmark, and does B beat A?</strong>) is <strong>hypothesis testing</strong>, the next two topics. Today’s standard error and <span class="math inline">\(t\)</span> machinery carry straight over.</p></li>
 </ul>
 </section>
-<section id="the-ceos-takeaway" class="slide level2 center">
-<h2>The CEO’s Takeaway</h2>
+<section id="the-managers-takeaway" class="slide level2 center">
+<h2>The Manager’s Takeaway</h2>
 <p><br></p>
 <ul>
-<li class="fragment"><p><strong>One sentence:</strong> a confidence interval turns a point estimate into a defensible <strong>range</strong> (B’s true mean eRPM is $3.46 <span class="math inline">\(\pm\)</span> $0.13 at 95% confidence), and the <strong>margin of error</strong> is the number the CEO should actually negotiate over.</p></li>
+<li class="fragment"><p><strong>One sentence:</strong> a confidence interval turns a point estimate into a defensible <strong>range</strong> (B’s true mean eRPM is $3.46 <span class="math inline">\(\pm\)</span> $0.13 at 95% confidence), and the <strong>margin of error</strong> is the number the manager should actually negotiate over.</p></li>
 <li class="fragment"><p><strong>One number to remember:</strong> <span class="math inline">\(E = t_{\alpha/2}\,s/\sqrt{n}\)</span>, with the <span class="math inline">\(\sqrt{n}\)</span> in the denominator that makes precision expensive.</p></li>
 <li class="fragment"><p><strong>One caveat:</strong> “95% confident” describes the <strong>procedure</strong> over many samples, not a probability for this one interval; overlapping intervals do <strong>not</strong> settle a comparison.</p></li>
 </ul>

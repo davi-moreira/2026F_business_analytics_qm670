@@ -56,9 +56,9 @@ html-math-method:
 
 - But statistics told us *what is true and how sure we are*. They did **not** tell management **what to do**.
 
-- Today you put on the **CEO's hat**: given that uncertainty, what is the right **action**?
+- Today you put on the **manager's hat**: given that uncertainty, what is the right **action**?
 
-## The Brief: Today's CEO Question
+## The Brief: Today's Manager Question
 
 <br>
 
@@ -80,7 +80,7 @@ html-math-method:
 
 Every tool today maps onto the Vungle rollout:
 
-| The CEO's question | The tool |
+| The manager's question | The tool |
 |---|---|
 | What are my options, and what could happen? | **Payoff table** (alternatives × states) |
 | What's the sequence of choice and chance? | **Decision tree** |
@@ -301,7 +301,7 @@ knitr::include_graphics("figs/vungle_ev_bars.png")
 
 - The actual result will be **either** +\$318K **or** −\$160K, never \$126.8K. The expected value is a **ranking device**, not a forecast of what happens this once.
 
-- This is exactly why a CEO also asks: *what would it be worth to know the true state before deciding?* That question has a precise answer: **EVPI**.
+- This is exactly why a manager also asks: *what would it be worth to know the true state before deciding?* That question has a precise answer: **EVPI**.
 
 # The Value of Information {background-color="#cfb991"}
 
@@ -350,7 +350,7 @@ $$
 $$
 :::
 
-## What EVPI Tells the CEO
+## What EVPI Tells the Manager
 
 ```{r  echo=FALSE, out.width = "60%",fig.align="center"}
 knitr::include_graphics("figs/vungle_evpi.png")
@@ -580,7 +580,7 @@ $$
 
 <br>
 
-- **Recommendation to CEO Jaffer:** **roll out B now.** Expected value is clearly positive (+\$126.8K/yr), the decision holds unless we think B is more likely wrong than right, and a further test isn't worth its price. **Caveat:** there is a real **−\$160K** downside if B disappoints, so monitor eRPM closely post-rollout and be ready to revert.
+- **Recommendation:** **roll out B now.** Expected value is clearly positive (+\$126.8K/yr), the decision holds unless we think B is more likely wrong than right, and a further test isn't worth its price. **Caveat:** there is a real **−\$160K** downside if B disappoints, so monitor eRPM closely post-rollout and be ready to revert.
 
 ## How Inference and Decision Analysis Fit Together
 
@@ -595,7 +595,7 @@ $$
 
 - A good analyst can do both, and knows which question they're answering.
 
-## The CEO's Takeaway
+## The Manager's Takeaway
 
 <br>
 

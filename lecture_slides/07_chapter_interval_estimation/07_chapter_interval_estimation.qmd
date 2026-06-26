@@ -56,11 +56,11 @@ html-math-method:
 
 <br>
 
-- **The big call you own as CEO:** *roll out B, or stay with A?* You cannot make it on a single 30-day number whose error you can't name.
+- **The big call you own as the manager:** *roll out B, or stay with A?* You cannot make it on a single 30-day number whose error you can't name.
 
 - **Today's question (Lecture 1):** *how trustworthy is a 30-day sample mean?* Until now we **described** the 30 days we have; today we **generalize** to the days we *don't* have, every future impression B will serve.
 
-- The 30-day mean \$3.46 is a single **point estimate**. By itself it hides the question the CEO must ask: ***how much could it be off?*** This lecture quantifies that wobble; the next turns it into a range.
+- The 30-day mean \$3.46 is a single **point estimate**. By itself it hides the question the manager must ask: ***how much could it be off?*** This lecture quantifies that wobble; the next turns it into a range.
 
 ## How Today's Studio Runs
 
@@ -87,7 +87,7 @@ html-math-method:
 
 - That wobble is not a mistake; it is the price of working from a **sample** instead of the whole **population**.
 
-- **Lecture 1's question:** *if the sample mean changes every time we sample, how can the CEO trust any one of them?* The answer is the **sampling distribution**, and it is surprisingly well-behaved.
+- **Lecture 1's question:** *if the sample mean changes every time we sample, how can the manager trust any one of them?* The answer is the **sampling distribution**, and it is surprisingly well-behaved.
 
 ## Population, Sample, Inference
 
@@ -342,7 +342,7 @@ $$
 
 <br>
 
-- **The big call you still own as CEO:** *roll out B, or stay with A?* A single \$3.46 with no range cannot support it.
+- **The big call you still own as the manager:** *roll out B, or stay with A?* A single \$3.46 with no range cannot support it.
 
 - **Today's question (Lecture 2):** *what is B's true mean (and conversion rate), give or take, and how big a sample do we need?* We attach a **margin of error** and report an **interval** we are 95% confident contains the truth.
 
@@ -455,7 +455,7 @@ $$
 ## The Vungle eRPM Interval: the Five Steps
 
 ::: r-fit-text
-**1. Business context.** B's true mean eRPM drives every revenue projection; the CEO needs a defensible range, not a single number.
+**1. Business context.** B's true mean eRPM drives every revenue projection; the manager needs a defensible range, not a single number.
 
 **2. Setup.** $n = 30$ days, $\sigma$ unknown, $\bar{x}_B = \$3.459$, $s_B = \$0.344$, $df = 29$, 95% confidence.
 
@@ -471,7 +471,7 @@ $$
 
 **4. Interval.** $3.459 \pm 0.129 = (\$3.330,\; \$3.588)$.
 
-**5. CEO's Translation.** *We are 95% confident B's true mean eRPM is between \$3.33 and \$3.59. The \$0.13 margin is wide relative to the \$0.11 gap over A, a first hint that 30 days may not yet settle the A-vs-B question.*
+**5. Manager's Translation.** *We are 95% confident B's true mean eRPM is between \$3.33 and \$3.59. The \$0.13 margin is wide relative to the \$0.11 gap over A, a first hint that 30 days may not yet settle the A-vs-B question.*
 :::
 
 ## The Two Intervals, Side by Side
@@ -688,7 +688,7 @@ $$
 
 :::
 
-**The lesson:** halving the margin ($\$0.10 \rightarrow \$0.05$) takes **four times** the days ($46 \rightarrow 183$). Precision is expensive, and the CEO must decide whether \$0.05 of precision is worth six months of testing.
+**The lesson:** halving the margin ($\$0.10 \rightarrow \$0.05$) takes **four times** the days ($46 \rightarrow 183$). Precision is expensive, and the manager must decide whether \$0.05 of precision is worth six months of testing.
 :::
 
 ## Margin of Error vs. Sample Size
@@ -771,11 +771,11 @@ $$
 
 - That comparison question (**does B beat a benchmark, and does B beat A?**) is **hypothesis testing**, the next two topics. Today's standard error and $t$ machinery carry straight over.
 
-## The CEO's Takeaway
+## The Manager's Takeaway
 
 <br>
 
-- **One sentence:** a confidence interval turns a point estimate into a defensible **range** (B's true mean eRPM is \$3.46 $\pm$ \$0.13 at 95% confidence), and the **margin of error** is the number the CEO should actually negotiate over.
+- **One sentence:** a confidence interval turns a point estimate into a defensible **range** (B's true mean eRPM is \$3.46 $\pm$ \$0.13 at 95% confidence), and the **margin of error** is the number the manager should actually negotiate over.
 
 - **One number to remember:** $E = t_{\alpha/2}\,s/\sqrt{n}$, with the $\sqrt{n}$ in the denominator that makes precision expensive.
 

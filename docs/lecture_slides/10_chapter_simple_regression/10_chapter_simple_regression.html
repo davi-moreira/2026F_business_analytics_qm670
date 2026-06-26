@@ -176,9 +176,9 @@ Professor<br>Davi Moreira<br>
 <h2>A New Case: Where Should the Next Store Go?</h2>
 <p><br></p>
 <ul>
-<li class="fragment"><p>We close the Vungle engagement and open a new one. <strong>You are now the Owner</strong> of a regional <strong>auto-parts retailer</strong> with <strong>45 stores</strong> and capital to open more.</p></li>
+<li class="fragment"><p>We close the Vungle engagement and open a new one. <strong>You are now the manager</strong> of a regional <strong>auto-parts retailer</strong> with <strong>45 stores</strong> and capital to open more.</p></li>
 <li class="fragment"><p>The real-estate team scores prospective sites on demographics (population, income) and on the store’s <strong>Yelp rating</strong> (a proxy for service quality once a store is open).</p></li>
-<li class="fragment"><p>The question on the table: <strong>which sites will sell?</strong> As Owner you want every new lease backed by a sales forecast, not a hunch.</p></li>
+<li class="fragment"><p>The question on the table: <strong>which sites will sell?</strong> As the manager you want every new lease backed by a sales forecast, not a hunch.</p></li>
 <li class="fragment"><p>We have one dataset, <code>data/autoparts.csv</code>: for each of the 45 existing stores, its <strong>2012 annual sales</strong> ($K), trade-area <strong>population</strong> and <strong>income</strong>, an <strong>end-cap</strong> placement flag, and its <strong>Yelp rating</strong>.</p></li>
 <li class="fragment"><p>Until now we <em>compared</em> two groups. Now we <em>predict</em> a number, and that is what <strong>regression</strong> does.</p></li>
 </ul>
@@ -187,7 +187,7 @@ Professor<br>Davi Moreira<br>
 <h2>The Brief: Where Should the Next Dollar Go?</h2>
 <p><br></p>
 <ul>
-<li class="fragment"><strong>The Owner’s big call (we land it across Topics 10–11):</strong> <em>where should the next dollar go?</em> Every new lease commits capital, so the Owner wants sales forecast before signing.</li>
+<li class="fragment"><strong>The manager’s big call (we land it across Topics 10–11):</strong> <em>where should the next dollar go?</em> Every new lease commits capital, so the manager wants sales forecast before signing.</li>
 </ul>
 <div class="fragment">
 <ul>
@@ -254,7 +254,7 @@ Professor<br>Davi Moreira<br>
 <p><br></p>
 <ul>
 <li class="fragment"><p>By the end of Lecture 1 <strong>your group</strong> will have a fitted equation, a dollars-per-star interpretation, and an <span class="math inline">\(R^2\)</span>: the raw material for a site score.</p></li>
-<li class="fragment"><p>The Owner’s decision it feeds: <strong>rank prospective sites</strong> by predicted sales.</p></li>
+<li class="fragment"><p>The manager’s decision it feeds: <strong>rank prospective sites</strong> by predicted sales.</p></li>
 </ul>
 </section>
 <section id="the-simple-linear-regression-model" class="slide level2 center">
@@ -421,7 +421,7 @@ b_1 = 5, \qquad b_0 = 60 \qquad\Rightarrow\qquad \hat{y} = 60 + 5x
 <ul>
 <li class="fragment"><p><strong>Slope <span class="math inline">\(b_1 = +757.5\)</span>:</strong> each additional <strong>Yelp star</strong> is associated with about <strong>$757.5K</strong> more in annual sales. <em>This is the number the real-estate team can use to score sites.</em></p></li>
 <li class="fragment"><p><strong>Intercept <span class="math inline">\(b_0 = +332.8\)</span>:</strong> the line’s height at a rating of zero. No store has a zero rating, so do <strong>not</strong> interpret it as “sales of a zero-star store”; it just anchors the line.</p></li>
-<li class="fragment"><p><strong>The Owner’s translation:</strong> <em>Moving a store from a 3.0 to a 4.0 Yelp rating is worth roughly three-quarters of a million dollars in predicted annual sales.</em></p></li>
+<li class="fragment"><p><strong>The manager’s translation:</strong> <em>Moving a store from a 3.0 to a 4.0 Yelp rating is worth roughly three-quarters of a million dollars in predicted annual sales.</em></p></li>
 <li class="fragment"><p><strong>Sanity check:</strong> the slope is positive and large, consistent with the upward cloud. Good.</p></li>
 </ul>
 </section>
@@ -538,8 +538,8 @@ r = (\text{sign of } b_1)\sqrt{R^2}
 </div>
 </div></div>
 </section>
-<section id="the-owners-takeaway-lecture-1" class="slide level2 center">
-<h2>The Owner’s Takeaway (Lecture 1)</h2>
+<section id="the-managers-takeaway-lecture-1" class="slide level2 center">
+<h2>The Manager’s Takeaway (Lecture 1)</h2>
 <p><br></p>
 <ul>
 <li class="fragment"><p><strong>One sentence:</strong> Yelp rating is a strong predictor of store sales: each star is worth about <strong>$757K</strong> in predicted annual sales.</p></li>
@@ -569,7 +569,7 @@ r = (\text{sign of } b_1)\sqrt{R^2}
 <p><br></p>
 <ul>
 <li class="fragment"><p>Lecture 1 <em>described</em> the sample. Lecture 2 does <strong>inference</strong>: from these 45 stores to the population of all possible stores.</p></li>
-<li class="fragment"><p>Three jobs the Owner needs settled before signing a lease: (1) <strong>test</strong> the slope, (2) <strong>validate</strong> the assumptions with residuals, (3) <strong>predict</strong> a new store with an honest margin of error.</p></li>
+<li class="fragment"><p>Three jobs the manager needs settled before signing a lease: (1) <strong>test</strong> the slope, (2) <strong>validate</strong> the assumptions with residuals, (3) <strong>predict</strong> a new store with an honest margin of error.</p></li>
 </ul>
 </section>
 <section id="the-assumptions-behind-the-line" class="slide level2 center">
@@ -712,7 +712,7 @@ b_1 \pm t_{\alpha/2,\,n-2}\; s_{b_1} = 757.5 \pm 2.02 \times 51.46 = (\$653.7\te
 </div>
 <ul>
 <li class="fragment"><p>We are 95% confident each Yelp star is worth between <strong>$654K and $861K</strong> in annual sales.</p></li>
-<li class="fragment"><p>The interval is <strong>entirely above zero</strong>: the same conclusion as the test (reject <span class="math inline">\(H_0\)</span>), now with a magnitude the Owner can plan around.</p></li>
+<li class="fragment"><p>The interval is <strong>entirely above zero</strong>: the same conclusion as the test (reject <span class="math inline">\(H_0\)</span>), now with a magnitude the manager can plan around.</p></li>
 <li class="fragment"><p><strong>Equivalence:</strong> reject <span class="math inline">\(H_0: \beta_1 = 0\)</span> at <span class="math inline">\(\alpha = 0.05\)</span> <span class="math inline">\(\iff\)</span> zero is <strong>not</strong> in the 95% CI. Read directly off the <strong>Lower 95% / Upper 95%</strong> columns of the output.</p></li>
 </ul>
 </section>
@@ -856,11 +856,11 @@ F = 216.7 = (14.7)^2 = t^2
 <li class="fragment"><strong>Sample size</strong> <span class="math inline">\(n\)</span>: more stores → narrower.</li>
 <li class="fragment"><strong>Distance of <span class="math inline">\(x^*\)</span> from <span class="math inline">\(\bar{x}\)</span></strong>: forecasting far from the average rating → wider.</li>
 </ol></li>
-<li class="fragment"><p><strong>The Owner’s lesson:</strong> a confident forecast comes from a tight model (<span class="math inline">\(s\)</span> small), lots of data (<span class="math inline">\(n\)</span> large), and a site that looks like the stores we already have (<span class="math inline">\(x^*\)</span> near <span class="math inline">\(\bar{x}\)</span>). Forecasting an exotic site is a guess dressed as a number.</p></li>
+<li class="fragment"><p><strong>The manager’s lesson:</strong> a confident forecast comes from a tight model (<span class="math inline">\(s\)</span> small), lots of data (<span class="math inline">\(n\)</span> large), and a site that looks like the stores we already have (<span class="math inline">\(x^*\)</span> near <span class="math inline">\(\bar{x}\)</span>). Forecasting an exotic site is a guess dressed as a number.</p></li>
 </ul>
 </section>
-<section id="the-owners-takeaway-lecture-2" class="slide level2 center">
-<h2>The Owner’s Takeaway (Lecture 2)</h2>
+<section id="the-managers-takeaway-lecture-2" class="slide level2 center">
+<h2>The Manager’s Takeaway (Lecture 2)</h2>
 <p><br></p>
 <ul>
 <li class="fragment"><p><strong>One sentence:</strong> the Yelp–sales slope is overwhelmingly significant (<span class="math inline">\(t = 14.7\)</span>, <span class="math inline">\(p &lt; 0.0001\)</span>); a 4.5-star site is forecast at <strong>$3.74M</strong>, and for <em>one</em> lease we quote the <strong>prediction interval</strong> <span class="math inline">\((\$2.79\text{M}, \$4.70\text{M})\)</span>.</p></li>
@@ -938,8 +938,8 @@ F = 216.7 = (14.7)^2 = t^2
 </table>
 </div>
 </section>
-<section id="the-owners-takeaway" class="slide level2 center">
-<h2>The Owner’s Takeaway</h2>
+<section id="the-managers-takeaway" class="slide level2 center">
+<h2>The Manager’s Takeaway</h2>
 <p><br></p>
 <ul>
 <li class="fragment"><p><strong>One sentence:</strong> Yelp rating predicts auto-parts store sales strongly and significantly (about <strong>$758K per star</strong>, explaining <strong>83%</strong> of the sales gap), so the real-estate team can use it to score and forecast sites.</p></li>

@@ -70,7 +70,7 @@ html-math-method:
 
 <br>
 
-- So far we have *described* and *compared* data. Today we **model** it: as the CEO you put a **probability distribution** on a random count, then read off the chance of any outcome you care about.
+- So far we have *described* and *compared* data. Today we **model** it: as the manager you put a **probability distribution** on a random count, then read off the chance of any outcome you care about.
 
 - **How today's studio runs:** I demo each distribution on a textbook example, then your group cracks a separate posted case (one sprint per class), then we debrief the capacity call.
 
@@ -105,7 +105,7 @@ Every tool today maps onto the Vungle install count:
 
 <br>
 
-- As the CEO you build the machinery in three steps: (1) name the **random variable**, (2) get its **expected value and variance**, (3) recognize it as a **Binomial** and compute exact probabilities in Excel.
+- As the manager you build the machinery in three steps: (1) name the **random variable**, (2) get its **expected value and variance**, (3) recognize it as a **Binomial** and compute exact probabilities in Excel.
 
 - The number that drives everything is Vungle's conversion rate: $p \approx 0.0035$ for B, $p \approx 0.0040$ for A.
 
@@ -560,7 +560,7 @@ knitr::include_graphics("figs/excel_binom_vungle.png")
 ::::
 :::::
 
-## The CEO's Takeaway (Lecture 1)
+## The Manager's Takeaway (Lecture 1)
 
 <br>
 
@@ -818,7 +818,7 @@ $$
 
 - That is why ops teams model arrivals as Poisson: provision for $\lambda$ plus a tail buffer, and re-scale instantly as traffic grows.
 
-## The CEO's Takeaway (Lecture 2)
+## The Manager's Takeaway (Lecture 2)
 
 <br>
 
@@ -844,7 +844,7 @@ $$
 | Tail (capacity) | $P(X \geq N) = 1 - P(X \leq N{-}1)$ | $P(X_A \geq 8) \approx 0.051$ | `=1-...DIST(N-1,...,1)` |
 :::
 
-## The CEO's Takeaway
+## The Manager's Takeaway
 
 <br>
 

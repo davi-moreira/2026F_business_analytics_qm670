@@ -183,12 +183,12 @@ Professor<br>Davi Moreira<br>
 <li class="fragment"><p>A manager glances at that gap and says: <em>“B wins, roll it out.”</em></p></li>
 </ul>
 </section>
-<section id="the-brief-todays-ceo-question" class="slide level2 center">
-<h2>The Brief: Today’s CEO Question</h2>
+<section id="the-brief-todays-manager-question" class="slide level2 center">
+<h2>The Brief: Today’s Manager Question</h2>
 <p><br></p>
 <ul>
 <li class="fragment"><p><strong>The big call (we land it in Topic 9):</strong> roll out algorithm B to all advertisers, or stay with A? Last time you saw B’s average eRPM sits <strong>$0.11 higher</strong>.</p></li>
-<li class="fragment"><p><strong>Today’s piece of that call:</strong> <em>is B’s edge steady, or just more volatile?</em> As Vungle’s CEO, you cannot bet the company on an average that hides wild day-to-day swings.</p></li>
+<li class="fragment"><p><strong>Today’s piece of that call:</strong> <em>is B’s edge steady, or just more volatile?</em> As Vungle’s manager, you cannot bet the company on an average that hides wild day-to-day swings.</p></li>
 </ul>
 <div class="fragment">
 <blockquote>
@@ -205,14 +205,14 @@ Professor<br>Davi Moreira<br>
 <h2>Why the Mean Alone Misleads</h2>
 
 <img data-src="figs/spread_vs_center.png" class="quarto-figure quarto-figure-center r-stretch" style="width:80.0%"><ul>
-<li><strong>Same mean ($3.46), opposite risk.</strong> The CEO who only hears “average $3.46” cannot tell these two campaigns apart.</li>
+<li><strong>Same mean ($3.46), opposite risk.</strong> The manager who only hears “average $3.46” cannot tell these two campaigns apart.</li>
 <li>Today we add the <strong>other half of describing data</strong>: spread, shape, and how two variables move together.</li>
 </ul>
 </section>
-<section id="how-todays-tools-build-the-ceo-brief" class="slide level2 center">
-<h2>How Today’s Tools Build the CEO Brief</h2>
+<section id="how-todays-tools-build-the-manager-brief" class="slide level2 center">
+<h2>How Today’s Tools Build the Manager Brief</h2>
 <p><br></p>
-<p>Each tool answers one question the CEO will ask about Vungle’s data:</p>
+<p>Each tool answers one question the manager will ask about Vungle’s data:</p>
 <table class="caption-top">
 <colgroup>
 <col style="width: 50%">
@@ -220,7 +220,7 @@ Professor<br>Davi Moreira<br>
 </colgroup>
 <thead>
 <tr class="header">
-<th>The CEO asks…</th>
+<th>The manager asks…</th>
 <th>The tool</th>
 </tr>
 </thead>
@@ -249,7 +249,7 @@ Professor<br>Davi Moreira<br>
 </table>
 <p><br></p>
 <ul>
-<li class="fragment">By the end, your team turns these into a <strong>one-screen A-vs-B dashboard</strong>, the CEO’s first honest read.</li>
+<li class="fragment">By the end, your team turns these into a <strong>one-screen A-vs-B dashboard</strong>, the manager’s first honest read.</li>
 </ul>
 </section></section>
 <section>
@@ -396,7 +396,7 @@ s = \sqrt{s^2} \qquad\qquad \sigma = \sqrt{\sigma^2}
 </div>
 <ul>
 <li class="fragment"><p>It is <strong>unit-free</strong> (a percentage): “the SD is X% of the mean.”</p></li>
-<li class="fragment"><p><strong>Vungle read:</strong> even before testing, CV tells you which algorithm is <em>relatively</em> more volatile, exactly the risk question you, the CEO, care about.</p></li>
+<li class="fragment"><p><strong>Vungle read:</strong> even before testing, CV tells you which algorithm is <em>relatively</em> more volatile, exactly the risk question you, the manager, care about.</p></li>
 <li class="fragment"><p><strong>Excel:</strong> <code>=STDEV.S(rng)/AVERAGE(rng)</code>.</p></li>
 </ul>
 </section>
@@ -529,7 +529,7 @@ s = \sqrt{s^2} \qquad\qquad \sigma = \sqrt{\sigma^2}
 <div class="fragment">
 <ul>
 <li class="fragment"><strong>B earns more on average, and is markedly riskier.</strong> Higher mean, higher spread.</li>
-<li class="fragment">That is the real headline for the CEO: <em>“B’s edge comes with more volatility.”</em> The mean hid it; variability reveals it.</li>
+<li class="fragment">That is the real headline for the manager: <em>“B’s edge comes with more volatility.”</em> The mean hid it; variability reveals it.</li>
 </ul>
 </div>
 </div>
@@ -1113,8 +1113,8 @@ r_{xy} = \frac{s_{xy}}{s_x \, s_y}
 </div></div>
 </section></section>
 <section>
-<section id="debrief-the-ceo-brief" class="title-slide slide level1 center" data-background-color="#cfb991">
-<h1>Debrief: The CEO Brief</h1>
+<section id="debrief-the-managers-brief" class="title-slide slide level1 center" data-background-color="#cfb991">
+<h1>Debrief: The Manager’s Brief</h1>
 
 </section>
 <section id="what-the-dashboard-says" class="slide level2 center">
@@ -1127,12 +1127,12 @@ r_{xy} = \frac{s_{xy}}{s_x \, s_y}
 <li class="fragment"><p><strong>The honest two-sentence read:</strong> <em>“Over 30 days, B averaged $0.11 more per 1,000 impressions than A, but with ~50% more day-to-day volatility. Whether that $0.11 edge is real signal or sampling noise is a question description alone cannot settle; that needs a hypothesis test.”</em></p></li>
 </ul>
 </section>
-<section id="the-ceos-takeaway" class="slide level2 center">
-<h2>The CEO’s Takeaway</h2>
+<section id="the-managers-takeaway" class="slide level2 center">
+<h2>The Manager’s Takeaway</h2>
 <p><br></p>
 <ul>
 <li class="fragment"><p><strong>One sentence:</strong> B earns <strong>more on average</strong> ($3.46 vs.&nbsp;$3.35) but is <strong>more volatile</strong> (SD $0.34 vs.&nbsp;$0.22, CV 10% vs.&nbsp;6.5%); the mean was only half the story.</p></li>
-<li class="fragment"><p><strong>One number to remember:</strong> <strong>CV</strong>. Algorithm B’s spread is <strong>10% of its mean</strong> vs.&nbsp;A’s 6.5%; that is the risk you, the CEO, must weigh against the $0.11 reward.</p></li>
+<li class="fragment"><p><strong>One number to remember:</strong> <strong>CV</strong>. Algorithm B’s spread is <strong>10% of its mean</strong> vs.&nbsp;A’s 6.5%; that is the risk you, the manager, must weigh against the $0.11 reward.</p></li>
 <li class="fragment"><p><strong>One caveat:</strong> description <strong>summarizes the 30 days we have</strong>; it <strong>cannot</strong> tell us whether B’s $0.11 edge generalizes to all future traffic. <em>Is the edge real or noise?</em> is an <strong>inference</strong> question, the heart of Topics 7–9.</p></li>
 <li class="fragment"><p><strong>Practice with the real data:</strong> <code>data/vungle_daily.csv</code> + the Analysis ToolPak, then reproduce the A-vs-B dashboard. Worked solutions: <code>data/vungle_descriptive.xlsx</code>.</p></li>
 </ul>

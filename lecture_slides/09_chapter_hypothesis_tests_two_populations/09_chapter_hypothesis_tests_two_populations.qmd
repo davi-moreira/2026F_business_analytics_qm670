@@ -66,7 +66,7 @@ html-math-method:
 
 <br>
 
-- **The big call you own as Vungle's CEO:** *roll out algorithm B, or stay with A?* We have built toward it all term; today we settle it.
+- **The big call you own as Vungle's manager:** *roll out algorithm B, or stay with A?* We have built toward it all term; today we settle it.
 
 > "B's daily eRPM averaged about **\$0.11 higher** than A's. Is that a **real improvement**, or just month-to-month **noise**? Should Vungle **roll out B** to all traffic?"
 
@@ -76,7 +76,7 @@ html-math-method:
 
 - **How today's studio runs:** I demo each test on a textbook example, then on the Vungle data; you debrief the rollout call; then your group runs a fresh case and submits its own call.
 
-- By the end of class you, the CEO, will have the recommendation, with the statistics to back it up.
+- By the end of class you, the manager, will have the recommendation, with the statistics to back it up.
 
 ## How Today's Tools Answer It
 
@@ -309,7 +309,7 @@ $$
 
 **4. Decision.** $p\text{-value} = 0.017 \leq \alpha = 0.05$ → **reject $H_0$**. Also: 95% CI for $\mu_d$ = $(0.620,\; 4.780)$ hours; zero is not a plausible mean difference.
 
-**5. The CEO's Translation.** *UPX averages about 2.7 hours slower than INTEX on identical routes: a real difference, not noise. If speed matters, route the volume to INTEX (then negotiate with UPX).*
+**5. The Manager's Translation.** *UPX averages about 2.7 hours slower than INTEX on identical routes: a real difference, not noise. If speed matters, route the volume to INTEX (then negotiate with UPX).*
 :::
 
 ## Express Deliveries in Excel
@@ -496,7 +496,7 @@ $$
 
 - In Excel: `=T.INV(0.975, 29)` → 2.045; bounds with formula cells from $\bar d$ and $SE$.
 
-## Step 5, the CEO's Translation: Back to the Decision
+## Step 5, the Manager's Translation: Back to the Decision
 
 <br>
 
@@ -684,7 +684,7 @@ $$
 
 **4. Decision.** $p$-value (two-tail) $\approx 0.061 > \alpha = 0.05$ → **fail to reject $H_0$**. 95% CI for $\mu_1 - \mu_2$: $(-4.4,\; 0.1)$, which barely includes zero.
 
-**5. The Owner's Translation.** *Bankrupt firms started with about \$2.1K less equity on average, but with only 15 firms per group we cannot rule out chance at the 5% level. A borderline result, worth a bigger sample before building lending policy on it.*
+**5. The Manager's Translation.** *Bankrupt firms started with about \$2.1K less equity on average, but with only 15 firms per group we cannot rule out chance at the 5% level. A borderline result, worth a bigger sample before building lending policy on it.*
 :::
 
 ## Owner's Equity in Excel
@@ -892,7 +892,7 @@ $$
 
 **4. Decision.** $|z| = 29.56 \gg z_{0.025} = 1.96$; $p$-value $< 0.0001$ → **reject $H_0$** overwhelmingly.
 
-**5. The CEO's Translation.** *B converts impressions to installs at a genuinely lower rate than A: 0.354% vs. 0.403%, a 12% relative drop. This is not noise.*
+**5. The Manager's Translation.** *B converts impressions to installs at a genuinely lower rate than A: 0.354% vs. 0.403%, a 12% relative drop. This is not noise.*
 :::
 
 ## The Surprise: B Converts Less but Earns More
@@ -915,7 +915,7 @@ $$
 ## Make the Call: Which Metric Wins?
 
 ::: {.nonincremental}
-**The conflict you face as CEO:** B **earns more** per impression (paired $t = 3.33$) but **converts fewer** installs ($z = -29.6$). Both results are statistically decisive.
+**The conflict you face as the manager:** B **earns more** per impression (paired $t = 3.33$) but **converts fewer** installs ($z = -29.6$). Both results are statistically decisive.
 
 Before the debrief, settle three questions:
 
@@ -948,7 +948,7 @@ The metric that matches the business model wins, not the bigger number. We resol
 
 - $z = -29.56$ tells you the difference is *real*; it does **not** tell you the difference *matters*.
 
-- Always pair the test with the **effect size**: -0.048 percentage points (a 12% relative drop in conversion). That is the number the CEO should debate.
+- Always pair the test with the **effect size**: -0.048 percentage points (a 12% relative drop in conversion). That is the number the manager should debate.
 
 - Flip side from the equity example: small samples can make real effects invisible (low power). **Large $n$: everything is significant. Small $n$: nothing is.** Neither replaces judgment about magnitude.
 
@@ -966,7 +966,7 @@ The metric that matches the business model wins, not the bigger number. We resol
 
 <br>
 
-- **Your recommendation as CEO:** roll out B. eRPM is the metric aligned with Vungle's business model, the lift is statistically solid (\$0.04–\$0.18 per 1,000), and it is worth ≈ \$26.5K/month on June's traffic. Track the install funnel weekly post-rollout in case the lower conversion rate erodes advertiser satisfaction.
+- **Your recommendation as the manager:** roll out B. eRPM is the metric aligned with Vungle's business model, the lift is statistically solid (\$0.04–\$0.18 per 1,000), and it is worth ≈ \$26.5K/month on June's traffic. Track the install funnel weekly post-rollout in case the lower conversion rate erodes advertiser satisfaction.
 
 ## From Inference to Decision Analysis
 
@@ -994,7 +994,7 @@ The metric that matches the business model wins, not the bigger number. We resol
 | Two-proportion $z$ | $p_1 - p_2 = 0$ | Conversion: installs/impressions, 252M trials | $z = -29.56$, $p < .0001$ | Reject: B converts less |
 :::
 
-## The CEO's Takeaway
+## The Manager's Takeaway
 
 <br>
 

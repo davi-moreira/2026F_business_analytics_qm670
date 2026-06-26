@@ -185,7 +185,7 @@ The class **ends on the Team Sprint**, your group's graded submission. **Today i
 
 <br>
 
-- This course puts **you in the decision-maker's seat**: the **CEO or owner** who has to act. You'll work in a **fixed group** (assigned this week), cracking real cases in class and judging the analysis behind every call.
+- This course puts **you in the decision-maker's seat**: the **manager** who has to act. You'll work in a **fixed group** (assigned this week), cracking real cases in class and judging the analysis behind every call.
 
 ::: fragment
 - **① Vungle A/B (Topics 1–9, up first).** A mobile ad-tech startup asking *roll out algorithm B, or keep A?* You'll learn to **describe, quantify uncertainty, and test** so you can judge that claim before betting the company on it.
@@ -215,7 +215,7 @@ The class **ends on the Team Sprint**, your group's graded submission. **Today i
 
 - In June 2014, two analysts built a new ad-serving algorithm (**B**) and ran it head-to-head against the current one (**A**) for the whole month.
 
-- **Your call as Vungle's CEO:** *roll out B to all advertisers, or stay with A?*
+- **Your call as Vungle's manager:** *roll out B to all advertisers, or stay with A?*
 
 - We will use this one decision (*is B better than A?*) to motivate **every** tool in this course. The data is in `vungle_daily.csv`.
 
@@ -298,7 +298,7 @@ Statistics is the **science of collecting, organizing, analyzing, interpreting, 
 
 <br>
 
-- It turns raw numbers, like Vungle's 30 days of eRPM, into a defensible answer to the CEO's question.
+- It turns raw numbers, like Vungle's 30 days of eRPM, into a defensible answer to the manager's question.
 
 - The goal is always the same: **reduce uncertainty enough to act.**
 
@@ -374,7 +374,7 @@ knitr::include_graphics("figs/variables_observations.png")
 
 <br>
 
-- A recommendation is only as good as the data under it, so a sharp CEO looks first. Here is a slice of `vungle_daily.csv`, algorithms interleaved by day:
+- A recommendation is only as good as the data under it, so a sharp manager looks first. Here is a slice of `vungle_daily.csv`, algorithms interleaved by day:
 
 ::: fragment
 | algorithm | date | impressions | completes | clicks | installs | erpm |
@@ -716,11 +716,11 @@ knitr::include_graphics("figs/inference.svg")
 
 # The Takeaway {background-color="#cfb991"}
 
-## The CEO's Takeaway
+## The Manager's Takeaway
 
 <br>
 
-- **One sentence:** today we turned the CEO's question (*roll out B or keep A?*) into a precise data problem, and found B's average eRPM (**\$3.46**) edges A's (**\$3.35**) by **\$0.11**; whether that edge is *real* is the inference question (Topics 7–9).
+- **One sentence:** today we turned the manager's question (*roll out B or keep A?*) into a precise data problem, and found B's average eRPM (**\$3.46**) edges A's (**\$3.35**) by **\$0.11**; whether that edge is *real* is the inference question (Topics 7–9).
 
 - **One number to remember:** **60 rows × 7 variables = 420 values**. That is Vungle's dataset, and you can name every element, variable, and observation in it.
 

@@ -38,7 +38,7 @@ html-math-method:
 ::: {.column style="width: 50%; text-align: center; justify-content: center; align-items: center;"}
 - The multiplication law and independence
 - Bayes' theorem: revising a belief with evidence
-- Marginal vs. conditional: the CEO's trap
+- Marginal vs. conditional: the manager's trap
 - The decision: what a single install tells you
 :::
 :::::
@@ -62,7 +62,7 @@ html-math-method:
 
 <br>
 
-- The big call you carry as Vungle's **CEO** is still *roll out algorithm B, or stay with A?* Today's piece of it: **what are the odds at each step of the funnel?**
+- The big call you carry as Vungle's **manager** is still *roll out algorithm B, or stay with A?* Today's piece of it: **what are the odds at each step of the funnel?**
 
 > "What is the chance a **random impression** ends in an install? And if we already know it was **clicked**, how does that chance change? Finally, we just recorded **one install**: how likely is it that it came from algorithm **B**?"
 
@@ -210,7 +210,7 @@ $$
 
 :::
 
-- Notice the **marginal** install rate ($0.40\%$) is tiny, but the **conditional** rate *given a click* ($7.93\%$) is 20× larger. A clicked impression is worth 20 ordinary ones, so the CEO's spend should chase clicks, not raw impressions.
+- Notice the **marginal** install rate ($0.40\%$) is tiny, but the **conditional** rate *given a click* ($7.93\%$) is 20× larger. A clicked impression is worth 20 ordinary ones, so the manager's spend should chase clicks, not raw impressions.
 
 ## The Funnel as a Probability Tree
 
@@ -432,7 +432,7 @@ knitr::include_graphics("figs/excel_bayes_cells.png")
 
 # Debrief: Marginal vs. Conditional {background-color="#cfb991"}
 
-## The CEO's Trap
+## The Manager's Trap
 
 <br>
 
@@ -463,7 +463,7 @@ knitr::include_graphics("figs/excel_bayes_cells.png")
 
 - This is the bridge to the next topics: those conditional rates become the **parameters** of probability *models* (a click is a Bernoulli trial with $p \approx 5\%$).
 
-## The CEO's Takeaway
+## The Manager's Takeaway
 
 <br>
 
@@ -497,7 +497,7 @@ Some key takeaways from this session:
 - **Conditional probability** $P(A\mid B) = P(A\cap B)/P(B)$ is the engine of funnel analytics: each step conditions on surviving the last.
 - The **multiplication law** chains the steps into the end-to-end rate; **independence** is when conditioning changes nothing (the funnel steps are *not* independent).
 - **Bayes' theorem** reverses the conditioning (prior → posterior), and base rates dominate: an install is only weak evidence about which algorithm served it.
-- **Marginal, conditional, and reverse probabilities are different numbers** for the same data; match the number to the CEO's question.
+- **Marginal, conditional, and reverse probabilities are different numbers** for the same data; match the number to the manager's question.
 - **Next time:** probabilities become **decisions** in Decision Analysis: payoffs, expected value, and the value of information on the Vungle rollout. Today's tools are also drilled on **HW1** (individual, on Brightspace).
 :::
 

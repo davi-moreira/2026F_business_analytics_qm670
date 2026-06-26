@@ -175,11 +175,11 @@ Professor<br>Davi Moreira<br>
 <li class="fragment"><p>Earlier in our work with <a href="https://en.wikipedia.org/wiki/Liftoff_Mobile">Vungle</a> (the mobile ad-tech startup that earns revenue when viewers <strong>install</strong> an advertised app) we tested whether their new ad-serving algorithm <strong>B</strong> beat the incumbent <strong>A</strong>.</p></li>
 <li class="fragment"><p>The verdict: B’s daily eRPM (revenue per 1,000 impressions) ran about <strong>$0.11 higher</strong> than A’s, and a paired test said that lift was <strong>real</strong> (<span class="math inline">\(t = 3.33\)</span>), worth roughly <strong>$26.5K/month</strong> at June’s traffic.</p></li>
 <li class="fragment"><p>But statistics told us <em>what is true and how sure we are</em>. They did <strong>not</strong> tell management <strong>what to do</strong>.</p></li>
-<li class="fragment"><p>Today you put on the <strong>CEO’s hat</strong>: given that uncertainty, what is the right <strong>action</strong>?</p></li>
+<li class="fragment"><p>Today you put on the <strong>manager’s hat</strong>: given that uncertainty, what is the right <strong>action</strong>?</p></li>
 </ul>
 </section>
-<section id="the-brief-todays-ceo-question" class="slide level2 center">
-<h2>The Brief: Today’s CEO Question</h2>
+<section id="the-brief-todays-manager-question" class="slide level2 center">
+<h2>The Brief: Today’s Manager Question</h2>
 <p><br></p>
 <ul>
 <li class="fragment"><strong>The big call</strong> running through Vungle is one decision: <em>roll out algorithm B to all traffic, or stay with A?</em> <strong>Today’s piece of it:</strong> roll out, keep A, or test more, which has the best <strong>expected value</strong>?</li>
@@ -205,7 +205,7 @@ Professor<br>Davi Moreira<br>
 </colgroup>
 <thead>
 <tr class="header">
-<th>The CEO’s question</th>
+<th>The manager’s question</th>
 <th>The tool</th>
 </tr>
 </thead>
@@ -491,7 +491,7 @@ EV(\text{Keep A}) = 0.60(0) + 0.40(0) = \mathbf{\$0}
 <ul>
 <li class="fragment"><p><strong>EV is a long-run average, not a guaranteed outcome.</strong> If Vungle faced this exact decision many times, “roll out B” would net +$126.8K <em>per decision on average</em>.</p></li>
 <li class="fragment"><p>The actual result will be <strong>either</strong> +$318K <strong>or</strong> −$160K, never $126.8K. The expected value is a <strong>ranking device</strong>, not a forecast of what happens this once.</p></li>
-<li class="fragment"><p>This is exactly why a CEO also asks: <em>what would it be worth to know the true state before deciding?</em> That question has a precise answer: <strong>EVPI</strong>.</p></li>
+<li class="fragment"><p>This is exactly why a manager also asks: <em>what would it be worth to know the true state before deciding?</em> That question has a precise answer: <strong>EVPI</strong>.</p></li>
 </ul>
 </section></section>
 <section>
@@ -552,8 +552,8 @@ EV(\text{Keep A}) = 0.60(0) + 0.40(0) = \mathbf{\$0}
 \]</span></p>
 </div>
 </section>
-<section id="what-evpi-tells-the-ceo" class="slide level2 center">
-<h2>What EVPI Tells the CEO</h2>
+<section id="what-evpi-tells-the-manager" class="slide level2 center">
+<h2>What EVPI Tells the Manager</h2>
 
 <img data-src="figs/vungle_evpi.png" class="quarto-figure quarto-figure-center r-stretch" style="width:60.0%"><ul>
 <li><strong>$64K</strong> is the <em>most</em> Vungle should ever pay to remove all doubt about B before deciding. Any real test (always imperfect) is worth <strong>less</strong> than this ceiling.</li>
@@ -782,7 +782,7 @@ p(318) + (1-p)(-160) = 0 \;\Longrightarrow\; p^{*} = \frac{160}{318 + 160} \appr
 </table>
 <p><br></p>
 <ul>
-<li class="fragment"><strong>Recommendation to CEO Jaffer:</strong> <strong>roll out B now.</strong> Expected value is clearly positive (+$126.8K/yr), the decision holds unless we think B is more likely wrong than right, and a further test isn’t worth its price. <strong>Caveat:</strong> there is a real <strong>−$160K</strong> downside if B disappoints, so monitor eRPM closely post-rollout and be ready to revert.</li>
+<li class="fragment"><strong>Recommendation:</strong> <strong>roll out B now.</strong> Expected value is clearly positive (+$126.8K/yr), the decision holds unless we think B is more likely wrong than right, and a further test isn’t worth its price. <strong>Caveat:</strong> there is a real <strong>−$160K</strong> downside if B disappoints, so monitor eRPM closely post-rollout and be ready to revert.</li>
 </ul>
 </section>
 <section id="how-inference-and-decision-analysis-fit-together" class="slide level2 center">
@@ -798,8 +798,8 @@ p(318) + (1-p)(-160) = 0 \;\Longrightarrow\; p^{*} = \frac{160}{318 + 160} \appr
 <li class="fragment"><p>A good analyst can do both, and knows which question they’re answering.</p></li>
 </ul>
 </section>
-<section id="the-ceos-takeaway" class="slide level2 center">
-<h2>The CEO’s Takeaway</h2>
+<section id="the-managers-takeaway" class="slide level2 center">
+<h2>The Manager’s Takeaway</h2>
 <p><br></p>
 <ul>
 <li class="fragment"><p><strong>One sentence:</strong> Structuring the rollout as a decision (alternatives, states, payoffs) says <strong>roll out B</strong>, because its expected value (<strong>$126.8K/yr</strong>) beats keeping A, and a further test isn’t worth its cost.</p></li>

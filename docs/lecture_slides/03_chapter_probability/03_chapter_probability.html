@@ -158,7 +158,7 @@ Professor<br>Davi Moreira<br>
 <ul>
 <li>The multiplication law and independence</li>
 <li>Bayes’ theorem: revising a belief with evidence</li>
-<li>Marginal vs.&nbsp;conditional: the CEO’s trap</li>
+<li>Marginal vs.&nbsp;conditional: the manager’s trap</li>
 <li>The decision: what a single install tells you</li>
 </ul>
 </div></div>
@@ -182,7 +182,7 @@ Professor<br>Davi Moreira<br>
 <h2>The Brief: Today’s Question</h2>
 <p><br></p>
 <ul>
-<li class="fragment">The big call you carry as Vungle’s <strong>CEO</strong> is still <em>roll out algorithm B, or stay with A?</em> Today’s piece of it: <strong>what are the odds at each step of the funnel?</strong></li>
+<li class="fragment">The big call you carry as Vungle’s <strong>manager</strong> is still <em>roll out algorithm B, or stay with A?</em> Today’s piece of it: <strong>what are the odds at each step of the funnel?</strong></li>
 </ul>
 <blockquote>
 <p>“What is the chance a <strong>random impression</strong> ends in an install? And if we already know it was <strong>clicked</strong>, how does that chance change? Finally, we just recorded <strong>one install</strong>: how likely is it that it came from algorithm <strong>B</strong>?”</p>
@@ -458,7 +458,7 @@ P(A \mid B) = \frac{P(A \cap B)}{P(B)}
 </table>
 </div>
 <ul>
-<li class="fragment">Notice the <strong>marginal</strong> install rate (<span class="math inline">\(0.40\%\)</span>) is tiny, but the <strong>conditional</strong> rate <em>given a click</em> (<span class="math inline">\(7.93\%\)</span>) is 20× larger. A clicked impression is worth 20 ordinary ones, so the CEO’s spend should chase clicks, not raw impressions.</li>
+<li class="fragment">Notice the <strong>marginal</strong> install rate (<span class="math inline">\(0.40\%\)</span>) is tiny, but the <strong>conditional</strong> rate <em>given a click</em> (<span class="math inline">\(7.93\%\)</span>) is 20× larger. A clicked impression is worth 20 ordinary ones, so the manager’s spend should chase clicks, not raw impressions.</li>
 </ul>
 </section>
 <section id="the-funnel-as-a-probability-tree" class="slide level2 center">
@@ -701,8 +701,8 @@ P(\text{install} \mid A) = 0.4025\% \qquad P(\text{install} \mid B) = 0.3541\%
 <h1>Debrief: Marginal vs.&nbsp;Conditional</h1>
 
 </section>
-<section id="the-ceos-trap" class="slide level2 center">
-<h2>The CEO’s Trap</h2>
+<section id="the-managers-trap" class="slide level2 center">
+<h2>The Manager’s Trap</h2>
 <p><br></p>
 <ul>
 <li class="fragment">The three answers to today’s Brief are <strong>three different numbers</strong> for the <em>same</em> funnel:</li>
@@ -752,8 +752,8 @@ P(\text{install} \mid A) = 0.4025\% \qquad P(\text{install} \mid B) = 0.3541\%
 <li class="fragment"><p>This is the bridge to the next topics: those conditional rates become the <strong>parameters</strong> of probability <em>models</em> (a click is a Bernoulli trial with <span class="math inline">\(p \approx 5\%\)</span>).</p></li>
 </ul>
 </section>
-<section id="the-ceos-takeaway" class="slide level2 center">
-<h2>The CEO’s Takeaway</h2>
+<section id="the-managers-takeaway" class="slide level2 center">
+<h2>The Manager’s Takeaway</h2>
 <p><br></p>
 <ul>
 <li class="fragment"><p><strong>One sentence:</strong> every funnel rate is a <strong>conditional probability</strong>, the end-to-end install rate is their <strong>product</strong>, and Bayes lets you read the funnel <strong>backward</strong>, from an observed install to the likely algorithm.</p></li>
@@ -784,7 +784,7 @@ P(\text{install} \mid A) = 0.4025\% \qquad P(\text{install} \mid B) = 0.3541\%
 <li><strong>Conditional probability</strong> <span class="math inline">\(P(A\mid B) = P(A\cap B)/P(B)\)</span> is the engine of funnel analytics: each step conditions on surviving the last.</li>
 <li>The <strong>multiplication law</strong> chains the steps into the end-to-end rate; <strong>independence</strong> is when conditioning changes nothing (the funnel steps are <em>not</em> independent).</li>
 <li><strong>Bayes’ theorem</strong> reverses the conditioning (prior → posterior), and base rates dominate: an install is only weak evidence about which algorithm served it.</li>
-<li><strong>Marginal, conditional, and reverse probabilities are different numbers</strong> for the same data; match the number to the CEO’s question.</li>
+<li><strong>Marginal, conditional, and reverse probabilities are different numbers</strong> for the same data; match the number to the manager’s question.</li>
 <li><strong>Next time:</strong> probabilities become <strong>decisions</strong> in Decision Analysis: payoffs, expected value, and the value of information on the Vungle rollout. Today’s tools are also drilled on <strong>HW1</strong> (individual, on Brightspace).</li>
 </ul>
 </section></section>

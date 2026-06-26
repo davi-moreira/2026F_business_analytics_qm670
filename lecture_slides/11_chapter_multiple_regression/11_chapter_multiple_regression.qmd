@@ -56,7 +56,7 @@ html-math-method:
 
 - Last time we found a single strong predictor of a store's annual sales: its **Yelp rating**. Each extra star was worth roughly **+\$758K** a year. A clean simple-regression story.
 
-- But a Yelp rating is a *symptom*, not a lever you can pull directly. Your real question as Owner is sharper:
+- But a Yelp rating is a *symptom*, not a lever you can pull directly. Your real question as the manager is sharper:
 
 ::: fragment
 > "We can invest in **location** (open stores in bigger, richer markets), in **service** (raise the customer experience), or in **merchandising** (pay for premium **endcap** shelf placement). **Which actually drives sales, and where should the money go?**"
@@ -413,7 +413,7 @@ knitr::include_graphics("figs/autoparts_coef_effects.png")
 
 - **Why the intuition fails:** in simple regression a market-size variable can look strong because it travels with the variables that *really* matter. Once those are in the model, "holding the others constant" strips the borrowed credit away. We will confirm this with formal tests in Lecture 2.
 
-## The Owner's Takeaway (Lecture 1)
+## The Manager's Takeaway (Lecture 1)
 
 <br>
 
@@ -768,7 +768,7 @@ knitr::include_graphics("figs/autoparts_predictor_corr.png")
 Model: $R^2 = 0.932$, adjusted $R^2 = 0.925$, overall $F = 136.7$ (p $< 10^{-22}$), $s = \$308.5$K, all VIF $< 1.7$.
 :::
 
-- **Your recommendation as Owner:** stop chasing big, rich markets; **location demographics don't move sales** in this chain. The money belongs in **service quality** (every Yelp star ≈ +\$642K/yr) and in **endcap merchandising** (≈ +\$816K/yr, well worth a sub-\$816K lease). Both effects are statistically rock-solid and not a multicollinearity mirage.
+- **Your recommendation as the manager:** stop chasing big, rich markets; **location demographics don't move sales** in this chain. The money belongs in **service quality** (every Yelp star ≈ +\$642K/yr) and in **endcap merchandising** (≈ +\$816K/yr, well worth a sub-\$816K lease). Both effects are statistically rock-solid and not a multicollinearity mirage.
 
 ## $F$ vs. $t$: the Lesson That Travels
 
@@ -781,9 +781,9 @@ Model: $R^2 = 0.932$, adjusted $R^2 = 0.925$, overall $F = 136.7$ (p $< 10^{-22}
 
 - **Significance is conditional.** Every coefficient and every $t$ here means "…*holding the other three constant.*" Change the set of predictors and the story can change.
 
-- **Significance ≠ importance.** With huge samples trivial effects turn "significant"; with small samples real effects can hide. Always pair the test with the **dollar size** of the effect: that is the number you decide on as Owner.
+- **Significance ≠ importance.** With huge samples trivial effects turn "significant"; with small samples real effects can hide. Always pair the test with the **dollar size** of the effect: that is the number you decide on as the manager.
 
-## The Owner's Takeaway
+## The Manager's Takeaway
 
 <br>
 

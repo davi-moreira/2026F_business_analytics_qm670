@@ -64,7 +64,7 @@ html-math-method:
 
 - **Today's move:** treat daily eRPM as a draw from a **Normal distribution**, then we can answer *forward-looking* questions about days we have not yet seen.
 
-## The Brief: Today's CEO Question
+## The Brief: Today's Manager Question
 
 <br>
 
@@ -76,7 +76,7 @@ html-math-method:
 
 - Counting distributions (Binomial, Poisson) answered "how many installs?" Today's tool answers "**how much revenue per impression**, and how often above a threshold?"
 
-- **How today's studio runs:** I demo each idea on a textbook example, then your group reproduces and interrogates the fitted Normal on the in-class group case, then we debrief what the model can and cannot tell the CEO.
+- **How today's studio runs:** I demo each idea on a textbook example, then your group reproduces and interrogates the fitted Normal on the in-class group case, then we debrief what the model can and cannot tell the manager.
 
 - By the end you can turn a fitted distribution into a planning number (a probability and a percentile) and stress-test the assumption behind it.
 
@@ -96,7 +96,7 @@ Every tool today maps onto the Vungle eRPM data:
 
 <br>
 
-- One dataset, one bell curve, and from it every probability and percentile the CEO needs.
+- One dataset, one bell curve, and from it every probability and percentile the manager needs.
 
 # Lecture 1: Continuous Variables, the Uniform, and the Normal {background-color="#cfb991"}
 
@@ -104,7 +104,7 @@ Every tool today maps onto the Vungle eRPM data:
 
 <br>
 
-- **The big call (Vungle A/B):** roll out B, or stay with A? Today's piece for the CEO: **what's the chance of a high or low value (and can we fit a Normal to it)?**
+- **The big call (Vungle A/B):** roll out B, or stay with A? Today's piece for the manager: **what's the chance of a high or low value (and can we fit a Normal to it)?**
 
 > "Before we can ask *'how likely is eRPM above \$3.50?'*, we need a **model** for a continuous quantity. Today: what a continuous distribution *is*, and the two we use most, the **uniform** and the **Normal**."
 
@@ -388,7 +388,7 @@ $$
 
 - We put them to work in Lecture 2; for now your group just **fits the model and reads its shape**.
 
-## The CEO's Takeaway: Lecture 1
+## The Manager's Takeaway: Lecture 1
 
 <br>
 
@@ -414,7 +414,7 @@ $$
 
 <br>
 
-- **The big call (Vungle A/B):** roll out B, or stay with A? Today's piece for the CEO: **what probability and percentile does the Normal give, and is the model fair?**
+- **The big call (Vungle A/B):** roll out B, or stay with A? Today's piece for the manager: **what probability and percentile does the Normal give, and is the model fair?**
 
 > "Cash in the model. Tomorrow's eRPM is $\sim N(3.459, 0.344)$. **What's $P(\text{eRPM} > \$3.50)$? What eRPM defines a top-10% day?** And before we trust any of it, **is the Normal assumption fair?**"
 
@@ -655,7 +655,7 @@ knitr::include_graphics("figs/excel_normapprox_vungle.png")
 
 - Every row came from **one** fitted distribution, $N(3.459, 0.344)$: the model turns 30 observed days into statements about days we have not yet seen.
 
-## The CEO's Takeaway
+## The Manager's Takeaway
 
 <br>
 

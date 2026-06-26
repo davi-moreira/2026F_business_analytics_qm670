@@ -31,7 +31,7 @@
     "href": "lecture_slides/04_chapter_decision_analysis/04_chapter_decision_analysis.html#rewind-before-the-ab-test",
     "title": " QM 6700: Business Analytics ",
     "section": "Rewind: Before the A/B Test",
-    "text": "Rewind: Before the A/B Test\n\n\nEarlier in our work with Vungle (the mobile ad-tech startup that earns revenue when viewers install an advertised app) we tested whether their new ad-serving algorithm B beat the incumbent A.\nThe verdict: B’s daily eRPM (revenue per 1,000 impressions) ran about $0.11 higher than A’s, and a paired test said that lift was real (\\(t = 3.33\\)), worth roughly $26.5K/month at June’s traffic.\nBut statistics told us what is true and how sure we are. They did not tell management what to do.\nToday you put on the CEO’s hat: given that uncertainty, what is the right action?"
+    "text": "Rewind: Before the A/B Test\n\n\nEarlier in our work with Vungle (the mobile ad-tech startup that earns revenue when viewers install an advertised app) we tested whether their new ad-serving algorithm B beat the incumbent A.\nThe verdict: B’s daily eRPM (revenue per 1,000 impressions) ran about $0.11 higher than A’s, and a paired test said that lift was real (\\(t = 3.33\\)), worth roughly $26.5K/month at June’s traffic.\nBut statistics told us what is true and how sure we are. They did not tell management what to do.\nToday you put on the manager’s hat: given that uncertainty, what is the right action?"
   },
   {
     "objectID": "lecture_slides/04_chapter_decision_analysis/04_chapter_decision_analysis.html#the-brief-todays-managerial-question",
@@ -45,7 +45,7 @@
     "href": "lecture_slides/04_chapter_decision_analysis/04_chapter_decision_analysis.html#how-todays-tools-answer-it",
     "title": " QM 6700: Business Analytics ",
     "section": "How Today’s Tools Answer It",
-    "text": "How Today’s Tools Answer It\n\nEvery tool today maps onto the Vungle rollout:\n\n\n\n\n\n\n\nThe CEO’s question\nThe tool\n\n\n\n\nWhat are my options, and what could happen?\nPayoff table (alternatives × states)\n\n\nWhat’s the sequence of choice and chance?\nDecision tree\n\n\nWhich option is best on average?\nExpected value (EV)\n\n\nWhat is it worth to remove the uncertainty?\nEVPI / EVSI\n\n\nWould the call change if I’m a bit off?\nSensitivity analysis\n\n\n\n\n\nOne decision, five tools, and they all build on the probability logic from earlier in the course."
+    "text": "How Today’s Tools Answer It\n\nEvery tool today maps onto the Vungle rollout:\n\n\n\n\n\n\n\nThe manager’s question\nThe tool\n\n\n\n\nWhat are my options, and what could happen?\nPayoff table (alternatives × states)\n\n\nWhat’s the sequence of choice and chance?\nDecision tree\n\n\nWhich option is best on average?\nExpected value (EV)\n\n\nWhat is it worth to remove the uncertainty?\nEVPI / EVSI\n\n\nWould the call change if I’m a bit off?\nSensitivity analysis\n\n\n\n\n\nOne decision, five tools, and they all build on the probability logic from earlier in the course."
   },
   {
     "objectID": "lecture_slides/04_chapter_decision_analysis/04_chapter_decision_analysis.html#step-zero-problem-formulation",
@@ -129,7 +129,7 @@
     "href": "lecture_slides/04_chapter_decision_analysis/04_chapter_decision_analysis.html#a-quick-check-on-the-logic",
     "title": " QM 6700: Business Analytics ",
     "section": "A Quick Check on the Logic",
-    "text": "A Quick Check on the Logic\n\n\nEV is a long-run average, not a guaranteed outcome. If Vungle faced this exact decision many times, “roll out B” would net +$126.8K per decision on average.\nThe actual result will be either +$318K or −$160K, never $126.8K. The expected value is a ranking device, not a forecast of what happens this once.\nThis is exactly why a CEO also asks: what would it be worth to know the true state before deciding? That question has a precise answer: EVPI."
+    "text": "A Quick Check on the Logic\n\n\nEV is a long-run average, not a guaranteed outcome. If Vungle faced this exact decision many times, “roll out B” would net +$126.8K per decision on average.\nThe actual result will be either +$318K or −$160K, never $126.8K. The expected value is a ranking device, not a forecast of what happens this once.\nThis is exactly why a manager also asks: what would it be worth to know the true state before deciding? That question has a precise answer: EVPI."
   },
   {
     "objectID": "lecture_slides/04_chapter_decision_analysis/04_chapter_decision_analysis.html#expected-value-of-perfect-information-evpi",
@@ -241,7 +241,7 @@
     "href": "lecture_slides/04_chapter_decision_analysis/04_chapter_decision_analysis.html#the-decision-on-one-page",
     "title": " QM 6700: Business Analytics ",
     "section": "The Decision on One Page",
-    "text": "The Decision on One Page\n\n\n\n\nQuestion\nTool\nAnswer\n\n\n\n\nBest option on average?\nEV\nRoll out B ($126.8K vs. $0)\n\n\nWorth knowing the truth for sure?\nEVPI\n$64K ceiling\n\n\nWorth running a bigger test?\nEVSI\n$9.84K &lt; $20K cost → no\n\n\nStable to our prior?\nSensitivity\nflips only below \\(p^{*} = 0.33\\)\n\n\n\n\n\nRecommendation to CEO Jaffer: roll out B now. Expected value is clearly positive (+$126.8K/yr), the decision holds unless we think B is more likely wrong than right, and a further test isn’t worth its price. Caveat: there is a real −$160K downside if B disappoints, so monitor eRPM closely post-rollout and be ready to revert."
+    "text": "The Decision on One Page\n\n\n\n\nQuestion\nTool\nAnswer\n\n\n\n\nBest option on average?\nEV\nRoll out B ($126.8K vs. $0)\n\n\nWorth knowing the truth for sure?\nEVPI\n$64K ceiling\n\n\nWorth running a bigger test?\nEVSI\n$9.84K &lt; $20K cost → no\n\n\nStable to our prior?\nSensitivity\nflips only below \\(p^{*} = 0.33\\)\n\n\n\n\n\nRecommendation: roll out B now. Expected value is clearly positive (+$126.8K/yr), the decision holds unless we think B is more likely wrong than right, and a further test isn’t worth its price. Caveat: there is a real −$160K downside if B disappoints, so monitor eRPM closely post-rollout and be ready to revert."
   },
   {
     "objectID": "lecture_slides/04_chapter_decision_analysis/04_chapter_decision_analysis.html#how-inference-and-decision-analysis-fit-together",
@@ -304,7 +304,7 @@
     "href": "lecture_slides/10_chapter_simple_regression/10_chapter_simple_regression.html#the-brief-lecture-1",
     "title": " QM 6700: Business Analytics ",
     "section": "The Brief: Lecture 1",
-    "text": "The Brief: Lecture 1\n\n\n“Does one driver, a store’s Yelp rating, predict its annual sales? Fit a straight line to sales ~ yelp_rating: what does the slope mean in dollars, and how much of the store-to-store sales gap does Yelp rating explain?”\n\n\n\nBy the end of Lecture 1 your group will have a fitted equation, a dollars-per-star interpretation, and an \\(R^2\\): the raw material for a site score.\nThe Owner’s decision it feeds: rank prospective sites by predicted sales."
+    "text": "The Brief: Lecture 1\n\n\n“Does one driver, a store’s Yelp rating, predict its annual sales? Fit a straight line to sales ~ yelp_rating: what does the slope mean in dollars, and how much of the store-to-store sales gap does Yelp rating explain?”\n\n\n\nBy the end of Lecture 1 your group will have a fitted equation, a dollars-per-star interpretation, and an \\(R^2\\): the raw material for a site score.\nThe manager’s decision it feeds: rank prospective sites by predicted sales."
   },
   {
     "objectID": "lecture_slides/10_chapter_simple_regression/10_chapter_simple_regression.html#the-simple-linear-regression-model",
@@ -374,7 +374,7 @@
     "href": "lecture_slides/10_chapter_simple_regression/10_chapter_simple_regression.html#interpreting-the-auto-parts-slope-and-intercept",
     "title": " QM 6700: Business Analytics ",
     "section": "Interpreting the Auto-Parts Slope and Intercept",
-    "text": "Interpreting the Auto-Parts Slope and Intercept\n\n\nSlope \\(b_1 = +757.5\\): each additional Yelp star is associated with about $757.5K more in annual sales. This is the number the real-estate team can use to score sites.\nIntercept \\(b_0 = +332.8\\): the line’s height at a rating of zero. No store has a zero rating, so do not interpret it as “sales of a zero-star store”; it just anchors the line.\nThe Owner’s translation: Moving a store from a 3.0 to a 4.0 Yelp rating is worth roughly three-quarters of a million dollars in predicted annual sales.\nSanity check: the slope is positive and large, consistent with the upward cloud. Good."
+    "text": "Interpreting the Auto-Parts Slope and Intercept\n\n\nSlope \\(b_1 = +757.5\\): each additional Yelp star is associated with about $757.5K more in annual sales. This is the number the real-estate team can use to score sites.\nIntercept \\(b_0 = +332.8\\): the line’s height at a rating of zero. No store has a zero rating, so do not interpret it as “sales of a zero-star store”; it just anchors the line.\nThe manager’s translation: Moving a store from a 3.0 to a 4.0 Yelp rating is worth roughly three-quarters of a million dollars in predicted annual sales.\nSanity check: the slope is positive and large, consistent with the upward cloud. Good."
   },
   {
     "objectID": "lecture_slides/10_chapter_simple_regression/10_chapter_simple_regression.html#r2-how-much-does-the-line-explain",
@@ -430,7 +430,7 @@
     "href": "lecture_slides/10_chapter_simple_regression/10_chapter_simple_regression.html#the-brief-lecture-2",
     "title": " QM 6700: Business Analytics ",
     "section": "The Brief: Lecture 2",
-    "text": "The Brief: Lecture 2\n\n\n“Is the slope real, and can we forecast a new site? The fitted slope is +757.5 $K per star, but our 45 stores are a sample. Is the Yelp–sales relationship real, do the model’s assumptions hold, and what sales should we forecast for a specific new site?”\n\n\n\nLecture 1 described the sample. Lecture 2 does inference: from these 45 stores to the population of all possible stores.\nThree jobs the Owner needs settled before signing a lease: (1) test the slope, (2) validate the assumptions with residuals, (3) predict a new store with an honest margin of error."
+    "text": "The Brief: Lecture 2\n\n\n“Is the slope real, and can we forecast a new site? The fitted slope is +757.5 $K per star, but our 45 stores are a sample. Is the Yelp–sales relationship real, do the model’s assumptions hold, and what sales should we forecast for a specific new site?”\n\n\n\nLecture 1 described the sample. Lecture 2 does inference: from these 45 stores to the population of all possible stores.\nThree jobs the manager needs settled before signing a lease: (1) test the slope, (2) validate the assumptions with residuals, (3) predict a new store with an honest margin of error."
   },
   {
     "objectID": "lecture_slides/10_chapter_simple_regression/10_chapter_simple_regression.html#the-assumptions-behind-the-line",
@@ -472,7 +472,7 @@
     "href": "lecture_slides/10_chapter_simple_regression/10_chapter_simple_regression.html#confidence-interval-for-the-slope",
     "title": " QM 6700: Business Analytics ",
     "section": "Confidence Interval for the Slope",
-    "text": "Confidence Interval for the Slope\n\n\nThe test says the slope is nonzero; the confidence interval says how big it plausibly is:\n\n\n\\[\nb_1 \\pm t_{\\alpha/2,\\,n-2}\\; s_{b_1} = 757.5 \\pm 2.02 \\times 51.46 = (\\$653.7\\text{K},\\; \\$861.3\\text{K})\n\\]\n\n\nWe are 95% confident each Yelp star is worth between $654K and $861K in annual sales.\nThe interval is entirely above zero: the same conclusion as the test (reject \\(H_0\\)), now with a magnitude the Owner can plan around.\nEquivalence: reject \\(H_0: \\beta_1 = 0\\) at \\(\\alpha = 0.05\\) \\(\\iff\\) zero is not in the 95% CI. Read directly off the Lower 95% / Upper 95% columns of the output."
+    "text": "Confidence Interval for the Slope\n\n\nThe test says the slope is nonzero; the confidence interval says how big it plausibly is:\n\n\n\\[\nb_1 \\pm t_{\\alpha/2,\\,n-2}\\; s_{b_1} = 757.5 \\pm 2.02 \\times 51.46 = (\\$653.7\\text{K},\\; \\$861.3\\text{K})\n\\]\n\n\nWe are 95% confident each Yelp star is worth between $654K and $861K in annual sales.\nThe interval is entirely above zero: the same conclusion as the test (reject \\(H_0\\)), now with a magnitude the manager can plan around.\nEquivalence: reject \\(H_0: \\beta_1 = 0\\) at \\(\\alpha = 0.05\\) \\(\\iff\\) zero is not in the 95% CI. Read directly off the Lower 95% / Upper 95% columns of the output."
   },
   {
     "objectID": "lecture_slides/10_chapter_simple_regression/10_chapter_simple_regression.html#a-note-on-the-f-test",
@@ -542,7 +542,7 @@
     "href": "lecture_slides/10_chapter_simple_regression/10_chapter_simple_regression.html#what-makes-a-forecast-tighter-or-looser",
     "title": " QM 6700: Business Analytics ",
     "section": "What Makes a Forecast Tighter or Looser",
-    "text": "What Makes a Forecast Tighter or Looser\n\n\nFour levers set the width of these intervals:\n\nConfidence level \\((1-\\alpha)\\): more confidence → wider.\nData spread \\(s\\): noisier data → wider.\nSample size \\(n\\): more stores → narrower.\nDistance of \\(x^*\\) from \\(\\bar{x}\\): forecasting far from the average rating → wider.\n\nThe Owner’s lesson: a confident forecast comes from a tight model (\\(s\\) small), lots of data (\\(n\\) large), and a site that looks like the stores we already have (\\(x^*\\) near \\(\\bar{x}\\)). Forecasting an exotic site is a guess dressed as a number."
+    "text": "What Makes a Forecast Tighter or Looser\n\n\nFour levers set the width of these intervals:\n\nConfidence level \\((1-\\alpha)\\): more confidence → wider.\nData spread \\(s\\): noisier data → wider.\nSample size \\(n\\): more stores → narrower.\nDistance of \\(x^*\\) from \\(\\bar{x}\\): forecasting far from the average rating → wider.\n\nThe manager’s lesson: a confident forecast comes from a tight model (\\(s\\) small), lots of data (\\(n\\) large), and a site that looks like the stores we already have (\\(x^*\\) near \\(\\bar{x}\\)). Forecasting an exotic site is a guess dressed as a number."
   },
   {
     "objectID": "lecture_slides/10_chapter_simple_regression/10_chapter_simple_regression.html#team-sprint-2-test-the-slope-forecast-a-site",
@@ -619,14 +619,14 @@
     "href": "lecture_slides/06_chapter_continuous_probability_distributions/06_chapter_continuous_probability_distributions.html#how-todays-tools-answer-it",
     "title": " QM 6700: Business Analytics ",
     "section": "How Today’s Tools Answer It",
-    "text": "How Today’s Tools Answer It\n\nEvery tool today maps onto the Vungle eRPM data:\n\n\n\n\n\n\n\nThe managerial question\nThe tool\n\n\n\n\n“What does a typical day look like?”\nNormal model (mean $3.46, sd $0.34)\n\n\n“How likely is eRPM above $3.50?”\nz-score + NORM.DIST (a tail area)\n\n\n“What’s a great day, the top 10%?”\nNORM.INV (a percentile)\n\n\n“Is ‘Normal’ even a fair assumption?”\nNormal-probability (QQ) plot\n\n\n“Plan for installs at huge scale”\nNormal approximation of the Binomial\n\n\n\n\n\nOne dataset, one bell curve, and from it every probability and percentile the CEO needs."
+    "text": "How Today’s Tools Answer It\n\nEvery tool today maps onto the Vungle eRPM data:\n\n\n\n\n\n\n\nThe managerial question\nThe tool\n\n\n\n\n“What does a typical day look like?”\nNormal model (mean $3.46, sd $0.34)\n\n\n“How likely is eRPM above $3.50?”\nz-score + NORM.DIST (a tail area)\n\n\n“What’s a great day, the top 10%?”\nNORM.INV (a percentile)\n\n\n“Is ‘Normal’ even a fair assumption?”\nNormal-probability (QQ) plot\n\n\n“Plan for installs at huge scale”\nNormal approximation of the Binomial\n\n\n\n\n\nOne dataset, one bell curve, and from it every probability and percentile the manager needs."
   },
   {
     "objectID": "lecture_slides/06_chapter_continuous_probability_distributions/06_chapter_continuous_probability_distributions.html#the-brief-lecture-1",
     "href": "lecture_slides/06_chapter_continuous_probability_distributions/06_chapter_continuous_probability_distributions.html#the-brief-lecture-1",
     "title": " QM 6700: Business Analytics ",
     "section": "The Brief: Lecture 1",
-    "text": "The Brief: Lecture 1\n\n\nThe big call (Vungle A/B): roll out B, or stay with A? Today’s piece for the CEO: what’s the chance of a high or low value (and can we fit a Normal to it)?\n\n\n“Before we can ask ‘how likely is eRPM above $3.50?’, we need a model for a continuous quantity. Today: what a continuous distribution is, and the two we use most, the uniform and the Normal.”\n\n\n\nThe payoff question \\(P(\\text{eRPM} &gt; \\$3.50)\\) waits for Lecture 2. First we build the machinery: probability as area, the Normal shape, and the z-score that handles any Normal.\nAnchor examples today: Slater’s Buffet (uniform) and Pep Zone inventory (Normal). Then we fit the Normal to Vungle eRPM."
+    "text": "The Brief: Lecture 1\n\n\nThe big call (Vungle A/B): roll out B, or stay with A? Today’s piece for the manager: what’s the chance of a high or low value (and can we fit a Normal to it)?\n\n\n“Before we can ask ‘how likely is eRPM above $3.50?’, we need a model for a continuous quantity. Today: what a continuous distribution is, and the two we use most, the uniform and the Normal.”\n\n\n\nThe payoff question \\(P(\\text{eRPM} &gt; \\$3.50)\\) waits for Lecture 2. First we build the machinery: probability as area, the Normal shape, and the z-score that handles any Normal.\nAnchor examples today: Slater’s Buffet (uniform) and Pep Zone inventory (Normal). Then we fit the Normal to Vungle eRPM."
   },
   {
     "objectID": "lecture_slides/06_chapter_continuous_probability_distributions/06_chapter_continuous_probability_distributions.html#discrete-vs.-continuous-probability-becomes-area",
@@ -752,7 +752,7 @@
     "href": "lecture_slides/06_chapter_continuous_probability_distributions/06_chapter_continuous_probability_distributions.html#the-brief-lecture-2",
     "title": " QM 6700: Business Analytics ",
     "section": "The Brief: Lecture 2",
-    "text": "The Brief: Lecture 2\n\n\nThe big call (Vungle A/B): roll out B, or stay with A? Today’s piece for the CEO: what probability and percentile does the Normal give, and is the model fair?\n\n\n“Cash in the model. Tomorrow’s eRPM is \\(\\sim N(3.459, 0.344)\\). What’s \\(P(\\text{eRPM} &gt; \\$3.50)\\)? What eRPM defines a top-10% day? And before we trust any of it, is the Normal assumption fair?”\n\n\n\nLecture 1 built the model; today we use it: a tail probability, a percentile, an assumption check, and the bridge from counts (Binomial) to the Normal at scale.\nTools: NORM.DIST (tail areas), NORM.INV (percentiles), the QQ plot (assumption), and the Normal approximation of the Binomial (planning installs)."
+    "text": "The Brief: Lecture 2\n\n\nThe big call (Vungle A/B): roll out B, or stay with A? Today’s piece for the manager: what probability and percentile does the Normal give, and is the model fair?\n\n\n“Cash in the model. Tomorrow’s eRPM is \\(\\sim N(3.459, 0.344)\\). What’s \\(P(\\text{eRPM} &gt; \\$3.50)\\)? What eRPM defines a top-10% day? And before we trust any of it, is the Normal assumption fair?”\n\n\n\nLecture 1 built the model; today we use it: a tail probability, a percentile, an assumption check, and the bridge from counts (Binomial) to the Normal at scale.\nTools: NORM.DIST (tail areas), NORM.INV (percentiles), the QQ plot (assumption), and the Normal approximation of the Binomial (planning installs)."
   },
   {
     "objectID": "lecture_slides/06_chapter_continuous_probability_distributions/06_chapter_continuous_probability_distributions.html#perpm-3.50-a-right-tail-area",
@@ -885,7 +885,7 @@
     "href": "lecture_slides/03_chapter_probability/03_chapter_probability.html#overview",
     "title": " QM 6700: Business Analytics ",
     "section": "Overview",
-    "text": "Overview\n\n\n\nCase Spotlight: the Vungle conversion funnel\nExperiments, sample spaces, and events\nAssigning probabilities; basic relationships\nConditional probability: the funnel as a chain\n\n\n\nThe multiplication law and independence\nBayes’ theorem: revising a belief with evidence\nMarginal vs. conditional: the CEO’s trap\nThe decision: what a single install tells you"
+    "text": "Overview\n\n\n\nCase Spotlight: the Vungle conversion funnel\nExperiments, sample spaces, and events\nAssigning probabilities; basic relationships\nConditional probability: the funnel as a chain\n\n\n\nThe multiplication law and independence\nBayes’ theorem: revising a belief with evidence\nMarginal vs. conditional: the manager’s trap\nThe decision: what a single install tells you"
   },
   {
     "objectID": "lecture_slides/03_chapter_probability/03_chapter_probability.html#every-impression-is-a-gamble",
@@ -948,7 +948,7 @@
     "href": "lecture_slides/03_chapter_probability/03_chapter_probability.html#the-vungle-funnel-is-conditional-probability",
     "title": " QM 6700: Business Analytics ",
     "section": "The Vungle Funnel Is Conditional Probability",
-    "text": "The Vungle Funnel Is Conditional Probability\n\n\nEach funnel step conditions on surviving the previous one. For algorithm A (June totals):\n\n\n\n\n\n\n\n\n\n\nStep\nConditional probability\nValue\n\n\n\n\nWatched to completion\n\\(P(\\text{complete} \\mid \\text{impression})\\)\n89.28%\n\n\nClicked, given completed\n\\(P(\\text{click} \\mid \\text{complete})\\)\n5.68%\n\n\nInstalled, given clicked\n\\(P(\\text{install} \\mid \\text{click})\\)\n7.93%\n\n\nInstalled overall\n\\(P(\\text{install} \\mid \\text{impression})\\)\n0.4025%\n\n\n\n\n\nNotice the marginal install rate (\\(0.40\\%\\)) is tiny, but the conditional rate given a click (\\(7.93\\%\\)) is 20× larger. A clicked impression is worth 20 ordinary ones, so the CEO’s spend should chase clicks, not raw impressions."
+    "text": "The Vungle Funnel Is Conditional Probability\n\n\nEach funnel step conditions on surviving the previous one. For algorithm A (June totals):\n\n\n\n\n\n\n\n\n\n\nStep\nConditional probability\nValue\n\n\n\n\nWatched to completion\n\\(P(\\text{complete} \\mid \\text{impression})\\)\n89.28%\n\n\nClicked, given completed\n\\(P(\\text{click} \\mid \\text{complete})\\)\n5.68%\n\n\nInstalled, given clicked\n\\(P(\\text{install} \\mid \\text{click})\\)\n7.93%\n\n\nInstalled overall\n\\(P(\\text{install} \\mid \\text{impression})\\)\n0.4025%\n\n\n\n\n\nNotice the marginal install rate (\\(0.40\\%\\)) is tiny, but the conditional rate given a click (\\(7.93\\%\\)) is 20× larger. A clicked impression is worth 20 ordinary ones, so the manager’s spend should chase clicks, not raw impressions."
   },
   {
     "objectID": "lecture_slides/03_chapter_probability/03_chapter_probability.html#the-funnel-as-a-probability-tree",
@@ -1039,7 +1039,7 @@
     "href": "lecture_slides/03_chapter_probability/03_chapter_probability.html#the-managers-trap",
     "title": " QM 6700: Business Analytics ",
     "section": "The Manager’s Trap",
-    "text": "The Manager’s Trap\n\n\nThe three answers to today’s Brief are three different numbers for the same funnel:\n\n\n\n\n\nQuestion\nType\nAnswer\n\n\n\n\nChance a random impression installs\nMarginal\n0.40%\n\n\nChance of install given a click\nConditional\n7.93%\n\n\nGiven an install, chance it was B\nBayes (reverse)\n5.56%\n\n\n\n\n\nConfusing these is the classic error: “B has a lower install rate, so most installs come from A” is true — but only because A serves 15× more traffic, not because A is the better algorithm. Rates and counts answer different questions."
+    "text": "The Manager’s Trap\n\n\nThe three answers to today’s Brief are three different numbers for the same funnel:\n\n\n\n\n\nQuestion\nType\nAnswer\n\n\n\n\nChance a random impression installs\nMarginal\n0.40%\n\n\nChance of install given a click\nConditional\n7.93%\n\n\nGiven an install, chance it was B\nBayes (reverse)\n5.56%\n\n\n\n\n\nConfusing these is the classic error: “B has a lower install rate, so most installs come from A” is true, but only because A serves 15× more traffic, not because A is the better algorithm. Rates and counts answer different questions."
   },
   {
     "objectID": "lecture_slides/03_chapter_probability/03_chapter_probability.html#why-conditioning-drives-the-funnel",
@@ -1074,7 +1074,7 @@
     "href": "lecture_slides/03_chapter_probability/03_chapter_probability.html#summary",
     "title": " QM 6700: Business Analytics ",
     "section": "Summary",
-    "text": "Summary\nSome key takeaways from this session:\n\nProbability vocabulary: an experiment has a sample space of outcomes; an event is a subset; probabilities live in \\([0,1]\\) and sum to 1.\nBasic relationships: complement, union (addition law subtracts the overlap), intersection (joint), and mutually exclusive.\nConditional probability \\(P(A\\mid B) = P(A\\cap B)/P(B)\\) is the engine of funnel analytics: each step conditions on surviving the last.\nThe multiplication law chains the steps into the end-to-end rate; independence is when conditioning changes nothing (the funnel steps are not independent).\nBayes’ theorem reverses the conditioning (prior → posterior), and base rates dominate: an install is only weak evidence about which algorithm served it.\nMarginal, conditional, and reverse probabilities are different numbers for the same data; match the number to the CEO’s question.\nNext time: probabilities become decisions in Decision Analysis: payoffs, expected value, and the value of information on the Vungle rollout. Today’s tools are also drilled on HW1 (individual, on Brightspace)."
+    "text": "Summary\nSome key takeaways from this session:\n\nProbability vocabulary: an experiment has a sample space of outcomes; an event is a subset; probabilities live in \\([0,1]\\) and sum to 1.\nBasic relationships: complement, union (addition law subtracts the overlap), intersection (joint), and mutually exclusive.\nConditional probability \\(P(A\\mid B) = P(A\\cap B)/P(B)\\) is the engine of funnel analytics: each step conditions on surviving the last.\nThe multiplication law chains the steps into the end-to-end rate; independence is when conditioning changes nothing (the funnel steps are not independent).\nBayes’ theorem reverses the conditioning (prior → posterior), and base rates dominate: an install is only weak evidence about which algorithm served it.\nMarginal, conditional, and reverse probabilities are different numbers for the same data; match the number to the manager’s question.\nNext time: probabilities become decisions in Decision Analysis: payoffs, expected value, and the value of information on the Vungle rollout. Today’s tools are also drilled on HW1 (individual, on Brightspace)."
   },
   {
     "objectID": "lecture_slides/05_chapter_discrete_probability_distributions/05_chapter_discrete_probability_distributions.html#overview",
@@ -1095,7 +1095,7 @@
     "href": "lecture_slides/05_chapter_discrete_probability_distributions/05_chapter_discrete_probability_distributions.html#the-brief-todays-managerial-question",
     "title": " QM 6700: Business Analytics ",
     "section": "The Brief: Today’s Managerial Question",
-    "text": "The Brief: Today’s Managerial Question\n\n\nThe big call (Topics 1–9): roll out B to all advertisers, or stay with A? Before you can ship B, engineering has to know the install load it creates. Today’s slice of that call:\n\n\n“For a typical burst of traffic, what is the probability of at least \\(N\\) installs, so we can size the postback pipeline without over- or under-building?”\n\n\n\nSo far we have described and compared data. Today we model it: as the CEO you put a probability distribution on a random count, then read off the chance of any outcome you care about.\nHow today’s studio runs: I demo each distribution on a textbook example, then your group cracks a separate posted case (one sprint per class), then we debrief the capacity call.\nBy the end you turn a conversion rate into a defensible capacity plan, with the probabilities to back it up."
+    "text": "The Brief: Today’s Managerial Question\n\n\nThe big call (Topics 1–9): roll out B to all advertisers, or stay with A? Before you can ship B, engineering has to know the install load it creates. Today’s slice of that call:\n\n\n“For a typical burst of traffic, what is the probability of at least \\(N\\) installs, so we can size the postback pipeline without over- or under-building?”\n\n\n\nSo far we have described and compared data. Today we model it: as the manager you put a probability distribution on a random count, then read off the chance of any outcome you care about.\nHow today’s studio runs: I demo each distribution on a textbook example, then your group cracks a separate posted case (one sprint per class), then we debrief the capacity call.\nBy the end you turn a conversion rate into a defensible capacity plan, with the probabilities to back it up."
   },
   {
     "objectID": "lecture_slides/05_chapter_discrete_probability_distributions/05_chapter_discrete_probability_distributions.html#how-todays-tools-answer-it",
@@ -1109,7 +1109,7 @@
     "href": "lecture_slides/05_chapter_discrete_probability_distributions/05_chapter_discrete_probability_distributions.html#the-brief-lecture-1",
     "title": " QM 6700: Business Analytics ",
     "section": "The Brief: Lecture 1",
-    "text": "The Brief: Lecture 1\n\n\nThe big call: roll out B, or stay with A? Today’s rung: how many installs should we expect, and how do we model them as a Binomial?\n\n\n“Model the number of installs in a burst of 1,000 impressions as a random count. What is its expected value, its spread, and the probability it hits at least 8, the level that stresses a single postback worker?”\n\n\n\nAs the CEO you build the machinery in three steps: (1) name the random variable, (2) get its expected value and variance, (3) recognize it as a Binomial and compute exact probabilities in Excel.\nThe number that drives everything is Vungle’s conversion rate: \\(p \\approx 0.0035\\) for B, \\(p \\approx 0.0040\\) for A."
+    "text": "The Brief: Lecture 1\n\n\nThe big call: roll out B, or stay with A? Today’s rung: how many installs should we expect, and how do we model them as a Binomial?\n\n\n“Model the number of installs in a burst of 1,000 impressions as a random count. What is its expected value, its spread, and the probability it hits at least 8, the level that stresses a single postback worker?”\n\n\n\nAs the manager you build the machinery in three steps: (1) name the random variable, (2) get its expected value and variance, (3) recognize it as a Binomial and compute exact probabilities in Excel.\nThe number that drives everything is Vungle’s conversion rate: \\(p \\approx 0.0035\\) for B, \\(p \\approx 0.0040\\) for A."
   },
   {
     "objectID": "lecture_slides/05_chapter_discrete_probability_distributions/05_chapter_discrete_probability_distributions.html#what-is-a-random-variable",
@@ -1476,7 +1476,7 @@
     "href": "lecture_slides/02_chapter_descriptive_statistics/02_chapter_descriptive_statistics.html#why-the-mean-alone-misleads",
     "title": " QM 6700: Business Analytics ",
     "section": "Why the Mean Alone Misleads",
-    "text": "Why the Mean Alone Misleads\n\n\nSame mean ($3.46), opposite risk. The CEO who only hears “average $3.46” cannot tell these two campaigns apart.\nToday we add the other half of describing data: spread, shape, and how two variables move together."
+    "text": "Why the Mean Alone Misleads\n\n\nSame mean ($3.46), opposite risk. The manager who only hears “average $3.46” cannot tell these two campaigns apart.\nToday we add the other half of describing data: spread, shape, and how two variables move together."
   },
   {
     "objectID": "lecture_slides/02_chapter_descriptive_statistics/02_chapter_descriptive_statistics.html#how-todays-tools-build-the-ceo-brief",
@@ -1518,7 +1518,7 @@
     "href": "lecture_slides/02_chapter_descriptive_statistics/02_chapter_descriptive_statistics.html#coefficient-of-variation-spread-relative-to-size",
     "title": " QM 6700: Business Analytics ",
     "section": "Coefficient of Variation: Spread Relative to Size",
-    "text": "Coefficient of Variation: Spread Relative to Size\n\n\nA standard deviation of $0.34 is large for eRPM but trivial for a stock price. The coefficient of variation (CV) rescales spread by the mean, so you can compare differently-sized series:\n\n\n\\[\n\\text{CV} = \\left( \\frac{s}{\\bar{x}} \\right) \\times 100\\%\n\\]\n\n\nIt is unit-free (a percentage): “the SD is X% of the mean.”\nVungle read: even before testing, CV tells you which algorithm is relatively more volatile, exactly the risk question you, the CEO, care about.\nExcel: =STDEV.S(rng)/AVERAGE(rng)."
+    "text": "Coefficient of Variation: Spread Relative to Size\n\n\nA standard deviation of $0.34 is large for eRPM but trivial for a stock price. The coefficient of variation (CV) rescales spread by the mean, so you can compare differently-sized series:\n\n\n\\[\n\\text{CV} = \\left( \\frac{s}{\\bar{x}} \\right) \\times 100\\%\n\\]\n\n\nIt is unit-free (a percentage): “the SD is X% of the mean.”\nVungle read: even before testing, CV tells you which algorithm is relatively more volatile, exactly the risk question you, the manager, care about.\nExcel: =STDEV.S(rng)/AVERAGE(rng)."
   },
   {
     "objectID": "lecture_slides/02_chapter_descriptive_statistics/02_chapter_descriptive_statistics.html#anchor-example-two-suppliers-delivery-times",
@@ -1532,7 +1532,7 @@
     "href": "lecture_slides/02_chapter_descriptive_statistics/02_chapter_descriptive_statistics.html#vungle-variability-a-vs.-b",
     "title": " QM 6700: Business Analytics ",
     "section": "Vungle Variability: A vs. B",
-    "text": "Vungle Variability: A vs. B\n\nComputing each measure on the 30 daily eRPM values, by algorithm:\n\n\n\n\n\n\n\n\n\nMeasure\nAlgorithm A\nAlgorithm B\nRead\n\n\n\n\nMean\n$3.347\n$3.459\nB’s center is $0.11 higher\n\n\nRange\n0.887\n1.486\nB swings far more day to day\n\n\nIQR (\\(Q_3-Q_1\\))\n0.264\n0.350\neven the middle 50% is wider for B\n\n\nVariance (\\(s^2\\))\n0.047\n0.119\n\n\n\nStandard deviation (\\(s\\))\n0.217\n0.344\na typical B-day is $0.34 off its mean\n\n\nCV\n6.5%\n10.0%\nB is ~50% more volatile, relative to its size\n\n\n\n\n\n\nB earns more on average, and is markedly riskier. Higher mean, higher spread.\nThat is the real headline for the CEO: “B’s edge comes with more volatility.” The mean hid it; variability reveals it."
+    "text": "Vungle Variability: A vs. B\n\nComputing each measure on the 30 daily eRPM values, by algorithm:\n\n\n\n\n\n\n\n\n\nMeasure\nAlgorithm A\nAlgorithm B\nRead\n\n\n\n\nMean\n$3.347\n$3.459\nB’s center is $0.11 higher\n\n\nRange\n0.887\n1.486\nB swings far more day to day\n\n\nIQR (\\(Q_3-Q_1\\))\n0.264\n0.350\neven the middle 50% is wider for B\n\n\nVariance (\\(s^2\\))\n0.047\n0.119\n\n\n\nStandard deviation (\\(s\\))\n0.217\n0.344\na typical B-day is $0.34 off its mean\n\n\nCV\n6.5%\n10.0%\nB is ~50% more volatile, relative to its size\n\n\n\n\n\n\nB earns more on average, and is markedly riskier. Higher mean, higher spread.\nThat is the real headline for the manager: “B’s edge comes with more volatility.” The mean hid it; variability reveals it."
   },
   {
     "objectID": "lecture_slides/02_chapter_descriptive_statistics/02_chapter_descriptive_statistics.html#excel-descriptive-statistics-in-one-click",
@@ -1728,7 +1728,7 @@
     "href": "lecture_slides/08_chapter_hypothesis_tests/08_chapter_hypothesis_tests.html#june-2014-one-month-of-data-one-funding-decision",
     "title": " QM 6700: Business Analytics ",
     "section": "June 2014: One Month of Data, One Funding Decision",
-    "text": "June 2014: One Month of Data, One Funding Decision\n\n\nVungle is a mobile ad-tech startup: it serves 15-second video ads inside other companies’ apps and earns revenue mainly when a viewer installs the advertised app (cost-per-install).\nTwo analysts built a new ad-serving algorithm (B) and ran it head-to-head against the existing one (A) for the entire month of June 2014. The metric that pays the bills is eRPM, effective revenue per 1,000 impressions.\nWe have already described the data (Topics 1–2) and estimated B’s true mean eRPM with a confidence interval (Topic 7). Now, as Vungle’s CEO, you need a yes/no decision.\nUp to now we asked “what is B’s true eRPM?” Today we ask a sharper question: “is it above a line we care about?”, and we answer with a test."
+    "text": "June 2014: One Month of Data, One Funding Decision\n\n\nVungle is a mobile ad-tech startup: it serves 15-second video ads inside other companies’ apps and earns revenue mainly when a viewer installs the advertised app (cost-per-install).\nTwo analysts built a new ad-serving algorithm (B) and ran it head-to-head against the existing one (A) for the entire month of June 2014. The metric that pays the bills is eRPM, effective revenue per 1,000 impressions.\nWe have already described the data (Topics 1–2) and estimated B’s true mean eRPM with a confidence interval (Topic 7). Now, as Vungle’s manager, you need a yes/no decision.\nUp to now we asked “what is B’s true eRPM?” Today we ask a sharper question: “is it above a line we care about?”, and we answer with a test."
   },
   {
     "objectID": "lecture_slides/08_chapter_hypothesis_tests/08_chapter_hypothesis_tests.html#the-brief-todays-managerial-question",
@@ -1791,7 +1791,7 @@
     "href": "lecture_slides/08_chapter_hypothesis_tests/08_chapter_hypothesis_tests.html#why-the-asymmetry-matters-for-vungle",
     "title": " QM 6700: Business Analytics ",
     "section": "Why the Asymmetry Matters for Vungle",
-    "text": "Why the Asymmetry Matters for Vungle\n\n\nA Type I error funds an algorithm that is not actually better: the company spends on a non-improvement and the analyst’s credibility takes the hit.\nA Type II error walks away from a real improvement: money left on the table, but no bad rollout.\nAs CEO you decide which mistake is worse and set \\(\\alpha\\) accordingly. Here a false “fund it” is the headline risk, so we hold \\(\\alpha = 0.05\\).\nThis is why \\(H_0\\) is conservative: the test protects the status quo until the evidence is strong enough to justify the change."
+    "text": "Why the Asymmetry Matters for Vungle\n\n\nA Type I error funds an algorithm that is not actually better: the company spends on a non-improvement and the analyst’s credibility takes the hit.\nA Type II error walks away from a real improvement: money left on the table, but no bad rollout.\nAs the manager you decide which mistake is worse and set \\(\\alpha\\) accordingly. Here a false “fund it” is the headline risk, so we hold \\(\\alpha = 0.05\\).\nThis is why \\(H_0\\) is conservative: the test protects the status quo until the evidence is strong enough to justify the change."
   },
   {
     "objectID": "lecture_slides/08_chapter_hypothesis_tests/08_chapter_hypothesis_tests.html#the-brief-is-bs-erpm-above-the-3.30-benchmark",
@@ -2099,7 +2099,7 @@
     "href": "lecture_slides/01_chapter_data_statistics/01_chapter_data_statistics.html#meet-vungle-one-decision-30-days-of-data",
     "title": " QM 6700: Business Analytics ",
     "section": "Meet Vungle: One Decision, 30 Days of Data",
-    "text": "Meet Vungle: One Decision, 30 Days of Data\n\n\nVungle is a mobile ad-tech startup: it serves 15-second video ads inside other apps and earns revenue mainly when a viewer installs the advertised app.\nThe metric that pays the bills is eRPM: effective revenue per 1,000 impressions.\nIn June 2014, two analysts built a new ad-serving algorithm (B) and ran it head-to-head against the current one (A) for the whole month.\nYour call as Vungle’s CEO: roll out B to all advertisers, or stay with A?\nWe will use this one decision (is B better than A?) to motivate every tool in this course. The data is in vungle_daily.csv."
+    "text": "Meet Vungle: One Decision, 30 Days of Data\n\n\nVungle is a mobile ad-tech startup: it serves 15-second video ads inside other apps and earns revenue mainly when a viewer installs the advertised app.\nThe metric that pays the bills is eRPM: effective revenue per 1,000 impressions.\nIn June 2014, two analysts built a new ad-serving algorithm (B) and ran it head-to-head against the current one (A) for the whole month.\nYour call as Vungle’s manager: roll out B to all advertisers, or stay with A?\nWe will use this one decision (is B better than A?) to motivate every tool in this course. The data is in vungle_daily.csv."
   },
   {
     "objectID": "lecture_slides/01_chapter_data_statistics/01_chapter_data_statistics.html#the-data-behind-the-decision",
@@ -2127,7 +2127,7 @@
     "href": "lecture_slides/01_chapter_data_statistics/01_chapter_data_statistics.html#what-is-statistics-2",
     "title": " QM 6700: Business Analytics ",
     "section": "What is Statistics?",
-    "text": "What is Statistics?\n\nStatistics is the science of collecting, organizing, analyzing, interpreting, and presenting data to make informed business decisions.\n\n\nIt turns raw numbers, like Vungle’s 30 days of eRPM, into a defensible answer to the CEO’s question.\nThe goal is always the same: reduce uncertainty enough to act."
+    "text": "What is Statistics?\n\nStatistics is the science of collecting, organizing, analyzing, interpreting, and presenting data to make informed business decisions.\n\n\nIt turns raw numbers, like Vungle’s 30 days of eRPM, into a defensible answer to the manager’s question.\nThe goal is always the same: reduce uncertainty enough to act."
   },
   {
     "objectID": "lecture_slides/01_chapter_data_statistics/01_chapter_data_statistics.html#where-is-statistics-applied-in-business",
@@ -2358,7 +2358,7 @@
     "href": "lecture_slides/11_chapter_multiple_regression/11_chapter_multiple_regression.html#last-topic-we-predicted-with-one-variable.-now-we-have-four.",
     "title": " QM 6700: Business Analytics ",
     "section": "Last Topic We Predicted with One Variable. Now We Have Four.",
-    "text": "Last Topic We Predicted with One Variable. Now We Have Four.\n\n\nYou own a regional auto-parts retail chain: 45 stores, deciding where to put the next dollar.\nLast time we found a single strong predictor of a store’s annual sales: its Yelp rating. Each extra star was worth roughly +$758K a year. A clean simple-regression story.\nBut a Yelp rating is a symptom, not a lever you can pull directly. Your real question as Owner is sharper:\n\n\n\n“We can invest in location (open stores in bigger, richer markets), in service (raise the customer experience), or in merchandising (pay for premium endcap shelf placement). Which actually drives sales, and where should the money go?”\n\n\n\nAnswering that needs several predictors at once, plus a way to isolate the effect of each one. That is today’s tool: multiple regression."
+    "text": "Last Topic We Predicted with One Variable. Now We Have Four.\n\n\nYou own a regional auto-parts retail chain: 45 stores, deciding where to put the next dollar.\nLast time we found a single strong predictor of a store’s annual sales: its Yelp rating. Each extra star was worth roughly +$758K a year. A clean simple-regression story.\nBut a Yelp rating is a symptom, not a lever you can pull directly. Your real question as the manager is sharper:\n\n\n\n“We can invest in location (open stores in bigger, richer markets), in service (raise the customer experience), or in merchandising (pay for premium endcap shelf placement). Which actually drives sales, and where should the money go?”\n\n\n\nAnswering that needs several predictors at once, plus a way to isolate the effect of each one. That is today’s tool: multiple regression."
   },
   {
     "objectID": "lecture_slides/11_chapter_multiple_regression/11_chapter_multiple_regression.html#the-data-45-stores-four-candidate-drivers",
@@ -2631,14 +2631,14 @@
     "href": "lecture_slides/11_chapter_multiple_regression/11_chapter_multiple_regression.html#the-whole-picture-on-one-page",
     "title": " QM 6700: Business Analytics ",
     "section": "The Whole Picture on One Page",
-    "text": "The Whole Picture on One Page\n\n\n\n\n\n\n\n\n\n\n\nDriver\nPartial effect\n\\(t\\)\nVerdict\nInvestment read\n\n\n\n\nPopulation (3 mi)\n+$0.35K / 1,000 residents\n0.88\nnot significant\nbigger market ≠ more sales here\n\n\nIncome (3 mi)\n+$4.7K / $1,000 income\n1.50\nnot significant\nricher market ≠ more sales here\n\n\nYelp rating\n+$642K / star\n16.5\nsignificant\ninvest in service / experience\n\n\nEndcap\n+$816K\n6.98\nsignificant\nbuy the endcap placement\n\n\n\nModel: \\(R^2 = 0.932\\), adjusted \\(R^2 = 0.925\\), overall \\(F = 136.7\\) (p \\(&lt; 10^{-22}\\)), \\(s = \\$308.5\\)K, all VIF \\(&lt; 1.7\\).\n\n\nYour recommendation as Owner: stop chasing big, rich markets; location demographics don’t move sales in this chain. The money belongs in service quality (every Yelp star ≈ +$642K/yr) and in endcap merchandising (≈ +$816K/yr, well worth a sub-$816K lease). Both effects are statistically rock-solid and not a multicollinearity mirage."
+    "text": "The Whole Picture on One Page\n\n\n\n\n\n\n\n\n\n\n\nDriver\nPartial effect\n\\(t\\)\nVerdict\nInvestment read\n\n\n\n\nPopulation (3 mi)\n+$0.35K / 1,000 residents\n0.88\nnot significant\nbigger market ≠ more sales here\n\n\nIncome (3 mi)\n+$4.7K / $1,000 income\n1.50\nnot significant\nricher market ≠ more sales here\n\n\nYelp rating\n+$642K / star\n16.5\nsignificant\ninvest in service / experience\n\n\nEndcap\n+$816K\n6.98\nsignificant\nbuy the endcap placement\n\n\n\nModel: \\(R^2 = 0.932\\), adjusted \\(R^2 = 0.925\\), overall \\(F = 136.7\\) (p \\(&lt; 10^{-22}\\)), \\(s = \\$308.5\\)K, all VIF \\(&lt; 1.7\\).\n\n\nYour recommendation as the manager: stop chasing big, rich markets; location demographics don’t move sales in this chain. The money belongs in service quality (every Yelp star ≈ +$642K/yr) and in endcap merchandising (≈ +$816K/yr, well worth a sub-$816K lease). Both effects are statistically rock-solid and not a multicollinearity mirage."
   },
   {
     "objectID": "lecture_slides/11_chapter_multiple_regression/11_chapter_multiple_regression.html#f-vs.-t-the-lesson-that-travels",
     "href": "lecture_slides/11_chapter_multiple_regression/11_chapter_multiple_regression.html#f-vs.-t-the-lesson-that-travels",
     "title": " QM 6700: Business Analytics ",
     "section": "\\(F\\) vs. \\(t\\): the Lesson That Travels",
-    "text": "\\(F\\) vs. \\(t\\): the Lesson That Travels\n\n\nThe \\(F\\)-test and the \\(t\\)-tests answer different questions, and you need both:\n\n\\(F\\) said the model as a whole is useful, but that alone could have tempted us to keep all four variables.\nThe \\(t\\)-tests revealed that half the predictors were dead weight, steering the budget toward the two that actually pay.\n\nSignificance is conditional. Every coefficient and every \\(t\\) here means “…holding the other three constant.” Change the set of predictors and the story can change.\nSignificance ≠ importance. With huge samples trivial effects turn “significant”; with small samples real effects can hide. Always pair the test with the dollar size of the effect: that is the number you decide on as Owner."
+    "text": "\\(F\\) vs. \\(t\\): the Lesson That Travels\n\n\nThe \\(F\\)-test and the \\(t\\)-tests answer different questions, and you need both:\n\n\\(F\\) said the model as a whole is useful, but that alone could have tempted us to keep all four variables.\nThe \\(t\\)-tests revealed that half the predictors were dead weight, steering the budget toward the two that actually pay.\n\nSignificance is conditional. Every coefficient and every \\(t\\) here means “…holding the other three constant.” Change the set of predictors and the story can change.\nSignificance ≠ importance. With huge samples trivial effects turn “significant”; with small samples real effects can hide. Always pair the test with the dollar size of the effect: that is the number you decide on as the manager."
   },
   {
     "objectID": "lecture_slides/11_chapter_multiple_regression/11_chapter_multiple_regression.html#managers-takeaway",
@@ -2673,7 +2673,7 @@
     "href": "lecture_slides/07_chapter_interval_estimation/07_chapter_interval_estimation.html#the-brief-30-days-is-a-sample",
     "title": " QM 6700: Business Analytics ",
     "section": "The Brief: 30 Days Is a Sample",
-    "text": "The Brief: 30 Days Is a Sample\n\n\n“We ran algorithm B for 30 days and saw a mean eRPM of about $3.46. But June is over. What is B’s true mean eRPM going forward, and how close can 30 days really get us?”\n\n\n\nThe big call you own as CEO: roll out B, or stay with A? You cannot make it on a single 30-day number whose error you can’t name.\nToday’s question (Lecture 1): how trustworthy is a 30-day sample mean? Until now we described the 30 days we have; today we generalize to the days we don’t have, every future impression B will serve.\nThe 30-day mean $3.46 is a single point estimate. By itself it hides the question the CEO must ask: how much could it be off? This lecture quantifies that wobble; the next turns it into a range."
+    "text": "The Brief: 30 Days Is a Sample\n\n\n“We ran algorithm B for 30 days and saw a mean eRPM of about $3.46. But June is over. What is B’s true mean eRPM going forward, and how close can 30 days really get us?”\n\n\n\nThe big call you own as the manager: roll out B, or stay with A? You cannot make it on a single 30-day number whose error you can’t name.\nToday’s question (Lecture 1): how trustworthy is a 30-day sample mean? Until now we described the 30 days we have; today we generalize to the days we don’t have, every future impression B will serve.\nThe 30-day mean $3.46 is a single point estimate. By itself it hides the question the manager must ask: how much could it be off? This lecture quantifies that wobble; the next turns it into a range."
   },
   {
     "objectID": "lecture_slides/07_chapter_interval_estimation/07_chapter_interval_estimation.html#how-todays-studio-runs",
@@ -2687,7 +2687,7 @@
     "href": "lecture_slides/07_chapter_interval_estimation/07_chapter_interval_estimation.html#the-brief-why-a-sample-mean-wobbles",
     "title": " QM 6700: Business Analytics ",
     "section": "The Brief: Why a Sample Mean Wobbles",
-    "text": "The Brief: Why a Sample Mean Wobbles\n\n\nA different 30 days (say, July) would give a different mean eRPM. So would any other random sample.\nThat wobble is not a mistake; it is the price of working from a sample instead of the whole population.\nLecture 1’s question: if the sample mean changes every time we sample, how can the CEO trust any one of them? The answer is the sampling distribution, and it is surprisingly well-behaved."
+    "text": "The Brief: Why a Sample Mean Wobbles\n\n\nA different 30 days (say, July) would give a different mean eRPM. So would any other random sample.\nThat wobble is not a mistake; it is the price of working from a sample instead of the whole population.\nLecture 1’s question: if the sample mean changes every time we sample, how can the manager trust any one of them? The answer is the sampling distribution, and it is surprisingly well-behaved."
   },
   {
     "objectID": "lecture_slides/07_chapter_interval_estimation/07_chapter_interval_estimation.html#population-sample-inference",
@@ -2799,7 +2799,7 @@
     "href": "lecture_slides/07_chapter_interval_estimation/07_chapter_interval_estimation.html#the-brief-3.46-give-or-take-how-much",
     "title": " QM 6700: Business Analytics ",
     "section": "The Brief: $3.46, Give or Take How Much?",
-    "text": "The Brief: $3.46, Give or Take How Much?\n\n\n“Don’t just tell me B earns $3.46. Tell me the range I can bank on, and tell me how many test-days it would take to cut that range in half.”\n\n\n\nThe big call you still own as CEO: roll out B, or stay with A? A single $3.46 with no range cannot support it.\nToday’s question (Lecture 2): what is B’s true mean (and conversion rate), give or take, and how big a sample do we need? We attach a margin of error and report an interval we are 95% confident contains the truth.\nThen we invert the question: pick the precision first (\\(\\pm\\$0.05\\)), and solve for the sample size that delivers it."
+    "text": "The Brief: $3.46, Give or Take How Much?\n\n\n“Don’t just tell me B earns $3.46. Tell me the range I can bank on, and tell me how many test-days it would take to cut that range in half.”\n\n\n\nThe big call you still own as the manager: roll out B, or stay with A? A single $3.46 with no range cannot support it.\nToday’s question (Lecture 2): what is B’s true mean (and conversion rate), give or take, and how big a sample do we need? We attach a margin of error and report an interval we are 95% confident contains the truth.\nThen we invert the question: pick the precision first (\\(\\pm\\$0.05\\)), and solve for the sample size that delivers it."
   },
   {
     "objectID": "lecture_slides/07_chapter_interval_estimation/07_chapter_interval_estimation.html#from-standard-error-to-a-margin-of-error",
@@ -2848,7 +2848,7 @@
     "href": "lecture_slides/07_chapter_interval_estimation/07_chapter_interval_estimation.html#the-vungle-erpm-interval-the-five-steps",
     "title": " QM 6700: Business Analytics ",
     "section": "The Vungle eRPM Interval: the Five Steps",
-    "text": "The Vungle eRPM Interval: the Five Steps\n\n1. Business context. B’s true mean eRPM drives every revenue projection; the CEO needs a defensible range, not a single number.\n2. Setup. \\(n = 30\\) days, \\(\\sigma\\) unknown, \\(\\bar{x}_B = \\$3.459\\), \\(s_B = \\$0.344\\), \\(df = 29\\), 95% confidence.\n3. Compute.\n\\[\n\\frac{s}{\\sqrt{n}} = \\frac{0.344}{\\sqrt{30}} = 0.0629,\n\\qquad\nt_{0.025,\\,29} = 2.045,\n\\qquad\nE = 2.045 \\times 0.0629 = 0.1286\n\\]\n4. Interval. \\(3.459 \\pm 0.129 = (\\$3.330,\\; \\$3.588)\\).\n5. CEO’s Translation. We are 95% confident B’s true mean eRPM is between $3.33 and $3.59. The $0.13 margin is wide relative to the $0.11 gap over A, a first hint that 30 days may not yet settle the A-vs-B question."
+    "text": "The Vungle eRPM Interval: the Five Steps\n\n1. Business context. B’s true mean eRPM drives every revenue projection; the manager needs a defensible range, not a single number.\n2. Setup. \\(n = 30\\) days, \\(\\sigma\\) unknown, \\(\\bar{x}_B = \\$3.459\\), \\(s_B = \\$0.344\\), \\(df = 29\\), 95% confidence.\n3. Compute.\n\\[\n\\frac{s}{\\sqrt{n}} = \\frac{0.344}{\\sqrt{30}} = 0.0629,\n\\qquad\nt_{0.025,\\,29} = 2.045,\n\\qquad\nE = 2.045 \\times 0.0629 = 0.1286\n\\]\n4. Interval. \\(3.459 \\pm 0.129 = (\\$3.330,\\; \\$3.588)\\).\n5. Manager’s Translation. We are 95% confident B’s true mean eRPM is between $3.33 and $3.59. The $0.13 margin is wide relative to the $0.11 gap over A, a first hint that 30 days may not yet settle the A-vs-B question."
   },
   {
     "objectID": "lecture_slides/07_chapter_interval_estimation/07_chapter_interval_estimation.html#the-two-intervals-side-by-side",
@@ -2925,7 +2925,7 @@
     "href": "lecture_slides/07_chapter_interval_estimation/07_chapter_interval_estimation.html#how-many-days-does-vungle-need",
     "title": " QM 6700: Business Analytics ",
     "section": "How Many Days Does Vungle Need?",
-    "text": "How Many Days Does Vungle Need?\n\nQuestion: how many test-days for the mean eRPM margin to hit \\(\\pm\\$0.10\\)? \\(\\pm\\$0.05\\)? (planning \\(s = 0.344\\), 95% confidence, \\(z = 1.96\\))\n\n\\[\nn_{0.10} = \\left(\\frac{1.96 \\times 0.344}{0.10}\\right)^{2} = 45.6 \\;\\rightarrow\\; \\mathbf{46 \\text{ days}}\n\\]\n\n\n\\[\nn_{0.05} = \\left(\\frac{1.96 \\times 0.344}{0.05}\\right)^{2} = 182.3 \\;\\rightarrow\\; \\mathbf{183 \\text{ days}}\n\\]\n\nThe lesson: halving the margin (\\(\\$0.10 \\rightarrow \\$0.05\\)) takes four times the days (\\(46 \\rightarrow 183\\)). Precision is expensive, and the CEO must decide whether $0.05 of precision is worth six months of testing."
+    "text": "How Many Days Does Vungle Need?\n\nQuestion: how many test-days for the mean eRPM margin to hit \\(\\pm\\$0.10\\)? \\(\\pm\\$0.05\\)? (planning \\(s = 0.344\\), 95% confidence, \\(z = 1.96\\))\n\n\\[\nn_{0.10} = \\left(\\frac{1.96 \\times 0.344}{0.10}\\right)^{2} = 45.6 \\;\\rightarrow\\; \\mathbf{46 \\text{ days}}\n\\]\n\n\n\\[\nn_{0.05} = \\left(\\frac{1.96 \\times 0.344}{0.05}\\right)^{2} = 182.3 \\;\\rightarrow\\; \\mathbf{183 \\text{ days}}\n\\]\n\nThe lesson: halving the margin (\\(\\$0.10 \\rightarrow \\$0.05\\)) takes four times the days (\\(46 \\rightarrow 183\\)). Precision is expensive, and the manager must decide whether $0.05 of precision is worth six months of testing."
   },
   {
     "objectID": "lecture_slides/07_chapter_interval_estimation/07_chapter_interval_estimation.html#margin-of-error-vs.-sample-size",
@@ -3009,7 +3009,7 @@
     "href": "lecture_slides/09_chapter_hypothesis_tests_two_populations/09_chapter_hypothesis_tests_two_populations.html#the-brief-todays-managerial-question",
     "title": " QM 6700: Business Analytics ",
     "section": "The Brief: Today’s Managerial Question",
-    "text": "The Brief: Today’s Managerial Question\n\n\nThe big call you own as Vungle’s CEO: roll out algorithm B, or stay with A? We have built toward it all term; today we settle it.\n\n\n“B’s daily eRPM averaged about $0.11 higher than A’s. Is that a real improvement, or just month-to-month noise? Should Vungle roll out B to all traffic?”\n\n\n\nIn Topic 8 we tested one population against a benchmark (“is B’s mean eRPM above $3.30?”). Today’s question is the one that decides the rollout: is B really better than A?, comparing two populations.\nHow today’s studio runs: I demo each test on a textbook example, then on the Vungle data; you debrief the rollout call; then your group runs a fresh case and submits its own call.\nBy the end of class you, the CEO, will have the recommendation, with the statistics to back it up."
+    "text": "The Brief: Today’s Managerial Question\n\n\nThe big call you own as Vungle’s manager: roll out algorithm B, or stay with A? We have built toward it all term; today we settle it.\n\n\n“B’s daily eRPM averaged about $0.11 higher than A’s. Is that a real improvement, or just month-to-month noise? Should Vungle roll out B to all traffic?”\n\n\n\nIn Topic 8 we tested one population against a benchmark (“is B’s mean eRPM above $3.30?”). Today’s question is the one that decides the rollout: is B really better than A?, comparing two populations.\nHow today’s studio runs: I demo each test on a textbook example, then on the Vungle data; you debrief the rollout call; then your group runs a fresh case and submits its own call.\nBy the end of class you, the manager, will have the recommendation, with the statistics to back it up."
   },
   {
     "objectID": "lecture_slides/09_chapter_hypothesis_tests_two_populations/09_chapter_hypothesis_tests_two_populations.html#how-todays-tools-answer-it",
@@ -3093,7 +3093,7 @@
     "href": "lecture_slides/09_chapter_hypothesis_tests_two_populations/09_chapter_hypothesis_tests_two_populations.html#express-deliveries-the-five-steps",
     "title": " QM 6700: Business Analytics ",
     "section": "Express Deliveries: the Five Steps",
-    "text": "Express Deliveries: the Five Steps\n\n1. Business context. Choosing a carrier; the metric is delivery time (hours); slower deliveries cost client goodwill.\n2. Hypotheses (is there any difference? → two-tailed):\n\\[\nH_0: \\mu_d = 0 \\qquad H_a: \\mu_d \\neq 0 \\qquad \\alpha = 0.05\n\\]\n3. Test statistic. From the ten differences:\n\\[\n\\bar{d} = 2.70, \\quad s_d = 2.908, \\quad SE = \\frac{2.908}{\\sqrt{10}} = 0.920, \\quad t = \\frac{2.70}{0.920} = 2.94, \\quad df = 9\n\\]\n4. Decision. \\(p\\text{-value} = 0.017 \\leq \\alpha = 0.05\\) → reject \\(H_0\\). Also: 95% CI for \\(\\mu_d\\) = \\((0.620,\\; 4.780)\\) hours; zero is not a plausible mean difference.\n5. The CEO’s Translation. UPX averages about 2.7 hours slower than INTEX on identical routes: a real difference, not noise. If speed matters, route the volume to INTEX (then negotiate with UPX)."
+    "text": "Express Deliveries: the Five Steps\n\n1. Business context. Choosing a carrier; the metric is delivery time (hours); slower deliveries cost client goodwill.\n2. Hypotheses (is there any difference? → two-tailed):\n\\[\nH_0: \\mu_d = 0 \\qquad H_a: \\mu_d \\neq 0 \\qquad \\alpha = 0.05\n\\]\n3. Test statistic. From the ten differences:\n\\[\n\\bar{d} = 2.70, \\quad s_d = 2.908, \\quad SE = \\frac{2.908}{\\sqrt{10}} = 0.920, \\quad t = \\frac{2.70}{0.920} = 2.94, \\quad df = 9\n\\]\n4. Decision. \\(p\\text{-value} = 0.017 \\leq \\alpha = 0.05\\) → reject \\(H_0\\). Also: 95% CI for \\(\\mu_d\\) = \\((0.620,\\; 4.780)\\) hours; zero is not a plausible mean difference.\n5. The Manager’s Translation. UPX averages about 2.7 hours slower than INTEX on identical routes: a real difference, not noise. If speed matters, route the volume to INTEX (then negotiate with UPX)."
   },
   {
     "objectID": "lecture_slides/09_chapter_hypothesis_tests_two_populations/09_chapter_hypothesis_tests_two_populations.html#express-deliveries-in-excel",
@@ -3219,7 +3219,7 @@
     "href": "lecture_slides/09_chapter_hypothesis_tests_two_populations/09_chapter_hypothesis_tests_two_populations.html#owners-equity-the-five-steps",
     "title": " QM 6700: Business Analytics ",
     "section": "Owner’s Equity: the Five Steps",
-    "text": "Owner’s Equity: the Five Steps\n\n1. Business context. Does thin capitalization at founding predict first-year failure? (Lender screening, founder advice.)\n2. Hypotheses (two-tailed): \\(H_0: \\mu_1 - \\mu_2 = 0\\) vs. \\(H_a: \\mu_1 - \\mu_2 \\neq 0\\), \\(\\alpha = 0.05\\). Independent samples, \\(\\sigma\\) unknown, no reason to assume equal variances → Welch \\(t\\).\n3. Test statistic.\n\\[\nt = \\frac{(5.73 - 7.87) - 0}{\\sqrt{\\dfrac{3.33^2}{15} + \\dfrac{2.61^2}{15}}} = \\frac{-2.14}{1.093} = -1.96, \\qquad df \\approx 26\n\\]\n4. Decision. \\(p\\)-value (two-tail) \\(\\approx 0.061 &gt; \\alpha = 0.05\\) → fail to reject \\(H_0\\). 95% CI for \\(\\mu_1 - \\mu_2\\): \\((-4.4,\\; 0.1)\\), which barely includes zero.\n5. The Owner’s Translation. Bankrupt firms started with about $2.1K less equity on average, but with only 15 firms per group we cannot rule out chance at the 5% level. A borderline result, worth a bigger sample before building lending policy on it."
+    "text": "Owner’s Equity: the Five Steps\n\n1. Business context. Does thin capitalization at founding predict first-year failure? (Lender screening, founder advice.)\n2. Hypotheses (two-tailed): \\(H_0: \\mu_1 - \\mu_2 = 0\\) vs. \\(H_a: \\mu_1 - \\mu_2 \\neq 0\\), \\(\\alpha = 0.05\\). Independent samples, \\(\\sigma\\) unknown, no reason to assume equal variances → Welch \\(t\\).\n3. Test statistic.\n\\[\nt = \\frac{(5.73 - 7.87) - 0}{\\sqrt{\\dfrac{3.33^2}{15} + \\dfrac{2.61^2}{15}}} = \\frac{-2.14}{1.093} = -1.96, \\qquad df \\approx 26\n\\]\n4. Decision. \\(p\\)-value (two-tail) \\(\\approx 0.061 &gt; \\alpha = 0.05\\) → fail to reject \\(H_0\\). 95% CI for \\(\\mu_1 - \\mu_2\\): \\((-4.4,\\; 0.1)\\), which barely includes zero.\n5. The Manager’s Translation. Bankrupt firms started with about $2.1K less equity on average, but with only 15 firms per group we cannot rule out chance at the 5% level. A borderline result, worth a bigger sample before building lending policy on it."
   },
   {
     "objectID": "lecture_slides/09_chapter_hypothesis_tests_two_populations/09_chapter_hypothesis_tests_two_populations.html#owners-equity-in-excel",
@@ -3282,7 +3282,7 @@
     "href": "lecture_slides/09_chapter_hypothesis_tests_two_populations/09_chapter_hypothesis_tests_two_populations.html#vungle-conversion-the-five-steps",
     "title": " QM 6700: Business Analytics ",
     "section": "Vungle Conversion: the Five Steps",
-    "text": "Vungle Conversion: the Five Steps\n\n1. Business context. Advertisers pay mostly per install; conversion rate signals how well ads match users.\n2. Hypotheses (two-tailed): \\(H_0: p_B - p_A = 0\\) vs. \\(H_a: p_B - p_A \\neq 0\\), \\(\\alpha = 0.05\\).\n3. Test statistic.\n\\[\n\\bar{p} = \\frac{951{,}666 + 56{,}031}{236{,}459{,}402 + 15{,}825{,}376} = 0.3994\\%,\n\\qquad SE_{pool} = 1.64 \\times 10^{-5}\n\\]\n\\[\nz = \\frac{0.003541 - 0.004025}{0.0000164} = \\mathbf{-29.56}\n\\]\n4. Decision. \\(|z| = 29.56 \\gg z_{0.025} = 1.96\\); \\(p\\)-value \\(&lt; 0.0001\\) → reject \\(H_0\\) overwhelmingly.\n5. The CEO’s Translation. B converts impressions to installs at a genuinely lower rate than A: 0.354% vs. 0.403%, a 12% relative drop. This is not noise."
+    "text": "Vungle Conversion: the Five Steps\n\n1. Business context. Advertisers pay mostly per install; conversion rate signals how well ads match users.\n2. Hypotheses (two-tailed): \\(H_0: p_B - p_A = 0\\) vs. \\(H_a: p_B - p_A \\neq 0\\), \\(\\alpha = 0.05\\).\n3. Test statistic.\n\\[\n\\bar{p} = \\frac{951{,}666 + 56{,}031}{236{,}459{,}402 + 15{,}825{,}376} = 0.3994\\%,\n\\qquad SE_{pool} = 1.64 \\times 10^{-5}\n\\]\n\\[\nz = \\frac{0.003541 - 0.004025}{0.0000164} = \\mathbf{-29.56}\n\\]\n4. Decision. \\(|z| = 29.56 \\gg z_{0.025} = 1.96\\); \\(p\\)-value \\(&lt; 0.0001\\) → reject \\(H_0\\) overwhelmingly.\n5. The Manager’s Translation. B converts impressions to installs at a genuinely lower rate than A: 0.354% vs. 0.403%, a 12% relative drop. This is not noise."
   },
   {
     "objectID": "lecture_slides/09_chapter_hypothesis_tests_two_populations/09_chapter_hypothesis_tests_two_populations.html#the-surprise-b-converts-less-but-earns-more",
@@ -3310,14 +3310,14 @@
     "href": "lecture_slides/09_chapter_hypothesis_tests_two_populations/09_chapter_hypothesis_tests_two_populations.html#statistical-vs.-practical-significance",
     "title": " QM 6700: Business Analytics ",
     "section": "Statistical vs. Practical Significance",
-    "text": "Statistical vs. Practical Significance\n\n\nWith \\(n\\) in the hundreds of millions, the conversion test was guaranteed to be “significant”: at this scale, even a microscopic difference produces a huge \\(z\\).\n\\(z = -29.56\\) tells you the difference is real; it does not tell you the difference matters.\nAlways pair the test with the effect size: -0.048 percentage points (a 12% relative drop in conversion). That is the number the CEO should debate.\nFlip side from the equity example: small samples can make real effects invisible (low power). Large \\(n\\): everything is significant. Small \\(n\\): nothing is. Neither replaces judgment about magnitude."
+    "text": "Statistical vs. Practical Significance\n\n\nWith \\(n\\) in the hundreds of millions, the conversion test was guaranteed to be “significant”: at this scale, even a microscopic difference produces a huge \\(z\\).\n\\(z = -29.56\\) tells you the difference is real; it does not tell you the difference matters.\nAlways pair the test with the effect size: -0.048 percentage points (a 12% relative drop in conversion). That is the number the manager should debate.\nFlip side from the equity example: small samples can make real effects invisible (low power). Large \\(n\\): everything is significant. Small \\(n\\): nothing is. Neither replaces judgment about magnitude."
   },
   {
     "objectID": "lecture_slides/09_chapter_hypothesis_tests_two_populations/09_chapter_hypothesis_tests_two_populations.html#three-tests-one-decision",
     "href": "lecture_slides/09_chapter_hypothesis_tests_two_populations/09_chapter_hypothesis_tests_two_populations.html#three-tests-one-decision",
     "title": " QM 6700: Business Analytics ",
     "section": "Three Tests, One Decision",
-    "text": "Three Tests, One Decision\n\n\n\n\n\n\n\n\n\nTest\nResult\nDecision signal\n\n\n\n\nPaired \\(t\\), eRPM (B vs. A)\n\\(t = 3.33\\), \\(p = 0.0024\\)\nB earns more per impression. Roll out.\n\n\nIndependent \\(t\\), same data, wrong design\n\\(t = 1.51\\), \\(p = 0.138\\)\n(Cautionary: wrong design would have hidden the lift.)\n\n\nTwo-proportion \\(z\\), conversion\n\\(z = -29.56\\), \\(p &lt; 0.0001\\)\nB converts less. Monitor.\n\n\n\n\n\nYour recommendation as CEO: roll out B. eRPM is the metric aligned with Vungle’s business model, the lift is statistically solid ($0.04–$0.18 per 1,000), and it is worth ≈ $26.5K/month on June’s traffic. Track the install funnel weekly post-rollout in case the lower conversion rate erodes advertiser satisfaction."
+    "text": "Three Tests, One Decision\n\n\n\n\n\n\n\n\n\nTest\nResult\nDecision signal\n\n\n\n\nPaired \\(t\\), eRPM (B vs. A)\n\\(t = 3.33\\), \\(p = 0.0024\\)\nB earns more per impression. Roll out.\n\n\nIndependent \\(t\\), same data, wrong design\n\\(t = 1.51\\), \\(p = 0.138\\)\n(Cautionary: wrong design would have hidden the lift.)\n\n\nTwo-proportion \\(z\\), conversion\n\\(z = -29.56\\), \\(p &lt; 0.0001\\)\nB converts less. Monitor.\n\n\n\n\n\nYour recommendation as the manager: roll out B. eRPM is the metric aligned with Vungle’s business model, the lift is statistically solid ($0.04–$0.18 per 1,000), and it is worth ≈ $26.5K/month on June’s traffic. Track the install funnel weekly post-rollout in case the lower conversion rate erodes advertiser satisfaction."
   },
   {
     "objectID": "lecture_slides/09_chapter_hypothesis_tests_two_populations/09_chapter_hypothesis_tests_two_populations.html#from-inference-to-decision-analysis",
@@ -3467,7 +3467,7 @@
     "href": "lecture_slides/01_chapter_data_statistics/01_chapter_data_statistics.html#read-the-data-before-you-trust-the-analysis",
     "title": " QM 6700: Business Analytics ",
     "section": "Read the Data Before You Trust the Analysis",
-    "text": "Read the Data Before You Trust the Analysis\n\n\nA recommendation is only as good as the data under it, so a sharp CEO looks first. Here is a slice of vungle_daily.csv, algorithms interleaved by day:\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nalgorithm\ndate\nimpressions\ncompletes\nclicks\ninstalls\nerpm\n\n\n\n\nA\n2014-06-01\n6,777,407\n5,978,434\n345,309\n31,119\n3.327\n\n\nB\n2014-06-01\n569,044\n499,235\n28,035\n2,111\n2.953\n\n\nA\n2014-06-02\n6,004,310\n5,331,727\n299,732\n24,601\n2.943\n\n\nB\n2014-06-02\n505,963\n447,695\n24,621\n1,713\n2.587\n\n\n\n\n\n\nElement = one algorithm-day (60 of them). Variables = the 7 columns. One observation = one row. Total values = 60 × 7 = 420."
+    "text": "Read the Data Before You Trust the Analysis\n\n\nA recommendation is only as good as the data under it, so a sharp manager looks first. Here is a slice of vungle_daily.csv, algorithms interleaved by day:\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nalgorithm\ndate\nimpressions\ncompletes\nclicks\ninstalls\nerpm\n\n\n\n\nA\n2014-06-01\n6,777,407\n5,978,434\n345,309\n31,119\n3.327\n\n\nB\n2014-06-01\n569,044\n499,235\n28,035\n2,111\n2.953\n\n\nA\n2014-06-02\n6,004,310\n5,331,727\n299,732\n24,601\n2.943\n\n\nB\n2014-06-02\n505,963\n447,695\n24,621\n1,713\n2.587\n\n\n\n\n\n\nElement = one algorithm-day (60 of them). Variables = the 7 columns. One observation = one row. Total values = 60 × 7 = 420."
   },
   {
     "objectID": "lecture_slides/01_chapter_data_statistics/01_chapter_data_statistics.html#team-sprint-pressure-test-the-analysts-claim",
@@ -3488,7 +3488,7 @@
     "href": "lecture_slides/01_chapter_data_statistics/01_chapter_data_statistics.html#youre-the-decision-maker-two-cases-to-crack",
     "title": " QM 6700: Business Analytics ",
     "section": "You’re the Decision-Maker: Two Cases to Crack",
-    "text": "You’re the Decision-Maker: Two Cases to Crack\n\n\nThis course puts you in the decision-maker’s seat: the CEO or owner who has to act. You’ll work in a fixed group (assigned this week), cracking real cases in class and judging the analysis behind every call.\n\n\n\n① Vungle A/B (Topics 1–9, up first). A mobile ad-tech startup asking roll out algorithm B, or keep A? You’ll learn to describe, quantify uncertainty, and test so you can judge that claim before betting the company on it.\n\n\n\n\n② Auto-parts retail (Topics 10–11). A 45-store chain asking where should the next dollar go? You’ll evaluate the analyst’s model that predicts store sales, then decide where to invest.\n\n\n\n\nEvery class: your group works in the in-class case and submits its call before you leave (graded)."
+    "text": "You’re the Decision-Maker: Two Cases to Crack\n\n\nThis course puts you in the decision-maker’s seat: the manager who has to act. You’ll work in a fixed group (assigned this week), cracking real cases in class and judging the analysis behind every call.\n\n\n\n① Vungle A/B (Topics 1–9, up first). A mobile ad-tech startup asking roll out algorithm B, or keep A? You’ll learn to describe, quantify uncertainty, and test so you can judge that claim before betting the company on it.\n\n\n\n\n② Auto-parts retail (Topics 10–11). A 45-store chain asking where should the next dollar go? You’ll evaluate the analyst’s model that predicts store sales, then decide where to invest.\n\n\n\n\nEvery class: your group works in the in-class case and submits its call before you leave (graded)."
   },
   {
     "objectID": "lecture_slides/01_chapter_data_statistics/01_chapter_data_statistics.html#how-every-class-runs",
@@ -3579,7 +3579,7 @@
     "href": "lecture_slides/03_chapter_probability/03_chapter_probability.html#the-brief-todays-question",
     "title": " QM 6700: Business Analytics ",
     "section": "The Brief: Today’s Question",
-    "text": "The Brief: Today’s Question\n\n\nThe big call you carry as Vungle’s CEO is still roll out algorithm B, or stay with A? Today’s piece of it: what are the odds at each step of the funnel?\n\n\n“What is the chance a random impression ends in an install? And if we already know it was clicked, how does that chance change? Finally, we just recorded one install: how likely is it that it came from algorithm B?”\n\n\n\nThese three questions are the three pillars of probability: a marginal chance, a conditional chance, and a reverse (Bayes) chance.\nHow today’s studio runs: I demo each idea on the Vungle funnel (and a quick textbook anchor); we debrief what one install really tells you; then your group decides on a separate case posted to Brightspace."
+    "text": "The Brief: Today’s Question\n\n\nThe big call you carry as Vungle’s manager is still roll out algorithm B, or stay with A? Today’s piece of it: what are the odds at each step of the funnel?\n\n\n“What is the chance a random impression ends in an install? And if we already know it was clicked, how does that chance change? Finally, we just recorded one install: how likely is it that it came from algorithm B?”\n\n\n\nThese three questions are the three pillars of probability: a marginal chance, a conditional chance, and a reverse (Bayes) chance.\nHow today’s studio runs: I demo each idea on the Vungle funnel (and a quick textbook anchor); we debrief what one install really tells you; then your group decides on a separate case posted to Brightspace."
   },
   {
     "objectID": "lecture_slides/03_chapter_probability/03_chapter_probability.html#the-ceos-trap",
@@ -3796,7 +3796,7 @@
     "href": "lecture_slides/09_chapter_hypothesis_tests_two_populations/09_chapter_hypothesis_tests_two_populations.html#make-the-call-which-metric-wins",
     "title": " QM 6700: Business Analytics ",
     "section": "Make the Call: Which Metric Wins?",
-    "text": "Make the Call: Which Metric Wins?\nThe conflict you face as CEO: B earns more per impression (paired \\(t = 3.33\\)) but converts fewer installs (\\(z = -29.6\\)). Both results are statistically decisive.\nBefore the debrief, settle three questions:\n\nWhich metric should drive the decision for Vungle’s business model, and why?\nWhat would you monitor after rollout, and why?\nState the call in three sentences: the call, the number, the caveat.\n\nThe metric that matches the business model wins, not the bigger number. We resolve it on the next slide, then land the full rollout call in the Debrief."
+    "text": "Make the Call: Which Metric Wins?\nThe conflict you face as the manager: B earns more per impression (paired \\(t = 3.33\\)) but converts fewer installs (\\(z = -29.6\\)). Both results are statistically decisive.\nBefore the debrief, settle three questions:\n\nWhich metric should drive the decision for Vungle’s business model, and why?\nWhat would you monitor after rollout, and why?\nState the call in three sentences: the call, the number, the caveat.\n\nThe metric that matches the business model wins, not the bigger number. We resolve it on the next slide, then land the full rollout call in the Debrief."
   },
   {
     "objectID": "lecture_slides/09_chapter_hypothesis_tests_two_populations/09_chapter_hypothesis_tests_two_populations.html#the-ceos-takeaway",
@@ -3817,14 +3817,14 @@
     "href": "lecture_slides/10_chapter_simple_regression/10_chapter_simple_regression.html#a-new-case-where-should-the-next-store-go",
     "title": " QM 6700: Business Analytics ",
     "section": "A New Case: Where Should the Next Store Go?",
-    "text": "A New Case: Where Should the Next Store Go?\n\n\nWe close the Vungle engagement and open a new one. You are now the Owner of a regional auto-parts retailer with 45 stores and capital to open more.\nThe real-estate team scores prospective sites on demographics (population, income) and on the store’s Yelp rating (a proxy for service quality once a store is open).\nThe question on the table: which sites will sell? As Owner you want every new lease backed by a sales forecast, not a hunch.\nWe have one dataset, data/autoparts.csv: for each of the 45 existing stores, its 2012 annual sales ($K), trade-area population and income, an end-cap placement flag, and its Yelp rating.\nUntil now we compared two groups. Now we predict a number, and that is what regression does."
+    "text": "A New Case: Where Should the Next Store Go?\n\n\nWe close the Vungle engagement and open a new one. You are now the manager of a regional auto-parts retailer with 45 stores and capital to open more.\nThe real-estate team scores prospective sites on demographics (population, income) and on the store’s Yelp rating (a proxy for service quality once a store is open).\nThe question on the table: which sites will sell? As the manager you want every new lease backed by a sales forecast, not a hunch.\nWe have one dataset, data/autoparts.csv: for each of the 45 existing stores, its 2012 annual sales ($K), trade-area population and income, an end-cap placement flag, and its Yelp rating.\nUntil now we compared two groups. Now we predict a number, and that is what regression does."
   },
   {
     "objectID": "lecture_slides/10_chapter_simple_regression/10_chapter_simple_regression.html#the-brief-where-should-the-next-dollar-go",
     "href": "lecture_slides/10_chapter_simple_regression/10_chapter_simple_regression.html#the-brief-where-should-the-next-dollar-go",
     "title": " QM 6700: Business Analytics ",
     "section": "The Brief: Where Should the Next Dollar Go?",
-    "text": "The Brief: Where Should the Next Dollar Go?\n\n\nThe Owner’s big call (we land it across Topics 10–11): where should the next dollar go? Every new lease commits capital, so the Owner wants sales forecast before signing.\n\n\n\nToday’s question, Lecture 1: does one driver, a store’s Yelp rating, predict its annual sales?\n\n\n\n\nToday’s question, Lecture 2: is that slope real, and can we forecast a brand-new site?\n\n\n\n\nHow the studio runs: I demo each step on a textbook anchor (Armand’s Pizza) and on the auto-parts data, then your group reproduces the model, stress-tests it, and makes the site call."
+    "text": "The Brief: Where Should the Next Dollar Go?\n\n\nThe manager’s big call (we land it across Topics 10–11): where should the next dollar go? Every new lease commits capital, so the manager wants sales forecast before signing.\n\n\n\nToday’s question, Lecture 1: does one driver, a store’s Yelp rating, predict its annual sales?\n\n\n\n\nToday’s question, Lecture 2: is that slope real, and can we forecast a brand-new site?\n\n\n\n\nHow the studio runs: I demo each step on a textbook anchor (Armand’s Pizza) and on the auto-parts data, then your group reproduces the model, stress-tests it, and makes the site call."
   },
   {
     "objectID": "lecture_slides/10_chapter_simple_regression/10_chapter_simple_regression.html#the-owners-takeaway-lecture-1",
@@ -3888,5 +3888,173 @@
     "title": " QM 6700: Business Analytics ",
     "section": "⏱️ Team Sprint: Your Group Case (Lecture 2)",
     "text": "⏱️ Team Sprint: Your Group Case (Lecture 2)\n\nNow it’s your group’s turn. Today’s in-class group case is posted on Brightspace (Topic 11 Group Case: Lecture 2): a separate business decision you make with today’s tools.\nWhat you’ll use: the overall \\(F\\)-test vs. the individual \\(t\\)-tests, a dummy variable, and a VIF check, then translate the coefficients into a dollar call. Excel: Analysis ToolPak → Regression.\nSubmit one PDF per group before you leave: your decision plus the numbers behind it."
+  },
+  {
+    "objectID": "lecture_slides/01_chapter_data_statistics/01_chapter_data_statistics.html#the-managers-takeaway",
+    "href": "lecture_slides/01_chapter_data_statistics/01_chapter_data_statistics.html#the-managers-takeaway",
+    "title": " QM 6700: Business Analytics ",
+    "section": "The Manager’s Takeaway",
+    "text": "The Manager’s Takeaway\n\n\nOne sentence: today we turned the manager’s question (roll out B or keep A?) into a precise data problem, and found B’s average eRPM ($3.46) edges A’s ($3.35) by $0.11; whether that edge is real is the inference question (Topics 7–9).\nOne number to remember: 60 rows × 7 variables = 420 values. That is Vungle’s dataset, and you can name every element, variable, and observation in it.\nOne principle: the scale of a variable determines which statistics are valid: count algorithm, average erpm.\nPractice: open data/vungle_daily.xlsx, install the Analysis ToolPak, and run Descriptive Statistics on erpm. Bring one question to next class."
+  },
+  {
+    "objectID": "lecture_slides/02_chapter_descriptive_statistics/02_chapter_descriptive_statistics.html#the-brief-todays-manager-question",
+    "href": "lecture_slides/02_chapter_descriptive_statistics/02_chapter_descriptive_statistics.html#the-brief-todays-manager-question",
+    "title": " QM 6700: Business Analytics ",
+    "section": "The Brief: Today’s Manager Question",
+    "text": "The Brief: Today’s Manager Question\n\n\nThe big call (we land it in Topic 9): roll out algorithm B to all advertisers, or stay with A? Last time you saw B’s average eRPM sits $0.11 higher.\nToday’s piece of that call: is B’s edge steady, or just more volatile? As Vungle’s manager, you cannot bet the company on an average that hides wild day-to-day swings.\n\n\n\n“B’s average daily eRPM ran about $0.11 higher than A’s. Before I act: is that edge steady, or does B just bounce around more? How confident am I in that one number?”\n\n\n\n\nThe mean is only half the story. A center tells you where the data sit; it says nothing about how spread out, lopsided, or risky they are. Two algorithms can share the same average and behave completely differently day to day."
+  },
+  {
+    "objectID": "lecture_slides/02_chapter_descriptive_statistics/02_chapter_descriptive_statistics.html#how-todays-tools-build-the-manager-brief",
+    "href": "lecture_slides/02_chapter_descriptive_statistics/02_chapter_descriptive_statistics.html#how-todays-tools-build-the-manager-brief",
+    "title": " QM 6700: Business Analytics ",
+    "section": "How Today’s Tools Build the Manager Brief",
+    "text": "How Today’s Tools Build the Manager Brief\n\nEach tool answers one question the manager will ask about Vungle’s data:\n\n\n\n\n\n\n\nThe manager asks…\nThe tool\n\n\n\n\n“How risky is each algorithm day to day?”\nRange, IQR, variance, SD, CV\n\n\n“Is the eRPM distribution lopsided?”\nSkewness\n\n\n“Was any day weirdly high or low?”\nz-scores, Empirical Rule, Chebyshev, outliers\n\n\n“Show me A vs. B at a glance.”\nFive-number summary + boxplot\n\n\n“Do clicks and installs move together?”\nCovariance & correlation\n\n\n\n\n\nBy the end, your team turns these into a one-screen A-vs-B dashboard, the manager’s first honest read."
+  },
+  {
+    "objectID": "lecture_slides/02_chapter_descriptive_statistics/02_chapter_descriptive_statistics.html#the-managers-takeaway",
+    "href": "lecture_slides/02_chapter_descriptive_statistics/02_chapter_descriptive_statistics.html#the-managers-takeaway",
+    "title": " QM 6700: Business Analytics ",
+    "section": "The Manager’s Takeaway",
+    "text": "The Manager’s Takeaway\n\n\nOne sentence: B earns more on average ($3.46 vs. $3.35) but is more volatile (SD $0.34 vs. $0.22, CV 10% vs. 6.5%); the mean was only half the story.\nOne number to remember: CV. Algorithm B’s spread is 10% of its mean vs. A’s 6.5%; that is the risk you, the manager, must weigh against the $0.11 reward.\nOne caveat: description summarizes the 30 days we have; it cannot tell us whether B’s $0.11 edge generalizes to all future traffic. Is the edge real or noise? is an inference question, the heart of Topics 7–9.\nPractice with the real data: data/vungle_daily.csv + the Analysis ToolPak, then reproduce the A-vs-B dashboard. Worked solutions: data/vungle_descriptive.xlsx."
+  },
+  {
+    "objectID": "lecture_slides/03_chapter_probability/03_chapter_probability.html#the-managers-takeaway",
+    "href": "lecture_slides/03_chapter_probability/03_chapter_probability.html#the-managers-takeaway",
+    "title": " QM 6700: Business Analytics ",
+    "section": "The Manager’s Takeaway",
+    "text": "The Manager’s Takeaway\n\n\nOne sentence: every funnel rate is a conditional probability, the end-to-end install rate is their product, and Bayes lets you read the funnel backward, from an observed install to the likely algorithm.\nOne number to remember: 0.40%, the marginal install rate, and how a single click multiplies it 20-fold to 7.93%.\nOne caveat: an install is weak evidence about which algorithm served it (\\(P(B\\mid\\text{install}) = 5.56\\%\\) vs. a \\(6.27\\%\\) prior); base rates dominate, so never read a posterior off the likelihood alone.\nPractice with the real data: data/vungle_daily.csv + SUMIF → reproduce the funnel rates; data/vungle_probability.xlsx holds the worked funnel and Bayes tables."
+  },
+  {
+    "objectID": "lecture_slides/04_chapter_decision_analysis/04_chapter_decision_analysis.html#the-brief-todays-manager-question",
+    "href": "lecture_slides/04_chapter_decision_analysis/04_chapter_decision_analysis.html#the-brief-todays-manager-question",
+    "title": " QM 6700: Business Analytics ",
+    "section": "The Brief: Today’s Manager Question",
+    "text": "The Brief: Today’s Manager Question\n\n\nThe big call running through Vungle is one decision: roll out algorithm B to all traffic, or stay with A? Today’s piece of it: roll out, keep A, or test more, which has the best expected value?\n\n\n“Algorithm B looks better, but we’re not certain. Do we roll out B to all traffic now, keep A and play it safe, or run a bigger test before committing? Quantify it and make the call.”\n\n\n\nRolling out B and being wrong degrades all of Vungle’s revenue, not a 1/16 slice. Keeping A forgoes a real upside. Testing more costs time and money.\nHow today’s studio runs: I demo each tool on a textbook anchor; you reproduce the Vungle rollout tree and interrogate it; we debrief the recommendation together.\nBy the end of class, you make the call, with the decision math to back it up."
+  },
+  {
+    "objectID": "lecture_slides/04_chapter_decision_analysis/04_chapter_decision_analysis.html#the-managers-takeaway",
+    "href": "lecture_slides/04_chapter_decision_analysis/04_chapter_decision_analysis.html#the-managers-takeaway",
+    "title": " QM 6700: Business Analytics ",
+    "section": "The Manager’s Takeaway",
+    "text": "The Manager’s Takeaway\n\n\nOne sentence: Structuring the rollout as a decision (alternatives, states, payoffs) says roll out B, because its expected value ($126.8K/yr) beats keeping A, and a further test isn’t worth its cost.\nOne number to remember: EVPI = $64K, the ceiling on what any information is worth here; the actual test cleared only $9.84K of it.\nOne caveat: EV is a long-run average. “Roll out B” still risks a −$160K year; sensitivity shows the call is stable (flips only below \\(p^{*} = 0.33\\)), but the downside is real, so monitor and stay ready to revert."
+  },
+  {
+    "objectID": "lecture_slides/05_chapter_discrete_probability_distributions/05_chapter_discrete_probability_distributions.html#the-managers-takeaway-lecture-1",
+    "href": "lecture_slides/05_chapter_discrete_probability_distributions/05_chapter_discrete_probability_distributions.html#the-managers-takeaway-lecture-1",
+    "title": " QM 6700: Business Analytics ",
+    "section": "The Manager’s Takeaway (Lecture 1)",
+    "text": "The Manager’s Takeaway (Lecture 1)\n\n\nOne sentence: model installs over a fixed batch of impressions as Binomial(\\(n\\), \\(p\\)), and every capacity question becomes a tail probability you read off BINOM.DIST.\nOne number: for Algorithm A, \\(P(\\geq 8 \\text{ installs / 1,000-impr. burst}) \\approx\\) 0.051, twice B’s 0.027, because A converts at a higher rate.\nOne caveat: the Binomial assumes a constant, independent \\(p\\). Within a stable burst that holds; across a viral campaign spike it does not, so re-estimate \\(p\\) when traffic shifts."
+  },
+  {
+    "objectID": "lecture_slides/05_chapter_discrete_probability_distributions/05_chapter_discrete_probability_distributions.html#the-managers-takeaway-lecture-2",
+    "href": "lecture_slides/05_chapter_discrete_probability_distributions/05_chapter_discrete_probability_distributions.html#the-managers-takeaway-lecture-2",
+    "title": " QM 6700: Business Analytics ",
+    "section": "The Manager’s Takeaway (Lecture 2)",
+    "text": "The Manager’s Takeaway (Lecture 2)\n\n\nOne sentence: for rare events over an interval, the Poisson(\\(\\lambda\\)) models the count from a single rate, and for Vungle’s tiny \\(p\\) it gives the same capacity answer as the Binomial.\nOne number: \\(P(\\geq 8 \\text{ installs/burst}) \\approx\\) 0.051 for A (Poisson \\(\\lambda = 4\\)): provision a second worker for ~1 burst in 20.\nOne caveat: Poisson assumes a constant, independent rate. A viral spike breaks both assumptions: arrivals cluster, the true tail is heavier than Poisson predicts, and you under-provision. Monitor for over-dispersion (variance \\(&gt;\\) mean)."
+  },
+  {
+    "objectID": "lecture_slides/05_chapter_discrete_probability_distributions/05_chapter_discrete_probability_distributions.html#the-managers-takeaway",
+    "href": "lecture_slides/05_chapter_discrete_probability_distributions/05_chapter_discrete_probability_distributions.html#the-managers-takeaway",
+    "title": " QM 6700: Business Analytics ",
+    "section": "The Manager’s Takeaway",
+    "text": "The Manager’s Takeaway\n\n\nOne sentence: a conversion rate plus a count structure (fixed \\(n\\) → Binomial; rare arrivals → Poisson) gives the full probability distribution of installs, and every capacity question is a tail probability.\nOne number to remember: \\(P(X \\geq 8) \\approx\\) 0.051 for Algorithm A bursts (about 1 in 20): the number that sizes the overflow buffer.\nOne caveat: both models assume a constant, independent rate; real traffic spikes (viral campaigns) cluster arrivals and fatten the tail, so re-estimate the rate and watch for over-dispersion.\nPractice with the real data: data/vungle_daily.csv → estimate \\(p\\); data/vungle_discrete.xlsx → reproduce the PMF/CDF tables with BINOM.DIST and POISSON.DIST."
+  },
+  {
+    "objectID": "lecture_slides/06_chapter_continuous_probability_distributions/06_chapter_continuous_probability_distributions.html#the-brief-todays-manager-question",
+    "href": "lecture_slides/06_chapter_continuous_probability_distributions/06_chapter_continuous_probability_distributions.html#the-brief-todays-manager-question",
+    "title": " QM 6700: Business Analytics ",
+    "section": "The Brief: Today’s Manager Question",
+    "text": "The Brief: Today’s Manager Question\n\n\nThe big call (Vungle A/B): roll out algorithm B, or stay with A? Topic 9 settles it; today answers one piece: what’s the chance of a high or low eRPM day?\n\n\n“Model B’s daily eRPM as Normal($3.46, $0.34). What’s the chance tomorrow’s eRPM tops $3.50? What eRPM marks a 90th-percentile day, and is the Normal model even trustworthy here?”\n\n\n\nCounting distributions (Binomial, Poisson) answered “how many installs?” Today’s tool answers “how much revenue per impression, and how often above a threshold?”\nHow today’s studio runs: I demo each idea on a textbook example, then your group reproduces and interrogates the fitted Normal on the in-class group case, then we debrief what the model can and cannot tell the manager.\nBy the end you can turn a fitted distribution into a planning number (a probability and a percentile) and stress-test the assumption behind it."
+  },
+  {
+    "objectID": "lecture_slides/06_chapter_continuous_probability_distributions/06_chapter_continuous_probability_distributions.html#the-managers-takeaway-lecture-1",
+    "href": "lecture_slides/06_chapter_continuous_probability_distributions/06_chapter_continuous_probability_distributions.html#the-managers-takeaway-lecture-1",
+    "title": " QM 6700: Business Analytics ",
+    "section": "The Manager’s Takeaway: Lecture 1",
+    "text": "The Manager’s Takeaway: Lecture 1\n\n\nOne sentence: B’s daily eRPM is well described by a Normal centered at $3.46 with spread $0.34, and standardizing (\\(z = (x-\\mu)/\\sigma\\)) turns any eRPM question into a single standard-Normal area.\nOne number: \\(z = 0.12\\) for a $3.50 day, barely above average, so “beating $3.50” is roughly a coin flip (we’ll nail the exact probability next time).\nOne caveat: the empirical rule and z-scores are only as good as the Normal assumption. We have assumed the bell; Lecture 2 we check it with a QQ plot before betting a decision on it."
+  },
+  {
+    "objectID": "lecture_slides/06_chapter_continuous_probability_distributions/06_chapter_continuous_probability_distributions.html#the-managers-takeaway",
+    "href": "lecture_slides/06_chapter_continuous_probability_distributions/06_chapter_continuous_probability_distributions.html#the-managers-takeaway",
+    "title": " QM 6700: Business Analytics ",
+    "section": "The Manager’s Takeaway",
+    "text": "The Manager’s Takeaway\n\n\nOne sentence: Model B’s daily eRPM as \\(N(\\$3.46, \\$0.34)\\) and the whole business vocabulary follows: “beats $3.50” happens 45% of days, a “great day” is $3.90, and a sub-$3.00 day is a 1-in-11 disappointment.\nOne number to remember: \\(z = (x - \\mu)/\\sigma\\), the single move that turns any Normal question into a standard-Normal area.\nOne caveat: the model is only as good as its assumption. Check it (QQ plot, Shapiro) before you bet a decision on a Normal probability, and remember that at huge \\(n\\), even the Binomial becomes Normal.\nToday’s call: the Normal is a fair working model for B’s eRPM, and it says a $3.50 day is roughly a coin flip; the roll-out call still waits for the inference tests in Topics 7–9.\nPractice with the real data:\n\ndata/vungle_daily.csv (filter B) + NORM.DIST / NORM.INV to reproduce \\(P(&gt;3.50) = 0.453\\) and the $3.90 percentile.\nWorked solutions: data/vungle_normal_analysis.xlsx."
+  },
+  {
+    "objectID": "lecture_slides/07_chapter_interval_estimation/07_chapter_interval_estimation.html#the-managers-takeaway",
+    "href": "lecture_slides/07_chapter_interval_estimation/07_chapter_interval_estimation.html#the-managers-takeaway",
+    "title": " QM 6700: Business Analytics ",
+    "section": "The Manager’s Takeaway",
+    "text": "The Manager’s Takeaway\n\n\nOne sentence: a confidence interval turns a point estimate into a defensible range (B’s true mean eRPM is $3.46 \\(\\pm\\) $0.13 at 95% confidence), and the margin of error is the number the manager should actually negotiate over.\nOne number to remember: \\(E = t_{\\alpha/2}\\,s/\\sqrt{n}\\), with the \\(\\sqrt{n}\\) in the denominator that makes precision expensive.\nOne caveat: “95% confident” describes the procedure over many samples, not a probability for this one interval; overlapping intervals do not settle a comparison."
+  },
+  {
+    "objectID": "lecture_slides/08_chapter_hypothesis_tests/08_chapter_hypothesis_tests.html#the-managers-takeaway-lecture-1",
+    "href": "lecture_slides/08_chapter_hypothesis_tests/08_chapter_hypothesis_tests.html#the-managers-takeaway-lecture-1",
+    "title": " QM 6700: Business Analytics ",
+    "section": "The Manager’s Takeaway: Lecture 1",
+    "text": "The Manager’s Takeaway: Lecture 1\n\n\nOne sentence: algorithm B’s mean daily eRPM is above the $3.30 benchmark; the one-sample \\(t\\)-test rejects “no better” with overwhelming evidence (\\(p = 0.009\\)). Fund B.\nOne number to remember: \\(t = 2.53\\), and where it came from: \\((\\bar{x} - \\mu_0)/(s/\\sqrt{n})\\).\nOne caveat: the test says B beats the $3.30 line, not that B beats A, and it assumes June is representative. Comparing B to A directly is Topic 9.\nHomework (individual): today’s one-sample \\(t\\) is drilled on HW3, previous-edition problem sets on Brightspace. Run it yourself so you can check an analyst who uses it."
+  },
+  {
+    "objectID": "lecture_slides/08_chapter_hypothesis_tests/08_chapter_hypothesis_tests.html#the-managers-takeaway-lecture-2",
+    "href": "lecture_slides/08_chapter_hypothesis_tests/08_chapter_hypothesis_tests.html#the-managers-takeaway-lecture-2",
+    "title": " QM 6700: Business Analytics ",
+    "section": "The Manager’s Takeaway: Lecture 2",
+    "text": "The Manager’s Takeaway: Lecture 2\n\n\nOne sentence: B’s conversion rate clears the 0.35% target; the one-proportion \\(z\\)-test rejects “below target” (\\(z = 2.73\\), \\(p = 0.003\\)). Viable on conversion, too.\nOne number to remember: \\(z = 2.73\\), same machinery as the \\(t\\), with \\(\\sigma_{\\bar p} = \\sqrt{p_0(1-p_0)/n}\\) in the denominator.\nOne caveat: with 15.8M impressions, significance was almost automatic. The honest headline is the effect size (+0.0041 pts), not the \\(z\\). Statistical significance \\(\\neq\\) practical importance.\nHomework (individual): today’s one-proportion \\(z\\) is drilled on HW3, previous-edition problem sets on Brightspace. Run it yourself so you can check an analyst who uses it."
+  },
+  {
+    "objectID": "lecture_slides/08_chapter_hypothesis_tests/08_chapter_hypothesis_tests.html#the-managers-takeaway",
+    "href": "lecture_slides/08_chapter_hypothesis_tests/08_chapter_hypothesis_tests.html#the-managers-takeaway",
+    "title": " QM 6700: Business Analytics ",
+    "section": "The Manager’s Takeaway",
+    "text": "The Manager’s Takeaway\n\n\nOne sentence: Algorithm B’s mean eRPM ($3.46) is above the $3.30 funding benchmark and its conversion clears the 0.35% target; both one-sample tests reject the skeptic, so fund B.\nOne number to remember: \\(t = 2.53\\) for the eRPM test, and the recipe behind it: \\((\\bar{x} - \\mu_0)/(s/\\sqrt{n})\\).\nOne caveat: these tests say B beats a line, not that B beats A, and a large \\(n\\) can make a tiny gap “significant.” Always report the effect size and check whether the benchmark is the right line.\nPractice with the real data:\n\ndata/vungle_daily.csv + formula cells \\(\\rightarrow\\) reproduce \\(t = 2.53\\) (eRPM) and \\(z = 2.73\\) (conversion).\nWorked solutions: data/vungle_one_sample_tests.xlsx."
+  },
+  {
+    "objectID": "lecture_slides/09_chapter_hypothesis_tests_two_populations/09_chapter_hypothesis_tests_two_populations.html#step-5-the-managers-translation-back-to-the-decision",
+    "href": "lecture_slides/09_chapter_hypothesis_tests_two_populations/09_chapter_hypothesis_tests_two_populations.html#step-5-the-managers-translation-back-to-the-decision",
+    "title": " QM 6700: Business Analytics ",
+    "section": "Step 5, the Manager’s Translation: Back to the Decision",
+    "text": "Step 5, the Manager’s Translation: Back to the Decision\n\n\n“A difference this large would arise by chance only about 1 in 1,000 times if B were no better than A, so we reject the ‘no difference’ story. On a typical day, B earns between $0.04 and $0.18 more per 1,000 impressions than A.”\nScale it: A served ≈ 236.5M impressions in June. Had B served that traffic:\n\n\n\\[\n\\frac{236{,}459{,}402}{1{,}000} \\times \\$0.112 \\approx \\$26{,}500 \\text{ per month} \\;\\approx\\; \\$318\\text{K per year}\n\\]\n\n\nEven at the CI lower bound ($0.043), the lift is ≈ $10K/month, material for a startup with $25.5M raised.\nDiscussion hook: the daily gap is noisy. The first week even favored A, and after two weeks B’s lead was only ≈ $0.04, still well below the full-month $0.11. Stopping the test early could have hidden the effect. (Sequential testing is beyond today’s scope, but exactly what real A/B platforms wrestle with.)"
+  },
+  {
+    "objectID": "lecture_slides/09_chapter_hypothesis_tests_two_populations/09_chapter_hypothesis_tests_two_populations.html#the-managers-takeaway",
+    "href": "lecture_slides/09_chapter_hypothesis_tests_two_populations/09_chapter_hypothesis_tests_two_populations.html#the-managers-takeaway",
+    "title": " QM 6700: Business Analytics ",
+    "section": "The Manager’s Takeaway",
+    "text": "The Manager’s Takeaway\n\n\nOne sentence: Algorithm B earns about $0.11 more per 1,000 impressions than A, and the paired test says that lift is real, not luck (\\(p &lt; 0.01\\)): roll out B.\nOne number to remember: \\(t = 3.33\\), and where it came from: \\(\\bar{d}/(s_d/\\sqrt{n})\\).\nOne caveat: B’s conversion rate is lower (\\(z = -29.6\\)); monitor the install funnel after rollout, because the eRPM advantage depends on high-value campaigns continuing to bid.\nPractice with the real data:\n\ndata/vungle_erpm_paired.csv + ToolPak → reproduce \\(t = 3.325\\) (paired) and \\(t = 1.51\\) (unequal variances).\ndata/vungle_daily.csv + five formula cells → reproduce \\(z = -29.56\\).\nWorked solutions: data/vungle_ab_analysis.xlsx."
+  },
+  {
+    "objectID": "lecture_slides/10_chapter_simple_regression/10_chapter_simple_regression.html#the-managers-takeaway-lecture-1",
+    "href": "lecture_slides/10_chapter_simple_regression/10_chapter_simple_regression.html#the-managers-takeaway-lecture-1",
+    "title": " QM 6700: Business Analytics ",
+    "section": "The Manager’s Takeaway (Lecture 1)",
+    "text": "The Manager’s Takeaway (Lecture 1)\n\n\nOne sentence: Yelp rating is a strong predictor of store sales: each star is worth about $757K in predicted annual sales.\nOne number: \\(R^2 = 0.834\\): Yelp rating alone explains 83% of the sales differences across stores.\nOne caveat: “explains” is association, not cause, and 17% is still unexplained; one variable is rarely the whole story. We have a fitted line, but we have not yet asked whether it is statistically real or whether the model’s assumptions hold. That is Lecture 2."
+  },
+  {
+    "objectID": "lecture_slides/10_chapter_simple_regression/10_chapter_simple_regression.html#the-managers-takeaway-lecture-2",
+    "href": "lecture_slides/10_chapter_simple_regression/10_chapter_simple_regression.html#the-managers-takeaway-lecture-2",
+    "title": " QM 6700: Business Analytics ",
+    "section": "The Manager’s Takeaway (Lecture 2)",
+    "text": "The Manager’s Takeaway (Lecture 2)\n\n\nOne sentence: the Yelp–sales slope is overwhelmingly significant (\\(t = 14.7\\), \\(p &lt; 0.0001\\)); a 4.5-star site is forecast at $3.74M, and for one lease we quote the prediction interval \\((\\$2.79\\text{M}, \\$4.70\\text{M})\\).\nOne number: 95% CI for the slope = ($654K, $861K) per star: the magnitude the real-estate team plans around.\nOne caveat: the model assumes the new site behaves like our 45 stores; the two off-trend 5-star outliers warn that rating alone misses something, which is exactly why we add predictors next."
+  },
+  {
+    "objectID": "lecture_slides/10_chapter_simple_regression/10_chapter_simple_regression.html#the-managers-takeaway",
+    "href": "lecture_slides/10_chapter_simple_regression/10_chapter_simple_regression.html#the-managers-takeaway",
+    "title": " QM 6700: Business Analytics ",
+    "section": "The Manager’s Takeaway",
+    "text": "The Manager’s Takeaway\n\n\nOne sentence: Yelp rating predicts auto-parts store sales strongly and significantly (about $758K per star, explaining 83% of the sales gap), so the real-estate team can use it to score and forecast sites.\nOne number to remember: \\(b_1 = 757.5\\), and where it came from: \\(\\sum(x-\\bar{x})(y-\\bar{y}) / \\sum(x-\\bar{x})^2\\).\nOne caveat: regression forecasts and quantifies; it does not prove causation, and 17% of sales is still unexplained; a single predictor is a start, not the answer.\nPractice with the real data:\n\ndata/autoparts.csv + Regression tool → reproduce \\(b_1 = 757.5\\), \\(R^2 = 0.834\\), \\(t = 14.7\\).\nWorked solutions: data/autoparts_regression.xlsx."
+  },
+  {
+    "objectID": "lecture_slides/11_chapter_multiple_regression/11_chapter_multiple_regression.html#the-managers-takeaway-lecture-1",
+    "href": "lecture_slides/11_chapter_multiple_regression/11_chapter_multiple_regression.html#the-managers-takeaway-lecture-1",
+    "title": " QM 6700: Business Analytics ",
+    "section": "The Manager’s Takeaway (Lecture 1)",
+    "text": "The Manager’s Takeaway (Lecture 1)\n\n\nOne sentence: four drivers explain 93% of store-sales variation, and the effects that matter are service (Yelp, +$642K/star) and merchandising (endcap, +$816K), not the market-size variables you might bet on.\nOne number: adjusted \\(R^2 = 0.925\\): high fit that survives the penalty for using four predictors, so the model isn’t just padded with noise.\nOne caveat: “holding the others constant” is doing heavy lifting. A coefficient near zero (population, income) doesn’t prove the variable is irrelevant in the world, only that it adds little once the others are in. Next lecture we make that rigorous with the \\(F\\)- and \\(t\\)-tests, and put a defensible dollar value on an endcap."
+  },
+  {
+    "objectID": "lecture_slides/11_chapter_multiple_regression/11_chapter_multiple_regression.html#the-managers-takeaway",
+    "href": "lecture_slides/11_chapter_multiple_regression/11_chapter_multiple_regression.html#the-managers-takeaway",
+    "title": " QM 6700: Business Analytics ",
+    "section": "The Manager’s Takeaway",
+    "text": "The Manager’s Takeaway\n\n\nOne sentence: for this 45-store chain, service and merchandising drive sales, not location demographics, so invest in Yelp rating (+$642K/star) and endcap placement (+$816K), each statistically decisive.\nOne number to remember: $816K, the value of an endcap, read straight off a dummy variable’s coefficient, holding everything else constant.\nOne caveat: the model describes 45 existing stores; it does not prove that buying an endcap will cause +$816K at a brand-new store. Correlation control is the best we can do with observational data: pilot it, then re-estimate.\nPractice with the real data: data/autoparts.csv + Excel Regression → reproduce \\(R^2 = 0.932\\), \\(F = 136.7\\), the four coefficients, and the prediction. Worked solutions: data/autoparts_regression.xlsx."
   }
 ]

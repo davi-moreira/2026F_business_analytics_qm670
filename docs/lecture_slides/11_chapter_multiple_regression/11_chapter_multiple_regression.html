@@ -175,7 +175,7 @@ Professor<br>Davi Moreira<br>
 <ul>
 <li class="fragment"><p>You own a regional <strong>auto-parts retail chain</strong>: 45 stores, deciding where to put the next dollar.</p></li>
 <li class="fragment"><p>Last time we found a single strong predictor of a store’s annual sales: its <strong>Yelp rating</strong>. Each extra star was worth roughly <strong>+$758K</strong> a year. A clean simple-regression story.</p></li>
-<li class="fragment"><p>But a Yelp rating is a <em>symptom</em>, not a lever you can pull directly. Your real question as Owner is sharper:</p></li>
+<li class="fragment"><p>But a Yelp rating is a <em>symptom</em>, not a lever you can pull directly. Your real question as the manager is sharper:</p></li>
 </ul>
 <div class="fragment">
 <blockquote>
@@ -546,8 +546,8 @@ R^2_a = 1 - \frac{SSE/(n - p - 1)}{SST/(n - 1)} = 1 - (1 - R^2)\,\frac{n - 1}{n 
 <li class="fragment"><p><strong>Why the intuition fails:</strong> in simple regression a market-size variable can look strong because it travels with the variables that <em>really</em> matter. Once those are in the model, “holding the others constant” strips the borrowed credit away. We will confirm this with formal tests in Lecture 2.</p></li>
 </ul>
 </section>
-<section id="the-owners-takeaway-lecture-1" class="slide level2 center">
-<h2>The Owner’s Takeaway (Lecture 1)</h2>
+<section id="the-managers-takeaway-lecture-1" class="slide level2 center">
+<h2>The Manager’s Takeaway (Lecture 1)</h2>
 <p><br></p>
 <ul>
 <li class="fragment"><p><strong>One sentence:</strong> four drivers explain <strong>93%</strong> of store-sales variation, and the effects that matter are <strong>service (Yelp, +$642K/star)</strong> and <strong>merchandising (endcap, +$816K)</strong>, <em>not</em> the market-size variables you might bet on.</p></li>
@@ -1029,7 +1029,7 @@ VIF_j = \frac{1}{1 - R_j^2}
 <p>Model: <span class="math inline">\(R^2 = 0.932\)</span>, adjusted <span class="math inline">\(R^2 = 0.925\)</span>, overall <span class="math inline">\(F = 136.7\)</span> (p <span class="math inline">\(&lt; 10^{-22}\)</span>), <span class="math inline">\(s = \$308.5\)</span>K, all VIF <span class="math inline">\(&lt; 1.7\)</span>.</p>
 </div>
 <ul>
-<li class="fragment"><strong>Your recommendation as Owner:</strong> stop chasing big, rich markets; <strong>location demographics don’t move sales</strong> in this chain. The money belongs in <strong>service quality</strong> (every Yelp star ≈ +$642K/yr) and in <strong>endcap merchandising</strong> (≈ +$816K/yr, well worth a sub-$816K lease). Both effects are statistically rock-solid and not a multicollinearity mirage.</li>
+<li class="fragment"><strong>Your recommendation as the manager:</strong> stop chasing big, rich markets; <strong>location demographics don’t move sales</strong> in this chain. The money belongs in <strong>service quality</strong> (every Yelp star ≈ +$642K/yr) and in <strong>endcap merchandising</strong> (≈ +$816K/yr, well worth a sub-$816K lease). Both effects are statistically rock-solid and not a multicollinearity mirage.</li>
 </ul>
 </section>
 <section id="f-vs.-t-the-lesson-that-travels" class="slide level2 center">
@@ -1042,11 +1042,11 @@ VIF_j = \frac{1}{1 - R_j^2}
 <li class="fragment">The <span class="math inline">\(t\)</span>-tests revealed that <strong>half the predictors were dead weight</strong>, steering the budget toward the two that actually pay.</li>
 </ul></li>
 <li class="fragment"><p><strong>Significance is conditional.</strong> Every coefficient and every <span class="math inline">\(t\)</span> here means “…<em>holding the other three constant.</em>” Change the set of predictors and the story can change.</p></li>
-<li class="fragment"><p><strong>Significance ≠ importance.</strong> With huge samples trivial effects turn “significant”; with small samples real effects can hide. Always pair the test with the <strong>dollar size</strong> of the effect: that is the number you decide on as Owner.</p></li>
+<li class="fragment"><p><strong>Significance ≠ importance.</strong> With huge samples trivial effects turn “significant”; with small samples real effects can hide. Always pair the test with the <strong>dollar size</strong> of the effect: that is the number you decide on as the manager.</p></li>
 </ul>
 </section>
-<section id="the-owners-takeaway" class="slide level2 center">
-<h2>The Owner’s Takeaway</h2>
+<section id="the-managers-takeaway" class="slide level2 center">
+<h2>The Manager’s Takeaway</h2>
 <p><br></p>
 <ul>
 <li class="fragment"><p><strong>One sentence:</strong> for this 45-store chain, <strong>service and merchandising drive sales, not location demographics</strong>, so invest in Yelp rating (+$642K/star) and endcap placement (+$816K), each statistically decisive.</p></li>

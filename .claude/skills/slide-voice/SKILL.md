@@ -58,7 +58,7 @@ Lead with the decision; define terms on first use; assume no prior statistics; c
 abstract; professional but plain. A good test: every claim should point at the data or the decision.
 
 ## Also enforced here: student ROLE (CLAUDE.md #8)
-The student is the **decision-maker** (manager/CEO/owner), **never the analyst**. The linter HARD-flags
+The student is the **decision-maker** — always **"the manager"** (never "CEO" or "owner", Davi 2026-06-26), **never the analyst**. The linter HARD-flags
 "you're the analyst" / "work as the analyst" / titles like "You're the Analyst", and soft-flags "like
 an analyst" / "as an analyst" addressed to students. Frame the Team Sprint as the *management team*
 reproducing and interrogating an analyst's proposal, then deciding — deliverable = a call + an

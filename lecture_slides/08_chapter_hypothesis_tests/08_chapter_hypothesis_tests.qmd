@@ -55,7 +55,7 @@ html-math-method:
 
 - Two analysts built a new ad-serving algorithm (**B**) and ran it head-to-head against the existing one (**A**) for the entire month of June 2014. The metric that pays the bills is **eRPM**, effective revenue per 1,000 impressions.
 
-- We have already **described** the data (Topics 1–2) and **estimated** B's true mean eRPM with a confidence interval (Topic 7). Now, as Vungle's CEO, you need a **yes/no decision**.
+- We have already **described** the data (Topics 1–2) and **estimated** B's true mean eRPM with a confidence interval (Topic 7). Now, as Vungle's manager, you need a **yes/no decision**.
 
 - Up to now we asked *"what is B's true eRPM?"* Today we ask a sharper question: *"is it above a line we care about?"*, and we answer with a **test**.
 
@@ -197,7 +197,7 @@ knitr::include_graphics("figs/type_I_II_errors_studio.png")
 
 - A **Type II error** walks away from a real improvement: money left on the table, but no bad rollout.
 
-- As CEO you decide which mistake is worse and set $\alpha$ accordingly. Here a false "fund it" is the headline risk, so we hold $\alpha = 0.05$.
+- As the manager you decide which mistake is worse and set $\alpha$ accordingly. Here a false "fund it" is the headline risk, so we hold $\alpha = 0.05$.
 
 - This is why $H_0$ is conservative: the test protects the **status quo** until the evidence is strong enough to justify the change.
 
@@ -459,7 +459,7 @@ $$
 
 - This answers *"is B above the line?"*, but the deeper question is *"is B better than **A**?"* That comparison of **two** populations is Topic 9.
 
-## The CEO's Takeaway: Lecture 1
+## The Manager's Takeaway: Lecture 1
 
 <br>
 
@@ -707,7 +707,7 @@ The same statistic, re-anchored to the Vungle eRPM mean test under different ben
 
 - The **same data** support very different conclusions depending on **where you draw the line**, which is why the benchmark is a *business* decision, set before the test.
 
-## The CEO's Takeaway: Lecture 2
+## The Manager's Takeaway: Lecture 2
 
 <br>
 
@@ -745,7 +745,7 @@ The same statistic, re-anchored to the Vungle eRPM mean test under different ben
 | **Vungle result** | $t = 2.53$, $p = 0.009$ (fund B) | $z = 2.73$, $p = 0.003$ (clears target) |
 :::
 
-## The CEO's Takeaway
+## The Manager's Takeaway
 
 <br>
 
