@@ -469,7 +469,7 @@ knitr::include_graphics("figs/excel_bayes_cells.png")
 
 - **One sentence:** every funnel rate is a **conditional probability**, the end-to-end install rate is their **product**, and Bayes lets you read the funnel **backward**, from an observed install to the likely algorithm.
 
-- **One number to remember:** **0.40%**, the marginal install rate, and how a single click multiplies it 20-fold to **7.93%**.
+- **One number to remember:** **0.40%**, the marginal install rate, and how a single click multiplies it 20-fold to **7.93%**, so the verdict is chase clicks, not raw impressions.
 
 - **One caveat:** an install is *weak* evidence about which algorithm served it ($P(B\mid\text{install}) = 5.56\%$ vs. a $6.27\%$ prior); base rates dominate, so never read a posterior off the likelihood alone.
 

@@ -757,7 +757,7 @@ P(\text{install} \mid A) = 0.4025\% \qquad P(\text{install} \mid B) = 0.3541\%
 <p><br></p>
 <ul>
 <li class="fragment"><p><strong>One sentence:</strong> every funnel rate is a <strong>conditional probability</strong>, the end-to-end install rate is their <strong>product</strong>, and Bayes lets you read the funnel <strong>backward</strong>, from an observed install to the likely algorithm.</p></li>
-<li class="fragment"><p><strong>One number to remember:</strong> <strong>0.40%</strong>, the marginal install rate, and how a single click multiplies it 20-fold to <strong>7.93%</strong>.</p></li>
+<li class="fragment"><p><strong>One number to remember:</strong> <strong>0.40%</strong>, the marginal install rate, and how a single click multiplies it 20-fold to <strong>7.93%</strong>, so the verdict is chase clicks, not raw impressions.</p></li>
 <li class="fragment"><p><strong>One caveat:</strong> an install is <em>weak</em> evidence about which algorithm served it (<span class="math inline">\(P(B\mid\text{install}) = 5.56\%\)</span> vs.&nbsp;a <span class="math inline">\(6.27\%\)</span> prior); base rates dominate, so never read a posterior off the likelihood alone.</p></li>
 <li class="fragment"><p><strong>Practice with the real data:</strong> <code>data/vungle_daily.csv</code> + <code>SUMIF</code> → reproduce the funnel rates; <code>data/vungle_probability.xlsx</code> holds the worked funnel and Bayes tables.</p></li>
 </ul>
