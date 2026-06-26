@@ -108,3 +108,5 @@ code {
   margin-top: 0.3em;
 }
 .reveal .faq strong { color: #555960; }
+/* the anticipated question itself: bold + black (stands out from the grey lead-in/labels) */
+.reveal .faq .faq-q, .reveal .faq .faq-q strong { color: #000; font-weight: 700; }
