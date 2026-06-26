@@ -88,7 +88,7 @@ knitr::include_graphics("figs/palmeiras_stadium.jpg")
 <center>
 
 ::: {style="font-size: 80%;"}
-[The Most Exciting Game in History - Video](https://www.youtube.com/watch?v=FCebgeX_3hI&t=89s)
+**The Most Exciting Game in History**
 :::
 
 </center>
@@ -103,7 +103,7 @@ knitr::include_graphics("figs/palmeiras_stadium.jpg")
 knitr::include_graphics("figs/carnaval_olinda.jpg")
 ```
 
-<center>[NYT - How John Travolta Became the Star of Carnival](https://www.nytimes.com/2024/02/13/world/americas/brazil-carnival-john-travolta.html)[-Video.](https://www.nytimes.com/video/world/americas/100000009311331/the-star-of-this-carnival-is-a-giant-john-travolta-puppet.html?auth=login-google1tap&login=google1tap)</center>
+<center>[NYT - How John Travolta Became the Star of Carnival](https://www.nytimes.com/2024/02/13/world/americas/brazil-carnival-john-travolta.html)[-Video.](https://www.nytimes.com/video/world/americas/100000009311331/the-star-of-this-carnival-is-a-giant-john-travolta-puppet.html)</center>
 
 <br>
 
