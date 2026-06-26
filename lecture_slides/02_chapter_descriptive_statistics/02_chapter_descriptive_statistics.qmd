@@ -46,6 +46,14 @@ html-math-method:
 :::::
 ::::::
 
+## How Every Class Runs
+
+![](figs/lecture_dynamic.png){.nostretch fig-align="center" width="90%"}
+
+::: nonincremental
+The class **ends on the Team Sprint**, your group's graded submission: a decision plus your read of the analysis, one PDF before you leave.
+:::
+
 # Case Spotlight: A/B Testing at Vungle {background-color="#cfb991"}
 
 ## Recap: Where We Left Off
@@ -60,7 +68,7 @@ html-math-method:
 
 - Last time we computed the **centers**: A's mean eRPM is **\$3.347**, B's is **\$3.459**; B's average sits **\$0.11 higher**.
 
-- A manager glances at that gap and says: *"B wins, roll it out."*
+- It is tempting to glance at that gap and say: *"B wins, roll it out."*
 
 ## The Brief: Today's Manager Question
 
@@ -232,11 +240,11 @@ A purchasing manager compares delivery times (hours) from two carriers over five
 | | Ship 1 | Ship 2 | Ship 3 | Ship 4 | Ship 5 | Mean | Range | $s$ | CV |
 |---|---:|---:|---:|---:|---:|---:|---:|---:|---:|
 | **Carrier A** | 14 | 15 | 16 | 15 | 15 | **15** | 2 | 0.71 | **4.7%** |
-| **Carrier B** | 9 | 21 | 14 | 19 | 12 | **15** | 12 | 4.85 | **32.3%** |
+| **Carrier B** | 9 | 21 | 14 | 19 | 12 | **15** | 12 | 4.95 | **33.0%** |
 
 ::: fragment
 - **Identical average (15 hrs)**, but A's range is 2 hours and B's is 12.
-- A's CV is 4.7%; B's is 32.3%. **A is the dependable carrier**; B is a gamble.
+- A's CV is 4.7%; B's is 33.0%. **A is the dependable carrier**; B is a gamble.
 - *The mean could not tell them apart; variability did.* This is the lesson we now take to Vungle.
 :::
 :::
@@ -262,6 +270,18 @@ Computing each measure on the 30 daily eRPM values, by algorithm:
 - That is the real headline for the manager: *"B's edge comes with more volatility."* The mean hid it; variability reveals it.
 :::
 :::
+
+## A Question That Often Comes Up
+
+:::: {.faq}
+**A question that often comes up at this point:**
+
+[B earns more AND swings more. Doesn't the higher average just settle it?]{.faq-q}
+
+::: {.fragment .faq-a}
+**Short answer:** not yet. The higher average is only in these 30 days, and the extra volatility means part of B's edge could be the luck of one month. Description flags the risk; whether the \$0.11 edge is real is the inference question we settle in Topics 7-9.
+:::
+::::
 
 ## Excel: Descriptive Statistics in One Click
 
@@ -449,6 +469,18 @@ knitr::include_graphics("figs/zscores_B.png")
 - The most extreme day is **June 2 at \$2.587, z = −2.53**: notable, but **not** an outlier by the $|z| > 3$ rule (which flags **no** days here).
 - The **boxplot** rule flags **two** days below the \$2.80 fence: June 2 *and* **June 3 (\$2.755)**. Same data, two rules, different verdicts; judgment decides.
 :::
+
+## A Question That Often Comes Up
+
+:::: {.faq}
+**A question that often comes up at this point:**
+
+[The two rules disagree on June 2 and June 3. Which one is right, and should I drop those days?]{.faq-q}
+
+::: {.fragment .faq-a}
+**Short answer:** neither is "right": the 1.5×IQR rule is simply more sensitive in the tails than the |z| > 3 rule. A flag is an invitation to investigate, not a delete button. Check whether June 2 and 3 were genuine slow days before you ever drop them.
+:::
+::::
 
 # Five-Number Summary & Boxplot {background-color="#cfb991"}
 
@@ -663,6 +695,18 @@ knitr::include_graphics("figs/xkcd.png")
 :::
 :::::
 
+## A Question That Often Comes Up
+
+:::: {.faq}
+**A question that often comes up at this point:**
+
+[Clicks and installs correlate at +0.92. So more clicks cause more installs?]{.faq-q}
+
+::: {.fragment .faq-a}
+**Short answer:** not from the correlation alone. Clicks and installs are both driven by daily traffic volume, a lurking third variable. Only Vungle's randomized A/B design licenses a causal claim; r just says the two move together.
+:::
+::::
+
 # Debrief: The Manager's Brief {background-color="#cfb991"}
 
 ## What the Dashboard Says
@@ -676,6 +720,22 @@ knitr::include_graphics("figs/xkcd.png")
 - **Shape:** both are roughly symmetric (|skew| < 0.5); no day is an outlier by the $|z|>3$ rule, though B's two slow days (June 2 & June 3) fall past the boxplot's lower fence.
 
 - **The honest two-sentence read:** *"Over 30 days, B averaged \$0.11 more per 1,000 impressions than A, but with ~50% more day-to-day volatility. Whether that \$0.11 edge is real signal or sampling noise is a question description alone cannot settle; that needs a hypothesis test."*
+
+## Today's Question, Today's Answer
+
+<br>
+
+**The question (Topic 2 of the ladder):**
+
+> *Is B's edge steady, or just more volatile?*
+
+::: fragment
+<br>
+
+**The answer we reached today:**
+
+> **More volatile.** B earns more on average (**\$3.46** vs **\$3.35**), but its day-to-day spread is markedly larger: **SD \$0.34 vs \$0.22**, **CV 10.0% vs 6.5%**, about 50% more volatile relative to its size. Whether that **\$0.11** edge is real signal or sampling noise is the **inference** question, Topics 7-9.
+:::
 
 ## The Manager's Takeaway
 

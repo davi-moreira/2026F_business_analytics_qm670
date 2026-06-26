@@ -32,7 +32,7 @@
       vertical-align: middle;
     }
   </style>
-  <link rel="stylesheet" href="../../site_libs/revealjs/dist/theme/quarto-113b5beb2a57b2deea58feb1108e76b2.css">
+  <link rel="stylesheet" href="../../site_libs/revealjs/dist/theme/quarto-a3205ea70b41524e40e5878d96ffe16a.css">
   <link href="../../site_libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
   <link href="../../site_libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
   <link href="../../site_libs/revealjs/plugin/reveal-menu/quarto-menu.css" rel="stylesheet">
@@ -167,6 +167,15 @@ Professor<br>Davi Moreira<br>
 </ul>
 </div></div>
 </section>
+<section id="how-every-class-runs" class="slide level2 center">
+<h2>How Every Class Runs</h2>
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="figs/lecture_dynamic.png" class="quarto-figure quarto-figure-center" style="width:90.0%"></p>
+</figure>
+</div>
+<p>The class <strong>ends on the Team Sprint</strong>, your group’s graded submission: a decision plus your read of the analysis, one PDF before you leave.</p>
+</section>
 <section>
 <section id="case-spotlight-ab-testing-at-vungle" class="title-slide slide level1 center" data-background-color="#cfb991">
 <h1>Case Spotlight: A/B Testing at Vungle</h1>
@@ -180,7 +189,7 @@ Professor<br>Davi Moreira<br>
 <li class="fragment"><p>The metric that pays the bills is <strong>eRPM</strong>: effective revenue per 1,000 impressions.</p></li>
 <li class="fragment"><p>Two analysts built a new ad-serving algorithm (<strong>B</strong>) and ran it head-to-head against the current one (<strong>A</strong>) for the whole month of June 2014.</p></li>
 <li class="fragment"><p>Last time we computed the <strong>centers</strong>: A’s mean eRPM is <strong>$3.347</strong>, B’s is <strong>$3.459</strong>; B’s average sits <strong>$0.11 higher</strong>.</p></li>
-<li class="fragment"><p>A manager glances at that gap and says: <em>“B wins, roll it out.”</em></p></li>
+<li class="fragment"><p>It is tempting to glance at that gap and say: <em>“B wins, roll it out.”</em></p></li>
 </ul>
 </section>
 <section id="the-brief-todays-manager-question" class="slide level2 center">
@@ -453,15 +462,15 @@ s = \sqrt{s^2} \qquad\qquad \sigma = \sqrt{\sigma^2}
 <td style="text-align: right;">12</td>
 <td style="text-align: right;"><strong>15</strong></td>
 <td style="text-align: right;">12</td>
-<td style="text-align: right;">4.85</td>
-<td style="text-align: right;"><strong>32.3%</strong></td>
+<td style="text-align: right;">4.95</td>
+<td style="text-align: right;"><strong>33.0%</strong></td>
 </tr>
 </tbody>
 </table>
 <div class="fragment">
 <ul>
 <li class="fragment"><strong>Identical average (15 hrs)</strong>, but A’s range is 2 hours and B’s is 12.</li>
-<li class="fragment">A’s CV is 4.7%; B’s is 32.3%. <strong>A is the dependable carrier</strong>; B is a gamble.</li>
+<li class="fragment">A’s CV is 4.7%; B’s is 33.0%. <strong>A is the dependable carrier</strong>; B is a gamble.</li>
 <li class="fragment"><em>The mean could not tell them apart; variability did.</em> This is the lesson we now take to Vungle.</li>
 </ul>
 </div>
@@ -531,6 +540,16 @@ s = \sqrt{s^2} \qquad\qquad \sigma = \sqrt{\sigma^2}
 <li class="fragment"><strong>B earns more on average, and is markedly riskier.</strong> Higher mean, higher spread.</li>
 <li class="fragment">That is the real headline for the manager: <em>“B’s edge comes with more volatility.”</em> The mean hid it; variability reveals it.</li>
 </ul>
+</div>
+</div>
+</section>
+<section id="a-question-that-often-comes-up" class="slide level2 center">
+<h2>A Question That Often Comes Up</h2>
+<div class="faq">
+<p><strong>A question that often comes up at this point:</strong></p>
+<p><span class="faq-q">B earns more AND swings more. Doesn’t the higher average just settle it?</span></p>
+<div class="fragment faq-a">
+<p><strong>Short answer:</strong> not yet. The higher average is only in these 30 days, and the extra volatility means part of B’s edge could be the luck of one month. Description flags the risk; whether the $0.11 edge is real is the inference question we settle in Topics 7-9.</p>
 </div>
 </div>
 </section>
@@ -817,6 +836,16 @@ z_i = \frac{x_i - \bar{x}}{s}
 <li>The most extreme day is <strong>June 2 at $2.587, z = −2.53</strong>: notable, but <strong>not</strong> an outlier by the <span class="math inline">\(|z| &gt; 3\)</span> rule (which flags <strong>no</strong> days here).</li>
 <li>The <strong>boxplot</strong> rule flags <strong>two</strong> days below the $2.80 fence: June 2 <em>and</em> <strong>June 3 ($2.755)</strong>. Same data, two rules, different verdicts; judgment decides.</li>
 </ul>
+</section>
+<section id="a-question-that-often-comes-up-1" class="slide level2 center">
+<h2>A Question That Often Comes Up</h2>
+<div class="faq">
+<p><strong>A question that often comes up at this point:</strong></p>
+<p><span class="faq-q">The two rules disagree on June 2 and June 3. Which one is right, and should I drop those days?</span></p>
+<div class="fragment faq-a">
+<p><strong>Short answer:</strong> neither is “right”: the 1.5×IQR rule is simply more sensitive in the tails than the |z| &gt; 3 rule. A flag is an invitation to investigate, not a delete button. Check whether June 2 and 3 were genuine slow days before you ever drop them.</p>
+</div>
+</div>
 </section></section>
 <section>
 <section id="five-number-summary-boxplot" class="title-slide slide level1 center" data-background-color="#cfb991">
@@ -1111,6 +1140,16 @@ r_{xy} = \frac{s_{xy}}{s_x \, s_y}
 <p><a href="https://www.tylervigen.com/spurious-correlations">Spurious Correlations</a></p>
 </div>
 </div></div>
+</section>
+<section id="a-question-that-often-comes-up-2" class="slide level2 center">
+<h2>A Question That Often Comes Up</h2>
+<div class="faq">
+<p><strong>A question that often comes up at this point:</strong></p>
+<p><span class="faq-q">Clicks and installs correlate at +0.92. So more clicks cause more installs?</span></p>
+<div class="fragment faq-a">
+<p><strong>Short answer:</strong> not from the correlation alone. Clicks and installs are both driven by daily traffic volume, a lurking third variable. Only Vungle’s randomized A/B design licenses a causal claim; r just says the two move together.</p>
+</div>
+</div>
 </section></section>
 <section>
 <section id="debrief-the-managers-brief" class="title-slide slide level1 center" data-background-color="#cfb991">
@@ -1126,6 +1165,21 @@ r_{xy} = \frac{s_{xy}}{s_x \, s_y}
 <li class="fragment"><p><strong>Shape:</strong> both are roughly symmetric (|skew| &lt; 0.5); no day is an outlier by the <span class="math inline">\(|z|&gt;3\)</span> rule, though B’s two slow days (June 2 &amp; June 3) fall past the boxplot’s lower fence.</p></li>
 <li class="fragment"><p><strong>The honest two-sentence read:</strong> <em>“Over 30 days, B averaged $0.11 more per 1,000 impressions than A, but with ~50% more day-to-day volatility. Whether that $0.11 edge is real signal or sampling noise is a question description alone cannot settle; that needs a hypothesis test.”</em></p></li>
 </ul>
+</section>
+<section id="todays-question-todays-answer" class="slide level2 center">
+<h2>Today’s Question, Today’s Answer</h2>
+<p><br></p>
+<p><strong>The question (Topic 2 of the ladder):</strong></p>
+<blockquote>
+<p><em>Is B’s edge steady, or just more volatile?</em></p>
+</blockquote>
+<div class="fragment">
+<p><br></p>
+<p><strong>The answer we reached today:</strong></p>
+<blockquote>
+<p><strong>More volatile.</strong> B earns more on average (<strong>$3.46</strong> vs <strong>$3.35</strong>), but its day-to-day spread is markedly larger: <strong>SD $0.34 vs $0.22</strong>, <strong>CV 10.0% vs 6.5%</strong>, about 50% more volatile relative to its size. Whether that <strong>$0.11</strong> edge is real signal or sampling noise is the <strong>inference</strong> question, Topics 7-9.</p>
+</blockquote>
+</div>
 </section>
 <section id="the-managers-takeaway" class="slide level2 center">
 <h2>The Manager’s Takeaway</h2>

@@ -1462,7 +1462,7 @@
     "href": "lecture_slides/02_chapter_descriptive_statistics/02_chapter_descriptive_statistics.html#recap-where-we-left-off",
     "title": " QM 6700: Business Analytics ",
     "section": "Recap: Where We Left Off",
-    "text": "Recap: Where We Left Off\n\n\nVungle is a mobile ad-tech startup: it serves 15-second video ads inside other apps and earns revenue mainly when a viewer installs the advertised app.\nThe metric that pays the bills is eRPM: effective revenue per 1,000 impressions.\nTwo analysts built a new ad-serving algorithm (B) and ran it head-to-head against the current one (A) for the whole month of June 2014.\nLast time we computed the centers: A’s mean eRPM is $3.347, B’s is $3.459; B’s average sits $0.11 higher.\nA manager glances at that gap and says: “B wins, roll it out.”"
+    "text": "Recap: Where We Left Off\n\n\nVungle is a mobile ad-tech startup: it serves 15-second video ads inside other apps and earns revenue mainly when a viewer installs the advertised app.\nThe metric that pays the bills is eRPM: effective revenue per 1,000 impressions.\nTwo analysts built a new ad-serving algorithm (B) and ran it head-to-head against the current one (A) for the whole month of June 2014.\nLast time we computed the centers: A’s mean eRPM is $3.347, B’s is $3.459; B’s average sits $0.11 higher.\nIt is tempting to glance at that gap and say: “B wins, roll it out.”"
   },
   {
     "objectID": "lecture_slides/02_chapter_descriptive_statistics/02_chapter_descriptive_statistics.html#the-brief-todays-managerial-question",
@@ -1525,7 +1525,7 @@
     "href": "lecture_slides/02_chapter_descriptive_statistics/02_chapter_descriptive_statistics.html#anchor-example-two-suppliers-delivery-times",
     "title": " QM 6700: Business Analytics ",
     "section": "Anchor Example: Two Suppliers’ Delivery Times",
-    "text": "Anchor Example: Two Suppliers’ Delivery Times\n\nA purchasing manager compares delivery times (hours) from two carriers over five shipments. Same mean, very different reliability.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nShip 1\nShip 2\nShip 3\nShip 4\nShip 5\nMean\nRange\n\\(s\\)\nCV\n\n\n\n\nCarrier A\n14\n15\n16\n15\n15\n15\n2\n0.71\n4.7%\n\n\nCarrier B\n9\n21\n14\n19\n12\n15\n12\n4.85\n32.3%\n\n\n\n\n\nIdentical average (15 hrs), but A’s range is 2 hours and B’s is 12.\nA’s CV is 4.7%; B’s is 32.3%. A is the dependable carrier; B is a gamble.\nThe mean could not tell them apart; variability did. This is the lesson we now take to Vungle."
+    "text": "Anchor Example: Two Suppliers’ Delivery Times\n\nA purchasing manager compares delivery times (hours) from two carriers over five shipments. Same mean, very different reliability.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nShip 1\nShip 2\nShip 3\nShip 4\nShip 5\nMean\nRange\n\\(s\\)\nCV\n\n\n\n\nCarrier A\n14\n15\n16\n15\n15\n15\n2\n0.71\n4.7%\n\n\nCarrier B\n9\n21\n14\n19\n12\n15\n12\n4.95\n33.0%\n\n\n\n\n\nIdentical average (15 hrs), but A’s range is 2 hours and B’s is 12.\nA’s CV is 4.7%; B’s is 33.0%. A is the dependable carrier; B is a gamble.\nThe mean could not tell them apart; variability did. This is the lesson we now take to Vungle."
   },
   {
     "objectID": "lecture_slides/02_chapter_descriptive_statistics/02_chapter_descriptive_statistics.html#vungle-variability-a-vs.-b",
@@ -4091,5 +4091,40 @@
     "title": " QM 6700: Business Analytics ",
     "section": "A Question That Often Comes Up",
     "text": "A Question That Often Comes Up\n\nA question that often comes up at this point:\nVungle’s mean and median eRPM are almost equal, so why bother computing both?\n\nShort answer: their agreement is itself information. Mean ≈ median tells you the eRPM distribution is roughly symmetric with no extreme days, so the mean is trustworthy here. When the two pull apart, that gap is your early warning of skew or an outlier day, which is exactly what we dissect next class."
+  },
+  {
+    "objectID": "lecture_slides/02_chapter_descriptive_statistics/02_chapter_descriptive_statistics.html#how-every-class-runs",
+    "href": "lecture_slides/02_chapter_descriptive_statistics/02_chapter_descriptive_statistics.html#how-every-class-runs",
+    "title": " QM 6700: Business Analytics ",
+    "section": "How Every Class Runs",
+    "text": "How Every Class Runs\n\n\n\n\n\nThe class ends on the Team Sprint, your group’s graded submission: a decision plus your read of the analysis, one PDF before you leave."
+  },
+  {
+    "objectID": "lecture_slides/02_chapter_descriptive_statistics/02_chapter_descriptive_statistics.html#a-question-that-often-comes-up",
+    "href": "lecture_slides/02_chapter_descriptive_statistics/02_chapter_descriptive_statistics.html#a-question-that-often-comes-up",
+    "title": " QM 6700: Business Analytics ",
+    "section": "A Question That Often Comes Up",
+    "text": "A Question That Often Comes Up\n\nA question that often comes up at this point:\nB earns more AND swings more. Doesn’t the higher average just settle it?\n\nShort answer: not yet. The higher average is only in these 30 days, and the extra volatility means part of B’s edge could be the luck of one month. Description flags the risk; whether the $0.11 edge is real is the inference question we settle in Topics 7-9."
+  },
+  {
+    "objectID": "lecture_slides/02_chapter_descriptive_statistics/02_chapter_descriptive_statistics.html#a-question-that-often-comes-up-1",
+    "href": "lecture_slides/02_chapter_descriptive_statistics/02_chapter_descriptive_statistics.html#a-question-that-often-comes-up-1",
+    "title": " QM 6700: Business Analytics ",
+    "section": "A Question That Often Comes Up",
+    "text": "A Question That Often Comes Up\n\nA question that often comes up at this point:\nThe two rules disagree on June 2 and June 3. Which one is right, and should I drop those days?\n\nShort answer: neither is “right”: the 1.5×IQR rule is simply more sensitive in the tails than the |z| &gt; 3 rule. A flag is an invitation to investigate, not a delete button. Check whether June 2 and 3 were genuine slow days before you ever drop them."
+  },
+  {
+    "objectID": "lecture_slides/02_chapter_descriptive_statistics/02_chapter_descriptive_statistics.html#a-question-that-often-comes-up-2",
+    "href": "lecture_slides/02_chapter_descriptive_statistics/02_chapter_descriptive_statistics.html#a-question-that-often-comes-up-2",
+    "title": " QM 6700: Business Analytics ",
+    "section": "A Question That Often Comes Up",
+    "text": "A Question That Often Comes Up\n\nA question that often comes up at this point:\nClicks and installs correlate at +0.92. So more clicks cause more installs?\n\nShort answer: not from the correlation alone. Clicks and installs are both driven by daily traffic volume, a lurking third variable. Only Vungle’s randomized A/B design licenses a causal claim; r just says the two move together."
+  },
+  {
+    "objectID": "lecture_slides/02_chapter_descriptive_statistics/02_chapter_descriptive_statistics.html#todays-question-todays-answer",
+    "href": "lecture_slides/02_chapter_descriptive_statistics/02_chapter_descriptive_statistics.html#todays-question-todays-answer",
+    "title": " QM 6700: Business Analytics ",
+    "section": "Today’s Question, Today’s Answer",
+    "text": "Today’s Question, Today’s Answer\n\nThe question (Topic 2 of the ladder):\n\nIs B’s edge steady, or just more volatile?\n\n\n\nThe answer we reached today:\n\nMore volatile. B earns more on average ($3.46 vs $3.35), but its day-to-day spread is markedly larger: SD $0.34 vs $0.22, CV 10.0% vs 6.5%, about 50% more volatile relative to its size. Whether that $0.11 edge is real signal or sampling noise is the inference question, Topics 7-9."
   }
 ]
