@@ -341,6 +341,18 @@ knitr::include_graphics("figs/stat_analysis_scheme.png")
 | "B's true conversion rate differs from A's." | **Inferential** |
 :::
 
+## A Question That Often Comes Up
+
+:::: {.faq}
+**A question that often comes up at this point:**
+
+*If we already have all 30 days of data, why can't we just compute the answer? Why do we need "inference" at all?*
+
+::: fragment
+**Short answer:** those 30 days are a **sample** of all the future traffic B would ever serve. Describing what happened in June is certain; claiming B will keep winning next month is a leap from sample to population, and that leap is exactly what **inference** (Topics 7–9) is for.
+:::
+::::
+
 ## Roadmap: What "Descriptive" Covers
 
 <br>
@@ -562,6 +574,18 @@ knitr::include_graphics("figs/random_assignment_sampling.png")
 - **Random assignment** (*who gets which treatment*) supports causal comparison.
 :::
 
+## A Question That Often Comes Up
+
+:::: {.faq}
+**A question that often comes up at this point:**
+
+*We randomly assigned impressions to A or B, but we did not randomly sample all of next year's traffic. So what can we actually claim from these 30 days?*
+
+::: fragment
+**Short answer:** two different guarantees. Random **assignment** lets you say B *caused* the higher eRPM on these days; random **sampling** would let you generalize to all future traffic. You have the first, not the second, which is why a company-wide roll-out still needs an inference test (Topics 7–9).
+:::
+::::
+
 # Descriptive Statistics {background-color="#cfb991"}
 
 ## Summarizing and Presenting Data {.smaller}
@@ -597,6 +621,18 @@ knitr::include_graphics("figs/vungle_erpm_box.png")
 - Describing is step one; *deciding* whether that gap is real comes later (Topics 7–9).
 :::
 
+## A Question That Often Comes Up
+
+:::: {.faq}
+**A question that often comes up at this point:**
+
+*Why does Vungle judge the algorithms on eRPM instead of total revenue or total installs?*
+
+::: fragment
+**Short answer:** eRPM is revenue per 1,000 impressions, so it compares A and B **fairly** even when they served different amounts of traffic. Total revenue would just crown whichever algorithm happened to run more often; eRPM is the per-impression efficiency the business actually optimizes.
+:::
+::::
+
 ## Measures of Location: the Mean
 
 <br>
@@ -626,6 +662,18 @@ $$
 - **Mode:** the most frequent value; the only center valid for **categorical** data (e.g., the most-served `algorithm`). For continuous eRPM every value is distinct, so the mode says nothing.
 - **Rule of thumb:** report the **mean** for symmetric data, the **median** when it is skewed or has outliers.
 :::
+
+## A Question That Often Comes Up
+
+:::: {.faq}
+**A question that often comes up at this point:**
+
+*Vungle's mean and median eRPM are almost equal, so why bother computing both?*
+
+::: fragment
+**Short answer:** their **agreement** is itself information. Mean ≈ median tells you the eRPM distribution is roughly symmetric with no extreme days, so the mean is trustworthy here. When the two pull apart, that gap is your early warning of skew or an outlier day, which is exactly what we dissect next class.
+:::
+::::
 
 ## Your Excel Toolkit: the Analysis ToolPak
 

@@ -32,7 +32,7 @@
       vertical-align: middle;
     }
   </style>
-  <link rel="stylesheet" href="../../site_libs/revealjs/dist/theme/quarto-113b5beb2a57b2deea58feb1108e76b2.css">
+  <link rel="stylesheet" href="../../site_libs/revealjs/dist/theme/quarto-be5c338c23658fbe9e0648b29e80f0bc.css">
   <link href="../../site_libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
   <link href="../../site_libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
   <link href="../../site_libs/revealjs/plugin/reveal-menu/quarto-menu.css" rel="stylesheet">
@@ -531,6 +531,16 @@ Professor: Davi Moreira
 </table>
 </div>
 </section>
+<section id="a-question-that-often-comes-up" class="slide level2 center">
+<h2>A Question That Often Comes Up</h2>
+<div class="faq">
+<p><strong>A question that often comes up at this point:</strong></p>
+<p><em>If we already have all 30 days of data, why can’t we just compute the answer? Why do we need “inference” at all?</em></p>
+<div class="fragment">
+<p><strong>Short answer:</strong> those 30 days are a <strong>sample</strong> of all the future traffic B would ever serve. Describing what happened in June is certain; claiming B will keep winning next month is a leap from sample to population, and that leap is exactly what <strong>inference</strong> (Topics 7–9) is for.</p>
+</div>
+</div>
+</section>
 <section id="roadmap-what-descriptive-covers" class="slide level2 center">
 <h2>Roadmap: What “Descriptive” Covers</h2>
 <p><br></p>
@@ -886,6 +896,16 @@ Professor: Davi Moreira
 <li><strong>Random sampling</strong> (<em>who gets into the study</em>) supports generalizing to the population.</li>
 <li><strong>Random assignment</strong> (<em>who gets which treatment</em>) supports causal comparison.</li>
 </ul>
+</section>
+<section id="a-question-that-often-comes-up-1" class="slide level2 center">
+<h2>A Question That Often Comes Up</h2>
+<div class="faq">
+<p><strong>A question that often comes up at this point:</strong></p>
+<p><em>We randomly assigned impressions to A or B, but we did not randomly sample all of next year’s traffic. So what can we actually claim from these 30 days?</em></p>
+<div class="fragment">
+<p><strong>Short answer:</strong> two different guarantees. Random <strong>assignment</strong> lets you say B <em>caused</em> the higher eRPM on these days; random <strong>sampling</strong> would let you generalize to all future traffic. You have the first, not the second, which is why a company-wide roll-out still needs an inference test (Topics 7–9).</p>
+</div>
+</div>
 </section></section>
 <section>
 <section id="descriptive-statistics" class="title-slide slide level1 center" data-background-color="#cfb991">
@@ -917,6 +937,16 @@ Professor: Davi Moreira
 <li>Describing is step one; <em>deciding</em> whether that gap is real comes later (Topics 7–9).</li>
 </ul>
 </section>
+<section id="a-question-that-often-comes-up-2" class="slide level2 center">
+<h2>A Question That Often Comes Up</h2>
+<div class="faq">
+<p><strong>A question that often comes up at this point:</strong></p>
+<p><em>Why does Vungle judge the algorithms on eRPM instead of total revenue or total installs?</em></p>
+<div class="fragment">
+<p><strong>Short answer:</strong> eRPM is revenue per 1,000 impressions, so it compares A and B <strong>fairly</strong> even when they served different amounts of traffic. Total revenue would just crown whichever algorithm happened to run more often; eRPM is the per-impression efficiency the business actually optimizes.</p>
+</div>
+</div>
+</section>
 <section id="measures-of-location-the-mean" class="slide level2 center">
 <h2>Measures of Location: the Mean</h2>
 <p><br></p>
@@ -947,6 +977,16 @@ Professor: Davi Moreira
 <li><strong>Mode:</strong> the most frequent value; the only center valid for <strong>categorical</strong> data (e.g., the most-served <code>algorithm</code>). For continuous eRPM every value is distinct, so the mode says nothing.</li>
 <li><strong>Rule of thumb:</strong> report the <strong>mean</strong> for symmetric data, the <strong>median</strong> when it is skewed or has outliers.</li>
 </ul>
+</section>
+<section id="a-question-that-often-comes-up-3" class="slide level2 center">
+<h2>A Question That Often Comes Up</h2>
+<div class="faq">
+<p><strong>A question that often comes up at this point:</strong></p>
+<p><em>Vungle’s mean and median eRPM are almost equal, so why bother computing both?</em></p>
+<div class="fragment">
+<p><strong>Short answer:</strong> their <strong>agreement</strong> is itself information. Mean ≈ median tells you the eRPM distribution is roughly symmetric with no extreme days, so the mean is trustworthy here. When the two pull apart, that gap is your early warning of skew or an outlier day, which is exactly what we dissect next class.</p>
+</div>
+</div>
 </section>
 <section id="your-excel-toolkit-the-analysis-toolpak" class="slide level2 center">
 <h2>Your Excel Toolkit: the Analysis ToolPak</h2>
