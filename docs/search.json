@@ -4056,5 +4056,12 @@
     "title": " QM 6700: Business Analytics ",
     "section": "The Manager’s Takeaway",
     "text": "The Manager’s Takeaway\n\n\nOne sentence: for this 45-store chain, service and merchandising drive sales, not location demographics, so invest in Yelp rating (+$642K/star) and endcap placement (+$816K), each statistically decisive.\nOne number to remember: $816K, the value of an endcap, read straight off a dummy variable’s coefficient, holding everything else constant.\nOne caveat: the model describes 45 existing stores; it does not prove that buying an endcap will cause +$816K at a brand-new store. Correlation control is the best we can do with observational data: pilot it, then re-estimate.\nPractice with the real data: data/autoparts.csv + Excel Regression → reproduce \\(R^2 = 0.932\\), \\(F = 136.7\\), the four coefficients, and the prediction. Worked solutions: data/autoparts_regression.xlsx."
+  },
+  {
+    "objectID": "lecture_slides/01_chapter_data_statistics/01_chapter_data_statistics.html#todays-question-todays-answer",
+    "href": "lecture_slides/01_chapter_data_statistics/01_chapter_data_statistics.html#todays-question-todays-answer",
+    "title": " QM 6700: Business Analytics ",
+    "section": "Today’s Question, Today’s Answer",
+    "text": "Today’s Question, Today’s Answer\n\nThe question (Topic 1 of the ladder):\n\nIs B’s average eRPM above A’s, and is the data valid to compare?\n\n\n\nThe answer we reached today:\n\nYes. On 30 valid, randomized experimental days, B’s average eRPM ($3.46) edges A’s ($3.35) by $0.11. Whether that $0.11 edge is real or just day-to-day noise is the inference question, settled in Topics 7–9."
   }
 ]

@@ -680,6 +680,22 @@ knitr::include_graphics("figs/excel_desc_erpm.png")
 
 - **Your call today:** *not yet.* You can describe B's edge, but approving a company-wide roll-out needs an inference test, and that is exactly what you will demand from your analyst in Topics 7–9.
 
+## Today's Question, Today's Answer
+
+<br>
+
+**The question (Topic 1 of the ladder):**
+
+> *Is B's average eRPM above A's, and is the data valid to compare?*
+
+::: fragment
+<br>
+
+**The answer we reached today:**
+
+> **Yes.** On 30 valid, randomized experimental days, B's average eRPM (**\$3.46**) edges A's (**\$3.35**) by **\$0.11**. Whether that **\$0.11** edge is *real* or just day-to-day noise is the **inference** question, settled in Topics 7–9.
+:::
+
 # Statistical Inference {background-color="#cfb991"}
 
 ## Statistical Inference
