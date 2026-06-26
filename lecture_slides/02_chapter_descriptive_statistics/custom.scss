@@ -89,15 +89,27 @@ code {
   font-weight: 900;                  /* Use the solid weight for the Font Awesome icon */
 }
 
-/* Team Sprint callout — the active "your turn" moment in the Analytics Studio flow */
+/* Team Sprint callout — the active "your turn" moment in the Analytics Studio flow.
+   Larger + roomier so it is the prominent, easy-to-read focus of the slide (not a small box floating in dead space). */
 .reveal .sprint {
   background-color: #f7f2e4;
-  border-left: 12px solid #cfb991;
-  border-radius: 8px;
-  padding: 0.5em 1.1em;
-  margin-top: 0.2em;
+  border-left: 14px solid #cfb991;
+  border-radius: 10px;
+  padding: 1.1em 1.6em;
+  margin-top: 0.5em;
+  font-size: 1.12em;
+  line-height: 1.5;
 }
+.reveal .sprint p { margin: 0.75em 0; }
+.reveal .sprint p:first-child { margin-top: 0; }
+.reveal .sprint p:last-child { margin-bottom: 0; }
 .reveal .sprint strong { color: #8e6f3e; }
+/* vertically center the Team Sprint slide content within its section (safety if the section is ever tall) */
+.reveal .slides section:has(> .sprint) {
+  display: flex !important;
+  flex-direction: column;
+  justify-content: center;
+}
 
 /* "A question that often comes up" callout — the anticipated-question device (pose, then reveal the answer) */
 .reveal .faq {

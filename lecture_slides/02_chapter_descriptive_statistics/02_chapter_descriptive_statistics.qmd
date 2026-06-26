@@ -60,7 +60,7 @@ The class **ends on the Team Sprint**, your group's graded submission: a decisio
 
 <br>
 
-- [Vungle](https://en.wikipedia.org/wiki/Liftoff_Mobile) is a mobile ad-tech startup: it serves 15-second video ads inside other apps and earns revenue mainly when a viewer **installs** the advertised app.
+- **Vungle** is a mobile ad-tech startup: it serves 15-second video ads inside other apps and earns revenue mainly when a viewer **installs** the advertised app.
 
 - The metric that pays the bills is **eRPM**: effective revenue per 1,000 impressions.
 
