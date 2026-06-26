@@ -331,6 +331,16 @@ Professor<br>Davi Moreira<br>
 <li class="fragment"><p><strong>Excel:</strong> <code>=MAX(rng)-MIN(rng)</code> for the range; <code>=QUARTILE.INC(rng,3)-QUARTILE.INC(rng,1)</code> for the IQR.</p></li>
 </ul>
 </section>
+<section id="a-question-that-often-comes-up" class="slide level2 center">
+<h2>A Question That Often Comes Up</h2>
+<div class="faq">
+<p><strong>A question that often comes up at this point:</strong></p>
+<p><span class="faq-q">If both measure spread, why report B’s IQR (0.350) when the range (1.486) already says B swings more?</span></p>
+<div class="fragment faq-a">
+<p><strong>Short answer:</strong> they answer different questions. B’s range is set by its two most extreme days (one great day, one slow day), so a single odd day can blow it up. The IQR ignores the top and bottom 25% and reports how spread out a <em>typical</em> B day is. Read together, they tell you whether B’s spread is one wild day or a steady pattern.</p>
+</div>
+</div>
+</section>
 <section id="variance-the-average-squared-distance-from-the-mean" class="slide level2 center">
 <h2>Variance: the Average Squared Distance from the Mean</h2>
 <p><br></p>
@@ -348,6 +358,16 @@ Professor<br>Davi Moreira<br>
 <li class="fragment"><p><strong>Why divide by <span class="math inline">\(n-1\)</span> for a sample?</strong> We “spend” one degree of freedom estimating <span class="math inline">\(\bar{x}\)</span> from the same data; dividing by <span class="math inline">\(n-1\)</span> corrects the bias so <span class="math inline">\(s^2\)</span> is an honest estimate of <span class="math inline">\(\sigma^2\)</span>.</p></li>
 <li class="fragment"><p>The catch: variance is in <strong>squared units</strong> (dollars²), hard to interpret directly. That is what the standard deviation fixes.</p></li>
 </ul>
+</section>
+<section id="a-question-that-often-comes-up-1" class="slide level2 center">
+<h2>A Question That Often Comes Up</h2>
+<div class="faq">
+<p><strong>A question that often comes up at this point:</strong></p>
+<p><span class="faq-q">We have all 30 of B’s days. Why divide by 29 instead of 30 when we average the squared deviations?</span></p>
+<div class="fragment faq-a">
+<p><strong>Short answer:</strong> because those 30 days are a <em>sample</em>, and we already used them to compute B’s mean ($3.459). Once the mean is pinned down, only 29 of the deviations are free to vary; dividing by 29 corrects a bias that would otherwise make B’s spread look smaller than it is. If the 30 days were the entire population, you would divide by 30.</p>
+</div>
+</div>
 </section>
 <section id="standard-deviation-and-the-notation-table" class="slide level2 center">
 <h2>Standard Deviation and the Notation Table</h2>
@@ -392,6 +412,16 @@ s = \sqrt{s^2} \qquad\qquad \sigma = \sqrt{\sigma^2}
 <li class="fragment"><strong>Excel:</strong> <code>=VAR.S</code> / <code>=STDEV.S</code> for a <strong>sample</strong>; <code>=VAR.P</code> / <code>=STDEV.P</code> for a full <strong>population</strong>. Our 30 days are a <em>sample</em> of all possible days → use the <strong><code>.S</code></strong> versions.</li>
 </ul>
 </section>
+<section id="a-question-that-often-comes-up-2" class="slide level2 center">
+<h2>A Question That Often Comes Up</h2>
+<div class="faq">
+<p><strong>A question that often comes up at this point:</strong></p>
+<p><span class="faq-q">B’s standard deviation is $0.344. What does that one number actually tell me as Vungle’s manager?</span></p>
+<div class="fragment faq-a">
+<p><strong>Short answer:</strong> it puts B’s spread back in dollars: on a typical day, B’s eRPM lands about $0.34 from its $3.459 mean. Compare that with A’s $0.22 and the contrast is concrete: a normal B day can swing further from its average than a normal A day. That $0.34 is the everyday volatility you weigh against B’s $0.11 higher mean.</p>
+</div>
+</div>
+</section>
 <section id="coefficient-of-variation-spread-relative-to-size" class="slide level2 center">
 <h2>Coefficient of Variation: Spread Relative to Size</h2>
 <p><br></p>
@@ -408,6 +438,16 @@ s = \sqrt{s^2} \qquad\qquad \sigma = \sqrt{\sigma^2}
 <li class="fragment"><p><strong>Vungle read:</strong> even before testing, CV tells you which algorithm is <em>relatively</em> more volatile, exactly the risk question you, the manager, care about.</p></li>
 <li class="fragment"><p><strong>Excel:</strong> <code>=STDEV.S(rng)/AVERAGE(rng)</code>.</p></li>
 </ul>
+</section>
+<section id="a-question-that-often-comes-up-3" class="slide level2 center">
+<h2>A Question That Often Comes Up</h2>
+<div class="faq">
+<p><strong>A question that often comes up at this point:</strong></p>
+<p><span class="faq-q">A and B both measure eRPM in dollars. If the units already match, why bother with CV instead of just comparing the two SDs?</span></p>
+<div class="fragment faq-a">
+<p><strong>Short answer:</strong> the SDs alone ($0.22 vs $0.34) ignore that B also earns more on average, so part of its bigger swing is just its bigger size. CV divides spread by the mean: A is 6.5%, B is 10.0%. Even after accounting for B’s higher level, it is about 50% more volatile <em>per dollar earned</em>. That is the risk read you cannot get from the SDs by themselves.</p>
+</div>
+</div>
 </section>
 <section id="anchor-example-two-suppliers-delivery-times" class="slide level2 center">
 <h2>Anchor Example: Two Suppliers’ Delivery Times</h2>
@@ -543,7 +583,7 @@ s = \sqrt{s^2} \qquad\qquad \sigma = \sqrt{\sigma^2}
 </div>
 </div>
 </section>
-<section id="a-question-that-often-comes-up" class="slide level2 center">
+<section id="a-question-that-often-comes-up-4" class="slide level2 center">
 <h2>A Question That Often Comes Up</h2>
 <div class="faq">
 <p><strong>A question that often comes up at this point:</strong></p>
@@ -630,6 +670,16 @@ s = \sqrt{s^2} \qquad\qquad \sigma = \sqrt{\sigma^2}
 <li class="fragment"><strong>Quick check, no formula:</strong> compare mean and median. If they are close, the data are roughly symmetric.</li>
 </ul>
 </section>
+<section id="a-question-that-often-comes-up-5" class="slide level2 center">
+<h2>A Question That Often Comes Up</h2>
+<div class="faq">
+<p><strong>A question that often comes up at this point:</strong></p>
+<p><span class="faq-q">I already have B’s center and spread. Why does it matter whether B’s eRPM is lopsided?</span></p>
+<div class="fragment faq-a">
+<p><strong>Short answer:</strong> because the rule we use next to flag unusual days, the Empirical Rule, only holds when the data are roughly symmetric. Skewness is the check that earns the right to use it. B’s mild left skew also has a business reading: a few weak early days drag its lower tail, exactly the slow June 2-3 we will hunt for as possible outliers.</p>
+</div>
+</div>
+</section>
 <section id="vungle-shape-check" class="slide level2 center">
 <h2>Vungle Shape Check</h2>
 <ul>
@@ -700,6 +750,16 @@ z_i = \frac{x_i - \bar{x}}{s}
 <li class="fragment"><p><strong>Excel:</strong> <code>=STANDARDIZE(x, mean, standard_deviation)</code>.</p></li>
 </ul>
 </section>
+<section id="a-question-that-often-comes-up-6" class="slide level2 center">
+<h2>A Question That Often Comes Up</h2>
+<div class="faq">
+<p><strong>A question that often comes up at this point:</strong></p>
+<p><span class="faq-q">A $4.07 eRPM day and a 38,000-install day are on totally different scales. How can one z-score compare them?</span></p>
+<div class="fragment faq-a">
+<p><strong>Short answer:</strong> the z-score strips out the units. It does not ask “how many dollars” or “how many installs”; it asks “how many standard deviations from this series’ own mean.” A z of +2 means <em>two SDs above typical</em> whether the variable is eRPM, installs, or clicks, so a strong eRPM day and a strong install day become directly comparable on one ruler.</p>
+</div>
+</div>
+</section>
 <section id="the-empirical-rule-for-bell-shaped-data" class="slide level2 center">
 <h2>The Empirical Rule: for Bell-Shaped Data</h2>
 
@@ -751,6 +811,16 @@ z_i = \frac{x_i - \bar{x}}{s}
 <li class="fragment"><p><strong>Practical use:</strong> a day outside $2.77–$4.15 is in the rare 5% tail, worth a second look.</p></li>
 </ul>
 </section>
+<section id="a-question-that-often-comes-up-7" class="slide level2 center">
+<h2>A Question That Often Comes Up</h2>
+<div class="faq">
+<p><strong>A question that often comes up at this point:</strong></p>
+<p><span class="faq-q">The rule predicts 68% within one SD but B actually had 70%, and 95% predicted vs 93% observed. Did the rule fail?</span></p>
+<div class="fragment faq-a">
+<p><strong>Short answer:</strong> no, the rule is an approximation for bell-shaped data, not an exact count. With only 30 days, each day is about 3 percentage points, so 70% vs 68% is one day off. The shares tracking the rule this closely is the evidence that B’s eRPM is well-approximated by a bell, which is what lets you read the $2.77-$4.15 band as the everyday range.</p>
+</div>
+</div>
+</section>
 <section id="chebyshev-when-you-cant-assume-a-bell" class="slide level2 center">
 <h2>Chebyshev: When You Can’t Assume a Bell</h2>
 <p><br></p>
@@ -793,6 +863,16 @@ z_i = \frac{x_i - \bar{x}}{s}
 <ul>
 <li class="fragment">Chebyshev is the <strong>safe, conservative</strong> bound; the Empirical Rule is <strong>tighter but only valid for bell-shaped data</strong>. Check the shape, then pick the rule.</li>
 </ul>
+</section>
+<section id="a-question-that-often-comes-up-8" class="slide level2 center">
+<h2>A Question That Often Comes Up</h2>
+<div class="faq">
+<p><strong>A question that often comes up at this point:</strong></p>
+<p><span class="faq-q">If Chebyshev works for any shape, why not always use it and skip the bell-shape check?</span></p>
+<div class="fragment faq-a">
+<p><strong>Short answer:</strong> because Chebyshev’s safety costs you precision. At two SDs it only promises <em>at least 75%</em>, while the Empirical Rule says <em>about 95%</em> once you have earned the bell assumption. For B, where the shape check passed, the tighter 95% band is far more useful for spotting a rare day. Use Chebyshev when the data are lopsided or you do not know the shape.</p>
+</div>
+</div>
 </section>
 <section id="detecting-outliers-two-rules-that-can-disagree" class="slide level2 center">
 <h2>Detecting Outliers: Two Rules That Can Disagree</h2>
@@ -837,7 +917,7 @@ z_i = \frac{x_i - \bar{x}}{s}
 <li>The <strong>boxplot</strong> rule flags <strong>two</strong> days below the $2.80 fence: June 2 <em>and</em> <strong>June 3 ($2.755)</strong>. Same data, two rules, different verdicts; judgment decides.</li>
 </ul>
 </section>
-<section id="a-question-that-often-comes-up-1" class="slide level2 center">
+<section id="a-question-that-often-comes-up-9" class="slide level2 center">
 <h2>A Question That Often Comes Up</h2>
 <div class="faq">
 <p><strong>A question that often comes up at this point:</strong></p>
@@ -899,6 +979,16 @@ z_i = \frac{x_i - \bar{x}}{s}
 <li class="fragment"><strong>Excel:</strong> <code>=MIN</code>, <code>=QUARTILE.INC(rng,1)</code>, <code>=MEDIAN</code>, <code>=QUARTILE.INC(rng,3)</code>, <code>=MAX</code>.</li>
 </ul>
 </section>
+<section id="a-question-that-often-comes-up-10" class="slide level2 center">
+<h2>A Question That Often Comes Up</h2>
+<div class="faq">
+<p><strong>A question that often comes up at this point:</strong></p>
+<p><span class="faq-q">We already computed mean, SD, skewness and z-scores for B. Why collapse everything back into just five numbers?</span></p>
+<div class="fragment faq-a">
+<p><strong>Short answer:</strong> the five numbers are not a replacement, they are the picture-ready summary. Min, Q1, median, Q3, max carry center, spread, and shape in one line, and they map straight onto a boxplot you can put side by side for A and B. Compare B’s row (2.587, 3.324, 3.434, 3.674, 4.073) to A’s and you see B sitting higher <em>and</em> reaching lower at a glance.</p>
+</div>
+</div>
+</section>
 <section id="anatomy-of-a-boxplot" class="slide level2 center">
 <h2>Anatomy of a Boxplot</h2>
 <p><br></p>
@@ -925,6 +1015,16 @@ z_i = \frac{x_i - \bar{x}}{s}
 <li>One picture carries the whole brief: <strong>B’s box is higher</strong> (greater median/mean) <strong>and taller</strong> (greater spread), with two low days (June 2 and June 3) falling past the lower fence.</li>
 <li>This single chart will anchor your team’s dashboard.</li>
 </ul>
+</section>
+<section id="a-question-that-often-comes-up-11" class="slide level2 center">
+<h2>A Question That Often Comes Up</h2>
+<div class="faq">
+<p><strong>A question that often comes up at this point:</strong></p>
+<p><span class="faq-q">B’s box is both higher and taller. As the manager, which of those two facts should drive my decision?</span></p>
+<div class="fragment faq-a">
+<p><strong>Short answer:</strong> both, together. “Higher” is B’s reward (greater median eRPM); “taller” is B’s risk (wider middle 50%, plus two low days past the fence). The whole point of today is that you cannot act on one without the other. The boxplot puts the trade-off in a single picture so you weigh the $0.11 edge against the extra spread before you commit.</p>
+</div>
+</div>
 </section>
 <section id="building-the-five-number-summary-in-excel" class="slide level2 center">
 <h2>Building the Five-Number Summary in Excel</h2>
@@ -1020,6 +1120,16 @@ z_i = \frac{x_i - \bar{x}}{s}
 <li class="fragment"><p><strong>Excel:</strong> <code>=COVARIANCE.S(array1, array2)</code> (sample) or <code>=COVARIANCE.P(...)</code> (population).</p></li>
 </ul>
 </section>
+<section id="a-question-that-often-comes-up-12" class="slide level2 center">
+<h2>A Question That Often Comes Up</h2>
+<div class="faq">
+<p><strong>A question that often comes up at this point:</strong></p>
+<p><span class="faq-q">Algorithm A’s covariance of clicks and installs is +163.7. Is that a strong relationship?</span></p>
+<div class="fragment faq-a">
+<p><strong>Short answer:</strong> you cannot tell from 163.7 alone. Covariance reads the <em>direction</em> (positive, so clicks and installs rise together) but its size depends on the units. Measure clicks in raw counts instead of thousands and the number changes completely, with no change in the actual relationship. To judge strength you need correlation, which rescales covariance onto a fixed -1 to +1 range.</p>
+</div>
+</div>
+</section>
 <section id="correlation-direction-and-strength" class="slide level2 center">
 <h2>Correlation: Direction <em>and</em> Strength</h2>
 <p><br></p>
@@ -1058,6 +1168,16 @@ r_{xy} = \frac{s_{xy}}{s_x \, s_y}
 <ul>
 <li class="fragment">Always between <strong>−1 and +1</strong>, <strong>unit-free</strong>, so it compares across any two variables. <strong>Excel:</strong> <code>=CORREL(array1, array2)</code>.</li>
 </ul>
+</section>
+<section id="a-question-that-often-comes-up-13" class="slide level2 center">
+<h2>A Question That Often Comes Up</h2>
+<div class="faq">
+<p><strong>A question that often comes up at this point:</strong></p>
+<p><span class="faq-q">A’s clicks and installs correlate at +0.915. Is that “high” enough to count as a strong relationship?</span></p>
+<div class="fragment faq-a">
+<p><strong>Short answer:</strong> yes, and the fixed scale is why you can say so. Because r always lands between -1 and +1, +0.915 reads the same in any context: very close to a perfect line. For the funnel it means days with more clicks reliably bring more installs. There is no universal cutoff, but near +0.9 the two variables move together about as tightly as business data ever does.</p>
+</div>
+</div>
 </section>
 <section id="reading-r-a-visual-gallery" class="slide level2 center">
 <h2>Reading r: a Visual Gallery</h2>
@@ -1110,7 +1230,7 @@ r_{xy} = \frac{s_{xy}}{s_x \, s_y}
 <div class="fragment">
 <ul>
 <li class="fragment">Covariance is <strong>positive</strong> → clicks and installs move together. But “163.7” means nothing on its own.</li>
-<li class="fragment">Correlation <strong>+0.915</strong> says the same direction <em>and</em> that the relationship is <strong>strong</strong>; check: <span class="math inline">\(163.7 / (48.69 \times 3.67) = 0.915\)</span>.</li>
+<li class="fragment">Correlation <strong>+0.915</strong> says the same direction <em>and</em> that the relationship is <strong>strong</strong>; check: <span class="math inline">\(163.7 / (48.69 \times 3.67) \approx 0.915\)</span>.</li>
 <li class="fragment"><strong>Managerial read:</strong> days with more clicks reliably bring more installs; the funnel holds together.</li>
 </ul>
 </div>
@@ -1141,7 +1261,7 @@ r_{xy} = \frac{s_{xy}}{s_x \, s_y}
 </div>
 </div></div>
 </section>
-<section id="a-question-that-often-comes-up-2" class="slide level2 center">
+<section id="a-question-that-often-comes-up-14" class="slide level2 center">
 <h2>A Question That Often Comes Up</h2>
 <div class="faq">
 <p><strong>A question that often comes up at this point:</strong></p>
