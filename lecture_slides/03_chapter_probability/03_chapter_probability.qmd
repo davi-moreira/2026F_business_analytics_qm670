@@ -50,7 +50,7 @@ html-math-method:
 
 <br>
 
-- [Vungle](https://en.wikipedia.org/wiki/Liftoff_Mobile) serves a 15-second video ad inside another app. Most of the time it earns money only when the viewer **installs** the advertised app.
+- **Vungle** serves a 15-second video ad inside another app. Most of the time it earns money only when the viewer **installs** the advertised app.
 
 - Each impression travels a **funnel**: it can be watched to **completion**, then **clicked**, then turn into an **install**, and at every step most users drop off.
 
@@ -90,6 +90,14 @@ Every probability concept today maps onto the funnel:
 
 - One funnel, five tools; the last one (Bayes) is where intuition usually breaks.
 
+## How Every Class Runs
+
+![](figs/lecture_dynamic.png){.nostretch fig-align="center" width="90%"}
+
+::: nonincremental
+The class **ends on the Team Sprint**, your group's graded submission: a decision plus your read of the analysis, one PDF before you leave.
+:::
+
 # Experiments, Events, and Probability {background-color="#cfb991"}
 
 ## The Vocabulary of Uncertainty
@@ -111,6 +119,18 @@ Every probability concept today maps onto the funnel:
 | Event | $I$ = "the impression installs" = one outcome in $S$ |
 
 :::
+
+## A Question That Often Comes Up
+
+:::: {.faq}
+**A question that often comes up at this point:**
+
+[The funnel has four steps, so why does the sample space list only four outcomes? Isn't "clicked" both an outcome and a step?]{.faq-q}
+
+::: {.fragment .faq-a}
+**Short answer:** a step is a *checkpoint*; an outcome is *where a single impression finally stops*. One impression lands in exactly one of the four buckets ("no completion" through "install"), so those four are mutually exclusive and cover every case. "Clicked" is the checkpoint a few impressions pass; the install bucket is just the ones that kept going after it.
+:::
+::::
 
 ## What a Probability Is
 
@@ -136,12 +156,24 @@ $$
 
 - Vungle is a **relative-frequency** shop: 30 days of counts give us all our probabilities.
 
+## A Question That Often Comes Up
+
+:::: {.faq}
+**A question that often comes up at this point:**
+
+[If our install probability is just installs over impressions from past data, is it a "real" probability or only a description of what already happened?]{.faq-q}
+
+::: {.fragment .faq-a}
+**Short answer:** both, and that is the bet we are making. The 0.40% is a description of June's 236M impressions; we *use* it as the probability the next impression installs only if the process stays stable. Relative frequency turns a past count into a forward probability, which is exactly the leap inference (Topics 7 to 9) will make rigorous.
+:::
+::::
+
 ## Basic Relationships You Already Use
 
 ::: r-fit-text
 | Relationship | Meaning | Formula |
 |---|---|---|
-| **Complement** | "$A$ does **not** happen" | $P(A^c) = 1 - P(A)$ |
+| **Complement** | "$A$ does **not** happen" | $P(A^C) = 1 - P(A)$ |
 | **Union** | "$A$ **or** $B$ (or both)" | $P(A \cup B) = P(A) + P(B) - P(A \cap B)$ |
 | **Intersection** | "$A$ **and** $B$ together" | $P(A \cap B)$, the *joint* probability |
 | **Mutually exclusive** | $A$ and $B$ cannot co-occur | $P(A \cap B) = 0 \Rightarrow P(A \cup B) = P(A) + P(B)$ |
@@ -171,6 +203,18 @@ A retailer logs **100 customers** by TV type bought and whether they also bought
 :::
 ::::
 
+## A Question That Often Comes Up
+
+:::: {.faq}
+**A question that often comes up at this point:**
+
+[Why subtract the overlap in the addition law? If 60 bought a DVD and 40 bought an HDTV, isn't "DVD or HDTV" just 100?]{.faq-q}
+
+::: {.fragment .faq-a}
+**Short answer:** the 30 customers who bought *both* sit inside both groups, so adding 60 and 40 counts them twice. Subtract the 30 once and you get 70, the number of distinct customers in "DVD or HDTV." On the Vungle funnel the same rule applies: an impression that completes *and* clicks is one impression, not two.
+:::
+::::
+
 # Conditional Probability: The Funnel as a Chain {background-color="#cfb991"}
 
 ## Given That…: The Most Useful Idea Today
@@ -192,6 +236,18 @@ $$
 - **On the contingency table:** $P(\text{DVD} \mid \text{HDTV}) = \dfrac{30/100}{40/100} = \dfrac{30}{40} = 0.75$: restrict to the 40 HDTV buyers, then ask how many bought a DVD.
 
 - The whole Vungle funnel is **nothing but a chain of conditional probabilities.**
+
+## A Question That Often Comes Up
+
+:::: {.faq}
+**A question that often comes up at this point:**
+
+[Is $P(A \mid B)$ the same as $P(B \mid A)$? Both mention $A$ and $B$, so why would the order matter?]{.faq-q}
+
+::: {.fragment .faq-a}
+**Short answer:** they are usually very different, because the denominator changes. $P(\text{install} \mid \text{click}) = 7.93\%$ asks "of clickers, how many install?"; $P(\text{click} \mid \text{install})$ asks "of installers, how many clicked?" and is near 100% (you must click before you install). Same two events, two questions, two answers. Flipping the order is the single most common probability mistake, and Bayes is the tool for doing it correctly.
+:::
+::::
 
 ## The Vungle Funnel Is Conditional Probability
 
@@ -222,6 +278,18 @@ knitr::include_graphics("figs/funnel_tree_A.png")
 - Each branch is a conditional probability; multiply **along a path** to reach a leaf.
 :::
 
+## A Question That Often Comes Up
+
+:::: {.faq}
+**A question that often comes up at this point:**
+
+[If a clicked impression installs at 7.93%, twenty times the 0.40% marginal rate, why does Vungle even bother serving the ads that never get clicked?]{.faq-q}
+
+::: {.fragment .faq-a}
+**Short answer:** Vungle cannot choose to serve only the clickers; the click is revealed *after* the impression is shown. The 20-fold lift does not say "stop serving ads," it says "spend the controllable effort earlier in the funnel, on getting completes and clicks," because every install is conditioned on those steps. The marginal rate prices the average bet; the conditional rate tells you where to push.
+:::
+::::
+
 ## The Multiplication Law: Chaining the Steps
 
 <br>
@@ -248,6 +316,18 @@ $$
 
 - $0.8928 \times 0.0568 \times 0.0793 = 0.004025$, exactly $951{,}666 / 236{,}459{,}402$. The chain **must** reconcile with the raw counts; if it doesn't, you mislabeled a step.
 
+## A Question That Often Comes Up
+
+:::: {.faq}
+**A question that often comes up at this point:**
+
+[Multiplying three conditional rates rebuilds the install rate exactly. So why not just compute installs over impressions and skip the funnel?]{.faq-q}
+
+::: {.fragment .faq-a}
+**Short answer:** the single ratio 0.40% tells you *that* the bet usually loses; it cannot tell you *where* it loses. Splitting it into 89.28% complete, 5.68% click, 7.93% install shows that the click step, not the complete step, is the bottleneck. The product is a consistency check; the three factors are the diagnosis the manager actually acts on.
+:::
+::::
+
 ## Independence: When "Given" Changes Nothing
 
 <br>
@@ -265,6 +345,18 @@ $$
 - **Funnel test:** is clicking independent of completing? Compare $P(\text{click} \mid \text{complete}) = 5.68\%$ with the unconditional click rate $P(\text{click} \mid \text{impression}) = 5.07\%$. They differ → **not independent**: completing the video makes a click *more* likely. That is *why* the funnel must be modeled with conditional, not marginal, probabilities.
 
 - **Warning: do not confuse with mutually exclusive.** Mutually exclusive events with nonzero probability are the *opposite* of independent: if one happens the other *cannot*, so knowing one is maximally informative.
+
+## A Question That Often Comes Up
+
+:::: {.faq}
+**A question that often comes up at this point:**
+
+[The completing and clicking rates were close (5.68% vs 5.07%). Isn't that close enough to just call them independent and use one number?]{.faq-q}
+
+::: {.fragment .faq-a}
+**Short answer:** independence is exact, not "close." 5.68% is not 5.07%, so completing genuinely raises the click chance, and over 236M impressions that small gap moves real money. More to the point, the whole funnel is *built* on dependence: if the steps were independent, conditioning would be pointless and there would be no funnel to optimize. We keep the conditional numbers because the dependence is the business.
+:::
+::::
 
 ## Excel: Build the Funnel Rates from the Raw File
 
@@ -316,17 +408,29 @@ $$
 
 :::
 
+## A Question That Often Comes Up
+
+:::: {.faq}
+**A question that often comes up at this point:**
+
+[Where does the prior come from? If I have to pick the "before" belief myself, can't I just rig the answer?]{.faq-q}
+
+::: {.fragment .faq-a}
+**Short answer:** here the prior is not a guess, it is a count: algorithm B's share of impressions, 6.27%. When data exist, the prior is the base rate; subjective priors are a last resort for genuinely new bets. And the more evidence you feed in, the less the starting prior matters, which is exactly why one lone install barely moves B's number.
+:::
+::::
+
 ## Bayes' Theorem: The Formula
 
 <br>
 
 :::: {style="font-size: 88%;"}
-- For mutually exclusive, collectively exhaustive causes $A_1, \dots, A_k$ and evidence $B$:
+- For mutually exclusive, collectively exhaustive causes $A_1, \dots, A_n$ and evidence $B$:
 
 ::: fragment
 
 $$
-P(A_i \mid B) = \frac{P(A_i)\,P(B \mid A_i)}{\displaystyle\sum_{j=1}^{k} P(A_j)\,P(B \mid A_j)}
+P(A_i \mid B) = \frac{P(A_i)\,P(B \mid A_i)}{\displaystyle\sum_{j=1}^{n} P(A_j)\,P(B \mid A_j)}
 $$
 
 :::
@@ -336,6 +440,18 @@ $$
 - The **denominator** is $P(B)$, the sum of *all* the joints, by the **total probability** rule.
 
 - So Bayes is just: **(this path's joint) ÷ (total of all joints).** A table does the bookkeeping.
+::::
+
+## A Question That Often Comes Up
+
+:::: {.faq}
+**A question that often comes up at this point:**
+
+[The formula looks intimidating. Do I really need it, or can I just fill in a table?]{.faq-q}
+
+::: {.fragment .faq-a}
+**Short answer:** the table *is* the formula. Each row's "joint" column is one numerator term, $P(A_i)\,P(B\mid A_i)$; summing the joint column is the denominator, $P(B)$; dividing a row's joint by that sum is the posterior. For Vungle that is just two rows (A and B). Learn the table layout and you never have to memorize the symbols.
+:::
 ::::
 
 ## Anchor Example: A Test-Market Decision
@@ -402,6 +518,18 @@ knitr::include_graphics("figs/bayes_prior_posterior.png")
 - Same machinery, reversed for a **click**: $P(B \mid \text{click}) = 6.10\%$, a click is also mild evidence against B, but less so than an install.
 :::
 
+## A Question That Often Comes Up
+
+:::: {.faq}
+**A question that often comes up at this point:**
+
+[An install barely moved B's number, from 6.27% to 5.56%. So is Bayes basically useless here?]{.faq-q}
+
+::: {.fragment .faq-a}
+**Short answer:** the small move *is* the finding. It says one install carries almost no information about which algorithm served it, because A's and B's install rates (0.4025% vs 0.3541%) are so close and A dominates the traffic. Bayes earns its keep by telling you *not* to over-read a single event: the manager should judge A vs B on thirty days of rates, never on one observed install.
+:::
+::::
+
 ## Excel: The Bayes Update in Formula Cells
 
 ::::: nonincremental
@@ -450,6 +578,18 @@ knitr::include_graphics("figs/excel_bayes_cells.png")
 
 - Confusing these is the classic error: *"B has a lower install rate, so most installs come from A"* is true, but only because A serves 15× more traffic, **not** because A is the better algorithm. **Rates and counts answer different questions.**
 
+## A Question That Often Comes Up
+
+:::: {.faq}
+**A question that often comes up at this point:**
+
+[If most installs come from A, why is the rollout question even open? Doesn't "more installs" settle that A wins?]{.faq-q}
+
+::: {.fragment .faq-a}
+**Short answer:** A produces more installs only because A is shown to far more impressions, not because each A impression is better. The rollout call compares *rates per impression*, where A and B are nearly tied (0.4025% vs 0.3541%). Counting total installs answers "which got more traffic?"; deciding A vs B needs the rate, and proving that gap is real is the inference work in Topics 7 to 9.
+:::
+::::
+
 ## Why Conditioning Drives the Funnel
 
 <br>
@@ -462,6 +602,22 @@ knitr::include_graphics("figs/excel_bayes_cells.png")
 - **So where should Vungle spend?** On the steps with the steepest conditional lift: getting users to *complete* and *click*, because everything downstream is conditioned on them.
 
 - This is the bridge to the next topics: those conditional rates become the **parameters** of probability *models* (a click is a Bernoulli trial with $p \approx 5\%$).
+
+## Today's Question, Today's Answer
+
+<br>
+
+**The question (Topic 3 of the ladder):**
+
+> *What are the odds at each step of the funnel?*
+
+::: fragment
+<br>
+
+**The answer we reached today:**
+
+> A random impression installs **0.40%** of the time (the marginal rate). Condition on a **click** and that jumps to **7.93%**, a 20-fold lift, so the funnel is a chain of conditional probabilities, not one flat rate. Run it **backward** with Bayes and an observed install is only weak evidence it came from B (**5.56%** posterior vs. a **6.27%** prior).
+:::
 
 ## The Manager's Takeaway
 
@@ -492,13 +648,12 @@ knitr::include_graphics("figs/excel_bayes_cells.png")
 ::: nonincremental
 Some key takeaways from this session:
 
-- **Probability vocabulary:** an experiment has a **sample space** of outcomes; an **event** is a subset; probabilities live in $[0,1]$ and sum to 1.
-- **Basic relationships:** complement, union (addition law subtracts the overlap), intersection (joint), and mutually exclusive.
+- **Probability vocabulary:** an experiment has a **sample space** of outcomes; an **event** is a subset; probabilities live in $[0,1]$ and sum to 1. **Basic relationships:** complement, union (the addition law subtracts the overlap), intersection (joint), mutually exclusive.
 - **Conditional probability** $P(A\mid B) = P(A\cap B)/P(B)$ is the engine of funnel analytics: each step conditions on surviving the last.
 - The **multiplication law** chains the steps into the end-to-end rate; **independence** is when conditioning changes nothing (the funnel steps are *not* independent).
-- **Bayes' theorem** reverses the conditioning (prior → posterior), and base rates dominate: an install is only weak evidence about which algorithm served it.
+- **Bayes' theorem** reverses the conditioning (prior → posterior); base rates dominate, so one install is weak evidence about which algorithm served it.
 - **Marginal, conditional, and reverse probabilities are different numbers** for the same data; match the number to the manager's question.
-- **Next time:** probabilities become **decisions** in Decision Analysis: payoffs, expected value, and the value of information on the Vungle rollout. Today's tools are also drilled on **HW1** (individual, on Brightspace).
+- **Next time:** probabilities become **decisions** in Decision Analysis (payoffs, expected value, value of information). Today's tools are also drilled on **HW1** (individual, on Brightspace).
 :::
 
 # Thank you! {background-color="#cfb991"}

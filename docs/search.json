@@ -927,7 +927,7 @@
     "href": "lecture_slides/03_chapter_probability/03_chapter_probability.html#basic-relationships-you-already-use",
     "title": " QM 6700: Business Analytics ",
     "section": "Basic Relationships You Already Use",
-    "text": "Basic Relationships You Already Use\n\n\n\n\n\n\n\n\n\nRelationship\nMeaning\nFormula\n\n\n\n\nComplement\n“\\(A\\) does not happen”\n\\(P(A^c) = 1 - P(A)\\)\n\n\nUnion\n“\\(A\\) or \\(B\\) (or both)”\n\\(P(A \\cup B) = P(A) + P(B) - P(A \\cap B)\\)\n\n\nIntersection\n“\\(A\\) and \\(B\\) together”\n\\(P(A \\cap B)\\), the joint probability\n\n\nMutually exclusive\n\\(A\\) and \\(B\\) cannot co-occur\n\\(P(A \\cap B) = 0 \\Rightarrow P(A \\cup B) = P(A) + P(B)\\)\n\n\n\n\n\n\nComplement, on the funnel: if \\(P(\\text{install}) = 0.40\\%\\), then \\(P(\\text{no install}) = 99.60\\%\\). Most bets lose; that is the ad business.\nThe addition law subtracts the overlap so you don’t double-count it: a customer who buys both the DVD and the HDTV is counted once in “DVD or HDTV.”"
+    "text": "Basic Relationships You Already Use\n\n\n\n\n\n\n\n\n\nRelationship\nMeaning\nFormula\n\n\n\n\nComplement\n“\\(A\\) does not happen”\n\\(P(A^C) = 1 - P(A)\\)\n\n\nUnion\n“\\(A\\) or \\(B\\) (or both)”\n\\(P(A \\cup B) = P(A) + P(B) - P(A \\cap B)\\)\n\n\nIntersection\n“\\(A\\) and \\(B\\) together”\n\\(P(A \\cap B)\\), the joint probability\n\n\nMutually exclusive\n\\(A\\) and \\(B\\) cannot co-occur\n\\(P(A \\cap B) = 0 \\Rightarrow P(A \\cup B) = P(A) + P(B)\\)\n\n\n\n\n\n\nComplement, on the funnel: if \\(P(\\text{install}) = 0.40\\%\\), then \\(P(\\text{no install}) = 99.60\\%\\). Most bets lose; that is the ad business.\nThe addition law subtracts the overlap so you don’t double-count it: a customer who buys both the DVD and the HDTV is counted once in “DVD or HDTV.”"
   },
   {
     "objectID": "lecture_slides/03_chapter_probability/03_chapter_probability.html#anchor-example-reading-a-contingency-table",
@@ -997,7 +997,7 @@
     "href": "lecture_slides/03_chapter_probability/03_chapter_probability.html#bayes-theorem-the-formula",
     "title": " QM 6700: Business Analytics ",
     "section": "Bayes’ Theorem: The Formula",
-    "text": "Bayes’ Theorem: The Formula\n\n\n\nFor mutually exclusive, collectively exhaustive causes \\(A_1, \\dots, A_k\\) and evidence \\(B\\):\n\n\n\\[\nP(A_i \\mid B) = \\frac{P(A_i)\\,P(B \\mid A_i)}{\\displaystyle\\sum_{j=1}^{k} P(A_j)\\,P(B \\mid A_j)}\n\\]\n\n\nThe numerator is one joint probability \\(P(A_i \\cap B) = P(A_i)\\,P(B\\mid A_i)\\) (the multiplication law).\nThe denominator is \\(P(B)\\), the sum of all the joints, by the total probability rule.\nSo Bayes is just: (this path’s joint) ÷ (total of all joints). A table does the bookkeeping."
+    "text": "Bayes’ Theorem: The Formula\n\n\n\nFor mutually exclusive, collectively exhaustive causes \\(A_1, \\dots, A_n\\) and evidence \\(B\\):\n\n\n\\[\nP(A_i \\mid B) = \\frac{P(A_i)\\,P(B \\mid A_i)}{\\displaystyle\\sum_{j=1}^{n} P(A_j)\\,P(B \\mid A_j)}\n\\]\n\n\nThe numerator is one joint probability \\(P(A_i \\cap B) = P(A_i)\\,P(B\\mid A_i)\\) (the multiplication law).\nThe denominator is \\(P(B)\\), the sum of all the joints, by the total probability rule.\nSo Bayes is just: (this path’s joint) ÷ (total of all joints). A table does the bookkeeping."
   },
   {
     "objectID": "lecture_slides/03_chapter_probability/03_chapter_probability.html#anchor-example-a-test-market-decision",
@@ -1074,7 +1074,7 @@
     "href": "lecture_slides/03_chapter_probability/03_chapter_probability.html#summary",
     "title": " QM 6700: Business Analytics ",
     "section": "Summary",
-    "text": "Summary\nSome key takeaways from this session:\n\nProbability vocabulary: an experiment has a sample space of outcomes; an event is a subset; probabilities live in \\([0,1]\\) and sum to 1.\nBasic relationships: complement, union (addition law subtracts the overlap), intersection (joint), and mutually exclusive.\nConditional probability \\(P(A\\mid B) = P(A\\cap B)/P(B)\\) is the engine of funnel analytics: each step conditions on surviving the last.\nThe multiplication law chains the steps into the end-to-end rate; independence is when conditioning changes nothing (the funnel steps are not independent).\nBayes’ theorem reverses the conditioning (prior → posterior), and base rates dominate: an install is only weak evidence about which algorithm served it.\nMarginal, conditional, and reverse probabilities are different numbers for the same data; match the number to the manager’s question.\nNext time: probabilities become decisions in Decision Analysis: payoffs, expected value, and the value of information on the Vungle rollout. Today’s tools are also drilled on HW1 (individual, on Brightspace)."
+    "text": "Summary\nSome key takeaways from this session:\n\nProbability vocabulary: an experiment has a sample space of outcomes; an event is a subset; probabilities live in \\([0,1]\\) and sum to 1. Basic relationships: complement, union (the addition law subtracts the overlap), intersection (joint), mutually exclusive.\nConditional probability \\(P(A\\mid B) = P(A\\cap B)/P(B)\\) is the engine of funnel analytics: each step conditions on surviving the last.\nThe multiplication law chains the steps into the end-to-end rate; independence is when conditioning changes nothing (the funnel steps are not independent).\nBayes’ theorem reverses the conditioning (prior → posterior); base rates dominate, so one install is weak evidence about which algorithm served it.\nMarginal, conditional, and reverse probabilities are different numbers for the same data; match the number to the manager’s question.\nNext time: probabilities become decisions in Decision Analysis (payoffs, expected value, value of information). Today’s tools are also drilled on HW1 (individual, on Brightspace)."
   },
   {
     "objectID": "lecture_slides/05_chapter_discrete_probability_distributions/05_chapter_discrete_probability_distributions.html#overview",
@@ -4231,5 +4231,96 @@
     "title": " QM 6700: Business Analytics ",
     "section": "A Question That Often Comes Up",
     "text": "A Question That Often Comes Up\n\nA question that often comes up at this point:\nClicks and installs correlate at +0.92. So more clicks cause more installs?\n\nShort answer: not from the correlation alone. Clicks and installs are both driven by daily traffic volume, a lurking third variable. Only Vungle’s randomized A/B design licenses a causal claim; r just says the two move together."
+  },
+  {
+    "objectID": "lecture_slides/03_chapter_probability/03_chapter_probability.html#how-every-class-runs",
+    "href": "lecture_slides/03_chapter_probability/03_chapter_probability.html#how-every-class-runs",
+    "title": " QM 6700: Business Analytics ",
+    "section": "How Every Class Runs",
+    "text": "How Every Class Runs\n\n\n\n\n\nThe class ends on the Team Sprint, your group’s graded submission: a decision plus your read of the analysis, one PDF before you leave."
+  },
+  {
+    "objectID": "lecture_slides/03_chapter_probability/03_chapter_probability.html#a-question-that-often-comes-up",
+    "href": "lecture_slides/03_chapter_probability/03_chapter_probability.html#a-question-that-often-comes-up",
+    "title": " QM 6700: Business Analytics ",
+    "section": "A Question That Often Comes Up",
+    "text": "A Question That Often Comes Up\n\nA question that often comes up at this point:\nThe funnel has four steps, so why does the sample space list only four outcomes? Isn’t “clicked” both an outcome and a step?\n\nShort answer: a step is a checkpoint; an outcome is where a single impression finally stops. One impression lands in exactly one of the four buckets (“no completion” through “install”), so those four are mutually exclusive and cover every case. “Clicked” is the checkpoint a few impressions pass; the install bucket is just the ones that kept going after it."
+  },
+  {
+    "objectID": "lecture_slides/03_chapter_probability/03_chapter_probability.html#a-question-that-often-comes-up-1",
+    "href": "lecture_slides/03_chapter_probability/03_chapter_probability.html#a-question-that-often-comes-up-1",
+    "title": " QM 6700: Business Analytics ",
+    "section": "A Question That Often Comes Up",
+    "text": "A Question That Often Comes Up\n\nA question that often comes up at this point:\nIf our install probability is just installs over impressions from past data, is it a “real” probability or only a description of what already happened?\n\nShort answer: both, and that is the bet we are making. The 0.40% is a description of June’s 236M impressions; we use it as the probability the next impression installs only if the process stays stable. Relative frequency turns a past count into a forward probability, which is exactly the leap inference (Topics 7 to 9) will make rigorous."
+  },
+  {
+    "objectID": "lecture_slides/03_chapter_probability/03_chapter_probability.html#a-question-that-often-comes-up-2",
+    "href": "lecture_slides/03_chapter_probability/03_chapter_probability.html#a-question-that-often-comes-up-2",
+    "title": " QM 6700: Business Analytics ",
+    "section": "A Question That Often Comes Up",
+    "text": "A Question That Often Comes Up\n\nA question that often comes up at this point:\nWhy subtract the overlap in the addition law? If 60 bought a DVD and 40 bought an HDTV, isn’t “DVD or HDTV” just 100?\n\nShort answer: the 30 customers who bought both sit inside both groups, so adding 60 and 40 counts them twice. Subtract the 30 once and you get 70, the number of distinct customers in “DVD or HDTV.” On the Vungle funnel the same rule applies: an impression that completes and clicks is one impression, not two."
+  },
+  {
+    "objectID": "lecture_slides/03_chapter_probability/03_chapter_probability.html#a-question-that-often-comes-up-3",
+    "href": "lecture_slides/03_chapter_probability/03_chapter_probability.html#a-question-that-often-comes-up-3",
+    "title": " QM 6700: Business Analytics ",
+    "section": "A Question That Often Comes Up",
+    "text": "A Question That Often Comes Up\n\nA question that often comes up at this point:\nIs \\(P(A \\mid B)\\) the same as \\(P(B \\mid A)\\)? Both mention \\(A\\) and \\(B\\), so why would the order matter?\n\nShort answer: they are usually very different, because the denominator changes. \\(P(\\text{install} \\mid \\text{click}) = 7.93\\%\\) asks “of clickers, how many install?”; \\(P(\\text{click} \\mid \\text{install})\\) asks “of installers, how many clicked?” and is near 100% (you must click before you install). Same two events, two questions, two answers. Flipping the order is the single most common probability mistake, and Bayes is the tool for doing it correctly."
+  },
+  {
+    "objectID": "lecture_slides/03_chapter_probability/03_chapter_probability.html#a-question-that-often-comes-up-4",
+    "href": "lecture_slides/03_chapter_probability/03_chapter_probability.html#a-question-that-often-comes-up-4",
+    "title": " QM 6700: Business Analytics ",
+    "section": "A Question That Often Comes Up",
+    "text": "A Question That Often Comes Up\n\nA question that often comes up at this point:\nIf a clicked impression installs at 7.93%, twenty times the 0.40% marginal rate, why does Vungle even bother serving the ads that never get clicked?\n\nShort answer: Vungle cannot choose to serve only the clickers; the click is revealed after the impression is shown. The 20-fold lift does not say “stop serving ads,” it says “spend the controllable effort earlier in the funnel, on getting completes and clicks,” because every install is conditioned on those steps. The marginal rate prices the average bet; the conditional rate tells you where to push."
+  },
+  {
+    "objectID": "lecture_slides/03_chapter_probability/03_chapter_probability.html#a-question-that-often-comes-up-5",
+    "href": "lecture_slides/03_chapter_probability/03_chapter_probability.html#a-question-that-often-comes-up-5",
+    "title": " QM 6700: Business Analytics ",
+    "section": "A Question That Often Comes Up",
+    "text": "A Question That Often Comes Up\n\nA question that often comes up at this point:\nMultiplying three conditional rates rebuilds the install rate exactly. So why not just compute installs over impressions and skip the funnel?\n\nShort answer: the single ratio 0.40% tells you that the bet usually loses; it cannot tell you where it loses. Splitting it into 89.28% complete, 5.68% click, 7.93% install shows that the click step, not the complete step, is the bottleneck. The product is a consistency check; the three factors are the diagnosis the manager actually acts on."
+  },
+  {
+    "objectID": "lecture_slides/03_chapter_probability/03_chapter_probability.html#a-question-that-often-comes-up-6",
+    "href": "lecture_slides/03_chapter_probability/03_chapter_probability.html#a-question-that-often-comes-up-6",
+    "title": " QM 6700: Business Analytics ",
+    "section": "A Question That Often Comes Up",
+    "text": "A Question That Often Comes Up\n\nA question that often comes up at this point:\nThe completing and clicking rates were close (5.68% vs 5.07%). Isn’t that close enough to just call them independent and use one number?\n\nShort answer: independence is exact, not “close.” 5.68% is not 5.07%, so completing genuinely raises the click chance, and over 236M impressions that small gap moves real money. More to the point, the whole funnel is built on dependence: if the steps were independent, conditioning would be pointless and there would be no funnel to optimize. We keep the conditional numbers because the dependence is the business."
+  },
+  {
+    "objectID": "lecture_slides/03_chapter_probability/03_chapter_probability.html#a-question-that-often-comes-up-7",
+    "href": "lecture_slides/03_chapter_probability/03_chapter_probability.html#a-question-that-often-comes-up-7",
+    "title": " QM 6700: Business Analytics ",
+    "section": "A Question That Often Comes Up",
+    "text": "A Question That Often Comes Up\n\nA question that often comes up at this point:\nWhere does the prior come from? If I have to pick the “before” belief myself, can’t I just rig the answer?\n\nShort answer: here the prior is not a guess, it is a count: algorithm B’s share of impressions, 6.27%. When data exist, the prior is the base rate; subjective priors are a last resort for genuinely new bets. And the more evidence you feed in, the less the starting prior matters, which is exactly why one lone install barely moves B’s number."
+  },
+  {
+    "objectID": "lecture_slides/03_chapter_probability/03_chapter_probability.html#a-question-that-often-comes-up-8",
+    "href": "lecture_slides/03_chapter_probability/03_chapter_probability.html#a-question-that-often-comes-up-8",
+    "title": " QM 6700: Business Analytics ",
+    "section": "A Question That Often Comes Up",
+    "text": "A Question That Often Comes Up\n\nA question that often comes up at this point:\nThe formula looks intimidating. Do I really need it, or can I just fill in a table?\n\nShort answer: the table is the formula. Each row’s “joint” column is one numerator term, \\(P(A_i)\\,P(B\\mid A_i)\\); summing the joint column is the denominator, \\(P(B)\\); dividing a row’s joint by that sum is the posterior. For Vungle that is just two rows (A and B). Learn the table layout and you never have to memorize the symbols."
+  },
+  {
+    "objectID": "lecture_slides/03_chapter_probability/03_chapter_probability.html#a-question-that-often-comes-up-9",
+    "href": "lecture_slides/03_chapter_probability/03_chapter_probability.html#a-question-that-often-comes-up-9",
+    "title": " QM 6700: Business Analytics ",
+    "section": "A Question That Often Comes Up",
+    "text": "A Question That Often Comes Up\n\nA question that often comes up at this point:\nAn install barely moved B’s number, from 6.27% to 5.56%. So is Bayes basically useless here?\n\nShort answer: the small move is the finding. It says one install carries almost no information about which algorithm served it, because A’s and B’s install rates (0.4025% vs 0.3541%) are so close and A dominates the traffic. Bayes earns its keep by telling you not to over-read a single event: the manager should judge A vs B on thirty days of rates, never on one observed install."
+  },
+  {
+    "objectID": "lecture_slides/03_chapter_probability/03_chapter_probability.html#a-question-that-often-comes-up-10",
+    "href": "lecture_slides/03_chapter_probability/03_chapter_probability.html#a-question-that-often-comes-up-10",
+    "title": " QM 6700: Business Analytics ",
+    "section": "A Question That Often Comes Up",
+    "text": "A Question That Often Comes Up\n\nA question that often comes up at this point:\nIf most installs come from A, why is the rollout question even open? Doesn’t “more installs” settle that A wins?\n\nShort answer: A produces more installs only because A is shown to far more impressions, not because each A impression is better. The rollout call compares rates per impression, where A and B are nearly tied (0.4025% vs 0.3541%). Counting total installs answers “which got more traffic?”; deciding A vs B needs the rate, and proving that gap is real is the inference work in Topics 7 to 9."
+  },
+  {
+    "objectID": "lecture_slides/03_chapter_probability/03_chapter_probability.html#todays-question-todays-answer",
+    "href": "lecture_slides/03_chapter_probability/03_chapter_probability.html#todays-question-todays-answer",
+    "title": " QM 6700: Business Analytics ",
+    "section": "Today’s Question, Today’s Answer",
+    "text": "Today’s Question, Today’s Answer\n\nThe question (Topic 3 of the ladder):\n\nWhat are the odds at each step of the funnel?\n\n\n\nThe answer we reached today:\n\nA random impression installs 0.40% of the time (the marginal rate). Condition on a click and that jumps to 7.93%, a 20-fold lift, so the funnel is a chain of conditional probabilities, not one flat rate. Run it backward with Bayes and an observed install is only weak evidence it came from B (5.56% posterior vs. a 6.27% prior)."
   }
 ]
