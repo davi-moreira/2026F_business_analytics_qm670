@@ -32,7 +32,7 @@
       vertical-align: middle;
     }
   </style>
-  <link rel="stylesheet" href="../../site_libs/revealjs/dist/theme/quarto-113b5beb2a57b2deea58feb1108e76b2.css">
+  <link rel="stylesheet" href="../../site_libs/revealjs/dist/theme/quarto-8fc47a4fdcba9931a3aa90ef56f89358.css">
   <link href="../../site_libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
   <link href="../../site_libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
   <link href="../../site_libs/revealjs/plugin/reveal-menu/quarto-menu.css" rel="stylesheet">
@@ -172,7 +172,7 @@ Professor<br>Davi Moreira<br>
 <h2>Rewind: Before the A/B Test</h2>
 <p><br></p>
 <ul>
-<li class="fragment"><p>Earlier in our work with <a href="https://en.wikipedia.org/wiki/Liftoff_Mobile">Vungle</a> (the mobile ad-tech startup that earns revenue when viewers <strong>install</strong> an advertised app) we tested whether their new ad-serving algorithm <strong>B</strong> beat the incumbent <strong>A</strong>.</p></li>
+<li class="fragment"><p>Earlier in our work with <a href="https://techcrunch.com/2019/07/15/blackstone-is-acquiring-mobile-ad-company-vungle/">Vungle</a> (the mobile ad-tech startup that earns revenue when viewers <strong>install</strong> an advertised app) we tested whether their new ad-serving algorithm <strong>B</strong> beat the incumbent <strong>A</strong>.</p></li>
 <li class="fragment"><p>The verdict: B’s daily eRPM (revenue per 1,000 impressions) ran about <strong>$0.11 higher</strong> than A’s, and a paired test said that lift was <strong>real</strong> (<span class="math inline">\(t = 3.33\)</span>), worth roughly <strong>$26.5K/month</strong> at June’s traffic.</p></li>
 <li class="fragment"><p>But statistics told us <em>what is true and how sure we are</em>. They did <strong>not</strong> tell management <strong>what to do</strong>.</p></li>
 <li class="fragment"><p>Today you put on the <strong>manager’s hat</strong>: given that uncertainty, what is the right <strong>action</strong>?</p></li>
@@ -193,6 +193,15 @@ Professor<br>Davi Moreira<br>
 <li class="fragment"><p><strong>How today’s studio runs:</strong> I demo each tool on a textbook anchor; you reproduce the Vungle rollout tree and interrogate it; we debrief the recommendation together.</p></li>
 <li class="fragment"><p>By the end of class, <strong>you</strong> make the call, with the decision math to back it up.</p></li>
 </ul>
+</section>
+<section id="how-every-class-runs" class="slide level2 center">
+<h2>How Every Class Runs</h2>
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="figs/lecture_dynamic.png" class="quarto-figure quarto-figure-center" style="width:90.0%"></p>
+</figure>
+</div>
+<p>The class <strong>ends on the Team Sprint</strong>, your group’s graded submission: a decision plus your read of the analysis, one PDF before you leave.</p>
 </section>
 <section id="how-todays-tools-answer-it" class="slide level2 center">
 <h2>How Today’s Tools Answer It</h2>
@@ -351,6 +360,16 @@ Professor<br>Davi Moreira<br>
 <li class="fragment"><p>A payoff table with no probabilities supports only crude rules (best-case, worst-case). To do better, we need the <strong>odds</strong> on the states; that is the next ingredient.</p></li>
 </ul>
 </section>
+<section id="a-question-that-often-comes-up" class="slide level2 center">
+<h2>A Question That Often Comes Up</h2>
+<div class="faq">
+<p><strong>A question that often comes up at this point:</strong></p>
+<p><span class="faq-q">The +318 comes straight from the eRPM data, but the −160 downside is just management’s estimate. Doesn’t that make the whole table arbitrary?</span></p>
+<div class="fragment faq-a">
+<p><strong>Short answer:</strong> the downside is a judgment, not data, and that is fine as long as you say so and test it. We pin +318 to the measured $0.112 lift at 236.5M impressions, and we flag −160 as an estimate (about half the upside). The discipline is putting the number on the table so it can be <strong>stress-tested</strong>; later the sensitivity step shows exactly how wrong −160 would have to be to change the call.</p>
+</div>
+</div>
+</section>
 <section id="decision-trees-sequencing-choice-and-chance" class="slide level2 center">
 <h2>Decision Trees: Sequencing Choice and Chance</h2>
 
@@ -382,6 +401,16 @@ P(s_j) \geq 0 \quad\text{for all } j, \qquad \sum_{j=1}^{N} P(s_j) = 1
 </ul></li>
 <li class="fragment"><p>These can come from the <strong>classical</strong>, <strong>relative-frequency</strong>, or <strong>subjective</strong> method. Here they are an informed subjective judgment, and we will <strong>test how much they matter</strong> at the end.</p></li>
 </ul>
+</section>
+<section id="a-question-that-often-comes-up-1" class="slide level2 center">
+<h2>A Question That Often Comes Up</h2>
+<div class="faq">
+<p><strong>A question that often comes up at this point:</strong></p>
+<p><span class="faq-q">If the 0.60 prior is just the data-science team’s judgment, isn’t the whole decision only as good as a guess?</span></p>
+<div class="fragment faq-a">
+<p><strong>Short answer:</strong> the prior is a judgment, but it is not a free-for-all, and you never trust a single value. It is informed by the A/B signal we already saw, and the sensitivity step at the end reports exactly which priors flip the call. If the decision is the same anywhere from, say, 0.40 to 0.80, the guess inside that range does not matter. That is why we structure the problem instead of arguing about the number.</p>
+</div>
+</div>
 </section>
 <section id="the-expected-value-approach" class="slide level2 center">
 <h2>The Expected Value Approach</h2>
@@ -478,6 +507,16 @@ EV(\text{Keep A}) = 0.60(0) + 0.40(0) = \mathbf{\$0}
 <li class="fragment"><p>The expected payoff is positive <em>because</em> the upside (+318) is large and fairly likely (0.60), even though the downside (−160) is real.</p></li>
 </ul>
 </section>
+<section id="a-question-that-often-comes-up-2" class="slide level2 center">
+<h2>A Question That Often Comes Up</h2>
+<div class="faq">
+<p><strong>A question that often comes up at this point:</strong></p>
+<p><span class="faq-q">Why do we work the tree from the tips backward to the root, instead of forward from Vungle’s choice?</span></p>
+<div class="fragment faq-a">
+<p><strong>Short answer:</strong> you cannot score the “roll out B” branch until you know what the chance node beyond it is worth, and that needs the payoffs at the tips. So you start at the right (the +318 / −160 tips), collapse each chance circle into its EV, and only then can the square at the left compare branches. Forward, you would be choosing before you knew what each choice leads to.</p>
+</div>
+</div>
+</section>
 <section id="visualizing-the-expected-values" class="slide level2 center">
 <h2>Visualizing the Expected Values</h2>
 
@@ -558,6 +597,16 @@ EV(\text{Keep A}) = 0.60(0) + 0.40(0) = \mathbf{\$0}
 <img data-src="figs/vungle_evpi.png" class="quarto-figure quarto-figure-center r-stretch" style="width:60.0%"><ul>
 <li><strong>$64K</strong> is the <em>most</em> Vungle should ever pay to remove all doubt about B before deciding. Any real test (always imperfect) is worth <strong>less</strong> than this ceiling.</li>
 </ul>
+</section>
+<section id="a-question-that-often-comes-up-3" class="slide level2 center">
+<h2>A Question That Often Comes Up</h2>
+<div class="faq">
+<p><strong>A question that often comes up at this point:</strong></p>
+<p><span class="faq-q">A perfect oracle doesn’t exist. Why compute the value of information Vungle can never actually buy?</span></p>
+<div class="fragment faq-a">
+<p><strong>Short answer:</strong> because it gives you a hard ceiling before you shop. Any real study (an A/B test, a survey) is imperfect, so it is worth strictly less than the $64K EVPI. The instant a vendor quotes more than $64K for any study, you decline without doing further math. EVPI is the budget cap that no real information can ever justify exceeding.</p>
+</div>
+</div>
 </section>
 <section id="evpi-in-excel" class="slide level2 center">
 <h2>EVPI in Excel</h2>
@@ -650,6 +699,16 @@ P(s_j \mid \text{signal}) = \frac{P(s_j)\,P(\text{signal}\mid s_j)}{\sum_k P(s_k
 <li>After <strong>unfavorable</strong>: <span class="math inline">\(EV(\text{roll}) = 0.286(318) + 0.714(-160) = -\$23.4K &lt; 0\)</span> → <strong>keep A</strong>.</li>
 </ul>
 </section>
+<section id="a-question-that-often-comes-up-4" class="slide level2 center">
+<h2>A Question That Often Comes Up</h2>
+<div class="faq">
+<p><strong>A question that often comes up at this point:</strong></p>
+<p><span class="faq-q">A favorable report only lifts the odds from 0.60 to 0.828, not to certainty. Why doesn’t a positive test just prove B is better?</span></p>
+<div class="fragment faq-a">
+<p><strong>Short answer:</strong> because the test is imperfect: it cries “favorable” 25% of the time even when B is <em>not</em> better (<span class="math inline">\(P(F \mid s_2) = 0.25\)</span>). So some favorable reports are false alarms, and the posterior holds back from 1.0 to absorb that. The stronger the signal (a lower false-alarm rate), the closer to certainty it would push you; a perfect test would take you to 1.0, which is exactly the oracle EVPI priced.</p>
+</div>
+</div>
+</section>
 <section id="expected-value-of-sample-information-evsi" class="slide level2 center">
 <h2>Expected Value of Sample Information (EVSI)</h2>
 <p><br></p>
@@ -685,6 +744,16 @@ P(s_j \mid \text{signal}) = \frac{P(s_j)\,P(\text{signal}\mid s_j)}{\sum_k P(s_k
 <li><strong>Efficiency</strong> <span class="math inline">\(= \text{EVSI}/\text{EVPI} = 9.84/64 \approx 15\%\)</span>: this imperfect test captures only 15% of perfect information’s value.</li>
 <li>The test costs <strong>≈ $20K</strong> to run, but is worth only <strong>$9.84K</strong> → <strong>net −$10K</strong>. <strong>Do not run the bigger test.</strong> (Compare: the textbook’s Burger Prince survey also failed this test, EVSI &lt; its price.)</li>
 </ul>
+</section>
+<section id="a-question-that-often-comes-up-5" class="slide level2 center">
+<h2>A Question That Often Comes Up</h2>
+<div class="faq">
+<p><strong>A question that often comes up at this point:</strong></p>
+<p><span class="faq-q">We already ran an A/B test, and that was clearly worth it. So why is running a <em>bigger</em> test now not worth it?</span></p>
+<div class="fragment faq-a">
+<p><strong>Short answer:</strong> EVSI is the value of information <em>from where you stand now</em>. Before the first test, Vungle knew almost nothing, so a test bought a lot. After it, the 0.60 prior already points toward rolling out, so a second test would mostly confirm what you would do anyway: it only changes the call in the unfavorable case, which is unlikely. Less left to learn means a smaller EVSI ($9.84K), and that is now below the $20K price.</p>
+</div>
+</div>
 </section>
 <section id="evsi-in-excel" class="slide level2 center">
 <h2>EVSI in Excel</h2>
@@ -740,6 +809,16 @@ p(318) + (1-p)(-160) = 0 \;\Longrightarrow\; p^{*} = \frac{160}{318 + 160} \appr
 <li class="fragment"><p>A <strong>stable</strong> decision is one that holds under small changes in the inputs. Here, B would have to be <strong>more likely wrong than right</strong> before we’d keep A.</p></li>
 <li class="fragment"><p><strong>This is the real payoff of structuring the decision:</strong> we now know not just <em>what</em> to do, but <em>how sure we’d have to be to change our minds</em>. In Excel: a <strong>What-If Data Table</strong> varying <span class="math inline">\(p\)</span> traces the whole line.</p></li>
 </ul>
+</section>
+<section id="a-question-that-often-comes-up-6" class="slide level2 center">
+<h2>A Question That Often Comes Up</h2>
+<div class="faq">
+<p><strong>A question that often comes up at this point:</strong></p>
+<p><span class="faq-q">We stress-tested the 0.60 prior, but the −160 downside was also an estimate. Why isn’t that one tested too?</span></p>
+<div class="fragment faq-a">
+<p><strong>Short answer:</strong> it should be, and the same idea handles it. The tipping point depends on both inputs: <span class="math inline">\(p^{*} = 160 / (318 + 160) \approx 0.335\)</span>. Make the downside more severe (say −250) and the breakeven prior rises; make it milder and it falls. A two-way Data Table over <span class="math inline">\(p\)</span> and the downside shows the whole region where “roll out B” still wins. We led with the prior because it is the input management is least sure about.</p>
+</div>
+</div>
 </section></section>
 <section>
 <section id="debrief-the-rollout-recommendation" class="title-slide slide level1 center" data-background-color="#cfb991">
@@ -798,6 +877,21 @@ p(318) + (1-p)(-160) = 0 \;\Longrightarrow\; p^{*} = \frac{160}{318 + 160} \appr
 <li class="fragment"><p>A good analyst can do both, and knows which question they’re answering.</p></li>
 </ul>
 </section>
+<section id="todays-question-todays-answer" class="slide level2 center">
+<h2>Today’s Question, Today’s Answer</h2>
+<p><br></p>
+<p><strong>The question (Topic 4 of the ladder):</strong></p>
+<blockquote>
+<p><em>Roll out B, keep A, or run a bigger test, which has the best expected value?</em></p>
+</blockquote>
+<div class="fragment">
+<p><br></p>
+<p><strong>The answer we reached today:</strong></p>
+<blockquote>
+<p><strong>Roll out B.</strong> Its expected value (<strong>$126.8K/yr</strong>) beats keeping A (<strong>$0</strong>); the call stays the same unless B is more likely wrong than right (<span class="math inline">\(p^{*} \approx 0.33\)</span>, and our prior is <strong>0.60</strong>); and a bigger test is worth only <strong>$9.84K</strong>, under its <strong>$20K</strong> price, so we skip it.</p>
+</blockquote>
+</div>
+</section>
 <section id="the-managers-takeaway" class="slide level2 center">
 <h2>The Manager’s Takeaway</h2>
 <p><br></p>
@@ -822,15 +916,14 @@ p(318) + (1-p)(-160) = 0 \;\Longrightarrow\; p^{*} = \frac{160}{318 + 160} \appr
 </section>
 <section id="summary" class="slide level2 center">
 <h2>Summary</h2>
-<p>Some key takeaways from this session:</p>
 <ul>
-<li><strong>Structure first:</strong> every decision under uncertainty reduces to <strong>alternatives × states of nature → payoffs</strong>; the payoff table and decision tree are just that on a page.</li>
-<li><strong>Decide by expected value:</strong> <span class="math inline">\(EV(d_i) = \sum_j P(s_j) V_{ij}\)</span>; pick the best EV, but remember it’s a long-run average that hides the downside.</li>
+<li><strong>Structure first:</strong> every decision under uncertainty reduces to <strong>alternatives × states of nature → payoffs</strong>; the payoff table and tree are that on a page.</li>
+<li><strong>Decide by expected value:</strong> <span class="math inline">\(EV(d_i) = \sum_j P(s_j) V_{ij}\)</span>; pick the best EV, a long-run average that hides the downside.</li>
 <li><strong>Value information before buying it:</strong> <strong>EVPI</strong> is the ceiling (perfect info); <strong>EVSI</strong> is what a real, imperfect test is worth; buy a study only if its value beats its cost.</li>
-<li><strong>Bayes turns a signal into revised odds:</strong> prior → joint → marginal → posterior; the posteriors become the branch probabilities after the test.</li>
+<li><strong>Bayes turns a signal into revised odds:</strong> prior → joint → marginal → posterior; the posteriors become the post-test branch probabilities.</li>
 <li><strong>Sensitivity tells you how stable the call is:</strong> find the prior <span class="math inline">\(p^{*}\)</span> where the decision flips; ours holds comfortably.</li>
 <li><strong>Inference and decision analysis are partners:</strong> one says <em>what’s true and how sure</em>; the other says <em>what to do about it</em>.</li>
-<li><strong>Next time:</strong> modeling <strong>uncertain counts</strong> (how many installs tomorrow?) with discrete probability distributions, the raw material priors and payoffs are built from.</li>
+<li><strong>Next time:</strong> modeling <strong>uncertain counts</strong> (how many installs tomorrow?) with discrete probability distributions.</li>
 </ul>
 </section></section>
 <section id="thank-you" class="title-slide slide level1 center" data-background-color="#cfb991">

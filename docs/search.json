@@ -262,7 +262,7 @@
     "href": "lecture_slides/04_chapter_decision_analysis/04_chapter_decision_analysis.html#summary",
     "title": " QM 6700: Business Analytics ",
     "section": "Summary",
-    "text": "Summary\nSome key takeaways from this session:\n\nStructure first: every decision under uncertainty reduces to alternatives × states of nature → payoffs; the payoff table and decision tree are just that on a page.\nDecide by expected value: \\(EV(d_i) = \\sum_j P(s_j) V_{ij}\\); pick the best EV, but remember it’s a long-run average that hides the downside.\nValue information before buying it: EVPI is the ceiling (perfect info); EVSI is what a real, imperfect test is worth; buy a study only if its value beats its cost.\nBayes turns a signal into revised odds: prior → joint → marginal → posterior; the posteriors become the branch probabilities after the test.\nSensitivity tells you how stable the call is: find the prior \\(p^{*}\\) where the decision flips; ours holds comfortably.\nInference and decision analysis are partners: one says what’s true and how sure; the other says what to do about it.\nNext time: modeling uncertain counts (how many installs tomorrow?) with discrete probability distributions, the raw material priors and payoffs are built from."
+    "text": "Summary\n\nStructure first: every decision under uncertainty reduces to alternatives × states of nature → payoffs; the payoff table and tree are that on a page.\nDecide by expected value: \\(EV(d_i) = \\sum_j P(s_j) V_{ij}\\); pick the best EV, a long-run average that hides the downside.\nValue information before buying it: EVPI is the ceiling (perfect info); EVSI is what a real, imperfect test is worth; buy a study only if its value beats its cost.\nBayes turns a signal into revised odds: prior → joint → marginal → posterior; the posteriors become the post-test branch probabilities.\nSensitivity tells you how stable the call is: find the prior \\(p^{*}\\) where the decision flips; ours holds comfortably.\nInference and decision analysis are partners: one says what’s true and how sure; the other says what to do about it.\nNext time: modeling uncertain counts (how many installs tomorrow?) with discrete probability distributions."
   },
   {
     "objectID": "lecture_slides/04_chapter_decision_analysis/04_chapter_decision_analysis.html#carry-forward",
@@ -4322,5 +4322,68 @@
     "title": " QM 6700: Business Analytics ",
     "section": "Today’s Question, Today’s Answer",
     "text": "Today’s Question, Today’s Answer\n\nThe question (Topic 3 of the ladder):\n\nWhat are the odds at each step of the funnel?\n\n\n\nThe answer we reached today:\n\nA random impression installs 0.40% of the time (the marginal rate). Condition on a click and that jumps to 7.93%, a 20-fold lift, so the funnel is a chain of conditional probabilities, not one flat rate. Run it backward with Bayes and an observed install is only weak evidence it came from B (5.56% posterior vs. a 6.27% prior)."
+  },
+  {
+    "objectID": "lecture_slides/04_chapter_decision_analysis/04_chapter_decision_analysis.html#how-every-class-runs",
+    "href": "lecture_slides/04_chapter_decision_analysis/04_chapter_decision_analysis.html#how-every-class-runs",
+    "title": " QM 6700: Business Analytics ",
+    "section": "How Every Class Runs",
+    "text": "How Every Class Runs\n\n\n\n\n\nThe class ends on the Team Sprint, your group’s graded submission: a decision plus your read of the analysis, one PDF before you leave."
+  },
+  {
+    "objectID": "lecture_slides/04_chapter_decision_analysis/04_chapter_decision_analysis.html#a-question-that-often-comes-up",
+    "href": "lecture_slides/04_chapter_decision_analysis/04_chapter_decision_analysis.html#a-question-that-often-comes-up",
+    "title": " QM 6700: Business Analytics ",
+    "section": "A Question That Often Comes Up",
+    "text": "A Question That Often Comes Up\n\nA question that often comes up at this point:\nThe +318 comes straight from the eRPM data, but the −160 downside is just management’s estimate. Doesn’t that make the whole table arbitrary?\n\nShort answer: the downside is a judgment, not data, and that is fine as long as you say so and test it. We pin +318 to the measured $0.112 lift at 236.5M impressions, and we flag −160 as an estimate (about half the upside). The discipline is putting the number on the table so it can be stress-tested; later the sensitivity step shows exactly how wrong −160 would have to be to change the call."
+  },
+  {
+    "objectID": "lecture_slides/04_chapter_decision_analysis/04_chapter_decision_analysis.html#a-question-that-often-comes-up-1",
+    "href": "lecture_slides/04_chapter_decision_analysis/04_chapter_decision_analysis.html#a-question-that-often-comes-up-1",
+    "title": " QM 6700: Business Analytics ",
+    "section": "A Question That Often Comes Up",
+    "text": "A Question That Often Comes Up\n\nA question that often comes up at this point:\nIf the 0.60 prior is just the data-science team’s judgment, isn’t the whole decision only as good as a guess?\n\nShort answer: the prior is a judgment, but it is not a free-for-all, and you never trust a single value. It is informed by the A/B signal we already saw, and the sensitivity step at the end reports exactly which priors flip the call. If the decision is the same anywhere from, say, 0.40 to 0.80, the guess inside that range does not matter. That is why we structure the problem instead of arguing about the number."
+  },
+  {
+    "objectID": "lecture_slides/04_chapter_decision_analysis/04_chapter_decision_analysis.html#a-question-that-often-comes-up-2",
+    "href": "lecture_slides/04_chapter_decision_analysis/04_chapter_decision_analysis.html#a-question-that-often-comes-up-2",
+    "title": " QM 6700: Business Analytics ",
+    "section": "A Question That Often Comes Up",
+    "text": "A Question That Often Comes Up\n\nA question that often comes up at this point:\nWhy do we work the tree from the tips backward to the root, instead of forward from Vungle’s choice?\n\nShort answer: you cannot score the “roll out B” branch until you know what the chance node beyond it is worth, and that needs the payoffs at the tips. So you start at the right (the +318 / −160 tips), collapse each chance circle into its EV, and only then can the square at the left compare branches. Forward, you would be choosing before you knew what each choice leads to."
+  },
+  {
+    "objectID": "lecture_slides/04_chapter_decision_analysis/04_chapter_decision_analysis.html#a-question-that-often-comes-up-3",
+    "href": "lecture_slides/04_chapter_decision_analysis/04_chapter_decision_analysis.html#a-question-that-often-comes-up-3",
+    "title": " QM 6700: Business Analytics ",
+    "section": "A Question That Often Comes Up",
+    "text": "A Question That Often Comes Up\n\nA question that often comes up at this point:\nA perfect oracle doesn’t exist. Why compute the value of information Vungle can never actually buy?\n\nShort answer: because it gives you a hard ceiling before you shop. Any real study (an A/B test, a survey) is imperfect, so it is worth strictly less than the $64K EVPI. The instant a vendor quotes more than $64K for any study, you decline without doing further math. EVPI is the budget cap that no real information can ever justify exceeding."
+  },
+  {
+    "objectID": "lecture_slides/04_chapter_decision_analysis/04_chapter_decision_analysis.html#a-question-that-often-comes-up-4",
+    "href": "lecture_slides/04_chapter_decision_analysis/04_chapter_decision_analysis.html#a-question-that-often-comes-up-4",
+    "title": " QM 6700: Business Analytics ",
+    "section": "A Question That Often Comes Up",
+    "text": "A Question That Often Comes Up\n\nA question that often comes up at this point:\nA favorable report only lifts the odds from 0.60 to 0.828, not to certainty. Why doesn’t a positive test just prove B is better?\n\nShort answer: because the test is imperfect: it cries “favorable” 25% of the time even when B is not better (\\(P(F \\mid s_2) = 0.25\\)). So some favorable reports are false alarms, and the posterior holds back from 1.0 to absorb that. The stronger the signal (a lower false-alarm rate), the closer to certainty it would push you; a perfect test would take you to 1.0, which is exactly the oracle EVPI priced."
+  },
+  {
+    "objectID": "lecture_slides/04_chapter_decision_analysis/04_chapter_decision_analysis.html#a-question-that-often-comes-up-5",
+    "href": "lecture_slides/04_chapter_decision_analysis/04_chapter_decision_analysis.html#a-question-that-often-comes-up-5",
+    "title": " QM 6700: Business Analytics ",
+    "section": "A Question That Often Comes Up",
+    "text": "A Question That Often Comes Up\n\nA question that often comes up at this point:\nWe already ran an A/B test, and that was clearly worth it. So why is running a bigger test now not worth it?\n\nShort answer: EVSI is the value of information from where you stand now. Before the first test, Vungle knew almost nothing, so a test bought a lot. After it, the 0.60 prior already points toward rolling out, so a second test would mostly confirm what you would do anyway: it only changes the call in the unfavorable case, which is unlikely. Less left to learn means a smaller EVSI ($9.84K), and that is now below the $20K price."
+  },
+  {
+    "objectID": "lecture_slides/04_chapter_decision_analysis/04_chapter_decision_analysis.html#a-question-that-often-comes-up-6",
+    "href": "lecture_slides/04_chapter_decision_analysis/04_chapter_decision_analysis.html#a-question-that-often-comes-up-6",
+    "title": " QM 6700: Business Analytics ",
+    "section": "A Question That Often Comes Up",
+    "text": "A Question That Often Comes Up\n\nA question that often comes up at this point:\nWe stress-tested the 0.60 prior, but the −160 downside was also an estimate. Why isn’t that one tested too?\n\nShort answer: it should be, and the same idea handles it. The tipping point depends on both inputs: \\(p^{*} = 160 / (318 + 160) \\approx 0.335\\). Make the downside more severe (say −250) and the breakeven prior rises; make it milder and it falls. A two-way Data Table over \\(p\\) and the downside shows the whole region where “roll out B” still wins. We led with the prior because it is the input management is least sure about."
+  },
+  {
+    "objectID": "lecture_slides/04_chapter_decision_analysis/04_chapter_decision_analysis.html#todays-question-todays-answer",
+    "href": "lecture_slides/04_chapter_decision_analysis/04_chapter_decision_analysis.html#todays-question-todays-answer",
+    "title": " QM 6700: Business Analytics ",
+    "section": "Today’s Question, Today’s Answer",
+    "text": "Today’s Question, Today’s Answer\n\nThe question (Topic 4 of the ladder):\n\nRoll out B, keep A, or run a bigger test, which has the best expected value?\n\n\n\nThe answer we reached today:\n\nRoll out B. Its expected value ($126.8K/yr) beats keeping A ($0); the call stays the same unless B is more likely wrong than right (\\(p^{*} \\approx 0.33\\), and our prior is 0.60); and a bigger test is worth only $9.84K, under its $20K price, so we skip it."
   }
 ]
