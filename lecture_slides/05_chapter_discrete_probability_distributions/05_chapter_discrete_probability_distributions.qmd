@@ -33,6 +33,7 @@ html-math-method:
 - Random variables: discrete vs. continuous
 - Discrete probability distributions: table, conditions, graph
 - Expected value and variance of a random variable
+- Covariance, correlation, and the diversification math
 - The **Binomial** distribution: counting installs over impressions
 :::
 
@@ -52,7 +53,7 @@ html-math-method:
 
 <br>
 
-- [Vungle](https://en.wikipedia.org/wiki/Liftoff_Mobile) is a mobile ad-tech startup: it serves 15-second video ads inside other apps and earns revenue mainly when a viewer **installs** the advertised app.
+- [Vungle](https://techcrunch.com/2019/07/15/blackstone-is-acquiring-mobile-ad-company-vungle/) (today part of Liftoff) is a mobile ad-tech startup: it serves 15-second video ads inside other apps and earns revenue mainly when a viewer **installs** the advertised app.
 
 - Across June 2014, algorithm **A** served ~236M impressions and **B** served ~16M, side by side. The metric that pays the bills is **eRPM** (revenue per 1,000 impressions).
 
@@ -66,7 +67,7 @@ html-math-method:
 
 - **The big call (Topics 1–9):** *roll out B to all advertisers, or stay with A?* Before you can ship B, engineering has to know the install load it creates. Today's slice of that call:
 
-> "For a typical burst of traffic, **what is the probability of at least $N$ installs**, so we can size the postback pipeline without over- or under-building?"
+> "For a typical burst, **what's the chance of at least $N$ installs**, so we can size the postback pipeline without over- or under-building?"
 
 <br>
 
@@ -108,6 +109,14 @@ Every tool today maps onto the Vungle install count:
 - As the manager you build the machinery in three steps: (1) name the **random variable**, (2) get its **expected value and variance**, (3) recognize it as a **Binomial** and compute exact probabilities in Excel.
 
 - The number that drives everything is Vungle's conversion rate: $p \approx 0.0035$ for B, $p \approx 0.0040$ for A.
+
+## How Every Class Runs
+
+![](figs/lecture_dynamic.png){.nostretch fig-align="center" width="90%"}
+
+::: nonincremental
+The class **ends on the Team Sprint**, your group's graded submission: a decision plus your read of the analysis, one PDF before you leave.
+:::
 
 # Random Variables {background-color="#cfb991"}
 
@@ -166,6 +175,18 @@ $$
 
 - **Rule of thumb:** if you would naturally *count* it, it is discrete; if you would *measure* it on a scale, it is continuous.
 
+## A Question That Often Comes Up
+
+:::: {.faq}
+**A question that often comes up at this point:**
+
+[Installs only ever come out whole (0, 1, 2 ...), so why does it matter whether I call the count "discrete" rather than just a number?]{.faq-q}
+
+::: {.fragment .faq-a}
+**Short answer:** because the label picks the model. Calling installs **discrete** is what lets us put a **Binomial** or **Poisson** on them and read off $P(X \geq N)$. If we treated the count as a continuous measurement (like eRPM), we would reach for the wrong distribution next topic and the capacity probabilities would not even be defined at "exactly 8".
+:::
+::::
+
 # Discrete Probability Distributions {background-color="#cfb991"}
 
 ## The Probability Distribution
@@ -187,6 +208,22 @@ $$
 :::
 
 - The first says probabilities cannot be negative; the second says *something* must happen.
+
+## Where the Probabilities Come From
+
+<br>
+
+- Three standard ways to assign the probabilities $f(x)$:
+
+::: fragment
+  - **Classical:** equally likely outcomes (a fair die: each face $1/6$).
+  - **Subjective:** informed judgment when there is no track record.
+  - **Relative frequency:** the share of past observations, the route we take for JSL next. It gives an **empirical** distribution.
+:::
+
+- A **formula** can also supply $f(x)$ directly. The simplest is the **discrete uniform**, $f(x) = 1/n$ over $n$ equally likely values.
+
+- Our two workhorses, the **Binomial** and **Poisson**, are the formula distributions that fit the Vungle install count.
 
 ## Anchor Example: JSL Appliances
 
@@ -222,6 +259,18 @@ $$
 - This is exactly the move we will make for Vungle: build $f(x)$ for installs, then read off $P(X \geq N)$ for the capacity plan.
 
 - The only change is **how** we get $f(x)$: JSL used past data; for Vungle we will use a **formula** (the Binomial) driven by the conversion rate $p$.
+
+## A Question That Often Comes Up
+
+:::: {.faq}
+**A question that often comes up at this point:**
+
+[JSL got its $f(x)$ by counting 200 days of sales. Why would I ever trust a formula's $f(x)$ for Vungle instead of just counting past installs the same way?]{.faq-q}
+
+::: {.fragment .faq-a}
+**Short answer:** counting works only for outcomes you have already seen at the right scale. JSL sold at most 4 TVs a day, so 200 days cover every value. A 1,000-impression burst can produce **0 to 1,000** installs; you will never observe enough bursts to fill that table by hand. The Binomial formula gives the probability of **every** $x$, including the rare 8-plus bursts that size the pipeline, from just $n$ and $p$.
+:::
+::::
 
 # Expected Value and Variance {background-color="#cfb991"}
 
@@ -316,11 +365,131 @@ knitr::include_graphics("figs/excel_ev_var.png")
 
 <br>
 
-- $E(X)$ alone is not enough. Two ad algorithms could deliver the **same average** installs but very different **spread**, and spread is what overflows a server or empties a sales pipeline.
+- $E(X)$ alone is not enough. Two ad algorithms could deliver the **same average** installs but a different **spread**, and spread is what overflows a server or empties a sales pipeline.
 
 - A capacity planner reads $E(X)$ to **size for the typical load** and $\sigma$ (and the tail) to **size for the bad days**.
 
 - **Forward pointer:** the Vungle install count has a special structure, a fixed number of impressions, each an independent yes/no at the **same** rate $p$. That structure has a name: the **Binomial**, and it hands us $E(X)$, $\sigma$, and the full $f(x)$ from just two numbers, $n$ and $p$.
+
+## A Question That Often Comes Up
+
+:::: {.faq}
+**A question that often comes up at this point:**
+
+[The variance squares the deviations, so $\sigma^2 = 1.66$ is in "TVs squared," which means nothing to me. Why not just average the plain distances from the mean?]{.faq-q}
+
+::: {.fragment .faq-a}
+**Short answer:** squaring is what makes the big misses count more than the small ones, and it is the form that gives the clean $np(1-p)$ shortcut you will see for the Binomial. You are right that squared units are not readable, which is exactly why we take the square root: $\sigma = \sqrt{1.66} = 1.29$ TVs is back in plain units, and that is the spread a planner actually reads when sizing for a bad day.
+:::
+::::
+
+# Two Random Variables Together {background-color="#cfb991"}
+
+## When Two Counts Move Together
+
+<br>
+
+- So far one random variable at a time. Most business risk involves **two** moving together: A's installs and B's installs each day, two stores' sales, two stocks in a portfolio.
+
+- A **bivariate distribution** gives the probability of each *pair* of outcomes, $f(x, y) = P(X = x, Y = y)$.
+
+- The new question is **association**: when one is high, is the other high too? That is what **covariance** and **correlation** measure, and it is the hinge of every diversification decision.
+
+- **Textbook anchor:** DiCarlo Motors runs two dealerships (Geneva = $x$, Saratoga = $y$) and tracks 300 days of joint sales. **Vungle parallel:** A and B run side by side, so their daily install counts are a bivariate pair too.
+
+## Rules for Combining Random Variables
+
+<br>
+
+- Before covariance, the algebra of **shifting and adding** random variables. For constants $a, b$:
+
+::: fragment
+
+$$
+E(aX + b) = a\,E(X) + b \qquad\qquad \text{Var}(aX + b) = a^2\,\text{Var}(X)
+$$
+
+:::
+
+- Adding a constant shifts the mean but **not** the spread; scaling by $a$ multiplies the variance by $a^2$.
+
+- For a **sum** of two random variables, the means just add, but the variance carries a cross term:
+
+::: fragment
+
+$$
+E(aX + bY) = a\,E(X) + b\,E(Y)
+$$
+
+$$
+\text{Var}(aX + bY) = a^2\,\text{Var}(X) + b^2\,\text{Var}(Y) + 2ab\,\text{Cov}(X, Y)
+$$
+
+:::
+
+- That last term, $\text{Cov}(X, Y)$, is the whole story: it is **why combining two things can lower (or raise) total risk**.
+
+## Covariance and Correlation
+
+<br>
+
+:::: {style="font-size: 92%;"}
+- **Covariance** is the probability-weighted average of the joint deviations from each mean:
+
+::: fragment
+
+$$
+\text{Cov}(X, Y) = \sigma_{xy} = \sum \big[x - E(X)\big]\big[y - E(Y)\big]\,f(x, y)
+$$
+
+:::
+
+- Sign reads the direction: **positive** = they tend to move together, **negative** = one up while the other down, **zero** = no linear link. Its size is hard to read (it carries mixed units), so we standardize it into the **correlation coefficient**:
+
+::: fragment
+
+$$
+\rho_{xy} = \frac{\text{Cov}(X, Y)}{\sigma_x\,\sigma_y}, \qquad -1 \leq \rho_{xy} \leq 1
+$$
+
+:::
+
+- **DiCarlo:** $\sigma_{xy} = 0.1350$ and $\rho_{xy} = 0.1295$, a **weak positive** link: the two dealerships rise and fall together a little, not in lockstep.
+::::
+
+## Diversification: Why Combine at All?
+
+<br>
+
+- Put a fraction $w$ of a portfolio in asset $X$ and the rest in $Y$. The portfolio return is $Z = wX + (1-w)Y$, so by the rules above:
+
+::: fragment
+
+$$
+E(Z) = w\,E(X) + (1-w)\,E(Y)
+$$
+
+$$
+\text{Var}(Z) = w^2 \sigma_x^2 + (1-w)^2 \sigma_y^2 + 2\,w(1-w)\,\rho_{xy}\,\sigma_x\,\sigma_y
+$$
+
+:::
+
+- The mean is a plain blend, but the **risk is not**: when $\rho_{xy} < 1$, the cross term shrinks $\text{Var}(Z)$ below the blend of the two variances. **Low or negative correlation is what makes diversification work.**
+
+- The same math sizes a **supply chain**: two independent suppliers ($\rho \approx 0$) cut shortage risk far more than two whose outages correlate.
+
+## A Question That Often Comes Up
+
+:::: {.faq}
+**A question that often comes up at this point:**
+
+[If covariance and correlation measure the same direction, why bother computing both? Why not just report the covariance?]{.faq-q}
+
+::: {.fragment .faq-a}
+**Short answer:** covariance gives the **sign** but not a readable **size**: its units are "$x$-units times $y$-units" (cars-times-cars for DiCarlo), so $0.135$ could be strong or trivial, you cannot tell. Dividing by the two standard deviations strips the units and pins it to $[-1, 1]$, so $\rho = 0.1295$ instantly reads as "weak positive." You need the covariance to **build** the portfolio variance, and the correlation to **judge** how much diversification will actually help.
+:::
+::::
 
 # The Binomial Distribution {background-color="#cfb991"}
 
@@ -351,6 +520,18 @@ A **Binomial experiment** requires all four:
 <br>
 
 - **Vungle check:** $n$ impressions in a burst (1); each one installs or not (2); the conversion rate $p$ is the same within a stable burst (3); one user installing does not change another's odds (4). All four hold (approximately). So installs are **Binomial**.
+
+## A Question That Often Comes Up
+
+:::: {.faq}
+**A question that often comes up at this point:**
+
+[Real ad traffic is never perfectly identical or independent, so isn't calling Vungle's installs "Binomial" just wishful thinking?]{.faq-q}
+
+::: {.fragment .faq-a}
+**Short answer:** the assumptions are an approximation, and the manager's job is to know when it is good enough. Within one **stable** burst, impressions are similar users seeing the same ad at the same rate, so the four conditions nearly hold and the Binomial is trustworthy. They break during a **viral spike** (the rate jumps and installs cluster); that is the one caveat we flag in the Takeaway, and the cue to re-estimate $p$ rather than trust the model blindly.
+:::
+::::
 
 ## The Binomial Probability Function
 
@@ -417,6 +598,18 @@ knitr::include_graphics("figs/binom_pmf_evans.png")
 - $P(\text{at least 1 leaves}) = 1 - f(0) = 1 - 0.729 = 0.271$.
 :::
 
+## A Question That Often Comes Up
+
+:::: {.faq}
+**A question that often comes up at this point:**
+
+[Why does the formula multiply by $\binom{n}{x}$ at all? One specific leaver-stayer-stayer sequence already has probability 0.081, so why is $f(1)$ three times bigger?]{.faq-q}
+
+::: {.fragment .faq-a}
+**Short answer:** because "exactly 1 leaves" does not pin down **which** of the 3 employees it is. The leaver could be the first, second, or third, three different sequences, each with the same 0.081 chance. $\binom{3}{1} = 3$ just counts those equally-likely arrangements, so $f(1) = 3 \times 0.081 = 0.243$. For Vungle the same logic counts the many ways $x$ installs can land among 1,000 impressions.
+:::
+::::
+
 ## Binomial Mean, Variance, and SD
 
 <br>
@@ -447,6 +640,18 @@ $$
 - The capacity question is a **tail**: $P(X \geq N)$, *how often does the load exceed level $N$?*
 
 - Computing these by hand is tedious; Excel does the summation for us with one function.
+
+## A Question That Often Comes Up
+
+:::: {.faq}
+**A question that often comes up at this point:**
+
+[For "at least 8 installs," why is it $1 - P(X \leq 7)$ and not $1 - P(X \leq 8)$? The off-by-one keeps tripping me up.]{.faq-q}
+
+::: {.fragment .faq-a}
+**Short answer:** "at least 8" means $8, 9, 10, \dots$, so the **opposite** event is $7$ or fewer, not 8 or fewer. Subtracting $P(X \leq 8)$ would wrongly throw out the 8 itself. The rule: $P(X \geq N) = 1 - P(X \leq N - 1)$, so for $N = 8$ you use $P(X \leq 7)$. Get that boundary wrong and Vungle's capacity probability is off by exactly the $f(8)$ term.
+:::
+::::
 
 ## Excel: `BINOM.DIST`
 
@@ -532,6 +737,18 @@ knitr::include_graphics("figs/binom_tail_vungle_B.png")
 - If one postback worker handles up to 7 installs/burst, ~2.7% of B's bursts need a second worker; *that* is the capacity number.
 :::
 
+## A Question That Often Comes Up
+
+:::: {.faq}
+**A question that often comes up at this point:**
+
+[Vungle serves hundreds of millions of impressions a day, so why model a tiny 1,000-impression "burst" instead of the real daily load?]{.faq-q}
+
+::: {.fragment .faq-a}
+**Short answer:** the burst is the slice that a **single postback worker** actually faces at once, so its tail is what tells you when one worker overflows. Modeling the full day would just give a huge $\mu$ (about 31,700 installs) with a buried tail; the burst keeps the question concrete: "$P(X \geq 8)$ for this worker's batch." Once you have the per-burst rate, the Poisson scaling property lets you re-scale to per-second or per-day instantly, which is the Lecture 2 move.
+:::
+::::
+
 ## Vungle Binomial in Excel
 
 ::::: nonincremental
@@ -570,6 +787,22 @@ knitr::include_graphics("figs/excel_binom_vungle.png")
 
 - **One caveat:** the Binomial assumes a **constant, independent** $p$. Within a stable burst that holds; across a viral campaign spike it does not, so re-estimate $p$ when traffic shifts.
 
+## Today's Question, Today's Answer
+
+<br>
+
+**The question (Lecture 1):**
+
+> *How many installs should we expect in a 1,000-impression burst, and how do we model them as a Binomial?*
+
+::: fragment
+<br>
+
+**The answer we reached today:**
+
+> Installs are **Binomial($1000$, $p$)**. For B ($p = 0.0035$): expect $\mu = np = $ **3.5** installs with spread $\sigma = $ **1.87**, and the stress level $P(X \geq 8) = 1 - P(X \leq 7) = $ **0.0265** (about **1 burst in 38**). A converts higher, so its tail $P(X \geq 8) \approx$ **0.051** is roughly twice B's.
+:::
+
 ## ⏱️ Team Sprint: Your Group Case (Lecture 1)
 
 ::: {.sprint .nonincremental}
@@ -592,9 +825,17 @@ knitr::include_graphics("figs/excel_binom_vungle.png")
 
 <br>
 
-- Yesterday we needed two numbers, $n$ and $p$. The **Poisson** distribution needs only **one**: the mean rate $\lambda$ over an interval.
+- Yesterday we needed two numbers, $n$ and $p$. The **Poisson** distribution needs only **one**: the mean rate $\mu$ over an interval.
 
 - We will introduce Poisson on its own terms, then show it is the **large-$n$, small-$p$ limit** of the Binomial, and that for Vungle the two are nearly identical.
+
+## How Every Class Runs
+
+![](figs/lecture_dynamic.png){.nostretch fig-align="center" width="90%"}
+
+::: nonincremental
+The class **ends on the Team Sprint**, your group's graded submission: a decision plus your read of the analysis, one PDF before you leave.
+:::
 
 # Poisson: Rare Events Over an Interval {background-color="#cfb991"}
 
@@ -620,35 +861,49 @@ knitr::include_graphics("figs/excel_binom_vungle.png")
 
 <br>
 
-- One parameter governs everything: the **mean number of occurrences per interval**, $\lambda$ (also written $\mu$).
+- One parameter governs everything: the **mean number of occurrences per interval**, $\mu$ (many texts write it $\lambda$; we keep $\mu$, the same mean symbol as everywhere else in the course).
 
-- **Vungle:** at $p \approx 0.0035$ over 1,000 impressions, installs arrive at a mean rate $\lambda = np = 3.5$ per burst. The rate is steady within a stable burst, and one install does not trigger another, so both assumptions hold.
+- **Vungle:** at $p \approx 0.0035$ over 1,000 impressions, installs arrive at a mean rate $\mu = np = 3.5$ per burst. The rate is steady within a stable burst, and one install does not trigger another, so both assumptions hold.
 
 ## The Poisson Probability Function
 
 <br>
 
-- The probability of exactly $x$ occurrences in an interval with mean $\lambda$:
+- The probability of exactly $x$ occurrences in an interval with mean $\mu$:
 
 ::: fragment
 
 $$
-f(x) = \frac{\lambda^x e^{-\lambda}}{x!}, \qquad x = 0, 1, 2, \dots \qquad (e \approx 2.71828)
+f(x) = \frac{\mu^x e^{-\mu}}{x!}, \qquad x = 0, 1, 2, \dots \qquad (e \approx 2.71828)
 $$
 
 :::
 
-- A defining property: the mean **and** variance are **both** $\lambda$:
+- A defining property: the mean **and** variance are **both** $\mu$:
 
 ::: fragment
 
 $$
-E(X) = \lambda \qquad\qquad \text{Var}(X) = \lambda \qquad\qquad \sigma = \sqrt{\lambda}
+E(X) = \mu \qquad\qquad \text{Var}(X) = \mu \qquad\qquad \sigma = \sqrt{\mu}
 $$
 
 :::
 
 - There is **no upper limit** on $x$, but $f(x)$ shrinks fast; for large $x$ it rounds to zero.
+
+- (Excel calls the parameter $\mu$ its *mean* argument; some calculators and texts label the same number $\lambda$.)
+
+## A Question That Often Comes Up
+
+:::: {.faq}
+**A question that often comes up at this point:**
+
+[Mean equals variance, both just $\mu$? With the Binomial I had two separate knobs. How can one number fix the spread too?]{.faq-q}
+
+::: {.fragment .faq-a}
+**Short answer:** it falls right out of the large-$n$, small-$p$ setup. The Binomial variance is $np(1-p)$; when $p$ is tiny, $(1-p) \approx 1$, so the variance collapses to $np = \mu$, the same as the mean. For Vungle's $p = 0.0035$ that approximation is excellent, which is why $\mu = 3.5$ alone pins down both the center and the spread of the install count.
+:::
+::::
 
 ## Anchor Example: Mercy Hospital
 
@@ -656,7 +911,7 @@ $$
 
 - Patients arrive at Mercy Hospital's ER at **6 per hour** on weekend evenings. What is $P(\text{exactly 4 arrivals in 30 minutes})$?
 
-- First **rescale the rate** to the interval: 6 per hour $= 3$ per half-hour, so $\lambda = 3$.
+- First **rescale the rate** to the interval: 6 per hour $= 3$ per half-hour, so $\mu = 3$.
 
 ::: fragment
 
@@ -666,7 +921,7 @@ $$
 
 :::
 
-- And the spread of arrivals: $\text{Var}(X) = \lambda = 3$, so $\sigma = \sqrt{3} = 1.73$ patients per half-hour.
+- And the spread of arrivals: $\text{Var}(X) = \mu = 3$, so $\sigma = \sqrt{3} = 1.73$ patients per half-hour.
 
 ## Mercy Hospital: the Full Distribution
 
@@ -675,23 +930,35 @@ knitr::include_graphics("figs/poisson_pmf_mercy.png")
 ```
 
 ::: nonincremental
-- The whole distribution comes from the **single** number $\lambda = 3$: no $n$, no $p$.
-- **Watch the units:** $\lambda$ must match the interval. Six per hour and three per half-hour describe the *same* process at different scales.
+- The whole distribution comes from the **single** number $\mu = 3$: no $n$, no $p$.
+- **Watch the units:** $\mu$ must match the interval. Six per hour and three per half-hour describe the *same* process at different scales.
 :::
+
+## A Question That Often Comes Up
+
+:::: {.faq}
+**A question that often comes up at this point:**
+
+[If 6-per-hour and 3-per-half-hour are the "same process," why did we have to switch to $\mu = 3$? Couldn't we just plug in $\mu = 6$?]{.faq-q}
+
+::: {.fragment .faq-a}
+**Short answer:** no, because $\mu$ is the mean for the **interval the question asks about**, and the question was about **30 minutes**. Plug in $\mu = 6$ and Excel answers "4 arrivals in an *hour*," a different event. The rule is one line: match $\mu$ to the window. For Vungle the same step turns a per-burst $\mu = 3.5$ into a per-second or per-day rate before you read off any tail.
+:::
+::::
 
 ## Excel: `POISSON.DIST`
 
 <br>
 
-- Same TRUE/FALSE switch as the Binomial, but only **one** parameter ($\lambda$, called *mean* in Excel):
+- Same TRUE/FALSE switch as the Binomial, but only **one** parameter ($\mu$, the *mean* argument in Excel):
 
 ::: fragment
 
 | You want | Excel | Returns |
 |---|---|---|
-| $P(X = x)$ (PMF) | `=POISSON.DIST(x, lambda, FALSE)` | exact probability |
-| $P(X \leq x)$ (CDF) | `=POISSON.DIST(x, lambda, TRUE)` | cumulative probability |
-| $P(X \geq N)$ (tail) | `=1 - POISSON.DIST(N-1, lambda, TRUE)` | complement |
+| $P(X = x)$ (PMF) | `=POISSON.DIST(x, mean, FALSE)` | exact probability |
+| $P(X \leq x)$ (CDF) | `=POISSON.DIST(x, mean, TRUE)` | cumulative probability |
+| $P(X \geq N)$ (tail) | `=1 - POISSON.DIST(N-1, mean, TRUE)` | complement |
 
 :::
 
@@ -705,12 +972,12 @@ knitr::include_graphics("figs/poisson_pmf_mercy.png")
 
 <br>
 
-- When $n$ is **large** and $p$ is **small**, the Binomial and the Poisson with $\lambda = np$ are nearly identical:
+- When $n$ is **large** and $p$ is **small**, the Binomial and the Poisson with $\mu = np$ are nearly identical:
 
 ::: fragment
 
 $$
-\text{Binomial}(n, p) \;\approx\; \text{Poisson}(\lambda = np) \qquad \text{for large } n,\; \text{small } p
+\text{Binomial}(n, p) \;\approx\; \text{Poisson}(\mu = np) \qquad \text{for large } n,\; \text{small } p
 $$
 
 :::
@@ -718,6 +985,18 @@ $$
 - **Rule of thumb:** the approximation is excellent when $n \geq 20$ and $p \leq 0.05$ (some texts use $np \leq 7$).
 
 - Vungle is the textbook case: $n = 1000 \geq 20$ and $p = 0.0035 \leq 0.05$. So $X_B \approx \text{Poisson}(3.5)$, and we can drop $n$ and $p$ and work with **rate alone**.
+
+## A Question That Often Comes Up
+
+:::: {.faq}
+**A question that often comes up at this point:**
+
+[If the Poisson just approximates the Binomial here, isn't it strictly worse? Why not always use the exact Binomial and skip the approximation?]{.faq-q}
+
+::: {.fragment .faq-a}
+**Short answer:** because in real ops you often **do not have** $n$ and $p$, only the rate. Vungle's pipeline tracks "installs per second," not "successes out of how many impressions," so the Binomial's two inputs are not even available; the Poisson's single $\mu$ is. When you *do* have $n$ and $p$ and they are small, the two agree to three decimals (next slide), so you lose nothing by taking the simpler model.
+:::
+::::
 
 ## See It: The Two Models Overlap
 
@@ -743,7 +1022,7 @@ Put the two functions in adjacent columns:
 
 <br>
 
-The columns match to 3–4 decimals. The Poisson needs **one** input ($\lambda = 3.5$); the Binomial needs **two** ($n, p$); and for rare events you often only *know* the rate.
+The columns match to 3–4 decimals. The Poisson needs **one** input ($\mu = 3.5$); the Binomial needs **two** ($n, p$); and for rare events you often only *know* the rate.
 :::
 
 ::: {.column width="60%"}
@@ -766,7 +1045,7 @@ knitr::include_graphics("figs/excel_binom_vs_poisson.png")
 
 <br>
 
-- For Vungle's capacity work, **Poisson is the natural choice**: postbacks arrive over a *time* window, and all engineering tracks is the **mean rate** $\lambda$, not a count of impressions.
+- For Vungle's capacity work, **Poisson is the natural choice**: postbacks arrive over a *time* window, and all engineering tracks is the **mean rate** $\mu$, not a count of impressions.
 
 # The Vungle Pipeline: A Poisson Capacity Plan {background-color="#cfb991"}
 
@@ -791,8 +1070,8 @@ knitr::include_graphics("figs/poisson_pmf_vungle.png")
 
 | Algorithm | Binomial $P(X \geq 8)$ | Poisson $P(X \geq 8)$ |
 |---|---:|---:|
-| B ($\lambda = 3.5$) | 0.0265 | **0.0267** |
-| A ($\lambda = 4.0$) | 0.0508 | **0.0511** |
+| B ($\mu = 3.5$) | 0.0265 | **0.0267** |
+| A ($\mu = 4.0$) | 0.0508 | **0.0511** |
 
 :::
 
@@ -809,24 +1088,52 @@ knitr::include_graphics("figs/poisson_pmf_vungle.png")
 ::: fragment
 
 $$
-\lambda_{\text{day}} = \frac{7{,}900{,}000}{1{,}000} \times 0.0040 \approx 31{,}600 \text{ installs/day} \quad (\text{matches the data's} \approx 31{,}700)
+\mu_{\text{day}} = \underbrace{\frac{7{,}900{,}000}{1{,}000}}_{7{,}900 \text{ bursts}} \times \underbrace{4.0}_{\mu \text{ per burst}} \approx 31{,}600 \text{ installs/day} \quad (\text{matches the data's} \approx 31{,}700)
 $$
 
 :::
 
-- Want installs **per second**? Divide $\lambda$ by 86,400. Want **per hour**? Multiply by 3,600. **One parameter, any interval**, no need to recount impressions.
+- Want installs **per second**? Divide $\mu$ by 86,400. Want **per hour**? Multiply by 3,600. **One parameter, any interval**, no need to recount impressions.
 
-- That is why ops teams model arrivals as Poisson: provision for $\lambda$ plus a tail buffer, and re-scale instantly as traffic grows.
+- That is why ops teams model arrivals as Poisson: provision for $\mu$ plus a tail buffer, and re-scale instantly as traffic grows.
+
+## A Question That Often Comes Up
+
+:::: {.faq}
+**A question that often comes up at this point:**
+
+[If I double the interval, $\mu$ doubles. Does the tail probability $P(X \geq N)$ just double too?]{.faq-q}
+
+::: {.fragment .faq-a}
+**Short answer:** no, only $\mu$ scales linearly with the interval; the tail does **not**. Double the window and you must recompute $P(X \geq N)$ with the **new** $\mu$ from scratch, because both the center and the whole shape shift. For Vungle: a per-second $\mu$ and a per-hour $\mu$ are a clean multiply apart, but their capacity tails are two separate `POISSON.DIST` calls. Scaling the rate is free; the probability still needs the function.
+:::
+::::
 
 ## The Manager's Takeaway (Lecture 2)
 
 <br>
 
-- **One sentence:** for rare events over an interval, the **Poisson($\lambda$)** models the count from a single rate, and for Vungle's tiny $p$ it gives the **same capacity answer** as the Binomial.
+- **One sentence:** for rare events over an interval, the **Poisson($\mu$)** models the count from a single rate, and for Vungle's tiny $p$ it gives the **same capacity answer** as the Binomial.
 
-- **One number:** $P(\geq 8 \text{ installs/burst}) \approx$ **0.051** for A (Poisson $\lambda = 4$): provision a second worker for ~1 burst in 20.
+- **One number:** $P(\geq 8 \text{ installs/burst}) \approx$ **0.051** for A (Poisson $\mu = 4$): provision a second worker for ~1 burst in 20.
 
 - **One caveat:** Poisson assumes a **constant, independent** rate. A viral spike breaks both assumptions: arrivals cluster, the true tail is *heavier* than Poisson predicts, and you under-provision. Monitor for over-dispersion (variance $>$ mean).
+
+## Today's Question, Today's Answer
+
+<br>
+
+**The question (Lecture 2):**
+
+> *Is there a model that needs only the average rate, not the full $n$ and $p$, and does it give the same capacity answer?*
+
+::: fragment
+<br>
+
+**The answer we reached today:**
+
+> Yes: the **Poisson($\mu$)** needs only $\mu = np$. For B, $\mu = $ **3.5**; the capacity tail $P(X \geq 8) = $ **0.0267** matches the Binomial's **0.0265**, and for A both give $\approx$ **0.051**. For Vungle's tiny $p$ the two models agree to three decimals, so you can plan from the **rate alone**.
+:::
 
 # Wrap-up {background-color="#cfb991"}
 
@@ -837,10 +1144,11 @@ $$
 |---|---|---|---|
 | Expected value | $E(X) = \sum x\,f(x)$ | mean installs per burst | `=SUMPRODUCT(x, f)` |
 | Variance | $\sigma^2 = \sum (x-\mu)^2 f(x)$ | spread / risk of the count | formula cells |
+| Covariance / corr. | $\sigma_{xy};\;\rho_{xy} = \sigma_{xy}/(\sigma_x \sigma_y)$ | do A and B move together? | formula cells |
 | **Binomial** | $f(x) = \binom{n}{x}p^x(1-p)^{n-x}$ | installs in $n=1000$ impressions, $p=0.0035$ | `=BINOM.DIST(x,n,p,0/1)` |
 | Binomial mean/var | $np,\; np(1-p)$ | $\mu_B = 3.5,\; \sigma_B = 1.87$ | (formula) |
-| **Poisson** | $f(x) = \lambda^x e^{-\lambda}/x!$ | installs as rare arrivals, $\lambda = 3.5$ | `=POISSON.DIST(x,λ,0/1)` |
-| Poisson mean/var | $\lambda,\; \lambda$ | $\mu_B = \sigma^2_B = 3.5$ | (formula) |
+| **Poisson** | $f(x) = \mu^x e^{-\mu}/x!$ | installs as rare arrivals, $\mu = 3.5$ | `=POISSON.DIST(x,mean,0/1)` |
+| Poisson mean/var | $\mu,\; \mu$ | $\mu_B = \sigma^2_B = 3.5$ | (formula) |
 | Tail (capacity) | $P(X \geq N) = 1 - P(X \leq N{-}1)$ | $P(X_A \geq 8) \approx 0.051$ | `=1-...DIST(N-1,...,1)` |
 :::
 
@@ -861,7 +1169,7 @@ $$
 ::: {.sprint .nonincremental}
 **Now it's your group's turn.** Today's in-class group case is posted on **Brightspace** (*Topic 05 Group Case, Lecture 2*): a separate business decision you make with today's tools.
 
-**What you'll use:** the **Poisson** model, $E(X)=\text{Var}(X)=\lambda$, and the capacity tail $P(X \geq N)$. **Excel:** Analysis ToolPak with `POISSON.DIST(x, lambda, FALSE/TRUE)`.
+**What you'll use:** the **Poisson** model, $E(X)=\text{Var}(X)=\mu$, and the capacity tail $P(X \geq N)$. **Excel:** Analysis ToolPak with `POISSON.DIST(x, mean, FALSE/TRUE)`.
 
 **Submit one PDF per group before you leave:** your decision plus the numbers behind it.
 :::
@@ -871,11 +1179,10 @@ $$
 ::: nonincremental
 The points to carry out of this session:
 
-- A **random variable** assigns a number to each outcome; **discrete** ones are counted, **continuous** ones measured.
-- A valid **discrete distribution** has $f(x) \geq 0$ and $\sum f(x) = 1$; from it, $E(X) = \sum x f(x)$ (center) and $\sigma^2 = \sum (x-\mu)^2 f(x)$ (risk).
-- The **Binomial** counts successes in $n$ fixed Bernoulli trials: $f(x) = \binom{n}{x}p^x(1-p)^{n-x}$, with $\mu = np$ and $\sigma^2 = np(1-p)$.
-- The **Poisson** counts rare arrivals over an interval from one rate $\lambda$: $f(x) = \lambda^x e^{-\lambda}/x!$, with $\mu = \sigma^2 = \lambda$.
-- For **large $n$, small $p$**, Binomial $\approx$ Poisson($np$): Vungle's installs are the textbook case.
+- A **random variable** assigns a number to each outcome (discrete = counted, continuous = measured); a valid **distribution** has $f(x) \geq 0$, $\sum f(x) = 1$, with $E(X) = \sum x f(x)$ and $\sigma^2 = \sum (x-\mu)^2 f(x)$.
+- **Covariance / correlation** measure how two counts move together; with $\rho_{xy} < 1$ the cross term in $\text{Var}(wX + (1-w)Y)$ shrinks total risk: that is **diversification**.
+- The **Binomial** counts successes in $n$ fixed Bernoulli trials: $f(x) = \binom{n}{x}p^x(1-p)^{n-x}$, with $\mu = np$, $\sigma^2 = np(1-p)$.
+- The **Poisson** counts rare arrivals from one rate $\mu$: $f(x) = \mu^x e^{-\mu}/x!$, with $\mu = \sigma^2$; for large $n$, small $p$ it equals Binomial($np$), the Vungle case.
 - **Capacity = a tail probability:** $P(X \geq N) = 1 - P(X \leq N-1)$, computed in one Excel cell.
 - **Next time:** we move from **discrete counts** to **continuous measurements**, the **Normal** distribution, and the question *"what is the probability eRPM exceeds \$3.50?"*
 - **Homework (individual):** the Binomial and Poisson models are drilled on **HW2**, posted on Brightspace; run them yourself so you can check an analyst who uses them.

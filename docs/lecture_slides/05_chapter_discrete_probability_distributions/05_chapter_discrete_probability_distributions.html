@@ -32,7 +32,7 @@
       vertical-align: middle;
     }
   </style>
-  <link rel="stylesheet" href="../../site_libs/revealjs/dist/theme/quarto-113b5beb2a57b2deea58feb1108e76b2.css">
+  <link rel="stylesheet" href="../../site_libs/revealjs/dist/theme/quarto-8fc47a4fdcba9931a3aa90ef56f89358.css">
   <link href="../../site_libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
   <link href="../../site_libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
   <link href="../../site_libs/revealjs/plugin/reveal-menu/quarto-menu.css" rel="stylesheet">
@@ -153,6 +153,7 @@ Professor<br>Davi Moreira<br>
 <li>Random variables: discrete vs.&nbsp;continuous</li>
 <li>Discrete probability distributions: table, conditions, graph</li>
 <li>Expected value and variance of a random variable</li>
+<li>Covariance, correlation, and the diversification math</li>
 <li>The <strong>Binomial</strong> distribution: counting installs over impressions</li>
 </ul>
 </div><div class="column" style="width: 50%; text-align: center; justify-content: center; align-items: center;">
@@ -174,7 +175,7 @@ Professor<br>Davi Moreira<br>
 <h2>June 2014: From “Is B Better?” to “Can We Handle It?”</h2>
 <p><br></p>
 <ul>
-<li class="fragment"><p><a href="https://en.wikipedia.org/wiki/Liftoff_Mobile">Vungle</a> is a mobile ad-tech startup: it serves 15-second video ads inside other apps and earns revenue mainly when a viewer <strong>installs</strong> the advertised app.</p></li>
+<li class="fragment"><p><a href="https://techcrunch.com/2019/07/15/blackstone-is-acquiring-mobile-ad-company-vungle/">Vungle</a> (today part of Liftoff) is a mobile ad-tech startup: it serves 15-second video ads inside other apps and earns revenue mainly when a viewer <strong>installs</strong> the advertised app.</p></li>
 <li class="fragment"><p>Across June 2014, algorithm <strong>A</strong> served ~236M impressions and <strong>B</strong> served ~16M, side by side. The metric that pays the bills is <strong>eRPM</strong> (revenue per 1,000 impressions).</p></li>
 <li class="fragment"><p>Every install fires a <strong>postback</strong>: a real-time callback the ad server must record, bill, and confirm to the advertiser. Installs are the events the <strong>infrastructure</strong> has to absorb.</p></li>
 <li class="fragment"><p>Engineering’s worry is not “is B better?”; it is <strong>“how many installs hit us at once, and how often?”</strong> Provision too little capacity and postbacks drop (lost revenue); too much and you burn cash on idle servers.</p></li>
@@ -187,7 +188,7 @@ Professor<br>Davi Moreira<br>
 <li class="fragment"><strong>The big call (Topics 1–9):</strong> <em>roll out B to all advertisers, or stay with A?</em> Before you can ship B, engineering has to know the install load it creates. Today’s slice of that call:</li>
 </ul>
 <blockquote>
-<p>“For a typical burst of traffic, <strong>what is the probability of at least <span class="math inline">\(N\)</span> installs</strong>, so we can size the postback pipeline without over- or under-building?”</p>
+<p>“For a typical burst, <strong>what’s the chance of at least <span class="math inline">\(N\)</span> installs</strong>, so we can size the postback pipeline without over- or under-building?”</p>
 </blockquote>
 <p><br></p>
 <ul>
@@ -254,6 +255,15 @@ Professor<br>Davi Moreira<br>
 <li class="fragment"><p>As the manager you build the machinery in three steps: (1) name the <strong>random variable</strong>, (2) get its <strong>expected value and variance</strong>, (3) recognize it as a <strong>Binomial</strong> and compute exact probabilities in Excel.</p></li>
 <li class="fragment"><p>The number that drives everything is Vungle’s conversion rate: <span class="math inline">\(p \approx 0.0035\)</span> for B, <span class="math inline">\(p \approx 0.0040\)</span> for A.</p></li>
 </ul>
+</section>
+<section id="how-every-class-runs" class="slide level2 center">
+<h2>How Every Class Runs</h2>
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="figs/lecture_dynamic.png" class="quarto-figure quarto-figure-center" style="width:90.0%"></p>
+</figure>
+</div>
+<p>The class <strong>ends on the Team Sprint</strong>, your group’s graded submission: a decision plus your read of the analysis, one PDF before you leave.</p>
 </section></section>
 <section>
 <section id="random-variables" class="title-slide slide level1 center" data-background-color="#cfb991">
@@ -339,6 +349,16 @@ X = \text{number of installs in a fixed batch of impressions} \in \{0, 1, 2, \do
 <ul>
 <li class="fragment"><strong>Rule of thumb:</strong> if you would naturally <em>count</em> it, it is discrete; if you would <em>measure</em> it on a scale, it is continuous.</li>
 </ul>
+</section>
+<section id="a-question-that-often-comes-up" class="slide level2 center">
+<h2>A Question That Often Comes Up</h2>
+<div class="faq">
+<p><strong>A question that often comes up at this point:</strong></p>
+<p><span class="faq-q">Installs only ever come out whole (0, 1, 2 …), so why does it matter whether I call the count “discrete” rather than just a number?</span></p>
+<div class="fragment faq-a">
+<p><strong>Short answer:</strong> because the label picks the model. Calling installs <strong>discrete</strong> is what lets us put a <strong>Binomial</strong> or <strong>Poisson</strong> on them and read off <span class="math inline">\(P(X \geq N)\)</span>. If we treated the count as a continuous measurement (like eRPM), we would reach for the wrong distribution next topic and the capacity probabilities would not even be defined at “exactly 8”.</p>
+</div>
+</div>
 </section></section>
 <section>
 <section id="discrete-probability-distributions" class="title-slide slide level1 center" data-background-color="#cfb991">
@@ -360,6 +380,24 @@ f(x) \geq 0 \qquad \text{for every } x \qquad\qquad \sum_{x} f(x) = 1
 </div>
 <ul>
 <li class="fragment">The first says probabilities cannot be negative; the second says <em>something</em> must happen.</li>
+</ul>
+</section>
+<section id="where-the-probabilities-come-from" class="slide level2 center">
+<h2>Where the Probabilities Come From</h2>
+<p><br></p>
+<ul>
+<li class="fragment">Three standard ways to assign the probabilities <span class="math inline">\(f(x)\)</span>:</li>
+</ul>
+<div class="fragment">
+<ul>
+<li class="fragment"><strong>Classical:</strong> equally likely outcomes (a fair die: each face <span class="math inline">\(1/6\)</span>).</li>
+<li class="fragment"><strong>Subjective:</strong> informed judgment when there is no track record.</li>
+<li class="fragment"><strong>Relative frequency:</strong> the share of past observations, the route we take for JSL next. It gives an <strong>empirical</strong> distribution.</li>
+</ul>
+</div>
+<ul>
+<li class="fragment"><p>A <strong>formula</strong> can also supply <span class="math inline">\(f(x)\)</span> directly. The simplest is the <strong>discrete uniform</strong>, <span class="math inline">\(f(x) = 1/n\)</span> over <span class="math inline">\(n\)</span> equally likely values.</p></li>
+<li class="fragment"><p>Our two workhorses, the <strong>Binomial</strong> and <strong>Poisson</strong>, are the formula distributions that fit the Vungle install count.</p></li>
 </ul>
 </section>
 <section id="anchor-example-jsl-appliances" class="slide level2 center">
@@ -428,6 +466,16 @@ f(x) \geq 0 \qquad \text{for every } x \qquad\qquad \sum_{x} f(x) = 1
 <li class="fragment"><p>This is exactly the move we will make for Vungle: build <span class="math inline">\(f(x)\)</span> for installs, then read off <span class="math inline">\(P(X \geq N)\)</span> for the capacity plan.</p></li>
 <li class="fragment"><p>The only change is <strong>how</strong> we get <span class="math inline">\(f(x)\)</span>: JSL used past data; for Vungle we will use a <strong>formula</strong> (the Binomial) driven by the conversion rate <span class="math inline">\(p\)</span>.</p></li>
 </ul>
+</section>
+<section id="a-question-that-often-comes-up-1" class="slide level2 center">
+<h2>A Question That Often Comes Up</h2>
+<div class="faq">
+<p><strong>A question that often comes up at this point:</strong></p>
+<p><span class="faq-q">JSL got its <span class="math inline">\(f(x)\)</span> by counting 200 days of sales. Why would I ever trust a formula’s <span class="math inline">\(f(x)\)</span> for Vungle instead of just counting past installs the same way?</span></p>
+<div class="fragment faq-a">
+<p><strong>Short answer:</strong> counting works only for outcomes you have already seen at the right scale. JSL sold at most 4 TVs a day, so 200 days cover every value. A 1,000-impression burst can produce <strong>0 to 1,000</strong> installs; you will never observe enough bursts to fill that table by hand. The Binomial formula gives the probability of <strong>every</strong> <span class="math inline">\(x\)</span>, including the rare 8-plus bursts that size the pipeline, from just <span class="math inline">\(n\)</span> and <span class="math inline">\(p\)</span>.</p>
+</div>
+</div>
 </section></section>
 <section>
 <section id="expected-value-and-variance" class="title-slide slide level1 center" data-background-color="#cfb991">
@@ -580,10 +628,116 @@ E(X) = 1.20 \text{ TVs} \qquad \sigma^2 = 1.660 \qquad \sigma = \sqrt{1.660} = 1
 <h2>Why Managers Care: Mean and Risk Together</h2>
 <p><br></p>
 <ul>
-<li class="fragment"><p><span class="math inline">\(E(X)\)</span> alone is not enough. Two ad algorithms could deliver the <strong>same average</strong> installs but very different <strong>spread</strong>, and spread is what overflows a server or empties a sales pipeline.</p></li>
+<li class="fragment"><p><span class="math inline">\(E(X)\)</span> alone is not enough. Two ad algorithms could deliver the <strong>same average</strong> installs but a different <strong>spread</strong>, and spread is what overflows a server or empties a sales pipeline.</p></li>
 <li class="fragment"><p>A capacity planner reads <span class="math inline">\(E(X)\)</span> to <strong>size for the typical load</strong> and <span class="math inline">\(\sigma\)</span> (and the tail) to <strong>size for the bad days</strong>.</p></li>
 <li class="fragment"><p><strong>Forward pointer:</strong> the Vungle install count has a special structure, a fixed number of impressions, each an independent yes/no at the <strong>same</strong> rate <span class="math inline">\(p\)</span>. That structure has a name: the <strong>Binomial</strong>, and it hands us <span class="math inline">\(E(X)\)</span>, <span class="math inline">\(\sigma\)</span>, and the full <span class="math inline">\(f(x)\)</span> from just two numbers, <span class="math inline">\(n\)</span> and <span class="math inline">\(p\)</span>.</p></li>
 </ul>
+</section>
+<section id="a-question-that-often-comes-up-2" class="slide level2 center">
+<h2>A Question That Often Comes Up</h2>
+<div class="faq">
+<p><strong>A question that often comes up at this point:</strong></p>
+<p><span class="faq-q">The variance squares the deviations, so <span class="math inline">\(\sigma^2 = 1.66\)</span> is in “TVs squared,” which means nothing to me. Why not just average the plain distances from the mean?</span></p>
+<div class="fragment faq-a">
+<p><strong>Short answer:</strong> squaring is what makes the big misses count more than the small ones, and it is the form that gives the clean <span class="math inline">\(np(1-p)\)</span> shortcut you will see for the Binomial. You are right that squared units are not readable, which is exactly why we take the square root: <span class="math inline">\(\sigma = \sqrt{1.66} = 1.29\)</span> TVs is back in plain units, and that is the spread a planner actually reads when sizing for a bad day.</p>
+</div>
+</div>
+</section></section>
+<section>
+<section id="two-random-variables-together" class="title-slide slide level1 center" data-background-color="#cfb991">
+<h1>Two Random Variables Together</h1>
+
+</section>
+<section id="when-two-counts-move-together" class="slide level2 center">
+<h2>When Two Counts Move Together</h2>
+<p><br></p>
+<ul>
+<li class="fragment"><p>So far one random variable at a time. Most business risk involves <strong>two</strong> moving together: A’s installs and B’s installs each day, two stores’ sales, two stocks in a portfolio.</p></li>
+<li class="fragment"><p>A <strong>bivariate distribution</strong> gives the probability of each <em>pair</em> of outcomes, <span class="math inline">\(f(x, y) = P(X = x, Y = y)\)</span>.</p></li>
+<li class="fragment"><p>The new question is <strong>association</strong>: when one is high, is the other high too? That is what <strong>covariance</strong> and <strong>correlation</strong> measure, and it is the hinge of every diversification decision.</p></li>
+<li class="fragment"><p><strong>Textbook anchor:</strong> DiCarlo Motors runs two dealerships (Geneva = <span class="math inline">\(x\)</span>, Saratoga = <span class="math inline">\(y\)</span>) and tracks 300 days of joint sales. <strong>Vungle parallel:</strong> A and B run side by side, so their daily install counts are a bivariate pair too.</p></li>
+</ul>
+</section>
+<section id="rules-for-combining-random-variables" class="slide level2 center">
+<h2>Rules for Combining Random Variables</h2>
+<p><br></p>
+<ul>
+<li class="fragment">Before covariance, the algebra of <strong>shifting and adding</strong> random variables. For constants <span class="math inline">\(a, b\)</span>:</li>
+</ul>
+<div class="fragment">
+<p><span class="math display">\[
+E(aX + b) = a\,E(X) + b \qquad\qquad \text{Var}(aX + b) = a^2\,\text{Var}(X)
+\]</span></p>
+</div>
+<ul>
+<li class="fragment"><p>Adding a constant shifts the mean but <strong>not</strong> the spread; scaling by <span class="math inline">\(a\)</span> multiplies the variance by <span class="math inline">\(a^2\)</span>.</p></li>
+<li class="fragment"><p>For a <strong>sum</strong> of two random variables, the means just add, but the variance carries a cross term:</p></li>
+</ul>
+<div class="fragment">
+<p><span class="math display">\[
+E(aX + bY) = a\,E(X) + b\,E(Y)
+\]</span></p>
+<p><span class="math display">\[
+\text{Var}(aX + bY) = a^2\,\text{Var}(X) + b^2\,\text{Var}(Y) + 2ab\,\text{Cov}(X, Y)
+\]</span></p>
+</div>
+<ul>
+<li class="fragment">That last term, <span class="math inline">\(\text{Cov}(X, Y)\)</span>, is the whole story: it is <strong>why combining two things can lower (or raise) total risk</strong>.</li>
+</ul>
+</section>
+<section id="covariance-and-correlation" class="slide level2 center">
+<h2>Covariance and Correlation</h2>
+<p><br></p>
+<div style="font-size: 92%;">
+<ul>
+<li class="fragment"><strong>Covariance</strong> is the probability-weighted average of the joint deviations from each mean:</li>
+</ul>
+<div class="fragment">
+<p><span class="math display">\[
+\text{Cov}(X, Y) = \sigma_{xy} = \sum \big[x - E(X)\big]\big[y - E(Y)\big]\,f(x, y)
+\]</span></p>
+</div>
+<ul>
+<li class="fragment">Sign reads the direction: <strong>positive</strong> = they tend to move together, <strong>negative</strong> = one up while the other down, <strong>zero</strong> = no linear link. Its size is hard to read (it carries mixed units), so we standardize it into the <strong>correlation coefficient</strong>:</li>
+</ul>
+<div class="fragment">
+<p><span class="math display">\[
+\rho_{xy} = \frac{\text{Cov}(X, Y)}{\sigma_x\,\sigma_y}, \qquad -1 \leq \rho_{xy} \leq 1
+\]</span></p>
+</div>
+<ul>
+<li class="fragment"><strong>DiCarlo:</strong> <span class="math inline">\(\sigma_{xy} = 0.1350\)</span> and <span class="math inline">\(\rho_{xy} = 0.1295\)</span>, a <strong>weak positive</strong> link: the two dealerships rise and fall together a little, not in lockstep.</li>
+</ul>
+</div>
+</section>
+<section id="diversification-why-combine-at-all" class="slide level2 center">
+<h2>Diversification: Why Combine at All?</h2>
+<p><br></p>
+<ul>
+<li class="fragment">Put a fraction <span class="math inline">\(w\)</span> of a portfolio in asset <span class="math inline">\(X\)</span> and the rest in <span class="math inline">\(Y\)</span>. The portfolio return is <span class="math inline">\(Z = wX + (1-w)Y\)</span>, so by the rules above:</li>
+</ul>
+<div class="fragment">
+<p><span class="math display">\[
+E(Z) = w\,E(X) + (1-w)\,E(Y)
+\]</span></p>
+<p><span class="math display">\[
+\text{Var}(Z) = w^2 \sigma_x^2 + (1-w)^2 \sigma_y^2 + 2\,w(1-w)\,\rho_{xy}\,\sigma_x\,\sigma_y
+\]</span></p>
+</div>
+<ul>
+<li class="fragment"><p>The mean is a plain blend, but the <strong>risk is not</strong>: when <span class="math inline">\(\rho_{xy} &lt; 1\)</span>, the cross term shrinks <span class="math inline">\(\text{Var}(Z)\)</span> below the blend of the two variances. <strong>Low or negative correlation is what makes diversification work.</strong></p></li>
+<li class="fragment"><p>The same math sizes a <strong>supply chain</strong>: two independent suppliers (<span class="math inline">\(\rho \approx 0\)</span>) cut shortage risk far more than two whose outages correlate.</p></li>
+</ul>
+</section>
+<section id="a-question-that-often-comes-up-3" class="slide level2 center">
+<h2>A Question That Often Comes Up</h2>
+<div class="faq">
+<p><strong>A question that often comes up at this point:</strong></p>
+<p><span class="faq-q">If covariance and correlation measure the same direction, why bother computing both? Why not just report the covariance?</span></p>
+<div class="fragment faq-a">
+<p><strong>Short answer:</strong> covariance gives the <strong>sign</strong> but not a readable <strong>size</strong>: its units are “<span class="math inline">\(x\)</span>-units times <span class="math inline">\(y\)</span>-units” (cars-times-cars for DiCarlo), so <span class="math inline">\(0.135\)</span> could be strong or trivial, you cannot tell. Dividing by the two standard deviations strips the units and pins it to <span class="math inline">\([-1, 1]\)</span>, so <span class="math inline">\(\rho = 0.1295\)</span> instantly reads as “weak positive.” You need the covariance to <strong>build</strong> the portfolio variance, and the correlation to <strong>judge</strong> how much diversification will actually help.</p>
+</div>
+</div>
 </section></section>
 <section>
 <section id="the-binomial-distribution" class="title-slide slide level1 center" data-background-color="#cfb991">
@@ -614,6 +768,16 @@ E(X) = 1.20 \text{ TVs} \qquad \sigma^2 = 1.660 \qquad \sigma = \sqrt{1.660} = 1
 <ul>
 <li class="fragment"><strong>Vungle check:</strong> <span class="math inline">\(n\)</span> impressions in a burst (1); each one installs or not (2); the conversion rate <span class="math inline">\(p\)</span> is the same within a stable burst (3); one user installing does not change another’s odds (4). All four hold (approximately). So installs are <strong>Binomial</strong>.</li>
 </ul>
+</section>
+<section id="a-question-that-often-comes-up-4" class="slide level2 center">
+<h2>A Question That Often Comes Up</h2>
+<div class="faq">
+<p><strong>A question that often comes up at this point:</strong></p>
+<p><span class="faq-q">Real ad traffic is never perfectly identical or independent, so isn’t calling Vungle’s installs “Binomial” just wishful thinking?</span></p>
+<div class="fragment faq-a">
+<p><strong>Short answer:</strong> the assumptions are an approximation, and the manager’s job is to know when it is good enough. Within one <strong>stable</strong> burst, impressions are similar users seeing the same ad at the same rate, so the four conditions nearly hold and the Binomial is trustworthy. They break during a <strong>viral spike</strong> (the rate jumps and installs cluster); that is the one caveat we flag in the Takeaway, and the cue to re-estimate <span class="math inline">\(p\)</span> rather than trust the model blindly.</p>
+</div>
+</div>
 </section>
 <section id="the-binomial-probability-function" class="slide level2 center">
 <h2>The Binomial Probability Function</h2>
@@ -669,6 +833,16 @@ f(1) = \binom{3}{1}(0.10)^1 (0.90)^2 = 3 \times 0.081 = 0.243
 <li><span class="math inline">\(P(\text{at least 1 leaves}) = 1 - f(0) = 1 - 0.729 = 0.271\)</span>.</li>
 </ul>
 </section>
+<section id="a-question-that-often-comes-up-5" class="slide level2 center">
+<h2>A Question That Often Comes Up</h2>
+<div class="faq">
+<p><strong>A question that often comes up at this point:</strong></p>
+<p><span class="faq-q">Why does the formula multiply by <span class="math inline">\(\binom{n}{x}\)</span> at all? One specific leaver-stayer-stayer sequence already has probability 0.081, so why is <span class="math inline">\(f(1)\)</span> three times bigger?</span></p>
+<div class="fragment faq-a">
+<p><strong>Short answer:</strong> because “exactly 1 leaves” does not pin down <strong>which</strong> of the 3 employees it is. The leaver could be the first, second, or third, three different sequences, each with the same 0.081 chance. <span class="math inline">\(\binom{3}{1} = 3\)</span> just counts those equally-likely arrangements, so <span class="math inline">\(f(1) = 3 \times 0.081 = 0.243\)</span>. For Vungle the same logic counts the many ways <span class="math inline">\(x\)</span> installs can land among 1,000 impressions.</p>
+</div>
+</div>
+</section>
 <section id="binomial-mean-variance-and-sd" class="slide level2 center">
 <h2>Binomial Mean, Variance, and SD</h2>
 <p><br></p>
@@ -697,6 +871,16 @@ E(X) = \mu = np \qquad\quad \text{Var}(X) = \sigma^2 = np(1-p) \qquad\quad \sigm
 <li class="fragment"><p>The capacity question is a <strong>tail</strong>: <span class="math inline">\(P(X \geq N)\)</span>, <em>how often does the load exceed level <span class="math inline">\(N\)</span>?</em></p></li>
 <li class="fragment"><p>Computing these by hand is tedious; Excel does the summation for us with one function.</p></li>
 </ul>
+</section>
+<section id="a-question-that-often-comes-up-6" class="slide level2 center">
+<h2>A Question That Often Comes Up</h2>
+<div class="faq">
+<p><strong>A question that often comes up at this point:</strong></p>
+<p><span class="faq-q">For “at least 8 installs,” why is it <span class="math inline">\(1 - P(X \leq 7)\)</span> and not <span class="math inline">\(1 - P(X \leq 8)\)</span>? The off-by-one keeps tripping me up.</span></p>
+<div class="fragment faq-a">
+<p><strong>Short answer:</strong> “at least 8” means <span class="math inline">\(8, 9, 10, \dots\)</span>, so the <strong>opposite</strong> event is <span class="math inline">\(7\)</span> or fewer, not 8 or fewer. Subtracting <span class="math inline">\(P(X \leq 8)\)</span> would wrongly throw out the 8 itself. The rule: <span class="math inline">\(P(X \geq N) = 1 - P(X \leq N - 1)\)</span>, so for <span class="math inline">\(N = 8\)</span> you use <span class="math inline">\(P(X \leq 7)\)</span>. Get that boundary wrong and Vungle’s capacity probability is off by exactly the <span class="math inline">\(f(8)\)</span> term.</p>
+</div>
+</div>
 </section>
 <section id="excel-binom.dist" class="slide level2 center">
 <h2>Excel: <code>BINOM.DIST</code></h2>
@@ -819,6 +1003,16 @@ X_A \sim \text{Binomial}(1000,\, 0.0040) \qquad\qquad X_B \sim \text{Binomial}(1
 <li>If one postback worker handles up to 7 installs/burst, ~2.7% of B’s bursts need a second worker; <em>that</em> is the capacity number.</li>
 </ul>
 </section>
+<section id="a-question-that-often-comes-up-7" class="slide level2 center">
+<h2>A Question That Often Comes Up</h2>
+<div class="faq">
+<p><strong>A question that often comes up at this point:</strong></p>
+<p><span class="faq-q">Vungle serves hundreds of millions of impressions a day, so why model a tiny 1,000-impression “burst” instead of the real daily load?</span></p>
+<div class="fragment faq-a">
+<p><strong>Short answer:</strong> the burst is the slice that a <strong>single postback worker</strong> actually faces at once, so its tail is what tells you when one worker overflows. Modeling the full day would just give a huge <span class="math inline">\(\mu\)</span> (about 31,700 installs) with a buried tail; the burst keeps the question concrete: “<span class="math inline">\(P(X \geq 8)\)</span> for this worker’s batch.” Once you have the per-burst rate, the Poisson scaling property lets you re-scale to per-second or per-day instantly, which is the Lecture 2 move.</p>
+</div>
+</div>
+</section>
 <section id="vungle-binomial-in-excel" class="slide level2 center">
 <h2>Vungle Binomial in Excel</h2>
 <div class="columns">
@@ -856,6 +1050,21 @@ X_A \sim \text{Binomial}(1000,\, 0.0040) \qquad\qquad X_B \sim \text{Binomial}(1
 <li class="fragment"><p><strong>One caveat:</strong> the Binomial assumes a <strong>constant, independent</strong> <span class="math inline">\(p\)</span>. Within a stable burst that holds; across a viral campaign spike it does not, so re-estimate <span class="math inline">\(p\)</span> when traffic shifts.</p></li>
 </ul>
 </section>
+<section id="todays-question-todays-answer" class="slide level2 center">
+<h2>Today’s Question, Today’s Answer</h2>
+<p><br></p>
+<p><strong>The question (Lecture 1):</strong></p>
+<blockquote>
+<p><em>How many installs should we expect in a 1,000-impression burst, and how do we model them as a Binomial?</em></p>
+</blockquote>
+<div class="fragment">
+<p><br></p>
+<p><strong>The answer we reached today:</strong></p>
+<blockquote>
+<p>Installs are <strong>Binomial(<span class="math inline">\(1000\)</span>, <span class="math inline">\(p\)</span>)</strong>. For B (<span class="math inline">\(p = 0.0035\)</span>): expect $= np = $ <strong>3.5</strong> installs with spread $= $ <strong>1.87</strong>, and the stress level $P(X ) = 1 - P(X ) = $ <strong>0.0265</strong> (about <strong>1 burst in 38</strong>). A converts higher, so its tail <span class="math inline">\(P(X \geq 8) \approx\)</span> <strong>0.051</strong> is roughly twice B’s.</p>
+</blockquote>
+</div>
+</section>
 <section id="team-sprint-your-group-case-lecture-1" class="slide level2 center">
 <h2>⏱️ Team Sprint: Your Group Case (Lecture 1)</h2>
 <div class="sprint">
@@ -880,9 +1089,18 @@ X_A \sim \text{Binomial}(1000,\, 0.0040) \qquad\qquad X_B \sim \text{Binomial}(1
 </blockquote>
 <p><br></p>
 <ul>
-<li class="fragment"><p>Yesterday we needed two numbers, <span class="math inline">\(n\)</span> and <span class="math inline">\(p\)</span>. The <strong>Poisson</strong> distribution needs only <strong>one</strong>: the mean rate <span class="math inline">\(\lambda\)</span> over an interval.</p></li>
+<li class="fragment"><p>Yesterday we needed two numbers, <span class="math inline">\(n\)</span> and <span class="math inline">\(p\)</span>. The <strong>Poisson</strong> distribution needs only <strong>one</strong>: the mean rate <span class="math inline">\(\mu\)</span> over an interval.</p></li>
 <li class="fragment"><p>We will introduce Poisson on its own terms, then show it is the <strong>large-<span class="math inline">\(n\)</span>, small-<span class="math inline">\(p\)</span> limit</strong> of the Binomial, and that for Vungle the two are nearly identical.</p></li>
 </ul>
+</section>
+<section id="how-every-class-runs-1" class="slide level2 center">
+<h2>How Every Class Runs</h2>
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="figs/lecture_dynamic.png" class="quarto-figure quarto-figure-center" style="width:90.0%"></p>
+</figure>
+</div>
+<p>The class <strong>ends on the Team Sprint</strong>, your group’s graded submission: a decision plus your read of the analysis, one PDF before you leave.</p>
 </section></section>
 <section>
 <section id="poisson-rare-events-over-an-interval" class="title-slide slide level1 center" data-background-color="#cfb991">
@@ -912,39 +1130,50 @@ X_A \sim \text{Binomial}(1000,\, 0.0040) \qquad\qquad X_B \sim \text{Binomial}(1
 </ol>
 <p><br></p>
 <ul>
-<li class="fragment"><p>One parameter governs everything: the <strong>mean number of occurrences per interval</strong>, <span class="math inline">\(\lambda\)</span> (also written <span class="math inline">\(\mu\)</span>).</p></li>
-<li class="fragment"><p><strong>Vungle:</strong> at <span class="math inline">\(p \approx 0.0035\)</span> over 1,000 impressions, installs arrive at a mean rate <span class="math inline">\(\lambda = np = 3.5\)</span> per burst. The rate is steady within a stable burst, and one install does not trigger another, so both assumptions hold.</p></li>
+<li class="fragment"><p>One parameter governs everything: the <strong>mean number of occurrences per interval</strong>, <span class="math inline">\(\mu\)</span> (many texts write it <span class="math inline">\(\lambda\)</span>; we keep <span class="math inline">\(\mu\)</span>, the same mean symbol as everywhere else in the course).</p></li>
+<li class="fragment"><p><strong>Vungle:</strong> at <span class="math inline">\(p \approx 0.0035\)</span> over 1,000 impressions, installs arrive at a mean rate <span class="math inline">\(\mu = np = 3.5\)</span> per burst. The rate is steady within a stable burst, and one install does not trigger another, so both assumptions hold.</p></li>
 </ul>
 </section>
 <section id="the-poisson-probability-function" class="slide level2 center">
 <h2>The Poisson Probability Function</h2>
 <p><br></p>
 <ul>
-<li class="fragment">The probability of exactly <span class="math inline">\(x\)</span> occurrences in an interval with mean <span class="math inline">\(\lambda\)</span>:</li>
+<li class="fragment">The probability of exactly <span class="math inline">\(x\)</span> occurrences in an interval with mean <span class="math inline">\(\mu\)</span>:</li>
 </ul>
 <div class="fragment">
 <p><span class="math display">\[
-f(x) = \frac{\lambda^x e^{-\lambda}}{x!}, \qquad x = 0, 1, 2, \dots \qquad (e \approx 2.71828)
+f(x) = \frac{\mu^x e^{-\mu}}{x!}, \qquad x = 0, 1, 2, \dots \qquad (e \approx 2.71828)
 \]</span></p>
 </div>
 <ul>
-<li class="fragment">A defining property: the mean <strong>and</strong> variance are <strong>both</strong> <span class="math inline">\(\lambda\)</span>:</li>
+<li class="fragment">A defining property: the mean <strong>and</strong> variance are <strong>both</strong> <span class="math inline">\(\mu\)</span>:</li>
 </ul>
 <div class="fragment">
 <p><span class="math display">\[
-E(X) = \lambda \qquad\qquad \text{Var}(X) = \lambda \qquad\qquad \sigma = \sqrt{\lambda}
+E(X) = \mu \qquad\qquad \text{Var}(X) = \mu \qquad\qquad \sigma = \sqrt{\mu}
 \]</span></p>
 </div>
 <ul>
-<li class="fragment">There is <strong>no upper limit</strong> on <span class="math inline">\(x\)</span>, but <span class="math inline">\(f(x)\)</span> shrinks fast; for large <span class="math inline">\(x\)</span> it rounds to zero.</li>
+<li class="fragment"><p>There is <strong>no upper limit</strong> on <span class="math inline">\(x\)</span>, but <span class="math inline">\(f(x)\)</span> shrinks fast; for large <span class="math inline">\(x\)</span> it rounds to zero.</p></li>
+<li class="fragment"><p>(Excel calls the parameter <span class="math inline">\(\mu\)</span> its <em>mean</em> argument; some calculators and texts label the same number <span class="math inline">\(\lambda\)</span>.)</p></li>
 </ul>
+</section>
+<section id="a-question-that-often-comes-up-8" class="slide level2 center">
+<h2>A Question That Often Comes Up</h2>
+<div class="faq">
+<p><strong>A question that often comes up at this point:</strong></p>
+<p><span class="faq-q">Mean equals variance, both just <span class="math inline">\(\mu\)</span>? With the Binomial I had two separate knobs. How can one number fix the spread too?</span></p>
+<div class="fragment faq-a">
+<p><strong>Short answer:</strong> it falls right out of the large-<span class="math inline">\(n\)</span>, small-<span class="math inline">\(p\)</span> setup. The Binomial variance is <span class="math inline">\(np(1-p)\)</span>; when <span class="math inline">\(p\)</span> is tiny, <span class="math inline">\((1-p) \approx 1\)</span>, so the variance collapses to <span class="math inline">\(np = \mu\)</span>, the same as the mean. For Vungle’s <span class="math inline">\(p = 0.0035\)</span> that approximation is excellent, which is why <span class="math inline">\(\mu = 3.5\)</span> alone pins down both the center and the spread of the install count.</p>
+</div>
+</div>
 </section>
 <section id="anchor-example-mercy-hospital" class="slide level2 center">
 <h2>Anchor Example: Mercy Hospital</h2>
 <p><br></p>
 <ul>
 <li class="fragment"><p>Patients arrive at Mercy Hospital’s ER at <strong>6 per hour</strong> on weekend evenings. What is <span class="math inline">\(P(\text{exactly 4 arrivals in 30 minutes})\)</span>?</p></li>
-<li class="fragment"><p>First <strong>rescale the rate</strong> to the interval: 6 per hour <span class="math inline">\(= 3\)</span> per half-hour, so <span class="math inline">\(\lambda = 3\)</span>.</p></li>
+<li class="fragment"><p>First <strong>rescale the rate</strong> to the interval: 6 per hour <span class="math inline">\(= 3\)</span> per half-hour, so <span class="math inline">\(\mu = 3\)</span>.</p></li>
 </ul>
 <div class="fragment">
 <p><span class="math display">\[
@@ -952,22 +1181,32 @@ f(4) = \frac{3^4 e^{-3}}{4!} = \frac{81 \times 0.0498}{24} = 0.1680
 \]</span></p>
 </div>
 <ul>
-<li class="fragment">And the spread of arrivals: <span class="math inline">\(\text{Var}(X) = \lambda = 3\)</span>, so <span class="math inline">\(\sigma = \sqrt{3} = 1.73\)</span> patients per half-hour.</li>
+<li class="fragment">And the spread of arrivals: <span class="math inline">\(\text{Var}(X) = \mu = 3\)</span>, so <span class="math inline">\(\sigma = \sqrt{3} = 1.73\)</span> patients per half-hour.</li>
 </ul>
 </section>
 <section id="mercy-hospital-the-full-distribution" class="slide level2 center">
 <h2>Mercy Hospital: the Full Distribution</h2>
 
 <img data-src="figs/poisson_pmf_mercy.png" class="quarto-figure quarto-figure-center r-stretch" style="width:72.0%"><ul>
-<li>The whole distribution comes from the <strong>single</strong> number <span class="math inline">\(\lambda = 3\)</span>: no <span class="math inline">\(n\)</span>, no <span class="math inline">\(p\)</span>.</li>
-<li><strong>Watch the units:</strong> <span class="math inline">\(\lambda\)</span> must match the interval. Six per hour and three per half-hour describe the <em>same</em> process at different scales.</li>
+<li>The whole distribution comes from the <strong>single</strong> number <span class="math inline">\(\mu = 3\)</span>: no <span class="math inline">\(n\)</span>, no <span class="math inline">\(p\)</span>.</li>
+<li><strong>Watch the units:</strong> <span class="math inline">\(\mu\)</span> must match the interval. Six per hour and three per half-hour describe the <em>same</em> process at different scales.</li>
 </ul>
+</section>
+<section id="a-question-that-often-comes-up-9" class="slide level2 center">
+<h2>A Question That Often Comes Up</h2>
+<div class="faq">
+<p><strong>A question that often comes up at this point:</strong></p>
+<p><span class="faq-q">If 6-per-hour and 3-per-half-hour are the “same process,” why did we have to switch to <span class="math inline">\(\mu = 3\)</span>? Couldn’t we just plug in <span class="math inline">\(\mu = 6\)</span>?</span></p>
+<div class="fragment faq-a">
+<p><strong>Short answer:</strong> no, because <span class="math inline">\(\mu\)</span> is the mean for the <strong>interval the question asks about</strong>, and the question was about <strong>30 minutes</strong>. Plug in <span class="math inline">\(\mu = 6\)</span> and Excel answers “4 arrivals in an <em>hour</em>,” a different event. The rule is one line: match <span class="math inline">\(\mu\)</span> to the window. For Vungle the same step turns a per-burst <span class="math inline">\(\mu = 3.5\)</span> into a per-second or per-day rate before you read off any tail.</p>
+</div>
+</div>
 </section>
 <section id="excel-poisson.dist" class="slide level2 center">
 <h2>Excel: <code>POISSON.DIST</code></h2>
 <p><br></p>
 <ul>
-<li class="fragment">Same TRUE/FALSE switch as the Binomial, but only <strong>one</strong> parameter (<span class="math inline">\(\lambda\)</span>, called <em>mean</em> in Excel):</li>
+<li class="fragment">Same TRUE/FALSE switch as the Binomial, but only <strong>one</strong> parameter (<span class="math inline">\(\mu\)</span>, the <em>mean</em> argument in Excel):</li>
 </ul>
 <div class="fragment">
 <table class="caption-top">
@@ -986,17 +1225,17 @@ f(4) = \frac{3^4 e^{-3}}{4!} = \frac{81 \times 0.0498}{24} = 0.1680
 <tbody>
 <tr class="odd">
 <td><span class="math inline">\(P(X = x)\)</span> (PMF)</td>
-<td><code>=POISSON.DIST(x, lambda, FALSE)</code></td>
+<td><code>=POISSON.DIST(x, mean, FALSE)</code></td>
 <td>exact probability</td>
 </tr>
 <tr class="even">
 <td><span class="math inline">\(P(X \leq x)\)</span> (CDF)</td>
-<td><code>=POISSON.DIST(x, lambda, TRUE)</code></td>
+<td><code>=POISSON.DIST(x, mean, TRUE)</code></td>
 <td>cumulative probability</td>
 </tr>
 <tr class="odd">
 <td><span class="math inline">\(P(X \geq N)\)</span> (tail)</td>
-<td><code>=1 - POISSON.DIST(N-1, lambda, TRUE)</code></td>
+<td><code>=1 - POISSON.DIST(N-1, mean, TRUE)</code></td>
 <td>complement</td>
 </tr>
 </tbody>
@@ -1016,17 +1255,27 @@ f(4) = \frac{3^4 e^{-3}}{4!} = \frac{81 \times 0.0498}{24} = 0.1680
 <h2>The Poisson Approximation to the Binomial</h2>
 <p><br></p>
 <ul>
-<li class="fragment">When <span class="math inline">\(n\)</span> is <strong>large</strong> and <span class="math inline">\(p\)</span> is <strong>small</strong>, the Binomial and the Poisson with <span class="math inline">\(\lambda = np\)</span> are nearly identical:</li>
+<li class="fragment">When <span class="math inline">\(n\)</span> is <strong>large</strong> and <span class="math inline">\(p\)</span> is <strong>small</strong>, the Binomial and the Poisson with <span class="math inline">\(\mu = np\)</span> are nearly identical:</li>
 </ul>
 <div class="fragment">
 <p><span class="math display">\[
-\text{Binomial}(n, p) \;\approx\; \text{Poisson}(\lambda = np) \qquad \text{for large } n,\; \text{small } p
+\text{Binomial}(n, p) \;\approx\; \text{Poisson}(\mu = np) \qquad \text{for large } n,\; \text{small } p
 \]</span></p>
 </div>
 <ul>
 <li class="fragment"><p><strong>Rule of thumb:</strong> the approximation is excellent when <span class="math inline">\(n \geq 20\)</span> and <span class="math inline">\(p \leq 0.05\)</span> (some texts use <span class="math inline">\(np \leq 7\)</span>).</p></li>
 <li class="fragment"><p>Vungle is the textbook case: <span class="math inline">\(n = 1000 \geq 20\)</span> and <span class="math inline">\(p = 0.0035 \leq 0.05\)</span>. So <span class="math inline">\(X_B \approx \text{Poisson}(3.5)\)</span>, and we can drop <span class="math inline">\(n\)</span> and <span class="math inline">\(p\)</span> and work with <strong>rate alone</strong>.</p></li>
 </ul>
+</section>
+<section id="a-question-that-often-comes-up-10" class="slide level2 center">
+<h2>A Question That Often Comes Up</h2>
+<div class="faq">
+<p><strong>A question that often comes up at this point:</strong></p>
+<p><span class="faq-q">If the Poisson just approximates the Binomial here, isn’t it strictly worse? Why not always use the exact Binomial and skip the approximation?</span></p>
+<div class="fragment faq-a">
+<p><strong>Short answer:</strong> because in real ops you often <strong>do not have</strong> <span class="math inline">\(n\)</span> and <span class="math inline">\(p\)</span>, only the rate. Vungle’s pipeline tracks “installs per second,” not “successes out of how many impressions,” so the Binomial’s two inputs are not even available; the Poisson’s single <span class="math inline">\(\mu\)</span> is. When you <em>do</em> have <span class="math inline">\(n\)</span> and <span class="math inline">\(p\)</span> and they are small, the two agree to three decimals (next slide), so you lose nothing by taking the simpler model.</p>
+</div>
+</div>
 </section>
 <section id="see-it-the-two-models-overlap" class="slide level2 center">
 <h2>See It: The Two Models Overlap</h2>
@@ -1046,7 +1295,7 @@ f(4) = \frac{3^4 e^{-3}}{4!} = \frac{81 \times 0.0498}{24} = 0.1680
 <li><code>=POISSON.DIST(x, 3.5, FALSE)</code></li>
 </ul>
 <p><br></p>
-<p>The columns match to 3–4 decimals. The Poisson needs <strong>one</strong> input (<span class="math inline">\(\lambda = 3.5\)</span>); the Binomial needs <strong>two</strong> (<span class="math inline">\(n, p\)</span>); and for rare events you often only <em>know</em> the rate.</p>
+<p>The columns match to 3–4 decimals. The Poisson needs <strong>one</strong> input (<span class="math inline">\(\mu = 3.5\)</span>); the Binomial needs <strong>two</strong> (<span class="math inline">\(n, p\)</span>); and for rare events you often only <em>know</em> the rate.</p>
 </div><div class="column" style="width:60%;">
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
@@ -1090,7 +1339,7 @@ f(4) = \frac{3^4 e^{-3}}{4!} = \frac{81 \times 0.0498}{24} = 0.1680
 </table>
 <p><br></p>
 <ul>
-<li class="fragment">For Vungle’s capacity work, <strong>Poisson is the natural choice</strong>: postbacks arrive over a <em>time</em> window, and all engineering tracks is the <strong>mean rate</strong> <span class="math inline">\(\lambda\)</span>, not a count of impressions.</li>
+<li class="fragment">For Vungle’s capacity work, <strong>Poisson is the natural choice</strong>: postbacks arrive over a <em>time</em> window, and all engineering tracks is the <strong>mean rate</strong> <span class="math inline">\(\mu\)</span>, not a count of impressions.</li>
 </ul>
 </section></section>
 <section>
@@ -1123,12 +1372,12 @@ f(4) = \frac{3^4 e^{-3}}{4!} = \frac{81 \times 0.0498}{24} = 0.1680
 </thead>
 <tbody>
 <tr class="odd">
-<td>B (<span class="math inline">\(\lambda = 3.5\)</span>)</td>
+<td>B (<span class="math inline">\(\mu = 3.5\)</span>)</td>
 <td style="text-align: right;">0.0265</td>
 <td style="text-align: right;"><strong>0.0267</strong></td>
 </tr>
 <tr class="even">
-<td>A (<span class="math inline">\(\lambda = 4.0\)</span>)</td>
+<td>A (<span class="math inline">\(\mu = 4.0\)</span>)</td>
 <td style="text-align: right;">0.0508</td>
 <td style="text-align: right;"><strong>0.0511</strong></td>
 </tr>
@@ -1148,22 +1397,47 @@ f(4) = \frac{3^4 e^{-3}}{4!} = \frac{81 \times 0.0498}{24} = 0.1680
 </ul>
 <div class="fragment">
 <p><span class="math display">\[
-\lambda_{\text{day}} = \frac{7{,}900{,}000}{1{,}000} \times 0.0040 \approx 31{,}600 \text{ installs/day} \quad (\text{matches the data's} \approx 31{,}700)
+\mu_{\text{day}} = \underbrace{\frac{7{,}900{,}000}{1{,}000}}_{7{,}900 \text{ bursts}} \times \underbrace{4.0}_{\mu \text{ per burst}} \approx 31{,}600 \text{ installs/day} \quad (\text{matches the data's} \approx 31{,}700)
 \]</span></p>
 </div>
 <ul>
-<li class="fragment"><p>Want installs <strong>per second</strong>? Divide <span class="math inline">\(\lambda\)</span> by 86,400. Want <strong>per hour</strong>? Multiply by 3,600. <strong>One parameter, any interval</strong>, no need to recount impressions.</p></li>
-<li class="fragment"><p>That is why ops teams model arrivals as Poisson: provision for <span class="math inline">\(\lambda\)</span> plus a tail buffer, and re-scale instantly as traffic grows.</p></li>
+<li class="fragment"><p>Want installs <strong>per second</strong>? Divide <span class="math inline">\(\mu\)</span> by 86,400. Want <strong>per hour</strong>? Multiply by 3,600. <strong>One parameter, any interval</strong>, no need to recount impressions.</p></li>
+<li class="fragment"><p>That is why ops teams model arrivals as Poisson: provision for <span class="math inline">\(\mu\)</span> plus a tail buffer, and re-scale instantly as traffic grows.</p></li>
 </ul>
+</section>
+<section id="a-question-that-often-comes-up-11" class="slide level2 center">
+<h2>A Question That Often Comes Up</h2>
+<div class="faq">
+<p><strong>A question that often comes up at this point:</strong></p>
+<p><span class="faq-q">If I double the interval, <span class="math inline">\(\mu\)</span> doubles. Does the tail probability <span class="math inline">\(P(X \geq N)\)</span> just double too?</span></p>
+<div class="fragment faq-a">
+<p><strong>Short answer:</strong> no, only <span class="math inline">\(\mu\)</span> scales linearly with the interval; the tail does <strong>not</strong>. Double the window and you must recompute <span class="math inline">\(P(X \geq N)\)</span> with the <strong>new</strong> <span class="math inline">\(\mu\)</span> from scratch, because both the center and the whole shape shift. For Vungle: a per-second <span class="math inline">\(\mu\)</span> and a per-hour <span class="math inline">\(\mu\)</span> are a clean multiply apart, but their capacity tails are two separate <code>POISSON.DIST</code> calls. Scaling the rate is free; the probability still needs the function.</p>
+</div>
+</div>
 </section>
 <section id="the-managers-takeaway-lecture-2" class="slide level2 center">
 <h2>The Manager’s Takeaway (Lecture 2)</h2>
 <p><br></p>
 <ul>
-<li class="fragment"><p><strong>One sentence:</strong> for rare events over an interval, the <strong>Poisson(<span class="math inline">\(\lambda\)</span>)</strong> models the count from a single rate, and for Vungle’s tiny <span class="math inline">\(p\)</span> it gives the <strong>same capacity answer</strong> as the Binomial.</p></li>
-<li class="fragment"><p><strong>One number:</strong> <span class="math inline">\(P(\geq 8 \text{ installs/burst}) \approx\)</span> <strong>0.051</strong> for A (Poisson <span class="math inline">\(\lambda = 4\)</span>): provision a second worker for ~1 burst in 20.</p></li>
+<li class="fragment"><p><strong>One sentence:</strong> for rare events over an interval, the <strong>Poisson(<span class="math inline">\(\mu\)</span>)</strong> models the count from a single rate, and for Vungle’s tiny <span class="math inline">\(p\)</span> it gives the <strong>same capacity answer</strong> as the Binomial.</p></li>
+<li class="fragment"><p><strong>One number:</strong> <span class="math inline">\(P(\geq 8 \text{ installs/burst}) \approx\)</span> <strong>0.051</strong> for A (Poisson <span class="math inline">\(\mu = 4\)</span>): provision a second worker for ~1 burst in 20.</p></li>
 <li class="fragment"><p><strong>One caveat:</strong> Poisson assumes a <strong>constant, independent</strong> rate. A viral spike breaks both assumptions: arrivals cluster, the true tail is <em>heavier</em> than Poisson predicts, and you under-provision. Monitor for over-dispersion (variance <span class="math inline">\(&gt;\)</span> mean).</p></li>
 </ul>
+</section>
+<section id="todays-question-todays-answer-1" class="slide level2 center">
+<h2>Today’s Question, Today’s Answer</h2>
+<p><br></p>
+<p><strong>The question (Lecture 2):</strong></p>
+<blockquote>
+<p><em>Is there a model that needs only the average rate, not the full <span class="math inline">\(n\)</span> and <span class="math inline">\(p\)</span>, and does it give the same capacity answer?</em></p>
+</blockquote>
+<div class="fragment">
+<p><br></p>
+<p><strong>The answer we reached today:</strong></p>
+<blockquote>
+<p>Yes: the <strong>Poisson(<span class="math inline">\(\mu\)</span>)</strong> needs only <span class="math inline">\(\mu = np\)</span>. For B, $= $ <strong>3.5</strong>; the capacity tail $P(X ) = $ <strong>0.0267</strong> matches the Binomial’s <strong>0.0265</strong>, and for A both give <span class="math inline">\(\approx\)</span> <strong>0.051</strong>. For Vungle’s tiny <span class="math inline">\(p\)</span> the two models agree to three decimals, so you can plan from the <strong>rate alone</strong>.</p>
+</blockquote>
+</div>
 </section></section>
 <section>
 <section id="wrap-up" class="title-slide slide level1 center" data-background-color="#cfb991">
@@ -1202,30 +1476,36 @@ f(4) = \frac{3^4 e^{-3}}{4!} = \frac{81 \times 0.0498}{24} = 0.1680
 <td>formula cells</td>
 </tr>
 <tr class="odd">
+<td>Covariance / corr.</td>
+<td><span class="math inline">\(\sigma_{xy};\;\rho_{xy} = \sigma_{xy}/(\sigma_x \sigma_y)\)</span></td>
+<td>do A and B move together?</td>
+<td>formula cells</td>
+</tr>
+<tr class="even">
 <td><strong>Binomial</strong></td>
 <td><span class="math inline">\(f(x) = \binom{n}{x}p^x(1-p)^{n-x}\)</span></td>
 <td>installs in <span class="math inline">\(n=1000\)</span> impressions, <span class="math inline">\(p=0.0035\)</span></td>
 <td><code>=BINOM.DIST(x,n,p,0/1)</code></td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td>Binomial mean/var</td>
 <td><span class="math inline">\(np,\; np(1-p)\)</span></td>
 <td><span class="math inline">\(\mu_B = 3.5,\; \sigma_B = 1.87\)</span></td>
 <td>(formula)</td>
 </tr>
-<tr class="odd">
-<td><strong>Poisson</strong></td>
-<td><span class="math inline">\(f(x) = \lambda^x e^{-\lambda}/x!\)</span></td>
-<td>installs as rare arrivals, <span class="math inline">\(\lambda = 3.5\)</span></td>
-<td><code>=POISSON.DIST(x,λ,0/1)</code></td>
-</tr>
 <tr class="even">
+<td><strong>Poisson</strong></td>
+<td><span class="math inline">\(f(x) = \mu^x e^{-\mu}/x!\)</span></td>
+<td>installs as rare arrivals, <span class="math inline">\(\mu = 3.5\)</span></td>
+<td><code>=POISSON.DIST(x,mean,0/1)</code></td>
+</tr>
+<tr class="odd">
 <td>Poisson mean/var</td>
-<td><span class="math inline">\(\lambda,\; \lambda\)</span></td>
+<td><span class="math inline">\(\mu,\; \mu\)</span></td>
 <td><span class="math inline">\(\mu_B = \sigma^2_B = 3.5\)</span></td>
 <td>(formula)</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td>Tail (capacity)</td>
 <td><span class="math inline">\(P(X \geq N) = 1 - P(X \leq N{-}1)\)</span></td>
 <td><span class="math inline">\(P(X_A \geq 8) \approx 0.051\)</span></td>
@@ -1249,7 +1529,7 @@ f(4) = \frac{3^4 e^{-3}}{4!} = \frac{81 \times 0.0498}{24} = 0.1680
 <h2>⏱️ Team Sprint: Your Group Case (Lecture 2)</h2>
 <div class="sprint">
 <p><strong>Now it’s your group’s turn.</strong> Today’s in-class group case is posted on <strong>Brightspace</strong> (<em>Topic 05 Group Case, Lecture 2</em>): a separate business decision you make with today’s tools.</p>
-<p><strong>What you’ll use:</strong> the <strong>Poisson</strong> model, <span class="math inline">\(E(X)=\text{Var}(X)=\lambda\)</span>, and the capacity tail <span class="math inline">\(P(X \geq N)\)</span>. <strong>Excel:</strong> Analysis ToolPak with <code>POISSON.DIST(x, lambda, FALSE/TRUE)</code>.</p>
+<p><strong>What you’ll use:</strong> the <strong>Poisson</strong> model, <span class="math inline">\(E(X)=\text{Var}(X)=\mu\)</span>, and the capacity tail <span class="math inline">\(P(X \geq N)\)</span>. <strong>Excel:</strong> Analysis ToolPak with <code>POISSON.DIST(x, mean, FALSE/TRUE)</code>.</p>
 <p><strong>Submit one PDF per group before you leave:</strong> your decision plus the numbers behind it.</p>
 </div>
 </section>
@@ -1257,11 +1537,10 @@ f(4) = \frac{3^4 e^{-3}}{4!} = \frac{81 \times 0.0498}{24} = 0.1680
 <h2>Summary</h2>
 <p>The points to carry out of this session:</p>
 <ul>
-<li>A <strong>random variable</strong> assigns a number to each outcome; <strong>discrete</strong> ones are counted, <strong>continuous</strong> ones measured.</li>
-<li>A valid <strong>discrete distribution</strong> has <span class="math inline">\(f(x) \geq 0\)</span> and <span class="math inline">\(\sum f(x) = 1\)</span>; from it, <span class="math inline">\(E(X) = \sum x f(x)\)</span> (center) and <span class="math inline">\(\sigma^2 = \sum (x-\mu)^2 f(x)\)</span> (risk).</li>
-<li>The <strong>Binomial</strong> counts successes in <span class="math inline">\(n\)</span> fixed Bernoulli trials: <span class="math inline">\(f(x) = \binom{n}{x}p^x(1-p)^{n-x}\)</span>, with <span class="math inline">\(\mu = np\)</span> and <span class="math inline">\(\sigma^2 = np(1-p)\)</span>.</li>
-<li>The <strong>Poisson</strong> counts rare arrivals over an interval from one rate <span class="math inline">\(\lambda\)</span>: <span class="math inline">\(f(x) = \lambda^x e^{-\lambda}/x!\)</span>, with <span class="math inline">\(\mu = \sigma^2 = \lambda\)</span>.</li>
-<li>For <strong>large <span class="math inline">\(n\)</span>, small <span class="math inline">\(p\)</span></strong>, Binomial <span class="math inline">\(\approx\)</span> Poisson(<span class="math inline">\(np\)</span>): Vungle’s installs are the textbook case.</li>
+<li>A <strong>random variable</strong> assigns a number to each outcome (discrete = counted, continuous = measured); a valid <strong>distribution</strong> has <span class="math inline">\(f(x) \geq 0\)</span>, <span class="math inline">\(\sum f(x) = 1\)</span>, with <span class="math inline">\(E(X) = \sum x f(x)\)</span> and <span class="math inline">\(\sigma^2 = \sum (x-\mu)^2 f(x)\)</span>.</li>
+<li><strong>Covariance / correlation</strong> measure how two counts move together; with <span class="math inline">\(\rho_{xy} &lt; 1\)</span> the cross term in <span class="math inline">\(\text{Var}(wX + (1-w)Y)\)</span> shrinks total risk: that is <strong>diversification</strong>.</li>
+<li>The <strong>Binomial</strong> counts successes in <span class="math inline">\(n\)</span> fixed Bernoulli trials: <span class="math inline">\(f(x) = \binom{n}{x}p^x(1-p)^{n-x}\)</span>, with <span class="math inline">\(\mu = np\)</span>, <span class="math inline">\(\sigma^2 = np(1-p)\)</span>.</li>
+<li>The <strong>Poisson</strong> counts rare arrivals from one rate <span class="math inline">\(\mu\)</span>: <span class="math inline">\(f(x) = \mu^x e^{-\mu}/x!\)</span>, with <span class="math inline">\(\mu = \sigma^2\)</span>; for large <span class="math inline">\(n\)</span>, small <span class="math inline">\(p\)</span> it equals Binomial(<span class="math inline">\(np\)</span>), the Vungle case.</li>
 <li><strong>Capacity = a tail probability:</strong> <span class="math inline">\(P(X \geq N) = 1 - P(X \leq N-1)\)</span>, computed in one Excel cell.</li>
 <li><strong>Next time:</strong> we move from <strong>discrete counts</strong> to <strong>continuous measurements</strong>, the <strong>Normal</strong> distribution, and the question <em>“what is the probability eRPM exceeds $3.50?”</em></li>
 <li><strong>Homework (individual):</strong> the Binomial and Poisson models are drilled on <strong>HW2</strong>, posted on Brightspace; run them yourself so you can check an analyst who uses them.</li>

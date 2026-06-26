@@ -1081,21 +1081,21 @@
     "href": "lecture_slides/05_chapter_discrete_probability_distributions/05_chapter_discrete_probability_distributions.html#overview",
     "title": " QM 6700: Business Analytics ",
     "section": "Overview",
-    "text": "Overview\n\n\n\nCase Spotlight: planning capacity at Vungle\nRandom variables: discrete vs. continuous\nDiscrete probability distributions: table, conditions, graph\nExpected value and variance of a random variable\nThe Binomial distribution: counting installs over impressions\n\n\n\nThe Poisson distribution: rare events over an interval\nWhen Binomial ≈ Poisson (large \\(n\\), small \\(p\\))\nExcel: BINOM.DIST and POISSON.DIST\nTail probabilities: \\(P(X \\geq N)\\) for capacity planning\nThe decision: how big a postback pipeline does Vungle need?"
+    "text": "Overview\n\n\n\nCase Spotlight: planning capacity at Vungle\nRandom variables: discrete vs. continuous\nDiscrete probability distributions: table, conditions, graph\nExpected value and variance of a random variable\nCovariance, correlation, and the diversification math\nThe Binomial distribution: counting installs over impressions\n\n\n\nThe Poisson distribution: rare events over an interval\nWhen Binomial ≈ Poisson (large \\(n\\), small \\(p\\))\nExcel: BINOM.DIST and POISSON.DIST\nTail probabilities: \\(P(X \\geq N)\\) for capacity planning\nThe decision: how big a postback pipeline does Vungle need?"
   },
   {
     "objectID": "lecture_slides/05_chapter_discrete_probability_distributions/05_chapter_discrete_probability_distributions.html#june-2014-from-is-b-better-to-can-we-handle-it",
     "href": "lecture_slides/05_chapter_discrete_probability_distributions/05_chapter_discrete_probability_distributions.html#june-2014-from-is-b-better-to-can-we-handle-it",
     "title": " QM 6700: Business Analytics ",
     "section": "June 2014: From “Is B Better?” to “Can We Handle It?”",
-    "text": "June 2014: From “Is B Better?” to “Can We Handle It?”\n\n\nVungle is a mobile ad-tech startup: it serves 15-second video ads inside other apps and earns revenue mainly when a viewer installs the advertised app.\nAcross June 2014, algorithm A served ~236M impressions and B served ~16M, side by side. The metric that pays the bills is eRPM (revenue per 1,000 impressions).\nEvery install fires a postback: a real-time callback the ad server must record, bill, and confirm to the advertiser. Installs are the events the infrastructure has to absorb.\nEngineering’s worry is not “is B better?”; it is “how many installs hit us at once, and how often?” Provision too little capacity and postbacks drop (lost revenue); too much and you burn cash on idle servers."
+    "text": "June 2014: From “Is B Better?” to “Can We Handle It?”\n\n\nVungle (today part of Liftoff) is a mobile ad-tech startup: it serves 15-second video ads inside other apps and earns revenue mainly when a viewer installs the advertised app.\nAcross June 2014, algorithm A served ~236M impressions and B served ~16M, side by side. The metric that pays the bills is eRPM (revenue per 1,000 impressions).\nEvery install fires a postback: a real-time callback the ad server must record, bill, and confirm to the advertiser. Installs are the events the infrastructure has to absorb.\nEngineering’s worry is not “is B better?”; it is “how many installs hit us at once, and how often?” Provision too little capacity and postbacks drop (lost revenue); too much and you burn cash on idle servers."
   },
   {
     "objectID": "lecture_slides/05_chapter_discrete_probability_distributions/05_chapter_discrete_probability_distributions.html#the-brief-todays-managerial-question",
     "href": "lecture_slides/05_chapter_discrete_probability_distributions/05_chapter_discrete_probability_distributions.html#the-brief-todays-managerial-question",
     "title": " QM 6700: Business Analytics ",
     "section": "The Brief: Today’s Managerial Question",
-    "text": "The Brief: Today’s Managerial Question\n\n\nThe big call (Topics 1–9): roll out B to all advertisers, or stay with A? Before you can ship B, engineering has to know the install load it creates. Today’s slice of that call:\n\n\n“For a typical burst of traffic, what is the probability of at least \\(N\\) installs, so we can size the postback pipeline without over- or under-building?”\n\n\n\nSo far we have described and compared data. Today we model it: as the manager you put a probability distribution on a random count, then read off the chance of any outcome you care about.\nHow today’s studio runs: I demo each distribution on a textbook example, then your group cracks a separate posted case (one sprint per class), then we debrief the capacity call.\nBy the end you turn a conversion rate into a defensible capacity plan, with the probabilities to back it up."
+    "text": "The Brief: Today’s Managerial Question\n\n\nThe big call (Topics 1–9): roll out B to all advertisers, or stay with A? Before you can ship B, engineering has to know the install load it creates. Today’s slice of that call:\n\n\n“For a typical burst, what’s the chance of at least \\(N\\) installs, so we can size the postback pipeline without over- or under-building?”\n\n\n\nSo far we have described and compared data. Today we model it: as the manager you put a probability distribution on a random count, then read off the chance of any outcome you care about.\nHow today’s studio runs: I demo each distribution on a textbook example, then your group cracks a separate posted case (one sprint per class), then we debrief the capacity call.\nBy the end you turn a conversion rate into a defensible capacity plan, with the probabilities to back it up."
   },
   {
     "objectID": "lecture_slides/05_chapter_discrete_probability_distributions/05_chapter_discrete_probability_distributions.html#how-todays-tools-answer-it",
@@ -1186,7 +1186,7 @@
     "href": "lecture_slides/05_chapter_discrete_probability_distributions/05_chapter_discrete_probability_distributions.html#why-managers-care-mean-and-risk-together",
     "title": " QM 6700: Business Analytics ",
     "section": "Why Managers Care: Mean and Risk Together",
-    "text": "Why Managers Care: Mean and Risk Together\n\n\n\\(E(X)\\) alone is not enough. Two ad algorithms could deliver the same average installs but very different spread, and spread is what overflows a server or empties a sales pipeline.\nA capacity planner reads \\(E(X)\\) to size for the typical load and \\(\\sigma\\) (and the tail) to size for the bad days.\nForward pointer: the Vungle install count has a special structure, a fixed number of impressions, each an independent yes/no at the same rate \\(p\\). That structure has a name: the Binomial, and it hands us \\(E(X)\\), \\(\\sigma\\), and the full \\(f(x)\\) from just two numbers, \\(n\\) and \\(p\\)."
+    "text": "Why Managers Care: Mean and Risk Together\n\n\n\\(E(X)\\) alone is not enough. Two ad algorithms could deliver the same average installs but a different spread, and spread is what overflows a server or empties a sales pipeline.\nA capacity planner reads \\(E(X)\\) to size for the typical load and \\(\\sigma\\) (and the tail) to size for the bad days.\nForward pointer: the Vungle install count has a special structure, a fixed number of impressions, each an independent yes/no at the same rate \\(p\\). That structure has a name: the Binomial, and it hands us \\(E(X)\\), \\(\\sigma\\), and the full \\(f(x)\\) from just two numbers, \\(n\\) and \\(p\\)."
   },
   {
     "objectID": "lecture_slides/05_chapter_discrete_probability_distributions/05_chapter_discrete_probability_distributions.html#from-one-impression-to-many-the-bernoulli-trial",
@@ -1305,7 +1305,7 @@
     "href": "lecture_slides/05_chapter_discrete_probability_distributions/05_chapter_discrete_probability_distributions.html#the-brief-lecture-2",
     "title": " QM 6700: Business Analytics ",
     "section": "The Brief: Lecture 2",
-    "text": "The Brief: Lecture 2\n\n\nThe big call: roll out B, or stay with A? Today’s rung: how many rare-event installs hit us over an interval, and how do we model them as a Poisson?\n\n\n“Installs are rare (a few per thousand impressions). Is there a model that needs only the average rate, not the full \\(n\\) and \\(p\\)? And does it give the same capacity answer?”\n\n\n\nYesterday we needed two numbers, \\(n\\) and \\(p\\). The Poisson distribution needs only one: the mean rate \\(\\lambda\\) over an interval.\nWe will introduce Poisson on its own terms, then show it is the large-\\(n\\), small-\\(p\\) limit of the Binomial, and that for Vungle the two are nearly identical."
+    "text": "The Brief: Lecture 2\n\n\nThe big call: roll out B, or stay with A? Today’s rung: how many rare-event installs hit us over an interval, and how do we model them as a Poisson?\n\n\n“Installs are rare (a few per thousand impressions). Is there a model that needs only the average rate, not the full \\(n\\) and \\(p\\)? And does it give the same capacity answer?”\n\n\n\nYesterday we needed two numbers, \\(n\\) and \\(p\\). The Poisson distribution needs only one: the mean rate \\(\\mu\\) over an interval.\nWe will introduce Poisson on its own terms, then show it is the large-\\(n\\), small-\\(p\\) limit of the Binomial, and that for Vungle the two are nearly identical."
   },
   {
     "objectID": "lecture_slides/05_chapter_discrete_probability_distributions/05_chapter_discrete_probability_distributions.html#when-the-count-has-no-fixed-n",
@@ -1319,42 +1319,42 @@
     "href": "lecture_slides/05_chapter_discrete_probability_distributions/05_chapter_discrete_probability_distributions.html#the-two-poisson-assumptions",
     "title": " QM 6700: Business Analytics ",
     "section": "The Two Poisson Assumptions",
-    "text": "The Two Poisson Assumptions\n\n\nThe probability of an occurrence is the same for any two intervals of equal length (a constant rate).\nOccurrences in non-overlapping intervals are independent.\n\n\n\nOne parameter governs everything: the mean number of occurrences per interval, \\(\\lambda\\) (also written \\(\\mu\\)).\nVungle: at \\(p \\approx 0.0035\\) over 1,000 impressions, installs arrive at a mean rate \\(\\lambda = np = 3.5\\) per burst. The rate is steady within a stable burst, and one install does not trigger another, so both assumptions hold."
+    "text": "The Two Poisson Assumptions\n\n\nThe probability of an occurrence is the same for any two intervals of equal length (a constant rate).\nOccurrences in non-overlapping intervals are independent.\n\n\n\nOne parameter governs everything: the mean number of occurrences per interval, \\(\\mu\\) (many texts write it \\(\\lambda\\); we keep \\(\\mu\\), the same mean symbol as everywhere else in the course).\nVungle: at \\(p \\approx 0.0035\\) over 1,000 impressions, installs arrive at a mean rate \\(\\mu = np = 3.5\\) per burst. The rate is steady within a stable burst, and one install does not trigger another, so both assumptions hold."
   },
   {
     "objectID": "lecture_slides/05_chapter_discrete_probability_distributions/05_chapter_discrete_probability_distributions.html#the-poisson-probability-function",
     "href": "lecture_slides/05_chapter_discrete_probability_distributions/05_chapter_discrete_probability_distributions.html#the-poisson-probability-function",
     "title": " QM 6700: Business Analytics ",
     "section": "The Poisson Probability Function",
-    "text": "The Poisson Probability Function\n\n\nThe probability of exactly \\(x\\) occurrences in an interval with mean \\(\\lambda\\):\n\n\n\\[\nf(x) = \\frac{\\lambda^x e^{-\\lambda}}{x!}, \\qquad x = 0, 1, 2, \\dots \\qquad (e \\approx 2.71828)\n\\]\n\n\nA defining property: the mean and variance are both \\(\\lambda\\):\n\n\n\\[\nE(X) = \\lambda \\qquad\\qquad \\text{Var}(X) = \\lambda \\qquad\\qquad \\sigma = \\sqrt{\\lambda}\n\\]\n\n\nThere is no upper limit on \\(x\\), but \\(f(x)\\) shrinks fast; for large \\(x\\) it rounds to zero."
+    "text": "The Poisson Probability Function\n\n\nThe probability of exactly \\(x\\) occurrences in an interval with mean \\(\\mu\\):\n\n\n\\[\nf(x) = \\frac{\\mu^x e^{-\\mu}}{x!}, \\qquad x = 0, 1, 2, \\dots \\qquad (e \\approx 2.71828)\n\\]\n\n\nA defining property: the mean and variance are both \\(\\mu\\):\n\n\n\\[\nE(X) = \\mu \\qquad\\qquad \\text{Var}(X) = \\mu \\qquad\\qquad \\sigma = \\sqrt{\\mu}\n\\]\n\n\nThere is no upper limit on \\(x\\), but \\(f(x)\\) shrinks fast; for large \\(x\\) it rounds to zero.\n(Excel calls the parameter \\(\\mu\\) its mean argument; some calculators and texts label the same number \\(\\lambda\\).)"
   },
   {
     "objectID": "lecture_slides/05_chapter_discrete_probability_distributions/05_chapter_discrete_probability_distributions.html#anchor-example-mercy-hospital",
     "href": "lecture_slides/05_chapter_discrete_probability_distributions/05_chapter_discrete_probability_distributions.html#anchor-example-mercy-hospital",
     "title": " QM 6700: Business Analytics ",
     "section": "Anchor Example: Mercy Hospital",
-    "text": "Anchor Example: Mercy Hospital\n\n\nPatients arrive at Mercy Hospital’s ER at 6 per hour on weekend evenings. What is \\(P(\\text{exactly 4 arrivals in 30 minutes})\\)?\nFirst rescale the rate to the interval: 6 per hour \\(= 3\\) per half-hour, so \\(\\lambda = 3\\).\n\n\n\\[\nf(4) = \\frac{3^4 e^{-3}}{4!} = \\frac{81 \\times 0.0498}{24} = 0.1680\n\\]\n\n\nAnd the spread of arrivals: \\(\\text{Var}(X) = \\lambda = 3\\), so \\(\\sigma = \\sqrt{3} = 1.73\\) patients per half-hour."
+    "text": "Anchor Example: Mercy Hospital\n\n\nPatients arrive at Mercy Hospital’s ER at 6 per hour on weekend evenings. What is \\(P(\\text{exactly 4 arrivals in 30 minutes})\\)?\nFirst rescale the rate to the interval: 6 per hour \\(= 3\\) per half-hour, so \\(\\mu = 3\\).\n\n\n\\[\nf(4) = \\frac{3^4 e^{-3}}{4!} = \\frac{81 \\times 0.0498}{24} = 0.1680\n\\]\n\n\nAnd the spread of arrivals: \\(\\text{Var}(X) = \\mu = 3\\), so \\(\\sigma = \\sqrt{3} = 1.73\\) patients per half-hour."
   },
   {
     "objectID": "lecture_slides/05_chapter_discrete_probability_distributions/05_chapter_discrete_probability_distributions.html#mercy-hospital-the-full-distribution",
     "href": "lecture_slides/05_chapter_discrete_probability_distributions/05_chapter_discrete_probability_distributions.html#mercy-hospital-the-full-distribution",
     "title": " QM 6700: Business Analytics ",
     "section": "Mercy Hospital: the Full Distribution",
-    "text": "Mercy Hospital: the Full Distribution\n\n\nThe whole distribution comes from the single number \\(\\lambda = 3\\): no \\(n\\), no \\(p\\).\nWatch the units: \\(\\lambda\\) must match the interval. Six per hour and three per half-hour describe the same process at different scales."
+    "text": "Mercy Hospital: the Full Distribution\n\n\nThe whole distribution comes from the single number \\(\\mu = 3\\): no \\(n\\), no \\(p\\).\nWatch the units: \\(\\mu\\) must match the interval. Six per hour and three per half-hour describe the same process at different scales."
   },
   {
     "objectID": "lecture_slides/05_chapter_discrete_probability_distributions/05_chapter_discrete_probability_distributions.html#excel-poisson.dist",
     "href": "lecture_slides/05_chapter_discrete_probability_distributions/05_chapter_discrete_probability_distributions.html#excel-poisson.dist",
     "title": " QM 6700: Business Analytics ",
     "section": "Excel: POISSON.DIST",
-    "text": "Excel: POISSON.DIST\n\n\nSame TRUE/FALSE switch as the Binomial, but only one parameter (\\(\\lambda\\), called mean in Excel):\n\n\n\n\n\n\n\n\n\n\nYou want\nExcel\nReturns\n\n\n\n\n\\(P(X = x)\\) (PMF)\n=POISSON.DIST(x, lambda, FALSE)\nexact probability\n\n\n\\(P(X \\leq x)\\) (CDF)\n=POISSON.DIST(x, lambda, TRUE)\ncumulative probability\n\n\n\\(P(X \\geq N)\\) (tail)\n=1 - POISSON.DIST(N-1, lambda, TRUE)\ncomplement\n\n\n\n\n\nPOISSON (no dot) is the legacy alias.\nMercy check: =POISSON.DIST(4, 3, FALSE) returns 0.1680: the formula and Excel agree."
+    "text": "Excel: POISSON.DIST\n\n\nSame TRUE/FALSE switch as the Binomial, but only one parameter (\\(\\mu\\), the mean argument in Excel):\n\n\n\n\n\n\n\n\n\n\nYou want\nExcel\nReturns\n\n\n\n\n\\(P(X = x)\\) (PMF)\n=POISSON.DIST(x, mean, FALSE)\nexact probability\n\n\n\\(P(X \\leq x)\\) (CDF)\n=POISSON.DIST(x, mean, TRUE)\ncumulative probability\n\n\n\\(P(X \\geq N)\\) (tail)\n=1 - POISSON.DIST(N-1, mean, TRUE)\ncomplement\n\n\n\n\n\nPOISSON (no dot) is the legacy alias.\nMercy check: =POISSON.DIST(4, 3, FALSE) returns 0.1680: the formula and Excel agree."
   },
   {
     "objectID": "lecture_slides/05_chapter_discrete_probability_distributions/05_chapter_discrete_probability_distributions.html#the-poisson-approximation-to-the-binomial",
     "href": "lecture_slides/05_chapter_discrete_probability_distributions/05_chapter_discrete_probability_distributions.html#the-poisson-approximation-to-the-binomial",
     "title": " QM 6700: Business Analytics ",
     "section": "The Poisson Approximation to the Binomial",
-    "text": "The Poisson Approximation to the Binomial\n\n\nWhen \\(n\\) is large and \\(p\\) is small, the Binomial and the Poisson with \\(\\lambda = np\\) are nearly identical:\n\n\n\\[\n\\text{Binomial}(n, p) \\;\\approx\\; \\text{Poisson}(\\lambda = np) \\qquad \\text{for large } n,\\; \\text{small } p\n\\]\n\n\nRule of thumb: the approximation is excellent when \\(n \\geq 20\\) and \\(p \\leq 0.05\\) (some texts use \\(np \\leq 7\\)).\nVungle is the textbook case: \\(n = 1000 \\geq 20\\) and \\(p = 0.0035 \\leq 0.05\\). So \\(X_B \\approx \\text{Poisson}(3.5)\\), and we can drop \\(n\\) and \\(p\\) and work with rate alone."
+    "text": "The Poisson Approximation to the Binomial\n\n\nWhen \\(n\\) is large and \\(p\\) is small, the Binomial and the Poisson with \\(\\mu = np\\) are nearly identical:\n\n\n\\[\n\\text{Binomial}(n, p) \\;\\approx\\; \\text{Poisson}(\\mu = np) \\qquad \\text{for large } n,\\; \\text{small } p\n\\]\n\n\nRule of thumb: the approximation is excellent when \\(n \\geq 20\\) and \\(p \\leq 0.05\\) (some texts use \\(np \\leq 7\\)).\nVungle is the textbook case: \\(n = 1000 \\geq 20\\) and \\(p = 0.0035 \\leq 0.05\\). So \\(X_B \\approx \\text{Poisson}(3.5)\\), and we can drop \\(n\\) and \\(p\\) and work with rate alone."
   },
   {
     "objectID": "lecture_slides/05_chapter_discrete_probability_distributions/05_chapter_discrete_probability_distributions.html#see-it-the-two-models-overlap",
@@ -1368,14 +1368,14 @@
     "href": "lecture_slides/05_chapter_discrete_probability_distributions/05_chapter_discrete_probability_distributions.html#side-by-side-in-excel",
     "title": " QM 6700: Business Analytics ",
     "section": "Side by Side in Excel",
-    "text": "Side by Side in Excel\n\n\n\nPut the two functions in adjacent columns:\n\n=BINOM.DIST(x, 1000, 0.0035, FALSE)\n=POISSON.DIST(x, 3.5, FALSE)\n\n\nThe columns match to 3–4 decimals. The Poisson needs one input (\\(\\lambda = 3.5\\)); the Binomial needs two (\\(n, p\\)); and for rare events you often only know the rate."
+    "text": "Side by Side in Excel\n\n\n\nPut the two functions in adjacent columns:\n\n=BINOM.DIST(x, 1000, 0.0035, FALSE)\n=POISSON.DIST(x, 3.5, FALSE)\n\n\nThe columns match to 3–4 decimals. The Poisson needs one input (\\(\\mu = 3.5\\)); the Binomial needs two (\\(n, p\\)); and for rare events you often only know the rate."
   },
   {
     "objectID": "lecture_slides/05_chapter_discrete_probability_distributions/05_chapter_discrete_probability_distributions.html#which-model-should-you-reach-for",
     "href": "lecture_slides/05_chapter_discrete_probability_distributions/05_chapter_discrete_probability_distributions.html#which-model-should-you-reach-for",
     "title": " QM 6700: Business Analytics ",
     "section": "Which Model Should You Reach For?",
-    "text": "Which Model Should You Reach For?\n\n\n\n\n\n\n\n\nSituation\nUse\n\n\n\n\nFixed number of trials \\(n\\), each success/failure at known \\(p\\)\nBinomial\n\n\nCount of rare arrivals over an interval; no fixed \\(n\\); you know the rate\nPoisson\n\n\nLarge \\(n\\), small \\(p\\) (e.g., installs over impressions)\nEither (Poisson is the simpler shortcut)\n\n\n\n\n\nFor Vungle’s capacity work, Poisson is the natural choice: postbacks arrive over a time window, and all engineering tracks is the mean rate \\(\\lambda\\), not a count of impressions."
+    "text": "Which Model Should You Reach For?\n\n\n\n\n\n\n\n\nSituation\nUse\n\n\n\n\nFixed number of trials \\(n\\), each success/failure at known \\(p\\)\nBinomial\n\n\nCount of rare arrivals over an interval; no fixed \\(n\\); you know the rate\nPoisson\n\n\nLarge \\(n\\), small \\(p\\) (e.g., installs over impressions)\nEither (Poisson is the simpler shortcut)\n\n\n\n\n\nFor Vungle’s capacity work, Poisson is the natural choice: postbacks arrive over a time window, and all engineering tracks is the mean rate \\(\\mu\\), not a count of impressions."
   },
   {
     "objectID": "lecture_slides/05_chapter_discrete_probability_distributions/05_chapter_discrete_probability_distributions.html#installs-per-burst-as-a-poisson-process",
@@ -1389,14 +1389,14 @@
     "href": "lecture_slides/05_chapter_discrete_probability_distributions/05_chapter_discrete_probability_distributions.html#the-capacity-tail-both-ways-agree",
     "title": " QM 6700: Business Analytics ",
     "section": "The Capacity Tail: Both Ways Agree",
-    "text": "The Capacity Tail: Both Ways Agree\n\n\nThe question that sizes the pipeline: \\(P(X \\geq 8)\\), how often does a burst exceed a single worker’s capacity of 7?\n\n\n\n\n\nAlgorithm\nBinomial \\(P(X \\geq 8)\\)\nPoisson \\(P(X \\geq 8)\\)\n\n\n\n\nB (\\(\\lambda = 3.5\\))\n0.0265\n0.0267\n\n\nA (\\(\\lambda = 4.0\\))\n0.0508\n0.0511\n\n\n\n\n\nBoth models give the same managerial answer: ~5% of A’s bursts and ~2.7% of B’s bursts need overflow capacity.\nIn Excel: =1 - POISSON.DIST(7, 4, TRUE) \\(= 0.0511\\) for A."
+    "text": "The Capacity Tail: Both Ways Agree\n\n\nThe question that sizes the pipeline: \\(P(X \\geq 8)\\), how often does a burst exceed a single worker’s capacity of 7?\n\n\n\n\n\nAlgorithm\nBinomial \\(P(X \\geq 8)\\)\nPoisson \\(P(X \\geq 8)\\)\n\n\n\n\nB (\\(\\mu = 3.5\\))\n0.0265\n0.0267\n\n\nA (\\(\\mu = 4.0\\))\n0.0508\n0.0511\n\n\n\n\n\nBoth models give the same managerial answer: ~5% of A’s bursts and ~2.7% of B’s bursts need overflow capacity.\nIn Excel: =1 - POISSON.DIST(7, 4, TRUE) \\(= 0.0511\\) for A."
   },
   {
     "objectID": "lecture_slides/05_chapter_discrete_probability_distributions/05_chapter_discrete_probability_distributions.html#scaling-up-from-burst-to-pipeline",
     "href": "lecture_slides/05_chapter_discrete_probability_distributions/05_chapter_discrete_probability_distributions.html#scaling-up-from-burst-to-pipeline",
     "title": " QM 6700: Business Analytics ",
     "section": "Scaling Up: From Burst to Pipeline",
-    "text": "Scaling Up: From Burst to Pipeline\n\n\nThe rate scales with the interval, the Poisson workhorse property. If a burst is 1,000 impressions and A serves ~7.9M impressions/day:\n\n\n\\[\n\\lambda_{\\text{day}} = \\frac{7{,}900{,}000}{1{,}000} \\times 0.0040 \\approx 31{,}600 \\text{ installs/day} \\quad (\\text{matches the data's} \\approx 31{,}700)\n\\]\n\n\nWant installs per second? Divide \\(\\lambda\\) by 86,400. Want per hour? Multiply by 3,600. One parameter, any interval, no need to recount impressions.\nThat is why ops teams model arrivals as Poisson: provision for \\(\\lambda\\) plus a tail buffer, and re-scale instantly as traffic grows."
+    "text": "Scaling Up: From Burst to Pipeline\n\n\nThe rate scales with the interval, the Poisson workhorse property. If a burst is 1,000 impressions and A serves ~7.9M impressions/day:\n\n\n\\[\n\\mu_{\\text{day}} = \\underbrace{\\frac{7{,}900{,}000}{1{,}000}}_{7{,}900 \\text{ bursts}} \\times \\underbrace{4.0}_{\\mu \\text{ per burst}} \\approx 31{,}600 \\text{ installs/day} \\quad (\\text{matches the data's} \\approx 31{,}700)\n\\]\n\n\nWant installs per second? Divide \\(\\mu\\) by 86,400. Want per hour? Multiply by 3,600. One parameter, any interval, no need to recount impressions.\nThat is why ops teams model arrivals as Poisson: provision for \\(\\mu\\) plus a tail buffer, and re-scale instantly as traffic grows."
   },
   {
     "objectID": "lecture_slides/05_chapter_discrete_probability_distributions/05_chapter_discrete_probability_distributions.html#team-sprint-2-plan-capacity-with-poisson",
@@ -1424,7 +1424,7 @@
     "href": "lecture_slides/05_chapter_discrete_probability_distributions/05_chapter_discrete_probability_distributions.html#discrete-distributions-on-one-page-the-vungle-bridge",
     "title": " QM 6700: Business Analytics ",
     "section": "Discrete Distributions on One Page: the Vungle Bridge",
-    "text": "Discrete Distributions on One Page: the Vungle Bridge\n\n\n\n\n\n\n\n\n\n\nConcept\nFormula\nApplied to Vungle\nExcel\n\n\n\n\nExpected value\n\\(E(X) = \\sum x\\,f(x)\\)\nmean installs per burst\n=SUMPRODUCT(x, f)\n\n\nVariance\n\\(\\sigma^2 = \\sum (x-\\mu)^2 f(x)\\)\nspread / risk of the count\nformula cells\n\n\nBinomial\n\\(f(x) = \\binom{n}{x}p^x(1-p)^{n-x}\\)\ninstalls in \\(n=1000\\) impressions, \\(p=0.0035\\)\n=BINOM.DIST(x,n,p,0/1)\n\n\nBinomial mean/var\n\\(np,\\; np(1-p)\\)\n\\(\\mu_B = 3.5,\\; \\sigma_B = 1.87\\)\n(formula)\n\n\nPoisson\n\\(f(x) = \\lambda^x e^{-\\lambda}/x!\\)\ninstalls as rare arrivals, \\(\\lambda = 3.5\\)\n=POISSON.DIST(x,λ,0/1)\n\n\nPoisson mean/var\n\\(\\lambda,\\; \\lambda\\)\n\\(\\mu_B = \\sigma^2_B = 3.5\\)\n(formula)\n\n\nTail (capacity)\n\\(P(X \\geq N) = 1 - P(X \\leq N{-}1)\\)\n\\(P(X_A \\geq 8) \\approx 0.051\\)\n=1-...DIST(N-1,...,1)"
+    "text": "Discrete Distributions on One Page: the Vungle Bridge\n\n\n\n\n\n\n\n\n\n\nConcept\nFormula\nApplied to Vungle\nExcel\n\n\n\n\nExpected value\n\\(E(X) = \\sum x\\,f(x)\\)\nmean installs per burst\n=SUMPRODUCT(x, f)\n\n\nVariance\n\\(\\sigma^2 = \\sum (x-\\mu)^2 f(x)\\)\nspread / risk of the count\nformula cells\n\n\nCovariance / corr.\n\\(\\sigma_{xy};\\;\\rho_{xy} = \\sigma_{xy}/(\\sigma_x \\sigma_y)\\)\ndo A and B move together?\nformula cells\n\n\nBinomial\n\\(f(x) = \\binom{n}{x}p^x(1-p)^{n-x}\\)\ninstalls in \\(n=1000\\) impressions, \\(p=0.0035\\)\n=BINOM.DIST(x,n,p,0/1)\n\n\nBinomial mean/var\n\\(np,\\; np(1-p)\\)\n\\(\\mu_B = 3.5,\\; \\sigma_B = 1.87\\)\n(formula)\n\n\nPoisson\n\\(f(x) = \\mu^x e^{-\\mu}/x!\\)\ninstalls as rare arrivals, \\(\\mu = 3.5\\)\n=POISSON.DIST(x,mean,0/1)\n\n\nPoisson mean/var\n\\(\\mu,\\; \\mu\\)\n\\(\\mu_B = \\sigma^2_B = 3.5\\)\n(formula)\n\n\nTail (capacity)\n\\(P(X \\geq N) = 1 - P(X \\leq N{-}1)\\)\n\\(P(X_A \\geq 8) \\approx 0.051\\)\n=1-...DIST(N-1,...,1)"
   },
   {
     "objectID": "lecture_slides/05_chapter_discrete_probability_distributions/05_chapter_discrete_probability_distributions.html#managers-takeaway",
@@ -1438,7 +1438,7 @@
     "href": "lecture_slides/05_chapter_discrete_probability_distributions/05_chapter_discrete_probability_distributions.html#summary",
     "title": " QM 6700: Business Analytics ",
     "section": "Summary",
-    "text": "Summary\nThe points to carry out of this session:\n\nA random variable assigns a number to each outcome; discrete ones are counted, continuous ones measured.\nA valid discrete distribution has \\(f(x) \\geq 0\\) and \\(\\sum f(x) = 1\\); from it, \\(E(X) = \\sum x f(x)\\) (center) and \\(\\sigma^2 = \\sum (x-\\mu)^2 f(x)\\) (risk).\nThe Binomial counts successes in \\(n\\) fixed Bernoulli trials: \\(f(x) = \\binom{n}{x}p^x(1-p)^{n-x}\\), with \\(\\mu = np\\) and \\(\\sigma^2 = np(1-p)\\).\nThe Poisson counts rare arrivals over an interval from one rate \\(\\lambda\\): \\(f(x) = \\lambda^x e^{-\\lambda}/x!\\), with \\(\\mu = \\sigma^2 = \\lambda\\).\nFor large \\(n\\), small \\(p\\), Binomial \\(\\approx\\) Poisson(\\(np\\)): Vungle’s installs are the textbook case.\nCapacity = a tail probability: \\(P(X \\geq N) = 1 - P(X \\leq N-1)\\), computed in one Excel cell.\nNext time: we move from discrete counts to continuous measurements, the Normal distribution, and the question “what is the probability eRPM exceeds $3.50?”\nHomework (individual): the Binomial and Poisson models are drilled on HW2, posted on Brightspace; run them yourself so you can check an analyst who uses them."
+    "text": "Summary\nThe points to carry out of this session:\n\nA random variable assigns a number to each outcome (discrete = counted, continuous = measured); a valid distribution has \\(f(x) \\geq 0\\), \\(\\sum f(x) = 1\\), with \\(E(X) = \\sum x f(x)\\) and \\(\\sigma^2 = \\sum (x-\\mu)^2 f(x)\\).\nCovariance / correlation measure how two counts move together; with \\(\\rho_{xy} &lt; 1\\) the cross term in \\(\\text{Var}(wX + (1-w)Y)\\) shrinks total risk: that is diversification.\nThe Binomial counts successes in \\(n\\) fixed Bernoulli trials: \\(f(x) = \\binom{n}{x}p^x(1-p)^{n-x}\\), with \\(\\mu = np\\), \\(\\sigma^2 = np(1-p)\\).\nThe Poisson counts rare arrivals from one rate \\(\\mu\\): \\(f(x) = \\mu^x e^{-\\mu}/x!\\), with \\(\\mu = \\sigma^2\\); for large \\(n\\), small \\(p\\) it equals Binomial(\\(np\\)), the Vungle case.\nCapacity = a tail probability: \\(P(X \\geq N) = 1 - P(X \\leq N-1)\\), computed in one Excel cell.\nNext time: we move from discrete counts to continuous measurements, the Normal distribution, and the question “what is the probability eRPM exceeds $3.50?”\nHomework (individual): the Binomial and Poisson models are drilled on HW2, posted on Brightspace; run them yourself so you can check an analyst who uses them."
   },
   {
     "objectID": "material.html",
@@ -3663,7 +3663,7 @@
     "href": "lecture_slides/05_chapter_discrete_probability_distributions/05_chapter_discrete_probability_distributions.html#team-sprint-your-group-case-lecture-2",
     "title": " QM 6700: Business Analytics ",
     "section": "⏱️ Team Sprint: Your Group Case (Lecture 2)",
-    "text": "⏱️ Team Sprint: Your Group Case (Lecture 2)\n\nNow it’s your group’s turn. Today’s in-class group case is posted on Brightspace (Topic 05 Group Case, Lecture 2): a separate business decision you make with today’s tools.\nWhat you’ll use: the Poisson model, \\(E(X)=\\text{Var}(X)=\\lambda\\), and the capacity tail \\(P(X \\geq N)\\). Excel: Analysis ToolPak with POISSON.DIST(x, lambda, FALSE/TRUE).\nSubmit one PDF per group before you leave: your decision plus the numbers behind it."
+    "text": "⏱️ Team Sprint: Your Group Case (Lecture 2)\n\nNow it’s your group’s turn. Today’s in-class group case is posted on Brightspace (Topic 05 Group Case, Lecture 2): a separate business decision you make with today’s tools.\nWhat you’ll use: the Poisson model, \\(E(X)=\\text{Var}(X)=\\mu\\), and the capacity tail \\(P(X \\geq N)\\). Excel: Analysis ToolPak with POISSON.DIST(x, mean, FALSE/TRUE).\nSubmit one PDF per group before you leave: your decision plus the numbers behind it."
   },
   {
     "objectID": "lecture_slides/06_chapter_continuous_probability_distributions/06_chapter_continuous_probability_distributions.html#the-brief-todays-ceo-question",
@@ -3950,7 +3950,7 @@
     "href": "lecture_slides/05_chapter_discrete_probability_distributions/05_chapter_discrete_probability_distributions.html#the-managers-takeaway-lecture-2",
     "title": " QM 6700: Business Analytics ",
     "section": "The Manager’s Takeaway (Lecture 2)",
-    "text": "The Manager’s Takeaway (Lecture 2)\n\n\nOne sentence: for rare events over an interval, the Poisson(\\(\\lambda\\)) models the count from a single rate, and for Vungle’s tiny \\(p\\) it gives the same capacity answer as the Binomial.\nOne number: \\(P(\\geq 8 \\text{ installs/burst}) \\approx\\) 0.051 for A (Poisson \\(\\lambda = 4\\)): provision a second worker for ~1 burst in 20.\nOne caveat: Poisson assumes a constant, independent rate. A viral spike breaks both assumptions: arrivals cluster, the true tail is heavier than Poisson predicts, and you under-provision. Monitor for over-dispersion (variance \\(&gt;\\) mean)."
+    "text": "The Manager’s Takeaway (Lecture 2)\n\n\nOne sentence: for rare events over an interval, the Poisson(\\(\\mu\\)) models the count from a single rate, and for Vungle’s tiny \\(p\\) it gives the same capacity answer as the Binomial.\nOne number: \\(P(\\geq 8 \\text{ installs/burst}) \\approx\\) 0.051 for A (Poisson \\(\\mu = 4\\)): provision a second worker for ~1 burst in 20.\nOne caveat: Poisson assumes a constant, independent rate. A viral spike breaks both assumptions: arrivals cluster, the true tail is heavier than Poisson predicts, and you under-provision. Monitor for over-dispersion (variance \\(&gt;\\) mean)."
   },
   {
     "objectID": "lecture_slides/05_chapter_discrete_probability_distributions/05_chapter_discrete_probability_distributions.html#the-managers-takeaway",
@@ -4385,5 +4385,152 @@
     "title": " QM 6700: Business Analytics ",
     "section": "Today’s Question, Today’s Answer",
     "text": "Today’s Question, Today’s Answer\n\nThe question (Topic 4 of the ladder):\n\nRoll out B, keep A, or run a bigger test, which has the best expected value?\n\n\n\nThe answer we reached today:\n\nRoll out B. Its expected value ($126.8K/yr) beats keeping A ($0); the call stays the same unless B is more likely wrong than right (\\(p^{*} \\approx 0.33\\), and our prior is 0.60); and a bigger test is worth only $9.84K, under its $20K price, so we skip it."
+  },
+  {
+    "objectID": "lecture_slides/05_chapter_discrete_probability_distributions/05_chapter_discrete_probability_distributions.html#how-every-class-runs",
+    "href": "lecture_slides/05_chapter_discrete_probability_distributions/05_chapter_discrete_probability_distributions.html#how-every-class-runs",
+    "title": " QM 6700: Business Analytics ",
+    "section": "How Every Class Runs",
+    "text": "How Every Class Runs\n\n\n\n\n\nThe class ends on the Team Sprint, your group’s graded submission: a decision plus your read of the analysis, one PDF before you leave."
+  },
+  {
+    "objectID": "lecture_slides/05_chapter_discrete_probability_distributions/05_chapter_discrete_probability_distributions.html#a-question-that-often-comes-up",
+    "href": "lecture_slides/05_chapter_discrete_probability_distributions/05_chapter_discrete_probability_distributions.html#a-question-that-often-comes-up",
+    "title": " QM 6700: Business Analytics ",
+    "section": "A Question That Often Comes Up",
+    "text": "A Question That Often Comes Up\n\nA question that often comes up at this point:\nInstalls only ever come out whole (0, 1, 2 …), so why does it matter whether I call the count “discrete” rather than just a number?\n\nShort answer: because the label picks the model. Calling installs discrete is what lets us put a Binomial or Poisson on them and read off \\(P(X \\geq N)\\). If we treated the count as a continuous measurement (like eRPM), we would reach for the wrong distribution next topic and the capacity probabilities would not even be defined at “exactly 8”."
+  },
+  {
+    "objectID": "lecture_slides/05_chapter_discrete_probability_distributions/05_chapter_discrete_probability_distributions.html#a-question-that-often-comes-up-1",
+    "href": "lecture_slides/05_chapter_discrete_probability_distributions/05_chapter_discrete_probability_distributions.html#a-question-that-often-comes-up-1",
+    "title": " QM 6700: Business Analytics ",
+    "section": "A Question That Often Comes Up",
+    "text": "A Question That Often Comes Up\n\nA question that often comes up at this point:\nJSL got its \\(f(x)\\) by counting 200 days of sales. Why would I ever trust a formula’s \\(f(x)\\) for Vungle instead of just counting past installs the same way?\n\nShort answer: counting works only for outcomes you have already seen at the right scale. JSL sold at most 4 TVs a day, so 200 days cover every value. A 1,000-impression burst can produce 0 to 1,000 installs; you will never observe enough bursts to fill that table by hand. The Binomial formula gives the probability of every \\(x\\), including the rare 8-plus bursts that size the pipeline, from just \\(n\\) and \\(p\\)."
+  },
+  {
+    "objectID": "lecture_slides/05_chapter_discrete_probability_distributions/05_chapter_discrete_probability_distributions.html#a-question-that-often-comes-up-2",
+    "href": "lecture_slides/05_chapter_discrete_probability_distributions/05_chapter_discrete_probability_distributions.html#a-question-that-often-comes-up-2",
+    "title": " QM 6700: Business Analytics ",
+    "section": "A Question That Often Comes Up",
+    "text": "A Question That Often Comes Up\n\nA question that often comes up at this point:\nThe variance squares the deviations, so \\(\\sigma^2 = 1.66\\) is in “TVs squared,” which means nothing to me. Why not just average the plain distances from the mean?\n\nShort answer: squaring is what makes the big misses count more than the small ones, and it is the form that gives the clean \\(np(1-p)\\) shortcut you will see for the Binomial. You are right that squared units are not readable, which is exactly why we take the square root: \\(\\sigma = \\sqrt{1.66} = 1.29\\) TVs is back in plain units, and that is the spread a planner actually reads when sizing for a bad day."
+  },
+  {
+    "objectID": "lecture_slides/05_chapter_discrete_probability_distributions/05_chapter_discrete_probability_distributions.html#a-question-that-often-comes-up-3",
+    "href": "lecture_slides/05_chapter_discrete_probability_distributions/05_chapter_discrete_probability_distributions.html#a-question-that-often-comes-up-3",
+    "title": " QM 6700: Business Analytics ",
+    "section": "A Question That Often Comes Up",
+    "text": "A Question That Often Comes Up\n\nA question that often comes up at this point:\nIf covariance and correlation measure the same direction, why bother computing both? Why not just report the covariance?\n\nShort answer: covariance gives the sign but not a readable size: its units are “\\(x\\)-units times \\(y\\)-units” (cars-times-cars for DiCarlo), so \\(0.135\\) could be strong or trivial, you cannot tell. Dividing by the two standard deviations strips the units and pins it to \\([-1, 1]\\), so \\(\\rho = 0.1295\\) instantly reads as “weak positive.” You need the covariance to build the portfolio variance, and the correlation to judge how much diversification will actually help."
+  },
+  {
+    "objectID": "lecture_slides/05_chapter_discrete_probability_distributions/05_chapter_discrete_probability_distributions.html#a-question-that-often-comes-up-4",
+    "href": "lecture_slides/05_chapter_discrete_probability_distributions/05_chapter_discrete_probability_distributions.html#a-question-that-often-comes-up-4",
+    "title": " QM 6700: Business Analytics ",
+    "section": "A Question That Often Comes Up",
+    "text": "A Question That Often Comes Up\n\nA question that often comes up at this point:\nReal ad traffic is never perfectly identical or independent, so isn’t calling Vungle’s installs “Binomial” just wishful thinking?\n\nShort answer: the assumptions are an approximation, and the manager’s job is to know when it is good enough. Within one stable burst, impressions are similar users seeing the same ad at the same rate, so the four conditions nearly hold and the Binomial is trustworthy. They break during a viral spike (the rate jumps and installs cluster); that is the one caveat we flag in the Takeaway, and the cue to re-estimate \\(p\\) rather than trust the model blindly."
+  },
+  {
+    "objectID": "lecture_slides/05_chapter_discrete_probability_distributions/05_chapter_discrete_probability_distributions.html#a-question-that-often-comes-up-5",
+    "href": "lecture_slides/05_chapter_discrete_probability_distributions/05_chapter_discrete_probability_distributions.html#a-question-that-often-comes-up-5",
+    "title": " QM 6700: Business Analytics ",
+    "section": "A Question That Often Comes Up",
+    "text": "A Question That Often Comes Up\n\nA question that often comes up at this point:\nWhy does the formula multiply by \\(\\binom{n}{x}\\) at all? One specific leaver-stayer-stayer sequence already has probability 0.081, so why is \\(f(1)\\) three times bigger?\n\nShort answer: because “exactly 1 leaves” does not pin down which of the 3 employees it is. The leaver could be the first, second, or third, three different sequences, each with the same 0.081 chance. \\(\\binom{3}{1} = 3\\) just counts those equally-likely arrangements, so \\(f(1) = 3 \\times 0.081 = 0.243\\). For Vungle the same logic counts the many ways \\(x\\) installs can land among 1,000 impressions."
+  },
+  {
+    "objectID": "lecture_slides/05_chapter_discrete_probability_distributions/05_chapter_discrete_probability_distributions.html#a-question-that-often-comes-up-6",
+    "href": "lecture_slides/05_chapter_discrete_probability_distributions/05_chapter_discrete_probability_distributions.html#a-question-that-often-comes-up-6",
+    "title": " QM 6700: Business Analytics ",
+    "section": "A Question That Often Comes Up",
+    "text": "A Question That Often Comes Up\n\nA question that often comes up at this point:\nFor “at least 8 installs,” why is it \\(1 - P(X \\leq 7)\\) and not \\(1 - P(X \\leq 8)\\)? The off-by-one keeps tripping me up.\n\nShort answer: “at least 8” means \\(8, 9, 10, \\dots\\), so the opposite event is \\(7\\) or fewer, not 8 or fewer. Subtracting \\(P(X \\leq 8)\\) would wrongly throw out the 8 itself. The rule: \\(P(X \\geq N) = 1 - P(X \\leq N - 1)\\), so for \\(N = 8\\) you use \\(P(X \\leq 7)\\). Get that boundary wrong and Vungle’s capacity probability is off by exactly the \\(f(8)\\) term."
+  },
+  {
+    "objectID": "lecture_slides/05_chapter_discrete_probability_distributions/05_chapter_discrete_probability_distributions.html#todays-question-todays-answer",
+    "href": "lecture_slides/05_chapter_discrete_probability_distributions/05_chapter_discrete_probability_distributions.html#todays-question-todays-answer",
+    "title": " QM 6700: Business Analytics ",
+    "section": "Today’s Question, Today’s Answer",
+    "text": "Today’s Question, Today’s Answer\n\nThe question (Lecture 1):\n\nHow many installs should we expect in a 1,000-impression burst, and how do we model them as a Binomial?\n\n\n\nThe answer we reached today:\n\nInstalls are Binomial(\\(1000\\), \\(p\\)). For B (\\(p = 0.0035\\)): expect $= np = $ 3.5 installs with spread $= $ 1.87, and the stress level $P(X ) = 1 - P(X ) = $ 0.0265 (about 1 burst in 38). A converts higher, so its tail \\(P(X \\geq 8) \\approx\\) 0.051 is roughly twice B’s."
+  },
+  {
+    "objectID": "lecture_slides/05_chapter_discrete_probability_distributions/05_chapter_discrete_probability_distributions.html#how-every-class-runs-1",
+    "href": "lecture_slides/05_chapter_discrete_probability_distributions/05_chapter_discrete_probability_distributions.html#how-every-class-runs-1",
+    "title": " QM 6700: Business Analytics ",
+    "section": "How Every Class Runs",
+    "text": "How Every Class Runs\n\n\n\n\n\nThe class ends on the Team Sprint, your group’s graded submission: a decision plus your read of the analysis, one PDF before you leave."
+  },
+  {
+    "objectID": "lecture_slides/05_chapter_discrete_probability_distributions/05_chapter_discrete_probability_distributions.html#a-question-that-often-comes-up-7",
+    "href": "lecture_slides/05_chapter_discrete_probability_distributions/05_chapter_discrete_probability_distributions.html#a-question-that-often-comes-up-7",
+    "title": " QM 6700: Business Analytics ",
+    "section": "A Question That Often Comes Up",
+    "text": "A Question That Often Comes Up\n\nA question that often comes up at this point:\nVungle serves hundreds of millions of impressions a day, so why model a tiny 1,000-impression “burst” instead of the real daily load?\n\nShort answer: the burst is the slice that a single postback worker actually faces at once, so its tail is what tells you when one worker overflows. Modeling the full day would just give a huge \\(\\mu\\) (about 31,700 installs) with a buried tail; the burst keeps the question concrete: “\\(P(X \\geq 8)\\) for this worker’s batch.” Once you have the per-burst rate, the Poisson scaling property lets you re-scale to per-second or per-day instantly, which is the Lecture 2 move."
+  },
+  {
+    "objectID": "lecture_slides/05_chapter_discrete_probability_distributions/05_chapter_discrete_probability_distributions.html#a-question-that-often-comes-up-8",
+    "href": "lecture_slides/05_chapter_discrete_probability_distributions/05_chapter_discrete_probability_distributions.html#a-question-that-often-comes-up-8",
+    "title": " QM 6700: Business Analytics ",
+    "section": "A Question That Often Comes Up",
+    "text": "A Question That Often Comes Up\n\nA question that often comes up at this point:\nMean equals variance, both just \\(\\mu\\)? With the Binomial I had two separate knobs. How can one number fix the spread too?\n\nShort answer: it falls right out of the large-\\(n\\), small-\\(p\\) setup. The Binomial variance is \\(np(1-p)\\); when \\(p\\) is tiny, \\((1-p) \\approx 1\\), so the variance collapses to \\(np = \\mu\\), the same as the mean. For Vungle’s \\(p = 0.0035\\) that approximation is excellent, which is why \\(\\mu = 3.5\\) alone pins down both the center and the spread of the install count."
+  },
+  {
+    "objectID": "lecture_slides/05_chapter_discrete_probability_distributions/05_chapter_discrete_probability_distributions.html#a-question-that-often-comes-up-9",
+    "href": "lecture_slides/05_chapter_discrete_probability_distributions/05_chapter_discrete_probability_distributions.html#a-question-that-often-comes-up-9",
+    "title": " QM 6700: Business Analytics ",
+    "section": "A Question That Often Comes Up",
+    "text": "A Question That Often Comes Up\n\nA question that often comes up at this point:\nIf 6-per-hour and 3-per-half-hour are the “same process,” why did we have to switch to \\(\\mu = 3\\)? Couldn’t we just plug in \\(\\mu = 6\\)?\n\nShort answer: no, because \\(\\mu\\) is the mean for the interval the question asks about, and the question was about 30 minutes. Plug in \\(\\mu = 6\\) and Excel answers “4 arrivals in an hour,” a different event. The rule is one line: match \\(\\mu\\) to the window. For Vungle the same step turns a per-burst \\(\\mu = 3.5\\) into a per-second or per-day rate before you read off any tail."
+  },
+  {
+    "objectID": "lecture_slides/05_chapter_discrete_probability_distributions/05_chapter_discrete_probability_distributions.html#a-question-that-often-comes-up-10",
+    "href": "lecture_slides/05_chapter_discrete_probability_distributions/05_chapter_discrete_probability_distributions.html#a-question-that-often-comes-up-10",
+    "title": " QM 6700: Business Analytics ",
+    "section": "A Question That Often Comes Up",
+    "text": "A Question That Often Comes Up\n\nA question that often comes up at this point:\nIf the Poisson just approximates the Binomial here, isn’t it strictly worse? Why not always use the exact Binomial and skip the approximation?\n\nShort answer: because in real ops you often do not have \\(n\\) and \\(p\\), only the rate. Vungle’s pipeline tracks “installs per second,” not “successes out of how many impressions,” so the Binomial’s two inputs are not even available; the Poisson’s single \\(\\mu\\) is. When you do have \\(n\\) and \\(p\\) and they are small, the two agree to three decimals (next slide), so you lose nothing by taking the simpler model."
+  },
+  {
+    "objectID": "lecture_slides/05_chapter_discrete_probability_distributions/05_chapter_discrete_probability_distributions.html#todays-question-todays-answer-1",
+    "href": "lecture_slides/05_chapter_discrete_probability_distributions/05_chapter_discrete_probability_distributions.html#todays-question-todays-answer-1",
+    "title": " QM 6700: Business Analytics ",
+    "section": "Today’s Question, Today’s Answer",
+    "text": "Today’s Question, Today’s Answer\n\nThe question (Lecture 2):\n\nIs there a model that needs only the average rate, not the full \\(n\\) and \\(p\\), and does it give the same capacity answer?\n\n\n\nThe answer we reached today:\n\nYes: the Poisson(\\(\\mu\\)) needs only \\(\\mu = np\\). For B, $= $ 3.5; the capacity tail $P(X ) = $ 0.0267 matches the Binomial’s 0.0265, and for A both give \\(\\approx\\) 0.051. For Vungle’s tiny \\(p\\) the two models agree to three decimals, so you can plan from the rate alone."
+  },
+  {
+    "objectID": "lecture_slides/05_chapter_discrete_probability_distributions/05_chapter_discrete_probability_distributions.html#when-two-counts-move-together",
+    "href": "lecture_slides/05_chapter_discrete_probability_distributions/05_chapter_discrete_probability_distributions.html#when-two-counts-move-together",
+    "title": " QM 6700: Business Analytics ",
+    "section": "When Two Counts Move Together",
+    "text": "When Two Counts Move Together\n\n\nSo far one random variable at a time. Most business risk involves two moving together: A’s installs and B’s installs each day, two stores’ sales, two stocks in a portfolio.\nA bivariate distribution gives the probability of each pair of outcomes, \\(f(x, y) = P(X = x, Y = y)\\).\nThe new question is association: when one is high, is the other high too? That is what covariance and correlation measure, and it is the hinge of every diversification decision.\nTextbook anchor: DiCarlo Motors runs two dealerships (Geneva = \\(x\\), Saratoga = \\(y\\)) and tracks 300 days of joint sales. Vungle parallel: A and B run side by side, so their daily install counts are a bivariate pair too."
+  },
+  {
+    "objectID": "lecture_slides/05_chapter_discrete_probability_distributions/05_chapter_discrete_probability_distributions.html#rules-for-combining-random-variables",
+    "href": "lecture_slides/05_chapter_discrete_probability_distributions/05_chapter_discrete_probability_distributions.html#rules-for-combining-random-variables",
+    "title": " QM 6700: Business Analytics ",
+    "section": "Rules for Combining Random Variables",
+    "text": "Rules for Combining Random Variables\n\n\nBefore covariance, the algebra of shifting and adding random variables. For constants \\(a, b\\):\n\n\n\\[\nE(aX + b) = a\\,E(X) + b \\qquad\\qquad \\text{Var}(aX + b) = a^2\\,\\text{Var}(X)\n\\]\n\n\nAdding a constant shifts the mean but not the spread; scaling by \\(a\\) multiplies the variance by \\(a^2\\).\nFor a sum of two random variables, the means just add, but the variance carries a cross term:\n\n\n\\[\nE(aX + bY) = a\\,E(X) + b\\,E(Y)\n\\]\n\\[\n\\text{Var}(aX + bY) = a^2\\,\\text{Var}(X) + b^2\\,\\text{Var}(Y) + 2ab\\,\\text{Cov}(X, Y)\n\\]\n\n\nThat last term, \\(\\text{Cov}(X, Y)\\), is the whole story: it is why combining two things can lower (or raise) total risk."
+  },
+  {
+    "objectID": "lecture_slides/05_chapter_discrete_probability_distributions/05_chapter_discrete_probability_distributions.html#covariance-and-correlation",
+    "href": "lecture_slides/05_chapter_discrete_probability_distributions/05_chapter_discrete_probability_distributions.html#covariance-and-correlation",
+    "title": " QM 6700: Business Analytics ",
+    "section": "Covariance and Correlation",
+    "text": "Covariance and Correlation\n\n\n\nCovariance is the probability-weighted average of the joint deviations from each mean:\n\n\n\\[\n\\text{Cov}(X, Y) = \\sigma_{xy} = \\sum \\big[x - E(X)\\big]\\big[y - E(Y)\\big]\\,f(x, y)\n\\]\n\n\nSign reads the direction: positive = they tend to move together, negative = one up while the other down, zero = no linear link. Its size is hard to read (it carries mixed units), so we standardize it into the correlation coefficient:\n\n\n\\[\n\\rho_{xy} = \\frac{\\text{Cov}(X, Y)}{\\sigma_x\\,\\sigma_y}, \\qquad -1 \\leq \\rho_{xy} \\leq 1\n\\]\n\n\nDiCarlo: \\(\\sigma_{xy} = 0.1350\\) and \\(\\rho_{xy} = 0.1295\\), a weak positive link: the two dealerships rise and fall together a little, not in lockstep."
+  },
+  {
+    "objectID": "lecture_slides/05_chapter_discrete_probability_distributions/05_chapter_discrete_probability_distributions.html#diversification-why-combine-at-all",
+    "href": "lecture_slides/05_chapter_discrete_probability_distributions/05_chapter_discrete_probability_distributions.html#diversification-why-combine-at-all",
+    "title": " QM 6700: Business Analytics ",
+    "section": "Diversification: Why Combine at All?",
+    "text": "Diversification: Why Combine at All?\n\n\nPut a fraction \\(w\\) of a portfolio in asset \\(X\\) and the rest in \\(Y\\). The portfolio return is \\(Z = wX + (1-w)Y\\), so by the rules above:\n\n\n\\[\nE(Z) = w\\,E(X) + (1-w)\\,E(Y)\n\\]\n\\[\n\\text{Var}(Z) = w^2 \\sigma_x^2 + (1-w)^2 \\sigma_y^2 + 2\\,w(1-w)\\,\\rho_{xy}\\,\\sigma_x\\,\\sigma_y\n\\]\n\n\nThe mean is a plain blend, but the risk is not: when \\(\\rho_{xy} &lt; 1\\), the cross term shrinks \\(\\text{Var}(Z)\\) below the blend of the two variances. Low or negative correlation is what makes diversification work.\nThe same math sizes a supply chain: two independent suppliers (\\(\\rho \\approx 0\\)) cut shortage risk far more than two whose outages correlate."
+  },
+  {
+    "objectID": "lecture_slides/05_chapter_discrete_probability_distributions/05_chapter_discrete_probability_distributions.html#a-question-that-often-comes-up-11",
+    "href": "lecture_slides/05_chapter_discrete_probability_distributions/05_chapter_discrete_probability_distributions.html#a-question-that-often-comes-up-11",
+    "title": " QM 6700: Business Analytics ",
+    "section": "A Question That Often Comes Up",
+    "text": "A Question That Often Comes Up\n\nA question that often comes up at this point:\nIf I double the interval, \\(\\mu\\) doubles. Does the tail probability \\(P(X \\geq N)\\) just double too?\n\nShort answer: no, only \\(\\mu\\) scales linearly with the interval; the tail does not. Double the window and you must recompute \\(P(X \\geq N)\\) with the new \\(\\mu\\) from scratch, because both the center and the whole shape shift. For Vungle: a per-second \\(\\mu\\) and a per-hour \\(\\mu\\) are a clean multiply apart, but their capacity tails are two separate POISSON.DIST calls. Scaling the rate is free; the probability still needs the function."
+  },
+  {
+    "objectID": "lecture_slides/05_chapter_discrete_probability_distributions/05_chapter_discrete_probability_distributions.html#where-the-probabilities-come-from",
+    "href": "lecture_slides/05_chapter_discrete_probability_distributions/05_chapter_discrete_probability_distributions.html#where-the-probabilities-come-from",
+    "title": " QM 6700: Business Analytics ",
+    "section": "Where the Probabilities Come From",
+    "text": "Where the Probabilities Come From\n\n\nThree standard ways to assign the probabilities \\(f(x)\\):\n\n\n\nClassical: equally likely outcomes (a fair die: each face \\(1/6\\)).\nSubjective: informed judgment when there is no track record.\nRelative frequency: the share of past observations, the route we take for JSL next. It gives an empirical distribution.\n\n\n\nA formula can also supply \\(f(x)\\) directly. The simplest is the discrete uniform, \\(f(x) = 1/n\\) over \\(n\\) equally likely values.\nOur two workhorses, the Binomial and Poisson, are the formula distributions that fit the Vungle install count."
   }
 ]
