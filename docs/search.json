@@ -626,7 +626,7 @@
     "href": "lecture_slides/06_chapter_continuous_probability_distributions/06_chapter_continuous_probability_distributions.html#the-brief-lecture-1",
     "title": " QM 6700: Business Analytics ",
     "section": "The Brief: Lecture 1",
-    "text": "The Brief: Lecture 1\n\n\nThe big call (Vungle A/B): roll out B, or stay with A? Today’s piece for the manager: what’s the chance of a high or low value (and can we fit a Normal to it)?\n\n\n“Before we can ask ‘how likely is eRPM above $3.50?’, we need a model for a continuous quantity. Today: what a continuous distribution is, and the two we use most, the uniform and the Normal.”\n\n\n\nThe payoff question \\(P(\\text{eRPM} &gt; \\$3.50)\\) waits for Lecture 2. First we build the machinery: probability as area, the Normal shape, and the z-score that handles any Normal.\nAnchor examples today: Slater’s Buffet (uniform) and Pep Zone inventory (Normal). Then we fit the Normal to Vungle eRPM."
+    "text": "The Brief: Lecture 1\n\n\nThe big call (Vungle A/B): roll out B, or stay with A? Today’s piece for the manager: What’s the chance of a high- or low-eRPM day? (and can we fit a Normal to it).\n\n\n“Before we can ask ‘how likely is eRPM above $3.50?’, we need a model for a continuous quantity. Today: what a continuous distribution is, and the two we use most, the uniform and the Normal.”\n\n\n\nThe payoff question \\(P(\\text{eRPM} &gt; \\$3.50)\\) waits for Lecture 2. First we build the machinery: probability as area, the Normal shape, and the z-score that handles any Normal.\nAnchor examples today: Slater’s Buffet (uniform) and Pep Zone inventory (Normal). Then we fit the Normal to Vungle eRPM."
   },
   {
     "objectID": "lecture_slides/06_chapter_continuous_probability_distributions/06_chapter_continuous_probability_distributions.html#discrete-vs.-continuous-probability-becomes-area",
@@ -682,7 +682,7 @@
     "href": "lecture_slides/06_chapter_continuous_probability_distributions/06_chapter_continuous_probability_distributions.html#the-empirical-rule",
     "title": " QM 6700: Business Analytics ",
     "section": "The Empirical Rule",
-    "text": "The Empirical Rule\n\n\n68.26% of values fall within \\(\\pm 1\\sigma\\) of the mean.\n95.44% fall within \\(\\pm 2\\sigma\\); 99.72% fall within \\(\\pm 3\\sigma\\).\nHalf the area (0.5) sits on each side of \\(\\mu\\). For Vungle: ~95% of B-days should fall in \\(3.46 \\pm 2(0.34) = (\\$2.77, \\$4.15)\\)."
+    "text": "The Empirical Rule\n\n\n68.26% of values fall within \\(\\pm 1\\sigma\\) of the mean.\n95.44% fall within \\(\\pm 2\\sigma\\); 99.72% fall within \\(\\pm 3\\sigma\\).\nHalf the area (0.5) sits on each side of \\(\\mu\\). For Vungle: ~95% of B-days should fall in \\(3.46 \\pm 2(0.34) = (\\$2.78, \\$4.14)\\)."
   },
   {
     "objectID": "lecture_slides/06_chapter_continuous_probability_distributions/06_chapter_continuous_probability_distributions.html#one-curve-to-rule-them-all-z-n0-1",
@@ -703,14 +703,14 @@
     "href": "lecture_slides/06_chapter_continuous_probability_distributions/06_chapter_continuous_probability_distributions.html#anchor-example-pep-zone-stockout",
     "title": " QM 6700: Business Analytics ",
     "section": "Anchor Example: Pep Zone Stockout",
-    "text": "Anchor Example: Pep Zone Stockout\n\n\nPep Zone reorders motor oil when stock hits 20 gallons. Demand during the replenishment lead time is Normal with mean 15, sd 6: \\(X \\sim N(15, 6)\\).\nWhat is the probability of a stockout, that demand exceeds 20 before the new stock arrives?\n\n\n\\[\nz = \\frac{20 - 15}{6} = 0.83 \\quad\\Rightarrow\\quad P(X &gt; 20) = P(Z &gt; 0.83) = 0.2023\n\\]\n\n\nAbout a 20% chance of running out on each cycle, and the store manager wants that lower."
+    "text": "Anchor Example: Pep Zone Stockout\n\n\nPep Zone reorders motor oil when stock hits 20 gallons. Demand during the replenishment lead time is Normal with mean 15, sd 6: \\(X \\sim N(15, 6)\\).\nWhat is the probability of a stockout, that demand exceeds 20 before the new stock arrives?\n\n\n\\[\nz = \\frac{20 - 15}{6} = 0.83 \\quad\\Rightarrow\\quad P(X &gt; 20) = P(Z &gt; 0.83) = 0.2033\n\\]\n\n\nAbout a 20% chance of running out on each cycle, and the store manager wants that lower."
   },
   {
     "objectID": "lecture_slides/06_chapter_continuous_probability_distributions/06_chapter_continuous_probability_distributions.html#pep-zone-the-stockout-area",
     "href": "lecture_slides/06_chapter_continuous_probability_distributions/06_chapter_continuous_probability_distributions.html#pep-zone-the-stockout-area",
     "title": " QM 6700: Business Analytics ",
     "section": "Pep Zone: the Stockout Area",
-    "text": "Pep Zone: the Stockout Area\n\n\nThe stockout probability is the right-tail area beyond 20 gallons: 0.2023.\nInverse question (Lecture 2 tool): what reorder point cuts stockout risk to 5%? Answer: \\(x = 15 + 1.645(6) \\approx 25\\) gallons. Raising the trigger from 20 to 25 drops stockout risk from ~20% to ~5%."
+    "text": "Pep Zone: the Stockout Area\n\n\nThe stockout probability is the right-tail area beyond 20 gallons: 0.2033.\nInverse question (Lecture 2 tool): what reorder point cuts stockout risk to 5%? Answer: \\(x = 15 + 1.645(6) \\approx 25\\) gallons. Raising the trigger from 20 to 25 drops stockout risk from ~20% to ~5%."
   },
   {
     "objectID": "lecture_slides/06_chapter_continuous_probability_distributions/06_chapter_continuous_probability_distributions.html#fitting-the-normal-to-daily-erpm-algorithm-b",
@@ -3964,7 +3964,7 @@
     "href": "lecture_slides/06_chapter_continuous_probability_distributions/06_chapter_continuous_probability_distributions.html#the-brief-todays-manager-question",
     "title": " QM 6700: Business Analytics ",
     "section": "The Brief: Today’s Manager Question",
-    "text": "The Brief: Today’s Manager Question\n\n\nThe big call (Vungle A/B): roll out algorithm B, or stay with A? Topic 9 settles it; today answers one piece: what’s the chance of a high or low eRPM day?\n\n\n“Model B’s daily eRPM as Normal($3.46, $0.34). What’s the chance tomorrow’s eRPM tops $3.50? What eRPM marks a 90th-percentile day, and is the Normal model even trustworthy here?”\n\n\n\nCounting distributions (Binomial, Poisson) answered “how many installs?” Today’s tool answers “how much revenue per impression, and how often above a threshold?”\nHow today’s studio runs: I demo each idea on a textbook example, then your group reproduces and interrogates the fitted Normal on the in-class group case, then we debrief what the model can and cannot tell the manager.\nBy the end you can turn a fitted distribution into a planning number (a probability and a percentile) and stress-test the assumption behind it."
+    "text": "The Brief: Today’s Manager Question\n\n\nThe big call (Vungle A/B): roll out algorithm B, or stay with A? Topic 9 settles it; today answers one piece: What’s the chance of a high- or low-eRPM day?\n\n\n“Model B’s daily eRPM as Normal($3.46, $0.34). What’s the chance tomorrow’s eRPM tops $3.50? What eRPM marks a 90th-percentile day, and is the Normal model even trustworthy here?”\n\n\n\nCounting distributions (Binomial, Poisson) answered “how many installs?” Today’s tool answers “how much revenue per impression, and how often above a threshold?”\nHow today’s studio runs: I demo each idea on a textbook example, then your group reproduces and interrogates the fitted Normal on the in-class group case, then we debrief what the model can and cannot tell the manager.\nBy the end you can turn a fitted distribution into a planning number (a probability and a percentile) and stress-test the assumption behind it."
   },
   {
     "objectID": "lecture_slides/06_chapter_continuous_probability_distributions/06_chapter_continuous_probability_distributions.html#the-managers-takeaway-lecture-1",
@@ -4532,5 +4532,96 @@
     "title": " QM 6700: Business Analytics ",
     "section": "Where the Probabilities Come From",
     "text": "Where the Probabilities Come From\n\n\nThree standard ways to assign the probabilities \\(f(x)\\):\n\n\n\nClassical: equally likely outcomes (a fair die: each face \\(1/6\\)).\nSubjective: informed judgment when there is no track record.\nRelative frequency: the share of past observations, the route we take for JSL next. It gives an empirical distribution.\n\n\n\nA formula can also supply \\(f(x)\\) directly. The simplest is the discrete uniform, \\(f(x) = 1/n\\) over \\(n\\) equally likely values.\nOur two workhorses, the Binomial and Poisson, are the formula distributions that fit the Vungle install count."
+  },
+  {
+    "objectID": "lecture_slides/06_chapter_continuous_probability_distributions/06_chapter_continuous_probability_distributions.html#how-every-class-runs",
+    "href": "lecture_slides/06_chapter_continuous_probability_distributions/06_chapter_continuous_probability_distributions.html#how-every-class-runs",
+    "title": " QM 6700: Business Analytics ",
+    "section": "How Every Class Runs",
+    "text": "How Every Class Runs\n\n\n\n\n\nThe class ends on the Team Sprint, your group’s graded submission: a decision plus your read of the analysis, one PDF before you leave."
+  },
+  {
+    "objectID": "lecture_slides/06_chapter_continuous_probability_distributions/06_chapter_continuous_probability_distributions.html#a-question-that-often-comes-up",
+    "href": "lecture_slides/06_chapter_continuous_probability_distributions/06_chapter_continuous_probability_distributions.html#a-question-that-often-comes-up",
+    "title": " QM 6700: Business Analytics ",
+    "section": "A Question That Often Comes Up",
+    "text": "A Question That Often Comes Up\n\nA question that often comes up at this point:\nIf \\(P(X = x) = 0\\) for every single value, how can eRPM ever be exactly $3.50 on some day?\n\nShort answer: it can land there; the probability we assign in advance to that one infinitely thin point is 0. With a continuous scale there are infinitely many possible values, so any single one carries no width and no area. That is why we always ask about an interval ($3.45 to $3.55, or “above $3.50”), never a lone point. For decisions this loses nothing: the manager cares about ranges, not whether tomorrow is $3.50000 to the last decimal."
+  },
+  {
+    "objectID": "lecture_slides/06_chapter_continuous_probability_distributions/06_chapter_continuous_probability_distributions.html#a-question-that-often-comes-up-1",
+    "href": "lecture_slides/06_chapter_continuous_probability_distributions/06_chapter_continuous_probability_distributions.html#a-question-that-often-comes-up-1",
+    "title": " QM 6700: Business Analytics ",
+    "section": "A Question That Often Comes Up",
+    "text": "A Question That Often Comes Up\n\nA question that often comes up at this point:\nVungle’s eRPM is bell-shaped, not flat. Why spend time on the uniform at all?\n\nShort answer: the uniform is the training wheels for “probability = area.” With a flat rectangle the area is just base times height, so you can see the whole idea without any new machinery. Once that clicks, the only thing that changes for eRPM is the shape of the curve: still area, just a bell instead of a rectangle, and now the area is hard enough by hand that we hand it to a z-score and Excel."
+  },
+  {
+    "objectID": "lecture_slides/06_chapter_continuous_probability_distributions/06_chapter_continuous_probability_distributions.html#a-question-that-often-comes-up-2",
+    "href": "lecture_slides/06_chapter_continuous_probability_distributions/06_chapter_continuous_probability_distributions.html#a-question-that-often-comes-up-2",
+    "title": " QM 6700: Business Analytics ",
+    "section": "A Question That Often Comes Up",
+    "text": "A Question That Often Comes Up\n\nA question that often comes up at this point:\nDo 68/95/99.7 hold for any data, or only when the data are Normal?\n\nShort answer: only for a Normal (bell) shape. The 68/95/99.7 split is a property of that curve, so the ($2.78, $4.14) range for B is trustworthy only to the extent B’s eRPM is bell-shaped. That is exactly why Lecture 2 spends a slide checking the Normal assumption (QQ plot, Shapiro-Wilk) before we let the rule put a number in front of the manager. Skewed or heavy-tailed data break these percentages."
+  },
+  {
+    "objectID": "lecture_slides/06_chapter_continuous_probability_distributions/06_chapter_continuous_probability_distributions.html#a-question-that-often-comes-up-3",
+    "href": "lecture_slides/06_chapter_continuous_probability_distributions/06_chapter_continuous_probability_distributions.html#a-question-that-often-comes-up-3",
+    "title": " QM 6700: Business Analytics ",
+    "section": "A Question That Often Comes Up",
+    "text": "A Question That Often Comes Up\n\nA question that often comes up at this point:\nIf Excel’s NORM.DIST takes the mean and SD directly, why bother standardizing to a z-score at all?\n\nShort answer: for the arithmetic, you do not have to: NORM.DIST(3.50, 3.459, 0.344, TRUE) skips the z entirely. The z-score earns its keep as a common ruler. Saying a $3.50 day is “z = 0.12, barely above average” lets you compare an eRPM day to an install count to a test score on one scale, and it is how textbooks and tables (and your exam) state Normal problems. Keep both: z for reasoning and comparison, Excel for the number."
+  },
+  {
+    "objectID": "lecture_slides/06_chapter_continuous_probability_distributions/06_chapter_continuous_probability_distributions.html#a-question-that-often-comes-up-4",
+    "href": "lecture_slides/06_chapter_continuous_probability_distributions/06_chapter_continuous_probability_distributions.html#a-question-that-often-comes-up-4",
+    "title": " QM 6700: Business Analytics ",
+    "section": "A Question That Often Comes Up",
+    "text": "A Question That Often Comes Up\n\nA question that often comes up at this point:\nWe just declared B’s eRPM Normal because the histogram looks like a bell. Isn’t that assuming what we want to prove?\n\nShort answer: fair worry, and it is why this is a working model, not a fact. A bell-shaped histogram is a reasonable starting hypothesis, no more. Lecture 2 puts it on trial with a QQ plot and the Shapiro-Wilk test before we let any probability ride on it. If B failed the check we would not throw out the data, we would switch to a model that fits its shape. We fit first, then verify, then decide."
+  },
+  {
+    "objectID": "lecture_slides/06_chapter_continuous_probability_distributions/06_chapter_continuous_probability_distributions.html#todays-question-todays-answer",
+    "href": "lecture_slides/06_chapter_continuous_probability_distributions/06_chapter_continuous_probability_distributions.html#todays-question-todays-answer",
+    "title": " QM 6700: Business Analytics ",
+    "section": "Today’s Question, Today’s Answer",
+    "text": "Today’s Question, Today’s Answer\n\nThe question (this rung of the ladder):\n\nCan we fit a single model to B’s daily eRPM, and where does a $3.50 day sit on it?\n\n\n\nThe answer we reached today:\n\nYes. B’s 30 days fit a Normal centered at $3.46 with spread $0.34, so the empirical rule already puts ~95% of B-days in ($2.78, $4.14). A $3.50 day standardizes to z = 0.12, barely above average. The exact “how often above $3.50?” probability lands in Lecture 2."
+  },
+  {
+    "objectID": "lecture_slides/06_chapter_continuous_probability_distributions/06_chapter_continuous_probability_distributions.html#how-every-class-runs-1",
+    "href": "lecture_slides/06_chapter_continuous_probability_distributions/06_chapter_continuous_probability_distributions.html#how-every-class-runs-1",
+    "title": " QM 6700: Business Analytics ",
+    "section": "How Every Class Runs",
+    "text": "How Every Class Runs\n\n\n\n\n\nThe class ends on the Team Sprint, your group’s graded submission: a decision plus your read of the analysis, one PDF before you leave."
+  },
+  {
+    "objectID": "lecture_slides/06_chapter_continuous_probability_distributions/06_chapter_continuous_probability_distributions.html#a-question-that-often-comes-up-5",
+    "href": "lecture_slides/06_chapter_continuous_probability_distributions/06_chapter_continuous_probability_distributions.html#a-question-that-often-comes-up-5",
+    "title": " QM 6700: Business Analytics ",
+    "section": "A Question That Often Comes Up",
+    "text": "A Question That Often Comes Up\n\nA question that often comes up at this point:\nNORM.DIST gives the area to the left. Does the answer change if I ask \\(P(\\text{eRPM} &gt; 3.50)\\) versus \\(P(\\text{eRPM} \\ge 3.50)\\), and why subtract from 1?\n\nShort answer: no change. For a continuous variable the single point $3.50 has zero area, so \\(&gt;\\) and \\(\\ge\\) give the identical number; the strict-versus-not distinction only matters for counts (Binomial, Poisson). We subtract from 1 because NORM.DIST(..., TRUE) returns the left area \\(P(X \\le 3.50) = 0.547\\), and a “tops $3.50” question wants the right tail: \\(1 - 0.547 = 0.453\\)."
+  },
+  {
+    "objectID": "lecture_slides/06_chapter_continuous_probability_distributions/06_chapter_continuous_probability_distributions.html#a-question-that-often-comes-up-6",
+    "href": "lecture_slides/06_chapter_continuous_probability_distributions/06_chapter_continuous_probability_distributions.html#a-question-that-often-comes-up-6",
+    "title": " QM 6700: Business Analytics ",
+    "section": "A Question That Often Comes Up",
+    "text": "A Question That Often Comes Up\n\nA question that often comes up at this point:\nI keep mixing up NORM.DIST and NORM.INV. How do I know which one to use?\n\nShort answer: match the function to what is given and what is asked. Given a dollar value, want a probability (“how often above $3.50?”) use NORM.DIST. Given a probability, want a dollar value (“what eRPM marks the top 10%?”) use NORM.INV. One takes an x and returns an area; the other takes an area and returns an x. They undo each other: NORM.INV(0.90, ...) = $3.90 and NORM.DIST(3.90, ...) = 0.90."
+  },
+  {
+    "objectID": "lecture_slides/06_chapter_continuous_probability_distributions/06_chapter_continuous_probability_distributions.html#a-question-that-often-comes-up-7",
+    "href": "lecture_slides/06_chapter_continuous_probability_distributions/06_chapter_continuous_probability_distributions.html#a-question-that-often-comes-up-7",
+    "title": " QM 6700: Business Analytics ",
+    "section": "A Question That Often Comes Up",
+    "text": "A Question That Often Comes Up\n\nA question that often comes up at this point:\nThe B-day points are not exactly on the line. How straight is straight enough, and doesn’t the Shapiro-Wilk test settle it for me?\n\nShort answer: never expect a perfect line; real data wiggle. You are looking for systematic departures (a clear S-curve, both ends flaring out), not minor scatter, and B shows none. The Shapiro-Wilk test backs the eye, it does not replace it: \\(p = 0.33\\) means “no evidence against Normal,” which is not the same as “proven Normal.” Read the plot and the p-value together, and remember a large \\(p\\) here is the result we want."
+  },
+  {
+    "objectID": "lecture_slides/06_chapter_continuous_probability_distributions/06_chapter_continuous_probability_distributions.html#a-question-that-often-comes-up-8",
+    "href": "lecture_slides/06_chapter_continuous_probability_distributions/06_chapter_continuous_probability_distributions.html#a-question-that-often-comes-up-8",
+    "title": " QM 6700: Business Analytics ",
+    "section": "A Question That Often Comes Up",
+    "text": "A Question That Often Comes Up\n\nA question that often comes up at this point:\nIf a 527,000-impression install count is essentially Normal, why did we bother learning the Binomial in Topic 5?\n\nShort answer: the Binomial is the truth; the Normal is a fast stand-in that only works at scale. The approximation needs \\(np \\ge 5\\) and \\(n(1-p) \\ge 5\\); for a small campaign (say 200 impressions) those fail and you go back to the exact Binomial. Vungle’s huge daily traffic is what makes the shortcut safe here, and it lets us answer “more than 2,000 installs?” with one NORM.DIST instead of summing thousands of Binomial terms."
+  },
+  {
+    "objectID": "lecture_slides/06_chapter_continuous_probability_distributions/06_chapter_continuous_probability_distributions.html#todays-question-todays-answer-1",
+    "href": "lecture_slides/06_chapter_continuous_probability_distributions/06_chapter_continuous_probability_distributions.html#todays-question-todays-answer-1",
+    "title": " QM 6700: Business Analytics ",
+    "section": "Today’s Question, Today’s Answer",
+    "text": "Today’s Question, Today’s Answer\n\nThe question (this rung of the ladder):\n\nWhat probability and percentile does the Normal give for B’s eRPM, and is the model fair to trust?\n\n\n\nThe answer we reached today:\n\nB clears $3.50 on 45% of days (\\(P = 0.453\\)), a top-10% day is $3.90, and the QQ plot plus Shapiro-Wilk (W = 0.96, p = 0.33) say the Normal is a fair model to use. So a $3.50 day is close to a coin flip; whether B beats A for good still rides on the inference tests in Topics 7–9."
   }
 ]
