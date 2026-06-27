@@ -52,7 +52,7 @@ html-math-method:
 
 <br>
 
-- [Vungle](https://en.wikipedia.org/wiki/Liftoff_Mobile) is a mobile ad-tech startup: it serves 15-second video ads inside other companies' apps and earns revenue mainly when viewers **install** the advertised app (cost-per-install).
+- [Vungle](https://techcrunch.com/2017/02/15/vungle-300-million/) is a mobile ad-tech startup: it serves 15-second video ads inside other companies' apps and earns revenue mainly when viewers **install** the advertised app (cost-per-install).
 
 - Two Darden MBAs, **Andrew Kritzer** and **Hammond Guerin**, built a new ad-serving algorithm (**B**) and ran it head-to-head against the existing one (**A**) for the entire month of June 2014.
 
@@ -77,6 +77,14 @@ html-math-method:
 - **How today's studio runs:** I demo each test on a textbook example, then on the Vungle data; you debrief the rollout call; then your group runs a fresh case and submits its own call.
 
 - By the end of class you, the manager, will have the recommendation, with the statistics to back it up.
+
+## How Every Class Runs
+
+![](figs/lecture_dynamic.png){.nostretch fig-align="center" width="90%"}
+
+::: nonincremental
+The class **ends on the Team Sprint**, your group's graded submission: a decision plus your read of the analysis, one PDF before you leave.
+:::
 
 ## How Today's Tools Answer It
 
@@ -138,6 +146,18 @@ knitr::include_graphics("figs/ab_test_design_schematic.png")
 - **Paired is preferred when feasible**, but it requires that every unit *can* be measured under both conditions.
 - When the units come from genuinely separate populations (bankrupt vs. non-bankrupt firms), only the **independent** design exists.
 :::
+
+## A Question That Often Comes Up
+
+:::: {.faq}
+**A question that often comes up at this point:**
+
+[If pairing removes so much noise, why would any analyst ever use the independent design?]{.faq-q}
+
+::: {.fragment .faq-a}
+**Short answer:** because pairing is often impossible. A firm is either bankrupt or it is not, so you cannot measure the *same* firm under both conditions; the owner's-equity comparison later today has no natural pair. Vungle got lucky: it could run A and B on the *same 30 days*, so it chose the paired design before collecting any data. Use pairing when a single unit can sit under both treatments; otherwise the independent design is your only option.
+:::
+::::
 
 ## The Hypotheses Are About a Difference
 
@@ -207,6 +227,18 @@ $$
 $$
 
 :::
+
+## A Question That Often Comes Up
+
+:::: {.faq}
+**A question that often comes up at this point:**
+
+[Why does subtracting within each pair get rid of the day-to-day swings?]{.faq-q}
+
+::: {.fragment .faq-a}
+**Short answer:** because both numbers in a pair share that day's conditions. If June 14 was a slow Saturday, *both* A and B earn less that day, so when you compute $d = \text{eRPM}_B - \text{eRPM}_A$ the Saturday effect cancels out of the difference. What survives is the part that is *not* shared: the algorithm. That is why the differences ($s_d = 0.18$) are far less noisy than the raw daily series ($s \approx 0.22$ to $0.34$).
+:::
+::::
 
 ## Paired $t$ Mechanics
 
@@ -404,6 +436,18 @@ $$
 
 - We will also report the two-tailed $p$-value (the more conservative convention) and the conclusion will not change.
 
+## A Question That Often Comes Up
+
+:::: {.faq}
+**A question that often comes up at this point:**
+
+[Isn't a one-tailed test just a trick to make the $p$-value smaller and get the answer we want?]{.faq-q}
+
+::: {.fragment .faq-a}
+**Short answer:** it would be, if we picked the direction *after* seeing the data. We did not: the rollout rule, "ship B only if it beats A," fixes the direction $H_a: \mu_d > 0$ **before** the test, because "B is worse" and "B is the same" lead to the same action (keep A). The honest guard is that we also report the two-tailed $p$-value ($\approx 0.0024$), and B still wins. If the call had hinged on which tail you chose, that would be a red flag.
+:::
+::::
+
 ## Step 3: Test Statistic
 
 <br>
@@ -495,6 +539,18 @@ $$
 - Even the **lower bound** (\$0.043 per 1,000 impressions) is a meaningful lift at Vungle's scale.
 
 - In Excel: `=T.INV(0.975, 29)` → 2.045; bounds with formula cells from $\bar d$ and $SE$.
+
+## A Question That Often Comes Up
+
+:::: {.faq}
+**A question that often comes up at this point:**
+
+[The test already said B is better, so why do we also need the confidence interval?]{.faq-q}
+
+::: {.fragment .faq-a}
+**Short answer:** the test and the interval answer two different manager questions. The test answers "is the lift **real**?" (yes: reject $H_0$). The interval answers "**how big** is it?": between \$0.04 and \$0.18 per 1,000 impressions. A rollout decision needs the size, not just the verdict: \$0.04 and \$0.18 scale to very different annual revenue, and you would weigh each against the cost of switching algorithms.
+:::
+::::
 
 ## Step 5, the Manager's Translation: Back to the Decision
 
@@ -645,6 +701,18 @@ $$
   - `P(T<=t) one-tail` / `two-tail`: your $p$-values
   - `t Critical one-tail` / `two-tail`: the cutoffs for $\alpha$
 
+## A Question That Often Comes Up
+
+:::: {.faq}
+**A question that often comes up at this point:**
+
+[If the pooled $t$ usually gives a similar answer, why is Welch the safer default?]{.faq-q}
+
+::: {.fragment .faq-a}
+**Short answer:** Welch never assumes the two groups have the same spread; pooled does. When the variances really are equal, Welch costs you almost nothing (the owner's-equity example gives nearly the same $t$ either way). When they differ, say a steady algorithm A versus a more volatile B, pooling understates the true uncertainty and can hand you a false "significant." You only know the variances are equal *after* checking, so start with the test that does not need the assumption.
+:::
+::::
+
 ## Anchor Example: Start-up Owner's Equity
 
 <br>
@@ -763,6 +831,18 @@ knitr::include_graphics("figs/excel_welch_vungle.png")
 
 - The design decision was made **before any data were collected**, when Vungle chose to run A and B *in parallel within each day*. Good analysis starts at design, not at the formula sheet.
 
+## A Question That Often Comes Up
+
+:::: {.faq}
+**A question that often comes up at this point:**
+
+[How can the exact same 30 numbers say "B wins" one way and "no difference" the other? Which one is right?]{.faq-q}
+
+::: {.fragment .faq-a}
+**Short answer:** the paired test is the right one here, because the data *are* paired: A and B ran on the same days, so the days are linked, and the A/B series move together ($r = 0.88$). The independent test throws that link away and treats day-to-day swings as random noise, which inflates the standard error and buries the \$0.11 lift. Same numbers, but the wrong test answers the wrong question. Match the test to how the data were collected.
+:::
+::::
+
 # Comparing Two Proportions {background-color="#cfb991"}
 
 ## Vungle's Other Metric: Conversion Rate
@@ -849,6 +929,18 @@ $$
 - Decision rule and $p$-value exactly as in the one-proportion $z$-test (Topic 8); Excel: `=NORM.S.DIST`.
 
 - **Rule of thumb:** pool under $H_0$ (testing); do **not** pool for confidence intervals.
+
+## A Question That Often Comes Up
+
+:::: {.faq}
+**A question that often comes up at this point:**
+
+[Why pool the two conversion rates for the test but keep them separate for the interval?]{.faq-q}
+
+::: {.fragment .faq-a}
+**Short answer:** the test starts by *assuming* $H_0$ is true, that A and B share one conversion rate $p$, so the best estimate of that single rate uses all 252M trials combined. The confidence interval makes no such assumption: it just reports the gap and how uncertain it is, so each group must keep its own rate ($\bar p_A = 0.403\%$, $\bar p_B = 0.354\%$). Pooling there would smuggle in the very "they are equal" claim the interval is trying to measure.
+:::
+::::
 
 ## No ToolPak Tool: Build It with Formulas
 
@@ -952,6 +1044,18 @@ The metric that matches the business model wins, not the bigger number. We resol
 
 - Flip side from the equity example: small samples can make real effects invisible (low power). **Large $n$: everything is significant. Small $n$: nothing is.** Neither replaces judgment about magnitude.
 
+## A Question That Often Comes Up
+
+:::: {.faq}
+**A question that often comes up at this point:**
+
+[If a $z$ of $-29.6$ does not settle the conversion question, what number should the manager actually act on?]{.faq-q}
+
+::: {.fragment .faq-a}
+**Short answer:** the effect size, not the $z$. The $z$ only confirms the gap is not luck (with 252M trials, that was never in doubt). The number to debate is the size of the gap: $-0.048$ percentage points, a 12% relative drop in conversion. Then ask the business question the $z$ cannot: is a 12% conversion drop tolerable given B's higher eRPM? That is a judgment call about magnitude, which is why we monitor conversion rather than block the rollout on it.
+:::
+::::
+
 # Debrief: The Rollout Call {background-color="#cfb991"}
 
 ## Three Tests, One Decision
@@ -992,6 +1096,22 @@ The metric that matches the business model wins, not the bigger number. We resol
 | Pooled $t$ | $\mu_1 - \mu_2 = 0$ | (Owner's-equity anchor; equal-variance variant) | $t = -1.96$, $p = .060$ | Fail to reject: low power at $n = 15$ |
 | Two-sample $z$ ($\sigma$ known) | $\mu_1 - \mu_2 = 0$ | Rare; completeness of the decision tree | n/a | Use when $\sigma_1, \sigma_2$ truly known |
 | Two-proportion $z$ | $p_1 - p_2 = 0$ | Conversion: installs/impressions, 252M trials | $z = -29.56$, $p < .0001$ | Reject: B converts less |
+:::
+
+## Today's Question, Today's Answer
+
+<br>
+
+**The question (Topic 9 of the ladder):**
+
+> *Is B really better than A?*
+
+::: fragment
+<br>
+
+**The answer we reached today:**
+
+> **Yes, on the metric that pays the bills.** Paired on 30 days, B's mean daily eRPM beats A's by **\$0.11** ($t = 3.33$, one-tail $p = 0.0012$, 95% CI \$0.04 to \$0.18): a real lift, not noise. B converts fewer installs ($z = -29.6$), but eRPM is Vungle's north star, so the call is **roll out B** and monitor the install funnel.
 :::
 
 ## The Manager's Takeaway

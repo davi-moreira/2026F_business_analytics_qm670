@@ -32,7 +32,7 @@
       vertical-align: middle;
     }
   </style>
-  <link rel="stylesheet" href="../../site_libs/revealjs/dist/theme/quarto-113b5beb2a57b2deea58feb1108e76b2.css">
+  <link rel="stylesheet" href="../../site_libs/revealjs/dist/theme/quarto-8fc47a4fdcba9931a3aa90ef56f89358.css">
   <link href="../../site_libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
   <link href="../../site_libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
   <link href="../../site_libs/revealjs/plugin/reveal-menu/quarto-menu.css" rel="stylesheet">
@@ -176,7 +176,7 @@ Professor<br>Davi Moreira<br>
 <h2>June 30, 2014: Two Analysts and One Month of Data</h2>
 <p><br></p>
 <ul>
-<li class="fragment"><p><a href="https://en.wikipedia.org/wiki/Liftoff_Mobile">Vungle</a> is a mobile ad-tech startup: it serves 15-second video ads inside other companies’ apps and earns revenue mainly when viewers <strong>install</strong> the advertised app (cost-per-install).</p></li>
+<li class="fragment"><p><a href="https://techcrunch.com/2017/02/15/vungle-300-million/">Vungle</a> is a mobile ad-tech startup: it serves 15-second video ads inside other companies’ apps and earns revenue mainly when viewers <strong>install</strong> the advertised app (cost-per-install).</p></li>
 <li class="fragment"><p>Two Darden MBAs, <strong>Andrew Kritzer</strong> and <strong>Hammond Guerin</strong>, built a new ad-serving algorithm (<strong>B</strong>) and ran it head-to-head against the existing one (<strong>A</strong>) for the entire month of June 2014.</p></li>
 <li class="fragment"><p>The split was random: an MD5 hash of each user ID sent <strong>1/16 of traffic to B</strong>, the rest to A. Same market, same days, same apps; only the algorithm differs.</p></li>
 <li class="fragment"><p>The metric that pays the bills is <strong>eRPM</strong>: effective revenue per 1,000 impressions.</p></li>
@@ -198,6 +198,15 @@ Professor<br>Davi Moreira<br>
 <li class="fragment"><p><strong>How today’s studio runs:</strong> I demo each test on a textbook example, then on the Vungle data; you debrief the rollout call; then your group runs a fresh case and submits its own call.</p></li>
 <li class="fragment"><p>By the end of class you, the manager, will have the recommendation, with the statistics to back it up.</p></li>
 </ul>
+</section>
+<section id="how-every-class-runs" class="slide level2 center">
+<h2>How Every Class Runs</h2>
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="figs/lecture_dynamic.png" class="quarto-figure quarto-figure-center" style="width:90.0%"></p>
+</figure>
+</div>
+<p>The class <strong>ends on the Team Sprint</strong>, your group’s graded submission: a decision plus your read of the analysis, one PDF before you leave.</p>
 </section>
 <section id="how-todays-tools-answer-it" class="slide level2 center">
 <h2>How Today’s Tools Answer It</h2>
@@ -281,6 +290,16 @@ Professor<br>Davi Moreira<br>
 <li><strong>Paired is preferred when feasible</strong>, but it requires that every unit <em>can</em> be measured under both conditions.</li>
 <li>When the units come from genuinely separate populations (bankrupt vs.&nbsp;non-bankrupt firms), only the <strong>independent</strong> design exists.</li>
 </ul>
+</section>
+<section id="a-question-that-often-comes-up" class="slide level2 center">
+<h2>A Question That Often Comes Up</h2>
+<div class="faq">
+<p><strong>A question that often comes up at this point:</strong></p>
+<p><span class="faq-q">If pairing removes so much noise, why would any analyst ever use the independent design?</span></p>
+<div class="fragment faq-a">
+<p><strong>Short answer:</strong> because pairing is often impossible. A firm is either bankrupt or it is not, so you cannot measure the <em>same</em> firm under both conditions; the owner’s-equity comparison later today has no natural pair. Vungle got lucky: it could run A and B on the <em>same 30 days</em>, so it chose the paired design before collecting any data. Use pairing when a single unit can sit under both treatments; otherwise the independent design is your only option.</p>
+</div>
+</div>
 </section>
 <section id="the-hypotheses-are-about-a-difference" class="slide level2 center">
 <h2>The Hypotheses Are About a Difference</h2>
@@ -390,6 +409,16 @@ d_i = x_{1i} - x_{2i}
 <p><span class="math display">\[
 \bar{d} = \frac{1}{n}\sum_{i=1}^{n} d_i
 \]</span></p>
+</div>
+</section>
+<section id="a-question-that-often-comes-up-1" class="slide level2 center">
+<h2>A Question That Often Comes Up</h2>
+<div class="faq">
+<p><strong>A question that often comes up at this point:</strong></p>
+<p><span class="faq-q">Why does subtracting within each pair get rid of the day-to-day swings?</span></p>
+<div class="fragment faq-a">
+<p><strong>Short answer:</strong> because both numbers in a pair share that day’s conditions. If June 14 was a slow Saturday, <em>both</em> A and B earn less that day, so when you compute <span class="math inline">\(d = \text{eRPM}_B - \text{eRPM}_A\)</span> the Saturday effect cancels out of the difference. What survives is the part that is <em>not</em> shared: the algorithm. That is why the differences (<span class="math inline">\(s_d = 0.18\)</span>) are far less noisy than the raw daily series (<span class="math inline">\(s \approx 0.22\)</span> to <span class="math inline">\(0.34\)</span>).</p>
+</div>
 </div>
 </section>
 <section id="paired-t-mechanics" class="slide level2 center">
@@ -617,6 +646,16 @@ H_0: \mu_d \leq 0 \qquad \text{vs.} \qquad H_a: \mu_d &gt; 0 \qquad \text{(upper
 <li class="fragment"><p>We will also report the two-tailed <span class="math inline">\(p\)</span>-value (the more conservative convention) and the conclusion will not change.</p></li>
 </ul>
 </section>
+<section id="a-question-that-often-comes-up-2" class="slide level2 center">
+<h2>A Question That Often Comes Up</h2>
+<div class="faq">
+<p><strong>A question that often comes up at this point:</strong></p>
+<p><span class="faq-q">Isn’t a one-tailed test just a trick to make the <span class="math inline">\(p\)</span>-value smaller and get the answer we want?</span></p>
+<div class="fragment faq-a">
+<p><strong>Short answer:</strong> it would be, if we picked the direction <em>after</em> seeing the data. We did not: the rollout rule, “ship B only if it beats A,” fixes the direction <span class="math inline">\(H_a: \mu_d &gt; 0\)</span> <strong>before</strong> the test, because “B is worse” and “B is the same” lead to the same action (keep A). The honest guard is that we also report the two-tailed <span class="math inline">\(p\)</span>-value (<span class="math inline">\(\approx 0.0024\)</span>), and B still wins. If the call had hinged on which tail you chose, that would be a red flag.</p>
+</div>
+</div>
+</section>
 <section id="step-3-test-statistic" class="slide level2 center">
 <h2>Step 3: Test Statistic</h2>
 <p><br></p>
@@ -720,6 +759,16 @@ t = \frac{0.1119}{0.1843/\sqrt{30}} = \frac{0.1119}{0.0337} = 3.325
 <li class="fragment"><p>Even the <strong>lower bound</strong> ($0.043 per 1,000 impressions) is a meaningful lift at Vungle’s scale.</p></li>
 <li class="fragment"><p>In Excel: <code>=T.INV(0.975, 29)</code> → 2.045; bounds with formula cells from <span class="math inline">\(\bar d\)</span> and <span class="math inline">\(SE\)</span>.</p></li>
 </ul>
+</section>
+<section id="a-question-that-often-comes-up-3" class="slide level2 center">
+<h2>A Question That Often Comes Up</h2>
+<div class="faq">
+<p><strong>A question that often comes up at this point:</strong></p>
+<p><span class="faq-q">The test already said B is better, so why do we also need the confidence interval?</span></p>
+<div class="fragment faq-a">
+<p><strong>Short answer:</strong> the test and the interval answer two different manager questions. The test answers “is the lift <strong>real</strong>?” (yes: reject <span class="math inline">\(H_0\)</span>). The interval answers “<strong>how big</strong> is it?”: between $0.04 and $0.18 per 1,000 impressions. A rollout decision needs the size, not just the verdict: $0.04 and $0.18 scale to very different annual revenue, and you would weigh each against the cost of switching algorithms.</p>
+</div>
+</div>
 </section>
 <section id="step-5-the-managers-translation-back-to-the-decision" class="slide level2 center">
 <h2>Step 5, the Manager’s Translation: Back to the Decision</h2>
@@ -852,6 +901,16 @@ df = \frac{\left(\dfrac{s_1^2}{n_1} + \dfrac{s_2^2}{n_2}\right)^2}{\dfrac{(s_1^2
 <li class="fragment"><code>t Critical one-tail</code> / <code>two-tail</code>: the cutoffs for <span class="math inline">\(\alpha\)</span></li>
 </ul></li>
 </ul>
+</section>
+<section id="a-question-that-often-comes-up-4" class="slide level2 center">
+<h2>A Question That Often Comes Up</h2>
+<div class="faq">
+<p><strong>A question that often comes up at this point:</strong></p>
+<p><span class="faq-q">If the pooled <span class="math inline">\(t\)</span> usually gives a similar answer, why is Welch the safer default?</span></p>
+<div class="fragment faq-a">
+<p><strong>Short answer:</strong> Welch never assumes the two groups have the same spread; pooled does. When the variances really are equal, Welch costs you almost nothing (the owner’s-equity example gives nearly the same <span class="math inline">\(t\)</span> either way). When they differ, say a steady algorithm A versus a more volatile B, pooling understates the true uncertainty and can hand you a false “significant.” You only know the variances are equal <em>after</em> checking, so start with the test that does not need the assumption.</p>
+</div>
+</div>
 </section>
 <section id="anchor-example-start-up-owners-equity" class="slide level2 center">
 <h2>Anchor Example: Start-up Owner’s Equity</h2>
@@ -995,6 +1054,16 @@ t = \frac{(5.73 - 7.87) - 0}{\sqrt{\dfrac{3.33^2}{15} + \dfrac{2.61^2}{15}}} = \
 <li class="fragment"><p>Why: day-to-day market swings (weekends, seasonality) inflate the independent-samples noise (<span class="math inline">\(s \approx 0.22\)</span>–<span class="math inline">\(0.34\)</span>), while pairing cancels them (<span class="math inline">\(s_d = 0.18\)</span> on the <em>differences</em>, and the A/B series are correlated at <span class="math inline">\(r = 0.88\)</span>).</p></li>
 <li class="fragment"><p>The design decision was made <strong>before any data were collected</strong>, when Vungle chose to run A and B <em>in parallel within each day</em>. Good analysis starts at design, not at the formula sheet.</p></li>
 </ul>
+</section>
+<section id="a-question-that-often-comes-up-5" class="slide level2 center">
+<h2>A Question That Often Comes Up</h2>
+<div class="faq">
+<p><strong>A question that often comes up at this point:</strong></p>
+<p><span class="faq-q">How can the exact same 30 numbers say “B wins” one way and “no difference” the other? Which one is right?</span></p>
+<div class="fragment faq-a">
+<p><strong>Short answer:</strong> the paired test is the right one here, because the data <em>are</em> paired: A and B ran on the same days, so the days are linked, and the A/B series move together (<span class="math inline">\(r = 0.88\)</span>). The independent test throws that link away and treats day-to-day swings as random noise, which inflates the standard error and buries the $0.11 lift. Same numbers, but the wrong test answers the wrong question. Match the test to how the data were collected.</p>
+</div>
+</div>
 </section></section>
 <section>
 <section id="comparing-two-proportions" class="title-slide slide level1 center" data-background-color="#cfb991">
@@ -1094,6 +1163,16 @@ z = \frac{\bar{p}_1 - \bar{p}_2}{SE_{pool}}
 <li class="fragment"><p>Decision rule and <span class="math inline">\(p\)</span>-value exactly as in the one-proportion <span class="math inline">\(z\)</span>-test (Topic 8); Excel: <code>=NORM.S.DIST</code>.</p></li>
 <li class="fragment"><p><strong>Rule of thumb:</strong> pool under <span class="math inline">\(H_0\)</span> (testing); do <strong>not</strong> pool for confidence intervals.</p></li>
 </ul>
+</section>
+<section id="a-question-that-often-comes-up-6" class="slide level2 center">
+<h2>A Question That Often Comes Up</h2>
+<div class="faq">
+<p><strong>A question that often comes up at this point:</strong></p>
+<p><span class="faq-q">Why pool the two conversion rates for the test but keep them separate for the interval?</span></p>
+<div class="fragment faq-a">
+<p><strong>Short answer:</strong> the test starts by <em>assuming</em> <span class="math inline">\(H_0\)</span> is true, that A and B share one conversion rate <span class="math inline">\(p\)</span>, so the best estimate of that single rate uses all 252M trials combined. The confidence interval makes no such assumption: it just reports the gap and how uncertain it is, so each group must keep its own rate (<span class="math inline">\(\bar p_A = 0.403\%\)</span>, <span class="math inline">\(\bar p_B = 0.354\%\)</span>). Pooling there would smuggle in the very “they are equal” claim the interval is trying to measure.</p>
+</div>
+</div>
 </section>
 <section id="no-toolpak-tool-build-it-with-formulas" class="slide level2 center">
 <h2>No ToolPak Tool: Build It with Formulas</h2>
@@ -1199,6 +1278,16 @@ z = \frac{0.003541 - 0.004025}{0.0000164} = \mathbf{-29.56}
 <li class="fragment"><p>Always pair the test with the <strong>effect size</strong>: -0.048 percentage points (a 12% relative drop in conversion). That is the number the manager should debate.</p></li>
 <li class="fragment"><p>Flip side from the equity example: small samples can make real effects invisible (low power). <strong>Large <span class="math inline">\(n\)</span>: everything is significant. Small <span class="math inline">\(n\)</span>: nothing is.</strong> Neither replaces judgment about magnitude.</p></li>
 </ul>
+</section>
+<section id="a-question-that-often-comes-up-7" class="slide level2 center">
+<h2>A Question That Often Comes Up</h2>
+<div class="faq">
+<p><strong>A question that often comes up at this point:</strong></p>
+<p><span class="faq-q">If a <span class="math inline">\(z\)</span> of <span class="math inline">\(-29.6\)</span> does not settle the conversion question, what number should the manager actually act on?</span></p>
+<div class="fragment faq-a">
+<p><strong>Short answer:</strong> the effect size, not the <span class="math inline">\(z\)</span>. The <span class="math inline">\(z\)</span> only confirms the gap is not luck (with 252M trials, that was never in doubt). The number to debate is the size of the gap: <span class="math inline">\(-0.048\)</span> percentage points, a 12% relative drop in conversion. Then ask the business question the <span class="math inline">\(z\)</span> cannot: is a 12% conversion drop tolerable given B’s higher eRPM? That is a judgment call about magnitude, which is why we monitor conversion rather than block the rollout on it.</p>
+</div>
+</div>
 </section></section>
 <section>
 <section id="debrief-the-rollout-call" class="title-slide slide level1 center" data-background-color="#cfb991">
@@ -1318,6 +1407,21 @@ z = \frac{0.003541 - 0.004025}{0.0000164} = \mathbf{-29.56}
 </tr>
 </tbody>
 </table>
+</div>
+</section>
+<section id="todays-question-todays-answer" class="slide level2 center">
+<h2>Today’s Question, Today’s Answer</h2>
+<p><br></p>
+<p><strong>The question (Topic 9 of the ladder):</strong></p>
+<blockquote>
+<p><em>Is B really better than A?</em></p>
+</blockquote>
+<div class="fragment">
+<p><br></p>
+<p><strong>The answer we reached today:</strong></p>
+<blockquote>
+<p><strong>Yes, on the metric that pays the bills.</strong> Paired on 30 days, B’s mean daily eRPM beats A’s by <strong>$0.11</strong> (<span class="math inline">\(t = 3.33\)</span>, one-tail <span class="math inline">\(p = 0.0012\)</span>, 95% CI $0.04 to $0.18): a real lift, not noise. B converts fewer installs (<span class="math inline">\(z = -29.6\)</span>), but eRPM is Vungle’s north star, so the call is <strong>roll out B</strong> and monitor the install funnel.</p>
+</blockquote>
 </div>
 </section>
 <section id="the-managers-takeaway" class="slide level2 center">

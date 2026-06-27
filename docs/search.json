@@ -4805,5 +4805,75 @@
     "title": " QM 6700: Business Analytics ",
     "section": "If \\(\\sigma\\) Were Known: the \\(z\\) Version of the Same Test",
     "text": "If \\(\\sigma\\) Were Known: the \\(z\\) Version of the Same Test\n\n\nSometimes a long process history pins down the true standard deviation \\(\\sigma\\). Then you do not estimate the spread, so there is no extra uncertainty and the statistic is a \\(z\\) on the standard normal:\n\n\n\\[\nz = \\frac{\\bar{x} - \\mu_0}{\\sigma / \\sqrt{n}}\n\\]\n\n\nSame five steps, same two roads, only the reference curve changes. Excel: =NORM.S.INV(1-α) for the critical \\(z\\) (\\(z_{0.05} = 1.645\\)); =1-NORM.S.DIST(z, TRUE) for an upper-tail \\(p\\)-value.\nThe decision rule: is \\(\\sigma\\) known? If yes (and \\(n \\geq 30\\) or the data look normal), use \\(z\\). If no, estimate it with \\(s\\) and use \\(t\\) with \\(df = n-1\\). In practice \\(\\sigma\\) is almost never known, so B’s eRPM test uses \\(t\\); we show \\(z\\) so the textbook formula is on the record."
+  },
+  {
+    "objectID": "lecture_slides/09_chapter_hypothesis_tests_two_populations/09_chapter_hypothesis_tests_two_populations.html#how-every-class-runs",
+    "href": "lecture_slides/09_chapter_hypothesis_tests_two_populations/09_chapter_hypothesis_tests_two_populations.html#how-every-class-runs",
+    "title": " QM 6700: Business Analytics ",
+    "section": "How Every Class Runs",
+    "text": "How Every Class Runs\n\n\n\n\n\nThe class ends on the Team Sprint, your group’s graded submission: a decision plus your read of the analysis, one PDF before you leave."
+  },
+  {
+    "objectID": "lecture_slides/09_chapter_hypothesis_tests_two_populations/09_chapter_hypothesis_tests_two_populations.html#todays-question-todays-answer",
+    "href": "lecture_slides/09_chapter_hypothesis_tests_two_populations/09_chapter_hypothesis_tests_two_populations.html#todays-question-todays-answer",
+    "title": " QM 6700: Business Analytics ",
+    "section": "Today’s Question, Today’s Answer",
+    "text": "Today’s Question, Today’s Answer\n\nThe question (Topic 9 of the ladder):\n\nIs B really better than A?\n\n\n\nThe answer we reached today:\n\nYes, on the metric that pays the bills. Paired on 30 days, B’s mean daily eRPM beats A’s by $0.11 (\\(t = 3.33\\), one-tail \\(p = 0.0012\\), 95% CI $0.04 to $0.18): a real lift, not noise. B converts fewer installs (\\(z = -29.6\\)), but eRPM is Vungle’s north star, so the call is roll out B and monitor the install funnel."
+  },
+  {
+    "objectID": "lecture_slides/09_chapter_hypothesis_tests_two_populations/09_chapter_hypothesis_tests_two_populations.html#a-question-that-often-comes-up",
+    "href": "lecture_slides/09_chapter_hypothesis_tests_two_populations/09_chapter_hypothesis_tests_two_populations.html#a-question-that-often-comes-up",
+    "title": " QM 6700: Business Analytics ",
+    "section": "A Question That Often Comes Up",
+    "text": "A Question That Often Comes Up\n\nA question that often comes up at this point:\nIf pairing removes so much noise, why would any analyst ever use the independent design?\n\nShort answer: because pairing is often impossible. A firm is either bankrupt or it is not, so you cannot measure the same firm under both conditions; the owner’s-equity comparison later today has no natural pair. Vungle got lucky: it could run A and B on the same 30 days, so it chose the paired design before collecting any data. Use pairing when a single unit can sit under both treatments; otherwise the independent design is your only option."
+  },
+  {
+    "objectID": "lecture_slides/09_chapter_hypothesis_tests_two_populations/09_chapter_hypothesis_tests_two_populations.html#a-question-that-often-comes-up-1",
+    "href": "lecture_slides/09_chapter_hypothesis_tests_two_populations/09_chapter_hypothesis_tests_two_populations.html#a-question-that-often-comes-up-1",
+    "title": " QM 6700: Business Analytics ",
+    "section": "A Question That Often Comes Up",
+    "text": "A Question That Often Comes Up\n\nA question that often comes up at this point:\nWhy does subtracting within each pair get rid of the day-to-day swings?\n\nShort answer: because both numbers in a pair share that day’s conditions. If June 14 was a slow Saturday, both A and B earn less that day, so when you compute \\(d = \\text{eRPM}_B - \\text{eRPM}_A\\) the Saturday effect cancels out of the difference. What survives is the part that is not shared: the algorithm. That is why the differences (\\(s_d = 0.18\\)) are far less noisy than the raw daily series (\\(s \\approx 0.22\\) to \\(0.34\\))."
+  },
+  {
+    "objectID": "lecture_slides/09_chapter_hypothesis_tests_two_populations/09_chapter_hypothesis_tests_two_populations.html#a-question-that-often-comes-up-2",
+    "href": "lecture_slides/09_chapter_hypothesis_tests_two_populations/09_chapter_hypothesis_tests_two_populations.html#a-question-that-often-comes-up-2",
+    "title": " QM 6700: Business Analytics ",
+    "section": "A Question That Often Comes Up",
+    "text": "A Question That Often Comes Up\n\nA question that often comes up at this point:\nIsn’t a one-tailed test just a trick to make the \\(p\\)-value smaller and get the answer we want?\n\nShort answer: it would be, if we picked the direction after seeing the data. We did not: the rollout rule, “ship B only if it beats A,” fixes the direction \\(H_a: \\mu_d &gt; 0\\) before the test, because “B is worse” and “B is the same” lead to the same action (keep A). The honest guard is that we also report the two-tailed \\(p\\)-value (\\(\\approx 0.0024\\)), and B still wins. If the call had hinged on which tail you chose, that would be a red flag."
+  },
+  {
+    "objectID": "lecture_slides/09_chapter_hypothesis_tests_two_populations/09_chapter_hypothesis_tests_two_populations.html#a-question-that-often-comes-up-3",
+    "href": "lecture_slides/09_chapter_hypothesis_tests_two_populations/09_chapter_hypothesis_tests_two_populations.html#a-question-that-often-comes-up-3",
+    "title": " QM 6700: Business Analytics ",
+    "section": "A Question That Often Comes Up",
+    "text": "A Question That Often Comes Up\n\nA question that often comes up at this point:\nThe test already said B is better, so why do we also need the confidence interval?\n\nShort answer: the test and the interval answer two different manager questions. The test answers “is the lift real?” (yes: reject \\(H_0\\)). The interval answers “how big is it?”: between $0.04 and $0.18 per 1,000 impressions. A rollout decision needs the size, not just the verdict: $0.04 and $0.18 scale to very different annual revenue, and you would weigh each against the cost of switching algorithms."
+  },
+  {
+    "objectID": "lecture_slides/09_chapter_hypothesis_tests_two_populations/09_chapter_hypothesis_tests_two_populations.html#a-question-that-often-comes-up-4",
+    "href": "lecture_slides/09_chapter_hypothesis_tests_two_populations/09_chapter_hypothesis_tests_two_populations.html#a-question-that-often-comes-up-4",
+    "title": " QM 6700: Business Analytics ",
+    "section": "A Question That Often Comes Up",
+    "text": "A Question That Often Comes Up\n\nA question that often comes up at this point:\nIf the pooled \\(t\\) usually gives a similar answer, why is Welch the safer default?\n\nShort answer: Welch never assumes the two groups have the same spread; pooled does. When the variances really are equal, Welch costs you almost nothing (the owner’s-equity example gives nearly the same \\(t\\) either way). When they differ, say a steady algorithm A versus a more volatile B, pooling understates the true uncertainty and can hand you a false “significant.” You only know the variances are equal after checking, so start with the test that does not need the assumption."
+  },
+  {
+    "objectID": "lecture_slides/09_chapter_hypothesis_tests_two_populations/09_chapter_hypothesis_tests_two_populations.html#a-question-that-often-comes-up-5",
+    "href": "lecture_slides/09_chapter_hypothesis_tests_two_populations/09_chapter_hypothesis_tests_two_populations.html#a-question-that-often-comes-up-5",
+    "title": " QM 6700: Business Analytics ",
+    "section": "A Question That Often Comes Up",
+    "text": "A Question That Often Comes Up\n\nA question that often comes up at this point:\nHow can the exact same 30 numbers say “B wins” one way and “no difference” the other? Which one is right?\n\nShort answer: the paired test is the right one here, because the data are paired: A and B ran on the same days, so the days are linked, and the A/B series move together (\\(r = 0.88\\)). The independent test throws that link away and treats day-to-day swings as random noise, which inflates the standard error and buries the $0.11 lift. Same numbers, but the wrong test answers the wrong question. Match the test to how the data were collected."
+  },
+  {
+    "objectID": "lecture_slides/09_chapter_hypothesis_tests_two_populations/09_chapter_hypothesis_tests_two_populations.html#a-question-that-often-comes-up-6",
+    "href": "lecture_slides/09_chapter_hypothesis_tests_two_populations/09_chapter_hypothesis_tests_two_populations.html#a-question-that-often-comes-up-6",
+    "title": " QM 6700: Business Analytics ",
+    "section": "A Question That Often Comes Up",
+    "text": "A Question That Often Comes Up\n\nA question that often comes up at this point:\nWhy pool the two conversion rates for the test but keep them separate for the interval?\n\nShort answer: the test starts by assuming \\(H_0\\) is true, that A and B share one conversion rate \\(p\\), so the best estimate of that single rate uses all 252M trials combined. The confidence interval makes no such assumption: it just reports the gap and how uncertain it is, so each group must keep its own rate (\\(\\bar p_A = 0.403\\%\\), \\(\\bar p_B = 0.354\\%\\)). Pooling there would smuggle in the very “they are equal” claim the interval is trying to measure."
+  },
+  {
+    "objectID": "lecture_slides/09_chapter_hypothesis_tests_two_populations/09_chapter_hypothesis_tests_two_populations.html#a-question-that-often-comes-up-7",
+    "href": "lecture_slides/09_chapter_hypothesis_tests_two_populations/09_chapter_hypothesis_tests_two_populations.html#a-question-that-often-comes-up-7",
+    "title": " QM 6700: Business Analytics ",
+    "section": "A Question That Often Comes Up",
+    "text": "A Question That Often Comes Up\n\nA question that often comes up at this point:\nIf a \\(z\\) of \\(-29.6\\) does not settle the conversion question, what number should the manager actually act on?\n\nShort answer: the effect size, not the \\(z\\). The \\(z\\) only confirms the gap is not luck (with 252M trials, that was never in doubt). The number to debate is the size of the gap: \\(-0.048\\) percentage points, a 12% relative drop in conversion. Then ask the business question the \\(z\\) cannot: is a 12% conversion drop tolerable given B’s higher eRPM? That is a judgment call about magnitude, which is why we monitor conversion rather than block the rollout on it."
   }
 ]
