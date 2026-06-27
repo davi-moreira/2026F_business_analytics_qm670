@@ -89,6 +89,14 @@ html-math-method:
 
 - **Lecture 1's question:** *if the sample mean changes every time we sample, how can the manager trust any one of them?* The answer is the **sampling distribution**, and it is surprisingly well-behaved.
 
+## How Every Class Runs
+
+![](figs/lecture_dynamic.png){.nostretch fig-align="center" width="90%"}
+
+::: nonincremental
+The class **ends on the Team Sprint**, your group's graded submission: a decision plus your read of the analysis, one PDF before you leave.
+:::
+
 ## Population, Sample, Inference
 
 ```{r echo=FALSE, out.width="78%", fig.align="center"}
@@ -98,6 +106,17 @@ knitr::include_graphics("figs/population_sample_inference.png")
 ::: nonincremental
 - **Population:** every future impression B will serve; its true mean eRPM $\mu$ is **unknown**.
 - **Sample:** the 30 June days. We use them to **estimate** $\mu$, first with a point, later with an interval.
+:::
+
+## How the Sample Is Drawn
+
+```{r echo=FALSE, out.width="84%", fig.align="center"}
+knitr::include_graphics("figs/sampling_methods.png")
+```
+
+::: nonincremental
+- **Probability** sampling gives every unit a **known chance** of selection, so the sampling distribution and every formula today hold. **Non-probability** samples (convenience, judgment) have no known selection chance, so the inference math does not apply.
+- Vungle's 30 days are a probability sample of B's running output, which is what licenses the standard error and interval we build today.
 :::
 
 # Point Estimation {background-color="#cfb991"}
@@ -154,6 +173,18 @@ knitr::include_graphics("figs/population_sample_inference.png")
 
 - These three numbers are our best single guesses. The rest of the topic builds the **interval** that quantifies how far off each guess might be.
 
+## A Question That Often Comes Up
+
+:::: {.faq}
+**A question that often comes up at this point:**
+
+[If a point estimate like $\bar{x}_B = \$3.459$ is never exactly the true mean, why report a single number at all?]{.faq-q}
+
+::: {.fragment .faq-a}
+**Short answer:** $\bar{x}_B = \$3.459$ is still the best single guess we have, and every revenue projection has to start somewhere. The point is not to throw it away; it is to **attach a measure of how far off it might be**. That measure is the standard error, and the rest of the topic turns \$3.459 into a defensible range around it.
+:::
+::::
+
 # The Sampling Distribution of $\bar{x}$ {background-color="#cfb991"}
 
 ## A Distribution *of the Estimates Themselves*
@@ -195,6 +226,8 @@ $$
 
 :::
 
+- Two terms not to confuse: the **sampling error** is the gap $\bar{x} - \mu$ for *one* sample (we never see it, since $\mu$ is unknown); the **standard error** $\sigma_{\bar{x}}$ is the *typical size* of that gap across all samples (we can compute it).
+
 - The estimate is **unbiased** (centered on the truth) and gets **more precise** as $n$ grows.
 
 ## Standard Error: Precision Depends on $n$, Not $N$
@@ -213,6 +246,18 @@ $$
 :::
 
 - More than triple the sample → the standard error roughly **halves**. Precision is *bought* with sample size.
+
+## A Question That Often Comes Up
+
+:::: {.faq}
+**A question that often comes up at this point:**
+
+[Vungle serves billions of impressions. How can 30 days possibly say anything about a population that huge?]{.faq-q}
+
+::: {.fragment .faq-a}
+**Short answer:** the standard error is $\sigma/\sqrt{n}$, and the population size $N$ is **nowhere in it**. A 30-day sample is exactly as precise whether the population is 900 St. Andrew's applicants or Vungle's billions of impressions. Precision rides on **how many days you sampled**, not on how big the world you sampled from is.
+:::
+::::
 
 ## Seeing the Sampling Distribution
 
@@ -272,13 +317,25 @@ $$
 ::: fragment
 
 $$
-P(1687 \le \bar{x} \le 1707) = P(-0.63 \le Z \le 0.63) = 0.4691
+P(1687 \le \bar{x} \le 1707) = P(-0.63 \le Z \le 0.63) = 0.4714
 $$
 
 :::
 
 **Read it:** a single sample of 30 has only about a **47% chance** of landing within 10 SAT points of the truth: precision you can now *quantify*, and improve by raising $n$. In Excel: `=NORM.S.DIST(0.63,TRUE)-NORM.S.DIST(-0.63,TRUE)`.
 :::
+
+## A Question That Often Comes Up
+
+:::: {.faq}
+**A question that often comes up at this point:**
+
+[Vungle's 30 daily eRPMs are not perfectly bell-shaped. Does the CLT still apply to our case?]{.faq-q}
+
+::: {.fragment .faq-a}
+**Short answer:** yes. The CLT is about the distribution of the **sample mean**, not the raw daily values. It holds no matter the shape of the daily eRPMs: skewed, lumpy, whatever. At $n = 30$ the sampling distribution of $\bar{x}_B$ is already close to Normal, which is what lets us put a $z$ (or $t$) interval around \$3.459. The one caution: $n = 30$ sits on the rule-of-thumb line, so heavy skew or outliers would push us toward wanting more days.
+:::
+::::
 
 # The Sampling Distribution of $\bar{p}$ {background-color="#cfb991"}
 
@@ -312,6 +369,18 @@ $$
 
 - St. Andrew's: $n = 30$, $p = 0.72$ → $np = 21.6 \geq 5$ and $n(1-p) = 8.4 \geq 5$ ✓, so the normal approximation is acceptable.
 
+## A Question That Often Comes Up
+
+:::: {.faq}
+**A question that often comes up at this point:**
+
+[For a mean we plug in a separate $s$ to get the standard error. The proportion's standard error is just $\sqrt{p(1-p)/n}$. Where did the spread go?]{.faq-q}
+
+::: {.fragment .faq-a}
+**Short answer:** a yes/no outcome has no separate spread to measure. Once you know the conversion rate $p$, the variability is **locked in** at $p(1-p)$: the proportion is its own mean and its own variance. That is why the proportion's standard error needs only $\bar{p}$ and $n$, with no extra $s$ to estimate, and (as we'll see) no $t$ multiplier either.
+:::
+::::
+
 ## Debrief: Lecture 1 Takeaway
 
 <br>
@@ -321,6 +390,22 @@ $$
 - **One number:** B's standard error is $s/\sqrt{30} = 0.344/\sqrt{30} \approx \$0.063$, the typical gap between a 30-day mean and the truth.
 
 - **One caveat:** precision is bought with $n$, and only as $\sqrt{n}$; quadrupling the days only halves the error.
+
+## Today's Question, Today's Answer
+
+<br>
+
+**The question (Lecture 1):**
+
+> *How trustworthy is a 30-day sample mean?*
+
+::: fragment
+<br>
+
+**The answer we reached today:**
+
+> A 30-day mean is **unbiased** (it centers on the truth), but it **wobbles** by a standard error of $s/\sqrt{n}$: for B that is $0.344/\sqrt{30} \approx \mathbf{\$0.063}$. Thanks to the **CLT**, that wobble is **Normal** at $n = 30$, so the gap to the truth is small and now **quantifiable**: that is what lets us build a range next.
+:::
 
 ## ⏱️ Team Sprint: Your Group Case (Lecture 1)
 
@@ -348,6 +433,14 @@ $$
 
 - Then we **invert** the question: pick the precision first ($\pm\$0.05$), and solve for the **sample size** that delivers it.
 
+## How Every Class Runs
+
+![](figs/lecture_dynamic.png){.nostretch fig-align="center" width="90%"}
+
+::: nonincremental
+The class **ends on the Team Sprint**, your group's graded submission: a decision plus your read of the analysis, one PDF before you leave.
+:::
+
 ## From Standard Error to a Margin of Error
 
 <br>
@@ -371,6 +464,32 @@ $$
   - $\sigma$ **known** (rare) → use $z$.
   - $\sigma$ **unknown** (almost always) → estimate it with $s$ and use the **$t$ distribution**.
 
+## The Special Case: $\sigma$ Known → Use $z$
+
+<br>
+
+- When $\sigma$ is somehow known (a long production history, a fixed process spec), the interval for $\mu$ uses the $z$ multiplier directly:
+
+::: fragment
+
+$$
+\bar{x} \pm z_{\alpha/2}\,\frac{\sigma}{\sqrt{n}}
+$$
+
+:::
+
+- The multiplier is read straight from the Normal table, the same values for every sample size:
+
+::: fragment
+| Confidence | $z_{\alpha/2}$ |
+|---|---:|
+| 90% | 1.645 |
+| 95% | 1.960 |
+| 99% | 2.576 |
+:::
+
+- Vungle does **not** know $\sigma$ for B's eRPM, so this case does not apply here. We estimate $\sigma$ with $s$, which is why the rest of the topic uses $t$.
+
 # The $t$ Distribution {background-color="#cfb991"}
 
 ## Why $t$, Not $z$
@@ -392,6 +511,18 @@ knitr::include_graphics("figs/t_vs_z.png")
 ::: nonincremental
 - Fatter tails → a **larger** multiplier → a **wider** interval. That is the honest "tax" for not knowing $\sigma$. Excel: `=T.INV.2T(0.05, df)` gives the 95% multiplier.
 :::
+
+## A Question That Often Comes Up
+
+:::: {.faq}
+**A question that often comes up at this point:**
+
+[At $df = 29$ the $t$ multiplier 2.045 is barely above $z$'s 1.96. For Vungle's 30 days, is the difference even worth the trouble?]{.faq-q}
+
+::: {.fragment .faq-a}
+**Short answer:** here it is small but not zero: using 2.045 instead of 1.96 widens B's eRPM margin from about \$0.124 to \$0.129, the honest cost of not knowing $\sigma$. The habit matters more than this one case. With a small sample, say $n = 10$, the gap is large, and "always use $t$ when $\sigma$ is unknown" keeps you correct without having to decide each time whether $n$ is "big enough."
+:::
+::::
 
 # Confidence Interval for a Mean {background-color="#cfb991"}
 
@@ -423,6 +554,18 @@ knitr::include_graphics("figs/ci_mechanics.png")
 - **Correct:** *"in repeated sampling, about 95% of intervals built this way contain $\mu$."* The interval is random; $\mu$ is fixed.
 - **Wrong:** *"there is a 95% chance $\mu$ is in this one interval."* Once computed, an interval either contains $\mu$ or it doesn't.
 :::
+
+## A Question That Often Comes Up
+
+:::: {.faq}
+**A question that often comes up at this point:**
+
+[If I can't say there's a 95% chance B's true eRPM is inside (\$3.33, \$3.59), then what do I actually tell my boss?]{.faq-q}
+
+::: {.fragment .faq-a}
+**Short answer:** you tell the boss, *"we built this range with a method that captures the true mean 95% of the time, and it puts B's eRPM between \$3.33 and \$3.59."* The 95% is your confidence in the **procedure**, not a betting line on this one interval. In practice the manager acts on the range exactly the same way; the wording just keeps you honest about where the uncertainty lives.
+:::
+::::
 
 ## Anchor Example: Apartment Rents
 
@@ -542,6 +685,18 @@ $$
 - Check the large-sample condition first: $n\bar{p} \geq 5$ and $n(1-\bar{p}) \geq 5$.
 
 - Excel: `=NORM.S.INV(0.975)` → 1.96 for the 95% multiplier.
+
+## A Question That Often Comes Up
+
+:::: {.faq}
+**A question that often comes up at this point:**
+
+[We just learned to use $t$ when $\sigma$ is unknown. For B's conversion rate we don't know the true $p$ either, so why does the proportion interval use $z$, not $t$?]{.faq-q}
+
+::: {.fragment .faq-a}
+**Short answer:** the $t$ exists to fix one specific problem: estimating a **separate** spread $s$ for a mean. A proportion has no separate spread; its variability is fixed by $p$ itself, so there is nothing extra to estimate and no fattened tails to correct. We plug $\bar{p}$ into the standard error and use $z$ straight away, after checking $n\bar{p} \geq 5$ and $n(1-\bar{p}) \geq 5$.
+:::
+::::
 
 ## Anchor Example: PSI Election Poll
 
@@ -665,17 +820,17 @@ $$
 
 - **Always round up:** a fractional person or day cannot be sampled, and rounding down would miss the target precision.
 
-- Planning value for $s$: a prior study, a pilot sample, or a best guess. Here we use B's pilot $s = \$0.344$.
+- Planning value for $s$: a prior study, a pilot sample, or a best guess. Here we use B's pilot $s = \$0.3444$.
 
 ## How Many Days Does Vungle Need?
 
 ::: r-fit-text
-**Question:** how many test-days for the mean eRPM margin to hit $\pm\$0.10$? $\pm\$0.05$? (planning $s = 0.344$, 95% confidence, $z = 1.96$)
+**Question:** how many test-days for the mean eRPM margin to hit $\pm\$0.10$? $\pm\$0.05$? (planning $s = 0.3444$, 95% confidence, $z = 1.96$)
 
 ::: fragment
 
 $$
-n_{0.10} = \left(\frac{1.96 \times 0.344}{0.10}\right)^{2} = 45.6 \;\rightarrow\; \mathbf{46 \text{ days}}
+n_{0.10} = \left(\frac{1.96 \times 0.3444}{0.10}\right)^{2} = 45.6 \;\rightarrow\; \mathbf{46 \text{ days}}
 $$
 
 :::
@@ -683,13 +838,25 @@ $$
 ::: fragment
 
 $$
-n_{0.05} = \left(\frac{1.96 \times 0.344}{0.05}\right)^{2} = 182.3 \;\rightarrow\; \mathbf{183 \text{ days}}
+n_{0.05} = \left(\frac{1.96 \times 0.3444}{0.05}\right)^{2} = 182.3 \;\rightarrow\; \mathbf{183 \text{ days}}
 $$
 
 :::
 
 **The lesson:** halving the margin ($\$0.10 \rightarrow \$0.05$) takes **four times** the days ($46 \rightarrow 183$). Precision is expensive, and the manager must decide whether \$0.05 of precision is worth six months of testing.
 :::
+
+## A Question That Often Comes Up
+
+:::: {.faq}
+**A question that often comes up at this point:**
+
+[The sample-size formula needs $s$, but $s$ is exactly what a longer test is supposed to pin down. Isn't that circular?]{.faq-q}
+
+::: {.fragment .faq-a}
+**Short answer:** it would be, except we use a **planning value** for $s$, not the final one. Here we borrow B's pilot $s = \$0.3444$ from the 30 days we already have. It only needs to be roughly right to get the day count in the ballpark: $183$ days for $\pm\$0.05$. When the real test finishes you recompute $s$ from the full data and report the actual interval; the planning value is just for sizing the test, not for the final answer.
+:::
+::::
 
 ## Margin of Error vs. Sample Size
 
@@ -714,7 +881,7 @@ knitr::include_graphics("figs/moe_vs_n.png")
 
 <br>
 
-- `s` = planning SD (here B's \$0.344)
+- `s` = planning SD (here B's \$0.3444)
 - `E` = desired margin (\$0.10, then \$0.05)
 - `CEILING(...,1)` rounds **up** to whole days
 :::
@@ -780,6 +947,22 @@ $$
 - **One number to remember:** $E = t_{\alpha/2}\,s/\sqrt{n}$, with the $\sqrt{n}$ in the denominator that makes precision expensive.
 
 - **One caveat:** "95% confident" describes the **procedure** over many samples, not a probability for this one interval; overlapping intervals do **not** settle a comparison.
+
+## Today's Question, Today's Answer
+
+<br>
+
+**The question (Lecture 2, and Topic 7 of the ladder):**
+
+> *From 30 days, what is B's true mean eRPM, give or take, and how big a sample do we need?*
+
+::: fragment
+<br>
+
+**The answer we reached today:**
+
+> We are 95% confident B's true mean eRPM is **\$3.46 give or take \$0.13**, i.e. **(\$3.33, \$3.59)**, and its conversion rate is **0.354% give or take 0.009pt**, i.e. **(0.345%, 0.362%)**. To cut the eRPM margin to $\pm\$0.05$ takes about **183 days** of testing. The eRPM range still **overlaps A's**, so estimation alone cannot yet name a winner: that is hypothesis testing, next.
+:::
 
 ## ⏱️ Team Sprint: Your Group Case (Lecture 2)
 

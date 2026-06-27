@@ -32,7 +32,7 @@
       vertical-align: middle;
     }
   </style>
-  <link rel="stylesheet" href="../../site_libs/revealjs/dist/theme/quarto-113b5beb2a57b2deea58feb1108e76b2.css">
+  <link rel="stylesheet" href="../../site_libs/revealjs/dist/theme/quarto-8fc47a4fdcba9931a3aa90ef56f89358.css">
   <link href="../../site_libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
   <link href="../../site_libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
   <link href="../../site_libs/revealjs/plugin/reveal-menu/quarto-menu.css" rel="stylesheet">
@@ -235,12 +235,29 @@ Professor<br>Davi Moreira<br>
 <li class="fragment"><p><strong>Lecture 1’s question:</strong> <em>if the sample mean changes every time we sample, how can the manager trust any one of them?</em> The answer is the <strong>sampling distribution</strong>, and it is surprisingly well-behaved.</p></li>
 </ul>
 </section>
+<section id="how-every-class-runs" class="slide level2 center">
+<h2>How Every Class Runs</h2>
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="figs/lecture_dynamic.png" class="quarto-figure quarto-figure-center" style="width:90.0%"></p>
+</figure>
+</div>
+<p>The class <strong>ends on the Team Sprint</strong>, your group’s graded submission: a decision plus your read of the analysis, one PDF before you leave.</p>
+</section>
 <section id="population-sample-inference" class="slide level2 center">
 <h2>Population, Sample, Inference</h2>
 
 <img data-src="figs/population_sample_inference.png" class="quarto-figure quarto-figure-center r-stretch" style="width:78.0%"><ul>
 <li><strong>Population:</strong> every future impression B will serve; its true mean eRPM <span class="math inline">\(\mu\)</span> is <strong>unknown</strong>.</li>
 <li><strong>Sample:</strong> the 30 June days. We use them to <strong>estimate</strong> <span class="math inline">\(\mu\)</span>, first with a point, later with an interval.</li>
+</ul>
+</section>
+<section id="how-the-sample-is-drawn" class="slide level2 center">
+<h2>How the Sample Is Drawn</h2>
+
+<img data-src="figs/sampling_methods.png" class="quarto-figure quarto-figure-center r-stretch" style="width:84.0%"><ul>
+<li><strong>Probability</strong> sampling gives every unit a <strong>known chance</strong> of selection, so the sampling distribution and every formula today hold. <strong>Non-probability</strong> samples (convenience, judgment) have no known selection chance, so the inference math does not apply.</li>
+<li>Vungle’s 30 days are a probability sample of B’s running output, which is what licenses the standard error and interval we build today.</li>
 </ul>
 </section></section>
 <section>
@@ -355,6 +372,16 @@ Professor<br>Davi Moreira<br>
 <ul>
 <li class="fragment">These three numbers are our best single guesses. The rest of the topic builds the <strong>interval</strong> that quantifies how far off each guess might be.</li>
 </ul>
+</section>
+<section id="a-question-that-often-comes-up" class="slide level2 center">
+<h2>A Question That Often Comes Up</h2>
+<div class="faq">
+<p><strong>A question that often comes up at this point:</strong></p>
+<p><span class="faq-q">If a point estimate like <span class="math inline">\(\bar{x}_B = \$3.459\)</span> is never exactly the true mean, why report a single number at all?</span></p>
+<div class="fragment faq-a">
+<p><strong>Short answer:</strong> <span class="math inline">\(\bar{x}_B = \$3.459\)</span> is still the best single guess we have, and every revenue projection has to start somewhere. The point is not to throw it away; it is to <strong>attach a measure of how far off it might be</strong>. That measure is the standard error, and the rest of the topic turns $3.459 into a defensible range around it.</p>
+</div>
+</div>
 </section></section>
 <section>
 <section id="the-sampling-distribution-of-barx" class="title-slide slide level1 center" data-background-color="#cfb991">
@@ -395,7 +422,8 @@ E(\bar{x}) = \mu
 \]</span></p>
 </div>
 <ul>
-<li class="fragment">The estimate is <strong>unbiased</strong> (centered on the truth) and gets <strong>more precise</strong> as <span class="math inline">\(n\)</span> grows.</li>
+<li class="fragment"><p>Two terms not to confuse: the <strong>sampling error</strong> is the gap <span class="math inline">\(\bar{x} - \mu\)</span> for <em>one</em> sample (we never see it, since <span class="math inline">\(\mu\)</span> is unknown); the <strong>standard error</strong> <span class="math inline">\(\sigma_{\bar{x}}\)</span> is the <em>typical size</em> of that gap across all samples (we can compute it).</p></li>
+<li class="fragment"><p>The estimate is <strong>unbiased</strong> (centered on the truth) and gets <strong>more precise</strong> as <span class="math inline">\(n\)</span> grows.</p></li>
 </ul>
 </section>
 <section id="standard-error-precision-depends-on-n-not-n" class="slide level2 center">
@@ -428,6 +456,16 @@ E(\bar{x}) = \mu
 <ul>
 <li class="fragment">More than triple the sample → the standard error roughly <strong>halves</strong>. Precision is <em>bought</em> with sample size.</li>
 </ul>
+</section>
+<section id="a-question-that-often-comes-up-1" class="slide level2 center">
+<h2>A Question That Often Comes Up</h2>
+<div class="faq">
+<p><strong>A question that often comes up at this point:</strong></p>
+<p><span class="faq-q">Vungle serves billions of impressions. How can 30 days possibly say anything about a population that huge?</span></p>
+<div class="fragment faq-a">
+<p><strong>Short answer:</strong> the standard error is <span class="math inline">\(\sigma/\sqrt{n}\)</span>, and the population size <span class="math inline">\(N\)</span> is <strong>nowhere in it</strong>. A 30-day sample is exactly as precise whether the population is 900 St.&nbsp;Andrew’s applicants or Vungle’s billions of impressions. Precision rides on <strong>how many days you sampled</strong>, not on how big the world you sampled from is.</p>
+</div>
+</div>
 </section>
 <section id="seeing-the-sampling-distribution" class="slide level2 center">
 <h2>Seeing the Sampling Distribution</h2>
@@ -477,10 +515,20 @@ z = \frac{10}{15.96} = 0.63
 </div>
 <div class="fragment">
 <p><span class="math display">\[
-P(1687 \le \bar{x} \le 1707) = P(-0.63 \le Z \le 0.63) = 0.4691
+P(1687 \le \bar{x} \le 1707) = P(-0.63 \le Z \le 0.63) = 0.4714
 \]</span></p>
 </div>
 <p><strong>Read it:</strong> a single sample of 30 has only about a <strong>47% chance</strong> of landing within 10 SAT points of the truth: precision you can now <em>quantify</em>, and improve by raising <span class="math inline">\(n\)</span>. In Excel: <code>=NORM.S.DIST(0.63,TRUE)-NORM.S.DIST(-0.63,TRUE)</code>.</p>
+</div>
+</section>
+<section id="a-question-that-often-comes-up-2" class="slide level2 center">
+<h2>A Question That Often Comes Up</h2>
+<div class="faq">
+<p><strong>A question that often comes up at this point:</strong></p>
+<p><span class="faq-q">Vungle’s 30 daily eRPMs are not perfectly bell-shaped. Does the CLT still apply to our case?</span></p>
+<div class="fragment faq-a">
+<p><strong>Short answer:</strong> yes. The CLT is about the distribution of the <strong>sample mean</strong>, not the raw daily values. It holds no matter the shape of the daily eRPMs: skewed, lumpy, whatever. At <span class="math inline">\(n = 30\)</span> the sampling distribution of <span class="math inline">\(\bar{x}_B\)</span> is already close to Normal, which is what lets us put a <span class="math inline">\(z\)</span> (or <span class="math inline">\(t\)</span>) interval around $3.459. The one caution: <span class="math inline">\(n = 30\)</span> sits on the rule-of-thumb line, so heavy skew or outliers would push us toward wanting more days.</p>
+</div>
 </div>
 </section></section>
 <section>
@@ -514,6 +562,16 @@ np \geq 5 \qquad \text{and} \qquad n(1-p) \geq 5
 <li class="fragment">St.&nbsp;Andrew’s: <span class="math inline">\(n = 30\)</span>, <span class="math inline">\(p = 0.72\)</span> → <span class="math inline">\(np = 21.6 \geq 5\)</span> and <span class="math inline">\(n(1-p) = 8.4 \geq 5\)</span> ✓, so the normal approximation is acceptable.</li>
 </ul>
 </section>
+<section id="a-question-that-often-comes-up-3" class="slide level2 center">
+<h2>A Question That Often Comes Up</h2>
+<div class="faq">
+<p><strong>A question that often comes up at this point:</strong></p>
+<p><span class="faq-q">For a mean we plug in a separate <span class="math inline">\(s\)</span> to get the standard error. The proportion’s standard error is just <span class="math inline">\(\sqrt{p(1-p)/n}\)</span>. Where did the spread go?</span></p>
+<div class="fragment faq-a">
+<p><strong>Short answer:</strong> a yes/no outcome has no separate spread to measure. Once you know the conversion rate <span class="math inline">\(p\)</span>, the variability is <strong>locked in</strong> at <span class="math inline">\(p(1-p)\)</span>: the proportion is its own mean and its own variance. That is why the proportion’s standard error needs only <span class="math inline">\(\bar{p}\)</span> and <span class="math inline">\(n\)</span>, with no extra <span class="math inline">\(s\)</span> to estimate, and (as we’ll see) no <span class="math inline">\(t\)</span> multiplier either.</p>
+</div>
+</div>
+</section>
 <section id="debrief-lecture-1-takeaway" class="slide level2 center">
 <h2>Debrief: Lecture 1 Takeaway</h2>
 <p><br></p>
@@ -522,6 +580,21 @@ np \geq 5 \qquad \text{and} \qquad n(1-p) \geq 5
 <li class="fragment"><p><strong>One number:</strong> B’s standard error is <span class="math inline">\(s/\sqrt{30} = 0.344/\sqrt{30} \approx \$0.063\)</span>, the typical gap between a 30-day mean and the truth.</p></li>
 <li class="fragment"><p><strong>One caveat:</strong> precision is bought with <span class="math inline">\(n\)</span>, and only as <span class="math inline">\(\sqrt{n}\)</span>; quadrupling the days only halves the error.</p></li>
 </ul>
+</section>
+<section id="todays-question-todays-answer" class="slide level2 center">
+<h2>Today’s Question, Today’s Answer</h2>
+<p><br></p>
+<p><strong>The question (Lecture 1):</strong></p>
+<blockquote>
+<p><em>How trustworthy is a 30-day sample mean?</em></p>
+</blockquote>
+<div class="fragment">
+<p><br></p>
+<p><strong>The answer we reached today:</strong></p>
+<blockquote>
+<p>A 30-day mean is <strong>unbiased</strong> (it centers on the truth), but it <strong>wobbles</strong> by a standard error of <span class="math inline">\(s/\sqrt{n}\)</span>: for B that is <span class="math inline">\(0.344/\sqrt{30} \approx \mathbf{\$0.063}\)</span>. Thanks to the <strong>CLT</strong>, that wobble is <strong>Normal</strong> at <span class="math inline">\(n = 30\)</span>, so the gap to the truth is small and now <strong>quantifiable</strong>: that is what lets us build a range next.</p>
+</blockquote>
+</div>
 </section>
 <section id="team-sprint-your-group-case-lecture-1" class="slide level2 center">
 <h2>⏱️ Team Sprint: Your Group Case (Lecture 1)</h2>
@@ -549,6 +622,15 @@ np \geq 5 \qquad \text{and} \qquad n(1-p) \geq 5
 <li class="fragment"><p>Then we <strong>invert</strong> the question: pick the precision first (<span class="math inline">\(\pm\$0.05\)</span>), and solve for the <strong>sample size</strong> that delivers it.</p></li>
 </ul>
 </section>
+<section id="how-every-class-runs-1" class="slide level2 center">
+<h2>How Every Class Runs</h2>
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="figs/lecture_dynamic.png" class="quarto-figure quarto-figure-center" style="width:90.0%"></p>
+</figure>
+</div>
+<p>The class <strong>ends on the Team Sprint</strong>, your group’s graded submission: a decision plus your read of the analysis, one PDF before you leave.</p>
+</section>
 <section id="from-standard-error-to-a-margin-of-error" class="slide level2 center">
 <h2>From Standard Error to a Margin of Error</h2>
 <p><br></p>
@@ -569,6 +651,48 @@ E = (\text{a multiplier}) \times (\text{standard error})
 <li class="fragment"><span class="math inline">\(\sigma\)</span> <strong>known</strong> (rare) → use <span class="math inline">\(z\)</span>.</li>
 <li class="fragment"><span class="math inline">\(\sigma\)</span> <strong>unknown</strong> (almost always) → estimate it with <span class="math inline">\(s\)</span> and use the <strong><span class="math inline">\(t\)</span> distribution</strong>.</li>
 </ul></li>
+</ul>
+</section>
+<section id="the-special-case-sigma-known-use-z" class="slide level2 center">
+<h2>The Special Case: <span class="math inline">\(\sigma\)</span> Known → Use <span class="math inline">\(z\)</span></h2>
+<p><br></p>
+<ul>
+<li class="fragment">When <span class="math inline">\(\sigma\)</span> is somehow known (a long production history, a fixed process spec), the interval for <span class="math inline">\(\mu\)</span> uses the <span class="math inline">\(z\)</span> multiplier directly:</li>
+</ul>
+<div class="fragment">
+<p><span class="math display">\[
+\bar{x} \pm z_{\alpha/2}\,\frac{\sigma}{\sqrt{n}}
+\]</span></p>
+</div>
+<ul>
+<li class="fragment">The multiplier is read straight from the Normal table, the same values for every sample size:</li>
+</ul>
+<div class="fragment">
+<table class="caption-top">
+<thead>
+<tr class="header">
+<th>Confidence</th>
+<th style="text-align: right;"><span class="math inline">\(z_{\alpha/2}\)</span></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>90%</td>
+<td style="text-align: right;">1.645</td>
+</tr>
+<tr class="even">
+<td>95%</td>
+<td style="text-align: right;">1.960</td>
+</tr>
+<tr class="odd">
+<td>99%</td>
+<td style="text-align: right;">2.576</td>
+</tr>
+</tbody>
+</table>
+</div>
+<ul>
+<li class="fragment">Vungle does <strong>not</strong> know <span class="math inline">\(\sigma\)</span> for B’s eRPM, so this case does not apply here. We estimate <span class="math inline">\(\sigma\)</span> with <span class="math inline">\(s\)</span>, which is why the rest of the topic uses <span class="math inline">\(t\)</span>.</li>
 </ul>
 </section></section>
 <section>
@@ -591,6 +715,16 @@ E = (\text{a multiplier}) \times (\text{standard error})
 <img data-src="figs/t_vs_z.png" class="quarto-figure quarto-figure-center r-stretch" style="width:80.0%"><ul>
 <li>Fatter tails → a <strong>larger</strong> multiplier → a <strong>wider</strong> interval. That is the honest “tax” for not knowing <span class="math inline">\(\sigma\)</span>. Excel: <code>=T.INV.2T(0.05, df)</code> gives the 95% multiplier.</li>
 </ul>
+</section>
+<section id="a-question-that-often-comes-up-4" class="slide level2 center">
+<h2>A Question That Often Comes Up</h2>
+<div class="faq">
+<p><strong>A question that often comes up at this point:</strong></p>
+<p><span class="faq-q">At <span class="math inline">\(df = 29\)</span> the <span class="math inline">\(t\)</span> multiplier 2.045 is barely above <span class="math inline">\(z\)</span>’s 1.96. For Vungle’s 30 days, is the difference even worth the trouble?</span></p>
+<div class="fragment faq-a">
+<p><strong>Short answer:</strong> here it is small but not zero: using 2.045 instead of 1.96 widens B’s eRPM margin from about $0.124 to $0.129, the honest cost of not knowing <span class="math inline">\(\sigma\)</span>. The habit matters more than this one case. With a small sample, say <span class="math inline">\(n = 10\)</span>, the gap is large, and “always use <span class="math inline">\(t\)</span> when <span class="math inline">\(\sigma\)</span> is unknown” keeps you correct without having to decide each time whether <span class="math inline">\(n\)</span> is “big enough.”</p>
+</div>
+</div>
 </section></section>
 <section>
 <section id="confidence-interval-for-a-mean" class="title-slide slide level1 center" data-background-color="#cfb991">
@@ -620,6 +754,16 @@ E = (\text{a multiplier}) \times (\text{standard error})
 <li><strong>Correct:</strong> <em>“in repeated sampling, about 95% of intervals built this way contain <span class="math inline">\(\mu\)</span>.”</em> The interval is random; <span class="math inline">\(\mu\)</span> is fixed.</li>
 <li><strong>Wrong:</strong> <em>“there is a 95% chance <span class="math inline">\(\mu\)</span> is in this one interval.”</em> Once computed, an interval either contains <span class="math inline">\(\mu\)</span> or it doesn’t.</li>
 </ul>
+</section>
+<section id="a-question-that-often-comes-up-5" class="slide level2 center">
+<h2>A Question That Often Comes Up</h2>
+<div class="faq">
+<p><strong>A question that often comes up at this point:</strong></p>
+<p><span class="faq-q">If I can’t say there’s a 95% chance B’s true eRPM is inside ($3.33, $3.59), then what do I actually tell my boss?</span></p>
+<div class="fragment faq-a">
+<p><strong>Short answer:</strong> you tell the boss, <em>“we built this range with a method that captures the true mean 95% of the time, and it puts B’s eRPM between $3.33 and $3.59.”</em> The 95% is your confidence in the <strong>procedure</strong>, not a betting line on this one interval. In practice the manager acts on the range exactly the same way; the wording just keeps you honest about where the uncertainty lives.</p>
+</div>
+</div>
 </section>
 <section id="anchor-example-apartment-rents" class="slide level2 center">
 <h2>Anchor Example: Apartment Rents</h2>
@@ -726,6 +870,16 @@ E = 2.045 \times 0.0629 = 0.1286
 <li class="fragment"><p>Check the large-sample condition first: <span class="math inline">\(n\bar{p} \geq 5\)</span> and <span class="math inline">\(n(1-\bar{p}) \geq 5\)</span>.</p></li>
 <li class="fragment"><p>Excel: <code>=NORM.S.INV(0.975)</code> → 1.96 for the 95% multiplier.</p></li>
 </ul>
+</section>
+<section id="a-question-that-often-comes-up-6" class="slide level2 center">
+<h2>A Question That Often Comes Up</h2>
+<div class="faq">
+<p><strong>A question that often comes up at this point:</strong></p>
+<p><span class="faq-q">We just learned to use <span class="math inline">\(t\)</span> when <span class="math inline">\(\sigma\)</span> is unknown. For B’s conversion rate we don’t know the true <span class="math inline">\(p\)</span> either, so why does the proportion interval use <span class="math inline">\(z\)</span>, not <span class="math inline">\(t\)</span>?</span></p>
+<div class="fragment faq-a">
+<p><strong>Short answer:</strong> the <span class="math inline">\(t\)</span> exists to fix one specific problem: estimating a <strong>separate</strong> spread <span class="math inline">\(s\)</span> for a mean. A proportion has no separate spread; its variability is fixed by <span class="math inline">\(p\)</span> itself, so there is nothing extra to estimate and no fattened tails to correct. We plug <span class="math inline">\(\bar{p}\)</span> into the standard error and use <span class="math inline">\(z\)</span> straight away, after checking <span class="math inline">\(n\bar{p} \geq 5\)</span> and <span class="math inline">\(n(1-\bar{p}) \geq 5\)</span>.</p>
+</div>
+</div>
 </section>
 <section id="anchor-example-psi-election-poll" class="slide level2 center">
 <h2>Anchor Example: PSI Election Poll</h2>
@@ -918,24 +1072,34 @@ n = \left(\frac{z_{\alpha/2}\,s}{E}\right)^{2}
 </div>
 <ul>
 <li class="fragment"><p><strong>Always round up:</strong> a fractional person or day cannot be sampled, and rounding down would miss the target precision.</p></li>
-<li class="fragment"><p>Planning value for <span class="math inline">\(s\)</span>: a prior study, a pilot sample, or a best guess. Here we use B’s pilot <span class="math inline">\(s = \$0.344\)</span>.</p></li>
+<li class="fragment"><p>Planning value for <span class="math inline">\(s\)</span>: a prior study, a pilot sample, or a best guess. Here we use B’s pilot <span class="math inline">\(s = \$0.3444\)</span>.</p></li>
 </ul>
 </section>
 <section id="how-many-days-does-vungle-need" class="slide level2 center">
 <h2>How Many Days Does Vungle Need?</h2>
 <div class="r-fit-text">
-<p><strong>Question:</strong> how many test-days for the mean eRPM margin to hit <span class="math inline">\(\pm\$0.10\)</span>? <span class="math inline">\(\pm\$0.05\)</span>? (planning <span class="math inline">\(s = 0.344\)</span>, 95% confidence, <span class="math inline">\(z = 1.96\)</span>)</p>
+<p><strong>Question:</strong> how many test-days for the mean eRPM margin to hit <span class="math inline">\(\pm\$0.10\)</span>? <span class="math inline">\(\pm\$0.05\)</span>? (planning <span class="math inline">\(s = 0.3444\)</span>, 95% confidence, <span class="math inline">\(z = 1.96\)</span>)</p>
 <div class="fragment">
 <p><span class="math display">\[
-n_{0.10} = \left(\frac{1.96 \times 0.344}{0.10}\right)^{2} = 45.6 \;\rightarrow\; \mathbf{46 \text{ days}}
+n_{0.10} = \left(\frac{1.96 \times 0.3444}{0.10}\right)^{2} = 45.6 \;\rightarrow\; \mathbf{46 \text{ days}}
 \]</span></p>
 </div>
 <div class="fragment">
 <p><span class="math display">\[
-n_{0.05} = \left(\frac{1.96 \times 0.344}{0.05}\right)^{2} = 182.3 \;\rightarrow\; \mathbf{183 \text{ days}}
+n_{0.05} = \left(\frac{1.96 \times 0.3444}{0.05}\right)^{2} = 182.3 \;\rightarrow\; \mathbf{183 \text{ days}}
 \]</span></p>
 </div>
 <p><strong>The lesson:</strong> halving the margin (<span class="math inline">\(\$0.10 \rightarrow \$0.05\)</span>) takes <strong>four times</strong> the days (<span class="math inline">\(46 \rightarrow 183\)</span>). Precision is expensive, and the manager must decide whether $0.05 of precision is worth six months of testing.</p>
+</div>
+</section>
+<section id="a-question-that-often-comes-up-7" class="slide level2 center">
+<h2>A Question That Often Comes Up</h2>
+<div class="faq">
+<p><strong>A question that often comes up at this point:</strong></p>
+<p><span class="faq-q">The sample-size formula needs <span class="math inline">\(s\)</span>, but <span class="math inline">\(s\)</span> is exactly what a longer test is supposed to pin down. Isn’t that circular?</span></p>
+<div class="fragment faq-a">
+<p><strong>Short answer:</strong> it would be, except we use a <strong>planning value</strong> for <span class="math inline">\(s\)</span>, not the final one. Here we borrow B’s pilot <span class="math inline">\(s = \$0.3444\)</span> from the 30 days we already have. It only needs to be roughly right to get the day count in the ballpark: <span class="math inline">\(183\)</span> days for <span class="math inline">\(\pm\$0.05\)</span>. When the real test finishes you recompute <span class="math inline">\(s\)</span> from the full data and report the actual interval; the planning value is just for sizing the test, not for the final answer.</p>
+</div>
 </div>
 </section>
 <section id="margin-of-error-vs.-sample-size" class="slide level2 center">
@@ -954,7 +1118,7 @@ n_{0.05} = \left(\frac{1.96 \times 0.344}{0.05}\right)^{2} = 182.3 \;\rightarrow
 <p><code>=CEILING((NORM.S.INV(0.975)*s/E)^2, 1)</code></p>
 <p><br></p>
 <ul>
-<li><code>s</code> = planning SD (here B’s $0.344)</li>
+<li><code>s</code> = planning SD (here B’s $0.3444)</li>
 <li><code>E</code> = desired margin ($0.10, then $0.05)</li>
 <li><code>CEILING(...,1)</code> rounds <strong>up</strong> to whole days</li>
 </ul>
@@ -1052,6 +1216,21 @@ n = \frac{z_{\alpha/2}^{2}\,p^*(1-p^*)}{E^{2}}
 <li class="fragment"><p><strong>One number to remember:</strong> <span class="math inline">\(E = t_{\alpha/2}\,s/\sqrt{n}\)</span>, with the <span class="math inline">\(\sqrt{n}\)</span> in the denominator that makes precision expensive.</p></li>
 <li class="fragment"><p><strong>One caveat:</strong> “95% confident” describes the <strong>procedure</strong> over many samples, not a probability for this one interval; overlapping intervals do <strong>not</strong> settle a comparison.</p></li>
 </ul>
+</section>
+<section id="todays-question-todays-answer-1" class="slide level2 center">
+<h2>Today’s Question, Today’s Answer</h2>
+<p><br></p>
+<p><strong>The question (Lecture 2, and Topic 7 of the ladder):</strong></p>
+<blockquote>
+<p><em>From 30 days, what is B’s true mean eRPM, give or take, and how big a sample do we need?</em></p>
+</blockquote>
+<div class="fragment">
+<p><br></p>
+<p><strong>The answer we reached today:</strong></p>
+<blockquote>
+<p>We are 95% confident B’s true mean eRPM is <strong>$3.46 give or take $0.13</strong>, i.e.&nbsp;<strong>($3.33, $3.59)</strong>, and its conversion rate is <strong>0.354% give or take 0.009pt</strong>, i.e.&nbsp;<strong>(0.345%, 0.362%)</strong>. To cut the eRPM margin to <span class="math inline">\(\pm\$0.05\)</span> takes about <strong>183 days</strong> of testing. The eRPM range still <strong>overlaps A’s</strong>, so estimation alone cannot yet name a winner: that is hypothesis testing, next.</p>
+</blockquote>
+</div>
 </section>
 <section id="team-sprint-your-group-case-lecture-2" class="slide level2 center">
 <h2>⏱️ Team Sprint: Your Group Case (Lecture 2)</h2>

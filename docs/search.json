@@ -2729,7 +2729,7 @@
     "href": "lecture_slides/07_chapter_interval_estimation/07_chapter_interval_estimation.html#center-and-spread-of-barx",
     "title": " QM 6700: Business Analytics ",
     "section": "Center and Spread of \\(\\bar{x}\\)",
-    "text": "Center and Spread of \\(\\bar{x}\\)\n\n\nCenter (unbiased): on average, the sample mean equals the population mean:\n\n\n\\[\nE(\\bar{x}) = \\mu\n\\]\n\n\nSpread (the standard error): the standard deviation of \\(\\bar{x}\\) is the standard error of the mean:\n\n\n\\[\n\\sigma_{\\bar{x}} = \\frac{\\sigma}{\\sqrt{n}}\n\\]\n\n\nThe estimate is unbiased (centered on the truth) and gets more precise as \\(n\\) grows."
+    "text": "Center and Spread of \\(\\bar{x}\\)\n\n\nCenter (unbiased): on average, the sample mean equals the population mean:\n\n\n\\[\nE(\\bar{x}) = \\mu\n\\]\n\n\nSpread (the standard error): the standard deviation of \\(\\bar{x}\\) is the standard error of the mean:\n\n\n\\[\n\\sigma_{\\bar{x}} = \\frac{\\sigma}{\\sqrt{n}}\n\\]\n\n\nTwo terms not to confuse: the sampling error is the gap \\(\\bar{x} - \\mu\\) for one sample (we never see it, since \\(\\mu\\) is unknown); the standard error \\(\\sigma_{\\bar{x}}\\) is the typical size of that gap across all samples (we can compute it).\nThe estimate is unbiased (centered on the truth) and gets more precise as \\(n\\) grows."
   },
   {
     "objectID": "lecture_slides/07_chapter_interval_estimation/07_chapter_interval_estimation.html#standard-error-precision-depends-on-n-not-n",
@@ -2764,7 +2764,7 @@
     "href": "lecture_slides/07_chapter_interval_estimation/07_chapter_interval_estimation.html#using-the-clt-a-probability-question",
     "title": " QM 6700: Business Analytics ",
     "section": "Using the CLT: A Probability Question",
-    "text": "Using the CLT: A Probability Question\n\nSt. Andrew’s: with \\(\\sigma = 87.4\\) and \\(n = 30\\), what is the probability the sample mean SAT lands within 10 points of the true \\(\\mu = 1697\\) (i.e., between 1687 and 1707)?\n\n\\[\n\\sigma_{\\bar{x}} = \\frac{87.4}{\\sqrt{30}} = 15.96,\n\\qquad\nz = \\frac{10}{15.96} = 0.63\n\\]\n\n\n\\[\nP(1687 \\le \\bar{x} \\le 1707) = P(-0.63 \\le Z \\le 0.63) = 0.4691\n\\]\n\nRead it: a single sample of 30 has only about a 47% chance of landing within 10 SAT points of the truth: precision you can now quantify, and improve by raising \\(n\\). In Excel: =NORM.S.DIST(0.63,TRUE)-NORM.S.DIST(-0.63,TRUE)."
+    "text": "Using the CLT: A Probability Question\n\nSt. Andrew’s: with \\(\\sigma = 87.4\\) and \\(n = 30\\), what is the probability the sample mean SAT lands within 10 points of the true \\(\\mu = 1697\\) (i.e., between 1687 and 1707)?\n\n\\[\n\\sigma_{\\bar{x}} = \\frac{87.4}{\\sqrt{30}} = 15.96,\n\\qquad\nz = \\frac{10}{15.96} = 0.63\n\\]\n\n\n\\[\nP(1687 \\le \\bar{x} \\le 1707) = P(-0.63 \\le Z \\le 0.63) = 0.4714\n\\]\n\nRead it: a single sample of 30 has only about a 47% chance of landing within 10 SAT points of the truth: precision you can now quantify, and improve by raising \\(n\\). In Excel: =NORM.S.DIST(0.63,TRUE)-NORM.S.DIST(-0.63,TRUE)."
   },
   {
     "objectID": "lecture_slides/07_chapter_interval_estimation/07_chapter_interval_estimation.html#proportions-have-a-sampling-distribution-too",
@@ -2918,14 +2918,14 @@
     "href": "lecture_slides/07_chapter_interval_estimation/07_chapter_interval_estimation.html#sample-size-pick-precision-first-solve-for-n",
     "title": " QM 6700: Business Analytics ",
     "section": "Sample Size: Pick Precision First, Solve for \\(n\\)",
-    "text": "Sample Size: Pick Precision First, Solve for \\(n\\)\n\n\nInvert the margin-of-error formula. Set the target \\(E\\), use a planning \\(s\\) and \\(z\\) (95% → 1.96):\n\n\n\\[\nE = z_{\\alpha/2}\\frac{s}{\\sqrt{n}}\n\\qquad\\Longrightarrow\\qquad\nn = \\left(\\frac{z_{\\alpha/2}\\,s}{E}\\right)^{2}\n\\]\n\n\nAlways round up: a fractional person or day cannot be sampled, and rounding down would miss the target precision.\nPlanning value for \\(s\\): a prior study, a pilot sample, or a best guess. Here we use B’s pilot \\(s = \\$0.344\\)."
+    "text": "Sample Size: Pick Precision First, Solve for \\(n\\)\n\n\nInvert the margin-of-error formula. Set the target \\(E\\), use a planning \\(s\\) and \\(z\\) (95% → 1.96):\n\n\n\\[\nE = z_{\\alpha/2}\\frac{s}{\\sqrt{n}}\n\\qquad\\Longrightarrow\\qquad\nn = \\left(\\frac{z_{\\alpha/2}\\,s}{E}\\right)^{2}\n\\]\n\n\nAlways round up: a fractional person or day cannot be sampled, and rounding down would miss the target precision.\nPlanning value for \\(s\\): a prior study, a pilot sample, or a best guess. Here we use B’s pilot \\(s = \\$0.3444\\)."
   },
   {
     "objectID": "lecture_slides/07_chapter_interval_estimation/07_chapter_interval_estimation.html#how-many-days-does-vungle-need",
     "href": "lecture_slides/07_chapter_interval_estimation/07_chapter_interval_estimation.html#how-many-days-does-vungle-need",
     "title": " QM 6700: Business Analytics ",
     "section": "How Many Days Does Vungle Need?",
-    "text": "How Many Days Does Vungle Need?\n\nQuestion: how many test-days for the mean eRPM margin to hit \\(\\pm\\$0.10\\)? \\(\\pm\\$0.05\\)? (planning \\(s = 0.344\\), 95% confidence, \\(z = 1.96\\))\n\n\\[\nn_{0.10} = \\left(\\frac{1.96 \\times 0.344}{0.10}\\right)^{2} = 45.6 \\;\\rightarrow\\; \\mathbf{46 \\text{ days}}\n\\]\n\n\n\\[\nn_{0.05} = \\left(\\frac{1.96 \\times 0.344}{0.05}\\right)^{2} = 182.3 \\;\\rightarrow\\; \\mathbf{183 \\text{ days}}\n\\]\n\nThe lesson: halving the margin (\\(\\$0.10 \\rightarrow \\$0.05\\)) takes four times the days (\\(46 \\rightarrow 183\\)). Precision is expensive, and the manager must decide whether $0.05 of precision is worth six months of testing."
+    "text": "How Many Days Does Vungle Need?\n\nQuestion: how many test-days for the mean eRPM margin to hit \\(\\pm\\$0.10\\)? \\(\\pm\\$0.05\\)? (planning \\(s = 0.3444\\), 95% confidence, \\(z = 1.96\\))\n\n\\[\nn_{0.10} = \\left(\\frac{1.96 \\times 0.3444}{0.10}\\right)^{2} = 45.6 \\;\\rightarrow\\; \\mathbf{46 \\text{ days}}\n\\]\n\n\n\\[\nn_{0.05} = \\left(\\frac{1.96 \\times 0.3444}{0.05}\\right)^{2} = 182.3 \\;\\rightarrow\\; \\mathbf{183 \\text{ days}}\n\\]\n\nThe lesson: halving the margin (\\(\\$0.10 \\rightarrow \\$0.05\\)) takes four times the days (\\(46 \\rightarrow 183\\)). Precision is expensive, and the manager must decide whether $0.05 of precision is worth six months of testing."
   },
   {
     "objectID": "lecture_slides/07_chapter_interval_estimation/07_chapter_interval_estimation.html#margin-of-error-vs.-sample-size",
@@ -2939,7 +2939,7 @@
     "href": "lecture_slides/07_chapter_interval_estimation/07_chapter_interval_estimation.html#sample-size-in-excel",
     "title": " QM 6700: Business Analytics ",
     "section": "Sample Size in Excel",
-    "text": "Sample Size in Excel\n\n\n\nOne formula cell per target:\n=CEILING((NORM.S.INV(0.975)*s/E)^2, 1)\n\n\ns = planning SD (here B’s $0.344)\nE = desired margin ($0.10, then $0.05)\nCEILING(...,1) rounds up to whole days"
+    "text": "Sample Size in Excel\n\n\n\nOne formula cell per target:\n=CEILING((NORM.S.INV(0.975)*s/E)^2, 1)\n\n\ns = planning SD (here B’s $0.3444)\nE = desired margin ($0.10, then $0.05)\nCEILING(...,1) rounds up to whole days"
   },
   {
     "objectID": "lecture_slides/07_chapter_interval_estimation/07_chapter_interval_estimation.html#sample-size-for-a-proportion",
@@ -4623,5 +4623,103 @@
     "title": " QM 6700: Business Analytics ",
     "section": "Today’s Question, Today’s Answer",
     "text": "Today’s Question, Today’s Answer\n\nThe question (this rung of the ladder):\n\nWhat probability and percentile does the Normal give for B’s eRPM, and is the model fair to trust?\n\n\n\nThe answer we reached today:\n\nB clears $3.50 on 45% of days (\\(P = 0.453\\)), a top-10% day is $3.90, and the QQ plot plus Shapiro-Wilk (W = 0.96, p = 0.33) say the Normal is a fair model to use. So a $3.50 day is close to a coin flip; whether B beats A for good still rides on the inference tests in Topics 7–9."
+  },
+  {
+    "objectID": "lecture_slides/07_chapter_interval_estimation/07_chapter_interval_estimation.html#how-every-class-runs",
+    "href": "lecture_slides/07_chapter_interval_estimation/07_chapter_interval_estimation.html#how-every-class-runs",
+    "title": " QM 6700: Business Analytics ",
+    "section": "How Every Class Runs",
+    "text": "How Every Class Runs\n\n\n\n\n\nThe class ends on the Team Sprint, your group’s graded submission: a decision plus your read of the analysis, one PDF before you leave."
+  },
+  {
+    "objectID": "lecture_slides/07_chapter_interval_estimation/07_chapter_interval_estimation.html#todays-question-todays-answer",
+    "href": "lecture_slides/07_chapter_interval_estimation/07_chapter_interval_estimation.html#todays-question-todays-answer",
+    "title": " QM 6700: Business Analytics ",
+    "section": "Today’s Question, Today’s Answer",
+    "text": "Today’s Question, Today’s Answer\n\nThe question (Lecture 1):\n\nHow trustworthy is a 30-day sample mean?\n\n\n\nThe answer we reached today:\n\nA 30-day mean is unbiased (it centers on the truth), but it wobbles by a standard error of \\(s/\\sqrt{n}\\): for B that is \\(0.344/\\sqrt{30} \\approx \\mathbf{\\$0.063}\\). Thanks to the CLT, that wobble is Normal at \\(n = 30\\), so the gap to the truth is small and now quantifiable: that is what lets us build a range next."
+  },
+  {
+    "objectID": "lecture_slides/07_chapter_interval_estimation/07_chapter_interval_estimation.html#how-every-class-runs-1",
+    "href": "lecture_slides/07_chapter_interval_estimation/07_chapter_interval_estimation.html#how-every-class-runs-1",
+    "title": " QM 6700: Business Analytics ",
+    "section": "How Every Class Runs",
+    "text": "How Every Class Runs\n\n\n\n\n\nThe class ends on the Team Sprint, your group’s graded submission: a decision plus your read of the analysis, one PDF before you leave."
+  },
+  {
+    "objectID": "lecture_slides/07_chapter_interval_estimation/07_chapter_interval_estimation.html#todays-question-todays-answer-1",
+    "href": "lecture_slides/07_chapter_interval_estimation/07_chapter_interval_estimation.html#todays-question-todays-answer-1",
+    "title": " QM 6700: Business Analytics ",
+    "section": "Today’s Question, Today’s Answer",
+    "text": "Today’s Question, Today’s Answer\n\nThe question (Lecture 2, and Topic 7 of the ladder):\n\nFrom 30 days, what is B’s true mean eRPM, give or take, and how big a sample do we need?\n\n\n\nThe answer we reached today:\n\nWe are 95% confident B’s true mean eRPM is $3.46 give or take $0.13, i.e. ($3.33, $3.59), and its conversion rate is 0.354% give or take 0.009pt, i.e. (0.345%, 0.362%). To cut the eRPM margin to \\(\\pm\\$0.05\\) takes about 183 days of testing. The eRPM range still overlaps A’s, so estimation alone cannot yet name a winner: that is hypothesis testing, next."
+  },
+  {
+    "objectID": "lecture_slides/07_chapter_interval_estimation/07_chapter_interval_estimation.html#a-question-that-often-comes-up",
+    "href": "lecture_slides/07_chapter_interval_estimation/07_chapter_interval_estimation.html#a-question-that-often-comes-up",
+    "title": " QM 6700: Business Analytics ",
+    "section": "A Question That Often Comes Up",
+    "text": "A Question That Often Comes Up\n\nA question that often comes up at this point:\nIf a point estimate like \\(\\bar{x}_B = \\$3.459\\) is never exactly the true mean, why report a single number at all?\n\nShort answer: \\(\\bar{x}_B = \\$3.459\\) is still the best single guess we have, and every revenue projection has to start somewhere. The point is not to throw it away; it is to attach a measure of how far off it might be. That measure is the standard error, and the rest of the topic turns $3.459 into a defensible range around it."
+  },
+  {
+    "objectID": "lecture_slides/07_chapter_interval_estimation/07_chapter_interval_estimation.html#a-question-that-often-comes-up-1",
+    "href": "lecture_slides/07_chapter_interval_estimation/07_chapter_interval_estimation.html#a-question-that-often-comes-up-1",
+    "title": " QM 6700: Business Analytics ",
+    "section": "A Question That Often Comes Up",
+    "text": "A Question That Often Comes Up\n\nA question that often comes up at this point:\nVungle serves billions of impressions. How can 30 days possibly say anything about a population that huge?\n\nShort answer: the standard error is \\(\\sigma/\\sqrt{n}\\), and the population size \\(N\\) is nowhere in it. A 30-day sample is exactly as precise whether the population is 900 St. Andrew’s applicants or Vungle’s billions of impressions. Precision rides on how many days you sampled, not on how big the world you sampled from is."
+  },
+  {
+    "objectID": "lecture_slides/07_chapter_interval_estimation/07_chapter_interval_estimation.html#a-question-that-often-comes-up-2",
+    "href": "lecture_slides/07_chapter_interval_estimation/07_chapter_interval_estimation.html#a-question-that-often-comes-up-2",
+    "title": " QM 6700: Business Analytics ",
+    "section": "A Question That Often Comes Up",
+    "text": "A Question That Often Comes Up\n\nA question that often comes up at this point:\nVungle’s 30 daily eRPMs are not perfectly bell-shaped. Does the CLT still apply to our case?\n\nShort answer: yes. The CLT is about the distribution of the sample mean, not the raw daily values. It holds no matter the shape of the daily eRPMs: skewed, lumpy, whatever. At \\(n = 30\\) the sampling distribution of \\(\\bar{x}_B\\) is already close to Normal, which is what lets us put a \\(z\\) (or \\(t\\)) interval around $3.459. The one caution: \\(n = 30\\) sits on the rule-of-thumb line, so heavy skew or outliers would push us toward wanting more days."
+  },
+  {
+    "objectID": "lecture_slides/07_chapter_interval_estimation/07_chapter_interval_estimation.html#a-question-that-often-comes-up-3",
+    "href": "lecture_slides/07_chapter_interval_estimation/07_chapter_interval_estimation.html#a-question-that-often-comes-up-3",
+    "title": " QM 6700: Business Analytics ",
+    "section": "A Question That Often Comes Up",
+    "text": "A Question That Often Comes Up\n\nA question that often comes up at this point:\nFor a mean we plug in a separate \\(s\\) to get the standard error. The proportion’s standard error is just \\(\\sqrt{p(1-p)/n}\\). Where did the spread go?\n\nShort answer: a yes/no outcome has no separate spread to measure. Once you know the conversion rate \\(p\\), the variability is locked in at \\(p(1-p)\\): the proportion is its own mean and its own variance. That is why the proportion’s standard error needs only \\(\\bar{p}\\) and \\(n\\), with no extra \\(s\\) to estimate, and (as we’ll see) no \\(t\\) multiplier either."
+  },
+  {
+    "objectID": "lecture_slides/07_chapter_interval_estimation/07_chapter_interval_estimation.html#a-question-that-often-comes-up-4",
+    "href": "lecture_slides/07_chapter_interval_estimation/07_chapter_interval_estimation.html#a-question-that-often-comes-up-4",
+    "title": " QM 6700: Business Analytics ",
+    "section": "A Question That Often Comes Up",
+    "text": "A Question That Often Comes Up\n\nA question that often comes up at this point:\nAt \\(df = 29\\) the \\(t\\) multiplier 2.045 is barely above \\(z\\)’s 1.96. For Vungle’s 30 days, is the difference even worth the trouble?\n\nShort answer: here it is small but not zero: using 2.045 instead of 1.96 widens B’s eRPM margin from about $0.124 to $0.129, the honest cost of not knowing \\(\\sigma\\). The habit matters more than this one case. With a small sample, say \\(n = 10\\), the gap is large, and “always use \\(t\\) when \\(\\sigma\\) is unknown” keeps you correct without having to decide each time whether \\(n\\) is “big enough.”"
+  },
+  {
+    "objectID": "lecture_slides/07_chapter_interval_estimation/07_chapter_interval_estimation.html#a-question-that-often-comes-up-5",
+    "href": "lecture_slides/07_chapter_interval_estimation/07_chapter_interval_estimation.html#a-question-that-often-comes-up-5",
+    "title": " QM 6700: Business Analytics ",
+    "section": "A Question That Often Comes Up",
+    "text": "A Question That Often Comes Up\n\nA question that often comes up at this point:\nIf I can’t say there’s a 95% chance B’s true eRPM is inside ($3.33, $3.59), then what do I actually tell my boss?\n\nShort answer: you tell the boss, “we built this range with a method that captures the true mean 95% of the time, and it puts B’s eRPM between $3.33 and $3.59.” The 95% is your confidence in the procedure, not a betting line on this one interval. In practice the manager acts on the range exactly the same way; the wording just keeps you honest about where the uncertainty lives."
+  },
+  {
+    "objectID": "lecture_slides/07_chapter_interval_estimation/07_chapter_interval_estimation.html#a-question-that-often-comes-up-6",
+    "href": "lecture_slides/07_chapter_interval_estimation/07_chapter_interval_estimation.html#a-question-that-often-comes-up-6",
+    "title": " QM 6700: Business Analytics ",
+    "section": "A Question That Often Comes Up",
+    "text": "A Question That Often Comes Up\n\nA question that often comes up at this point:\nWe just learned to use \\(t\\) when \\(\\sigma\\) is unknown. For B’s conversion rate we don’t know the true \\(p\\) either, so why does the proportion interval use \\(z\\), not \\(t\\)?\n\nShort answer: the \\(t\\) exists to fix one specific problem: estimating a separate spread \\(s\\) for a mean. A proportion has no separate spread; its variability is fixed by \\(p\\) itself, so there is nothing extra to estimate and no fattened tails to correct. We plug \\(\\bar{p}\\) into the standard error and use \\(z\\) straight away, after checking \\(n\\bar{p} \\geq 5\\) and \\(n(1-\\bar{p}) \\geq 5\\)."
+  },
+  {
+    "objectID": "lecture_slides/07_chapter_interval_estimation/07_chapter_interval_estimation.html#a-question-that-often-comes-up-7",
+    "href": "lecture_slides/07_chapter_interval_estimation/07_chapter_interval_estimation.html#a-question-that-often-comes-up-7",
+    "title": " QM 6700: Business Analytics ",
+    "section": "A Question That Often Comes Up",
+    "text": "A Question That Often Comes Up\n\nA question that often comes up at this point:\nThe sample-size formula needs \\(s\\), but \\(s\\) is exactly what a longer test is supposed to pin down. Isn’t that circular?\n\nShort answer: it would be, except we use a planning value for \\(s\\), not the final one. Here we borrow B’s pilot \\(s = \\$0.3444\\) from the 30 days we already have. It only needs to be roughly right to get the day count in the ballpark: \\(183\\) days for \\(\\pm\\$0.05\\). When the real test finishes you recompute \\(s\\) from the full data and report the actual interval; the planning value is just for sizing the test, not for the final answer."
+  },
+  {
+    "objectID": "lecture_slides/07_chapter_interval_estimation/07_chapter_interval_estimation.html#how-the-sample-is-drawn",
+    "href": "lecture_slides/07_chapter_interval_estimation/07_chapter_interval_estimation.html#how-the-sample-is-drawn",
+    "title": " QM 6700: Business Analytics ",
+    "section": "How the Sample Is Drawn",
+    "text": "How the Sample Is Drawn\n\n\nProbability sampling gives every unit a known chance of selection, so the sampling distribution and every formula today hold. Non-probability samples (convenience, judgment) have no known selection chance, so the inference math does not apply.\nVungle’s 30 days are a probability sample of B’s running output, which is what licenses the standard error and interval we build today."
+  },
+  {
+    "objectID": "lecture_slides/07_chapter_interval_estimation/07_chapter_interval_estimation.html#the-special-case-sigma-known-use-z",
+    "href": "lecture_slides/07_chapter_interval_estimation/07_chapter_interval_estimation.html#the-special-case-sigma-known-use-z",
+    "title": " QM 6700: Business Analytics ",
+    "section": "The Special Case: \\(\\sigma\\) Known → Use \\(z\\)",
+    "text": "The Special Case: \\(\\sigma\\) Known → Use \\(z\\)\n\n\nWhen \\(\\sigma\\) is somehow known (a long production history, a fixed process spec), the interval for \\(\\mu\\) uses the \\(z\\) multiplier directly:\n\n\n\\[\n\\bar{x} \\pm z_{\\alpha/2}\\,\\frac{\\sigma}{\\sqrt{n}}\n\\]\n\n\nThe multiplier is read straight from the Normal table, the same values for every sample size:\n\n\n\n\n\nConfidence\n\\(z_{\\alpha/2}\\)\n\n\n\n\n90%\n1.645\n\n\n95%\n1.960\n\n\n99%\n2.576\n\n\n\n\n\nVungle does not know \\(\\sigma\\) for B’s eRPM, so this case does not apply here. We estimate \\(\\sigma\\) with \\(s\\), which is why the rest of the topic uses \\(t\\)."
   }
 ]
