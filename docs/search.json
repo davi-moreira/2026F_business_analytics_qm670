@@ -1840,7 +1840,7 @@
     "href": "lecture_slides/08_chapter_hypothesis_tests/08_chapter_hypothesis_tests.html#now-the-spine-case-bs-erpm-in-numbers",
     "title": " QM 6700: Business Analytics ",
     "section": "Now the Spine Case: B’s eRPM in Numbers",
-    "text": "Now the Spine Case: B’s eRPM in Numbers\n\n\n21 of 30 days clear the $3.30 line, and the sample mean sits well above it, but a noisy 30-day sample could land here even if the true mean were exactly $3.30. The test settles it."
+    "text": "Now the Spine Case: B’s eRPM in Numbers\n\n\n23 of 30 days clear the $3.30 line, and the sample mean sits well above it, but a noisy 30-day sample could land here even if the true mean were exactly $3.30. The test settles it."
   },
   {
     "objectID": "lecture_slides/08_chapter_hypothesis_tests/08_chapter_hypothesis_tests.html#step-3-compute-the-test-statistic",
@@ -1987,7 +1987,7 @@
     "href": "lecture_slides/08_chapter_hypothesis_tests/08_chapter_hypothesis_tests.html#reading-p-values-like-a-manager",
     "title": " QM 6700: Business Analytics ",
     "section": "Reading \\(p\\)-Values Like a Manager",
-    "text": "Reading \\(p\\)-Values Like a Manager\n\nThe same statistic, re-anchored to the Vungle eRPM mean test under different benchmarks: what would the verdict be?\n\n\n\n\n\n\n\n\n\n\nIf the benchmark were…\n\\(t\\)\n\\(p\\)-value\nRubric label\nManager’s read\n\n\n\n\n\\(\\mu_0 = 3.30\\) (our case)\n2.53\n0.009\nOverwhelming\nClear the line decisively, fund B\n\n\n\\(\\mu_0 = 3.35\\)\n1.73\n0.047\nStrong\nSignificant at 5%, not at 1%; fund, but watch it\n\n\n\\(\\mu_0 = 3.40\\)\n0.94\n0.178\nInsufficient\nCannot distinguish B from 3.40, so hold\n\n\n\n\n\nThe same data support very different conclusions depending on where you draw the line, which is why the benchmark is a business decision, set before the test."
+    "text": "Reading \\(p\\)-Values Like a Manager\n\nThe same statistic, re-anchored to the Vungle eRPM mean test under different benchmarks: what would the verdict be?\n\n\n\n\n\n\n\n\n\n\nIf the benchmark were…\n\\(t\\)\n\\(p\\)-value\nRubric label\nManager’s read\n\n\n\n\n\\(\\mu_0 = 3.30\\) (our case)\n2.53\n0.009\nOverwhelming\nClear the line decisively, fund B\n\n\n\\(\\mu_0 = 3.35\\)\n1.73\n0.047\nStrong\nSignificant at 5%, not at 1%; fund, but watch it\n\n\n\\(\\mu_0 = 3.40\\)\n0.94\n0.178\nInsufficient\nCannot distinguish B from 3.40, so hold\n\n\n\n\n\nThe same data support different conclusions depending on where you draw the line, which is why the benchmark is a business decision, set before the test."
   },
   {
     "objectID": "lecture_slides/08_chapter_hypothesis_tests/08_chapter_hypothesis_tests.html#team-sprint-2-does-b-clear-the-conversion-target",
@@ -2029,7 +2029,7 @@
     "href": "lecture_slides/08_chapter_hypothesis_tests/08_chapter_hypothesis_tests.html#summary",
     "title": " QM 6700: Business Analytics ",
     "section": "Summary",
-    "text": "Summary\nSome key takeaways from this session:\n\n\\(H_0\\) is the skeptic on trial: put the claim you want to prove in \\(H_a\\), keep the equality in \\(H_0\\), and let the data carry the burden of proof.\nTwo errors, one knob: you set \\(\\alpha\\) (Type I risk) before the test; \\(\\beta\\) (Type II) follows. Say “fail to reject,” never “accept.”\nOne recipe, two parameters: the one-sample \\(t\\) (mean, \\(\\sigma\\) unknown) and the one-proportion \\(z\\) share the same five steps; only the standard error and reference distribution change.\nTwo roads agree: the critical-value and \\(p\\)-value approaches always reach the same decision, and both agree with the confidence interval.\nSignificance \\(\\neq\\) importance: with millions of impressions almost everything is “significant,” so judge the effect size; with tiny samples real effects can hide, so mind the power.\nA test answers is the parameter past a line? Comparing two populations (is B better than A?) is Topic 9."
+    "text": "Summary\nSome takeaways from this session:\n\n\\(H_0\\) is the skeptic on trial: put the claim you want to prove in \\(H_a\\), keep the equality in \\(H_0\\), and let the data carry the burden of proof.\nTwo errors, one knob: you set \\(\\alpha\\) (Type I risk) before the test; \\(\\beta\\) (Type II) follows. Say “fail to reject,” never “accept.”\nOne recipe, two parameters: the one-sample \\(t\\) (mean, \\(\\sigma\\) unknown) and the one-proportion \\(z\\) share the same five steps; only the standard error and reference distribution change.\nTwo roads agree: the critical-value and \\(p\\)-value approaches always reach the same decision, and both agree with the confidence interval.\nSignificance \\(\\neq\\) importance: with millions of impressions almost everything is “significant,” so judge the effect size; with tiny samples real effects can hide, so mind the power.\nA test answers is the parameter past a line? Comparing two populations (is B better than A?) is Topic 9."
   },
   {
     "objectID": "lecture_slides/01_chapter_data_statistics/01_chapter_data_statistics.html#overview",
@@ -3754,7 +3754,7 @@
     "href": "lecture_slides/08_chapter_hypothesis_tests/08_chapter_hypothesis_tests.html#the-brief-is-the-proportion-really-above-the-target",
     "title": " QM 6700: Business Analytics ",
     "section": "The Brief: Is the Proportion Really Above the Target?",
-    "text": "The Brief: Is the Proportion Really Above the Target?\n\n\nThe big call is still roll out B, or stay with A? Lecture 2’s piece: is B’s conversion rate really above the 0.35% target?\neRPM is revenue per impression. The ops team also watches the conversion rate: installs ÷ impressions. Any algorithm must clear a minimum 0.35% conversion target to be viable.\nNow the parameter is a proportion \\(p\\), not a mean, but the machinery is the same: state \\(H_0\\)/\\(H_a\\), compute a test statistic, get a \\(p\\)-value, decide at \\(\\alpha\\).\n\n\n\\[\nH_0: p \\leq 0.0035 \\qquad \\text{vs.} \\qquad H_a: p &gt; 0.0035 \\qquad \\alpha = 0.05\n\\]\n\n\n\\(p\\) = B’s true install-per-impression rate; the sample is every June impression served under B."
+    "text": "The Brief: Is the Proportion Really Above the Target?\n\n\nThe big call is still roll out B, or stay with A? Lecture 2’s piece: is B’s conversion rate really above the 0.35% viability target?\neRPM is revenue per impression. The ops team also watches the conversion rate: installs ÷ impressions. Any algorithm must clear a minimum 0.35% conversion target to be viable.\nNow the parameter is a proportion \\(p\\), not a mean, but the machinery is the same: state \\(H_0\\)/\\(H_a\\), compute a test statistic, get a \\(p\\)-value, decide at \\(\\alpha\\).\n\n\n\\[\nH_0: p \\leq 0.0035 \\qquad \\text{vs.} \\qquad H_a: p &gt; 0.0035 \\qquad \\alpha = 0.05\n\\]\n\n\n\\(p\\) = B’s true install-per-impression rate; the sample is every June impression served under B."
   },
   {
     "objectID": "lecture_slides/08_chapter_hypothesis_tests/08_chapter_hypothesis_tests.html#the-ceos-takeaway-lecture-2",
@@ -4721,5 +4721,89 @@
     "title": " QM 6700: Business Analytics ",
     "section": "The Special Case: \\(\\sigma\\) Known → Use \\(z\\)",
     "text": "The Special Case: \\(\\sigma\\) Known → Use \\(z\\)\n\n\nWhen \\(\\sigma\\) is somehow known (a long production history, a fixed process spec), the interval for \\(\\mu\\) uses the \\(z\\) multiplier directly:\n\n\n\\[\n\\bar{x} \\pm z_{\\alpha/2}\\,\\frac{\\sigma}{\\sqrt{n}}\n\\]\n\n\nThe multiplier is read straight from the Normal table, the same values for every sample size:\n\n\n\n\n\nConfidence\n\\(z_{\\alpha/2}\\)\n\n\n\n\n90%\n1.645\n\n\n95%\n1.960\n\n\n99%\n2.576\n\n\n\n\n\nVungle does not know \\(\\sigma\\) for B’s eRPM, so this case does not apply here. We estimate \\(\\sigma\\) with \\(s\\), which is why the rest of the topic uses \\(t\\)."
+  },
+  {
+    "objectID": "lecture_slides/08_chapter_hypothesis_tests/08_chapter_hypothesis_tests.html#a-question-that-often-comes-up",
+    "href": "lecture_slides/08_chapter_hypothesis_tests/08_chapter_hypothesis_tests.html#a-question-that-often-comes-up",
+    "title": " QM 6700: Business Analytics ",
+    "section": "A Question That Often Comes Up",
+    "text": "A Question That Often Comes Up\n\nA question that often comes up at this point:\nIf a confidence interval already gives a range for B’s mean eRPM, why run a separate test at all?\n\nShort answer: the interval answers “what is B’s eRPM?”; the test answers “is it past the $3.30 line we fund on?” The funding rule is phrased as a yes/no against a benchmark, so the test reports the decision directly, with a \\(p\\)-value attached. The two never disagree, but the test speaks the manager’s language."
+  },
+  {
+    "objectID": "lecture_slides/08_chapter_hypothesis_tests/08_chapter_hypothesis_tests.html#a-question-that-often-comes-up-1",
+    "href": "lecture_slides/08_chapter_hypothesis_tests/08_chapter_hypothesis_tests.html#a-question-that-often-comes-up-1",
+    "title": " QM 6700: Business Analytics ",
+    "section": "A Question That Often Comes Up",
+    "text": "A Question That Often Comes Up\n\nA question that often comes up at this point:\nWe are hoping B beats $3.30, so why is “B beats $3.30” the alternative and not the null?\n\nShort answer: the test makes the data earn the conclusion. We start by assuming B is no better (\\(H_0\\)) and only fund B if the evidence is strong enough to overturn that. Putting the claim we want in \\(H_a\\) means a “fund B” verdict survives a skeptic’s challenge, not just a hopeful read of one good month."
+  },
+  {
+    "objectID": "lecture_slides/08_chapter_hypothesis_tests/08_chapter_hypothesis_tests.html#a-question-that-often-comes-up-2",
+    "href": "lecture_slides/08_chapter_hypothesis_tests/08_chapter_hypothesis_tests.html#a-question-that-often-comes-up-2",
+    "title": " QM 6700: Business Analytics ",
+    "section": "A Question That Often Comes Up",
+    "text": "A Question That Often Comes Up\n\nA question that often comes up at this point:\nIf a Type I error funds a dud algorithm, why not set \\(\\alpha\\) to something tiny like 0.001 and never have a false alarm?\n\nShort answer: because shrinking \\(\\alpha\\) raises \\(\\beta\\). Demand near-impossible evidence and you will also miss a B that genuinely beats $3.30 (a real improvement left unfunded). With June’s 30 days fixed, you cannot drive both risks to zero; \\(\\alpha = 0.05\\) is the balance Vungle is choosing between a false “fund it” and a missed winner."
+  },
+  {
+    "objectID": "lecture_slides/08_chapter_hypothesis_tests/08_chapter_hypothesis_tests.html#how-every-class-runs",
+    "href": "lecture_slides/08_chapter_hypothesis_tests/08_chapter_hypothesis_tests.html#how-every-class-runs",
+    "title": " QM 6700: Business Analytics ",
+    "section": "How Every Class Runs",
+    "text": "How Every Class Runs\n\n\n\n\n\nThe class ends on the Team Sprint, your group’s graded submission: a decision plus your read of the analysis, one PDF before you leave."
+  },
+  {
+    "objectID": "lecture_slides/08_chapter_hypothesis_tests/08_chapter_hypothesis_tests.html#a-question-that-often-comes-up-3",
+    "href": "lecture_slides/08_chapter_hypothesis_tests/08_chapter_hypothesis_tests.html#a-question-that-often-comes-up-3",
+    "title": " QM 6700: Business Analytics ",
+    "section": "A Question That Often Comes Up",
+    "text": "A Question That Often Comes Up\n\nA question that often comes up at this point:\nWhy use \\(t\\) for B’s eRPM but \\(z\\) later for B’s conversion rate? When does each one apply?\n\nShort answer: it comes down to what we know and how big \\(n\\) is. For B’s eRPM we have 30 days and must estimate the spread with \\(s\\), so the extra uncertainty gives slightly heavier tails: that is the \\(t\\). For B’s conversion we have millions of impressions and the proportion’s standard error comes from \\(p_0\\), so the normal \\(z\\) applies. Same five steps, different reference curve."
+  },
+  {
+    "objectID": "lecture_slides/08_chapter_hypothesis_tests/08_chapter_hypothesis_tests.html#a-question-that-often-comes-up-4",
+    "href": "lecture_slides/08_chapter_hypothesis_tests/08_chapter_hypothesis_tests.html#a-question-that-often-comes-up-4",
+    "title": " QM 6700: Business Analytics ",
+    "section": "A Question That Often Comes Up",
+    "text": "A Question That Often Comes Up\n\nA question that often comes up at this point:\nIf B’s test gives \\(p = 0.009\\), doesn’t that mean there’s only a 0.9% chance B is no better than $3.30?\n\nShort answer: no, and this is the slip to avoid. The 0.9% is the chance of seeing 30 days this good or better if B were really only at $3.30. It is \\(P(\\text{data} \\mid H_0)\\), not \\(P(H_0 \\mid \\text{data})\\). The data are the random thing here, not the truth about B. A small \\(p\\) makes “no better” hard to believe; it does not put a probability on the claim itself."
+  },
+  {
+    "objectID": "lecture_slides/08_chapter_hypothesis_tests/08_chapter_hypothesis_tests.html#todays-question-todays-answer",
+    "href": "lecture_slides/08_chapter_hypothesis_tests/08_chapter_hypothesis_tests.html#todays-question-todays-answer",
+    "title": " QM 6700: Business Analytics ",
+    "section": "Today’s Question, Today’s Answer",
+    "text": "Today’s Question, Today’s Answer\n\nThe question (Lecture 1’s rung):\n\nIs B’s mean eRPM really above the $3.30 benchmark, or could a noisy 30-day sample land there by luck?\n\n\n\nThe answer we reached today:\n\nYes. B’s 30-day mean is $3.459 against the $3.30 line; the one-sample \\(t\\)-test gives \\(t = 2.53\\), \\(p = 0.009\\). If B were truly only at $3.30, 30 days would average this high about 9 times in 1,000. Reject “no better” and fund B."
+  },
+  {
+    "objectID": "lecture_slides/08_chapter_hypothesis_tests/08_chapter_hypothesis_tests.html#how-every-class-runs-1",
+    "href": "lecture_slides/08_chapter_hypothesis_tests/08_chapter_hypothesis_tests.html#how-every-class-runs-1",
+    "title": " QM 6700: Business Analytics ",
+    "section": "How Every Class Runs",
+    "text": "How Every Class Runs\n\n\n\n\n\nThe class ends on the Team Sprint, your group’s graded submission: a decision plus your read of the analysis, one PDF before you leave."
+  },
+  {
+    "objectID": "lecture_slides/08_chapter_hypothesis_tests/08_chapter_hypothesis_tests.html#a-question-that-often-comes-up-5",
+    "href": "lecture_slides/08_chapter_hypothesis_tests/08_chapter_hypothesis_tests.html#a-question-that-often-comes-up-5",
+    "title": " QM 6700: Business Analytics ",
+    "section": "A Question That Often Comes Up",
+    "text": "A Question That Often Comes Up\n\nA question that often comes up at this point:\nWhy does the standard error use the target \\(p_0 = 0.0035\\) and not B’s observed rate \\(\\bar p = 0.003541\\)?\n\nShort answer: the test runs as if \\(H_0\\) were true, so it measures how surprising B’s rate is under the 0.35% target. Building the standard error from \\(p_0\\) keeps the whole calculation on that “what if the target is the truth?” footing. (In a confidence interval, where there is no hypothesized value, you would use \\(\\bar p\\) instead.)"
+  },
+  {
+    "objectID": "lecture_slides/08_chapter_hypothesis_tests/08_chapter_hypothesis_tests.html#a-question-that-often-comes-up-6",
+    "href": "lecture_slides/08_chapter_hypothesis_tests/08_chapter_hypothesis_tests.html#a-question-that-often-comes-up-6",
+    "title": " QM 6700: Business Analytics ",
+    "section": "A Question That Often Comes Up",
+    "text": "A Question That Often Comes Up\n\nA question that often comes up at this point:\nIf 15.8M impressions make almost any gap “significant,” does the conversion test still tell us anything useful?\n\nShort answer: yes, it rules out luck. \\(z = 2.73\\) confirms B’s +0.0041-point edge is real, not sampling noise. What the test cannot do is decide whether that edge is worth acting on: that is the manager’s call, made by pairing the \\(z\\) with the effect size. Report both, and never let a big \\(z\\) stand in for a big effect."
+  },
+  {
+    "objectID": "lecture_slides/08_chapter_hypothesis_tests/08_chapter_hypothesis_tests.html#todays-question-todays-answer-1",
+    "href": "lecture_slides/08_chapter_hypothesis_tests/08_chapter_hypothesis_tests.html#todays-question-todays-answer-1",
+    "title": " QM 6700: Business Analytics ",
+    "section": "Today’s Question, Today’s Answer",
+    "text": "Today’s Question, Today’s Answer\n\nThe question (Lecture 2’s rung):\n\nIs B’s conversion rate really above the 0.35% viability target?\n\n\n\nThe answer we reached today:\n\nYes, but read the size. B’s install rate is 0.3541% against the 0.3500% target; with 15.8M impressions the one-proportion \\(z\\)-test gives \\(z = 2.73\\), \\(p = 0.003\\), so reject “below target.” The gap is real, but only +0.0041 percentage points: significant, not large."
+  },
+  {
+    "objectID": "lecture_slides/08_chapter_hypothesis_tests/08_chapter_hypothesis_tests.html#if-sigma-were-known-the-z-version-of-the-same-test",
+    "href": "lecture_slides/08_chapter_hypothesis_tests/08_chapter_hypothesis_tests.html#if-sigma-were-known-the-z-version-of-the-same-test",
+    "title": " QM 6700: Business Analytics ",
+    "section": "If \\(\\sigma\\) Were Known: the \\(z\\) Version of the Same Test",
+    "text": "If \\(\\sigma\\) Were Known: the \\(z\\) Version of the Same Test\n\n\nSometimes a long process history pins down the true standard deviation \\(\\sigma\\). Then you do not estimate the spread, so there is no extra uncertainty and the statistic is a \\(z\\) on the standard normal:\n\n\n\\[\nz = \\frac{\\bar{x} - \\mu_0}{\\sigma / \\sqrt{n}}\n\\]\n\n\nSame five steps, same two roads, only the reference curve changes. Excel: =NORM.S.INV(1-α) for the critical \\(z\\) (\\(z_{0.05} = 1.645\\)); =1-NORM.S.DIST(z, TRUE) for an upper-tail \\(p\\)-value.\nThe decision rule: is \\(\\sigma\\) known? If yes (and \\(n \\geq 30\\) or the data look normal), use \\(z\\). If no, estimate it with \\(s\\) and use \\(t\\) with \\(df = n-1\\). In practice \\(\\sigma\\) is almost never known, so B’s eRPM test uses \\(t\\); we show \\(z\\) so the textbook formula is on the record."
   }
 ]

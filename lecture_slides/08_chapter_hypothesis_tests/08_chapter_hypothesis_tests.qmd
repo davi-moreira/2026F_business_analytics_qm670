@@ -51,7 +51,7 @@ html-math-method:
 
 <br>
 
-- [Vungle](https://en.wikipedia.org/wiki/Liftoff_Mobile) is a mobile ad-tech startup: it serves 15-second video ads inside other companies' apps and earns revenue mainly when a viewer **installs** the advertised app (cost-per-install).
+- **Vungle** is a mobile ad-tech startup: it serves 15-second video ads inside other companies' apps and earns revenue mainly when a viewer **installs** the advertised app (cost-per-install).
 
 - Two analysts built a new ad-serving algorithm (**B**) and ran it head-to-head against the existing one (**A**) for the entire month of June 2014. The metric that pays the bills is **eRPM**, effective revenue per 1,000 impressions.
 
@@ -96,6 +96,18 @@ html-math-method:
 
 - They are two views of the **same** sampling logic, and we will see at the end they agree.
 
+## A Question That Often Comes Up
+
+:::: {.faq}
+**A question that often comes up at this point:**
+
+[If a confidence interval already gives a range for B's mean eRPM, why run a separate test at all?]{.faq-q}
+
+::: {.fragment .faq-a}
+**Short answer:** the interval answers *"what is B's eRPM?"*; the test answers *"is it past the \$3.30 line we fund on?"* The funding rule is phrased as a yes/no against a benchmark, so the test reports the decision directly, with a $p$-value attached. The two never disagree, but the test speaks the manager's language.
+:::
+::::
+
 # Developing the Hypotheses {background-color="#cfb991"}
 
 ## $H_0$ Is on Trial: the Skeptic's Position
@@ -129,6 +141,18 @@ H_0: \mu \leq 3.30 \qquad \text{vs.} \qquad H_a: \mu > 3.30
 $$
 
 :::
+
+## A Question That Often Comes Up
+
+:::: {.faq}
+**A question that often comes up at this point:**
+
+[We are hoping B beats \$3.30, so why is "B beats \$3.30" the alternative and not the null?]{.faq-q}
+
+::: {.fragment .faq-a}
+**Short answer:** the test makes the data earn the conclusion. We start by assuming B is **no better** ($H_0$) and only fund B if the evidence is strong enough to overturn that. Putting the claim we want in $H_a$ means a "fund B" verdict survives a skeptic's challenge, not just a hopeful read of one good month.
+:::
+::::
 
 ## Three Forms: the Business Question Picks the Tail
 
@@ -201,6 +225,18 @@ knitr::include_graphics("figs/type_I_II_errors_studio.png")
 
 - This is why $H_0$ is conservative: the test protects the **status quo** until the evidence is strong enough to justify the change.
 
+## A Question That Often Comes Up
+
+:::: {.faq}
+**A question that often comes up at this point:**
+
+[If a Type I error funds a dud algorithm, why not set $\alpha$ to something tiny like 0.001 and never have a false alarm?]{.faq-q}
+
+::: {.fragment .faq-a}
+**Short answer:** because shrinking $\alpha$ raises $\beta$. Demand near-impossible evidence and you will also miss a B that genuinely beats \$3.30 (a real improvement left unfunded). With June's 30 days fixed, you cannot drive both risks to zero; $\alpha = 0.05$ is the balance Vungle is choosing between a false "fund it" and a missed winner.
+:::
+::::
+
 # Lecture 1: One-Sample Test About a Mean {background-color="#cfb991"}
 
 ## The Brief: Is the Mean Really Above the Benchmark?
@@ -225,6 +261,14 @@ $$
 
 - **Today's plan:** demo the mechanics on a textbook airport-rating case, then a good analyst's work on Vungle goes up for you to reproduce and stress-test.
 
+## How Every Class Runs
+
+![](figs/lecture_dynamic.png){.nostretch fig-align="center" width="90%"}
+
+::: nonincremental
+The class **ends on the Team Sprint**, your group's graded submission: a decision plus your read of the analysis, one PDF before you leave.
+:::
+
 ## The Test Statistic: How Many Standard Errors Above the Line?
 
 <br>
@@ -244,6 +288,36 @@ $$
 - A **big** $t$ means the sample mean is many standard errors above the line: hard to explain as luck if $H_0$ were true.
 
 - Because $\sigma$ is unknown and replaced by $s$, the statistic follows a **$t$ distribution** with $n-1$ degrees of freedom (slightly heavier tails than the normal).
+
+## If $\sigma$ Were Known: the $z$ Version of the Same Test
+
+<br>
+
+- Sometimes a long process history pins down the **true** standard deviation $\sigma$. Then you do not estimate the spread, so there is no extra uncertainty and the statistic is a **$z$** on the standard normal:
+
+::: fragment
+
+$$
+z = \frac{\bar{x} - \mu_0}{\sigma / \sqrt{n}}
+$$
+
+:::
+
+- Same five steps, same two roads, only the reference curve changes. Excel: `=NORM.S.INV(1-α)` for the critical $z$ ($z_{0.05} = 1.645$); `=1-NORM.S.DIST(z, TRUE)` for an upper-tail $p$-value.
+
+- **The decision rule:** is $\sigma$ known? If yes (and $n \geq 30$ or the data look normal), use $z$. If no, estimate it with $s$ and use $t$ with $df = n-1$. In practice $\sigma$ is almost never known, so B's eRPM test uses $t$; we show $z$ so the textbook formula is on the record.
+
+## A Question That Often Comes Up
+
+:::: {.faq}
+**A question that often comes up at this point:**
+
+[Why use $t$ for B's eRPM but $z$ later for B's conversion rate? When does each one apply?]{.faq-q}
+
+::: {.fragment .faq-a}
+**Short answer:** it comes down to what we know and how big $n$ is. For B's eRPM we have 30 days and must estimate the spread with $s$, so the extra uncertainty gives slightly heavier tails: that is the $t$. For B's conversion we have millions of impressions and the proportion's standard error comes from $p_0$, so the normal $z$ applies. Same five steps, different reference curve.
+:::
+::::
 
 ## Two Roads to the Same Decision
 
@@ -288,6 +362,18 @@ $$
 
 :::
 
+## A Question That Often Comes Up
+
+:::: {.faq}
+**A question that often comes up at this point:**
+
+[If B's test gives $p = 0.009$, doesn't that mean there's only a 0.9% chance B is no better than \$3.30?]{.faq-q}
+
+::: {.fragment .faq-a}
+**Short answer:** no, and this is the slip to avoid. The 0.9% is the chance of seeing 30 days **this good or better** *if* B were really only at \$3.30. It is $P(\text{data} \mid H_0)$, not $P(H_0 \mid \text{data})$. The data are the random thing here, not the truth about B. A small $p$ makes "no better" hard to believe; it does not put a probability on the claim itself.
+:::
+::::
+
 ## Anchor Example: Heathrow Superior-Service Rating
 
 <br>
@@ -331,7 +417,7 @@ knitr::include_graphics("figs/erpm_B_vs_benchmark.png")
 ```
 
 ::: nonincremental
-- 21 of 30 days clear the \$3.30 line, and the sample mean sits well above it, but a noisy 30-day sample *could* land here even if the true mean were exactly \$3.30. The test settles it.
+- 23 of 30 days clear the \$3.30 line, and the sample mean sits well above it, but a noisy 30-day sample *could* land here even if the true mean were exactly \$3.30. The test settles it.
 :::
 
 ## Step 3: Compute the Test Statistic
@@ -459,6 +545,22 @@ $$
 
 - This answers *"is B above the line?"*, but the deeper question is *"is B better than **A**?"* That comparison of **two** populations is Topic 9.
 
+## Today's Question, Today's Answer
+
+<br>
+
+**The question (Lecture 1's rung):**
+
+> *Is B's mean eRPM really above the \$3.30 benchmark, or could a noisy 30-day sample land there by luck?*
+
+::: fragment
+<br>
+
+**The answer we reached today:**
+
+> **Yes.** B's 30-day mean is **\$3.459** against the \$3.30 line; the one-sample $t$-test gives $t = 2.53$, $p = 0.009$. If B were truly only at \$3.30, 30 days would average this high about **9 times in 1,000**. **Reject "no better" and fund B.**
+:::
+
 ## The Manager's Takeaway: Lecture 1
 
 <br>
@@ -487,7 +589,7 @@ $$
 
 <br>
 
-- The big call is still *roll out B, or stay with A?* **Lecture 2's piece:** *is B's conversion rate really above the 0.35% target?*
+- The big call is still *roll out B, or stay with A?* **Lecture 2's piece:** *is B's conversion rate really above the 0.35% viability target?*
 
 - eRPM is revenue per impression. The ops team also watches the **conversion rate**: installs ÷ impressions. Any algorithm must clear a minimum **0.35%** conversion target to be viable.
 
@@ -502,6 +604,14 @@ $$
 :::
 
 - $p$ = B's **true** install-per-impression rate; the sample is every June impression served under B.
+
+## How Every Class Runs
+
+![](figs/lecture_dynamic.png){.nostretch fig-align="center" width="90%"}
+
+::: nonincremental
+The class **ends on the Team Sprint**, your group's graded submission: a decision plus your read of the analysis, one PDF before you leave.
+:::
 
 ## The Unit of Observation Just Changed
 
@@ -550,6 +660,18 @@ $$
 :::
 
 - **Large-sample condition:** $np_0 \geq 5$ and $n(1-p_0) \geq 5$. Here $np_0 \approx 55{,}000 \gg 5$, easily satisfied.
+
+## A Question That Often Comes Up
+
+:::: {.faq}
+**A question that often comes up at this point:**
+
+[Why does the standard error use the target $p_0 = 0.0035$ and not B's observed rate $\bar p = 0.003541$?]{.faq-q}
+
+::: {.fragment .faq-a}
+**Short answer:** the test runs *as if* $H_0$ were true, so it measures how surprising B's rate is **under** the 0.35% target. Building the standard error from $p_0$ keeps the whole calculation on that "what if the target is the truth?" footing. (In a confidence interval, where there is no hypothesized value, you would use $\bar p$ instead.)
+:::
+::::
 
 ## Decision Rules for a Proportion
 
@@ -692,6 +814,18 @@ knitr::include_graphics("figs/excel_one_prop_z_vungle.png")
 
 - Neither replaces judgment about **magnitude**. *"Is it real?"* and *"is it big enough to act on?"* are different questions.
 
+## A Question That Often Comes Up
+
+:::: {.faq}
+**A question that often comes up at this point:**
+
+[If 15.8M impressions make almost any gap "significant," does the conversion test still tell us anything useful?]{.faq-q}
+
+::: {.fragment .faq-a}
+**Short answer:** yes, it rules out luck. $z = 2.73$ confirms B's +0.0041-point edge is real, not sampling noise. What the test cannot do is decide whether that edge is **worth acting on**: that is the manager's call, made by pairing the $z$ with the effect size. Report both, and never let a big $z$ stand in for a big effect.
+:::
+::::
+
 ## Reading $p$-Values Like a Manager
 
 ::: r-fit-text
@@ -705,7 +839,23 @@ The same statistic, re-anchored to the Vungle eRPM mean test under different ben
 
 :::
 
-- The **same data** support very different conclusions depending on **where you draw the line**, which is why the benchmark is a *business* decision, set before the test.
+- The **same data** support different conclusions depending on **where you draw the line**, which is why the benchmark is a *business* decision, set before the test.
+
+## Today's Question, Today's Answer
+
+<br>
+
+**The question (Lecture 2's rung):**
+
+> *Is B's conversion rate really above the 0.35% viability target?*
+
+::: fragment
+<br>
+
+**The answer we reached today:**
+
+> **Yes, but read the size.** B's install rate is **0.3541%** against the 0.3500% target; with 15.8M impressions the one-proportion $z$-test gives $z = 2.73$, $p = 0.003$, so **reject "below target."** The gap is real, but only **+0.0041 percentage points**: significant, not large.
+:::
 
 ## The Manager's Takeaway: Lecture 2
 
@@ -762,7 +912,7 @@ The same statistic, re-anchored to the Vungle eRPM mean test under different ben
 ## Summary
 
 ::: nonincremental
-Some key takeaways from this session:
+Some takeaways from this session:
 
 - **$H_0$ is the skeptic on trial:** put the claim you want to prove in $H_a$, keep the equality in $H_0$, and let the data carry the burden of proof.
 - **Two errors, one knob:** you set $\alpha$ (Type I risk) before the test; $\beta$ (Type II) follows. Say *"fail to reject,"* never *"accept."*
