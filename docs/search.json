@@ -2386,14 +2386,14 @@
     "href": "lecture_slides/11_chapter_multiple_regression/11_chapter_multiple_regression.html#the-multiple-regression-model",
     "title": " QM 6700: Business Analytics ",
     "section": "The Multiple Regression Model",
-    "text": "The Multiple Regression Model\n\n\nWith \\(p\\) independent variables \\(x_1, x_2, \\ldots, x_p\\), the population model is:\n\n\n\\[\ny = \\beta_0 + \\beta_1 x_1 + \\beta_2 x_2 + \\cdots + \\beta_p x_p + \\epsilon\n\\]\n\n\nThe regression equation (the mean response) drops the error term:\n\n\n\\[\nE(y) = \\beta_0 + \\beta_1 x_1 + \\beta_2 x_2 + \\cdots + \\beta_p x_p\n\\]\n\n\nSame error assumptions as before: \\(E(\\epsilon)=0\\), constant variance \\(\\sigma^2\\), independent errors, normally distributed.\n\\(\\beta_j\\) = the change in \\(E(y)\\) for a one-unit increase in \\(x_j\\) when all other variables are held constant. That phrase is the whole point of today."
+    "text": "The Multiple Regression Model\n\n\nWith \\(p\\) independent variables \\(x_1, x_2, \\ldots, x_p\\), the population model is:\n\n\n\\[\ny = \\beta_0 + \\beta_1 x_1 + \\beta_2 x_2 + \\cdots + \\beta_p x_p + \\varepsilon\n\\]\n\n\nThe regression equation (the mean response) drops the error term:\n\n\n\\[\nE(y) = \\beta_0 + \\beta_1 x_1 + \\beta_2 x_2 + \\cdots + \\beta_p x_p\n\\]\n\n\nSame error assumptions as before: \\(E(\\varepsilon)=0\\), constant variance \\(\\sigma^2\\), independent errors, normally distributed.\n\\(\\beta_j\\) = the change in \\(E(y)\\) for a one-unit increase in \\(x_j\\) when all other variables are held constant. That phrase is the whole point of today."
   },
   {
     "objectID": "lecture_slides/11_chapter_multiple_regression/11_chapter_multiple_regression.html#a-plane-not-a-line",
     "href": "lecture_slides/11_chapter_multiple_regression/11_chapter_multiple_regression.html#a-plane-not-a-line",
     "title": " QM 6700: Business Analytics ",
     "section": "A Plane, Not a Line",
-    "text": "A Plane, Not a Line\n\n\nWith two predictors, \\(E(y) = \\beta_0 + \\beta_1 x_1 + \\beta_2 x_2\\) traces a plane in 3-D space; with \\(p\\) predictors it is a hyperplane we can no longer draw, but the algebra is identical.\nThe vertical gap from a point to the plane is the error \\(\\epsilon\\); least squares tilts the plane to make those gaps as small as possible."
+    "text": "A Plane, Not a Line\n\n\nWith two predictors, \\(E(y) = \\beta_0 + \\beta_1 x_1 + \\beta_2 x_2\\) traces a plane in 3-D space; with \\(p\\) predictors it is a hyperplane we can no longer draw, but the algebra is identical.\nThe vertical gap from a point to the plane is the error \\(\\varepsilon\\); least squares tilts the plane to make those gaps as small as possible."
   },
   {
     "objectID": "lecture_slides/11_chapter_multiple_regression/11_chapter_multiple_regression.html#estimating-the-coefficients-least-squares-again",
@@ -2407,14 +2407,14 @@
     "href": "lecture_slides/11_chapter_multiple_regression/11_chapter_multiple_regression.html#the-partial-coefficient-the-key-idea",
     "title": " QM 6700: Business Analytics ",
     "section": "The Partial Coefficient: the Key Idea",
-    "text": "The Partial Coefficient: the Key Idea\n\n\nIn simple regression, \\(b_1\\) was the effect of \\(x\\) on \\(y\\).\nIn multiple regression, \\(b_j\\) is a partial coefficient: the effect of \\(x_j\\) on \\(y\\) after the model has already accounted for every other predictor.\nRead every coefficient with the same clause attached:\n\n“\\(b_j\\) = the predicted change in \\(y\\) for a one-unit increase in \\(x_j\\), holding all other variables constant.”\n\nThis is why a predictor can look important alone yet vanish in the full model: its apparent effect was really the work of a variable it travels with. (We will watch exactly this happen to population and income.)"
+    "text": "The Partial Coefficient: the Key Idea\n\n\nIn simple regression, \\(b_1\\) was the effect of \\(x\\) on \\(y\\).\nIn multiple regression, \\(b_j\\) is a partial coefficient: the effect of \\(x_j\\) on \\(y\\) after the model has already accounted for every other predictor.\nRead every coefficient with the same clause attached:\n\n“\\(b_j\\) = the predicted change in \\(y\\) for a one-unit increase in \\(x_j\\), holding all other variables constant.”\n\nThis is why a predictor can look important alone yet vanish in the full model: its apparent effect was the work of a variable it travels with. (We will watch exactly this happen to population and income.)"
   },
   {
     "objectID": "lecture_slides/11_chapter_multiple_regression/11_chapter_multiple_regression.html#butler-trucking-two-predictors-of-travel-time",
     "href": "lecture_slides/11_chapter_multiple_regression/11_chapter_multiple_regression.html#butler-trucking-two-predictors-of-travel-time",
     "title": " QM 6700: Business Analytics ",
     "section": "Butler Trucking: Two Predictors of Travel Time",
-    "text": "Butler Trucking: Two Predictors of Travel Time\n\n\nManagers at Butler Trucking want better driver schedules. They believe a driver’s total daily travel time (\\(y\\), hours) depends on two things about the route:\n\n\\(x_1\\) = miles traveled\n\\(x_2\\) = number of deliveries made\n\nTen driving assignments were recorded. The proposed model:\n\n\n\\[\ny = \\beta_0 + \\beta_1 x_1 + \\beta_2 x_2 + \\epsilon \\qquad (n = 10,\\; p = 2)\n\\]\n\n\nA small, clean example: it teaches you to read the output table before we scale up to 45 stores and four predictors."
+    "text": "Butler Trucking: Two Predictors of Travel Time\n\n\nManagers at Butler Trucking want better driver schedules. They believe a driver’s total daily travel time (\\(y\\), hours) depends on two things about the route:\n\n\\(x_1\\) = miles traveled\n\\(x_2\\) = number of deliveries made\n\nTen driving assignments were recorded. The proposed model:\n\n\n\\[\ny = \\beta_0 + \\beta_1 x_1 + \\beta_2 x_2 + \\varepsilon \\qquad (n = 10,\\; p = 2)\n\\]\n\n\nA small, clean example: it teaches you to read the output table before we scale up to 45 stores and four predictors."
   },
   {
     "objectID": "lecture_slides/11_chapter_multiple_regression/11_chapter_multiple_regression.html#butler-the-estimated-equation",
@@ -2477,7 +2477,7 @@
     "href": "lecture_slides/11_chapter_multiple_regression/11_chapter_multiple_regression.html#the-surprise-bigger-market-more-sales",
     "title": " QM 6700: Business Analytics ",
     "section": "The Surprise: Bigger Market ≠ More Sales",
-    "text": "The Surprise: Bigger Market ≠ More Sales\n\n\nIntuition says population and income should dominate: more people, more money, more sales.\nBut the partial coefficients say otherwise:\n\nPopulation: \\(+0.00035\\) → about +$0.35K per extra 1,000 residents. Essentially flat.\nIncome: \\(+0.0047\\) → about +$4.7K per extra $1,000 of median income. Small.\n\nMeanwhile service (Yelp) and merchandising (endcap) carry the model.\nWhy the intuition fails: in simple regression a market-size variable can look strong because it travels with the variables that really matter. Once those are in the model, “holding the others constant” strips the borrowed credit away. We will confirm this with formal tests in Lecture 2."
+    "text": "The Surprise: Bigger Market ≠ More Sales\n\n\nIntuition says population and income should dominate: more people, more money, more sales.\nBut the partial coefficients say otherwise:\n\nPopulation: \\(+0.00035\\) → about +$0.35K per extra 1,000 residents. Flat.\nIncome: \\(+0.0047\\) → about +$4.7K per extra $1,000 of median income. Small.\n\nMeanwhile service (Yelp) and merchandising (endcap) carry the model.\nWhy the intuition fails: in simple regression a market-size variable can look strong because it travels with the variables that really matter. Once those are in the model, “holding the others constant” strips the borrowed credit away. We will confirm this with formal tests in Lecture 2."
   },
   {
     "objectID": "lecture_slides/11_chapter_multiple_regression/11_chapter_multiple_regression.html#team-sprint-1-build-read-the-model",
@@ -2526,7 +2526,7 @@
     "href": "lecture_slides/11_chapter_multiple_regression/11_chapter_multiple_regression.html#the-f-test-on-the-auto-parts-model",
     "title": " QM 6700: Business Analytics ",
     "section": "The \\(F\\)-Test on the Auto-Parts Model",
-    "text": "The \\(F\\)-Test on the Auto-Parts Model\n\nFrom the ANOVA block (\\(n = 45\\), \\(p = 4\\)):\n\n\n\n\nSource\ndf\nSS\nMS\n\\(F\\)\n\n\n\n\nRegression\n4\n52,033,385\n13,008,346\n136.7\n\n\nResidual\n40\n3,806,649\n95,166\n\n\n\nTotal\n44\n55,840,034\n\n\n\n\n\n\n\n\\[\nF = \\frac{MSR}{MSE} = \\frac{13{,}008{,}346}{95{,}166} = 136.7, \\qquad \\text{Significance } F \\approx 3.4\\times10^{-23}\n\\]\n\n\n\\(F = 136.7\\) with p-value far below any \\(\\alpha\\) → reject \\(H_0\\): the model is decisively useful, so at least one driver carries real information. Now, which ones?"
+    "text": "The \\(F\\)-Test on the Auto-Parts Model\n\nFrom the ANOVA block (\\(n = 45\\), \\(p = 4\\)):\n\n\n\n\nSource\ndf\nSS\nMS\n\\(F\\)\n\n\n\n\nRegression\n4\n52,033,385\n13,008,346\n136.7\n\n\nResidual\n40\n3,806,649\n95,166\n\n\n\nTotal\n44\n55,840,034\n\n\n\n\n\n\n\n\\[\nF = \\frac{MSR}{MSE} = \\frac{13{,}008{,}346}{95{,}166} = 136.7, \\qquad \\text{Significance } F \\approx 9.2\\times10^{-23}\n\\]\n\n\n\\(F = 136.7\\) with p-value far below any \\(\\alpha\\) → reject \\(H_0\\): the model is decisively useful, so at least one driver carries real information. Now, which ones?"
   },
   {
     "objectID": "lecture_slides/11_chapter_multiple_regression/11_chapter_multiple_regression.html#the-individual-t-test",
@@ -2582,7 +2582,7 @@
     "href": "lecture_slides/11_chapter_multiple_regression/11_chapter_multiple_regression.html#putting-a-defensible-number-on-the-decision",
     "title": " QM 6700: Business Analytics ",
     "section": "Putting a Defensible Number on the Decision",
-    "text": "Putting a Defensible Number on the Decision\n\n\nScenario: the chain plans a new store with population_3mi = 120,000, income_3mi = 55,000, yelp_rating = 4.0. Should it pay for endcap placement?\nPlug into the fitted equation, once with endcap = 0 and once with endcap = 1:\n\n\n\n\n\nConfiguration\nPredicted annual sales\n\n\n\n\nWithout endcap\n$2,816K\n\n\nWith endcap\n$3,632K\n\n\nLift from the endcap\n+$816K / year\n\n\n\n\n\nThe decision rule: negotiate for the endcap if its annual cost is below ~$816K. If the placement leases for, say, $150K/year, that is a clear yes. The dummy turned a vague “merchandising matters” into a number you can put in a budget."
+    "text": "Putting a Defensible Number on the Decision\n\nScenario: the chain plans a new store with population_3mi = 120,000, income_3mi = 55,000, yelp_rating = 4.0. Should it pay for endcap placement?\nPlug into the fitted equation, once with endcap = 0 and once with endcap = 1:\n\n\n\n\n\nConfiguration\nPredicted annual sales\n\n\n\n\nWithout endcap\n$2,816K\n\n\nWith endcap\n$3,632K\n\n\nLift from the endcap\n+$816K / year\n\n\n\n\n\nThe decision rule: negotiate for the endcap if its annual cost is below ~$816K. If the placement leases for, say, $150K/year, that is a clear yes. The dummy turned a vague “merchandising matters” into a number you can put in a budget.\nThese are point predictions. As in simple regression, the model also yields a confidence interval for the mean sales of all such stores and a wider prediction interval for this one store; the multiple-regression formulas are beyond our scope, so read both straight from the software."
   },
   {
     "objectID": "lecture_slides/11_chapter_multiple_regression/11_chapter_multiple_regression.html#a-note-on-categories-with-more-than-two-levels",
@@ -4959,5 +4959,117 @@
     "title": " QM 6700: Business Analytics ",
     "section": "A Question That Often Comes Up",
     "text": "A Question That Often Comes Up\n\nA question that often comes up at this point:\nWe are deciding on one specific lease. Which interval does the manager quote, the tight CI or the wide PI?\n\nShort answer: the prediction interval, ($2.79M, $4.70M). The CI, ($3.54M, $3.94M), is for the average of all 4.5-star stores; it would matter if you were opening dozens at once. A lease commits you to one store, which carries its own scatter on top of the line’s uncertainty, so the honest range is the wider PI. Quoting the narrow CI for a single site would understate the risk on the one decision capital is riding on."
+  },
+  {
+    "objectID": "lecture_slides/11_chapter_multiple_regression/11_chapter_multiple_regression.html#how-every-class-runs",
+    "href": "lecture_slides/11_chapter_multiple_regression/11_chapter_multiple_regression.html#how-every-class-runs",
+    "title": " QM 6700: Business Analytics ",
+    "section": "How Every Class Runs",
+    "text": "How Every Class Runs\n\n\n\n\n\nThe class ends on the Team Sprint, your group’s graded submission: a decision plus your read of the analysis, one PDF before you leave."
+  },
+  {
+    "objectID": "lecture_slides/11_chapter_multiple_regression/11_chapter_multiple_regression.html#a-question-that-often-comes-up",
+    "href": "lecture_slides/11_chapter_multiple_regression/11_chapter_multiple_regression.html#a-question-that-often-comes-up",
+    "title": " QM 6700: Business Analytics ",
+    "section": "A Question That Often Comes Up",
+    "text": "A Question That Often Comes Up\n\nA question that often comes up at this point:\n“Holding the others constant” sounds like an experiment, but we never ran one. How can the model hold income fixed when our 45 stores all have different incomes?\n\nShort answer: it does it with arithmetic, not with a lab. Least squares finds the income coefficient by asking: among stores that are similar on population, Yelp, and endcap, how does sales change as income changes? It compares like with like statistically. That is weaker than a real experiment (we cannot rule out a lurking driver we never measured), but it is the closest a single observational model gets to “all else equal.”"
+  },
+  {
+    "objectID": "lecture_slides/11_chapter_multiple_regression/11_chapter_multiple_regression.html#a-question-that-often-comes-up-1",
+    "href": "lecture_slides/11_chapter_multiple_regression/11_chapter_multiple_regression.html#a-question-that-often-comes-up-1",
+    "title": " QM 6700: Business Analytics ",
+    "section": "A Question That Often Comes Up",
+    "text": "A Question That Often Comes Up\n\nA question that often comes up at this point:\nThe intercept is \\(b_0 = -0.869\\). A negative travel time is impossible, so is the model broken?\n\nShort answer: no. The intercept is travel time for a route with \\(0\\) miles and \\(0\\) deliveries, a point no real assignment comes near, so it is just the algebraic anchor the line passes through, not a prediction we use. The same caution applies to the auto-parts intercept of \\(-52.1\\): read the coefficients on the drivers, and only predict inside the range of stores you actually observed."
+  },
+  {
+    "objectID": "lecture_slides/11_chapter_multiple_regression/11_chapter_multiple_regression.html#a-question-that-often-comes-up-2",
+    "href": "lecture_slides/11_chapter_multiple_regression/11_chapter_multiple_regression.html#a-question-that-often-comes-up-2",
+    "title": " QM 6700: Business Analytics ",
+    "section": "A Question That Often Comes Up",
+    "text": "A Question That Often Comes Up\n\nA question that often comes up at this point:\nIf adjusted \\(R^2\\) is the honest measure, why does Excel report plain \\(R^2\\) at all, and which one do I quote to the chain?\n\nShort answer: quote both, and let the gap tell the story. Plain \\(R^2\\) answers “how much variation did this model explain?” (a description of these 45 stores); adjusted \\(R^2\\) answers “would this fit survive a fair charge for the predictors I used?” (the model-building question). For auto-parts they are close, \\(0.932\\) vs \\(0.925\\): a small gap means the four predictors are earning their keep, not padding the fit."
+  },
+  {
+    "objectID": "lecture_slides/11_chapter_multiple_regression/11_chapter_multiple_regression.html#a-question-that-often-comes-up-3",
+    "href": "lecture_slides/11_chapter_multiple_regression/11_chapter_multiple_regression.html#a-question-that-often-comes-up-3",
+    "title": " QM 6700: Business Analytics ",
+    "section": "A Question That Often Comes Up",
+    "text": "A Question That Often Comes Up\n\nA question that often comes up at this point:\nDoes a near-zero coefficient on population mean a chain should never care about market size?\n\nShort answer: no, and this is the trap a manager must not fall into. The \\(+0.00035\\) on population says only that among our 45 stores, once Yelp and endcap are accounted for, market size adds almost nothing extra. It does not say population is irrelevant in the world. Our stores may already sit in reasonable markets, so size has little room left to explain. The coefficient is a statement about this model and this data, not a universal law of retail."
+  },
+  {
+    "objectID": "lecture_slides/11_chapter_multiple_regression/11_chapter_multiple_regression.html#todays-question-todays-answer",
+    "href": "lecture_slides/11_chapter_multiple_regression/11_chapter_multiple_regression.html#todays-question-todays-answer",
+    "title": " QM 6700: Business Analytics ",
+    "section": "Today’s Question, Today’s Answer",
+    "text": "Today’s Question, Today’s Answer\n\nThe question (Topic 11, Lecture 1):\n\nWhich drivers move store sales once the others are held constant, and how much of the sales story does the model capture?\n\n\n\nThe answer we reached today:\n\nThe four-driver model explains 93% of sales variation (adjusted \\(R^2 = 0.925\\)), and the partial effects that carry it are service (Yelp, +$642K/star) and merchandising (endcap, +$816K), not population (+$0.35K/1,000 residents) or income (+$4.7K/$1,000). Whether each effect is real or noise is the testing question, settled in Lecture 2."
+  },
+  {
+    "objectID": "lecture_slides/11_chapter_multiple_regression/11_chapter_multiple_regression.html#how-every-class-runs-1",
+    "href": "lecture_slides/11_chapter_multiple_regression/11_chapter_multiple_regression.html#how-every-class-runs-1",
+    "title": " QM 6700: Business Analytics ",
+    "section": "How Every Class Runs",
+    "text": "How Every Class Runs\n\n\n\n\n\nThe class ends on the Team Sprint, your group’s graded submission: a decision plus your read of the analysis, one PDF before you leave."
+  },
+  {
+    "objectID": "lecture_slides/11_chapter_multiple_regression/11_chapter_multiple_regression.html#a-question-that-often-comes-up-4",
+    "href": "lecture_slides/11_chapter_multiple_regression/11_chapter_multiple_regression.html#a-question-that-often-comes-up-4",
+    "title": " QM 6700: Business Analytics ",
+    "section": "A Question That Often Comes Up",
+    "text": "A Question That Often Comes Up\n\nA question that often comes up at this point:\nThe \\(F\\)-test only tells us at least one driver matters. Why run it first if it cannot name which one?\n\nShort answer: because it is the gatekeeper. If \\(F\\) had failed to reject (a small \\(F\\), a large p-value), the whole model would be no better than guessing the average store’s sales, and reading individual \\(t\\)’s would be chasing noise. \\(F = 136.7\\) clears that gate decisively, which earns us the right to ask the sharper question on the next slides: of the four drivers, which are pulling their weight?"
+  },
+  {
+    "objectID": "lecture_slides/11_chapter_multiple_regression/11_chapter_multiple_regression.html#a-question-that-often-comes-up-5",
+    "href": "lecture_slides/11_chapter_multiple_regression/11_chapter_multiple_regression.html#a-question-that-often-comes-up-5",
+    "title": " QM 6700: Business Analytics ",
+    "section": "A Question That Often Comes Up",
+    "text": "A Question That Often Comes Up\n\nA question that often comes up at this point:\nPopulation and income are insignificant. Should a manager just delete them from the model?\n\nShort answer: for this decision, yes: the budget should follow Yelp and endcap, and the next slide shows adjusted \\(R^2\\) barely moves when we drop the two demographics. But keep them in the analyst’s working file. They cost almost nothing, they document why you ruled location out (the investment story is “we checked size and wealth, they did not pay”), and a future store in a far smaller or poorer market might revive them. Insignificant here is not “proven useless forever.”"
+  },
+  {
+    "objectID": "lecture_slides/11_chapter_multiple_regression/11_chapter_multiple_regression.html#a-question-that-often-comes-up-6",
+    "href": "lecture_slides/11_chapter_multiple_regression/11_chapter_multiple_regression.html#a-question-that-often-comes-up-6",
+    "title": " QM 6700: Business Analytics ",
+    "section": "A Question That Often Comes Up",
+    "text": "A Question That Often Comes Up\n\nA question that often comes up at this point:\nWhy force the two groups onto parallel lines? Why not just split the data and run a separate regression for endcap and non-endcap stores?\n\nShort answer: you could, but the dummy gives you more for less. With one 0/1 column the endcap and non-endcap stores pool their data to estimate the slopes on Yelp, population, and income, so each slope rests on all 45 stores instead of two smaller, noisier subsets, and the coefficient on the dummy is exactly the $816K gap you want to defend. The parallel-lines assumption says “an endcap adds the same dollar amount regardless of Yelp.” If you suspect the endcap changes the Yelp slope, that is an interaction, a refinement beyond today’s model."
+  },
+  {
+    "objectID": "lecture_slides/11_chapter_multiple_regression/11_chapter_multiple_regression.html#a-question-that-often-comes-up-7",
+    "href": "lecture_slides/11_chapter_multiple_regression/11_chapter_multiple_regression.html#a-question-that-often-comes-up-7",
+    "title": " QM 6700: Business Analytics ",
+    "section": "A Question That Often Comes Up",
+    "text": "A Question That Often Comes Up\n\nA question that often comes up at this point:\nThree formats, but only two dummies? Why not give Standard its own 0/1 column too, so every format is represented?\n\nShort answer: because a third column would be redundant and break the math. “Standard” is already identified: a store with Express = 0 and Flagship = 0 is a Standard store. Adding a Standard column would make the three columns add to 1 in every row, which collides with the intercept and the regression cannot be estimated. The dropped level becomes the reference, and you read each remaining coefficient as a gap versus it: “Flagship sells $X more than Standard, all else equal.”"
+  },
+  {
+    "objectID": "lecture_slides/11_chapter_multiple_regression/11_chapter_multiple_regression.html#a-question-that-often-comes-up-8",
+    "href": "lecture_slides/11_chapter_multiple_regression/11_chapter_multiple_regression.html#a-question-that-often-comes-up-8",
+    "title": " QM 6700: Business Analytics ",
+    "section": "A Question That Often Comes Up",
+    "text": "A Question That Often Comes Up\n\nA question that often comes up at this point:\nWhat does a VIF of, say, \\(5\\) actually mean, and what would a manager do if our auto-parts model had hit it?\n\nShort answer: \\(VIF = 5\\) means a predictor’s coefficient has a standard error about \\(\\sqrt{5} \\approx 2.2\\) times wider than if it shared nothing with the others, so its \\(t\\) shrinks and its effect gets blurry. Our worst is endcap at \\(1.62\\), harmless. If population and income had come in at, say, \\(VIF = 8\\), the fix is not to panic: drop one of the overlapping pair, or combine them into a single “market quality” index, then re-estimate and re-read the coefficients."
+  },
+  {
+    "objectID": "lecture_slides/11_chapter_multiple_regression/11_chapter_multiple_regression.html#todays-question-todays-answer-1",
+    "href": "lecture_slides/11_chapter_multiple_regression/11_chapter_multiple_regression.html#todays-question-todays-answer-1",
+    "title": " QM 6700: Business Analytics ",
+    "section": "Today’s Question, Today’s Answer",
+    "text": "Today’s Question, Today’s Answer\n\nThe question (Topic 11, Lecture 2):\n\nWhich levers are worth investing in once we test each driver, and where should the next dollar go?\n\n\n\nThe answer we reached today:\n\nThe model is decisively useful (\\(F = 136.7\\)), but only two drivers survive their individual \\(t\\)-test: Yelp (\\(t = 16.5\\), +$642K/star) and endcap (\\(t = 6.98\\), +$816K); population and income are insignificant (\\(t = 0.88\\), \\(1.50\\)), and every VIF \\(&lt; 1.7\\) so the verdict is honest, not an overlap artifact. Invest in service and merchandising, not location: buy the endcap whenever its lease runs below $816K/year."
+  },
+  {
+    "objectID": "lecture_slides/11_chapter_multiple_regression/11_chapter_multiple_regression.html#validating-the-model-plot-the-residuals-against-haty",
+    "href": "lecture_slides/11_chapter_multiple_regression/11_chapter_multiple_regression.html#validating-the-model-plot-the-residuals-against-haty",
+    "title": " QM 6700: Business Analytics ",
+    "section": "Validating the Model: Plot the Residuals Against \\(\\hat{y}\\)",
+    "text": "Validating the Model: Plot the Residuals Against \\(\\hat{y}\\)\n\n\nBefore we trust the coefficients, we check the error assumptions the model rests on (zero-mean, constant-variance, normal errors). The tool is the same residual we used in simple regression.\nWhat changes with four predictors: there is no single \\(x\\)-axis to plot against. In simple regression a residual plot against \\(x\\) and against \\(\\hat{y}\\) carry the same picture; with several predictors they do not.\n\nSo in multiple regression we plot residuals against the fitted value \\(\\hat{y}\\), the one number that combines all four drivers.\n\nWe use the standardized residual (each residual divided by its own standard error), on a \\(z\\)-like scale, so the \\(|z| &gt; 2\\) outlier rule applies directly. Excel’s Regression tool prints these in its Residual Output; computing them by hand across four predictors is impractical."
+  },
+  {
+    "objectID": "lecture_slides/11_chapter_multiple_regression/11_chapter_multiple_regression.html#the-auto-parts-residual-plot",
+    "href": "lecture_slides/11_chapter_multiple_regression/11_chapter_multiple_regression.html#the-auto-parts-residual-plot",
+    "title": " QM 6700: Business Analytics ",
+    "section": "The Auto-Parts Residual Plot",
+    "text": "The Auto-Parts Residual Plot\n\n\nThe band is roughly flat and centered at zero, no fan and no curve across the $1M to $4M range of \\(\\hat{y}\\): the constant-variance and linearity assumptions hold, so the coefficient verdicts are safe to read.\nOnly 3 of 45 stores sit just past \\(\\pm 2\\) (about the 5% you expect by chance), none wildly so. Flag them to investigate, not to delete: these are the real stores the four drivers still miss."
+  },
+  {
+    "objectID": "lecture_slides/11_chapter_multiple_regression/11_chapter_multiple_regression.html#a-question-that-often-comes-up-9",
+    "href": "lecture_slides/11_chapter_multiple_regression/11_chapter_multiple_regression.html#a-question-that-often-comes-up-9",
+    "title": " QM 6700: Business Analytics ",
+    "section": "A Question That Often Comes Up",
+    "text": "A Question That Often Comes Up\n\nA question that often comes up at this point:\nIn simple regression we plotted residuals against \\(x\\). Why switch to plotting against \\(\\hat{y}\\) now?\n\nShort answer: because there is no single \\(x\\) anymore. With four drivers you would need four separate residual plots, and each would miss the patterns the others create. The fitted value \\(\\hat{y}\\) rolls all four predictors into one axis, so a single plot shows whether the model misses systematically (a curve), whether the spread fans out (non-constant variance), or whether a store sits far off (\\(|z| &gt; 2\\)). For the auto-parts model the band is clean, which is the green light to act on the coefficients."
   }
 ]

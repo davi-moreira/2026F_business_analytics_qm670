@@ -32,7 +32,7 @@
       vertical-align: middle;
     }
   </style>
-  <link rel="stylesheet" href="../../site_libs/revealjs/dist/theme/quarto-113b5beb2a57b2deea58feb1108e76b2.css">
+  <link rel="stylesheet" href="../../site_libs/revealjs/dist/theme/quarto-8fc47a4fdcba9931a3aa90ef56f89358.css">
   <link href="../../site_libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
   <link href="../../site_libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
   <link href="../../site_libs/revealjs/plugin/reveal-menu/quarto-menu.css" rel="stylesheet">
@@ -271,6 +271,15 @@ Professor<br>Davi Moreira<br>
 <li class="fragment"><p>Multiple regression estimates the effect of <strong>each</strong> driver <strong>while statistically holding the others constant</strong>: the closest thing we have to a controlled comparison from observational data.</p></li>
 <li class="fragment"><p>First we build the machine and learn to read its output. Testing and the dollar decision come in Lecture 2.</p></li>
 </ul>
+</section>
+<section id="how-every-class-runs" class="slide level2 center">
+<h2>How Every Class Runs</h2>
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="figs/lecture_dynamic.png" class="quarto-figure quarto-figure-center" style="width:90.0%"></p>
+</figure>
+</div>
+<p>The class <strong>ends on the Team Sprint</strong>, your group’s graded submission: a decision plus your read of the analysis, one PDF before you leave.</p>
 </section></section>
 <section>
 <section id="from-one-predictor-to-many" class="title-slide slide level1 center" data-background-color="#cfb991">
@@ -285,7 +294,7 @@ Professor<br>Davi Moreira<br>
 </ul>
 <div class="fragment">
 <p><span class="math display">\[
-y = \beta_0 + \beta_1 x_1 + \beta_2 x_2 + \cdots + \beta_p x_p + \epsilon
+y = \beta_0 + \beta_1 x_1 + \beta_2 x_2 + \cdots + \beta_p x_p + \varepsilon
 \]</span></p>
 </div>
 <ul>
@@ -297,7 +306,7 @@ E(y) = \beta_0 + \beta_1 x_1 + \beta_2 x_2 + \cdots + \beta_p x_p
 \]</span></p>
 </div>
 <ul>
-<li class="fragment"><p>Same error assumptions as before: <span class="math inline">\(E(\epsilon)=0\)</span>, constant variance <span class="math inline">\(\sigma^2\)</span>, independent errors, normally distributed.</p></li>
+<li class="fragment"><p>Same error assumptions as before: <span class="math inline">\(E(\varepsilon)=0\)</span>, constant variance <span class="math inline">\(\sigma^2\)</span>, independent errors, normally distributed.</p></li>
 <li class="fragment"><p><span class="math inline">\(\beta_j\)</span> = the change in <span class="math inline">\(E(y)\)</span> for a <strong>one-unit increase in <span class="math inline">\(x_j\)</span> when all other variables are held constant.</strong> That phrase is the whole point of today.</p></li>
 </ul>
 </section>
@@ -306,7 +315,7 @@ E(y) = \beta_0 + \beta_1 x_1 + \beta_2 x_2 + \cdots + \beta_p x_p
 
 <img data-src="figs/multiple_regression_plot.png" class="quarto-figure quarto-figure-center r-stretch" style="width:62.0%"><ul>
 <li>With two predictors, <span class="math inline">\(E(y) = \beta_0 + \beta_1 x_1 + \beta_2 x_2\)</span> traces a <strong>plane</strong> in 3-D space; with <span class="math inline">\(p\)</span> predictors it is a <em>hyperplane</em> we can no longer draw, but the algebra is identical.</li>
-<li>The vertical gap from a point to the plane is the error <span class="math inline">\(\epsilon\)</span>; least squares tilts the plane to make those gaps as small as possible.</li>
+<li>The vertical gap from a point to the plane is the error <span class="math inline">\(\varepsilon\)</span>; least squares tilts the plane to make those gaps as small as possible.</li>
 </ul>
 </section>
 <section id="estimating-the-coefficients-least-squares-again" class="slide level2 center">
@@ -342,8 +351,18 @@ E(y) = \beta_0 + \beta_1 x_1 + \beta_2 x_2 + \cdots + \beta_p x_p
 <ul>
 <li class="fragment">“<span class="math inline">\(b_j\)</span> = the predicted change in <span class="math inline">\(y\)</span> for a one-unit increase in <span class="math inline">\(x_j\)</span>, <strong>holding all other variables constant.</strong>”</li>
 </ul></li>
-<li class="fragment"><p>This is why a predictor can look important alone yet vanish in the full model: its apparent effect was really the work of a variable it travels with. (We will watch exactly this happen to population and income.)</p></li>
+<li class="fragment"><p>This is why a predictor can look important alone yet vanish in the full model: its apparent effect was the work of a variable it travels with. (We will watch exactly this happen to population and income.)</p></li>
 </ul>
+</section>
+<section id="a-question-that-often-comes-up" class="slide level2 center">
+<h2>A Question That Often Comes Up</h2>
+<div class="faq">
+<p><strong>A question that often comes up at this point:</strong></p>
+<p><span class="faq-q">“Holding the others constant” sounds like an experiment, but we never ran one. How can the model hold income fixed when our 45 stores all have different incomes?</span></p>
+<div class="fragment faq-a">
+<p><strong>Short answer:</strong> it does it with arithmetic, not with a lab. Least squares finds the income coefficient by asking: among stores that are <em>similar on population, Yelp, and endcap</em>, how does sales change as income changes? It compares like with like statistically. That is weaker than a real experiment (we cannot rule out a lurking driver we never measured), but it is the closest a single observational model gets to “all else equal.”</p>
+</div>
+</div>
 </section></section>
 <section>
 <section id="anchor-example-butler-trucking" class="title-slide slide level1 center" data-background-color="#cfb991">
@@ -363,7 +382,7 @@ E(y) = \beta_0 + \beta_1 x_1 + \beta_2 x_2 + \cdots + \beta_p x_p
 </ul>
 <div class="fragment">
 <p><span class="math display">\[
-y = \beta_0 + \beta_1 x_1 + \beta_2 x_2 + \epsilon \qquad (n = 10,\; p = 2)
+y = \beta_0 + \beta_1 x_1 + \beta_2 x_2 + \varepsilon \qquad (n = 10,\; p = 2)
 \]</span></p>
 </div>
 <ul>
@@ -414,6 +433,16 @@ y = \beta_0 + \beta_1 x_1 + \beta_2 x_2 + \epsilon \qquad (n = 10,\; p = 2)
 <ul>
 <li class="fragment">Actual was <span class="math inline">\(9.3\)</span>, so the <strong>residual</strong> is <span class="math inline">\(9.3 - 8.94 = +0.36\)</span> hour: this route took slightly longer than the model expects.</li>
 </ul>
+</section>
+<section id="a-question-that-often-comes-up-1" class="slide level2 center">
+<h2>A Question That Often Comes Up</h2>
+<div class="faq">
+<p><strong>A question that often comes up at this point:</strong></p>
+<p><span class="faq-q">The intercept is <span class="math inline">\(b_0 = -0.869\)</span>. A negative travel time is impossible, so is the model broken?</span></p>
+<div class="fragment faq-a">
+<p><strong>Short answer:</strong> no. The intercept is travel time for a route with <span class="math inline">\(0\)</span> miles and <span class="math inline">\(0\)</span> deliveries, a point no real assignment comes near, so it is just the algebraic anchor the line passes through, not a prediction we use. The same caution applies to the auto-parts intercept of <span class="math inline">\(-52.1\)</span>: read the <strong>coefficients</strong> on the drivers, and only predict inside the range of stores you actually observed.</p>
+</div>
+</div>
 </section></section>
 <section>
 <section id="how-well-does-the-model-fit" class="title-slide slide level1 center" data-background-color="#cfb991">
@@ -477,6 +506,16 @@ R^2_a = 1 - \frac{SSE/(n - p - 1)}{SST/(n - 1)} = 1 - (1 - R^2)\,\frac{n - 1}{n 
 <li class="fragment"><p>Butler: <span class="math inline">\(R^2 = 0.904\)</span> but <span class="math inline">\(R^2_a = 0.876\)</span>; the gap is the fee for using two predictors on only ten observations.</p></li>
 </ul>
 </div>
+</section>
+<section id="a-question-that-often-comes-up-2" class="slide level2 center">
+<h2>A Question That Often Comes Up</h2>
+<div class="faq">
+<p><strong>A question that often comes up at this point:</strong></p>
+<p><span class="faq-q">If adjusted <span class="math inline">\(R^2\)</span> is the honest measure, why does Excel report plain <span class="math inline">\(R^2\)</span> at all, and which one do I quote to the chain?</span></p>
+<div class="fragment faq-a">
+<p><strong>Short answer:</strong> quote <strong>both</strong>, and let the gap tell the story. Plain <span class="math inline">\(R^2\)</span> answers “how much variation did this model explain?” (a description of these 45 stores); adjusted <span class="math inline">\(R^2\)</span> answers “would this fit survive a fair charge for the predictors I used?” (the model-building question). For auto-parts they are close, <span class="math inline">\(0.932\)</span> vs <span class="math inline">\(0.925\)</span>: a small gap means the four predictors are earning their keep, not padding the fit.</p>
+</div>
+</div>
 </section></section>
 <section>
 <section id="the-spine-model-all-four-drivers" class="title-slide slide level1 center" data-background-color="#cfb991">
@@ -539,12 +578,22 @@ R^2_a = 1 - \frac{SSE/(n - p - 1)}{SST/(n - 1)} = 1 - (1 - R^2)\,\frac{n - 1}{n 
 <li class="fragment"><p>Intuition says <strong>population</strong> and <strong>income</strong> should dominate: more people, more money, more sales.</p></li>
 <li class="fragment"><p>But the partial coefficients say otherwise:</p>
 <ul>
-<li class="fragment"><strong>Population:</strong> <span class="math inline">\(+0.00035\)</span> → about <strong>+$0.35K per extra 1,000 residents</strong>. Essentially flat.</li>
+<li class="fragment"><strong>Population:</strong> <span class="math inline">\(+0.00035\)</span> → about <strong>+$0.35K per extra 1,000 residents</strong>. Flat.</li>
 <li class="fragment"><strong>Income:</strong> <span class="math inline">\(+0.0047\)</span> → about <strong>+$4.7K per extra $1,000 of median income</strong>. Small.</li>
 </ul></li>
 <li class="fragment"><p>Meanwhile <strong>service</strong> (Yelp) and <strong>merchandising</strong> (endcap) carry the model.</p></li>
 <li class="fragment"><p><strong>Why the intuition fails:</strong> in simple regression a market-size variable can look strong because it travels with the variables that <em>really</em> matter. Once those are in the model, “holding the others constant” strips the borrowed credit away. We will confirm this with formal tests in Lecture 2.</p></li>
 </ul>
+</section>
+<section id="a-question-that-often-comes-up-3" class="slide level2 center">
+<h2>A Question That Often Comes Up</h2>
+<div class="faq">
+<p><strong>A question that often comes up at this point:</strong></p>
+<p><span class="faq-q">Does a near-zero coefficient on population mean a chain should <em>never</em> care about market size?</span></p>
+<div class="fragment faq-a">
+<p><strong>Short answer:</strong> no, and this is the trap a manager must not fall into. The <span class="math inline">\(+0.00035\)</span> on population says only that <em>among our 45 stores</em>, once Yelp and endcap are accounted for, market size adds almost nothing extra. It does not say population is irrelevant in the world. Our stores may already sit in reasonable markets, so size has little room left to explain. The coefficient is a statement about <em>this model and this data</em>, not a universal law of retail.</p>
+</div>
+</div>
 </section>
 <section id="the-managers-takeaway-lecture-1" class="slide level2 center">
 <h2>The Manager’s Takeaway (Lecture 1)</h2>
@@ -554,6 +603,21 @@ R^2_a = 1 - \frac{SSE/(n - p - 1)}{SST/(n - 1)} = 1 - (1 - R^2)\,\frac{n - 1}{n 
 <li class="fragment"><p><strong>One number:</strong> <strong>adjusted <span class="math inline">\(R^2 = 0.925\)</span></strong>: high fit that <em>survives</em> the penalty for using four predictors, so the model isn’t just padded with noise.</p></li>
 <li class="fragment"><p><strong>One caveat:</strong> “holding the others constant” is doing heavy lifting. A coefficient near zero (population, income) doesn’t prove the variable is irrelevant in the world, only that it adds little <strong>once the others are in.</strong> Next lecture we make that rigorous with the <span class="math inline">\(F\)</span>- and <span class="math inline">\(t\)</span>-tests, and put a defensible dollar value on an endcap.</p></li>
 </ul>
+</section>
+<section id="todays-question-todays-answer" class="slide level2 center">
+<h2>Today’s Question, Today’s Answer</h2>
+<p><br></p>
+<p><strong>The question (Topic 11, Lecture 1):</strong></p>
+<blockquote>
+<p><em>Which drivers move store sales once the others are held constant, and how much of the sales story does the model capture?</em></p>
+</blockquote>
+<div class="fragment">
+<p><br></p>
+<p><strong>The answer we reached today:</strong></p>
+<blockquote>
+<p>The four-driver model explains <strong>93%</strong> of sales variation (adjusted <span class="math inline">\(R^2 = 0.925\)</span>), and the partial effects that carry it are <strong>service (Yelp, +$642K/star)</strong> and <strong>merchandising (endcap, +$816K)</strong>, <em>not</em> population (+$0.35K/1,000 residents) or income (+$4.7K/$1,000). Whether each effect is <em>real</em> or noise is the <strong>testing</strong> question, settled in Lecture 2.</p>
+</blockquote>
+</div>
 </section>
 <section id="team-sprint-your-group-case-lecture-1" class="slide level2 center">
 <h2>⏱️ Team Sprint: Your Group Case (Lecture 1)</h2>
@@ -582,6 +646,15 @@ R^2_a = 1 - \frac{SSE/(n - p - 1)}{SST/(n - 1)} = 1 - (1 - R^2)\,\frac{n - 1}{n 
 <li class="fragment"><p>A high <span class="math inline">\(R^2\)</span> tells us the model predicts well <strong>in aggregate</strong>. It does <strong>not</strong> tell us which individual coefficients we can trust.</p></li>
 <li class="fragment"><p>Today we add the inference layer: an <strong>overall</strong> test (is the model useful at all?), <strong>individual</strong> tests (which predictors carry their weight?), the <strong>dummy variable</strong> that turns “has an endcap” into a dollar amount, and a <strong>multicollinearity</strong> check so we don’t get fooled by overlapping predictors.</p></li>
 </ul>
+</section>
+<section id="how-every-class-runs-1" class="slide level2 center">
+<h2>How Every Class Runs</h2>
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="figs/lecture_dynamic.png" class="quarto-figure quarto-figure-center" style="width:90.0%"></p>
+</figure>
+</div>
+<p>The class <strong>ends on the Team Sprint</strong>, your group’s graded submission: a decision plus your read of the analysis, one PDF before you leave.</p>
 </section></section>
 <section>
 <section id="is-the-model-useful-the-overall-f-test" class="title-slide slide level1 center" data-background-color="#cfb991">
@@ -666,12 +739,22 @@ F = \frac{MSR}{MSE} = \frac{SSR/p}{SSE/(n - p - 1)} \;\sim\; F_{p,\; n-p-1} \tex
 </div>
 <div class="fragment">
 <p><span class="math display">\[
-F = \frac{MSR}{MSE} = \frac{13{,}008{,}346}{95{,}166} = 136.7, \qquad \text{Significance } F \approx 3.4\times10^{-23}
+F = \frac{MSR}{MSE} = \frac{13{,}008{,}346}{95{,}166} = 136.7, \qquad \text{Significance } F \approx 9.2\times10^{-23}
 \]</span></p>
 </div>
 <ul>
 <li class="fragment"><span class="math inline">\(F = 136.7\)</span> with p-value far below any <span class="math inline">\(\alpha\)</span> → <strong>reject <span class="math inline">\(H_0\)</span></strong>: the model is decisively useful, so <strong>at least one</strong> driver carries real information. Now, <em>which ones?</em></li>
 </ul>
+</section>
+<section id="a-question-that-often-comes-up-4" class="slide level2 center">
+<h2>A Question That Often Comes Up</h2>
+<div class="faq">
+<p><strong>A question that often comes up at this point:</strong></p>
+<p><span class="faq-q">The <span class="math inline">\(F\)</span>-test only tells us <em>at least one</em> driver matters. Why run it first if it cannot name which one?</span></p>
+<div class="fragment faq-a">
+<p><strong>Short answer:</strong> because it is the gatekeeper. If <span class="math inline">\(F\)</span> had <em>failed</em> to reject (a small <span class="math inline">\(F\)</span>, a large p-value), the whole model would be no better than guessing the average store’s sales, and reading individual <span class="math inline">\(t\)</span>’s would be chasing noise. <span class="math inline">\(F = 136.7\)</span> clears that gate decisively, which earns us the right to ask the sharper question on the next slides: of the four drivers, <em>which</em> are pulling their weight?</p>
+</div>
+</div>
 </section></section>
 <section>
 <section id="which-predictors-matter-the-t-tests" class="title-slide slide level1 center" data-background-color="#cfb991">
@@ -770,6 +853,16 @@ H_0: \beta_j = 0 \qquad H_a: \beta_j \neq 0 \qquad t = \frac{b_j}{s_{b_j}}, \qua
 <li class="fragment"><p><em>Significance ≠ importance, and importance ≠ significance.</em> Judge each on its own evidence.</p></li>
 </ul>
 </section>
+<section id="a-question-that-often-comes-up-5" class="slide level2 center">
+<h2>A Question That Often Comes Up</h2>
+<div class="faq">
+<p><strong>A question that often comes up at this point:</strong></p>
+<p><span class="faq-q">Population and income are insignificant. Should a manager just delete them from the model?</span></p>
+<div class="fragment faq-a">
+<p><strong>Short answer:</strong> for <em>this</em> decision, yes: the budget should follow Yelp and endcap, and the next slide shows adjusted <span class="math inline">\(R^2\)</span> barely moves when we drop the two demographics. But keep them in the analyst’s working file. They cost almost nothing, they document <em>why</em> you ruled location out (the investment story is “we checked size and wealth, they did not pay”), and a future store in a far smaller or poorer market might revive them. Insignificant here is not “proven useless forever.”</p>
+</div>
+</div>
+</section>
 <section id="confirming-with-a-side-by-side-comparison" class="slide level2 center">
 <h2>Confirming with a Side-by-Side Comparison</h2>
 <div class="columns">
@@ -840,9 +933,18 @@ H_0: \beta_j = 0 \qquad H_a: \beta_j \neq 0 \qquad t = \frac{b_j}{s_{b_j}}, \qua
 <li><span class="math inline">\(t = 6.98\)</span>, p &lt; 0.0001 → this gap is <strong>not</strong> noise. An endcap is a real, sizeable lever.</li>
 </ul>
 </section>
+<section id="a-question-that-often-comes-up-6" class="slide level2 center">
+<h2>A Question That Often Comes Up</h2>
+<div class="faq">
+<p><strong>A question that often comes up at this point:</strong></p>
+<p><span class="faq-q">Why force the two groups onto <em>parallel</em> lines? Why not just split the data and run a separate regression for endcap and non-endcap stores?</span></p>
+<div class="fragment faq-a">
+<p><strong>Short answer:</strong> you could, but the dummy gives you more for less. With one 0/1 column the endcap and non-endcap stores <strong>pool</strong> their data to estimate the slopes on Yelp, population, and income, so each slope rests on all 45 stores instead of two smaller, noisier subsets, and the coefficient on the dummy is exactly the $816K gap you want to defend. The parallel-lines assumption says “an endcap adds the same dollar amount regardless of Yelp.” If you suspect the endcap <em>changes</em> the Yelp slope, that is an interaction, a refinement beyond today’s model.</p>
+</div>
+</div>
+</section>
 <section id="putting-a-defensible-number-on-the-decision" class="slide level2 center">
 <h2>Putting a Defensible Number on the Decision</h2>
-<p><br></p>
 <ul>
 <li class="fragment"><p><strong>Scenario:</strong> the chain plans a new store with <code>population_3mi = 120,000</code>, <code>income_3mi = 55,000</code>, <code>yelp_rating = 4.0</code>. Should it pay for endcap placement?</p></li>
 <li class="fragment"><p>Plug into the fitted equation, once with <code>endcap = 0</code> and once with <code>endcap = 1</code>:</p></li>
@@ -872,7 +974,8 @@ H_0: \beta_j = 0 \qquad H_a: \beta_j \neq 0 \qquad t = \frac{b_j}{s_{b_j}}, \qua
 </table>
 </div>
 <ul>
-<li class="fragment"><strong>The decision rule:</strong> negotiate for the endcap <strong>if its annual cost is below ~$816K.</strong> If the placement leases for, say, $150K/year, that is a clear yes. The dummy turned a vague “merchandising matters” into a number you can put in a budget.</li>
+<li class="fragment"><p><strong>The decision rule:</strong> negotiate for the endcap <strong>if its annual cost is below ~$816K.</strong> If the placement leases for, say, $150K/year, that is a clear yes. The dummy turned a vague “merchandising matters” into a number you can put in a budget.</p></li>
+<li class="fragment"><p>These are <strong>point</strong> predictions. As in simple regression, the model also yields a <strong>confidence interval</strong> for the mean sales of <em>all</em> such stores and a wider <strong>prediction interval</strong> for this <em>one</em> store; the multiple-regression formulas are beyond our scope, so read both straight from the software.</p></li>
 </ul>
 </section>
 <section id="a-note-on-categories-with-more-than-two-levels" class="slide level2 center">
@@ -886,6 +989,16 @@ H_0: \beta_j = 0 \qquad H_a: \beta_j \neq 0 \qquad t = \frac{b_j}{s_{b_j}}, \qua
 <li class="fragment"><p>Example, three store <strong>formats</strong> (Standard, Express, Flagship): use <strong>two</strong> dummies (<code>Express</code> 0/1, <code>Flagship</code> 0/1); “Standard” is the reference. Each dummy coefficient is that format’s sales gap <strong>versus Standard</strong>.</p></li>
 <li class="fragment"><p><strong>Do not</strong> encode categories as a single 1/2/3 number; that would falsely force the levels to be evenly spaced and ordered. Always use separate 0/1 columns.</p></li>
 </ul>
+</section>
+<section id="a-question-that-often-comes-up-7" class="slide level2 center">
+<h2>A Question That Often Comes Up</h2>
+<div class="faq">
+<p><strong>A question that often comes up at this point:</strong></p>
+<p><span class="faq-q">Three formats, but only two dummies? Why not give Standard its own 0/1 column too, so every format is represented?</span></p>
+<div class="fragment faq-a">
+<p><strong>Short answer:</strong> because a third column would be redundant and break the math. “Standard” is already identified: a store with <code>Express = 0</code> and <code>Flagship = 0</code> <em>is</em> a Standard store. Adding a Standard column would make the three columns add to 1 in every row, which collides with the intercept and the regression cannot be estimated. The dropped level becomes the <strong>reference</strong>, and you read each remaining coefficient as a gap <em>versus</em> it: “Flagship sells $X more than Standard, all else equal.”</p>
+</div>
+</div>
 </section></section>
 <section>
 <section id="when-predictors-overlap-multicollinearity" class="title-slide slide level1 center" data-background-color="#cfb991">
@@ -969,6 +1082,51 @@ VIF_j = \frac{1}{1 - R_j^2}
 <li class="fragment"><p>So population and income are insignificant for an <strong>honest</strong> reason: they genuinely add little once service and merchandising are in the model. This is <strong>not</strong> a multicollinearity artifact; the verdict is trustworthy.</p></li>
 <li class="fragment"><p><em>Contrast:</em> had population and income been highly correlated, we’d have to be cautious; their small <span class="math inline">\(t\)</span>’s could have been an overlap symptom rather than true irrelevance.</p></li>
 </ul>
+</section>
+<section id="a-question-that-often-comes-up-8" class="slide level2 center">
+<h2>A Question That Often Comes Up</h2>
+<div class="faq">
+<p><strong>A question that often comes up at this point:</strong></p>
+<p><span class="faq-q">What does a VIF of, say, <span class="math inline">\(5\)</span> actually mean, and what would a manager do if our auto-parts model had hit it?</span></p>
+<div class="fragment faq-a">
+<p><strong>Short answer:</strong> <span class="math inline">\(VIF = 5\)</span> means a predictor’s coefficient has a standard error about <span class="math inline">\(\sqrt{5} \approx 2.2\)</span> times wider than if it shared nothing with the others, so its <span class="math inline">\(t\)</span> shrinks and its effect gets blurry. Our worst is endcap at <span class="math inline">\(1.62\)</span>, harmless. If population and income had come in at, say, <span class="math inline">\(VIF = 8\)</span>, the fix is not to panic: drop one of the overlapping pair, or combine them into a single “market quality” index, then re-estimate and re-read the coefficients.</p>
+</div>
+</div>
+</section></section>
+<section>
+<section id="one-last-check-residual-analysis" class="title-slide slide level1 center" data-background-color="#cfb991">
+<h1>One Last Check: Residual Analysis</h1>
+
+</section>
+<section id="validating-the-model-plot-the-residuals-against-haty" class="slide level2 center">
+<h2>Validating the Model: Plot the Residuals Against <span class="math inline">\(\hat{y}\)</span></h2>
+<p><br></p>
+<ul>
+<li class="fragment"><p>Before we trust the coefficients, we check the <strong>error assumptions</strong> the model rests on (zero-mean, constant-variance, normal errors). The tool is the same residual we used in simple regression.</p></li>
+<li class="fragment"><p><strong>What changes with four predictors:</strong> there is no single <span class="math inline">\(x\)</span>-axis to plot against. In simple regression a residual plot against <span class="math inline">\(x\)</span> and against <span class="math inline">\(\hat{y}\)</span> carry the same picture; with several predictors they do not.</p>
+<ul>
+<li class="fragment">So in multiple regression we plot residuals against the <strong>fitted value <span class="math inline">\(\hat{y}\)</span></strong>, the one number that combines all four drivers.</li>
+</ul></li>
+<li class="fragment"><p>We use the <strong>standardized</strong> residual (each residual divided by its own standard error), on a <span class="math inline">\(z\)</span>-like scale, so the <strong><span class="math inline">\(|z| &gt; 2\)</span> outlier rule</strong> applies directly. Excel’s Regression tool prints these in its Residual Output; computing them by hand across four predictors is impractical.</p></li>
+</ul>
+</section>
+<section id="the-auto-parts-residual-plot" class="slide level2 center">
+<h2>The Auto-Parts Residual Plot</h2>
+
+<img data-src="figs/autoparts_std_residual_plot.png" class="quarto-figure quarto-figure-center r-stretch" style="width:70.0%"><ul>
+<li>The band is roughly <strong>flat and centered at zero</strong>, no fan and no curve across the $1M to $4M range of <span class="math inline">\(\hat{y}\)</span>: the constant-variance and linearity assumptions hold, so the coefficient verdicts are safe to read.</li>
+<li>Only <strong>3 of 45 stores</strong> sit just past <span class="math inline">\(\pm 2\)</span> (about the 5% you expect by chance), none wildly so. Flag them to investigate, not to delete: these are the real stores the four drivers still miss.</li>
+</ul>
+</section>
+<section id="a-question-that-often-comes-up-9" class="slide level2 center">
+<h2>A Question That Often Comes Up</h2>
+<div class="faq">
+<p><strong>A question that often comes up at this point:</strong></p>
+<p><span class="faq-q">In simple regression we plotted residuals against <span class="math inline">\(x\)</span>. Why switch to plotting against <span class="math inline">\(\hat{y}\)</span> now?</span></p>
+<div class="fragment faq-a">
+<p><strong>Short answer:</strong> because there is no single <span class="math inline">\(x\)</span> anymore. With four drivers you would need four separate residual plots, and each would miss the patterns the others create. The fitted value <span class="math inline">\(\hat{y}\)</span> rolls all four predictors into one axis, so a single plot shows whether the model misses systematically (a curve), whether the spread fans out (non-constant variance), or whether a store sits far off (<span class="math inline">\(|z| &gt; 2\)</span>). For the auto-parts model the band is clean, which is the green light to act on the coefficients.</p>
+</div>
+</div>
 </section></section>
 <section>
 <section id="debrief-the-investment-call" class="title-slide slide level1 center" data-background-color="#cfb991">
@@ -1054,6 +1212,21 @@ VIF_j = \frac{1}{1 - R_j^2}
 <li class="fragment"><p><strong>One caveat:</strong> the model <em>describes</em> 45 existing stores; it does not <em>prove</em> that buying an endcap will <em>cause</em> +$816K at a brand-new store. Correlation control is the best we can do with observational data: pilot it, then re-estimate.</p></li>
 <li class="fragment"><p><strong>Practice with the real data:</strong> <code>data/autoparts.csv</code> + Excel Regression → reproduce <span class="math inline">\(R^2 = 0.932\)</span>, <span class="math inline">\(F = 136.7\)</span>, the four coefficients, and the prediction. Worked solutions: <code>data/autoparts_regression.xlsx</code>.</p></li>
 </ul>
+</section>
+<section id="todays-question-todays-answer-1" class="slide level2 center">
+<h2>Today’s Question, Today’s Answer</h2>
+<p><br></p>
+<p><strong>The question (Topic 11, Lecture 2):</strong></p>
+<blockquote>
+<p><em>Which levers are worth investing in once we test each driver, and where should the next dollar go?</em></p>
+</blockquote>
+<div class="fragment">
+<p><br></p>
+<p><strong>The answer we reached today:</strong></p>
+<blockquote>
+<p>The model is decisively useful (<span class="math inline">\(F = 136.7\)</span>), but only <strong>two</strong> drivers survive their individual <span class="math inline">\(t\)</span>-test: <strong>Yelp</strong> (<span class="math inline">\(t = 16.5\)</span>, +$642K/star) and <strong>endcap</strong> (<span class="math inline">\(t = 6.98\)</span>, +$816K); population and income are insignificant (<span class="math inline">\(t = 0.88\)</span>, <span class="math inline">\(1.50\)</span>), and every VIF <span class="math inline">\(&lt; 1.7\)</span> so the verdict is honest, not an overlap artifact. <strong>Invest in service and merchandising, not location:</strong> buy the endcap whenever its lease runs below <strong>$816K/year</strong>.</p>
+</blockquote>
+</div>
 </section>
 <section id="team-sprint-your-group-case-lecture-2" class="slide level2 center">
 <h2>⏱️ Team Sprint: Your Group Case (Lecture 2)</h2>

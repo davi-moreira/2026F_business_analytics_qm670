@@ -116,6 +116,14 @@ html-math-method:
 
 - First we build the machine and learn to read its output. Testing and the dollar decision come in Lecture 2.
 
+## How Every Class Runs
+
+![](figs/lecture_dynamic.png){.nostretch fig-align="center" width="90%"}
+
+::: nonincremental
+The class **ends on the Team Sprint**, your group's graded submission: a decision plus your read of the analysis, one PDF before you leave.
+:::
+
 # From One Predictor to Many {background-color="#cfb991"}
 
 ## The Multiple Regression Model
@@ -127,7 +135,7 @@ html-math-method:
 ::: fragment
 
 $$
-y = \beta_0 + \beta_1 x_1 + \beta_2 x_2 + \cdots + \beta_p x_p + \epsilon
+y = \beta_0 + \beta_1 x_1 + \beta_2 x_2 + \cdots + \beta_p x_p + \varepsilon
 $$
 
 :::
@@ -142,7 +150,7 @@ $$
 
 :::
 
-- Same error assumptions as before: $E(\epsilon)=0$, constant variance $\sigma^2$, independent errors, normally distributed.
+- Same error assumptions as before: $E(\varepsilon)=0$, constant variance $\sigma^2$, independent errors, normally distributed.
 
 - $\beta_j$ = the change in $E(y)$ for a **one-unit increase in $x_j$ when all other variables are held constant.** That phrase is the whole point of today.
 
@@ -155,7 +163,7 @@ knitr::include_graphics("figs/multiple_regression_plot.png")
 
 ::: nonincremental
 - With two predictors, $E(y) = \beta_0 + \beta_1 x_1 + \beta_2 x_2$ traces a **plane** in 3-D space; with $p$ predictors it is a *hyperplane* we can no longer draw, but the algebra is identical.
-- The vertical gap from a point to the plane is the error $\epsilon$; least squares tilts the plane to make those gaps as small as possible.
+- The vertical gap from a point to the plane is the error $\varepsilon$; least squares tilts the plane to make those gaps as small as possible.
 :::
 
 ## Estimating the Coefficients: Least Squares Again
@@ -196,7 +204,19 @@ $$
 
   - "$b_j$ = the predicted change in $y$ for a one-unit increase in $x_j$, **holding all other variables constant.**"
 
-- This is why a predictor can look important alone yet vanish in the full model: its apparent effect was really the work of a variable it travels with. (We will watch exactly this happen to population and income.)
+- This is why a predictor can look important alone yet vanish in the full model: its apparent effect was the work of a variable it travels with. (We will watch exactly this happen to population and income.)
+
+## A Question That Often Comes Up
+
+:::: {.faq}
+**A question that often comes up at this point:**
+
+["Holding the others constant" sounds like an experiment, but we never ran one. How can the model hold income fixed when our 45 stores all have different incomes?]{.faq-q}
+
+::: {.fragment .faq-a}
+**Short answer:** it does it with arithmetic, not with a lab. Least squares finds the income coefficient by asking: among stores that are *similar on population, Yelp, and endcap*, how does sales change as income changes? It compares like with like statistically. That is weaker than a real experiment (we cannot rule out a lurking driver we never measured), but it is the closest a single observational model gets to "all else equal."
+:::
+::::
 
 # Anchor Example: Butler Trucking {background-color="#cfb991"}
 
@@ -214,7 +234,7 @@ $$
 ::: fragment
 
 $$
-y = \beta_0 + \beta_1 x_1 + \beta_2 x_2 + \epsilon \qquad (n = 10,\; p = 2)
+y = \beta_0 + \beta_1 x_1 + \beta_2 x_2 + \varepsilon \qquad (n = 10,\; p = 2)
 $$
 
 :::
@@ -271,6 +291,17 @@ $$
 
 - Actual was $9.3$, so the **residual** is $9.3 - 8.94 = +0.36$ hour: this route took slightly longer than the model expects.
 
+## A Question That Often Comes Up
+
+:::: {.faq}
+**A question that often comes up at this point:**
+
+[The intercept is $b_0 = -0.869$. A negative travel time is impossible, so is the model broken?]{.faq-q}
+
+::: {.fragment .faq-a}
+**Short answer:** no. The intercept is travel time for a route with $0$ miles and $0$ deliveries, a point no real assignment comes near, so it is just the algebraic anchor the line passes through, not a prediction we use. The same caution applies to the auto-parts intercept of $-52.1$: read the **coefficients** on the drivers, and only predict inside the range of stores you actually observed.
+:::
+::::
 
 # How Well Does the Model Fit? {background-color="#cfb991"}
 
@@ -336,6 +367,18 @@ $$
 
 - Butler: $R^2 = 0.904$ but $R^2_a = 0.876$; the gap is the fee for using two predictors on only ten observations.
 :::
+
+## A Question That Often Comes Up
+
+:::: {.faq}
+**A question that often comes up at this point:**
+
+[If adjusted $R^2$ is the honest measure, why does Excel report plain $R^2$ at all, and which one do I quote to the chain?]{.faq-q}
+
+::: {.fragment .faq-a}
+**Short answer:** quote **both**, and let the gap tell the story. Plain $R^2$ answers "how much variation did this model explain?" (a description of these 45 stores); adjusted $R^2$ answers "would this fit survive a fair charge for the predictors I used?" (the model-building question). For auto-parts they are close, $0.932$ vs $0.925$: a small gap means the four predictors are earning their keep, not padding the fit.
+:::
+::::
 
 # The Spine Model: All Four Drivers {background-color="#cfb991"}
 
@@ -406,12 +449,24 @@ knitr::include_graphics("figs/autoparts_coef_effects.png")
 
 - But the partial coefficients say otherwise:
 
-  - **Population:** $+0.00035$ → about **+\$0.35K per extra 1,000 residents**. Essentially flat.
+  - **Population:** $+0.00035$ → about **+\$0.35K per extra 1,000 residents**. Flat.
   - **Income:** $+0.0047$ → about **+\$4.7K per extra \$1,000 of median income**. Small.
 
 - Meanwhile **service** (Yelp) and **merchandising** (endcap) carry the model.
 
 - **Why the intuition fails:** in simple regression a market-size variable can look strong because it travels with the variables that *really* matter. Once those are in the model, "holding the others constant" strips the borrowed credit away. We will confirm this with formal tests in Lecture 2.
+
+## A Question That Often Comes Up
+
+:::: {.faq}
+**A question that often comes up at this point:**
+
+[Does a near-zero coefficient on population mean a chain should *never* care about market size?]{.faq-q}
+
+::: {.fragment .faq-a}
+**Short answer:** no, and this is the trap a manager must not fall into. The $+0.00035$ on population says only that *among our 45 stores*, once Yelp and endcap are accounted for, market size adds almost nothing extra. It does not say population is irrelevant in the world. Our stores may already sit in reasonable markets, so size has little room left to explain. The coefficient is a statement about *this model and this data*, not a universal law of retail.
+:::
+::::
 
 ## The Manager's Takeaway (Lecture 1)
 
@@ -422,6 +477,22 @@ knitr::include_graphics("figs/autoparts_coef_effects.png")
 - **One number:** **adjusted $R^2 = 0.925$**: high fit that *survives* the penalty for using four predictors, so the model isn't just padded with noise.
 
 - **One caveat:** "holding the others constant" is doing heavy lifting. A coefficient near zero (population, income) doesn't prove the variable is irrelevant in the world, only that it adds little **once the others are in.** Next lecture we make that rigorous with the $F$- and $t$-tests, and put a defensible dollar value on an endcap.
+
+## Today's Question, Today's Answer
+
+<br>
+
+**The question (Topic 11, Lecture 1):**
+
+> *Which drivers move store sales once the others are held constant, and how much of the sales story does the model capture?*
+
+::: fragment
+<br>
+
+**The answer we reached today:**
+
+> The four-driver model explains **93%** of sales variation (adjusted $R^2 = 0.925$), and the partial effects that carry it are **service (Yelp, +\$642K/star)** and **merchandising (endcap, +\$816K)**, *not* population (+\$0.35K/1,000 residents) or income (+\$4.7K/\$1,000). Whether each effect is *real* or noise is the **testing** question, settled in Lecture 2.
+:::
 
 ## ⏱️ Team Sprint: Your Group Case (Lecture 1)
 
@@ -448,6 +519,14 @@ knitr::include_graphics("figs/autoparts_coef_effects.png")
 - A high $R^2$ tells us the model predicts well **in aggregate**. It does **not** tell us which individual coefficients we can trust.
 
 - Today we add the inference layer: an **overall** test (is the model useful at all?), **individual** tests (which predictors carry their weight?), the **dummy variable** that turns "has an endcap" into a dollar amount, and a **multicollinearity** check so we don't get fooled by overlapping predictors.
+
+## How Every Class Runs
+
+![](figs/lecture_dynamic.png){.nostretch fig-align="center" width="90%"}
+
+::: nonincremental
+The class **ends on the Team Sprint**, your group's graded submission: a decision plus your read of the analysis, one PDF before you leave.
+:::
 
 # Is the Model Useful? The Overall $F$-Test {background-color="#cfb991"}
 
@@ -509,12 +588,24 @@ From the ANOVA block ($n = 45$, $p = 4$):
 ::: fragment
 
 $$
-F = \frac{MSR}{MSE} = \frac{13{,}008{,}346}{95{,}166} = 136.7, \qquad \text{Significance } F \approx 3.4\times10^{-23}
+F = \frac{MSR}{MSE} = \frac{13{,}008{,}346}{95{,}166} = 136.7, \qquad \text{Significance } F \approx 9.2\times10^{-23}
 $$
 
 :::
 
 - $F = 136.7$ with p-value far below any $\alpha$ → **reject $H_0$**: the model is decisively useful, so **at least one** driver carries real information. Now, *which ones?*
+
+## A Question That Often Comes Up
+
+:::: {.faq}
+**A question that often comes up at this point:**
+
+[The $F$-test only tells us *at least one* driver matters. Why run it first if it cannot name which one?]{.faq-q}
+
+::: {.fragment .faq-a}
+**Short answer:** because it is the gatekeeper. If $F$ had *failed* to reject (a small $F$, a large p-value), the whole model would be no better than guessing the average store's sales, and reading individual $t$'s would be chasing noise. $F = 136.7$ clears that gate decisively, which earns us the right to ask the sharper question on the next slides: of the four drivers, *which* are pulling their weight?
+:::
+::::
 
 # Which Predictors Matter? The $t$-Tests {background-color="#cfb991"}
 
@@ -581,6 +672,18 @@ knitr::include_graphics("figs/excel_reg_full_coefs.png")
 - **The lesson:** a significant $F$ does **not** mean every variable matters. Here all the explanatory power comes from **service (Yelp)** and **merchandising (endcap)**; the location variables are statistical passengers.
 
 - *Significance ≠ importance, and importance ≠ significance.* Judge each on its own evidence.
+
+## A Question That Often Comes Up
+
+:::: {.faq}
+**A question that often comes up at this point:**
+
+[Population and income are insignificant. Should a manager just delete them from the model?]{.faq-q}
+
+::: {.fragment .faq-a}
+**Short answer:** for *this* decision, yes: the budget should follow Yelp and endcap, and the next slide shows adjusted $R^2$ barely moves when we drop the two demographics. But keep them in the analyst's working file. They cost almost nothing, they document *why* you ruled location out (the investment story is "we checked size and wealth, they did not pay"), and a future store in a far smaller or poorer market might revive them. Insignificant here is not "proven useless forever."
+:::
+::::
 
 ## Confirming with a Side-by-Side Comparison
 
@@ -657,9 +760,19 @@ knitr::include_graphics("figs/autoparts_endcap_dummy.png")
 - $t = 6.98$, p < 0.0001 → this gap is **not** noise. An endcap is a real, sizeable lever.
 :::
 
-## Putting a Defensible Number on the Decision
+## A Question That Often Comes Up
 
-<br>
+:::: {.faq}
+**A question that often comes up at this point:**
+
+[Why force the two groups onto *parallel* lines? Why not just split the data and run a separate regression for endcap and non-endcap stores?]{.faq-q}
+
+::: {.fragment .faq-a}
+**Short answer:** you could, but the dummy gives you more for less. With one 0/1 column the endcap and non-endcap stores **pool** their data to estimate the slopes on Yelp, population, and income, so each slope rests on all 45 stores instead of two smaller, noisier subsets, and the coefficient on the dummy is exactly the \$816K gap you want to defend. The parallel-lines assumption says "an endcap adds the same dollar amount regardless of Yelp." If you suspect the endcap *changes* the Yelp slope, that is an interaction, a refinement beyond today's model.
+:::
+::::
+
+## Putting a Defensible Number on the Decision
 
 - **Scenario:** the chain plans a new store with `population_3mi = 120,000`, `income_3mi = 55,000`, `yelp_rating = 4.0`. Should it pay for endcap placement?
 
@@ -677,6 +790,8 @@ knitr::include_graphics("figs/autoparts_endcap_dummy.png")
 
 - **The decision rule:** negotiate for the endcap **if its annual cost is below \~\$816K.** If the placement leases for, say, \$150K/year, that is a clear yes. The dummy turned a vague "merchandising matters" into a number you can put in a budget.
 
+- These are **point** predictions. As in simple regression, the model also yields a **confidence interval** for the mean sales of *all* such stores and a wider **prediction interval** for this *one* store; the multiple-regression formulas are beyond our scope, so read both straight from the software.
+
 
 ## A Note on Categories with More Than Two Levels
 
@@ -689,6 +804,18 @@ knitr::include_graphics("figs/autoparts_endcap_dummy.png")
 - Example, three store **formats** (Standard, Express, Flagship): use **two** dummies (`Express` 0/1, `Flagship` 0/1); "Standard" is the reference. Each dummy coefficient is that format's sales gap **versus Standard**.
 
 - **Do not** encode categories as a single 1/2/3 number; that would falsely force the levels to be evenly spaced and ordered. Always use separate 0/1 columns.
+
+## A Question That Often Comes Up
+
+:::: {.faq}
+**A question that often comes up at this point:**
+
+[Three formats, but only two dummies? Why not give Standard its own 0/1 column too, so every format is represented?]{.faq-q}
+
+::: {.fragment .faq-a}
+**Short answer:** because a third column would be redundant and break the math. "Standard" is already identified: a store with `Express = 0` and `Flagship = 0` *is* a Standard store. Adding a Standard column would make the three columns add to 1 in every row, which collides with the intercept and the regression cannot be estimated. The dropped level becomes the **reference**, and you read each remaining coefficient as a gap *versus* it: "Flagship sells \$X more than Standard, all else equal."
+:::
+::::
 
 # When Predictors Overlap: Multicollinearity {background-color="#cfb991"}
 
@@ -753,6 +880,55 @@ knitr::include_graphics("figs/autoparts_predictor_corr.png")
 
 - *Contrast:* had population and income been highly correlated, we'd have to be cautious; their small $t$'s could have been an overlap symptom rather than true irrelevance.
 
+## A Question That Often Comes Up
+
+:::: {.faq}
+**A question that often comes up at this point:**
+
+[What does a VIF of, say, $5$ actually mean, and what would a manager do if our auto-parts model had hit it?]{.faq-q}
+
+::: {.fragment .faq-a}
+**Short answer:** $VIF = 5$ means a predictor's coefficient has a standard error about $\sqrt{5} \approx 2.2$ times wider than if it shared nothing with the others, so its $t$ shrinks and its effect gets blurry. Our worst is endcap at $1.62$, harmless. If population and income had come in at, say, $VIF = 8$, the fix is not to panic: drop one of the overlapping pair, or combine them into a single "market quality" index, then re-estimate and re-read the coefficients.
+:::
+::::
+
+# One Last Check: Residual Analysis {background-color="#cfb991"}
+
+## Validating the Model: Plot the Residuals Against $\hat{y}$
+
+<br>
+
+- Before we trust the coefficients, we check the **error assumptions** the model rests on (zero-mean, constant-variance, normal errors). The tool is the same residual we used in simple regression.
+
+- **What changes with four predictors:** there is no single $x$-axis to plot against. In simple regression a residual plot against $x$ and against $\hat{y}$ carry the same picture; with several predictors they do not.
+
+  - So in multiple regression we plot residuals against the **fitted value $\hat{y}$**, the one number that combines all four drivers.
+
+- We use the **standardized** residual (each residual divided by its own standard error), on a $z$-like scale, so the **$|z| > 2$ outlier rule** applies directly. Excel's Regression tool prints these in its Residual Output; computing them by hand across four predictors is impractical.
+
+## The Auto-Parts Residual Plot
+
+```{r  echo=FALSE, out.width = "70%",fig.align="center"}
+knitr::include_graphics("figs/autoparts_std_residual_plot.png")
+```
+
+::: nonincremental
+- The band is roughly **flat and centered at zero**, no fan and no curve across the \$1M to \$4M range of $\hat{y}$: the constant-variance and linearity assumptions hold, so the coefficient verdicts are safe to read.
+- Only **3 of 45 stores** sit just past $\pm 2$ (about the 5% you expect by chance), none wildly so. Flag them to investigate, not to delete: these are the real stores the four drivers still miss.
+:::
+
+## A Question That Often Comes Up
+
+:::: {.faq}
+**A question that often comes up at this point:**
+
+[In simple regression we plotted residuals against $x$. Why switch to plotting against $\hat{y}$ now?]{.faq-q}
+
+::: {.fragment .faq-a}
+**Short answer:** because there is no single $x$ anymore. With four drivers you would need four separate residual plots, and each would miss the patterns the others create. The fitted value $\hat{y}$ rolls all four predictors into one axis, so a single plot shows whether the model misses systematically (a curve), whether the spread fans out (non-constant variance), or whether a store sits far off ($|z| > 2$). For the auto-parts model the band is clean, which is the green light to act on the coefficients.
+:::
+::::
+
 # Debrief: The Investment Call {background-color="#cfb991"}
 
 ## The Whole Picture on One Page
@@ -794,6 +970,22 @@ Model: $R^2 = 0.932$, adjusted $R^2 = 0.925$, overall $F = 136.7$ (p $< 10^{-22}
 - **One caveat:** the model *describes* 45 existing stores; it does not *prove* that buying an endcap will *cause* +\$816K at a brand-new store. Correlation control is the best we can do with observational data: pilot it, then re-estimate.
 
 - **Practice with the real data:** `data/autoparts.csv` + Excel Regression → reproduce $R^2 = 0.932$, $F = 136.7$, the four coefficients, and the prediction. Worked solutions: `data/autoparts_regression.xlsx`.
+
+## Today's Question, Today's Answer
+
+<br>
+
+**The question (Topic 11, Lecture 2):**
+
+> *Which levers are worth investing in once we test each driver, and where should the next dollar go?*
+
+::: fragment
+<br>
+
+**The answer we reached today:**
+
+> The model is decisively useful ($F = 136.7$), but only **two** drivers survive their individual $t$-test: **Yelp** ($t = 16.5$, +\$642K/star) and **endcap** ($t = 6.98$, +\$816K); population and income are insignificant ($t = 0.88$, $1.50$), and every VIF $< 1.7$ so the verdict is honest, not an overlap artifact. **Invest in service and merchandising, not location:** buy the endcap whenever its lease runs below **\$816K/year**.
+:::
 
 ## ⏱️ Team Sprint: Your Group Case (Lecture 2)
 
