@@ -479,7 +479,7 @@
     "href": "lecture_slides/10_chapter_simple_regression/10_chapter_simple_regression.html#a-note-on-the-f-test",
     "title": " QM 6700: Business Analytics ",
     "section": "A Note on the F Test",
-    "text": "A Note on the F Test\n\n\nThe Regression output also reports an F test (the ANOVA block): \\(F = \\text{MSR}/\\text{MSE}\\), testing the same \\(H_0: \\beta_1 = 0\\).\nIn simple regression (one predictor) the \\(F\\) and \\(t\\) tests are equivalent; in fact \\(F = t^2\\):\n\n\n\\[\nF = 216.7 = (14.7)^2 = t^2\n\\]\n\n\nSame conclusion, same \\(p\\)-value. (When we add predictors next topic, \\(F\\) tests the model as a whole while each \\(t\\) tests one variable, and then they differ.)"
+    "text": "A Note on the F Test\n\n\nThe Regression output also reports an F test (the ANOVA block): \\(F = \\text{MSR}/\\text{MSE}\\), testing the same \\(H_0: \\beta_1 = 0\\).\nIn simple regression (one predictor) the \\(F\\) and \\(t\\) tests are equivalent; in fact \\(F = t^2\\):\n\n\n\\[\nF = 216.7 = t^2 \\quad (t = 14.7)\n\\]\n\n\nSame conclusion, same \\(p\\)-value. (When we add predictors next topic, \\(F\\) tests the model as a whole while each \\(t\\) tests one variable, and then they differ.)"
   },
   {
     "objectID": "lecture_slides/10_chapter_simple_regression/10_chapter_simple_regression.html#significance-is-not-causation",
@@ -584,7 +584,7 @@
     "href": "lecture_slides/10_chapter_simple_regression/10_chapter_simple_regression.html#summary",
     "title": " QM 6700: Business Analytics ",
     "section": "Summary",
-    "text": "Summary\nThe main points from this session:\n\nRegression predicts, where comparison only contrasts: the estimated line \\(\\hat{y} = b_0 + b_1 x\\) turns a relationship into a forecast.\nLeast squares picks the unique line that minimizes \\(\\sum (y_i - \\hat{y}_i)^2\\); the slope is the business number ($757.5K per Yelp star), the intercept just anchors the line.\n\\(R^2 = \\text{SSR}/\\text{SST}\\) is the share of variation the line explains (0.834 here); \\(r = (\\text{sign } b_1)\\sqrt{R^2}\\) ties it to correlation.\nInference asks if the slope is real: \\(t = b_1/s_{b_1}\\) with \\(df = n-2\\) (and \\(F = t^2\\)); the 95% CI gives the plausible magnitude.\nResidual plots validate the assumptions: look for a horizontal band; a curve means nonlinearity, a fan means non-constant variance.\nPrediction needs the right interval: a CI for the mean response, a wider PI for one new store; both widen as \\(x^*\\) leaves \\(\\bar{x}\\).\nNext topic: Multiple Regression on the same auto-parts data: add population, income, and end-cap placement, and learn what “holding everything else constant” means."
+    "text": "Summary\n\nThe main points from this session:\n\nRegression predicts where comparison only contrasts: the line \\(\\hat{y} = b_0 + b_1 x\\) turns a relationship into a forecast.\nLeast squares picks the line that minimizes \\(\\sum (y_i - \\hat{y}_i)^2\\); the slope is the business number ($757.5K per Yelp star), the intercept just anchors the line.\n\\(R^2 = \\text{SSR}/\\text{SST}\\) is the share of variation the line explains (0.834 here); \\(r = (\\text{sign } b_1)\\sqrt{R^2}\\) ties it to correlation.\nInference asks if the slope is real: \\(t = b_1/s_{b_1}\\) with \\(df = n-2\\) (and \\(F = t^2\\)); the 95% CI gives the plausible magnitude.\nResidual plots validate the assumptions: a horizontal band is fine; a curve means nonlinearity, a fan means non-constant variance.\nPrediction needs the right interval: a CI for the mean response, a wider PI for one new store; both widen as \\(x^*\\) leaves \\(\\bar{x}\\).\nNext topic, Multiple Regression on the same data: add population, income, and end-cap, and learn what “holding everything else constant” means."
   },
   {
     "objectID": "lecture_slides/10_chapter_simple_regression/10_chapter_simple_regression.html#carry-forward",
@@ -4041,7 +4041,7 @@
     "href": "lecture_slides/10_chapter_simple_regression/10_chapter_simple_regression.html#the-managers-takeaway",
     "title": " QM 6700: Business Analytics ",
     "section": "The Manager’s Takeaway",
-    "text": "The Manager’s Takeaway\n\n\nOne sentence: Yelp rating predicts auto-parts store sales strongly and significantly (about $758K per star, explaining 83% of the sales gap), so the real-estate team can use it to score and forecast sites.\nOne number to remember: \\(b_1 = 757.5\\), and where it came from: \\(\\sum(x-\\bar{x})(y-\\bar{y}) / \\sum(x-\\bar{x})^2\\).\nOne caveat: regression forecasts and quantifies; it does not prove causation, and 17% of sales is still unexplained; a single predictor is a start, not the answer.\nPractice with the real data:\n\ndata/autoparts.csv + Regression tool → reproduce \\(b_1 = 757.5\\), \\(R^2 = 0.834\\), \\(t = 14.7\\).\nWorked solutions: data/autoparts_regression.xlsx."
+    "text": "The Manager’s Takeaway\n\n\nOne sentence: Yelp rating predicts auto-parts store sales strongly and significantly (about $758K per star, explaining 83% of the sales gap), so the real-estate team can use it to score and forecast sites.\nOne number to remember: \\(b_1 = 757.5\\), and where it came from: \\(\\sum(x-\\bar{x})(y-\\bar{y}) / \\sum(x-\\bar{x})^2\\).\nOne caveat: regression forecasts and quantifies; it does not prove causation, and 17% of sales is still unexplained; a single predictor is a start, not the answer.\nPractice with the real data: data/autoparts.csv + Regression tool → reproduce \\(b_1 = 757.5\\), \\(R^2 = 0.834\\), \\(t = 14.7\\) (worked solutions in data/autoparts_regression.xlsx)."
   },
   {
     "objectID": "lecture_slides/11_chapter_multiple_regression/11_chapter_multiple_regression.html#the-managers-takeaway-lecture-1",
@@ -4875,5 +4875,89 @@
     "title": " QM 6700: Business Analytics ",
     "section": "A Question That Often Comes Up",
     "text": "A Question That Often Comes Up\n\nA question that often comes up at this point:\nIf a \\(z\\) of \\(-29.6\\) does not settle the conversion question, what number should the manager actually act on?\n\nShort answer: the effect size, not the \\(z\\). The \\(z\\) only confirms the gap is not luck (with 252M trials, that was never in doubt). The number to debate is the size of the gap: \\(-0.048\\) percentage points, a 12% relative drop in conversion. Then ask the business question the \\(z\\) cannot: is a 12% conversion drop tolerable given B’s higher eRPM? That is a judgment call about magnitude, which is why we monitor conversion rather than block the rollout on it."
+  },
+  {
+    "objectID": "lecture_slides/10_chapter_simple_regression/10_chapter_simple_regression.html#how-every-class-runs",
+    "href": "lecture_slides/10_chapter_simple_regression/10_chapter_simple_regression.html#how-every-class-runs",
+    "title": " QM 6700: Business Analytics ",
+    "section": "How Every Class Runs",
+    "text": "How Every Class Runs\n\n\n\n\n\nThe class ends on the Team Sprint, your group’s graded submission: a decision plus your read of the analysis, one PDF before you leave."
+  },
+  {
+    "objectID": "lecture_slides/10_chapter_simple_regression/10_chapter_simple_regression.html#todays-question-todays-answer",
+    "href": "lecture_slides/10_chapter_simple_regression/10_chapter_simple_regression.html#todays-question-todays-answer",
+    "title": " QM 6700: Business Analytics ",
+    "section": "Today’s Question, Today’s Answer",
+    "text": "Today’s Question, Today’s Answer\n\nThe question (Topic 10, Lecture 1 of the ladder):\n\nDoes one driver, a store’s Yelp rating, predict its annual sales: what is the slope worth in dollars, and how much of the sales gap does rating explain?\n\n\n\nThe answer we reached today:\n\nYes. Least squares fits \\(\\widehat{\\text{sales}} = 332.8 + 757.5 \\times (\\text{Yelp rating})\\): each star is worth about $757.5K in predicted annual sales, and \\(R^2 = \\textbf{0.834}\\), so Yelp rating alone explains 83% of the store-to-store sales gap. Whether that slope is statistically real is the Lecture 2 question."
+  },
+  {
+    "objectID": "lecture_slides/10_chapter_simple_regression/10_chapter_simple_regression.html#how-every-class-runs-1",
+    "href": "lecture_slides/10_chapter_simple_regression/10_chapter_simple_regression.html#how-every-class-runs-1",
+    "title": " QM 6700: Business Analytics ",
+    "section": "How Every Class Runs",
+    "text": "How Every Class Runs\n\n\n\n\n\nThe class ends on the Team Sprint, your group’s graded submission: a decision plus your read of the analysis, one PDF before you leave."
+  },
+  {
+    "objectID": "lecture_slides/10_chapter_simple_regression/10_chapter_simple_regression.html#todays-question-todays-answer-1",
+    "href": "lecture_slides/10_chapter_simple_regression/10_chapter_simple_regression.html#todays-question-todays-answer-1",
+    "title": " QM 6700: Business Analytics ",
+    "section": "Today’s Question, Today’s Answer",
+    "text": "Today’s Question, Today’s Answer\n\nThe question (Topic 10, Lecture 2 of the ladder):\n\nIs the slope real, do the assumptions hold, and what sales should we forecast for a specific new site?\n\n\n\nThe answer we reached today:\n\nReal and forecastable. The slope test gives \\(t = \\textbf{14.7}\\), \\(p &lt; 0.0001\\), so we reject \\(H_0: \\beta_1 = 0\\); the 95% CI is ($654K, $861K) per star. The residual band is horizontal (assumptions hold, two 5-star outliers aside). A 4.5-star site forecasts at $3.74M, and for one lease we quote the prediction interval ($2.79M, $4.70M)."
+  },
+  {
+    "objectID": "lecture_slides/10_chapter_simple_regression/10_chapter_simple_regression.html#a-question-that-often-comes-up",
+    "href": "lecture_slides/10_chapter_simple_regression/10_chapter_simple_regression.html#a-question-that-often-comes-up",
+    "title": " QM 6700: Business Analytics ",
+    "section": "A Question That Often Comes Up",
+    "text": "A Question That Often Comes Up\n\nA question that often comes up at this point:\nIf \\(\\beta_0\\) and \\(\\beta_1\\) are the numbers we actually want, why bother with \\(b_0\\) and \\(b_1\\)? Why not just use the true values?\n\nShort answer: because nobody knows the true \\(\\beta_0, \\beta_1\\). They describe every auto-parts store that could ever exist, and we only get to see our 45. So we estimate them with \\(b_0, b_1\\) from the sample, write the fit with a hat (\\(\\hat{y}\\)), and then spend Lecture 2 asking how trustworthy that estimate is. Same sample-to-population leap as every topic since interval estimation."
+  },
+  {
+    "objectID": "lecture_slides/10_chapter_simple_regression/10_chapter_simple_regression.html#a-question-that-often-comes-up-1",
+    "href": "lecture_slides/10_chapter_simple_regression/10_chapter_simple_regression.html#a-question-that-often-comes-up-1",
+    "title": " QM 6700: Business Analytics ",
+    "section": "A Question That Often Comes Up",
+    "text": "A Question That Often Comes Up\n\nA question that often comes up at this point:\nWhy square the residuals? Couldn’t we just minimize the sum of their absolute values, so a $500K miss counts as $500K instead of being blown up?\n\nShort answer: absolute values would also keep the misses from cancelling, but squaring does two extra jobs the manager wants. It comes down hard on a store the line badly misses (a $500K miss costs four times a $250K miss), and it yields clean, closed-form formulas for \\(b_0\\) and \\(b_1\\), the ones Excel’s SLOPE/INTERCEPT evaluate in one click. That is why “least squares,” not “least absolute,” is the standard fit."
+  },
+  {
+    "objectID": "lecture_slides/10_chapter_simple_regression/10_chapter_simple_regression.html#a-question-that-often-comes-up-2",
+    "href": "lecture_slides/10_chapter_simple_regression/10_chapter_simple_regression.html#a-question-that-often-comes-up-2",
+    "title": " QM 6700: Business Analytics ",
+    "section": "A Question That Often Comes Up",
+    "text": "A Question That Often Comes Up\n\nA question that often comes up at this point:\nIf each star is worth $757.5K, can the real-estate team just plug in any rating, say a planned flagship aiming for 6.0 stars, and read off the predicted sales?\n\nShort answer: only inside the range we actually observed. Our 45 stores span 1 to 5 stars, and Yelp caps at 5.0, so a 6.0 is impossible: the line was never tested out there. Plugging in an \\(x\\) outside the data is extrapolation, and nothing guarantees the relationship stays straight past the edge of the cloud. Score sites in the 1-to-5 rating range your existing stores cover."
+  },
+  {
+    "objectID": "lecture_slides/10_chapter_simple_regression/10_chapter_simple_regression.html#a-question-that-often-comes-up-3",
+    "href": "lecture_slides/10_chapter_simple_regression/10_chapter_simple_regression.html#a-question-that-often-comes-up-3",
+    "title": " QM 6700: Business Analytics ",
+    "section": "A Question That Often Comes Up",
+    "text": "A Question That Often Comes Up\n\nA question that often comes up at this point:\nIs \\(R^2 = 0.834\\) “good”? What is the cutoff a manager should require before trusting a regression?\n\nShort answer: there is no universal cutoff; “good” depends on the field and the decision. For one predictor against messy store-level sales, 0.834 is strong. But a high \\(R^2\\) does not make the line correct: a curved relationship can still post a high \\(R^2\\), and a significant slope can come with a modest one. So we never stop at \\(R^2\\). Lecture 2 tests whether the slope is real and checks the residuals before the manager signs anything."
+  },
+  {
+    "objectID": "lecture_slides/10_chapter_simple_regression/10_chapter_simple_regression.html#a-question-that-often-comes-up-4",
+    "href": "lecture_slides/10_chapter_simple_regression/10_chapter_simple_regression.html#a-question-that-often-comes-up-4",
+    "title": " QM 6700: Business Analytics ",
+    "section": "A Question That Often Comes Up",
+    "text": "A Question That Often Comes Up\n\nA question that often comes up at this point:\nFor a single mean we divided by \\(n - 1\\). Why \\(n - 2\\) here, and does it matter with 45 stores?\n\nShort answer: each parameter we estimate from the data costs one degree of freedom. A single mean costs one, so \\(n - 1\\). The regression line costs two, an intercept \\(b_0\\) and a slope \\(b_1\\), so \\(n - 2 = 43\\). With 45 stores the difference between dividing by 43, 44, or 45 is tiny, but the rule keeps \\(s\\) an honest, slightly conservative estimate of the error spread, which feeds straight into every \\(t\\) and interval that follows."
+  },
+  {
+    "objectID": "lecture_slides/10_chapter_simple_regression/10_chapter_simple_regression.html#a-question-that-often-comes-up-5",
+    "href": "lecture_slides/10_chapter_simple_regression/10_chapter_simple_regression.html#a-question-that-often-comes-up-5",
+    "title": " QM 6700: Business Analytics ",
+    "section": "A Question That Often Comes Up",
+    "text": "A Question That Often Comes Up\n\nA question that often comes up at this point:\nA \\(t\\) of 14.7 and \\(p &lt; 0.0001\\) sound spectacular. Does that mean Yelp rating is a huge driver of sales?\n\nShort answer: no, those two readings answer different questions. The \\(t\\)-test and \\(p\\)-value only say the slope is not zero: the relationship is real, not noise. How big the effect is comes from the slope itself ($757.5K per star) and the CI around it; how much it explains comes from \\(R^2\\) (0.834). A predictor can be highly significant yet small, or significant yet leave most variation unexplained. Read all three, not just the \\(p\\)-value."
+  },
+  {
+    "objectID": "lecture_slides/10_chapter_simple_regression/10_chapter_simple_regression.html#a-question-that-often-comes-up-6",
+    "href": "lecture_slides/10_chapter_simple_regression/10_chapter_simple_regression.html#a-question-that-often-comes-up-6",
+    "title": " QM 6700: Business Analytics ",
+    "section": "A Question That Often Comes Up",
+    "text": "A Question That Often Comes Up\n\nA question that often comes up at this point:\nThose two off-trend stores drag the line around. Should we just delete them so the model fits better?\n\nShort answer: no, not on sight. A point past \\(\\pm 2\\) flags a store to investigate, not to erase. Delete it only if you find a genuine error (a sales figure keyed wrong, a store mislabeled). If the store is real, dropping it just hides information: here the two 5-star outliers are the clue that rating alone misses something. The honest move is to keep them, report them, and add the predictors that explain them, which is the next topic."
+  },
+  {
+    "objectID": "lecture_slides/10_chapter_simple_regression/10_chapter_simple_regression.html#a-question-that-often-comes-up-7",
+    "href": "lecture_slides/10_chapter_simple_regression/10_chapter_simple_regression.html#a-question-that-often-comes-up-7",
+    "title": " QM 6700: Business Analytics ",
+    "section": "A Question That Often Comes Up",
+    "text": "A Question That Often Comes Up\n\nA question that often comes up at this point:\nWe are deciding on one specific lease. Which interval does the manager quote, the tight CI or the wide PI?\n\nShort answer: the prediction interval, ($2.79M, $4.70M). The CI, ($3.54M, $3.94M), is for the average of all 4.5-star stores; it would matter if you were opening dozens at once. A lease commits you to one store, which carries its own scatter on top of the line’s uncertainty, so the honest range is the wider PI. Quoting the narrow CI for a single site would understate the risk on the one decision capital is riding on."
   }
 ]

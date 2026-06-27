@@ -32,7 +32,7 @@
       vertical-align: middle;
     }
   </style>
-  <link rel="stylesheet" href="../../site_libs/revealjs/dist/theme/quarto-113b5beb2a57b2deea58feb1108e76b2.css">
+  <link rel="stylesheet" href="../../site_libs/revealjs/dist/theme/quarto-8fc47a4fdcba9931a3aa90ef56f89358.css">
   <link href="../../site_libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
   <link href="../../site_libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
   <link href="../../site_libs/revealjs/plugin/reveal-menu/quarto-menu.css" rel="stylesheet">
@@ -257,6 +257,15 @@ Professor<br>Davi Moreira<br>
 <li class="fragment"><p>The manager’s decision it feeds: <strong>rank prospective sites</strong> by predicted sales.</p></li>
 </ul>
 </section>
+<section id="how-every-class-runs" class="slide level2 center">
+<h2>How Every Class Runs</h2>
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="figs/lecture_dynamic.png" class="quarto-figure quarto-figure-center" style="width:90.0%"></p>
+</figure>
+</div>
+<p>The class <strong>ends on the Team Sprint</strong>, your group’s graded submission: a decision plus your read of the analysis, one PDF before you leave.</p>
+</section>
 <section id="the-simple-linear-regression-model" class="slide level2 center">
 <h2>The Simple Linear Regression Model</h2>
 <p><br></p>
@@ -280,6 +289,16 @@ y = \beta_0 + \beta_1 x + \varepsilon
 <ul>
 <li class="fragment"><span class="math inline">\(\hat{y}\)</span> is the <strong>predicted</strong> mean sales at a given rating; <span class="math inline">\(b_0, b_1\)</span> are the sample estimates of <span class="math inline">\(\beta_0, \beta_1\)</span>.</li>
 </ul>
+</section>
+<section id="a-question-that-often-comes-up" class="slide level2 center">
+<h2>A Question That Often Comes Up</h2>
+<div class="faq">
+<p><strong>A question that often comes up at this point:</strong></p>
+<p><span class="faq-q">If <span class="math inline">\(\beta_0\)</span> and <span class="math inline">\(\beta_1\)</span> are the numbers we actually want, why bother with <span class="math inline">\(b_0\)</span> and <span class="math inline">\(b_1\)</span>? Why not just use the true values?</span></p>
+<div class="fragment faq-a">
+<p><strong>Short answer:</strong> because nobody knows the true <span class="math inline">\(\beta_0, \beta_1\)</span>. They describe <em>every</em> auto-parts store that could ever exist, and we only get to see our 45. So we <strong>estimate</strong> them with <span class="math inline">\(b_0, b_1\)</span> from the sample, write the fit with a hat (<span class="math inline">\(\hat{y}\)</span>), and then spend Lecture 2 asking how trustworthy that estimate is. Same sample-to-population leap as every topic since interval estimation.</p>
+</div>
+</div>
 </section>
 <section id="what-a-line-can-look-like" class="slide level2 center">
 <h2>What a Line Can Look Like</h2>
@@ -324,6 +343,16 @@ e_i = y_i - \hat{y}_i
 <ul>
 <li class="fragment">Squaring penalizes big misses and keeps positives and negatives from cancelling.</li>
 </ul>
+</section>
+<section id="a-question-that-often-comes-up-1" class="slide level2 center">
+<h2>A Question That Often Comes Up</h2>
+<div class="faq">
+<p><strong>A question that often comes up at this point:</strong></p>
+<p><span class="faq-q">Why square the residuals? Couldn’t we just minimize the sum of their absolute values, so a $500K miss counts as $500K instead of being blown up?</span></p>
+<div class="fragment faq-a">
+<p><strong>Short answer:</strong> absolute values would also keep the misses from cancelling, but squaring does two extra jobs the manager wants. It comes down hard on a store the line badly misses (a $500K miss costs four times a $250K miss), and it yields clean, closed-form formulas for <span class="math inline">\(b_0\)</span> and <span class="math inline">\(b_1\)</span>, the ones Excel’s <code>SLOPE</code>/<code>INTERCEPT</code> evaluate in one click. That is why “least squares,” not “least absolute,” is the standard fit.</p>
+</div>
+</div>
 </section>
 <section id="the-least-squares-formulas" class="slide level2 center">
 <h2>The Least-Squares Formulas</h2>
@@ -425,6 +454,16 @@ b_1 = 5, \qquad b_0 = 60 \qquad\Rightarrow\qquad \hat{y} = 60 + 5x
 <li class="fragment"><p><strong>Sanity check:</strong> the slope is positive and large, consistent with the upward cloud. Good.</p></li>
 </ul>
 </section>
+<section id="a-question-that-often-comes-up-2" class="slide level2 center">
+<h2>A Question That Often Comes Up</h2>
+<div class="faq">
+<p><strong>A question that often comes up at this point:</strong></p>
+<p><span class="faq-q">If each star is worth $757.5K, can the real-estate team just plug in any rating, say a planned flagship aiming for 6.0 stars, and read off the predicted sales?</span></p>
+<div class="fragment faq-a">
+<p><strong>Short answer:</strong> only inside the range we actually observed. Our 45 stores span 1 to 5 stars, and Yelp caps at 5.0, so a 6.0 is impossible: the line was never tested out there. Plugging in an <span class="math inline">\(x\)</span> outside the data is <strong>extrapolation</strong>, and nothing guarantees the relationship stays straight past the edge of the cloud. Score sites in the 1-to-5 rating range your existing stores cover.</p>
+</div>
+</div>
+</section>
 <section id="r2-how-much-does-the-line-explain" class="slide level2 center">
 <h2><span class="math inline">\(R^2\)</span>: How Much Does the Line Explain?</h2>
 <p><br></p>
@@ -504,6 +543,16 @@ r = (\text{sign of } b_1)\sqrt{R^2}
 <li class="fragment"><p><strong>Correlation</strong> measures the <em>tightness and direction</em> of the linear association; <strong><span class="math inline">\(R^2\)</span></strong> measures the <em>share of variation explained</em>. Same coin, two faces.</p></li>
 </ul>
 </section>
+<section id="a-question-that-often-comes-up-3" class="slide level2 center">
+<h2>A Question That Often Comes Up</h2>
+<div class="faq">
+<p><strong>A question that often comes up at this point:</strong></p>
+<p><span class="faq-q">Is <span class="math inline">\(R^2 = 0.834\)</span> “good”? What is the cutoff a manager should require before trusting a regression?</span></p>
+<div class="fragment faq-a">
+<p><strong>Short answer:</strong> there is no universal cutoff; “good” depends on the field and the decision. For one predictor against messy store-level sales, 0.834 is strong. But a high <span class="math inline">\(R^2\)</span> does not make the line <em>correct</em>: a curved relationship can still post a high <span class="math inline">\(R^2\)</span>, and a significant slope can come with a modest one. So we never stop at <span class="math inline">\(R^2\)</span>. Lecture 2 tests whether the slope is real and checks the residuals before the manager signs anything.</p>
+</div>
+</div>
+</section>
 <section id="excel-one-click-gives-you-everything" class="slide level2 center">
 <h2>Excel: One Click Gives You Everything</h2>
 <div class="columns">
@@ -547,6 +596,21 @@ r = (\text{sign of } b_1)\sqrt{R^2}
 <li class="fragment"><p><strong>One caveat:</strong> “explains” is <strong>association, not cause</strong>, and 17% is still unexplained; one variable is rarely the whole story. We have a <em>fitted</em> line, but we have not yet asked whether it is <strong>statistically real</strong> or whether the model’s <strong>assumptions</strong> hold. That is Lecture 2.</p></li>
 </ul>
 </section>
+<section id="todays-question-todays-answer" class="slide level2 center">
+<h2>Today’s Question, Today’s Answer</h2>
+<p><br></p>
+<p><strong>The question (Topic 10, Lecture 1 of the ladder):</strong></p>
+<blockquote>
+<p><em>Does one driver, a store’s Yelp rating, predict its annual sales: what is the slope worth in dollars, and how much of the sales gap does rating explain?</em></p>
+</blockquote>
+<div class="fragment">
+<p><br></p>
+<p><strong>The answer we reached today:</strong></p>
+<blockquote>
+<p><strong>Yes.</strong> Least squares fits <span class="math inline">\(\widehat{\text{sales}} = 332.8 + 757.5 \times (\text{Yelp rating})\)</span>: each star is worth about <strong>$757.5K</strong> in predicted annual sales, and <span class="math inline">\(R^2 = \textbf{0.834}\)</span>, so Yelp rating alone explains <strong>83%</strong> of the store-to-store sales gap. Whether that slope is <em>statistically real</em> is the Lecture 2 question.</p>
+</blockquote>
+</div>
+</section>
 <section id="team-sprint-your-group-case-lecture-1" class="slide level2 center">
 <h2>⏱️ Team Sprint: Your Group Case (Lecture 1)</h2>
 <div class="sprint">
@@ -571,6 +635,15 @@ r = (\text{sign of } b_1)\sqrt{R^2}
 <li class="fragment"><p>Lecture 1 <em>described</em> the sample. Lecture 2 does <strong>inference</strong>: from these 45 stores to the population of all possible stores.</p></li>
 <li class="fragment"><p>Three jobs the manager needs settled before signing a lease: (1) <strong>test</strong> the slope, (2) <strong>validate</strong> the assumptions with residuals, (3) <strong>predict</strong> a new store with an honest margin of error.</p></li>
 </ul>
+</section>
+<section id="how-every-class-runs-1" class="slide level2 center">
+<h2>How Every Class Runs</h2>
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="figs/lecture_dynamic.png" class="quarto-figure quarto-figure-center" style="width:90.0%"></p>
+</figure>
+</div>
+<p>The class <strong>ends on the Team Sprint</strong>, your group’s graded submission: a decision plus your read of the analysis, one PDF before you leave.</p>
 </section>
 <section id="the-assumptions-behind-the-line" class="slide level2 center">
 <h2>The Assumptions Behind the Line</h2>
@@ -608,6 +681,16 @@ s = \sqrt{\frac{\text{SSE}}{n-2}} = \sqrt{\frac{9{,}245{,}249}{43}} \approx \$46
 <ul>
 <li class="fragment">We divide by <span class="math inline">\(n - 2\)</span> because we spent two degrees of freedom estimating <span class="math inline">\(b_0\)</span> and <span class="math inline">\(b_1\)</span>. In Excel: <code>=STEYX(sales, yelp)</code> or read <strong>Standard Error</strong> off the output.</li>
 </ul>
+</section>
+<section id="a-question-that-often-comes-up-4" class="slide level2 center">
+<h2>A Question That Often Comes Up</h2>
+<div class="faq">
+<p><strong>A question that often comes up at this point:</strong></p>
+<p><span class="faq-q">For a single mean we divided by <span class="math inline">\(n - 1\)</span>. Why <span class="math inline">\(n - 2\)</span> here, and does it matter with 45 stores?</span></p>
+<div class="fragment faq-a">
+<p><strong>Short answer:</strong> each parameter we estimate from the data costs one degree of freedom. A single mean costs one, so <span class="math inline">\(n - 1\)</span>. The regression line costs two, an intercept <span class="math inline">\(b_0\)</span> and a slope <span class="math inline">\(b_1\)</span>, so <span class="math inline">\(n - 2 = 43\)</span>. With 45 stores the difference between dividing by 43, 44, or 45 is tiny, but the rule keeps <span class="math inline">\(s\)</span> an honest, slightly conservative estimate of the error spread, which feeds straight into every <span class="math inline">\(t\)</span> and interval that follows.</p>
+</div>
+</div>
 </section>
 <section id="testing-the-slope-is-the-relationship-real" class="slide level2 center">
 <h2>Testing the Slope: Is the Relationship Real?</h2>
@@ -699,6 +782,16 @@ t = \frac{5}{0.580} = 8.62, \quad df = 8
 <li class="fragment"><p><strong>Translation:</strong> the Yelp–sales relationship is <em>not</em> a fluke of these 45 stores. There is overwhelming evidence the true slope is positive.</p></li>
 </ul>
 </section>
+<section id="a-question-that-often-comes-up-5" class="slide level2 center">
+<h2>A Question That Often Comes Up</h2>
+<div class="faq">
+<p><strong>A question that often comes up at this point:</strong></p>
+<p><span class="faq-q">A <span class="math inline">\(t\)</span> of 14.7 and <span class="math inline">\(p &lt; 0.0001\)</span> sound spectacular. Does that mean Yelp rating is a <em>huge</em> driver of sales?</span></p>
+<div class="fragment faq-a">
+<p><strong>Short answer:</strong> no, those two readings answer different questions. The <span class="math inline">\(t\)</span>-test and <span class="math inline">\(p\)</span>-value only say the slope is <strong>not zero</strong>: the relationship is real, not noise. <em>How big</em> the effect is comes from the slope itself ($757.5K per star) and the CI around it; <em>how much it explains</em> comes from <span class="math inline">\(R^2\)</span> (0.834). A predictor can be highly significant yet small, or significant yet leave most variation unexplained. Read all three, not just the <span class="math inline">\(p\)</span>-value.</p>
+</div>
+</div>
+</section>
 <section id="confidence-interval-for-the-slope" class="slide level2 center">
 <h2>Confidence Interval for the Slope</h2>
 <p><br></p>
@@ -725,7 +818,7 @@ b_1 \pm t_{\alpha/2,\,n-2}\; s_{b_1} = 757.5 \pm 2.02 \times 51.46 = (\$653.7\te
 </ul>
 <div class="fragment">
 <p><span class="math display">\[
-F = 216.7 = (14.7)^2 = t^2
+F = 216.7 = t^2 \quad (t = 14.7)
 \]</span></p>
 </div>
 <ul>
@@ -793,6 +886,16 @@ F = 216.7 = (14.7)^2 = t^2
 <li class="fragment"><p><em>What might separate two 5-star stores?</em> End-cap placement, local income, population. <strong>That is the teaser for multiple regression:</strong> adding the variables that explain the residuals.</p></li>
 </ul>
 </section>
+<section id="a-question-that-often-comes-up-6" class="slide level2 center">
+<h2>A Question That Often Comes Up</h2>
+<div class="faq">
+<p><strong>A question that often comes up at this point:</strong></p>
+<p><span class="faq-q">Those two off-trend stores drag the line around. Should we just delete them so the model fits better?</span></p>
+<div class="fragment faq-a">
+<p><strong>Short answer:</strong> no, not on sight. A point past <span class="math inline">\(\pm 2\)</span> flags a store to <strong>investigate</strong>, not to erase. Delete it only if you find a genuine error (a sales figure keyed wrong, a store mislabeled). If the store is real, dropping it just hides information: here the two 5-star outliers are the clue that rating alone misses something. The honest move is to keep them, report them, and add the predictors that explain them, which is the next topic.</p>
+</div>
+</div>
+</section>
 <section id="forecasting-a-new-store-point-prediction" class="slide level2 center">
 <h2>Forecasting a New Store: Point Prediction</h2>
 <p><br></p>
@@ -845,6 +948,16 @@ F = 216.7 = (14.7)^2 = t^2
 <li>Both bands are <strong>narrowest near <span class="math inline">\(\bar{x}\)</span></strong> and flare out at the edges; forecasts far from the data are less certain.</li>
 </ul>
 </section>
+<section id="a-question-that-often-comes-up-7" class="slide level2 center">
+<h2>A Question That Often Comes Up</h2>
+<div class="faq">
+<p><strong>A question that often comes up at this point:</strong></p>
+<p><span class="faq-q">We are deciding on one specific lease. Which interval does the manager quote, the tight CI or the wide PI?</span></p>
+<div class="fragment faq-a">
+<p><strong>Short answer:</strong> the <strong>prediction interval</strong>, ($2.79M, $4.70M). The CI, ($3.54M, $3.94M), is for the <em>average</em> of all 4.5-star stores; it would matter if you were opening dozens at once. A lease commits you to <em>one</em> store, which carries its own scatter on top of the line’s uncertainty, so the honest range is the wider PI. Quoting the narrow CI for a single site would understate the risk on the one decision capital is riding on.</p>
+</div>
+</div>
+</section>
 <section id="what-makes-a-forecast-tighter-or-looser" class="slide level2 center">
 <h2>What Makes a Forecast Tighter or Looser</h2>
 <p><br></p>
@@ -867,11 +980,6 @@ F = 216.7 = (14.7)^2 = t^2
 <li class="fragment"><p><strong>One number:</strong> 95% CI for the slope = <strong>($654K, $861K)</strong> per star: the magnitude the real-estate team plans around.</p></li>
 <li class="fragment"><p><strong>One caveat:</strong> the model assumes the new site behaves like our 45 stores; the two off-trend 5-star outliers warn that rating alone misses something, which is exactly why we add predictors next.</p></li>
 </ul>
-</section></section>
-<section>
-<section id="debrief-from-a-line-to-a-site-decision" class="title-slide slide level1 center" data-background-color="#cfb991">
-<h1>Debrief: From a Line to a Site Decision</h1>
-
 </section>
 <section id="the-whole-engagement-on-one-page" class="slide level2 center">
 <h2>The Whole Engagement on One Page</h2>
@@ -945,12 +1053,23 @@ F = 216.7 = (14.7)^2 = t^2
 <li class="fragment"><p><strong>One sentence:</strong> Yelp rating predicts auto-parts store sales strongly and significantly (about <strong>$758K per star</strong>, explaining <strong>83%</strong> of the sales gap), so the real-estate team can use it to score and forecast sites.</p></li>
 <li class="fragment"><p><strong>One number to remember:</strong> <span class="math inline">\(b_1 = 757.5\)</span>, and where it came from: <span class="math inline">\(\sum(x-\bar{x})(y-\bar{y}) / \sum(x-\bar{x})^2\)</span>.</p></li>
 <li class="fragment"><p><strong>One caveat:</strong> regression forecasts and quantifies; it does <strong>not</strong> prove causation, and 17% of sales is still unexplained; a single predictor is a start, not the answer.</p></li>
-<li class="fragment"><p><strong>Practice with the real data:</strong></p>
-<ul>
-<li class="fragment"><code>data/autoparts.csv</code> + Regression tool → reproduce <span class="math inline">\(b_1 = 757.5\)</span>, <span class="math inline">\(R^2 = 0.834\)</span>, <span class="math inline">\(t = 14.7\)</span>.</li>
-<li class="fragment">Worked solutions: <code>data/autoparts_regression.xlsx</code>.</li>
-</ul></li>
+<li class="fragment"><p><strong>Practice with the real data:</strong> <code>data/autoparts.csv</code> + Regression tool → reproduce <span class="math inline">\(b_1 = 757.5\)</span>, <span class="math inline">\(R^2 = 0.834\)</span>, <span class="math inline">\(t = 14.7\)</span> (worked solutions in <code>data/autoparts_regression.xlsx</code>).</p></li>
 </ul>
+</section>
+<section id="todays-question-todays-answer-1" class="slide level2 center">
+<h2>Today’s Question, Today’s Answer</h2>
+<p><br></p>
+<p><strong>The question (Topic 10, Lecture 2 of the ladder):</strong></p>
+<blockquote>
+<p><em>Is the slope real, do the assumptions hold, and what sales should we forecast for a specific new site?</em></p>
+</blockquote>
+<div class="fragment">
+<p><br></p>
+<p><strong>The answer we reached today:</strong></p>
+<blockquote>
+<p><strong>Real and forecastable.</strong> The slope test gives <span class="math inline">\(t = \textbf{14.7}\)</span>, <span class="math inline">\(p &lt; 0.0001\)</span>, so we reject <span class="math inline">\(H_0: \beta_1 = 0\)</span>; the 95% CI is <strong>($654K, $861K)</strong> per star. The residual band is horizontal (assumptions hold, two 5-star outliers aside). A 4.5-star site forecasts at <strong>$3.74M</strong>, and for <em>one</em> lease we quote the prediction interval <strong>($2.79M, $4.70M)</strong>.</p>
+</blockquote>
+</div>
 </section>
 <section id="team-sprint-your-group-case-lecture-2" class="slide level2 center">
 <h2>⏱️ Team Sprint: Your Group Case (Lecture 2)</h2>
@@ -967,16 +1086,18 @@ F = 216.7 = (14.7)^2 = t^2
 </section>
 <section id="summary" class="slide level2 center">
 <h2>Summary</h2>
+<div style="font-size: 92%;">
 <p>The main points from this session:</p>
 <ul>
-<li><strong>Regression predicts</strong>, where comparison only contrasts: the estimated line <span class="math inline">\(\hat{y} = b_0 + b_1 x\)</span> turns a relationship into a forecast.</li>
-<li><strong>Least squares</strong> picks the unique line that minimizes <span class="math inline">\(\sum (y_i - \hat{y}_i)^2\)</span>; the <strong>slope</strong> is the business number ($757.5K per Yelp star), the <strong>intercept</strong> just anchors the line.</li>
+<li><strong>Regression predicts</strong> where comparison only contrasts: the line <span class="math inline">\(\hat{y} = b_0 + b_1 x\)</span> turns a relationship into a forecast.</li>
+<li><strong>Least squares</strong> picks the line that minimizes <span class="math inline">\(\sum (y_i - \hat{y}_i)^2\)</span>; the <strong>slope</strong> is the business number ($757.5K per Yelp star), the <strong>intercept</strong> just anchors the line.</li>
 <li><strong><span class="math inline">\(R^2 = \text{SSR}/\text{SST}\)</span></strong> is the share of variation the line explains (0.834 here); <span class="math inline">\(r = (\text{sign } b_1)\sqrt{R^2}\)</span> ties it to correlation.</li>
 <li><strong>Inference</strong> asks if the slope is real: <span class="math inline">\(t = b_1/s_{b_1}\)</span> with <span class="math inline">\(df = n-2\)</span> (and <span class="math inline">\(F = t^2\)</span>); the 95% CI gives the plausible magnitude.</li>
-<li><strong>Residual plots</strong> validate the assumptions: look for a horizontal band; a curve means nonlinearity, a fan means non-constant variance.</li>
+<li><strong>Residual plots</strong> validate the assumptions: a horizontal band is fine; a curve means nonlinearity, a fan means non-constant variance.</li>
 <li><strong>Prediction</strong> needs the right interval: a <strong>CI</strong> for the mean response, a <strong>wider PI</strong> for one new store; both widen as <span class="math inline">\(x^*\)</span> leaves <span class="math inline">\(\bar{x}\)</span>.</li>
-<li><strong>Next topic: Multiple Regression</strong> on the same auto-parts data: add population, income, and end-cap placement, and learn what “holding everything else constant” means.</li>
+<li><strong>Next topic, Multiple Regression</strong> on the same data: add population, income, and end-cap, and learn what “holding everything else constant” means.</li>
 </ul>
+</div>
 </section></section>
 <section id="thank-you" class="title-slide slide level1 center" data-background-color="#cfb991">
 <h1>Thank you!</h1>
