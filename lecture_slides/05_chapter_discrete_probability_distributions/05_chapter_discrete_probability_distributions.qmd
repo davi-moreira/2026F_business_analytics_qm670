@@ -312,7 +312,7 @@ $$
 
 ## JSL Appliances: the Worksheet
 
-::: r-fit-text
+::: {style="font-size: 82%;"}
 | $x$ | $f(x)$ | $x\,f(x)$ | $x - \mu$ | $(x-\mu)^2$ | $(x-\mu)^2 f(x)$ |
 |---:|---:|---:|---:|---:|---:|
 | 0 | 0.40 | 0.00 | $-1.2$ | 1.44 | 0.576 |
@@ -330,7 +330,7 @@ $$
 ## Do It in Excel: Expected Value & Variance
 
 :::::: columns
-::: {.column width="46%"}
+::: {.column .nonincremental width="46%"}
 **Follow along:**
 
 1. Lay out the $x$ values in column A and $f(x)$ in column B (the JSL table).
@@ -659,8 +659,8 @@ knitr::include_graphics("figs/vungle_installs_timeseries.png")
 
 | Algorithm | Conversion rate $p$ | Per-burst mean $\mu = np$ ($n=1000$) |
 |---|---:|---:|
-| A | 0.4027% $\approx$ **0.0040** | $1000 \times 0.0040 = $ **4.0** installs |
-| B | 0.3538% $\approx$ **0.0035** | $1000 \times 0.0035 = $ **3.5** installs |
+| A | 0.4027% $\approx$ **0.0040** | $1000 \times 0.0040 =$ **4.0** installs |
+| B | 0.3538% $\approx$ **0.0035** | $1000 \times 0.0035 =$ **3.5** installs |
 
 :::
 
@@ -693,14 +693,14 @@ knitr::include_graphics("figs/binom_tail_vungle_B.png")
 ```
 
 ::: nonincremental
-- For B, $P(X \geq 8) = 1 - P(X \leq 7) = 1 - 0.9735 = $ **0.0265**: about **1 burst in 38** delivers 8+ installs.
+- For B, $P(X \geq 8) = 1 - P(X \leq 7) = 1 - 0.9735 =$ **0.0265**: about **1 burst in 38** delivers 8+ installs.
 - If one postback worker handles up to 7 installs/burst, ~2.7% of B's bursts need a second worker; *that* is the capacity number.
 :::
 
 ## Do It in Excel: The Vungle Burst (`BINOM.DIST`)
 
 :::::: columns
-::: {.column width="46%"}
+::: {.column .nonincremental width="46%"}
 **Follow along:**
 
 1. List the install counts $x = 0, 1, 2, \dots$ down column A.
@@ -736,7 +736,7 @@ knitr::include_graphics("figs/binom_tail_vungle_B.png")
 
 **The answer we reached today:**
 
-> Installs are **Binomial($1000$, $p$)**. For B ($p = 0.0035$): expect $\mu = np = $ **3.5** installs with spread $\sigma = $ **1.87**, and the stress level $P(X \geq 8) = 1 - P(X \leq 7) = $ **0.0265** (about **1 burst in 38**). A converts higher, so its tail $P(X \geq 8) \approx$ **0.051** is roughly twice B's.
+> Installs are **Binomial($1000$, $p$)**. For B ($p = 0.0035$): expect $\mu = np =$ **3.5** installs with spread $\sigma =$ **1.87**, and the stress level $P(X \geq 8) = 1 - P(X \leq 7) =$ **0.0265** (about **1 burst in 38**). A converts higher, so its tail $P(X \geq 8) \approx$ **0.051** is roughly twice B's.
 :::
 
 ## ⏱️ Team Sprint: Your Group Case (Lecture 1)
@@ -949,7 +949,7 @@ knitr::include_graphics("figs/binom_vs_poisson.png")
 ## Do It in Excel: Binomial vs. Poisson Side by Side
 
 :::::: columns
-::: {.column width="46%"}
+::: {.column .nonincremental width="46%"}
 **Follow along:**
 
 1. List the counts $x = 0, 1, 2, \dots$ in column A.
@@ -1063,7 +1063,7 @@ $$
 
 **The answer we reached today:**
 
-> Yes: the **Poisson($\mu$)** needs only $\mu = np$. For B, $\mu = $ **3.5**; the capacity tail $P(X \geq 8) = $ **0.0267** matches the Binomial's **0.0265**, and for A both give $\approx$ **0.051**. For Vungle's tiny $p$ the two models agree to three decimals, so you can plan from the **rate alone**.
+> Yes: the **Poisson($\mu$)** needs only $\mu = np$. For B, $\mu =$ **3.5**; the capacity tail $P(X \geq 8) =$ **0.0267** matches the Binomial's **0.0265**, and for A both give $\approx$ **0.051**. For Vungle's tiny $p$ the two models agree to three decimals, so you can plan from the **rate alone**.
 :::
 
 # Wrap-up {background-color="#cfb991"}

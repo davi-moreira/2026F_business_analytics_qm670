@@ -2344,7 +2344,7 @@
     "href": "lecture_slides/03_chapter_probability/03_chapter_probability.html#anchor-example-a-test-market-decision",
     "title": " QM 6700: Business Analytics ",
     "section": "Anchor Example: A Test-Market Decision",
-    "text": "Anchor Example: A Test-Market Decision\n\nA bank’s new product has three possible fates. Priors from past launches: \\(P(\\text{Failure}) = 0.80\\), \\(P(\\text{Marginal}) = 0.15\\), \\(P(\\text{Major success}) = 0.05\\). A test market then returns a large share. How likely is each fate now?\n\n\n\n\n\n\n\n\n\n\nOutcome \\(A_i\\)\nPrior \\(P(A_i)\\)\nLikelihood \\(P(\\text{Large}\\mid A_i)\\)\nJoint\nPosterior \\(P(A_i\\mid\\text{Large})\\)\n\n\n\n\nFailure\n0.80\n0.02\n0.0160\n0.0160 / 0.1010 = 0.158\n\n\nMarginal\n0.15\n0.24\n0.0360\n0.356\n\n\nMajor success\n0.05\n0.98\n0.0490\n0.0490 / 0.1010 = 0.485\n\n\nTotal\n1.00\n\n$P() = $ 0.1010\n1.000\n\n\n\nA large test result lifts “Major success” from a 5% prior to a 49% posterior (nearly ten-fold): the same evidence that costs a few thousand to gather swings the launch decision from “no” to “go.”"
+    "text": "Anchor Example: A Test-Market Decision\n\nA bank’s new product has three possible fates. Priors from past launches: \\(P(\\text{Failure}) = 0.80\\), \\(P(\\text{Marginal}) = 0.15\\), \\(P(\\text{Major success}) = 0.05\\). A test market then returns a large share. How likely is each fate now?\n\n\n\n\n\n\n\n\n\n\nOutcome \\(A_i\\)\nPrior \\(P(A_i)\\)\nLikelihood \\(P(\\text{Large}\\mid A_i)\\)\nJoint\nPosterior \\(P(A_i\\mid\\text{Large})\\)\n\n\n\n\nFailure\n0.80\n0.02\n0.0160\n0.0160 / 0.1010 = 0.158\n\n\nMarginal\n0.15\n0.24\n0.0360\n0.356\n\n\nMajor success\n0.05\n0.98\n0.0490\n0.0490 / 0.1010 = 0.485\n\n\nTotal\n1.00\n\n\\(P(\\text{Large}) =\\) 0.1010\n1.000\n\n\n\nA large test result lifts “Major success” from a 5% prior to a 49% posterior (nearly ten-fold): the same evidence that costs a few thousand to gather swings the launch decision from “no” to “go.”"
   },
   {
     "objectID": "lecture_slides/03_chapter_probability/03_chapter_probability.html#the-vungle-bayes-update-setup",
@@ -2680,7 +2680,7 @@
     "href": "lecture_slides/05_chapter_discrete_probability_distributions/05_chapter_discrete_probability_distributions.html#estimate-p-then-build-the-distribution",
     "title": " QM 6700: Business Analytics ",
     "section": "Estimate \\(p\\), then Build the Distribution",
-    "text": "Estimate \\(p\\), then Build the Distribution\n\n\nFrom vungle_daily.csv, the conversion rate is installs / impressions, averaged over the 30 days:\n\n\n\n\n\n\n\n\n\n\nAlgorithm\nConversion rate \\(p\\)\nPer-burst mean \\(\\mu = np\\) (\\(n=1000\\))\n\n\n\n\nA\n0.4027% \\(\\approx\\) 0.0040\n$1000 = $ 4.0 installs\n\n\nB\n0.3538% \\(\\approx\\) 0.0035\n$1000 = $ 3.5 installs\n\n\n\n\n\nSo installs per 1,000-impression burst are:\n\n\n\\[\nX_A \\sim \\text{Binomial}(1000,\\, 0.0040) \\qquad\\qquad X_B \\sim \\text{Binomial}(1000,\\, 0.0035)\n\\]\n\n\n\\(\\sigma_B = \\sqrt{1000(0.0035)(0.9965)} = 1.868\\) installs: a tight, right-skewed count."
+    "text": "Estimate \\(p\\), then Build the Distribution\n\n\nFrom vungle_daily.csv, the conversion rate is installs / impressions, averaged over the 30 days:\n\n\n\n\n\n\n\n\n\n\nAlgorithm\nConversion rate \\(p\\)\nPer-burst mean \\(\\mu = np\\) (\\(n=1000\\))\n\n\n\n\nA\n0.4027% \\(\\approx\\) 0.0040\n\\(1000 \\times 0.0040 =\\) 4.0 installs\n\n\nB\n0.3538% \\(\\approx\\) 0.0035\n\\(1000 \\times 0.0035 =\\) 3.5 installs\n\n\n\n\n\nSo installs per 1,000-impression burst are:\n\n\n\\[\nX_A \\sim \\text{Binomial}(1000,\\, 0.0040) \\qquad\\qquad X_B \\sim \\text{Binomial}(1000,\\, 0.0035)\n\\]\n\n\n\\(\\sigma_B = \\sqrt{1000(0.0035)(0.9965)} = 1.868\\) installs: a tight, right-skewed count."
   },
   {
     "objectID": "lecture_slides/05_chapter_discrete_probability_distributions/05_chapter_discrete_probability_distributions.html#the-burst-distribution-a-vs.-b",
@@ -2694,7 +2694,7 @@
     "href": "lecture_slides/05_chapter_discrete_probability_distributions/05_chapter_discrete_probability_distributions.html#the-tail-that-sizes-the-pipeline",
     "title": " QM 6700: Business Analytics ",
     "section": "The Tail That Sizes the Pipeline",
-    "text": "The Tail That Sizes the Pipeline\n\n\nFor B, $P(X ) = 1 - P(X ) = 1 - 0.9735 = $ 0.0265: about 1 burst in 38 delivers 8+ installs.\nIf one postback worker handles up to 7 installs/burst, ~2.7% of B’s bursts need a second worker; that is the capacity number."
+    "text": "The Tail That Sizes the Pipeline\n\n\nFor B, \\(P(X \\geq 8) = 1 - P(X \\leq 7) = 1 - 0.9735 =\\) 0.0265: about 1 burst in 38 delivers 8+ installs.\nIf one postback worker handles up to 7 installs/burst, ~2.7% of B’s bursts need a second worker; that is the capacity number."
   },
   {
     "objectID": "lecture_slides/05_chapter_discrete_probability_distributions/05_chapter_discrete_probability_distributions.html#do-it-in-excel-the-vungle-burst-binom.dist",
@@ -2715,7 +2715,7 @@
     "href": "lecture_slides/05_chapter_discrete_probability_distributions/05_chapter_discrete_probability_distributions.html#todays-question-todays-answer",
     "title": " QM 6700: Business Analytics ",
     "section": "Today’s Question, Today’s Answer",
-    "text": "Today’s Question, Today’s Answer\n\nThe question (Lecture 1):\n\nHow many installs should we expect in a 1,000-impression burst, and how do we model them as a Binomial?\n\n\n\nThe answer we reached today:\n\nInstalls are Binomial(\\(1000\\), \\(p\\)). For B (\\(p = 0.0035\\)): expect $= np = $ 3.5 installs with spread $= $ 1.87, and the stress level $P(X ) = 1 - P(X ) = $ 0.0265 (about 1 burst in 38). A converts higher, so its tail \\(P(X \\geq 8) \\approx\\) 0.051 is roughly twice B’s."
+    "text": "Today’s Question, Today’s Answer\n\nThe question (Lecture 1):\n\nHow many installs should we expect in a 1,000-impression burst, and how do we model them as a Binomial?\n\n\n\nThe answer we reached today:\n\nInstalls are Binomial(\\(1000\\), \\(p\\)). For B (\\(p = 0.0035\\)): expect \\(\\mu = np =\\) 3.5 installs with spread \\(\\sigma =\\) 1.87, and the stress level \\(P(X \\geq 8) = 1 - P(X \\leq 7) =\\) 0.0265 (about 1 burst in 38). A converts higher, so its tail \\(P(X \\geq 8) \\approx\\) 0.051 is roughly twice B’s."
   },
   {
     "objectID": "lecture_slides/05_chapter_discrete_probability_distributions/05_chapter_discrete_probability_distributions.html#team-sprint-your-group-case-lecture-1",
@@ -2869,7 +2869,7 @@
     "href": "lecture_slides/05_chapter_discrete_probability_distributions/05_chapter_discrete_probability_distributions.html#todays-question-todays-answer-1",
     "title": " QM 6700: Business Analytics ",
     "section": "Today’s Question, Today’s Answer",
-    "text": "Today’s Question, Today’s Answer\n\nThe question (Lecture 2):\n\nIs there a model that needs only the average rate, not the full \\(n\\) and \\(p\\), and does it give the same capacity answer?\n\n\n\nThe answer we reached today:\n\nYes: the Poisson(\\(\\mu\\)) needs only \\(\\mu = np\\). For B, $= $ 3.5; the capacity tail $P(X ) = $ 0.0267 matches the Binomial’s 0.0265, and for A both give \\(\\approx\\) 0.051. For Vungle’s tiny \\(p\\) the two models agree to three decimals, so you can plan from the rate alone."
+    "text": "Today’s Question, Today’s Answer\n\nThe question (Lecture 2):\n\nIs there a model that needs only the average rate, not the full \\(n\\) and \\(p\\), and does it give the same capacity answer?\n\n\n\nThe answer we reached today:\n\nYes: the Poisson(\\(\\mu\\)) needs only \\(\\mu = np\\). For B, \\(\\mu =\\) 3.5; the capacity tail \\(P(X \\geq 8) =\\) 0.0267 matches the Binomial’s 0.0265, and for A both give \\(\\approx\\) 0.051. For Vungle’s tiny \\(p\\) the two models agree to three decimals, so you can plan from the rate alone."
   },
   {
     "objectID": "lecture_slides/05_chapter_discrete_probability_distributions/05_chapter_discrete_probability_distributions.html#discrete-distributions-on-one-page-the-vungle-bridge",
