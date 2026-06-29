@@ -1,0 +1,10 @@
+"alternative","state","prior","payoff_k","P_favorable_given_state","P_unfavorable_given_state","study_fee_k"
+"National launch","Strong",0.35,900,0.8,0.2,30
+"National launch","Moderate",0.4,300,0.55,0.45,30
+"National launch","Weak",0.25,-400,0.15,0.85,30
+"Regional launch","Strong",0.35,350,0.8,0.2,30
+"Regional launch","Moderate",0.4,180,0.55,0.45,30
+"Regional launch","Weak",0.25,-60,0.15,0.85,30
+"Do not launch","Strong",0.35,0,0.8,0.2,30
+"Do not launch","Moderate",0.4,0,0.55,0.45,30
+"Do not launch","Weak",0.25,0,0.15,0.85,30

@@ -189,9 +189,11 @@ Professor<br>Davi Moreira<br>
 <ul>
 <li class="fragment"><strong>The big call you own as Vungle’s manager:</strong> <em>roll out algorithm B, or stay with A?</em> We have built toward it all term; today we settle it.</li>
 </ul>
+<div class="fragment">
 <blockquote>
 <p>“B’s daily eRPM averaged about <strong>$0.11 higher</strong> than A’s. Is that a <strong>real improvement</strong>, or just month-to-month <strong>noise</strong>? Should Vungle <strong>roll out B</strong> to all traffic?”</p>
 </blockquote>
+</div>
 <p><br></p>
 <ul>
 <li class="fragment"><p>In Topic 8 we tested <strong>one</strong> population against a benchmark (“is B’s mean eRPM above $3.30?”). Today’s question is the one that decides the rollout: <strong>is B really better than A?</strong>, comparing <strong>two</strong> populations.</p></li>
@@ -290,16 +292,6 @@ Professor<br>Davi Moreira<br>
 <li><strong>Paired is preferred when feasible</strong>, but it requires that every unit <em>can</em> be measured under both conditions.</li>
 <li>When the units come from genuinely separate populations (bankrupt vs.&nbsp;non-bankrupt firms), only the <strong>independent</strong> design exists.</li>
 </ul>
-</section>
-<section id="a-question-that-often-comes-up" class="slide level2 center">
-<h2>A Question That Often Comes Up</h2>
-<div class="faq">
-<p><strong>A question that often comes up at this point:</strong></p>
-<p><span class="faq-q">If pairing removes so much noise, why would any analyst ever use the independent design?</span></p>
-<div class="fragment faq-a">
-<p><strong>Short answer:</strong> because pairing is often impossible. A firm is either bankrupt or it is not, so you cannot measure the <em>same</em> firm under both conditions; the owner’s-equity comparison later today has no natural pair. Vungle got lucky: it could run A and B on the <em>same 30 days</em>, so it chose the paired design before collecting any data. Use pairing when a single unit can sit under both treatments; otherwise the independent design is your only option.</p>
-</div>
-</div>
 </section>
 <section id="the-hypotheses-are-about-a-difference" class="slide level2 center">
 <h2>The Hypotheses Are About a Difference</h2>
@@ -411,7 +403,7 @@ d_i = x_{1i} - x_{2i}
 \]</span></p>
 </div>
 </section>
-<section id="a-question-that-often-comes-up-1" class="slide level2 center">
+<section id="a-question-that-often-comes-up" class="slide level2 center">
 <h2>A Question That Often Comes Up</h2>
 <div class="faq">
 <p><strong>A question that often comes up at this point:</strong></p>
@@ -567,29 +559,22 @@ H_0: \mu_d = 0 \qquad H_a: \mu_d \neq 0 \qquad \alpha = 0.05
 <p><strong>5. The Manager’s Translation.</strong> <em>UPX averages about 2.7 hours slower than INTEX on identical routes: a real difference, not noise. If speed matters, route the volume to INTEX (then negotiate with UPX).</em></p>
 </div>
 </section>
-<section id="express-deliveries-in-excel" class="slide level2 center">
-<h2>Express Deliveries in Excel</h2>
+<section id="do-it-in-excel-paired-t-test-express-deliveries" class="slide level2 center">
+<h2>Do It in Excel: Paired <span class="math inline">\(t\)</span>-Test (Express Deliveries)</h2>
 <div class="columns">
-<div class="column" style="width:38%;">
-<p><br></p>
-<p><strong>Data → Data Analysis →<br> t-Test: Paired Two Sample for Means</strong></p>
-<ul>
-<li>Variable 1 Range: UPX column</li>
-<li>Variable 2 Range: INTEX column</li>
-<li>Hypothesized Mean Difference: <code>0</code></li>
-<li>Alpha: <code>0.05</code></li>
-</ul>
-<p><br></p>
-<p>Read the output: <code>t Stat = 2.936</code>, <code>P(T&lt;=t) two-tail = 0.017</code> <span class="math inline">\(\leq\)</span> 0.05 → reject <span class="math inline">\(H_0\)</span>.</p>
-</div><div class="column" style="width:62%;">
-<div class="cell" data-layout-align="center">
-<div class="cell-output-display">
+<div class="column" style="width:46%;">
+<p><strong>Follow along:</strong></p>
+<ol type="1">
+<li class="fragment">Lay UPX and INTEX in two columns, one row per district office.</li>
+<li class="fragment"><strong>Data → Data Analysis → t-Test: Paired Two Sample for Means</strong></li>
+<li class="fragment">Variable 1 = UPX, Variable 2 = INTEX; Hypothesized Mean Difference <code>0</code>; Alpha <code>0.05</code>.</li>
+<li class="fragment">Click OK; read <code>t Stat = 2.936</code> and <code>P(T&lt;=t) two-tail = 0.017</code> <span class="math inline">\(\leq\)</span> 0.05 → reject <span class="math inline">\(H_0\)</span>.</li>
+</ol>
+</div><div class="column" style="width:54%;">
 <div class="quarto-figure quarto-figure-center">
 <figure>
 <p><img data-src="figs/excel_paired_express.png" class="quarto-figure quarto-figure-center" style="width:100.0%"></p>
 </figure>
-</div>
-</div>
 </div>
 </div></div>
 </section></section>
@@ -646,7 +631,7 @@ H_0: \mu_d \leq 0 \qquad \text{vs.} \qquad H_a: \mu_d &gt; 0 \qquad \text{(upper
 <li class="fragment"><p>We will also report the two-tailed <span class="math inline">\(p\)</span>-value (the more conservative convention) and the conclusion will not change.</p></li>
 </ul>
 </section>
-<section id="a-question-that-often-comes-up-2" class="slide level2 center">
+<section id="a-question-that-often-comes-up-1" class="slide level2 center">
 <h2>A Question That Often Comes Up</h2>
 <div class="faq">
 <p><strong>A question that often comes up at this point:</strong></p>
@@ -703,34 +688,22 @@ t = \frac{0.1119}{0.1843/\sqrt{30}} = \frac{0.1119}{0.0337} = 3.325
 \]</span></p>
 </div>
 </section>
-<section id="excel-t-test-paired-two-sample-for-means" class="slide level2 center">
-<h2>Excel: t-Test Paired Two Sample for Means</h2>
+<section id="do-it-in-excel-paired-t-test-vungle-erpm" class="slide level2 center">
+<h2>Do It in Excel: Paired <span class="math inline">\(t\)</span>-Test (Vungle eRPM)</h2>
 <div class="columns">
-<div class="column" style="width:38%;">
-<p><br></p>
-<p><strong>Data → Data Analysis →<br> t-Test: Paired Two Sample for Means</strong></p>
-<ul>
-<li>Variable 1 Range: <code>erpm_B</code> column</li>
-<li>Variable 2 Range: <code>erpm_A</code> column</li>
-<li>Hypothesized Mean Difference: <code>0</code></li>
-<li>Alpha: <code>0.05</code></li>
-</ul>
-<p><br></p>
-<p>Key rows:</p>
-<ul>
-<li><code>t Stat = 3.325</code></li>
-<li><code>P(T&lt;=t) one-tail = 0.0012</code></li>
-<li><code>t Critical one-tail = 1.699</code></li>
-</ul>
-</div><div class="column" style="width:62%;">
-<div class="cell" data-layout-align="center">
-<div class="cell-output-display">
+<div class="column" style="width:46%;">
+<p><strong>Follow along:</strong></p>
+<ol type="1">
+<li class="fragment">Open <code>vungle_erpm_paired.csv</code>; select the <code>erpm_B</code> and <code>erpm_A</code> columns.</li>
+<li class="fragment"><strong>Data → Data Analysis → t-Test: Paired Two Sample for Means</strong></li>
+<li class="fragment">Variable 1 = <code>erpm_B</code>, Variable 2 = <code>erpm_A</code>; Hypothesized Mean Difference <code>0</code>; Alpha <code>0.05</code>.</li>
+<li class="fragment">Click OK; read <code>t Stat = 3.325</code>, <code>P(T&lt;=t) one-tail = 0.0012</code>, <code>t Critical one-tail = 1.699</code>.</li>
+</ol>
+</div><div class="column" style="width:54%;">
 <div class="quarto-figure quarto-figure-center">
 <figure>
 <p><img data-src="figs/excel_paired_vungle.png" class="quarto-figure quarto-figure-center" style="width:100.0%"></p>
 </figure>
-</div>
-</div>
 </div>
 </div></div>
 </section>
@@ -759,16 +732,6 @@ t = \frac{0.1119}{0.1843/\sqrt{30}} = \frac{0.1119}{0.0337} = 3.325
 <li class="fragment"><p>Even the <strong>lower bound</strong> ($0.043 per 1,000 impressions) is a meaningful lift at Vungle’s scale.</p></li>
 <li class="fragment"><p>In Excel: <code>=T.INV(0.975, 29)</code> → 2.045; bounds with formula cells from <span class="math inline">\(\bar d\)</span> and <span class="math inline">\(SE\)</span>.</p></li>
 </ul>
-</section>
-<section id="a-question-that-often-comes-up-3" class="slide level2 center">
-<h2>A Question That Often Comes Up</h2>
-<div class="faq">
-<p><strong>A question that often comes up at this point:</strong></p>
-<p><span class="faq-q">The test already said B is better, so why do we also need the confidence interval?</span></p>
-<div class="fragment faq-a">
-<p><strong>Short answer:</strong> the test and the interval answer two different manager questions. The test answers “is the lift <strong>real</strong>?” (yes: reject <span class="math inline">\(H_0\)</span>). The interval answers “<strong>how big</strong> is it?”: between $0.04 and $0.18 per 1,000 impressions. A rollout decision needs the size, not just the verdict: $0.04 and $0.18 scale to very different annual revenue, and you would weigh each against the cost of switching algorithms.</p>
-</div>
-</div>
 </section>
 <section id="step-5-the-managers-translation-back-to-the-decision" class="slide level2 center">
 <h2>Step 5, the Manager’s Translation: Back to the Decision</h2>
@@ -902,7 +865,7 @@ df = \frac{\left(\dfrac{s_1^2}{n_1} + \dfrac{s_2^2}{n_2}\right)^2}{\dfrac{(s_1^2
 </ul></li>
 </ul>
 </section>
-<section id="a-question-that-often-comes-up-4" class="slide level2 center">
+<section id="a-question-that-often-comes-up-2" class="slide level2 center">
 <h2>A Question That Often Comes Up</h2>
 <div class="faq">
 <p><strong>A question that often comes up at this point:</strong></p>
@@ -962,29 +925,23 @@ t = \frac{(5.73 - 7.87) - 0}{\sqrt{\dfrac{3.33^2}{15} + \dfrac{2.61^2}{15}}} = \
 <p><strong>5. The Manager’s Translation.</strong> <em>Bankrupt firms started with about $2.1K less equity on average, but with only 15 firms per group we cannot rule out chance at the 5% level. A borderline result, worth a bigger sample before building lending policy on it.</em></p>
 </div>
 </section>
-<section id="owners-equity-in-excel" class="slide level2 center">
-<h2>Owner’s Equity in Excel</h2>
+<section id="do-it-in-excel-welch-t-test-owners-equity" class="slide level2 center">
+<h2>Do It in Excel: Welch <span class="math inline">\(t\)</span>-Test (Owner’s Equity)</h2>
 <div class="columns">
-<div class="column r-fit-text" style="width:38%;">
-<p><br></p>
-<p><strong>Data → Data Analysis →<br> t-Test: Two-Sample Assuming Unequal Variances</strong></p>
-<ul>
-<li>Variable 1 Range: Bankrupt column</li>
-<li>Variable 2 Range: Non-bankrupt column</li>
-<li>Hypothesized Mean Difference: <code>0</code></li>
-</ul>
-<p><br></p>
-<p><strong>“Fail to reject” ≠ “the means are equal.”</strong> With <span class="math inline">\(n = 15\)</span> per group the test has <strong>low power</strong>; a $2K average gap may be economically real yet statistically undetectable here.</p>
-<p>(With equal <span class="math inline">\(n\)</span>, the pooled <span class="math inline">\(t\)</span> gives the same <span class="math inline">\(t\)</span>-statistic with <span class="math inline">\(df = 28\)</span>, same conclusion.)</p>
-</div><div class="column" style="width:62%;">
-<div class="cell" data-layout-align="center">
-<div class="cell-output-display">
+<div class="column r-fit-text" style="width:46%;">
+<p><strong>Follow along:</strong></p>
+<ol type="1">
+<li class="fragment">Put Bankrupt and Non-bankrupt owner’s equity in two columns.</li>
+<li class="fragment"><strong>Data → Data Analysis → t-Test: Two-Sample Assuming Unequal Variances</strong></li>
+<li class="fragment">Variable 1 = Bankrupt, Variable 2 = Non-bankrupt; Hypothesized Mean Difference <code>0</code>; Alpha <code>0.05</code>.</li>
+<li class="fragment">Click OK; read <code>t Stat = -1.96</code>, <code>df = 26</code>, <code>P(T&lt;=t) two-tail = 0.061</code> <span class="math inline">\(&gt; 0.05\)</span> → fail to reject <span class="math inline">\(H_0\)</span>.</li>
+</ol>
+<p><strong>“Fail to reject” ≠ “the means are equal.”</strong> With <span class="math inline">\(n = 15\)</span> per group the test has <strong>low power</strong>; a $2K average gap may be economically real yet statistically undetectable here. (Equal <span class="math inline">\(n\)</span>: pooled <span class="math inline">\(t\)</span> gives the same statistic with <span class="math inline">\(df = 28\)</span>, same conclusion.)</p>
+</div><div class="column" style="width:54%;">
 <div class="quarto-figure quarto-figure-center">
 <figure>
 <p><img data-src="figs/excel_equity_welch.png" class="quarto-figure quarto-figure-center" style="width:100.0%"></p>
 </figure>
-</div>
-</div>
 </div>
 </div></div>
 </section></section>
@@ -993,29 +950,23 @@ t = \frac{(5.73 - 7.87) - 0}{\sqrt{\dfrac{3.33^2}{15} + \dfrac{2.61^2}{15}}} = \
 <h1>Same Data, Different Design</h1>
 
 </section>
-<section id="what-if-we-ignored-the-pairing" class="slide level2 center">
-<h2>What If We Ignored the Pairing?</h2>
+<section id="do-it-in-excel-welch-on-the-same-data-wrong-design" class="slide level2 center">
+<h2>Do It in Excel: Welch on the Same Data (Wrong Design)</h2>
 <div class="columns">
-<div class="column" style="width:38%;">
-<p><br></p>
-<p>Treat the 30 A-days and 30 B-days as <strong>two independent samples</strong> (Welch), <em>wrong design, same data</em>:</p>
-<ul>
-<li><span class="math inline">\(\bar{x}_A = 3.347\)</span>, <span class="math inline">\(s_A = 0.217\)</span></li>
-<li><span class="math inline">\(\bar{x}_B = 3.459\)</span>, <span class="math inline">\(s_B = 0.344\)</span></li>
-<li><span class="math inline">\(t = 1.51\)</span>, <span class="math inline">\(p\)</span> (two-tail) <span class="math inline">\(\approx 0.138\)</span></li>
-</ul>
-<p><br></p>
-<p><strong>Fail to reject <span class="math inline">\(H_0\)</span></strong> at <span class="math inline">\(\alpha = 0.05\)</span>. The $0.11 lift “disappears.”</p>
-<p><em>(ToolPak: Variable 1 = <code>erpm_B</code>, Variable 2 = <code>erpm_A</code>, same order as the paired test, so <span class="math inline">\(t\)</span> is positive.)</em></p>
-</div><div class="column" style="width:62%;">
-<div class="cell" data-layout-align="center">
-<div class="cell-output-display">
+<div class="column" style="width:46%;">
+<p><strong>Follow along (the wrong design, on purpose):</strong></p>
+<ol type="1">
+<li class="fragment">Same <code>erpm_B</code> and <code>erpm_A</code> columns, now treated as two <strong>independent</strong> samples.</li>
+<li class="fragment"><strong>Data → Data Analysis → t-Test: Two-Sample Assuming Unequal Variances</strong></li>
+<li class="fragment">Variable 1 = <code>erpm_B</code>, Variable 2 = <code>erpm_A</code> (same order, so <span class="math inline">\(t\)</span> is positive); Alpha <code>0.05</code>.</li>
+<li class="fragment">Click OK; read <code>t Stat = 1.51</code>, <code>P(T&lt;=t) two-tail = 0.138</code> <span class="math inline">\(&gt; 0.05\)</span> → fail to reject.</li>
+</ol>
+<p><strong>The $0.11 lift “disappears.”</strong> Same numbers (<span class="math inline">\(\bar{x}_A = 3.347\)</span>, <span class="math inline">\(\bar{x}_B = 3.459\)</span>), wrong design, opposite call.</p>
+</div><div class="column" style="width:54%;">
 <div class="quarto-figure quarto-figure-center">
 <figure>
 <p><img data-src="figs/excel_welch_vungle.png" class="quarto-figure quarto-figure-center" style="width:100.0%"></p>
 </figure>
-</div>
-</div>
 </div>
 </div></div>
 </section>
@@ -1055,7 +1006,7 @@ t = \frac{(5.73 - 7.87) - 0}{\sqrt{\dfrac{3.33^2}{15} + \dfrac{2.61^2}{15}}} = \
 <li class="fragment"><p>The design decision was made <strong>before any data were collected</strong>, when Vungle chose to run A and B <em>in parallel within each day</em>. Good analysis starts at design, not at the formula sheet.</p></li>
 </ul>
 </section>
-<section id="a-question-that-often-comes-up-5" class="slide level2 center">
+<section id="a-question-that-often-comes-up-3" class="slide level2 center">
 <h2>A Question That Often Comes Up</h2>
 <div class="faq">
 <p><strong>A question that often comes up at this point:</strong></p>
@@ -1164,33 +1115,24 @@ z = \frac{\bar{p}_1 - \bar{p}_2}{SE_{pool}}
 <li class="fragment"><p><strong>Rule of thumb:</strong> pool under <span class="math inline">\(H_0\)</span> (testing); do <strong>not</strong> pool for confidence intervals.</p></li>
 </ul>
 </section>
-<section id="a-question-that-often-comes-up-6" class="slide level2 center">
-<h2>A Question That Often Comes Up</h2>
-<div class="faq">
-<p><strong>A question that often comes up at this point:</strong></p>
-<p><span class="faq-q">Why pool the two conversion rates for the test but keep them separate for the interval?</span></p>
-<div class="fragment faq-a">
-<p><strong>Short answer:</strong> the test starts by <em>assuming</em> <span class="math inline">\(H_0\)</span> is true, that A and B share one conversion rate <span class="math inline">\(p\)</span>, so the best estimate of that single rate uses all 252M trials combined. The confidence interval makes no such assumption: it just reports the gap and how uncertain it is, so each group must keep its own rate (<span class="math inline">\(\bar p_A = 0.403\%\)</span>, <span class="math inline">\(\bar p_B = 0.354\%\)</span>). Pooling there would smuggle in the very “they are equal” claim the interval is trying to measure.</p>
-</div>
-</div>
-</section>
-<section id="no-toolpak-tool-build-it-with-formulas" class="slide level2 center">
-<h2>No ToolPak Tool: Build It with Formulas</h2>
+<section id="do-it-in-excel-two-proportion-z-formula-cells" class="slide level2 center">
+<h2>Do It in Excel: Two-Proportion <span class="math inline">\(z\)</span> (Formula Cells)</h2>
 <div class="columns">
-<div class="column" style="width:34%;">
-<p><br></p>
-<p>The Data Analysis ToolPak has <strong>no two-proportion z tool</strong>; five formula cells do the job.</p>
-<p><br></p>
-<p>This is worth mastering: most real A/B testing metrics (click-through, conversion, churn) are <strong>proportions</strong>.</p>
-</div><div class="column" style="width:66%;">
-<div class="cell" data-layout-align="center">
-<div class="cell-output-display">
+<div class="column r-fit-text" style="width:46%;">
+<p><strong>Follow along (no ToolPak tool; five cells):</strong></p>
+<ol type="1">
+<li class="fragment">Enter <span class="math inline">\(x_1, n_1\)</span> (B installs, impressions) and <span class="math inline">\(x_2, n_2\)</span> (A).</li>
+<li class="fragment">Pooled rate: <code>=(x1+x2)/(n1+n2)</code>.</li>
+<li class="fragment">Pooled SE: <code>=SQRT(pbar*(1-pbar)*(1/n1+1/n2))</code>.</li>
+<li class="fragment">Test statistic: <code>=(x1/n1 - x2/n2)/SE</code>.</li>
+<li class="fragment"><span class="math inline">\(p\)</span>-value: <code>=2*(1-NORM.S.DIST(ABS(z),TRUE))</code> → read <span class="math inline">\(z = -29.56\)</span>, <span class="math inline">\(p &lt; 0.0001\)</span>.</li>
+</ol>
+<p>Worth mastering: most A/B metrics (click-through, conversion, churn) are <strong>proportions</strong>.</p>
+</div><div class="column" style="width:54%;">
 <div class="quarto-figure quarto-figure-center">
 <figure>
 <p><img data-src="figs/excel_prop_z.png" class="quarto-figure quarto-figure-center" style="width:100.0%"></p>
 </figure>
-</div>
-</div>
 </div>
 </div></div>
 </section>
@@ -1279,7 +1221,7 @@ z = \frac{0.003541 - 0.004025}{0.0000164} = \mathbf{-29.56}
 <li class="fragment"><p>Flip side from the equity example: small samples can make real effects invisible (low power). <strong>Large <span class="math inline">\(n\)</span>: everything is significant. Small <span class="math inline">\(n\)</span>: nothing is.</strong> Neither replaces judgment about magnitude.</p></li>
 </ul>
 </section>
-<section id="a-question-that-often-comes-up-7" class="slide level2 center">
+<section id="a-question-that-often-comes-up-4" class="slide level2 center">
 <h2>A Question That Often Comes Up</h2>
 <div class="faq">
 <p><strong>A question that often comes up at this point:</strong></p>

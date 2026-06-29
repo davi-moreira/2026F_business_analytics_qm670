@@ -553,25 +553,24 @@ r = (\text{sign of } b_1)\sqrt{R^2}
 </div>
 </div>
 </section>
-<section id="excel-one-click-gives-you-everything" class="slide level2 center">
-<h2>Excel: One Click Gives You Everything</h2>
+<section id="do-it-in-excel-run-the-regression" class="slide level2 center">
+<h2>Do It in Excel: Run the Regression</h2>
 <div class="columns">
-<div class="column" style="width:40%;">
-<p><br></p>
-<p><strong>Data → Data Analysis → Regression</strong></p>
-<ul>
-<li>Input Y Range: <code>sales2012_k</code></li>
-<li>Input X Range: <code>yelp_rating</code></li>
-<li>Check <strong>Labels</strong>, <strong>Residuals</strong>, <strong>Residual Plots</strong></li>
-</ul>
-<p><br></p>
-<p>The top block is <strong>Regression Statistics</strong>: <code>Multiple R</code>, <code>R Square</code>, <code>Standard Error</code>, <code>Observations</code>.</p>
-</div><div class="column" style="width:60%;">
+<div class="column" style="width:44%;">
+<p><strong>Follow along:</strong></p>
+<ol type="1">
+<li><strong>Data → Data Analysis → Regression</strong>.</li>
+<li>Input Y Range: the <code>sales2012_k</code> column; Input X Range: the <code>yelp_rating</code> column.</li>
+<li>Check <strong>Labels</strong>, <strong>Residuals</strong>, and <strong>Residual Plots</strong>; click OK.</li>
+<li>Top block (<strong>Regression Statistics</strong>): read <strong>R Square</strong> and <strong>Standard Error</strong>.</li>
+<li>Coefficients table: read <strong>Intercept</strong> (<span class="math inline">\(b_0\)</span>) and the <code>yelp_rating</code> row (<span class="math inline">\(b_1\)</span>).</li>
+</ol>
+</div><div class="column" style="width:56%;">
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure>
-<p><img data-src="figs/autoparts_reg_stats.png" class="quarto-figure quarto-figure-center" style="width:100.0%"></p>
+<p><img data-src="figs/autoparts_reg_stats.png" class="quarto-figure quarto-figure-center" style="width:92.0%"></p>
 </figure>
 </div>
 </div>
@@ -580,7 +579,7 @@ r = (\text{sign of } b_1)\sqrt{R^2}
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure>
-<p><img data-src="figs/autoparts_reg_coef.png" class="quarto-figure quarto-figure-center" style="width:100.0%"></p>
+<p><img data-src="figs/autoparts_reg_coef.png" class="quarto-figure quarto-figure-center" style="width:92.0%"></p>
 </figure>
 </div>
 </div>
@@ -682,16 +681,6 @@ s = \sqrt{\frac{\text{SSE}}{n-2}} = \sqrt{\frac{9{,}245{,}249}{43}} \approx \$46
 <li class="fragment">We divide by <span class="math inline">\(n - 2\)</span> because we spent two degrees of freedom estimating <span class="math inline">\(b_0\)</span> and <span class="math inline">\(b_1\)</span>. In Excel: <code>=STEYX(sales, yelp)</code> or read <strong>Standard Error</strong> off the output.</li>
 </ul>
 </section>
-<section id="a-question-that-often-comes-up-4" class="slide level2 center">
-<h2>A Question That Often Comes Up</h2>
-<div class="faq">
-<p><strong>A question that often comes up at this point:</strong></p>
-<p><span class="faq-q">For a single mean we divided by <span class="math inline">\(n - 1\)</span>. Why <span class="math inline">\(n - 2\)</span> here, and does it matter with 45 stores?</span></p>
-<div class="fragment faq-a">
-<p><strong>Short answer:</strong> each parameter we estimate from the data costs one degree of freedom. A single mean costs one, so <span class="math inline">\(n - 1\)</span>. The regression line costs two, an intercept <span class="math inline">\(b_0\)</span> and a slope <span class="math inline">\(b_1\)</span>, so <span class="math inline">\(n - 2 = 43\)</span>. With 45 stores the difference between dividing by 43, 44, or 45 is tiny, but the rule keeps <span class="math inline">\(s\)</span> an honest, slightly conservative estimate of the error spread, which feeds straight into every <span class="math inline">\(t\)</span> and interval that follows.</p>
-</div>
-</div>
-</section>
 <section id="testing-the-slope-is-the-relationship-real" class="slide level2 center">
 <h2>Testing the Slope: Is the Relationship Real?</h2>
 <p><br></p>
@@ -782,7 +771,39 @@ t = \frac{5}{0.580} = 8.62, \quad df = 8
 <li class="fragment"><p><strong>Translation:</strong> the Yelp–sales relationship is <em>not</em> a fluke of these 45 stores. There is overwhelming evidence the true slope is positive.</p></li>
 </ul>
 </section>
-<section id="a-question-that-often-comes-up-5" class="slide level2 center">
+<section id="do-it-in-excel-read-the-slope-test-and-ci" class="slide level2 center">
+<h2>Do It in Excel: Read the Slope Test and CI</h2>
+<div class="columns">
+<div class="column" style="width:46%;">
+<p><strong>Follow along (same Regression output):</strong></p>
+<ol type="1">
+<li>In the coefficients table, find the <code>yelp_rating</code> row.</li>
+<li>Read <strong>t Stat</strong> and <strong>P-value</strong> to test <span class="math inline">\(H_0: \beta_1 = 0\)</span>.</li>
+<li>Read <strong>Lower 95%</strong> and <strong>Upper 95%</strong> for the slope CI; if both share a sign, zero is excluded.</li>
+<li>In the <strong>ANOVA</strong> block, read <strong>Significance F</strong> (the same <span class="math inline">\(p\)</span>-value; <span class="math inline">\(F = t^2\)</span>).</li>
+</ol>
+</div><div class="column" style="width:54%;">
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="figs/autoparts_reg_coef.png" class="quarto-figure quarto-figure-center" style="width:100.0%"></p>
+</figure>
+</div>
+</div>
+</div>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="figs/autoparts_reg_anova.png" class="quarto-figure quarto-figure-center" style="width:88.0%"></p>
+</figure>
+</div>
+</div>
+</div>
+</div></div>
+</section>
+<section id="a-question-that-often-comes-up-4" class="slide level2 center">
 <h2>A Question That Often Comes Up</h2>
 <div class="faq">
 <p><strong>A question that often comes up at this point:</strong></p>
@@ -886,7 +907,7 @@ F = 216.7 = t^2 \quad (t = 14.7)
 <li class="fragment"><p><em>What might separate two 5-star stores?</em> End-cap placement, local income, population. <strong>That is the teaser for multiple regression:</strong> adding the variables that explain the residuals.</p></li>
 </ul>
 </section>
-<section id="a-question-that-often-comes-up-6" class="slide level2 center">
+<section id="a-question-that-often-comes-up-5" class="slide level2 center">
 <h2>A Question That Often Comes Up</h2>
 <div class="faq">
 <p><strong>A question that often comes up at this point:</strong></p>
@@ -948,7 +969,7 @@ F = 216.7 = t^2 \quad (t = 14.7)
 <li>Both bands are <strong>narrowest near <span class="math inline">\(\bar{x}\)</span></strong> and flare out at the edges; forecasts far from the data are less certain.</li>
 </ul>
 </section>
-<section id="a-question-that-often-comes-up-7" class="slide level2 center">
+<section id="a-question-that-often-comes-up-6" class="slide level2 center">
 <h2>A Question That Often Comes Up</h2>
 <div class="faq">
 <p><strong>A question that often comes up at this point:</strong></p>

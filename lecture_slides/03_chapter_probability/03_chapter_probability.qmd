@@ -64,7 +64,9 @@ html-math-method:
 
 - The big call you carry as Vungle's **manager** is still *roll out algorithm B, or stay with A?* Today's piece of it: **what are the odds at each step of the funnel?**
 
+::: fragment
 > "What is the chance a **random impression** ends in an install? And if we already know it was **clicked**, how does that chance change? Finally, we just recorded **one install**: how likely is it that it came from algorithm **B**?"
+:::
 
 <br>
 
@@ -120,18 +122,6 @@ The class **ends on the Team Sprint**, your group's graded submission: a decisio
 
 :::
 
-## A Question That Often Comes Up
-
-:::: {.faq}
-**A question that often comes up at this point:**
-
-[The funnel has four steps, so why does the sample space list only four outcomes? Isn't "clicked" both an outcome and a step?]{.faq-q}
-
-::: {.fragment .faq-a}
-**Short answer:** a step is a *checkpoint*; an outcome is *where a single impression finally stops*. One impression lands in exactly one of the four buckets ("no completion" through "install"), so those four are mutually exclusive and cover every case. "Clicked" is the checkpoint a few impressions pass; the install bucket is just the ones that kept going after it.
-:::
-::::
-
 ## What a Probability Is
 
 <br>
@@ -155,18 +145,6 @@ $$
   - **Subjective:** informed judgment when no data exist (a new product's chance of success).
 
 - Vungle is a **relative-frequency** shop: 30 days of counts give us all our probabilities.
-
-## A Question That Often Comes Up
-
-:::: {.faq}
-**A question that often comes up at this point:**
-
-[If our install probability is just installs over impressions from past data, is it a "real" probability or only a description of what already happened?]{.faq-q}
-
-::: {.fragment .faq-a}
-**Short answer:** both, and that is the bet we are making. The 0.40% is a description of June's 236M impressions; we *use* it as the probability the next impression installs only if the process stays stable. Relative frequency turns a past count into a forward probability, which is exactly the leap inference (Topics 7 to 9) will make rigorous.
-:::
-::::
 
 ## Basic Relationships You Already Use
 
@@ -200,18 +178,6 @@ A retailer logs **100 customers** by TV type bought and whether they also bought
 - **Joint:** $P(\text{DVD and HDTV}) = 30/100 = 0.30$, a body cell over the grand total.
 - **Marginal:** $P(\text{Flat Screen}) = 35/100 = 0.35$, a margin over the grand total.
 - **Addition law:** $P(\text{DVD or HDTV}) = 0.60 + 0.40 - 0.30 = 0.70$.
-:::
-::::
-
-## A Question That Often Comes Up
-
-:::: {.faq}
-**A question that often comes up at this point:**
-
-[Why subtract the overlap in the addition law? If 60 bought a DVD and 40 bought an HDTV, isn't "DVD or HDTV" just 100?]{.faq-q}
-
-::: {.fragment .faq-a}
-**Short answer:** the 30 customers who bought *both* sit inside both groups, so adding 60 and 40 counts them twice. Subtract the 30 once and you get 70, the number of distinct customers in "DVD or HDTV." On the Vungle funnel the same rule applies: an impression that completes *and* clicks is one impression, not two.
 :::
 ::::
 
@@ -278,18 +244,6 @@ knitr::include_graphics("figs/funnel_tree_A.png")
 - Each branch is a conditional probability; multiply **along a path** to reach a leaf.
 :::
 
-## A Question That Often Comes Up
-
-:::: {.faq}
-**A question that often comes up at this point:**
-
-[If a clicked impression installs at 7.93%, twenty times the 0.40% marginal rate, why does Vungle even bother serving the ads that never get clicked?]{.faq-q}
-
-::: {.fragment .faq-a}
-**Short answer:** Vungle cannot choose to serve only the clickers; the click is revealed *after* the impression is shown. The 20-fold lift does not say "stop serving ads," it says "spend the controllable effort earlier in the funnel, on getting completes and clicks," because every install is conditioned on those steps. The marginal rate prices the average bet; the conditional rate tells you where to push.
-:::
-::::
-
 ## The Multiplication Law: Chaining the Steps
 
 <br>
@@ -315,18 +269,6 @@ $$
 :::
 
 - $0.8928 \times 0.0568 \times 0.0793 = 0.004025$, exactly $951{,}666 / 236{,}459{,}402$. The chain **must** reconcile with the raw counts; if it doesn't, you mislabeled a step.
-
-## A Question That Often Comes Up
-
-:::: {.faq}
-**A question that often comes up at this point:**
-
-[Multiplying three conditional rates rebuilds the install rate exactly. So why not just compute installs over impressions and skip the funnel?]{.faq-q}
-
-::: {.fragment .faq-a}
-**Short answer:** the single ratio 0.40% tells you *that* the bet usually loses; it cannot tell you *where* it loses. Splitting it into 89.28% complete, 5.68% click, 7.93% install shows that the click step, not the complete step, is the bottleneck. The product is a consistency check; the three factors are the diagnosis the manager actually acts on.
-:::
-::::
 
 ## Independence: When "Given" Changes Nothing
 
@@ -358,31 +300,37 @@ $$
 :::
 ::::
 
-## Excel: Build the Funnel Rates from the Raw File
+## Do It in Excel: Build the Funnel Totals (SUMIF)
 
-::::: nonincremental
-:::: columns
-::: {.column width="40%"}
-<br>
+:::::: columns
+::: {.column width="46%"}
+**Follow along:**
 
-**No ToolPak tool needed:** probabilities are just **ratios** of `SUMIF` totals.
-
-- `=SUMIF(algorithm,"A",impressions)` → $n_A$
-- `=SUMIF(algorithm,"A",installs)` → $x_A$
-- Conditional rate = the right cell ÷ the right total.
-
-<br>
-
-This is the workhorse move of funnel analytics: every rate is a divided pair of cells.
+1. Open `vungle_daily.csv`; columns are `algorithm`, `impressions`, `completes`, `clicks`, `installs`.
+2. One stage total per cell: `=SUMIF(algorithm,"A",impressions)` gives 236,459,402.
+3. Repeat for A's completes, clicks, installs (and the same four for "B").
+4. Name each total cell (`Impressions_A`, `Clicks_A`, ...) so the next step reads cleanly.
 :::
-
-::: {.column width="60%"}
-```{r  echo=FALSE, out.width = "100%",fig.align="center"}
-knitr::include_graphics("figs/excel_conditional_cells.png")
-```
+::: {.column width="54%"}
+![](figs/excel_sumif_funnel.png){.nostretch fig-align="center" width="100%"}
 :::
-::::
-:::::
+::::::
+
+## Do It in Excel: Funnel Conditional Rates
+
+:::::: columns
+::: {.column width="46%"}
+**Follow along:**
+
+1. Each conditional rate = the **later** stage cell ÷ its **previous** stage cell.
+2. $P(\text{click}\mid\text{comp})$: `=Clicks_A/Completes_A` returns 5.68%.
+3. $P(\text{install}\mid\text{click})$: `=Installs_A/Clicks_A` returns 7.93%.
+4. Check: the three rates multiplied equal `=Installs_A/Impressions_A` (0.4025%).
+:::
+::: {.column width="54%"}
+![](figs/excel_conditional_cells.png){.nostretch fig-align="center" width="100%"}
+:::
+::::::
 
 # Bayes' Theorem: Revising a Belief {background-color="#cfb991"}
 
@@ -440,18 +388,6 @@ $$
 - The **denominator** is $P(B)$, the sum of *all* the joints, by the **total probability** rule.
 
 - So Bayes is just: **(this path's joint) ÷ (total of all joints).** A table does the bookkeeping.
-::::
-
-## A Question That Often Comes Up
-
-:::: {.faq}
-**A question that often comes up at this point:**
-
-[The formula looks intimidating. Do I really need it, or can I just fill in a table?]{.faq-q}
-
-::: {.fragment .faq-a}
-**Short answer:** the table *is* the formula. Each row's "joint" column is one numerator term, $P(A_i)\,P(B\mid A_i)$; summing the joint column is the denominator, $P(B)$; dividing a row's joint by that sum is the posterior. For Vungle that is just two rows (A and B). Learn the table layout and you never have to memorize the symbols.
-:::
 ::::
 
 ## Anchor Example: A Test-Market Decision
@@ -530,33 +466,21 @@ knitr::include_graphics("figs/bayes_prior_posterior.png")
 :::
 ::::
 
-## Excel: The Bayes Update in Formula Cells
+## Do It in Excel: The Bayes Update
 
-::::: nonincremental
-:::: columns
-::: {.column width="40%"}
-<br>
+:::::: columns
+::: {.column width="46%"}
+**Follow along:**
 
-The whole update is **five formula cells**:
-
-- two **priors** (impression shares),
-- two **likelihoods** (install rates),
-- two **joints** (prior × likelihood),
-- their **sum** = $P(\text{install})$,
-- posterior = B's joint ÷ the sum.
-
-<br>
-
-Master this layout: it is *the* template for every Bayes problem.
+1. One row per algorithm (A, B); type the **priors** (impression shares: 0.9373, 0.0627).
+2. Type the **likelihoods** next to them (install rates: 0.004025, 0.003541).
+3. **Joint** column: `=prior*likelihood` for each row.
+4. `=SUM(joint range)` gives $P(\text{install})$; **posterior** = B's joint ÷ that sum.
 :::
-
-::: {.column width="60%"}
-```{r  echo=FALSE, out.width = "100%",fig.align="center"}
-knitr::include_graphics("figs/excel_bayes_cells.png")
-```
+::: {.column width="54%"}
+![](figs/excel_bayes_cells.png){.nostretch fig-align="center" width="100%"}
 :::
-::::
-:::::
+::::::
 
 # Debrief: Marginal vs. Conditional {background-color="#cfb991"}
 

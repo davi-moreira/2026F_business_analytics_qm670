@@ -70,7 +70,9 @@ html-math-method:
 
 - **The big call (Vungle A/B):** roll out algorithm B, or stay with A? Topic 9 settles it; today answers one piece: **What's the chance of a high- or low-eRPM day?**
 
+::: fragment
 > "Model B's daily eRPM as Normal(\$3.46, \$0.34). What's the chance tomorrow's eRPM **tops \$3.50**? What eRPM marks a **90th-percentile day**, and is the Normal model even **trustworthy** here?"
+:::
 
 <br>
 
@@ -106,7 +108,9 @@ Every tool today maps onto the Vungle eRPM data:
 
 - **The big call (Vungle A/B):** roll out B, or stay with A? Today's piece for the manager: **What's the chance of a high- or low-eRPM day?** (and can we fit a Normal to it).
 
+::: fragment
 > "Before we can ask *'how likely is eRPM above \$3.50?'*, we need a **model** for a continuous quantity. Today: what a continuous distribution *is*, and the two we use most, the **uniform** and the **Normal**."
+:::
 
 <br>
 
@@ -248,18 +252,6 @@ knitr::include_graphics("figs/uniform_slater.png")
 - 30% of customers take between 12 and 15 ounces, directly the **area** of the shaded rectangle, no calculus needed.
 - The same idea, **probability = area**, now carries over to the bell-shaped Normal, where the area is harder to compute by hand (so we lean on z-scores and Excel).
 :::
-
-## A Question That Often Comes Up
-
-:::: {.faq}
-**A question that often comes up at this point:**
-
-[Vungle's eRPM is bell-shaped, not flat. Why spend time on the uniform at all?]{.faq-q}
-
-::: {.fragment .faq-a}
-**Short answer:** the uniform is the training wheels for "probability = area." With a flat rectangle the area is just base times height, so you can see the whole idea without any new machinery. Once that clicks, the only thing that changes for eRPM is the *shape* of the curve: still area, just a bell instead of a rectangle, and now the area is hard enough by hand that we hand it to a z-score and Excel.
-:::
-::::
 
 # The Normal Probability Distribution {background-color="#cfb991"}
 
@@ -500,7 +492,9 @@ $$
 
 - **The big call (Vungle A/B):** roll out B, or stay with A? Today's piece for the manager: **what probability and percentile does the Normal give, and is the model fair?**
 
+::: fragment
 > "Cash in the model. Tomorrow's eRPM is $\sim N(3.459, 0.344)$. **What's $P(\text{eRPM} > \$3.50)$? What eRPM defines a top-10% day?** And before we trust any of it, **is the Normal assumption fair?**"
+:::
 
 <br>
 
@@ -555,15 +549,24 @@ knitr::include_graphics("figs/vungle_pgt350.png")
 - Same machine for a **bad day**: $P(\text{eRPM} < \$3.00) =$ `NORM.DIST(3.00, 3.459, 0.344, TRUE)` $= 0.091$, about a **1-in-11** chance B dips below \$3.00.
 :::
 
-## Excel: NORM.DIST on the Vungle Model
+## Do It in Excel: NORM.DIST Tail Probability
 
-```{r  echo=FALSE, out.width = "82%",fig.align="center"}
-knitr::include_graphics("figs/excel_normdist_vungle.png")
-```
+:::::: columns
+::: {.column width="46%"}
+**Follow along:**
+
+1. Type the model in cells: mean `3.459`, sd `0.344`, and the bar `3.50`.
+2. Left area: `=NORM.DIST(3.50, 3.459, 0.344, TRUE)` returns **0.547**.
+3. Right tail "tops \$3.50": `=1 - NORM.DIST(3.50, 3.459, 0.344, TRUE)` = **0.4526**.
+4. Check the z-route: `=1 - NORM.S.DIST(0.12, TRUE)` gives the **same** 0.4526.
+:::
+::: {.column width="54%"}
+![](figs/excel_normdist_vungle.png){.nostretch fig-align="center" width="100%"}
+:::
+::::::
 
 ::: nonincremental
-- `NORM.DIST(..., TRUE)` returns the area to the **left**; subtract from 1 for a right tail.
-- The standard-Normal route (standardize to $z = 0.12$, then `1 - NORM.S.DIST(0.12, TRUE)`) gives the **same** 0.4526. Two roads, one answer.
+`NORM.DIST(..., TRUE)` returns the area to the **left**; subtract from 1 for a right tail. Two roads (real units or $z$), one answer.
 :::
 
 ## A Question That Often Comes Up
@@ -619,15 +622,25 @@ knitr::include_graphics("figs/vungle_pct90.png")
 - `NORM.DIST` and `NORM.INV` are **inverses**: `NORM.DIST(3.90, …)` $\approx 0.90$, and `NORM.INV(0.90, …)` $\approx 3.90$. One asks "what area?", the other "what value?".
 :::
 
-## Excel: NORM.INV, Percentiles & Tails
+## Do It in Excel: NORM.INV Percentiles
 
-```{r  echo=FALSE, out.width = "82%",fig.align="center"}
-knitr::include_graphics("figs/excel_norminv_vungle.png")
-```
+:::::: columns
+::: {.column width="46%"}
+**Follow along:**
+
+1. Keep mean `3.459` and sd `0.344` in cells.
+2. Top-10% day: `=NORM.INV(0.90, 3.459, 0.344)` = **\$3.90**.
+3. "Good" day, 75th pct: `=NORM.INV(0.75, 3.459, 0.344)` = **\$3.69**.
+4. Median: `=NORM.INV(0.50, 3.459, 0.344)` = **\$3.46** (equals the mean).
+5. Confirm the inverse: `=NORM.DIST(3.90, 3.459, 0.344, TRUE)` returns **0.90**.
+:::
+::: {.column width="54%"}
+![](figs/excel_norminv_vungle.png){.nostretch fig-align="center" width="100%"}
+:::
+::::::
 
 ::: nonincremental
-- The median equals the mean ($\$3.46$) for a symmetric Normal; `NORM.INV(0.50, …)` confirms it.
-- Percentiles turn an abstract distribution into **decision thresholds**: a 75th-percentile day (\$3.69) is "good," a 90th (\$3.90) is "great." Same model, business-ready language.
+Percentiles turn the distribution into **decision thresholds**: a \$3.69 day is "good," a \$3.90 day is "great." Same model, business-ready language.
 :::
 
 ## A Question That Often Comes Up
@@ -755,15 +768,25 @@ $$
 **Manager's translation.** *A 2,000-install B-day is rare, about a 1-in-1,000 event under current traffic. Capacity planned to 2,000 installs is comfortable; the constraint is impressions, not the install spike.*
 :::
 
-## Excel: Normal Approximation Formula Sheet
+## Do It in Excel: Normal Approximation of the Binomial
 
-```{r  echo=FALSE, out.width = "80%",fig.align="center"}
-knitr::include_graphics("figs/excel_normapprox_vungle.png")
-```
+:::::: columns
+::: {.column width="46%"}
+**Follow along:**
+
+1. Enter `n = 527513` and `p = 0.00354`.
+2. Condition check: `=n*p` (1,867) and `=n*(1-p)` (525,646), both $\ge 5$.
+3. `mu =n*p` = **1,867**; `sigma =SQRT(n*p*(1-p))` = **43.1**.
+4. Tail with continuity correction: `=1 - NORM.DIST(2000.5, 1867, 43.1, TRUE)`.
+5. Read it: **0.0010**, about a 1-in-1,000 day above 2,000 installs.
+:::
+::: {.column width="54%"}
+![](figs/excel_normapprox_vungle.png){.nostretch fig-align="center" width="100%"}
+:::
+::::::
 
 ::: nonincremental
-- Five cells: compute $np$ and $n(1-p)$ (the condition check), then $\mu = np$, $\sigma = \sqrt{np(1-p)}$, and the tail with `NORM.DIST`.
-- This is the bridge from Topic 5's **counting** distributions to today's **continuous** Normal; at scale, the Binomial *becomes* a Normal.
+This is the bridge from Topic 5's **counting** distributions to today's **continuous** Normal; at scale, the Binomial *becomes* a Normal.
 :::
 
 ## A Question That Often Comes Up

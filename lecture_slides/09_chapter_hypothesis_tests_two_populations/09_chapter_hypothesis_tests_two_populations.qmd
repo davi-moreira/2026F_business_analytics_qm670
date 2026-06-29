@@ -68,7 +68,9 @@ html-math-method:
 
 - **The big call you own as Vungle's manager:** *roll out algorithm B, or stay with A?* We have built toward it all term; today we settle it.
 
+::: fragment
 > "B's daily eRPM averaged about **\$0.11 higher** than A's. Is that a **real improvement**, or just month-to-month **noise**? Should Vungle **roll out B** to all traffic?"
+:::
 
 <br>
 
@@ -146,18 +148,6 @@ knitr::include_graphics("figs/ab_test_design_schematic.png")
 - **Paired is preferred when feasible**, but it requires that every unit *can* be measured under both conditions.
 - When the units come from genuinely separate populations (bankrupt vs. non-bankrupt firms), only the **independent** design exists.
 :::
-
-## A Question That Often Comes Up
-
-:::: {.faq}
-**A question that often comes up at this point:**
-
-[If pairing removes so much noise, why would any analyst ever use the independent design?]{.faq-q}
-
-::: {.fragment .faq-a}
-**Short answer:** because pairing is often impossible. A firm is either bankrupt or it is not, so you cannot measure the *same* firm under both conditions; the owner's-equity comparison later today has no natural pair. Vungle got lucky: it could run A and B on the *same 30 days*, so it chose the paired design before collecting any data. Use pairing when a single unit can sit under both treatments; otherwise the independent design is your only option.
-:::
-::::
 
 ## The Hypotheses Are About a Difference
 
@@ -344,32 +334,21 @@ $$
 **5. The Manager's Translation.** *UPX averages about 2.7 hours slower than INTEX on identical routes: a real difference, not noise. If speed matters, route the volume to INTEX (then negotiate with UPX).*
 :::
 
-## Express Deliveries in Excel
+## Do It in Excel: Paired $t$-Test (Express Deliveries)
 
-::::: nonincremental
-:::: columns
-::: {.column width="38%"}
-<br>
+:::::: columns
+::: {.column width="46%"}
+**Follow along:**
 
-**Data → Data Analysis →<br> t-Test: Paired Two Sample for Means**
-
-- Variable 1 Range: UPX column
-- Variable 2 Range: INTEX column
-- Hypothesized Mean Difference: `0`
-- Alpha: `0.05`
-
-<br>
-
-Read the output: `t Stat = 2.936`, `P(T<=t) two-tail = 0.017` $\leq$ 0.05 → reject $H_0$.
+1. Lay UPX and INTEX in two columns, one row per district office.
+2. **Data → Data Analysis → t-Test: Paired Two Sample for Means**
+3. Variable 1 = UPX, Variable 2 = INTEX; Hypothesized Mean Difference `0`; Alpha `0.05`.
+4. Click OK; read `t Stat = 2.936` and `P(T<=t) two-tail = 0.017` $\leq$ 0.05 → reject $H_0$.
 :::
-
-::: {.column width="62%"}
-```{r  echo=FALSE, out.width = "100%",fig.align="center"}
-knitr::include_graphics("figs/excel_paired_express.png")
-```
+::: {.column width="54%"}
+![](figs/excel_paired_express.png){.nostretch fig-align="center" width="100%"}
 :::
-::::
-:::::
+::::::
 
 # The Vungle Test: Is B Really Better? {background-color="#cfb991"}
 
@@ -477,36 +456,21 @@ $$
 
 :::
 
-## Excel: t-Test Paired Two Sample for Means
+## Do It in Excel: Paired $t$-Test (Vungle eRPM)
 
-::::: nonincremental
-:::: columns
-::: {.column width="38%"}
-<br>
+:::::: columns
+::: {.column width="46%"}
+**Follow along:**
 
-**Data → Data Analysis →<br> t-Test: Paired Two Sample for Means**
-
-- Variable 1 Range: `erpm_B` column
-- Variable 2 Range: `erpm_A` column
-- Hypothesized Mean Difference: `0`
-- Alpha: `0.05`
-
-<br>
-
-Key rows:
-
-- `t Stat = 3.325`
-- `P(T<=t) one-tail = 0.0012`
-- `t Critical one-tail = 1.699`
+1. Open `vungle_erpm_paired.csv`; select the `erpm_B` and `erpm_A` columns.
+2. **Data → Data Analysis → t-Test: Paired Two Sample for Means**
+3. Variable 1 = `erpm_B`, Variable 2 = `erpm_A`; Hypothesized Mean Difference `0`; Alpha `0.05`.
+4. Click OK; read `t Stat = 3.325`, `P(T<=t) one-tail = 0.0012`, `t Critical one-tail = 1.699`.
 :::
-
-::: {.column width="62%"}
-```{r  echo=FALSE, out.width = "100%",fig.align="center"}
-knitr::include_graphics("figs/excel_paired_vungle.png")
-```
+::: {.column width="54%"}
+![](figs/excel_paired_vungle.png){.nostretch fig-align="center" width="100%"}
 :::
-::::
-:::::
+::::::
 
 ## Step 4: Decision
 
@@ -539,18 +503,6 @@ $$
 - Even the **lower bound** (\$0.043 per 1,000 impressions) is a meaningful lift at Vungle's scale.
 
 - In Excel: `=T.INV(0.975, 29)` → 2.045; bounds with formula cells from $\bar d$ and $SE$.
-
-## A Question That Often Comes Up
-
-:::: {.faq}
-**A question that often comes up at this point:**
-
-[The test already said B is better, so why do we also need the confidence interval?]{.faq-q}
-
-::: {.fragment .faq-a}
-**Short answer:** the test and the interval answer two different manager questions. The test answers "is the lift **real**?" (yes: reject $H_0$). The interval answers "**how big** is it?": between \$0.04 and \$0.18 per 1,000 impressions. A rollout decision needs the size, not just the verdict: \$0.04 and \$0.18 scale to very different annual revenue, and you would weigh each against the cost of switching algorithms.
-:::
-::::
 
 ## Step 5, the Manager's Translation: Back to the Decision
 
@@ -755,63 +707,43 @@ $$
 **5. The Manager's Translation.** *Bankrupt firms started with about \$2.1K less equity on average, but with only 15 firms per group we cannot rule out chance at the 5% level. A borderline result, worth a bigger sample before building lending policy on it.*
 :::
 
-## Owner's Equity in Excel
+## Do It in Excel: Welch $t$-Test (Owner's Equity)
 
-::::: nonincremental
-:::: columns
-::: {.column width="38%" .r-fit-text}
-<br>
+:::::: columns
+::: {.column width="46%" .r-fit-text}
+**Follow along:**
 
-**Data → Data Analysis →<br> t-Test: Two-Sample Assuming Unequal Variances**
+1. Put Bankrupt and Non-bankrupt owner's equity in two columns.
+2. **Data → Data Analysis → t-Test: Two-Sample Assuming Unequal Variances**
+3. Variable 1 = Bankrupt, Variable 2 = Non-bankrupt; Hypothesized Mean Difference `0`; Alpha `0.05`.
+4. Click OK; read `t Stat = -1.96`, `df = 26`, `P(T<=t) two-tail = 0.061` $> 0.05$ → fail to reject $H_0$.
 
-- Variable 1 Range: Bankrupt column
-- Variable 2 Range: Non-bankrupt column
-- Hypothesized Mean Difference: `0`
-
-<br>
-
-**"Fail to reject" ≠ "the means are equal."** With $n = 15$ per group the test has **low power**; a \$2K average gap may be economically real yet statistically undetectable here.
-
-(With equal $n$, the pooled $t$ gives the same $t$-statistic with $df = 28$, same conclusion.)
+**"Fail to reject" ≠ "the means are equal."** With $n = 15$ per group the test has **low power**; a \$2K average gap may be economically real yet statistically undetectable here. (Equal $n$: pooled $t$ gives the same statistic with $df = 28$, same conclusion.)
 :::
-
-::: {.column width="62%"}
-```{r  echo=FALSE, out.width = "100%",fig.align="center"}
-knitr::include_graphics("figs/excel_equity_welch.png")
-```
+::: {.column width="54%"}
+![](figs/excel_equity_welch.png){.nostretch fig-align="center" width="100%"}
 :::
-::::
-:::::
+::::::
 
 # Same Data, Different Design {background-color="#cfb991"}
 
-## What If We Ignored the Pairing?
+## Do It in Excel: Welch on the Same Data (Wrong Design)
 
-::::: nonincremental
-:::: columns
-::: {.column width="38%"}
-<br>
+:::::: columns
+::: {.column width="46%"}
+**Follow along (the wrong design, on purpose):**
 
-Treat the 30 A-days and 30 B-days as **two independent samples** (Welch), *wrong design, same data*:
+1. Same `erpm_B` and `erpm_A` columns, now treated as two **independent** samples.
+2. **Data → Data Analysis → t-Test: Two-Sample Assuming Unequal Variances**
+3. Variable 1 = `erpm_B`, Variable 2 = `erpm_A` (same order, so $t$ is positive); Alpha `0.05`.
+4. Click OK; read `t Stat = 1.51`, `P(T<=t) two-tail = 0.138` $> 0.05$ → fail to reject.
 
-- $\bar{x}_A = 3.347$, $s_A = 0.217$
-- $\bar{x}_B = 3.459$, $s_B = 0.344$
-- $t = 1.51$, $p$ (two-tail) $\approx 0.138$
-
-<br>
-
-**Fail to reject $H_0$** at $\alpha = 0.05$. The \$0.11 lift "disappears."
-
-*(ToolPak: Variable 1 = `erpm_B`, Variable 2 = `erpm_A`, same order as the paired test, so $t$ is positive.)*
+**The \$0.11 lift "disappears."** Same numbers ($\bar{x}_A = 3.347$, $\bar{x}_B = 3.459$), wrong design, opposite call.
 :::
-
-::: {.column width="62%"}
-```{r  echo=FALSE, out.width = "100%",fig.align="center"}
-knitr::include_graphics("figs/excel_welch_vungle.png")
-```
+::: {.column width="54%"}
+![](figs/excel_welch_vungle.png){.nostretch fig-align="center" width="100%"}
 :::
-::::
-:::::
+::::::
 
 ## The Lesson: Design Drives Conclusions
 
@@ -930,39 +862,24 @@ $$
 
 - **Rule of thumb:** pool under $H_0$ (testing); do **not** pool for confidence intervals.
 
-## A Question That Often Comes Up
+## Do It in Excel: Two-Proportion $z$ (Formula Cells)
 
-:::: {.faq}
-**A question that often comes up at this point:**
+:::::: columns
+::: {.column width="46%" .r-fit-text}
+**Follow along (no ToolPak tool; five cells):**
 
-[Why pool the two conversion rates for the test but keep them separate for the interval?]{.faq-q}
+1. Enter $x_1, n_1$ (B installs, impressions) and $x_2, n_2$ (A).
+2. Pooled rate: `=(x1+x2)/(n1+n2)`.
+3. Pooled SE: `=SQRT(pbar*(1-pbar)*(1/n1+1/n2))`.
+4. Test statistic: `=(x1/n1 - x2/n2)/SE`.
+5. $p$-value: `=2*(1-NORM.S.DIST(ABS(z),TRUE))` → read $z = -29.56$, $p < 0.0001$.
 
-::: {.fragment .faq-a}
-**Short answer:** the test starts by *assuming* $H_0$ is true, that A and B share one conversion rate $p$, so the best estimate of that single rate uses all 252M trials combined. The confidence interval makes no such assumption: it just reports the gap and how uncertain it is, so each group must keep its own rate ($\bar p_A = 0.403\%$, $\bar p_B = 0.354\%$). Pooling there would smuggle in the very "they are equal" claim the interval is trying to measure.
+Worth mastering: most A/B metrics (click-through, conversion, churn) are **proportions**.
 :::
-::::
-
-## No ToolPak Tool: Build It with Formulas
-
-::::: nonincremental
-:::: columns
-::: {.column width="34%"}
-<br>
-
-The Data Analysis ToolPak has **no two-proportion z tool**; five formula cells do the job.
-
-<br>
-
-This is worth mastering: most real A/B testing metrics (click-through, conversion, churn) are **proportions**.
+::: {.column width="54%"}
+![](figs/excel_prop_z.png){.nostretch fig-align="center" width="100%"}
 :::
-
-::: {.column width="66%"}
-```{r  echo=FALSE, out.width = "100%",fig.align="center"}
-knitr::include_graphics("figs/excel_prop_z.png")
-```
-:::
-::::
-:::::
+::::::
 
 ## Vungle Conversion: the Five Steps
 

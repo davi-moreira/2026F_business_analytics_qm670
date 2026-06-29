@@ -409,30 +409,26 @@ $$
 :::
 ::::
 
-## Excel: One Click Gives You Everything
+## Do It in Excel: Run the Regression
 
 ::::: nonincremental
 :::: columns
-::: {.column width="40%"}
-<br>
+::: {.column width="44%"}
+**Follow along:**
 
-**Data → Data Analysis → Regression**
-
-- Input Y Range: `sales2012_k`
-- Input X Range: `yelp_rating`
-- Check **Labels**, **Residuals**, **Residual Plots**
-
-<br>
-
-The top block is **Regression Statistics**: `Multiple R`, `R Square`, `Standard Error`, `Observations`.
+1. **Data → Data Analysis → Regression**.
+2. Input Y Range: the `sales2012_k` column; Input X Range: the `yelp_rating` column.
+3. Check **Labels**, **Residuals**, and **Residual Plots**; click OK.
+4. Top block (**Regression Statistics**): read **R Square** and **Standard Error**.
+5. Coefficients table: read **Intercept** ($b_0$) and the `yelp_rating` row ($b_1$).
 :::
 
-::: {.column width="60%"}
-```{r  echo=FALSE, out.width = "100%",fig.align="center"}
+::: {.column width="56%"}
+```{r  echo=FALSE, out.width = "92%",fig.align="center"}
 knitr::include_graphics("figs/autoparts_reg_stats.png")
 ```
 
-```{r  echo=FALSE, out.width = "100%",fig.align="center"}
+```{r  echo=FALSE, out.width = "92%",fig.align="center"}
 knitr::include_graphics("figs/autoparts_reg_coef.png")
 ```
 :::
@@ -536,18 +532,6 @@ $$
 
 - We divide by $n - 2$ because we spent two degrees of freedom estimating $b_0$ and $b_1$. In Excel: `=STEYX(sales, yelp)` or read **Standard Error** off the output.
 
-## A Question That Often Comes Up
-
-:::: {.faq}
-**A question that often comes up at this point:**
-
-[For a single mean we divided by $n - 1$. Why $n - 2$ here, and does it matter with 45 stores?]{.faq-q}
-
-::: {.fragment .faq-a}
-**Short answer:** each parameter we estimate from the data costs one degree of freedom. A single mean costs one, so $n - 1$. The regression line costs two, an intercept $b_0$ and a slope $b_1$, so $n - 2 = 43$. With 45 stores the difference between dividing by 43, 44, or 45 is tiny, but the rule keeps $s$ an honest, slightly conservative estimate of the error spread, which feeds straight into every $t$ and interval that follows.
-:::
-::::
-
 ## Testing the Slope: Is the Relationship Real?
 
 <br>
@@ -623,6 +607,31 @@ knitr::include_graphics("figs/armands_reg_coef.png")
 - $|t| = 14.7$ is enormous against $t_{0.025, 43} = 2.02$ → **reject $H_0$** decisively.
 
 - **Translation:** the Yelp–sales relationship is *not* a fluke of these 45 stores. There is overwhelming evidence the true slope is positive.
+
+## Do It in Excel: Read the Slope Test and CI
+
+::::: nonincremental
+:::: columns
+::: {.column width="46%"}
+**Follow along (same Regression output):**
+
+1. In the coefficients table, find the `yelp_rating` row.
+2. Read **t Stat** and **P-value** to test $H_0: \beta_1 = 0$.
+3. Read **Lower 95%** and **Upper 95%** for the slope CI; if both share a sign, zero is excluded.
+4. In the **ANOVA** block, read **Significance F** (the same $p$-value; $F = t^2$).
+:::
+
+::: {.column width="54%"}
+```{r  echo=FALSE, out.width = "100%",fig.align="center"}
+knitr::include_graphics("figs/autoparts_reg_coef.png")
+```
+
+```{r  echo=FALSE, out.width = "88%",fig.align="center"}
+knitr::include_graphics("figs/autoparts_reg_anova.png")
+```
+:::
+::::
+:::::
 
 ## A Question That Often Comes Up
 

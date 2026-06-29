@@ -64,7 +64,9 @@ html-math-method:
 
 - **The big call** running through Vungle is one decision: *roll out algorithm B to all traffic, or stay with A?* **Today's piece of it:** roll out, keep A, or test more, which has the best **expected value**?
 
+::: fragment
 > "Algorithm B looks better, but we're not certain. Do we **roll out B** to all traffic now, **keep A** and play it safe, or **run a bigger test** before committing? Quantify it and make the call."
+:::
 
 <br>
 
@@ -227,18 +229,6 @@ $$
 
 - These can come from the **classical**, **relative-frequency**, or **subjective** method. Here they are an informed subjective judgment, and we will **test how much they matter** at the end.
 
-## A Question That Often Comes Up
-
-:::: {.faq}
-**A question that often comes up at this point:**
-
-[If the 0.60 prior is just the data-science team's judgment, isn't the whole decision only as good as a guess?]{.faq-q}
-
-::: {.fragment .faq-a}
-**Short answer:** the prior is a judgment, but it is not a free-for-all, and you never trust a single value. It is informed by the A/B signal we already saw, and the sensitivity step at the end reports exactly which priors flip the call. If the decision is the same anywhere from, say, 0.40 to 0.80, the guess inside that range does not matter. That is why we structure the problem instead of arguing about the number.
-:::
-::::
-
 ## The Expected Value Approach
 
 <br>
@@ -258,6 +248,22 @@ $$
 - The **decision rule:** choose the alternative with the **best EV** (highest for profit, lowest for cost).
 
 - In Excel, one formula does it: `=SUMPRODUCT(probabilities, payoff_row)`.
+
+## Do It in Excel: Expected Value
+
+:::::: columns
+::: {.column width="46%"}
+**Follow along:**
+
+1. Put the **priors** in one row (0.60, 0.40) and each alternative's **payoff row** beneath ($d_1$: 318, −160; $d_2$: 0, 0)
+2. In an **EV** cell for $d_1$: `=SUMPRODUCT($B$3:$C$3, B4:C4)` (lock the priors with `$`)
+3. Fill the formula **down** to get EV for every alternative
+4. Read the **best EV** (roll out B = \$126.8K vs. keep A = \$0); that row is the call
+:::
+::: {.column width="54%"}
+![](figs/excel_payoff_ev.png){.nostretch fig-align="center" width="100%"}
+:::
+::::::
 
 ## Anchor Example: Burger Prince
 
@@ -416,31 +422,21 @@ knitr::include_graphics("figs/vungle_evpi.png")
 :::
 ::::
 
-## EVPI in Excel
+## Do It in Excel: EVPI
 
-::::: nonincremental
-:::: columns
-::: {.column width="40%"}
-<br>
+:::::: columns
+::: {.column width="46%"}
+**Follow along:**
 
-Three labeled cells on top of the payoff table:
-
-- **Best per state** with `=MAX(...)` down each column
-- **EVwPI** with `=SUMPRODUCT(priors, best-per-state)`
-- **EVPI** = `EVwPI − EVwoPI`
-
-<br>
-
-EVPI is always **≥ 0**: information can't hurt you (you can ignore it).
+1. Below the payoff table, add a **Best per state** cell under each column: `=MAX(B4:B5)`, `=MAX(C4:C5)`
+2. **EVwPI** in one cell: `=SUMPRODUCT($B$3:$C$3, best-per-state)` (the priors times the best returns)
+3. **EVPI** in the next cell: `=EVwPI - EVwoPI` (subtract the best blind EV, \$126.8K)
+4. Read **EVPI = \$64K**; it is always **≥ 0** (you can ignore information, so it can't hurt)
 :::
-
-::: {.column width="60%"}
-```{r  echo=FALSE, out.width = "100%",fig.align="center"}
-knitr::include_graphics("figs/excel_evpi.png")
-```
+::: {.column width="54%"}
+![](figs/excel_evpi.png){.nostretch fig-align="center" width="100%"}
 :::
-::::
-:::::
+::::::
 
 # Sample Information & Bayes {background-color="#cfb991"}
 
@@ -485,27 +481,37 @@ $$
 
 - A simple **tabular** layout does the arithmetic: **prior → joint → marginal → posterior**. The posteriors become the **branch probabilities** on the tree after the test.
 
-## Bayes Revision: Favorable Report
+## Do It in Excel: Bayes Revision (Favorable Report)
 
-```{r  echo=FALSE, out.width = "70%",fig.align="center"}
-knitr::include_graphics("figs/excel_bayes_favorable.png")
-```
+:::::: columns
+::: {.column width="46%"}
+**Follow along:**
 
-::: nonincremental
-- **Joint** = prior × conditional. **Marginal** $P(F) = 0.48 + 0.10 = 0.58$. **Posterior** = joint ÷ marginal.
-- A favorable report lifts the odds B is truly better from **0.60 → 0.828**.
+1. List the **priors** column (0.60, 0.40) and the **conditionals** $P(F \mid s_j)$ (0.80, 0.25)
+2. **Joint** column: `=prior*conditional` → 0.48, 0.10
+3. **Marginal** $P(F)$: `=SUM(joint)` = 0.48 + 0.10 = 0.58
+4. **Posterior** column: `=joint/marginal`; read the odds B is better rise **0.60 → 0.828**
 :::
-
-## Bayes Revision: Unfavorable Report
-
-```{r  echo=FALSE, out.width = "70%",fig.align="center"}
-knitr::include_graphics("figs/excel_bayes_unfavorable.png")
-```
-
-::: nonincremental
-- $P(U) = 0.12 + 0.30 = 0.42$ (and $0.58 + 0.42 = 1$ ✓). An unfavorable report **drops** the odds B is better from **0.60 → 0.286**.
-- Same data, opposite signal → opposite revision. That is exactly what makes the test *useful*.
+::: {.column width="54%"}
+![](figs/excel_bayes_favorable.png){.nostretch fig-align="center" width="100%"}
 :::
+::::::
+
+## Do It in Excel: Bayes Revision (Unfavorable Report)
+
+:::::: columns
+::: {.column width="46%"}
+**Follow along:**
+
+1. Repeat the table with the **other** conditionals $P(U \mid s_j)$ (0.20, 0.75)
+2. **Joint**: `=prior*conditional` → 0.12, 0.30
+3. **Marginal** $P(U)$: `=SUM(joint)` = 0.42 (check: 0.58 + 0.42 = 1)
+4. **Posterior** = `=joint/marginal`; the odds B is better **drop 0.60 → 0.286** (same data, opposite signal)
+:::
+::: {.column width="54%"}
+![](figs/excel_bayes_unfavorable.png){.nostretch fig-align="center" width="100%"}
+:::
+::::::
 
 ## The Signal Moves the Decision
 
@@ -587,32 +593,21 @@ knitr::include_graphics("figs/vungle_evsi.png")
 :::
 ::::
 
-## EVSI in Excel
+## Do It in Excel: EVSI
 
-::::: nonincremental
-:::: columns
-::: {.column width="40%"}
-<br>
+:::::: columns
+::: {.column width="46%"}
+**Follow along:**
 
-Build it from the Bayes tables:
-
-- Best EV after **each** signal (using posteriors)
-- **EVwSI** = `SUMPRODUCT(P(signal), best-EV)`
-- **EVSI** = `EVwSI − EVwoSI`
-- Compare EVSI to the **test cost**
-
-<br>
-
-If EVSI **\<** cost → skip the study and decide now.
+1. From each Bayes table, compute the **best EV after that signal** with the posteriors: favorable \$235.6K, unfavorable \$0
+2. **EVwSI**: `=SUMPRODUCT(P(signal), best-EV)` = `0.58*235.6 + 0.42*0` = \$136.6K
+3. **EVSI**: `=EVwSI - EVwoSI` = `136.6 - 126.8` = **\$9.84K**
+4. Compare to the **test cost** (\$20K): EVSI \< cost, so **skip the study** and decide now
 :::
-
-::: {.column width="60%"}
-```{r  echo=FALSE, out.width = "100%",fig.align="center"}
-knitr::include_graphics("figs/excel_evsi.png")
-```
+::: {.column width="54%"}
+![](figs/excel_evsi.png){.nostretch fig-align="center" width="100%"}
 :::
-::::
-:::::
+::::::
 
 # How Robust Is the Call? {background-color="#cfb991"}
 
@@ -644,18 +639,6 @@ $$
 - A **stable** decision is one that holds under small changes in the inputs. Here, B would have to be **more likely wrong than right** before we'd keep A.
 
 - **This is the real payoff of structuring the decision:** we now know not just *what* to do, but *how sure we'd have to be to change our minds*. In Excel: a **What-If Data Table** varying $p$ traces the whole line.
-
-## A Question That Often Comes Up
-
-:::: {.faq}
-**A question that often comes up at this point:**
-
-[We stress-tested the 0.60 prior, but the −160 downside was also an estimate. Why isn't that one tested too?]{.faq-q}
-
-::: {.fragment .faq-a}
-**Short answer:** it should be, and the same idea handles it. The tipping point depends on both inputs: $p^{*} = 160 / (318 + 160) \approx 0.335$. Make the downside more severe (say −250) and the breakeven prior rises; make it milder and it falls. A two-way Data Table over $p$ and the downside shows the whole region where "roll out B" still wins. We led with the prior because it is the input management is least sure about.
-:::
-::::
 
 # Debrief: The Rollout Recommendation {background-color="#cfb991"}
 

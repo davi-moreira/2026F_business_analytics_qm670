@@ -173,6 +173,23 @@ knitr::include_graphics("figs/sampling_methods.png")
 
 - These three numbers are our best single guesses. The rest of the topic builds the **interval** that quantifies how far off each guess might be.
 
+## Do It in Excel: Descriptive Statistics for B
+
+:::::: columns
+::: {.column width="46%"}
+**Follow along:**
+
+1. Select B's 30 daily eRPMs (`erpm_B`).
+2. **Data -> Data Analysis -> Descriptive Statistics**.
+3. Set Input Range; check **Summary statistics** and **Confidence Level for Mean (95%)**.
+4. Click OK; read **Mean** ($\bar{x}_B = \$3.459$) and **Standard Deviation** ($s = \$0.344$).
+5. The `Confidence Level(95.0%)` row is the margin $E$ we build the interval from next.
+:::
+::: {.column width="54%"}
+![](figs/excel_desc_erpm_B.png){.nostretch fig-align="center" width="100%"}
+:::
+::::::
+
 ## A Question That Often Comes Up
 
 :::: {.faq}
@@ -368,18 +385,6 @@ $$
 :::
 
 - St. Andrew's: $n = 30$, $p = 0.72$ → $np = 21.6 \geq 5$ and $n(1-p) = 8.4 \geq 5$ ✓, so the normal approximation is acceptable.
-
-## A Question That Often Comes Up
-
-:::: {.faq}
-**A question that often comes up at this point:**
-
-[For a mean we plug in a separate $s$ to get the standard error. The proportion's standard error is just $\sqrt{p(1-p)/n}$. Where did the spread go?]{.faq-q}
-
-::: {.fragment .faq-a}
-**Short answer:** a yes/no outcome has no separate spread to measure. Once you know the conversion rate $p$, the variability is **locked in** at $p(1-p)$: the proportion is its own mean and its own variance. That is why the proportion's standard error needs only $\bar{p}$ and $n$, with no extra $s$ to estimate, and (as we'll see) no $t$ multiplier either.
-:::
-::::
 
 ## Debrief: Lecture 1 Takeaway
 
@@ -627,30 +632,22 @@ knitr::include_graphics("figs/vungle_erpm_ci.png")
 - A's interval is **(\$3.27, \$3.43)**, B's is **(\$3.33, \$3.59)**, and they **overlap**. Estimation alone cannot yet declare a winner; that is the job of **hypothesis testing**, next topic.
 :::
 
-## Vungle eRPM CI in Excel
+## Do It in Excel: the eRPM $t$-Interval
 
-::::: nonincremental
-:::: columns
-::: {.column width="40%"}
-<br>
+:::::: columns
+::: {.column width="46%"}
+**Follow along:**
 
-**Two equivalent paths:**
-
-- **Formula cells:** `=AVERAGE`, `=STDEV.S`, `=T.INV.2T(0.05,29)`, then $\bar{x}\pm t\cdot s/\sqrt{n}$.
-- **One shot:** `=CONFIDENCE.T(0.05, s, n)` returns the margin $E$ directly.
-
-<br>
-
-The ToolPak's **Descriptive Statistics** also prints the 95% margin as the `Confidence Level(95.0%)` row.
+1. Select B's 30 daily eRPMs (`erpm_B`).
+2. `=AVERAGE(range)` → $\bar{x}_B$; `=STDEV.S(range)` → $s$.
+3. `=T.INV.2T(0.05, 29)` → the multiplier $2.045$.
+4. `=CONFIDENCE.T(0.05, s, 30)` → the margin $E = \$0.129$ in one cell.
+5. Read $\bar{x}_B \pm E$: the 95% interval $(\$3.330,\ \$3.588)$.
 :::
-
-::: {.column width="60%"}
-```{r echo=FALSE, out.width="100%", fig.align="center"}
-knitr::include_graphics("figs/excel_ci_mean.png")
-```
+::: {.column width="54%"}
+![](figs/excel_ci_mean.png){.nostretch fig-align="center" width="100%"}
 :::
-::::
-:::::
+::::::
 
 ## Adequate Sample Size for a $t$-Interval
 
@@ -742,31 +739,22 @@ $$
 
 - **Read it:** we are 95% confident B converts between **0.345% and 0.362%** of impressions to installs, a tight interval because day-to-day conversion is very stable.
 
-## Vungle Conversion CI in Excel
+## Do It in Excel: the Conversion-Rate Interval
 
-::::: nonincremental
-:::: columns
-::: {.column width="40%"}
-<br>
+:::::: columns
+::: {.column width="46%"}
+**Follow along:**
 
-Same machinery as the mean eRPM interval, just run it on the **daily conversion-rate** column:
-
-- $\bar{x}$, $s$ on `conv_B_pct`
-- $t_{0.025,29} = 2.045$
-- $E = t \cdot s/\sqrt{30}$
-
-<br>
-
-Because conversion is stable across days, $s$ is tiny → a **very tight** interval.
+1. Select B's daily conversion column (`conv_B_pct`).
+2. `=AVERAGE` → $0.354\%$; `=STDEV.S` → $s = 0.023\%$.
+3. `=CONFIDENCE.T(0.05, s, 30)` → margin $E = 0.0086\%$.
+4. Read $\bar{x} \pm E$: $(0.345\%,\ 0.362\%)$.
+5. Note how tiny $s$ is: stable days give a very tight interval.
 :::
-
-::: {.column width="60%"}
-```{r echo=FALSE, out.width="100%", fig.align="center"}
-knitr::include_graphics("figs/excel_ci_prop.png")
-```
+::: {.column width="54%"}
+![](figs/excel_ci_prop.png){.nostretch fig-align="center" width="100%"}
 :::
-::::
-:::::
+::::::
 
 # Margin of Error & Sample Size {background-color="#cfb991"}
 
@@ -868,31 +856,22 @@ knitr::include_graphics("figs/moe_vs_n.png")
 - The curve flattens fast: early days buy a lot of precision, later days buy very little. The $\sqrt{n}$ law is why **doubling down** on data has **diminishing returns**.
 :::
 
-## Sample Size in Excel
+## Do It in Excel: the Required Sample Size
 
-::::: nonincremental
-:::: columns
-::: {.column width="42%"}
-<br>
+:::::: columns
+::: {.column width="46%"}
+**Follow along:**
 
-**One formula cell per target:**
-
-`=CEILING((NORM.S.INV(0.975)*s/E)^2, 1)`
-
-<br>
-
-- `s` = planning SD (here B's \$0.3444)
-- `E` = desired margin (\$0.10, then \$0.05)
-- `CEILING(...,1)` rounds **up** to whole days
+1. Enter the planning SD `s` (B's pilot $\$0.3444$) and the target margin `E` in cells.
+2. `=NORM.S.INV(0.975)` → the $z$ multiplier $1.96$.
+3. `=CEILING((NORM.S.INV(0.975)*s/E)^2, 1)` in one cell.
+4. Set $E = 0.10$ → reads **46 days**; set $E = 0.05$ → reads **183 days**.
+5. `CEILING(...,1)` rounds **up**: never round a day count down.
 :::
-
-::: {.column width="58%"}
-```{r echo=FALSE, out.width="100%", fig.align="center"}
-knitr::include_graphics("figs/excel_sample_size.png")
-```
+::: {.column width="54%"}
+![](figs/excel_sample_size.png){.nostretch fig-align="center" width="100%"}
 :::
-::::
-:::::
+::::::
 
 ## Sample Size for a Proportion
 

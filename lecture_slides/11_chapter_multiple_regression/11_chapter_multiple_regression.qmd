@@ -106,7 +106,9 @@ html-math-method:
 
 - **The big call you own:** *where should the next dollar go?* **Today's piece of it:** *which drivers move sales once the others are held constant?*
 
+::: fragment
 > "Fit a model for store sales using **all four** drivers at once. For each driver, tell me its effect on sales **holding the others fixed**, and tell me how much of the sales story the model captures."
+:::
 
 <br>
 
@@ -241,35 +243,28 @@ $$
 
 - A small, clean example: it teaches you to read the output table before we scale up to 45 stores and four predictors.
 
-## Butler: the Estimated Equation
+## Do It in Excel: Multiple Regression (Butler)
 
-::::: nonincremental
-:::: columns
+:::::: columns
 ::: {.column width="46%"}
-<br>
+**Follow along:**
 
-**Data → Data Analysis → Regression**
+1. Lay miles and deliveries in **two side-by-side columns**.
+2. **Data → Data Analysis → Regression**.
+3. Input Y Range: the travel-time column; Input X Range: **both** predictor columns together.
+4. Check **Labels** and **Confidence Level 95%**; click OK.
+5. Read the **Coefficients** column: $b_0 = -0.869$, $b_1 = 0.0611$, $b_2 = 0.923$.
+:::
+::: {.column width="54%"}
+![](figs/excel_reg_butler_coefs.png){.nostretch fig-align="center" width="100%"}
 
-- Input Y Range: travel-time column
-- Input X Range: the **two** columns (miles, deliveries) together
-- Labels ✓, Confidence Level 95% ✓
-
-<br>
-
-From the **Coefficients** column:
-
+::: {.fragment}
 $$
 \hat{y} = -0.869 + 0.0611\,x_1 + 0.923\,x_2
 $$
 :::
-
-::: {.column width="54%"}
-```{r  echo=FALSE, out.width = "100%",fig.align="center"}
-knitr::include_graphics("figs/excel_reg_butler_coefs.png")
-```
 :::
-::::
-:::::
+::::::
 
 ## Butler: Reading the Partial Coefficients
 
@@ -290,18 +285,6 @@ $$
 :::
 
 - Actual was $9.3$, so the **residual** is $9.3 - 8.94 = +0.36$ hour: this route took slightly longer than the model expects.
-
-## A Question That Often Comes Up
-
-:::: {.faq}
-**A question that often comes up at this point:**
-
-[The intercept is $b_0 = -0.869$. A negative travel time is impossible, so is the model broken?]{.faq-q}
-
-::: {.fragment .faq-a}
-**Short answer:** no. The intercept is travel time for a route with $0$ miles and $0$ deliveries, a point no real assignment comes near, so it is just the algebraic anchor the line passes through, not a prediction we use. The same caution applies to the auto-parts intercept of $-52.1$: read the **coefficients** on the drivers, and only predict inside the range of stores you actually observed.
-:::
-::::
 
 # How Well Does the Model Fit? {background-color="#cfb991"}
 
@@ -382,31 +365,26 @@ $$
 
 # The Spine Model: All Four Drivers {background-color="#cfb991"}
 
-## Fitting Sales on All Four Drivers in Excel
+## Do It in Excel: Fit Sales on All Four Drivers
 
-::::: nonincremental
-:::: columns
-::: {.column width="42%"}
-<br>
+:::::: columns
+::: {.column width="46%"}
+**Follow along:**
 
-**Data → Data Analysis → Regression**
+1. Put the **four predictor columns contiguous** (`population_3mi`, `income_3mi`, `yelp_rating`, `endcap`).
+2. **Data → Data Analysis → Regression**.
+3. Input Y Range: `sales2012_k`; Input X Range: all **four** columns selected together.
+4. Check **Labels** and **Confidence Level 95%**; click OK.
+5. Read the top block: **R Square**, **Adjusted R Square**, **Standard Error** ($s$).
+:::
+::: {.column width="54%"}
+![](figs/excel_reg_full_stats.png){.nostretch fig-align="center" width="100%"}
 
-- Input Y Range: `sales2012_k`
-- Input X Range: all **four** predictor columns (`population_3mi`, `income_3mi`, `yelp_rating`, `endcap`), selected together
-- Labels ✓, Confidence Level 95% ✓
-
-<br>
-
+::: {.fragment}
 The top block reports overall fit; we read it now and test it in Lecture 2.
 :::
-
-::: {.column width="58%"}
-```{r  echo=FALSE, out.width = "100%",fig.align="center"}
-knitr::include_graphics("figs/excel_reg_full_stats.png")
-```
 :::
-::::
-:::::
+::::::
 
 ## The Estimated Equation for Store Sales
 
@@ -512,7 +490,9 @@ knitr::include_graphics("figs/autoparts_coef_effects.png")
 
 - **The big call you own:** *where should the next dollar go?* **Today's piece of it:** *which levers are worth investing in*, weighing $F$ vs. $t$, the dummy, and multicollinearity?
 
+::: fragment
 > "The model fits well, but is each driver *real*, or could its coefficient be noise? Put a **dollar figure on an endcap** we can defend in a budget meeting. Then tell me: invest in **location, service, or merchandising**?"
+:::
 
 <br>
 
@@ -569,6 +549,22 @@ $$
 
 - Reject $H_0$ when $F$ is large (p-value $\le \alpha$). In Excel this is the **"Significance F"** cell in the ANOVA block.
 
+## Do It in Excel: Find the $F$-Test in the Output
+
+:::::: columns
+::: {.column width="46%"}
+**Follow along:**
+
+1. In the **same** Regression output, find the **ANOVA** block (below the fit statistics).
+2. Read **SS** and **MS** for the **Regression** and **Residual** rows.
+3. The **F** cell is $MSR / MSE$ already computed for you.
+4. Read **Significance F**: that is the overall p-value; reject $H_0$ when it is $\le \alpha$.
+:::
+::: {.column width="54%"}
+![](figs/excel_reg_butler_anova.png){.nostretch fig-align="center" width="100%"}
+:::
+::::::
+
 ## The $F$-Test on the Auto-Parts Model
 
 <br>
@@ -595,18 +591,6 @@ $$
 
 - $F = 136.7$ with p-value far below any $\alpha$ → **reject $H_0$**: the model is decisively useful, so **at least one** driver carries real information. Now, *which ones?*
 
-## A Question That Often Comes Up
-
-:::: {.faq}
-**A question that often comes up at this point:**
-
-[The $F$-test only tells us *at least one* driver matters. Why run it first if it cannot name which one?]{.faq-q}
-
-::: {.fragment .faq-a}
-**Short answer:** because it is the gatekeeper. If $F$ had *failed* to reject (a small $F$, a large p-value), the whole model would be no better than guessing the average store's sales, and reading individual $t$'s would be chasing noise. $F = 136.7$ clears that gate decisively, which earns us the right to ask the sharper question on the next slides: of the four drivers, *which* are pulling their weight?
-:::
-::::
-
 # Which Predictors Matter? The $t$-Tests {background-color="#cfb991"}
 
 ## The Individual $t$-Test
@@ -627,30 +611,22 @@ $$
 
 - **Critical subtlety:** each $t$-test is *conditional on the other predictors being in the model.* A predictor can be significant alone and insignificant here, because a teammate is already explaining its share.
 
-## Reading the Coefficient Table
+## Do It in Excel: Read the Coefficient Table
 
-::::: nonincremental
-:::: columns
-::: {.column width="40%"}
-<br>
+:::::: columns
+::: {.column width="46%"}
+**Follow along:**
 
-For each predictor, the output gives **Coefficient**, **Std Error**, **t Stat**, **P-value**, and a 95% CI.
-
-- $|t| > 2$ (p < 0.05) → **significant**
-- $|t| < 2$ (p > 0.05) → **not significant** *in this model*
-
-<br>
-
-Scan the **t Stat** column top to bottom and sort the four drivers into "real" vs. "can't tell."
+1. In the same Regression output, scroll to the **Coefficients** table.
+2. Each row gives **Coefficient**, **Std Error**, **t Stat**, **P-value**, and a 95% CI.
+3. Read each **t Stat** $= b_j / s_{b_j}$ down the column.
+4. $|t| > 2$ (p < 0.05) → **significant**; $|t| < 2$ (p > 0.05) → **not significant** *in this model*.
+5. Sort the four drivers into "real" vs. "can't tell."
 :::
-
-::: {.column width="60%"}
-```{r  echo=FALSE, out.width = "100%",fig.align="center"}
-knitr::include_graphics("figs/excel_reg_full_coefs.png")
-```
+::: {.column width="54%"}
+![](figs/excel_reg_full_coefs.png){.nostretch fig-align="center" width="100%"}
 :::
-::::
-:::::
+::::::
 
 ## The Verdict on Each Driver
 
@@ -685,31 +661,25 @@ knitr::include_graphics("figs/excel_reg_full_coefs.png")
 :::
 ::::
 
-## Confirming with a Side-by-Side Comparison
+## Do It in Excel: Compare Models Side by Side
 
-::::: nonincremental
-:::: columns
-::: {.column width="40%"}
-<br>
+:::::: columns
+::: {.column width="46%"}
+**Follow along:**
 
-Build models step by step and watch **adjusted $R^2$**:
+1. Run **Regression** with X = population + income only; note **Adjusted R Square**.
+2. Re-run adding `yelp_rating` to the X range; note adjusted $R^2$ again.
+3. Re-run adding `endcap`; note adjusted $R^2$ once more.
+4. Stack the three adjusted-$R^2$ values: demographics explain almost **nothing**; Yelp makes it leap; endcap climbs again.
+:::
+::: {.column width="54%"}
+![](figs/excel_model_comparison.png){.nostretch fig-align="center" width="100%"}
 
-- **Population + Income alone:** the demographics explain almost **nothing**.
-- **Add Yelp:** adjusted $R^2$ leaps.
-- **Add Endcap:** it climbs again.
-
-<br>
-
+::: {.fragment}
 The location variables you would buy first are the ones that move the model **least**.
 :::
-
-::: {.column width="60%"}
-```{r  echo=FALSE, out.width = "100%",fig.align="center"}
-knitr::include_graphics("figs/excel_model_comparison.png")
-```
 :::
-::::
-:::::
+::::::
 
 # The Dummy Variable: Pricing an Endcap {background-color="#cfb991"}
 

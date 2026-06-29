@@ -67,7 +67,9 @@ html-math-method:
 
 - **The big call (Topics 1–9):** *roll out B to all advertisers, or stay with A?* Before you can ship B, engineering has to know the install load it creates. Today's slice of that call:
 
+::: fragment
 > "For a typical burst, **what's the chance of at least $N$ installs**, so we can size the postback pipeline without over- or under-building?"
+:::
 
 <br>
 
@@ -102,7 +104,9 @@ Every tool today maps onto the Vungle install count:
 
 - **The big call:** *roll out B, or stay with A?* **Today's rung:** *how many installs should we expect, and how do we model them as a Binomial?*
 
+::: fragment
 > "Model the number of **installs in a burst of 1,000 impressions** as a random count. What is its expected value, its spread, and the probability it hits **at least 8**, the level that stresses a single postback worker?"
+:::
 
 <br>
 
@@ -174,18 +178,6 @@ $$
 <br>
 
 - **Rule of thumb:** if you would naturally *count* it, it is discrete; if you would *measure* it on a scale, it is continuous.
-
-## A Question That Often Comes Up
-
-:::: {.faq}
-**A question that often comes up at this point:**
-
-[Installs only ever come out whole (0, 1, 2 ...), so why does it matter whether I call the count "discrete" rather than just a number?]{.faq-q}
-
-::: {.fragment .faq-a}
-**Short answer:** because the label picks the model. Calling installs **discrete** is what lets us put a **Binomial** or **Poisson** on them and read off $P(X \geq N)$. If we treated the count as a continuous measurement (like eRPM), we would reach for the wrong distribution next topic and the capacity probabilities would not even be defined at "exactly 8".
-:::
-::::
 
 # Discrete Probability Distributions {background-color="#cfb991"}
 
@@ -335,31 +327,23 @@ E(X) = 1.20 \text{ TVs} \qquad \sigma^2 = 1.660 \qquad \sigma = \sqrt{1.660} = 1
 $$
 :::
 
-## Expected Value & Variance in Excel
+## Do It in Excel: Expected Value & Variance
 
-::::: nonincremental
-:::: columns
-::: {.column width="40%"}
-<br>
+:::::: columns
+::: {.column width="46%"}
+**Follow along:**
 
-Two columns of formula cells do the whole job, no ToolPak tool needed:
+1. Lay out the $x$ values in column A and $f(x)$ in column B (the JSL table).
+2. Column C: `=A2*B2` (the $x\,f(x)$ terms); $E(X) =$ `=SUM(C2:C6)` $= 1.20$.
+3. Column D: `=(A2-$E$1)^2*B2`, with $\mu$ parked in `E1`; $\sigma^2 =$ `=SUM(D2:D6)` $= 1.66$.
+4. $\sigma =$ `=SQRT(...)` $= 1.29$, back in plain TV units.
 
-- `x*f(x)` then `=SUM(...)` → $E(X)$
-- `(x − mu)^2 * f(x)` then `=SUM(...)` → $\sigma^2$
-- `=SQRT(...)` → $\sigma$
-
-<br>
-
-This is the engine behind **every** discrete distribution; the Binomial and Poisson just supply $f(x)$ from a formula.
+No ToolPak tool needed: this is the engine behind **every** discrete distribution; Binomial and Poisson just supply $f(x)$.
 :::
-
-::: {.column width="60%"}
-```{r  echo=FALSE, out.width = "100%",fig.align="center"}
-knitr::include_graphics("figs/excel_ev_var.png")
-```
+::: {.column width="54%"}
+![](figs/excel_ev_var.png){.nostretch fig-align="center" width="100%"}
 :::
-::::
-:::::
+::::::
 
 ## Why Managers Care: Mean and Risk Together
 
@@ -370,18 +354,6 @@ knitr::include_graphics("figs/excel_ev_var.png")
 - A capacity planner reads $E(X)$ to **size for the typical load** and $\sigma$ (and the tail) to **size for the bad days**.
 
 - **Forward pointer:** the Vungle install count has a special structure, a fixed number of impressions, each an independent yes/no at the **same** rate $p$. That structure has a name: the **Binomial**, and it hands us $E(X)$, $\sigma$, and the full $f(x)$ from just two numbers, $n$ and $p$.
-
-## A Question That Often Comes Up
-
-:::: {.faq}
-**A question that often comes up at this point:**
-
-[The variance squares the deviations, so $\sigma^2 = 1.66$ is in "TVs squared," which means nothing to me. Why not just average the plain distances from the mean?]{.faq-q}
-
-::: {.fragment .faq-a}
-**Short answer:** squaring is what makes the big misses count more than the small ones, and it is the form that gives the clean $np(1-p)$ shortcut you will see for the Binomial. You are right that squared units are not readable, which is exactly why we take the square root: $\sigma = \sqrt{1.66} = 1.29$ TVs is back in plain units, and that is the spread a planner actually reads when sizing for a bad day.
-:::
-::::
 
 # Two Random Variables Together {background-color="#cfb991"}
 
@@ -598,18 +570,6 @@ knitr::include_graphics("figs/binom_pmf_evans.png")
 - $P(\text{at least 1 leaves}) = 1 - f(0) = 1 - 0.729 = 0.271$.
 :::
 
-## A Question That Often Comes Up
-
-:::: {.faq}
-**A question that often comes up at this point:**
-
-[Why does the formula multiply by $\binom{n}{x}$ at all? One specific leaver-stayer-stayer sequence already has probability 0.081, so why is $f(1)$ three times bigger?]{.faq-q}
-
-::: {.fragment .faq-a}
-**Short answer:** because "exactly 1 leaves" does not pin down **which** of the 3 employees it is. The leaver could be the first, second, or third, three different sequences, each with the same 0.081 chance. $\binom{3}{1} = 3$ just counts those equally-likely arrangements, so $f(1) = 3 \times 0.081 = 0.243$. For Vungle the same logic counts the many ways $x$ installs can land among 1,000 impressions.
-:::
-::::
-
 ## Binomial Mean, Variance, and SD
 
 <br>
@@ -737,45 +697,21 @@ knitr::include_graphics("figs/binom_tail_vungle_B.png")
 - If one postback worker handles up to 7 installs/burst, ~2.7% of B's bursts need a second worker; *that* is the capacity number.
 :::
 
-## A Question That Often Comes Up
+## Do It in Excel: The Vungle Burst (`BINOM.DIST`)
 
-:::: {.faq}
-**A question that often comes up at this point:**
+:::::: columns
+::: {.column width="46%"}
+**Follow along:**
 
-[Vungle serves hundreds of millions of impressions a day, so why model a tiny 1,000-impression "burst" instead of the real daily load?]{.faq-q}
-
-::: {.fragment .faq-a}
-**Short answer:** the burst is the slice that a **single postback worker** actually faces at once, so its tail is what tells you when one worker overflows. Modeling the full day would just give a huge $\mu$ (about 31,700 installs) with a buried tail; the burst keeps the question concrete: "$P(X \geq 8)$ for this worker's batch." Once you have the per-burst rate, the Poisson scaling property lets you re-scale to per-second or per-day instantly, which is the Lecture 2 move.
+1. List the install counts $x = 0, 1, 2, \dots$ down column A.
+2. Column B (PMF): `=BINOM.DIST(A2, 1000, 0.0035, FALSE)`.
+3. Column C (CDF): `=BINOM.DIST(A2, 1000, 0.0035, TRUE)`.
+4. Read the capacity tail off the cumulative column: $P(X \leq 7) = 0.9735$, so $P(X \geq 8) =$ `=1-C9` $= 0.0265$.
 :::
-::::
-
-## Vungle Binomial in Excel
-
-::::: nonincremental
-:::: columns
-::: {.column width="40%"}
-<br>
-
-**Build the table with `BINOM.DIST`:**
-
-- Column B: `=BINOM.DIST(x, 1000, 0.0035, FALSE)`
-- Column C: `=BINOM.DIST(x, 1000, 0.0035, TRUE)`
-
-<br>
-
-Read the capacity answer straight off the cumulative column:
-
-- $P(X \leq 7) = 0.9735$
-- $P(X \geq 8) = 1 - 0.9735 = 0.0265$
+::: {.column width="54%"}
+![](figs/excel_binom_vungle.png){.nostretch fig-align="center" width="100%"}
 :::
-
-::: {.column width="60%"}
-```{r  echo=FALSE, out.width = "100%",fig.align="center"}
-knitr::include_graphics("figs/excel_binom_vungle.png")
-```
-:::
-::::
-:::::
+::::::
 
 ## The Manager's Takeaway (Lecture 1)
 
@@ -821,7 +757,9 @@ knitr::include_graphics("figs/excel_binom_vungle.png")
 
 - **The big call:** *roll out B, or stay with A?* **Today's rung:** *how many rare-event installs hit us over an interval, and how do we model them as a Poisson?*
 
+::: fragment
 > "Installs are **rare** (a few per thousand impressions). Is there a model that needs only the **average rate**, not the full $n$ and $p$? And does it give the same capacity answer?"
+:::
 
 <br>
 
@@ -1008,30 +946,23 @@ knitr::include_graphics("figs/binom_vs_poisson.png")
 - Binomial($1000$, $0.0035$) and Poisson($3.5$) agree to **three decimals** at every $x$: the bars sit right on top of each other.
 :::
 
-## Side by Side in Excel
+## Do It in Excel: Binomial vs. Poisson Side by Side
 
-::::: nonincremental
-:::: columns
-::: {.column width="40%"}
-<br>
+:::::: columns
+::: {.column width="46%"}
+**Follow along:**
 
-Put the two functions in adjacent columns:
+1. List the counts $x = 0, 1, 2, \dots$ in column A.
+2. Column B (Binomial): `=BINOM.DIST(A2, 1000, 0.0035, FALSE)`.
+3. Column C (Poisson): `=POISSON.DIST(A2, 3.5, FALSE)`.
+4. Column D: `=B2-C2` to see the gap; it stays under 0.001 at every $x$.
 
-- `=BINOM.DIST(x, 1000, 0.0035, FALSE)`
-- `=POISSON.DIST(x, 3.5, FALSE)`
-
-<br>
-
-The columns match to 3–4 decimals. The Poisson needs **one** input ($\mu = 3.5$); the Binomial needs **two** ($n, p$); and for rare events you often only *know* the rate.
+Poisson needs **one** input ($\mu = 3.5$); Binomial needs **two** ($n, p$); for rare events you often only know the rate.
 :::
-
-::: {.column width="60%"}
-```{r  echo=FALSE, out.width = "100%",fig.align="center"}
-knitr::include_graphics("figs/excel_binom_vs_poisson.png")
-```
+::: {.column width="54%"}
+![](figs/excel_binom_vs_poisson.png){.nostretch fig-align="center" width="100%"}
 :::
-::::
-:::::
+::::::
 
 ## Which Model Should You Reach For?
 

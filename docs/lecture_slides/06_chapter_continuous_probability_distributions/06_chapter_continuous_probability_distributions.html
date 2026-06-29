@@ -189,9 +189,11 @@ Professor<br>Davi Moreira<br>
 <ul>
 <li class="fragment"><strong>The big call (Vungle A/B):</strong> roll out algorithm B, or stay with A? Topic 9 settles it; today answers one piece: <strong>What’s the chance of a high- or low-eRPM day?</strong></li>
 </ul>
+<div class="fragment">
 <blockquote>
 <p>“Model B’s daily eRPM as Normal($3.46, $0.34). What’s the chance tomorrow’s eRPM <strong>tops $3.50</strong>? What eRPM marks a <strong>90th-percentile day</strong>, and is the Normal model even <strong>trustworthy</strong> here?”</p>
 </blockquote>
+</div>
 <p><br></p>
 <ul>
 <li class="fragment"><p>Counting distributions (Binomial, Poisson) answered “how many installs?” Today’s tool answers “<strong>how much revenue per impression</strong>, and how often above a threshold?”</p></li>
@@ -253,9 +255,11 @@ Professor<br>Davi Moreira<br>
 <ul>
 <li class="fragment"><strong>The big call (Vungle A/B):</strong> roll out B, or stay with A? Today’s piece for the manager: <strong>What’s the chance of a high- or low-eRPM day?</strong> (and can we fit a Normal to it).</li>
 </ul>
+<div class="fragment">
 <blockquote>
 <p>“Before we can ask <em>‘how likely is eRPM above $3.50?’</em>, we need a <strong>model</strong> for a continuous quantity. Today: what a continuous distribution <em>is</em>, and the two we use most, the <strong>uniform</strong> and the <strong>Normal</strong>.”</p>
 </blockquote>
+</div>
 <p><br></p>
 <ul>
 <li class="fragment"><p>The payoff question <span class="math inline">\(P(\text{eRPM} &gt; \$3.50)\)</span> waits for Lecture 2. First we build the machinery: <strong>probability as area</strong>, the <strong>Normal</strong> shape, and the <strong>z-score</strong> that handles any Normal.</p></li>
@@ -379,16 +383,6 @@ P(12 \le X \le 15) = (15 - 12) \times \frac{1}{10} = 0.30
 <li>30% of customers take between 12 and 15 ounces, directly the <strong>area</strong> of the shaded rectangle, no calculus needed.</li>
 <li>The same idea, <strong>probability = area</strong>, now carries over to the bell-shaped Normal, where the area is harder to compute by hand (so we lean on z-scores and Excel).</li>
 </ul>
-</section>
-<section id="a-question-that-often-comes-up-1" class="slide level2 center">
-<h2>A Question That Often Comes Up</h2>
-<div class="faq">
-<p><strong>A question that often comes up at this point:</strong></p>
-<p><span class="faq-q">Vungle’s eRPM is bell-shaped, not flat. Why spend time on the uniform at all?</span></p>
-<div class="fragment faq-a">
-<p><strong>Short answer:</strong> the uniform is the training wheels for “probability = area.” With a flat rectangle the area is just base times height, so you can see the whole idea without any new machinery. Once that clicks, the only thing that changes for eRPM is the <em>shape</em> of the curve: still area, just a bell instead of a rectangle, and now the area is hard enough by hand that we hand it to a z-score and Excel.</p>
-</div>
-</div>
 </section></section>
 <section>
 <section id="the-normal-probability-distribution" class="title-slide slide level1 center" data-background-color="#cfb991">
@@ -430,7 +424,7 @@ f(x) = \frac{1}{\sigma\sqrt{2\pi}}\; e^{-\frac{1}{2}\left(\frac{x - \mu}{\sigma}
 <li>Half the area (0.5) sits on each side of <span class="math inline">\(\mu\)</span>. For Vungle: ~95% of B-days should fall in <span class="math inline">\(3.46 \pm 2(0.34) = (\$2.78, \$4.14)\)</span>.</li>
 </ul>
 </section>
-<section id="a-question-that-often-comes-up-2" class="slide level2 center">
+<section id="a-question-that-often-comes-up-1" class="slide level2 center">
 <h2>A Question That Often Comes Up</h2>
 <div class="faq">
 <p><strong>A question that often comes up at this point:</strong></p>
@@ -470,7 +464,7 @@ z = \frac{x - \mu}{\sigma}
 <li>Compute <span class="math inline">\(z\)</span>, then read the area off <span class="math inline">\(N(0,1)\)</span>. This is the move behind every Normal probability you will ever calculate.</li>
 </ul>
 </section>
-<section id="a-question-that-often-comes-up-3" class="slide level2 center">
+<section id="a-question-that-often-comes-up-2" class="slide level2 center">
 <h2>A Question That Often Comes Up</h2>
 <div class="faq">
 <p><strong>A question that often comes up at this point:</strong></p>
@@ -553,7 +547,7 @@ z = \frac{3.50 - 3.459}{0.344} = 0.12
 </ul>
 </div>
 </section>
-<section id="a-question-that-often-comes-up-4" class="slide level2 center">
+<section id="a-question-that-often-comes-up-3" class="slide level2 center">
 <h2>A Question That Often Comes Up</h2>
 <div class="faq">
 <p><strong>A question that often comes up at this point:</strong></p>
@@ -623,9 +617,11 @@ z = \frac{3.50 - 3.459}{0.344} = 0.12
 <ul>
 <li class="fragment"><strong>The big call (Vungle A/B):</strong> roll out B, or stay with A? Today’s piece for the manager: <strong>what probability and percentile does the Normal give, and is the model fair?</strong></li>
 </ul>
+<div class="fragment">
 <blockquote>
 <p>“Cash in the model. Tomorrow’s eRPM is <span class="math inline">\(\sim N(3.459, 0.344)\)</span>. <strong>What’s <span class="math inline">\(P(\text{eRPM} &gt; \$3.50)\)</span>? What eRPM defines a top-10% day?</strong> And before we trust any of it, <strong>is the Normal assumption fair?</strong>”</p>
 </blockquote>
+</div>
 <p><br></p>
 <ul>
 <li class="fragment"><p>Lecture 1 built the model; today we <strong>use</strong> it: a tail probability, a percentile, an assumption check, and the bridge from counts (Binomial) to the Normal at scale.</p></li>
@@ -677,15 +673,27 @@ z = \frac{3.50 - 3.459}{0.344} = 0.12 \qquad P(\text{eRPM} &gt; 3.50) = P(Z &gt;
 <li>Same machine for a <strong>bad day</strong>: <span class="math inline">\(P(\text{eRPM} &lt; \$3.00) =\)</span> <code>NORM.DIST(3.00, 3.459, 0.344, TRUE)</code> <span class="math inline">\(= 0.091\)</span>, about a <strong>1-in-11</strong> chance B dips below $3.00.</li>
 </ul>
 </section>
-<section id="excel-norm.dist-on-the-vungle-model" class="slide level2 center">
-<h2>Excel: NORM.DIST on the Vungle Model</h2>
-
-<img data-src="figs/excel_normdist_vungle.png" class="quarto-figure quarto-figure-center r-stretch" style="width:82.0%"><ul>
-<li><code>NORM.DIST(..., TRUE)</code> returns the area to the <strong>left</strong>; subtract from 1 for a right tail.</li>
-<li>The standard-Normal route (standardize to <span class="math inline">\(z = 0.12\)</span>, then <code>1 - NORM.S.DIST(0.12, TRUE)</code>) gives the <strong>same</strong> 0.4526. Two roads, one answer.</li>
-</ul>
+<section id="do-it-in-excel-norm.dist-tail-probability" class="slide level2 center">
+<h2>Do It in Excel: NORM.DIST Tail Probability</h2>
+<div class="columns">
+<div class="column" style="width:46%;">
+<p><strong>Follow along:</strong></p>
+<ol type="1">
+<li class="fragment">Type the model in cells: mean <code>3.459</code>, sd <code>0.344</code>, and the bar <code>3.50</code>.</li>
+<li class="fragment">Left area: <code>=NORM.DIST(3.50, 3.459, 0.344, TRUE)</code> returns <strong>0.547</strong>.</li>
+<li class="fragment">Right tail “tops $3.50”: <code>=1 - NORM.DIST(3.50, 3.459, 0.344, TRUE)</code> = <strong>0.4526</strong>.</li>
+<li class="fragment">Check the z-route: <code>=1 - NORM.S.DIST(0.12, TRUE)</code> gives the <strong>same</strong> 0.4526.</li>
+</ol>
+</div><div class="column" style="width:54%;">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="figs/excel_normdist_vungle.png" class="quarto-figure quarto-figure-center" style="width:100.0%"></p>
+</figure>
+</div>
+</div></div>
+<p><code>NORM.DIST(..., TRUE)</code> returns the area to the <strong>left</strong>; subtract from 1 for a right tail. Two roads (real units or <span class="math inline">\(z\)</span>), one answer.</p>
 </section>
-<section id="a-question-that-often-comes-up-5" class="slide level2 center">
+<section id="a-question-that-often-comes-up-4" class="slide level2 center">
 <h2>A Question That Often Comes Up</h2>
 <div class="faq">
 <p><strong>A question that often comes up at this point:</strong></p>
@@ -732,15 +740,28 @@ x = \mu + z\,\sigma = 3.459 + 1.282 \times 0.344 = \$3.90
 <li><code>NORM.DIST</code> and <code>NORM.INV</code> are <strong>inverses</strong>: <code>NORM.DIST(3.90, …)</code> <span class="math inline">\(\approx 0.90\)</span>, and <code>NORM.INV(0.90, …)</code> <span class="math inline">\(\approx 3.90\)</span>. One asks “what area?”, the other “what value?”.</li>
 </ul>
 </section>
-<section id="excel-norm.inv-percentiles-tails" class="slide level2 center">
-<h2>Excel: NORM.INV, Percentiles &amp; Tails</h2>
-
-<img data-src="figs/excel_norminv_vungle.png" class="quarto-figure quarto-figure-center r-stretch" style="width:82.0%"><ul>
-<li>The median equals the mean (<span class="math inline">\(\$3.46\)</span>) for a symmetric Normal; <code>NORM.INV(0.50, …)</code> confirms it.</li>
-<li>Percentiles turn an abstract distribution into <strong>decision thresholds</strong>: a 75th-percentile day ($3.69) is “good,” a 90th ($3.90) is “great.” Same model, business-ready language.</li>
-</ul>
+<section id="do-it-in-excel-norm.inv-percentiles" class="slide level2 center">
+<h2>Do It in Excel: NORM.INV Percentiles</h2>
+<div class="columns">
+<div class="column" style="width:46%;">
+<p><strong>Follow along:</strong></p>
+<ol type="1">
+<li class="fragment">Keep mean <code>3.459</code> and sd <code>0.344</code> in cells.</li>
+<li class="fragment">Top-10% day: <code>=NORM.INV(0.90, 3.459, 0.344)</code> = <strong>$3.90</strong>.</li>
+<li class="fragment">“Good” day, 75th pct: <code>=NORM.INV(0.75, 3.459, 0.344)</code> = <strong>$3.69</strong>.</li>
+<li class="fragment">Median: <code>=NORM.INV(0.50, 3.459, 0.344)</code> = <strong>$3.46</strong> (equals the mean).</li>
+<li class="fragment">Confirm the inverse: <code>=NORM.DIST(3.90, 3.459, 0.344, TRUE)</code> returns <strong>0.90</strong>.</li>
+</ol>
+</div><div class="column" style="width:54%;">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="figs/excel_norminv_vungle.png" class="quarto-figure quarto-figure-center" style="width:100.0%"></p>
+</figure>
+</div>
+</div></div>
+<p>Percentiles turn the distribution into <strong>decision thresholds</strong>: a $3.69 day is “good,” a $3.90 day is “great.” Same model, business-ready language.</p>
 </section>
-<section id="a-question-that-often-comes-up-6" class="slide level2 center">
+<section id="a-question-that-often-comes-up-5" class="slide level2 center">
 <h2>A Question That Often Comes Up</h2>
 <div class="faq">
 <p><strong>A question that often comes up at this point:</strong></p>
@@ -778,7 +799,7 @@ x = \mu + z\,\sigma = 3.459 + 1.282 \times 0.344 = \$3.90
 <li><em>Honest caveat:</em> <span class="math inline">\(n = 30\)</span> is modest; the QQ plot can’t <em>prove</em> Normal, only fail to flag a problem. For business decisions, “Normal is a reasonable working model” is the right standard.</li>
 </ul>
 </section>
-<section id="a-question-that-often-comes-up-7" class="slide level2 center">
+<section id="a-question-that-often-comes-up-6" class="slide level2 center">
 <h2>A Question That Often Comes Up</h2>
 <div class="faq">
 <p><strong>A question that often comes up at this point:</strong></p>
@@ -846,15 +867,28 @@ z = \frac{2000.5 - 1867}{43.1} = 3.10 \qquad P(\text{installs} &gt; 2000) = \tex
 <p><strong>Manager’s translation.</strong> <em>A 2,000-install B-day is rare, about a 1-in-1,000 event under current traffic. Capacity planned to 2,000 installs is comfortable; the constraint is impressions, not the install spike.</em></p>
 </div>
 </section>
-<section id="excel-normal-approximation-formula-sheet" class="slide level2 center">
-<h2>Excel: Normal Approximation Formula Sheet</h2>
-
-<img data-src="figs/excel_normapprox_vungle.png" class="quarto-figure quarto-figure-center r-stretch" style="width:80.0%"><ul>
-<li>Five cells: compute <span class="math inline">\(np\)</span> and <span class="math inline">\(n(1-p)\)</span> (the condition check), then <span class="math inline">\(\mu = np\)</span>, <span class="math inline">\(\sigma = \sqrt{np(1-p)}\)</span>, and the tail with <code>NORM.DIST</code>.</li>
-<li>This is the bridge from Topic 5’s <strong>counting</strong> distributions to today’s <strong>continuous</strong> Normal; at scale, the Binomial <em>becomes</em> a Normal.</li>
-</ul>
+<section id="do-it-in-excel-normal-approximation-of-the-binomial" class="slide level2 center">
+<h2>Do It in Excel: Normal Approximation of the Binomial</h2>
+<div class="columns">
+<div class="column" style="width:46%;">
+<p><strong>Follow along:</strong></p>
+<ol type="1">
+<li class="fragment">Enter <code>n = 527513</code> and <code>p = 0.00354</code>.</li>
+<li class="fragment">Condition check: <code>=n*p</code> (1,867) and <code>=n*(1-p)</code> (525,646), both <span class="math inline">\(\ge 5\)</span>.</li>
+<li class="fragment"><code>mu =n*p</code> = <strong>1,867</strong>; <code>sigma =SQRT(n*p*(1-p))</code> = <strong>43.1</strong>.</li>
+<li class="fragment">Tail with continuity correction: <code>=1 - NORM.DIST(2000.5, 1867, 43.1, TRUE)</code>.</li>
+<li class="fragment">Read it: <strong>0.0010</strong>, about a 1-in-1,000 day above 2,000 installs.</li>
+</ol>
+</div><div class="column" style="width:54%;">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="figs/excel_normapprox_vungle.png" class="quarto-figure quarto-figure-center" style="width:100.0%"></p>
+</figure>
+</div>
+</div></div>
+<p>This is the bridge from Topic 5’s <strong>counting</strong> distributions to today’s <strong>continuous</strong> Normal; at scale, the Binomial <em>becomes</em> a Normal.</p>
 </section>
-<section id="a-question-that-often-comes-up-8" class="slide level2 center">
+<section id="a-question-that-often-comes-up-7" class="slide level2 center">
 <h2>A Question That Often Comes Up</h2>
 <div class="faq">
 <p><strong>A question that often comes up at this point:</strong></p>

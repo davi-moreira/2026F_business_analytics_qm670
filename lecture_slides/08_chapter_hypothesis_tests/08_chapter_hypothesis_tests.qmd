@@ -96,18 +96,6 @@ html-math-method:
 
 - They are two views of the **same** sampling logic, and we will see at the end they agree.
 
-## A Question That Often Comes Up
-
-:::: {.faq}
-**A question that often comes up at this point:**
-
-[If a confidence interval already gives a range for B's mean eRPM, why run a separate test at all?]{.faq-q}
-
-::: {.fragment .faq-a}
-**Short answer:** the interval answers *"what is B's eRPM?"*; the test answers *"is it past the \$3.30 line we fund on?"* The funding rule is phrased as a yes/no against a benchmark, so the test reports the decision directly, with a $p$-value attached. The two never disagree, but the test speaks the manager's language.
-:::
-::::
-
 # Developing the Hypotheses {background-color="#cfb991"}
 
 ## $H_0$ Is on Trial: the Skeptic's Position
@@ -307,18 +295,6 @@ $$
 
 - **The decision rule:** is $\sigma$ known? If yes (and $n \geq 30$ or the data look normal), use $z$. If no, estimate it with $s$ and use $t$ with $df = n-1$. In practice $\sigma$ is almost never known, so B's eRPM test uses $t$; we show $z$ so the textbook formula is on the record.
 
-## A Question That Often Comes Up
-
-:::: {.faq}
-**A question that often comes up at this point:**
-
-[Why use $t$ for B's eRPM but $z$ later for B's conversion rate? When does each one apply?]{.faq-q}
-
-::: {.fragment .faq-a}
-**Short answer:** it comes down to what we know and how big $n$ is. For B's eRPM we have 30 days and must estimate the spread with $s$, so the extra uncertainty gives slightly heavier tails: that is the $t$. For B's conversion we have millions of impressions and the proportion's standard error comes from $p_0$, so the normal $z$ applies. Same five steps, different reference curve.
-:::
-::::
-
 ## Two Roads to the Same Decision
 
 <br>
@@ -420,6 +396,22 @@ knitr::include_graphics("figs/erpm_B_vs_benchmark.png")
 - 23 of 30 days clear the \$3.30 line, and the sample mean sits well above it, but a noisy 30-day sample *could* land here even if the true mean were exactly \$3.30. The test settles it.
 :::
 
+## Do It in Excel: Descriptive Statistics
+
+:::::: columns
+::: {.column width="46%"}
+**Follow along** (this feeds the $t$ test):
+
+1. Select the 30 `erpm` values for B
+2. **Data -> Data Analysis -> Descriptive Statistics**
+3. Input range = the B column; check **Labels in first row** and **Summary statistics**
+4. Click OK; read **Mean = 3.4590**, **Standard Deviation = 0.3444**, **Count = 30** (the ToolPak's "Standard Error 0.0629" is already $s/\sqrt{n}$)
+:::
+::: {.column width="54%"}
+![](figs/excel_desc_erpm_B.png){.nostretch fig-align="center" width="100%"}
+:::
+::::::
+
 ## Step 3: Compute the Test Statistic
 
 <br>
@@ -488,32 +480,22 @@ $$
 
 - **Lesson:** how strict you set $\alpha$ can flip a close call. Here B clears even the demanding 1% bar, but a result like $p = 0.03$ would reject at 5% and *fail* at 1%. **Decide $\alpha$ before you test, and report it.**
 
-## Excel: Build the One-Sample $t$ with Formula Cells
+## Do It in Excel: One-Sample $t$ (Mean)
 
-::::: nonincremental
-:::: columns
-::: {.column width="40%"}
-<br>
+:::::: columns
+::: {.column width="46%"}
+**Follow along:**
 
-The ToolPak's $t$-tests are all **two-sample**, so a one-sample test is five formula cells:
-
-- `=AVERAGE`, `=STDEV.S`, `=COUNT` for $\bar{x}, s, n$
-- `=B3/SQRT(B4)` for the standard error
-- `=(B2-3.30)/SE` for $t$
-- `=T.DIST.RT(t, 29)` for the upper-tail $p$
-
-<br>
-
-(First run **Descriptive Statistics** on the `erpm` B column to read $\bar{x}$, $s$, $n$, then wire the test cells to it.)
+1. Select the 30 `erpm` B values; run **Data -> Data Analysis -> Descriptive Statistics** to read $\bar{x} = 3.459$, $s = 0.3444$, $n = 30$
+2. `=B/SQRT(n)` for $SE$ (the ToolPak's $t$-tools are all two-sample, so build the one-sample test in cells)
+3. `=(xbar-3.30)/SE` for $t$ (this returns **2.529**)
+4. `=T.DIST.RT(t, 29)` for the upper-tail $p$, and `=T.INV(0.95, 29)` for the critical value
+5. Read the cells by name: $t = 2.53$, $p = 0.009$
 :::
-
-::: {.column width="60%"}
-```{r  echo=FALSE, out.width = "100%",fig.align="center"}
-knitr::include_graphics("figs/excel_one_sample_t_vungle.png")
-```
+::: {.column width="54%"}
+![](figs/excel_one_sample_t_vungle.png){.nostretch fig-align="center" width="100%"}
 :::
-::::
-:::::
+::::::
 
 ## The CI and the Test Agree
 
@@ -774,33 +756,22 @@ $$
 
 - **But pause on the magnitude:** the *effect size* is 0.0041 percentage points. With $n$ in the millions the test was almost **guaranteed** to be "significant," which raises the question we tackle next.
 
-## Excel: One-Proportion $z$ with Formula Cells
+## Do It in Excel: One-Proportion $z$
 
-::::: nonincremental
-:::: columns
-::: {.column width="40%"}
-<br>
+:::::: columns
+::: {.column width="46%"}
+**Follow along** (no ToolPak tool exists, so build it in cells):
 
-There is **no ToolPak tool** for a one-proportion $z$, so build it in cells:
-
-- `=SUM` the installs and impressions for B
-- $\bar p = x/n$
-- $SE = $ `=SQRT(0.0035*(1-0.0035)/n)`
-- $z = (\bar p - 0.0035)/SE$
-- $p = $ `=1-NORM.S.DIST(z, TRUE)`
-
-<br>
-
-Worth mastering: most real A/B metrics (click-through, conversion, churn) are **proportions**.
+1. `=SUM` June's B installs ($x = 56{,}031$) and impressions ($n = 15{,}825{,}376$)
+2. `=x/n` for $\bar p$ (this returns **0.3541%**)
+3. `=SQRT(0.0035*(1-0.0035)/n)` for $SE$, computed under $H_0$ with $p_0 = 0.0035$
+4. `=(pbar-0.0035)/SE` for $z$, and `=1-NORM.S.DIST(z, TRUE)` for the upper-tail $p$
+5. Read the cells: $z = 2.73$, $p = 0.003$
 :::
-
-::: {.column width="60%"}
-```{r  echo=FALSE, out.width = "100%",fig.align="center"}
-knitr::include_graphics("figs/excel_one_prop_z_vungle.png")
-```
+::: {.column width="54%"}
+![](figs/excel_one_prop_z_vungle.png){.nostretch fig-align="center" width="100%"}
 :::
-::::
-:::::
+::::::
 
 ## Statistical vs. Practical Significance
 
@@ -840,6 +811,23 @@ The same statistic, re-anchored to the Vungle eRPM mean test under different ben
 :::
 
 - The **same data** support different conclusions depending on **where you draw the line**, which is why the benchmark is a *business* decision, set before the test.
+
+## Do It in Excel: Read the $p$ Against the Rubric
+
+:::::: columns
+::: {.column width="46%"}
+**Follow along:**
+
+1. In one column, list the candidate benchmarks $\mu_0 = 3.30, 3.35, 3.40$
+2. `=(3.459-mu0)/0.0629` for $t$ at each line
+3. `=T.DIST.RT(t, 29)` for the upper-tail $p$ at each line
+4. Compare each $p$ to the rubric: $\leq 0.01$ overwhelming, $\leq 0.05$ strong, $\leq 0.10$ weak, else insufficient
+5. Read the verdict: 3.30 -> 0.009 (fund), 3.40 -> 0.178 (hold)
+:::
+::: {.column width="54%"}
+![](figs/excel_pvalue_rubric.png){.nostretch fig-align="center" width="100%"}
+:::
+::::::
 
 ## Today's Question, Today's Answer
 

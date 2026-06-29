@@ -184,9 +184,11 @@ Professor<br>Davi Moreira<br>
 <ul>
 <li class="fragment"><strong>The big call</strong> running through Vungle is one decision: <em>roll out algorithm B to all traffic, or stay with A?</em> <strong>Today’s piece of it:</strong> roll out, keep A, or test more, which has the best <strong>expected value</strong>?</li>
 </ul>
+<div class="fragment">
 <blockquote>
 <p>“Algorithm B looks better, but we’re not certain. Do we <strong>roll out B</strong> to all traffic now, <strong>keep A</strong> and play it safe, or <strong>run a bigger test</strong> before committing? Quantify it and make the call.”</p>
 </blockquote>
+</div>
 <p><br></p>
 <ul>
 <li class="fragment"><p>Rolling out B and being <strong>wrong</strong> degrades <em>all</em> of Vungle’s revenue, not a 1/16 slice. Keeping A forgoes a real upside. Testing more costs time and money.</p></li>
@@ -402,16 +404,6 @@ P(s_j) \geq 0 \quad\text{for all } j, \qquad \sum_{j=1}^{N} P(s_j) = 1
 <li class="fragment"><p>These can come from the <strong>classical</strong>, <strong>relative-frequency</strong>, or <strong>subjective</strong> method. Here they are an informed subjective judgment, and we will <strong>test how much they matter</strong> at the end.</p></li>
 </ul>
 </section>
-<section id="a-question-that-often-comes-up-1" class="slide level2 center">
-<h2>A Question That Often Comes Up</h2>
-<div class="faq">
-<p><strong>A question that often comes up at this point:</strong></p>
-<p><span class="faq-q">If the 0.60 prior is just the data-science team’s judgment, isn’t the whole decision only as good as a guess?</span></p>
-<div class="fragment faq-a">
-<p><strong>Short answer:</strong> the prior is a judgment, but it is not a free-for-all, and you never trust a single value. It is informed by the A/B signal we already saw, and the sensitivity step at the end reports exactly which priors flip the call. If the decision is the same anywhere from, say, 0.40 to 0.80, the guess inside that range does not matter. That is why we structure the problem instead of arguing about the number.</p>
-</div>
-</div>
-</section>
 <section id="the-expected-value-approach" class="slide level2 center">
 <h2>The Expected Value Approach</h2>
 <p><br></p>
@@ -428,6 +420,25 @@ EV(d_i) = \sum_{j=1}^{N} P(s_j)\, V_{ij}
 <li class="fragment"><p>The <strong>decision rule:</strong> choose the alternative with the <strong>best EV</strong> (highest for profit, lowest for cost).</p></li>
 <li class="fragment"><p>In Excel, one formula does it: <code>=SUMPRODUCT(probabilities, payoff_row)</code>.</p></li>
 </ul>
+</section>
+<section id="do-it-in-excel-expected-value" class="slide level2 center">
+<h2>Do It in Excel: Expected Value</h2>
+<div class="columns">
+<div class="column" style="width:46%;">
+<p><strong>Follow along:</strong></p>
+<ol type="1">
+<li class="fragment">Put the <strong>priors</strong> in one row (0.60, 0.40) and each alternative’s <strong>payoff row</strong> beneath (<span class="math inline">\(d_1\)</span>: 318, −160; <span class="math inline">\(d_2\)</span>: 0, 0)</li>
+<li class="fragment">In an <strong>EV</strong> cell for <span class="math inline">\(d_1\)</span>: <code>=SUMPRODUCT($B$3:$C$3, B4:C4)</code> (lock the priors with <code>$</code>)</li>
+<li class="fragment">Fill the formula <strong>down</strong> to get EV for every alternative</li>
+<li class="fragment">Read the <strong>best EV</strong> (roll out B = $126.8K vs.&nbsp;keep A = $0); that row is the call</li>
+</ol>
+</div><div class="column" style="width:54%;">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="figs/excel_payoff_ev.png" class="quarto-figure quarto-figure-center" style="width:100.0%"></p>
+</figure>
+</div>
+</div></div>
 </section>
 <section id="anchor-example-burger-prince" class="slide level2 center">
 <h2>Anchor Example: Burger Prince</h2>
@@ -507,7 +518,7 @@ EV(\text{Keep A}) = 0.60(0) + 0.40(0) = \mathbf{\$0}
 <li class="fragment"><p>The expected payoff is positive <em>because</em> the upside (+318) is large and fairly likely (0.60), even though the downside (−160) is real.</p></li>
 </ul>
 </section>
-<section id="a-question-that-often-comes-up-2" class="slide level2 center">
+<section id="a-question-that-often-comes-up-1" class="slide level2 center">
 <h2>A Question That Often Comes Up</h2>
 <div class="faq">
 <p><strong>A question that often comes up at this point:</strong></p>
@@ -598,7 +609,7 @@ EV(\text{Keep A}) = 0.60(0) + 0.40(0) = \mathbf{\$0}
 <li><strong>$64K</strong> is the <em>most</em> Vungle should ever pay to remove all doubt about B before deciding. Any real test (always imperfect) is worth <strong>less</strong> than this ceiling.</li>
 </ul>
 </section>
-<section id="a-question-that-often-comes-up-3" class="slide level2 center">
+<section id="a-question-that-often-comes-up-2" class="slide level2 center">
 <h2>A Question That Often Comes Up</h2>
 <div class="faq">
 <p><strong>A question that often comes up at this point:</strong></p>
@@ -608,28 +619,22 @@ EV(\text{Keep A}) = 0.60(0) + 0.40(0) = \mathbf{\$0}
 </div>
 </div>
 </section>
-<section id="evpi-in-excel" class="slide level2 center">
-<h2>EVPI in Excel</h2>
+<section id="do-it-in-excel-evpi" class="slide level2 center">
+<h2>Do It in Excel: EVPI</h2>
 <div class="columns">
-<div class="column" style="width:40%;">
-<p><br></p>
-<p>Three labeled cells on top of the payoff table:</p>
-<ul>
-<li><strong>Best per state</strong> with <code>=MAX(...)</code> down each column</li>
-<li><strong>EVwPI</strong> with <code>=SUMPRODUCT(priors, best-per-state)</code></li>
-<li><strong>EVPI</strong> = <code>EVwPI − EVwoPI</code></li>
-</ul>
-<p><br></p>
-<p>EVPI is always <strong>≥ 0</strong>: information can’t hurt you (you can ignore it).</p>
-</div><div class="column" style="width:60%;">
-<div class="cell" data-layout-align="center">
-<div class="cell-output-display">
+<div class="column" style="width:46%;">
+<p><strong>Follow along:</strong></p>
+<ol type="1">
+<li class="fragment">Below the payoff table, add a <strong>Best per state</strong> cell under each column: <code>=MAX(B4:B5)</code>, <code>=MAX(C4:C5)</code></li>
+<li class="fragment"><strong>EVwPI</strong> in one cell: <code>=SUMPRODUCT($B$3:$C$3, best-per-state)</code> (the priors times the best returns)</li>
+<li class="fragment"><strong>EVPI</strong> in the next cell: <code>=EVwPI - EVwoPI</code> (subtract the best blind EV, $126.8K)</li>
+<li class="fragment">Read <strong>EVPI = $64K</strong>; it is always <strong>≥ 0</strong> (you can ignore information, so it can’t hurt)</li>
+</ol>
+</div><div class="column" style="width:54%;">
 <div class="quarto-figure quarto-figure-center">
 <figure>
 <p><img data-src="figs/excel_evpi.png" class="quarto-figure quarto-figure-center" style="width:100.0%"></p>
 </figure>
-</div>
-</div>
 </div>
 </div></div>
 </section></section>
@@ -675,21 +680,43 @@ P(s_j \mid \text{signal}) = \frac{P(s_j)\,P(\text{signal}\mid s_j)}{\sum_k P(s_k
 <li class="fragment"><p>A simple <strong>tabular</strong> layout does the arithmetic: <strong>prior → joint → marginal → posterior</strong>. The posteriors become the <strong>branch probabilities</strong> on the tree after the test.</p></li>
 </ul>
 </section>
-<section id="bayes-revision-favorable-report" class="slide level2 center">
-<h2>Bayes Revision: Favorable Report</h2>
-
-<img data-src="figs/excel_bayes_favorable.png" class="quarto-figure quarto-figure-center r-stretch" style="width:70.0%"><ul>
-<li><strong>Joint</strong> = prior × conditional. <strong>Marginal</strong> <span class="math inline">\(P(F) = 0.48 + 0.10 = 0.58\)</span>. <strong>Posterior</strong> = joint ÷ marginal.</li>
-<li>A favorable report lifts the odds B is truly better from <strong>0.60 → 0.828</strong>.</li>
-</ul>
+<section id="do-it-in-excel-bayes-revision-favorable-report" class="slide level2 center">
+<h2>Do It in Excel: Bayes Revision (Favorable Report)</h2>
+<div class="columns">
+<div class="column" style="width:46%;">
+<p><strong>Follow along:</strong></p>
+<ol type="1">
+<li class="fragment">List the <strong>priors</strong> column (0.60, 0.40) and the <strong>conditionals</strong> <span class="math inline">\(P(F \mid s_j)\)</span> (0.80, 0.25)</li>
+<li class="fragment"><strong>Joint</strong> column: <code>=prior*conditional</code> → 0.48, 0.10</li>
+<li class="fragment"><strong>Marginal</strong> <span class="math inline">\(P(F)\)</span>: <code>=SUM(joint)</code> = 0.48 + 0.10 = 0.58</li>
+<li class="fragment"><strong>Posterior</strong> column: <code>=joint/marginal</code>; read the odds B is better rise <strong>0.60 → 0.828</strong></li>
+</ol>
+</div><div class="column" style="width:54%;">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="figs/excel_bayes_favorable.png" class="quarto-figure quarto-figure-center" style="width:100.0%"></p>
+</figure>
+</div>
+</div></div>
 </section>
-<section id="bayes-revision-unfavorable-report" class="slide level2 center">
-<h2>Bayes Revision: Unfavorable Report</h2>
-
-<img data-src="figs/excel_bayes_unfavorable.png" class="quarto-figure quarto-figure-center r-stretch" style="width:70.0%"><ul>
-<li><span class="math inline">\(P(U) = 0.12 + 0.30 = 0.42\)</span> (and <span class="math inline">\(0.58 + 0.42 = 1\)</span> ✓). An unfavorable report <strong>drops</strong> the odds B is better from <strong>0.60 → 0.286</strong>.</li>
-<li>Same data, opposite signal → opposite revision. That is exactly what makes the test <em>useful</em>.</li>
-</ul>
+<section id="do-it-in-excel-bayes-revision-unfavorable-report" class="slide level2 center">
+<h2>Do It in Excel: Bayes Revision (Unfavorable Report)</h2>
+<div class="columns">
+<div class="column" style="width:46%;">
+<p><strong>Follow along:</strong></p>
+<ol type="1">
+<li class="fragment">Repeat the table with the <strong>other</strong> conditionals <span class="math inline">\(P(U \mid s_j)\)</span> (0.20, 0.75)</li>
+<li class="fragment"><strong>Joint</strong>: <code>=prior*conditional</code> → 0.12, 0.30</li>
+<li class="fragment"><strong>Marginal</strong> <span class="math inline">\(P(U)\)</span>: <code>=SUM(joint)</code> = 0.42 (check: 0.58 + 0.42 = 1)</li>
+<li class="fragment"><strong>Posterior</strong> = <code>=joint/marginal</code>; the odds B is better <strong>drop 0.60 → 0.286</strong> (same data, opposite signal)</li>
+</ol>
+</div><div class="column" style="width:54%;">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="figs/excel_bayes_unfavorable.png" class="quarto-figure quarto-figure-center" style="width:100.0%"></p>
+</figure>
+</div>
+</div></div>
 </section>
 <section id="the-signal-moves-the-decision" class="slide level2 center">
 <h2>The Signal Moves the Decision</h2>
@@ -699,7 +726,7 @@ P(s_j \mid \text{signal}) = \frac{P(s_j)\,P(\text{signal}\mid s_j)}{\sum_k P(s_k
 <li>After <strong>unfavorable</strong>: <span class="math inline">\(EV(\text{roll}) = 0.286(318) + 0.714(-160) = -\$23.4K &lt; 0\)</span> → <strong>keep A</strong>.</li>
 </ul>
 </section>
-<section id="a-question-that-often-comes-up-4" class="slide level2 center">
+<section id="a-question-that-often-comes-up-3" class="slide level2 center">
 <h2>A Question That Often Comes Up</h2>
 <div class="faq">
 <p><strong>A question that often comes up at this point:</strong></p>
@@ -745,7 +772,7 @@ P(s_j \mid \text{signal}) = \frac{P(s_j)\,P(\text{signal}\mid s_j)}{\sum_k P(s_k
 <li>The test costs <strong>≈ $20K</strong> to run, but is worth only <strong>$9.84K</strong> → <strong>net −$10K</strong>. <strong>Do not run the bigger test.</strong> (Compare: the textbook’s Burger Prince survey also failed this test, EVSI &lt; its price.)</li>
 </ul>
 </section>
-<section id="a-question-that-often-comes-up-5" class="slide level2 center">
+<section id="a-question-that-often-comes-up-4" class="slide level2 center">
 <h2>A Question That Often Comes Up</h2>
 <div class="faq">
 <p><strong>A question that often comes up at this point:</strong></p>
@@ -755,29 +782,22 @@ P(s_j \mid \text{signal}) = \frac{P(s_j)\,P(\text{signal}\mid s_j)}{\sum_k P(s_k
 </div>
 </div>
 </section>
-<section id="evsi-in-excel" class="slide level2 center">
-<h2>EVSI in Excel</h2>
+<section id="do-it-in-excel-evsi" class="slide level2 center">
+<h2>Do It in Excel: EVSI</h2>
 <div class="columns">
-<div class="column" style="width:40%;">
-<p><br></p>
-<p>Build it from the Bayes tables:</p>
-<ul>
-<li>Best EV after <strong>each</strong> signal (using posteriors)</li>
-<li><strong>EVwSI</strong> = <code>SUMPRODUCT(P(signal), best-EV)</code></li>
-<li><strong>EVSI</strong> = <code>EVwSI − EVwoSI</code></li>
-<li>Compare EVSI to the <strong>test cost</strong></li>
-</ul>
-<p><br></p>
-<p>If EVSI <strong>&lt;</strong> cost → skip the study and decide now.</p>
-</div><div class="column" style="width:60%;">
-<div class="cell" data-layout-align="center">
-<div class="cell-output-display">
+<div class="column" style="width:46%;">
+<p><strong>Follow along:</strong></p>
+<ol type="1">
+<li class="fragment">From each Bayes table, compute the <strong>best EV after that signal</strong> with the posteriors: favorable $235.6K, unfavorable $0</li>
+<li class="fragment"><strong>EVwSI</strong>: <code>=SUMPRODUCT(P(signal), best-EV)</code> = <code>0.58*235.6 + 0.42*0</code> = $136.6K</li>
+<li class="fragment"><strong>EVSI</strong>: <code>=EVwSI - EVwoSI</code> = <code>136.6 - 126.8</code> = <strong>$9.84K</strong></li>
+<li class="fragment">Compare to the <strong>test cost</strong> ($20K): EVSI &lt; cost, so <strong>skip the study</strong> and decide now</li>
+</ol>
+</div><div class="column" style="width:54%;">
 <div class="quarto-figure quarto-figure-center">
 <figure>
 <p><img data-src="figs/excel_evsi.png" class="quarto-figure quarto-figure-center" style="width:100.0%"></p>
 </figure>
-</div>
-</div>
 </div>
 </div></div>
 </section></section>
@@ -809,16 +829,6 @@ p(318) + (1-p)(-160) = 0 \;\Longrightarrow\; p^{*} = \frac{160}{318 + 160} \appr
 <li class="fragment"><p>A <strong>stable</strong> decision is one that holds under small changes in the inputs. Here, B would have to be <strong>more likely wrong than right</strong> before we’d keep A.</p></li>
 <li class="fragment"><p><strong>This is the real payoff of structuring the decision:</strong> we now know not just <em>what</em> to do, but <em>how sure we’d have to be to change our minds</em>. In Excel: a <strong>What-If Data Table</strong> varying <span class="math inline">\(p\)</span> traces the whole line.</p></li>
 </ul>
-</section>
-<section id="a-question-that-often-comes-up-6" class="slide level2 center">
-<h2>A Question That Often Comes Up</h2>
-<div class="faq">
-<p><strong>A question that often comes up at this point:</strong></p>
-<p><span class="faq-q">We stress-tested the 0.60 prior, but the −160 downside was also an estimate. Why isn’t that one tested too?</span></p>
-<div class="fragment faq-a">
-<p><strong>Short answer:</strong> it should be, and the same idea handles it. The tipping point depends on both inputs: <span class="math inline">\(p^{*} = 160 / (318 + 160) \approx 0.335\)</span>. Make the downside more severe (say −250) and the breakeven prior rises; make it milder and it falls. A two-way Data Table over <span class="math inline">\(p\)</span> and the downside shows the whole region where “roll out B” still wins. We led with the prior because it is the input management is least sure about.</p>
-</div>
-</div>
 </section></section>
 <section>
 <section id="debrief-the-rollout-recommendation" class="title-slide slide level1 center" data-background-color="#cfb991">

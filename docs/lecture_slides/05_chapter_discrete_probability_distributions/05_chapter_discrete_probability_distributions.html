@@ -187,9 +187,11 @@ Professor<br>Davi Moreira<br>
 <ul>
 <li class="fragment"><strong>The big call (Topics 1–9):</strong> <em>roll out B to all advertisers, or stay with A?</em> Before you can ship B, engineering has to know the install load it creates. Today’s slice of that call:</li>
 </ul>
+<div class="fragment">
 <blockquote>
 <p>“For a typical burst, <strong>what’s the chance of at least <span class="math inline">\(N\)</span> installs</strong>, so we can size the postback pipeline without over- or under-building?”</p>
 </blockquote>
+</div>
 <p><br></p>
 <ul>
 <li class="fragment"><p>So far we have <em>described</em> and <em>compared</em> data. Today we <strong>model</strong> it: as the manager you put a <strong>probability distribution</strong> on a random count, then read off the chance of any outcome you care about.</p></li>
@@ -247,9 +249,11 @@ Professor<br>Davi Moreira<br>
 <ul>
 <li class="fragment"><strong>The big call:</strong> <em>roll out B, or stay with A?</em> <strong>Today’s rung:</strong> <em>how many installs should we expect, and how do we model them as a Binomial?</em></li>
 </ul>
+<div class="fragment">
 <blockquote>
 <p>“Model the number of <strong>installs in a burst of 1,000 impressions</strong> as a random count. What is its expected value, its spread, and the probability it hits <strong>at least 8</strong>, the level that stresses a single postback worker?”</p>
 </blockquote>
+</div>
 <p><br></p>
 <ul>
 <li class="fragment"><p>As the manager you build the machinery in three steps: (1) name the <strong>random variable</strong>, (2) get its <strong>expected value and variance</strong>, (3) recognize it as a <strong>Binomial</strong> and compute exact probabilities in Excel.</p></li>
@@ -349,16 +353,6 @@ X = \text{number of installs in a fixed batch of impressions} \in \{0, 1, 2, \do
 <ul>
 <li class="fragment"><strong>Rule of thumb:</strong> if you would naturally <em>count</em> it, it is discrete; if you would <em>measure</em> it on a scale, it is continuous.</li>
 </ul>
-</section>
-<section id="a-question-that-often-comes-up" class="slide level2 center">
-<h2>A Question That Often Comes Up</h2>
-<div class="faq">
-<p><strong>A question that often comes up at this point:</strong></p>
-<p><span class="faq-q">Installs only ever come out whole (0, 1, 2 …), so why does it matter whether I call the count “discrete” rather than just a number?</span></p>
-<div class="fragment faq-a">
-<p><strong>Short answer:</strong> because the label picks the model. Calling installs <strong>discrete</strong> is what lets us put a <strong>Binomial</strong> or <strong>Poisson</strong> on them and read off <span class="math inline">\(P(X \geq N)\)</span>. If we treated the count as a continuous measurement (like eRPM), we would reach for the wrong distribution next topic and the capacity probabilities would not even be defined at “exactly 8”.</p>
-</div>
-</div>
 </section></section>
 <section>
 <section id="discrete-probability-distributions" class="title-slide slide level1 center" data-background-color="#cfb991">
@@ -467,7 +461,7 @@ f(x) \geq 0 \qquad \text{for every } x \qquad\qquad \sum_{x} f(x) = 1
 <li class="fragment"><p>The only change is <strong>how</strong> we get <span class="math inline">\(f(x)\)</span>: JSL used past data; for Vungle we will use a <strong>formula</strong> (the Binomial) driven by the conversion rate <span class="math inline">\(p\)</span>.</p></li>
 </ul>
 </section>
-<section id="a-question-that-often-comes-up-1" class="slide level2 center">
+<section id="a-question-that-often-comes-up" class="slide level2 center">
 <h2>A Question That Often Comes Up</h2>
 <div class="faq">
 <p><strong>A question that often comes up at this point:</strong></p>
@@ -599,28 +593,23 @@ E(X) = 1.20 \text{ TVs} \qquad \sigma^2 = 1.660 \qquad \sigma = \sqrt{1.660} = 1
 \]</span></p>
 </div>
 </section>
-<section id="expected-value-variance-in-excel" class="slide level2 center">
-<h2>Expected Value &amp; Variance in Excel</h2>
+<section id="do-it-in-excel-expected-value-variance" class="slide level2 center">
+<h2>Do It in Excel: Expected Value &amp; Variance</h2>
 <div class="columns">
-<div class="column" style="width:40%;">
-<p><br></p>
-<p>Two columns of formula cells do the whole job, no ToolPak tool needed:</p>
-<ul>
-<li><code>x*f(x)</code> then <code>=SUM(...)</code> → <span class="math inline">\(E(X)\)</span></li>
-<li><code>(x − mu)^2 * f(x)</code> then <code>=SUM(...)</code> → <span class="math inline">\(\sigma^2\)</span></li>
-<li><code>=SQRT(...)</code> → <span class="math inline">\(\sigma\)</span></li>
-</ul>
-<p><br></p>
-<p>This is the engine behind <strong>every</strong> discrete distribution; the Binomial and Poisson just supply <span class="math inline">\(f(x)\)</span> from a formula.</p>
-</div><div class="column" style="width:60%;">
-<div class="cell" data-layout-align="center">
-<div class="cell-output-display">
+<div class="column" style="width:46%;">
+<p><strong>Follow along:</strong></p>
+<ol type="1">
+<li class="fragment">Lay out the <span class="math inline">\(x\)</span> values in column A and <span class="math inline">\(f(x)\)</span> in column B (the JSL table).</li>
+<li class="fragment">Column C: <code>=A2*B2</code> (the <span class="math inline">\(x\,f(x)\)</span> terms); <span class="math inline">\(E(X) =\)</span> <code>=SUM(C2:C6)</code> <span class="math inline">\(= 1.20\)</span>.</li>
+<li class="fragment">Column D: <code>=(A2-$E$1)^2*B2</code>, with <span class="math inline">\(\mu\)</span> parked in <code>E1</code>; <span class="math inline">\(\sigma^2 =\)</span> <code>=SUM(D2:D6)</code> <span class="math inline">\(= 1.66\)</span>.</li>
+<li class="fragment"><span class="math inline">\(\sigma =\)</span> <code>=SQRT(...)</code> <span class="math inline">\(= 1.29\)</span>, back in plain TV units.</li>
+</ol>
+<p>No ToolPak tool needed: this is the engine behind <strong>every</strong> discrete distribution; Binomial and Poisson just supply <span class="math inline">\(f(x)\)</span>.</p>
+</div><div class="column" style="width:54%;">
 <div class="quarto-figure quarto-figure-center">
 <figure>
 <p><img data-src="figs/excel_ev_var.png" class="quarto-figure quarto-figure-center" style="width:100.0%"></p>
 </figure>
-</div>
-</div>
 </div>
 </div></div>
 </section>
@@ -632,16 +621,6 @@ E(X) = 1.20 \text{ TVs} \qquad \sigma^2 = 1.660 \qquad \sigma = \sqrt{1.660} = 1
 <li class="fragment"><p>A capacity planner reads <span class="math inline">\(E(X)\)</span> to <strong>size for the typical load</strong> and <span class="math inline">\(\sigma\)</span> (and the tail) to <strong>size for the bad days</strong>.</p></li>
 <li class="fragment"><p><strong>Forward pointer:</strong> the Vungle install count has a special structure, a fixed number of impressions, each an independent yes/no at the <strong>same</strong> rate <span class="math inline">\(p\)</span>. That structure has a name: the <strong>Binomial</strong>, and it hands us <span class="math inline">\(E(X)\)</span>, <span class="math inline">\(\sigma\)</span>, and the full <span class="math inline">\(f(x)\)</span> from just two numbers, <span class="math inline">\(n\)</span> and <span class="math inline">\(p\)</span>.</p></li>
 </ul>
-</section>
-<section id="a-question-that-often-comes-up-2" class="slide level2 center">
-<h2>A Question That Often Comes Up</h2>
-<div class="faq">
-<p><strong>A question that often comes up at this point:</strong></p>
-<p><span class="faq-q">The variance squares the deviations, so <span class="math inline">\(\sigma^2 = 1.66\)</span> is in “TVs squared,” which means nothing to me. Why not just average the plain distances from the mean?</span></p>
-<div class="fragment faq-a">
-<p><strong>Short answer:</strong> squaring is what makes the big misses count more than the small ones, and it is the form that gives the clean <span class="math inline">\(np(1-p)\)</span> shortcut you will see for the Binomial. You are right that squared units are not readable, which is exactly why we take the square root: <span class="math inline">\(\sigma = \sqrt{1.66} = 1.29\)</span> TVs is back in plain units, and that is the spread a planner actually reads when sizing for a bad day.</p>
-</div>
-</div>
 </section></section>
 <section>
 <section id="two-random-variables-together" class="title-slide slide level1 center" data-background-color="#cfb991">
@@ -729,7 +708,7 @@ E(Z) = w\,E(X) + (1-w)\,E(Y)
 <li class="fragment"><p>The same math sizes a <strong>supply chain</strong>: two independent suppliers (<span class="math inline">\(\rho \approx 0\)</span>) cut shortage risk far more than two whose outages correlate.</p></li>
 </ul>
 </section>
-<section id="a-question-that-often-comes-up-3" class="slide level2 center">
+<section id="a-question-that-often-comes-up-1" class="slide level2 center">
 <h2>A Question That Often Comes Up</h2>
 <div class="faq">
 <p><strong>A question that often comes up at this point:</strong></p>
@@ -769,7 +748,7 @@ E(Z) = w\,E(X) + (1-w)\,E(Y)
 <li class="fragment"><strong>Vungle check:</strong> <span class="math inline">\(n\)</span> impressions in a burst (1); each one installs or not (2); the conversion rate <span class="math inline">\(p\)</span> is the same within a stable burst (3); one user installing does not change another’s odds (4). All four hold (approximately). So installs are <strong>Binomial</strong>.</li>
 </ul>
 </section>
-<section id="a-question-that-often-comes-up-4" class="slide level2 center">
+<section id="a-question-that-often-comes-up-2" class="slide level2 center">
 <h2>A Question That Often Comes Up</h2>
 <div class="faq">
 <p><strong>A question that often comes up at this point:</strong></p>
@@ -833,16 +812,6 @@ f(1) = \binom{3}{1}(0.10)^1 (0.90)^2 = 3 \times 0.081 = 0.243
 <li><span class="math inline">\(P(\text{at least 1 leaves}) = 1 - f(0) = 1 - 0.729 = 0.271\)</span>.</li>
 </ul>
 </section>
-<section id="a-question-that-often-comes-up-5" class="slide level2 center">
-<h2>A Question That Often Comes Up</h2>
-<div class="faq">
-<p><strong>A question that often comes up at this point:</strong></p>
-<p><span class="faq-q">Why does the formula multiply by <span class="math inline">\(\binom{n}{x}\)</span> at all? One specific leaver-stayer-stayer sequence already has probability 0.081, so why is <span class="math inline">\(f(1)\)</span> three times bigger?</span></p>
-<div class="fragment faq-a">
-<p><strong>Short answer:</strong> because “exactly 1 leaves” does not pin down <strong>which</strong> of the 3 employees it is. The leaver could be the first, second, or third, three different sequences, each with the same 0.081 chance. <span class="math inline">\(\binom{3}{1} = 3\)</span> just counts those equally-likely arrangements, so <span class="math inline">\(f(1) = 3 \times 0.081 = 0.243\)</span>. For Vungle the same logic counts the many ways <span class="math inline">\(x\)</span> installs can land among 1,000 impressions.</p>
-</div>
-</div>
-</section>
 <section id="binomial-mean-variance-and-sd" class="slide level2 center">
 <h2>Binomial Mean, Variance, and SD</h2>
 <p><br></p>
@@ -872,7 +841,7 @@ E(X) = \mu = np \qquad\quad \text{Var}(X) = \sigma^2 = np(1-p) \qquad\quad \sigm
 <li class="fragment"><p>Computing these by hand is tedious; Excel does the summation for us with one function.</p></li>
 </ul>
 </section>
-<section id="a-question-that-often-comes-up-6" class="slide level2 center">
+<section id="a-question-that-often-comes-up-3" class="slide level2 center">
 <h2>A Question That Often Comes Up</h2>
 <div class="faq">
 <p><strong>A question that often comes up at this point:</strong></p>
@@ -1003,41 +972,22 @@ X_A \sim \text{Binomial}(1000,\, 0.0040) \qquad\qquad X_B \sim \text{Binomial}(1
 <li>If one postback worker handles up to 7 installs/burst, ~2.7% of B’s bursts need a second worker; <em>that</em> is the capacity number.</li>
 </ul>
 </section>
-<section id="a-question-that-often-comes-up-7" class="slide level2 center">
-<h2>A Question That Often Comes Up</h2>
-<div class="faq">
-<p><strong>A question that often comes up at this point:</strong></p>
-<p><span class="faq-q">Vungle serves hundreds of millions of impressions a day, so why model a tiny 1,000-impression “burst” instead of the real daily load?</span></p>
-<div class="fragment faq-a">
-<p><strong>Short answer:</strong> the burst is the slice that a <strong>single postback worker</strong> actually faces at once, so its tail is what tells you when one worker overflows. Modeling the full day would just give a huge <span class="math inline">\(\mu\)</span> (about 31,700 installs) with a buried tail; the burst keeps the question concrete: “<span class="math inline">\(P(X \geq 8)\)</span> for this worker’s batch.” Once you have the per-burst rate, the Poisson scaling property lets you re-scale to per-second or per-day instantly, which is the Lecture 2 move.</p>
-</div>
-</div>
-</section>
-<section id="vungle-binomial-in-excel" class="slide level2 center">
-<h2>Vungle Binomial in Excel</h2>
+<section id="do-it-in-excel-the-vungle-burst-binom.dist" class="slide level2 center">
+<h2>Do It in Excel: The Vungle Burst (<code>BINOM.DIST</code>)</h2>
 <div class="columns">
-<div class="column" style="width:40%;">
-<p><br></p>
-<p><strong>Build the table with <code>BINOM.DIST</code>:</strong></p>
-<ul>
-<li>Column B: <code>=BINOM.DIST(x, 1000, 0.0035, FALSE)</code></li>
-<li>Column C: <code>=BINOM.DIST(x, 1000, 0.0035, TRUE)</code></li>
-</ul>
-<p><br></p>
-<p>Read the capacity answer straight off the cumulative column:</p>
-<ul>
-<li><span class="math inline">\(P(X \leq 7) = 0.9735\)</span></li>
-<li><span class="math inline">\(P(X \geq 8) = 1 - 0.9735 = 0.0265\)</span></li>
-</ul>
-</div><div class="column" style="width:60%;">
-<div class="cell" data-layout-align="center">
-<div class="cell-output-display">
+<div class="column" style="width:46%;">
+<p><strong>Follow along:</strong></p>
+<ol type="1">
+<li class="fragment">List the install counts <span class="math inline">\(x = 0, 1, 2, \dots\)</span> down column A.</li>
+<li class="fragment">Column B (PMF): <code>=BINOM.DIST(A2, 1000, 0.0035, FALSE)</code>.</li>
+<li class="fragment">Column C (CDF): <code>=BINOM.DIST(A2, 1000, 0.0035, TRUE)</code>.</li>
+<li class="fragment">Read the capacity tail off the cumulative column: <span class="math inline">\(P(X \leq 7) = 0.9735\)</span>, so <span class="math inline">\(P(X \geq 8) =\)</span> <code>=1-C9</code> <span class="math inline">\(= 0.0265\)</span>.</li>
+</ol>
+</div><div class="column" style="width:54%;">
 <div class="quarto-figure quarto-figure-center">
 <figure>
 <p><img data-src="figs/excel_binom_vungle.png" class="quarto-figure quarto-figure-center" style="width:100.0%"></p>
 </figure>
-</div>
-</div>
 </div>
 </div></div>
 </section>
@@ -1084,9 +1034,11 @@ X_A \sim \text{Binomial}(1000,\, 0.0040) \qquad\qquad X_B \sim \text{Binomial}(1
 <ul>
 <li class="fragment"><strong>The big call:</strong> <em>roll out B, or stay with A?</em> <strong>Today’s rung:</strong> <em>how many rare-event installs hit us over an interval, and how do we model them as a Poisson?</em></li>
 </ul>
+<div class="fragment">
 <blockquote>
 <p>“Installs are <strong>rare</strong> (a few per thousand impressions). Is there a model that needs only the <strong>average rate</strong>, not the full <span class="math inline">\(n\)</span> and <span class="math inline">\(p\)</span>? And does it give the same capacity answer?”</p>
 </blockquote>
+</div>
 <p><br></p>
 <ul>
 <li class="fragment"><p>Yesterday we needed two numbers, <span class="math inline">\(n\)</span> and <span class="math inline">\(p\)</span>. The <strong>Poisson</strong> distribution needs only <strong>one</strong>: the mean rate <span class="math inline">\(\mu\)</span> over an interval.</p></li>
@@ -1158,7 +1110,7 @@ E(X) = \mu \qquad\qquad \text{Var}(X) = \mu \qquad\qquad \sigma = \sqrt{\mu}
 <li class="fragment"><p>(Excel calls the parameter <span class="math inline">\(\mu\)</span> its <em>mean</em> argument; some calculators and texts label the same number <span class="math inline">\(\lambda\)</span>.)</p></li>
 </ul>
 </section>
-<section id="a-question-that-often-comes-up-8" class="slide level2 center">
+<section id="a-question-that-often-comes-up-4" class="slide level2 center">
 <h2>A Question That Often Comes Up</h2>
 <div class="faq">
 <p><strong>A question that often comes up at this point:</strong></p>
@@ -1192,7 +1144,7 @@ f(4) = \frac{3^4 e^{-3}}{4!} = \frac{81 \times 0.0498}{24} = 0.1680
 <li><strong>Watch the units:</strong> <span class="math inline">\(\mu\)</span> must match the interval. Six per hour and three per half-hour describe the <em>same</em> process at different scales.</li>
 </ul>
 </section>
-<section id="a-question-that-often-comes-up-9" class="slide level2 center">
+<section id="a-question-that-often-comes-up-5" class="slide level2 center">
 <h2>A Question That Often Comes Up</h2>
 <div class="faq">
 <p><strong>A question that often comes up at this point:</strong></p>
@@ -1267,7 +1219,7 @@ f(4) = \frac{3^4 e^{-3}}{4!} = \frac{81 \times 0.0498}{24} = 0.1680
 <li class="fragment"><p>Vungle is the textbook case: <span class="math inline">\(n = 1000 \geq 20\)</span> and <span class="math inline">\(p = 0.0035 \leq 0.05\)</span>. So <span class="math inline">\(X_B \approx \text{Poisson}(3.5)\)</span>, and we can drop <span class="math inline">\(n\)</span> and <span class="math inline">\(p\)</span> and work with <strong>rate alone</strong>.</p></li>
 </ul>
 </section>
-<section id="a-question-that-often-comes-up-10" class="slide level2 center">
+<section id="a-question-that-often-comes-up-6" class="slide level2 center">
 <h2>A Question That Often Comes Up</h2>
 <div class="faq">
 <p><strong>A question that often comes up at this point:</strong></p>
@@ -1284,27 +1236,23 @@ f(4) = \frac{3^4 e^{-3}}{4!} = \frac{81 \times 0.0498}{24} = 0.1680
 <li>Binomial(<span class="math inline">\(1000\)</span>, <span class="math inline">\(0.0035\)</span>) and Poisson(<span class="math inline">\(3.5\)</span>) agree to <strong>three decimals</strong> at every <span class="math inline">\(x\)</span>: the bars sit right on top of each other.</li>
 </ul>
 </section>
-<section id="side-by-side-in-excel" class="slide level2 center">
-<h2>Side by Side in Excel</h2>
+<section id="do-it-in-excel-binomial-vs.-poisson-side-by-side" class="slide level2 center">
+<h2>Do It in Excel: Binomial vs.&nbsp;Poisson Side by Side</h2>
 <div class="columns">
-<div class="column" style="width:40%;">
-<p><br></p>
-<p>Put the two functions in adjacent columns:</p>
-<ul>
-<li><code>=BINOM.DIST(x, 1000, 0.0035, FALSE)</code></li>
-<li><code>=POISSON.DIST(x, 3.5, FALSE)</code></li>
-</ul>
-<p><br></p>
-<p>The columns match to 3–4 decimals. The Poisson needs <strong>one</strong> input (<span class="math inline">\(\mu = 3.5\)</span>); the Binomial needs <strong>two</strong> (<span class="math inline">\(n, p\)</span>); and for rare events you often only <em>know</em> the rate.</p>
-</div><div class="column" style="width:60%;">
-<div class="cell" data-layout-align="center">
-<div class="cell-output-display">
+<div class="column" style="width:46%;">
+<p><strong>Follow along:</strong></p>
+<ol type="1">
+<li class="fragment">List the counts <span class="math inline">\(x = 0, 1, 2, \dots\)</span> in column A.</li>
+<li class="fragment">Column B (Binomial): <code>=BINOM.DIST(A2, 1000, 0.0035, FALSE)</code>.</li>
+<li class="fragment">Column C (Poisson): <code>=POISSON.DIST(A2, 3.5, FALSE)</code>.</li>
+<li class="fragment">Column D: <code>=B2-C2</code> to see the gap; it stays under 0.001 at every <span class="math inline">\(x\)</span>.</li>
+</ol>
+<p>Poisson needs <strong>one</strong> input (<span class="math inline">\(\mu = 3.5\)</span>); Binomial needs <strong>two</strong> (<span class="math inline">\(n, p\)</span>); for rare events you often only know the rate.</p>
+</div><div class="column" style="width:54%;">
 <div class="quarto-figure quarto-figure-center">
 <figure>
 <p><img data-src="figs/excel_binom_vs_poisson.png" class="quarto-figure quarto-figure-center" style="width:100.0%"></p>
 </figure>
-</div>
-</div>
 </div>
 </div></div>
 </section>
@@ -1405,7 +1353,7 @@ f(4) = \frac{3^4 e^{-3}}{4!} = \frac{81 \times 0.0498}{24} = 0.1680
 <li class="fragment"><p>That is why ops teams model arrivals as Poisson: provision for <span class="math inline">\(\mu\)</span> plus a tail buffer, and re-scale instantly as traffic grows.</p></li>
 </ul>
 </section>
-<section id="a-question-that-often-comes-up-11" class="slide level2 center">
+<section id="a-question-that-often-comes-up-7" class="slide level2 center">
 <h2>A Question That Often Comes Up</h2>
 <div class="faq">
 <p><strong>A question that often comes up at this point:</strong></p>

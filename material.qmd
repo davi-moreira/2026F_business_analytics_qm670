@@ -41,7 +41,7 @@ author: "Davi Moreira"
 
 **In-class group cases.** Every lecture runs an **in-class group case**, assigned and submitted on **Brightspace**. Your fixed group works that day's business case and turns in one graded deliverable before class ends.
 
-**Datasets.** Download everything once — [**all course datasets (.zip)**](/data/qm6700_datasets.zip) — or grab the file you need per topic in the table below. The **Vungle A/B** data drives Topics 1–9; the **auto-parts retail** data drives Topics 10–11. (The `.csv` files open directly in Excel.)
+**Datasets.** Download everything once — [**all course datasets (.zip)**](/data/qm6700_datasets.zip) — or grab the file you need per topic in the table below. The **Vungle A/B** data drives Topics 1–9; the **auto-parts retail** data drives Topics 10–11. The zip also bundles each lecture's **in-class group-case dataset** (under `group_cases/`); your group also receives the day's file with the case on Brightspace. (The `.csv` files open directly in Excel.)
 
 <br>
 

@@ -373,6 +373,26 @@ Professor<br>Davi Moreira<br>
 <li class="fragment">These three numbers are our best single guesses. The rest of the topic builds the <strong>interval</strong> that quantifies how far off each guess might be.</li>
 </ul>
 </section>
+<section id="do-it-in-excel-descriptive-statistics-for-b" class="slide level2 center">
+<h2>Do It in Excel: Descriptive Statistics for B</h2>
+<div class="columns">
+<div class="column" style="width:46%;">
+<p><strong>Follow along:</strong></p>
+<ol type="1">
+<li class="fragment">Select B’s 30 daily eRPMs (<code>erpm_B</code>).</li>
+<li class="fragment"><strong>Data -&gt; Data Analysis -&gt; Descriptive Statistics</strong>.</li>
+<li class="fragment">Set Input Range; check <strong>Summary statistics</strong> and <strong>Confidence Level for Mean (95%)</strong>.</li>
+<li class="fragment">Click OK; read <strong>Mean</strong> (<span class="math inline">\(\bar{x}_B = \$3.459\)</span>) and <strong>Standard Deviation</strong> (<span class="math inline">\(s = \$0.344\)</span>).</li>
+<li class="fragment">The <code>Confidence Level(95.0%)</code> row is the margin <span class="math inline">\(E\)</span> we build the interval from next.</li>
+</ol>
+</div><div class="column" style="width:54%;">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="figs/excel_desc_erpm_B.png" class="quarto-figure quarto-figure-center" style="width:100.0%"></p>
+</figure>
+</div>
+</div></div>
+</section>
 <section id="a-question-that-often-comes-up" class="slide level2 center">
 <h2>A Question That Often Comes Up</h2>
 <div class="faq">
@@ -562,16 +582,6 @@ np \geq 5 \qquad \text{and} \qquad n(1-p) \geq 5
 <li class="fragment">St.&nbsp;Andrew’s: <span class="math inline">\(n = 30\)</span>, <span class="math inline">\(p = 0.72\)</span> → <span class="math inline">\(np = 21.6 \geq 5\)</span> and <span class="math inline">\(n(1-p) = 8.4 \geq 5\)</span> ✓, so the normal approximation is acceptable.</li>
 </ul>
 </section>
-<section id="a-question-that-often-comes-up-3" class="slide level2 center">
-<h2>A Question That Often Comes Up</h2>
-<div class="faq">
-<p><strong>A question that often comes up at this point:</strong></p>
-<p><span class="faq-q">For a mean we plug in a separate <span class="math inline">\(s\)</span> to get the standard error. The proportion’s standard error is just <span class="math inline">\(\sqrt{p(1-p)/n}\)</span>. Where did the spread go?</span></p>
-<div class="fragment faq-a">
-<p><strong>Short answer:</strong> a yes/no outcome has no separate spread to measure. Once you know the conversion rate <span class="math inline">\(p\)</span>, the variability is <strong>locked in</strong> at <span class="math inline">\(p(1-p)\)</span>: the proportion is its own mean and its own variance. That is why the proportion’s standard error needs only <span class="math inline">\(\bar{p}\)</span> and <span class="math inline">\(n\)</span>, with no extra <span class="math inline">\(s\)</span> to estimate, and (as we’ll see) no <span class="math inline">\(t\)</span> multiplier either.</p>
-</div>
-</div>
-</section>
 <section id="debrief-lecture-1-takeaway" class="slide level2 center">
 <h2>Debrief: Lecture 1 Takeaway</h2>
 <p><br></p>
@@ -716,7 +726,7 @@ E = (\text{a multiplier}) \times (\text{standard error})
 <li>Fatter tails → a <strong>larger</strong> multiplier → a <strong>wider</strong> interval. That is the honest “tax” for not knowing <span class="math inline">\(\sigma\)</span>. Excel: <code>=T.INV.2T(0.05, df)</code> gives the 95% multiplier.</li>
 </ul>
 </section>
-<section id="a-question-that-often-comes-up-4" class="slide level2 center">
+<section id="a-question-that-often-comes-up-3" class="slide level2 center">
 <h2>A Question That Often Comes Up</h2>
 <div class="faq">
 <p><strong>A question that often comes up at this point:</strong></p>
@@ -755,7 +765,7 @@ E = (\text{a multiplier}) \times (\text{standard error})
 <li><strong>Wrong:</strong> <em>“there is a 95% chance <span class="math inline">\(\mu\)</span> is in this one interval.”</em> Once computed, an interval either contains <span class="math inline">\(\mu\)</span> or it doesn’t.</li>
 </ul>
 </section>
-<section id="a-question-that-often-comes-up-5" class="slide level2 center">
+<section id="a-question-that-often-comes-up-4" class="slide level2 center">
 <h2>A Question That Often Comes Up</h2>
 <div class="faq">
 <p><strong>A question that often comes up at this point:</strong></p>
@@ -810,27 +820,23 @@ E = 2.045 \times 0.0629 = 0.1286
 <li>A’s interval is <strong>($3.27, $3.43)</strong>, B’s is <strong>($3.33, $3.59)</strong>, and they <strong>overlap</strong>. Estimation alone cannot yet declare a winner; that is the job of <strong>hypothesis testing</strong>, next topic.</li>
 </ul>
 </section>
-<section id="vungle-erpm-ci-in-excel" class="slide level2 center">
-<h2>Vungle eRPM CI in Excel</h2>
+<section id="do-it-in-excel-the-erpm-t-interval" class="slide level2 center">
+<h2>Do It in Excel: the eRPM <span class="math inline">\(t\)</span>-Interval</h2>
 <div class="columns">
-<div class="column" style="width:40%;">
-<p><br></p>
-<p><strong>Two equivalent paths:</strong></p>
-<ul>
-<li><strong>Formula cells:</strong> <code>=AVERAGE</code>, <code>=STDEV.S</code>, <code>=T.INV.2T(0.05,29)</code>, then <span class="math inline">\(\bar{x}\pm t\cdot s/\sqrt{n}\)</span>.</li>
-<li><strong>One shot:</strong> <code>=CONFIDENCE.T(0.05, s, n)</code> returns the margin <span class="math inline">\(E\)</span> directly.</li>
-</ul>
-<p><br></p>
-<p>The ToolPak’s <strong>Descriptive Statistics</strong> also prints the 95% margin as the <code>Confidence Level(95.0%)</code> row.</p>
-</div><div class="column" style="width:60%;">
-<div class="cell" data-layout-align="center">
-<div class="cell-output-display">
+<div class="column" style="width:46%;">
+<p><strong>Follow along:</strong></p>
+<ol type="1">
+<li class="fragment">Select B’s 30 daily eRPMs (<code>erpm_B</code>).</li>
+<li class="fragment"><code>=AVERAGE(range)</code> → <span class="math inline">\(\bar{x}_B\)</span>; <code>=STDEV.S(range)</code> → <span class="math inline">\(s\)</span>.</li>
+<li class="fragment"><code>=T.INV.2T(0.05, 29)</code> → the multiplier <span class="math inline">\(2.045\)</span>.</li>
+<li class="fragment"><code>=CONFIDENCE.T(0.05, s, 30)</code> → the margin <span class="math inline">\(E = \$0.129\)</span> in one cell.</li>
+<li class="fragment">Read <span class="math inline">\(\bar{x}_B \pm E\)</span>: the 95% interval <span class="math inline">\((\$3.330,\ \$3.588)\)</span>.</li>
+</ol>
+</div><div class="column" style="width:54%;">
 <div class="quarto-figure quarto-figure-center">
 <figure>
 <p><img data-src="figs/excel_ci_mean.png" class="quarto-figure quarto-figure-center" style="width:100.0%"></p>
 </figure>
-</div>
-</div>
 </div>
 </div></div>
 </section>
@@ -871,7 +877,7 @@ E = 2.045 \times 0.0629 = 0.1286
 <li class="fragment"><p>Excel: <code>=NORM.S.INV(0.975)</code> → 1.96 for the 95% multiplier.</p></li>
 </ul>
 </section>
-<section id="a-question-that-often-comes-up-6" class="slide level2 center">
+<section id="a-question-that-often-comes-up-5" class="slide level2 center">
 <h2>A Question That Often Comes Up</h2>
 <div class="faq">
 <p><strong>A question that often comes up at this point:</strong></p>
@@ -942,28 +948,23 @@ E = 1.96 \times 0.0222 = 0.0435
 <li class="fragment"><strong>Read it:</strong> we are 95% confident B converts between <strong>0.345% and 0.362%</strong> of impressions to installs, a tight interval because day-to-day conversion is very stable.</li>
 </ul>
 </section>
-<section id="vungle-conversion-ci-in-excel" class="slide level2 center">
-<h2>Vungle Conversion CI in Excel</h2>
+<section id="do-it-in-excel-the-conversion-rate-interval" class="slide level2 center">
+<h2>Do It in Excel: the Conversion-Rate Interval</h2>
 <div class="columns">
-<div class="column" style="width:40%;">
-<p><br></p>
-<p>Same machinery as the mean eRPM interval, just run it on the <strong>daily conversion-rate</strong> column:</p>
-<ul>
-<li><span class="math inline">\(\bar{x}\)</span>, <span class="math inline">\(s\)</span> on <code>conv_B_pct</code></li>
-<li><span class="math inline">\(t_{0.025,29} = 2.045\)</span></li>
-<li><span class="math inline">\(E = t \cdot s/\sqrt{30}\)</span></li>
-</ul>
-<p><br></p>
-<p>Because conversion is stable across days, <span class="math inline">\(s\)</span> is tiny → a <strong>very tight</strong> interval.</p>
-</div><div class="column" style="width:60%;">
-<div class="cell" data-layout-align="center">
-<div class="cell-output-display">
+<div class="column" style="width:46%;">
+<p><strong>Follow along:</strong></p>
+<ol type="1">
+<li class="fragment">Select B’s daily conversion column (<code>conv_B_pct</code>).</li>
+<li class="fragment"><code>=AVERAGE</code> → <span class="math inline">\(0.354\%\)</span>; <code>=STDEV.S</code> → <span class="math inline">\(s = 0.023\%\)</span>.</li>
+<li class="fragment"><code>=CONFIDENCE.T(0.05, s, 30)</code> → margin <span class="math inline">\(E = 0.0086\%\)</span>.</li>
+<li class="fragment">Read <span class="math inline">\(\bar{x} \pm E\)</span>: <span class="math inline">\((0.345\%,\ 0.362\%)\)</span>.</li>
+<li class="fragment">Note how tiny <span class="math inline">\(s\)</span> is: stable days give a very tight interval.</li>
+</ol>
+</div><div class="column" style="width:54%;">
 <div class="quarto-figure quarto-figure-center">
 <figure>
 <p><img data-src="figs/excel_ci_prop.png" class="quarto-figure quarto-figure-center" style="width:100.0%"></p>
 </figure>
-</div>
-</div>
 </div>
 </div></div>
 </section></section>
@@ -1092,7 +1093,7 @@ n_{0.05} = \left(\frac{1.96 \times 0.3444}{0.05}\right)^{2} = 182.3 \;\rightarro
 <p><strong>The lesson:</strong> halving the margin (<span class="math inline">\(\$0.10 \rightarrow \$0.05\)</span>) takes <strong>four times</strong> the days (<span class="math inline">\(46 \rightarrow 183\)</span>). Precision is expensive, and the manager must decide whether $0.05 of precision is worth six months of testing.</p>
 </div>
 </section>
-<section id="a-question-that-often-comes-up-7" class="slide level2 center">
+<section id="a-question-that-often-comes-up-6" class="slide level2 center">
 <h2>A Question That Often Comes Up</h2>
 <div class="faq">
 <p><strong>A question that often comes up at this point:</strong></p>
@@ -1109,28 +1110,23 @@ n_{0.05} = \left(\frac{1.96 \times 0.3444}{0.05}\right)^{2} = 182.3 \;\rightarro
 <li>The curve flattens fast: early days buy a lot of precision, later days buy very little. The <span class="math inline">\(\sqrt{n}\)</span> law is why <strong>doubling down</strong> on data has <strong>diminishing returns</strong>.</li>
 </ul>
 </section>
-<section id="sample-size-in-excel" class="slide level2 center">
-<h2>Sample Size in Excel</h2>
+<section id="do-it-in-excel-the-required-sample-size" class="slide level2 center">
+<h2>Do It in Excel: the Required Sample Size</h2>
 <div class="columns">
-<div class="column" style="width:42%;">
-<p><br></p>
-<p><strong>One formula cell per target:</strong></p>
-<p><code>=CEILING((NORM.S.INV(0.975)*s/E)^2, 1)</code></p>
-<p><br></p>
-<ul>
-<li><code>s</code> = planning SD (here B’s $0.3444)</li>
-<li><code>E</code> = desired margin ($0.10, then $0.05)</li>
-<li><code>CEILING(...,1)</code> rounds <strong>up</strong> to whole days</li>
-</ul>
-</div><div class="column" style="width:58%;">
-<div class="cell" data-layout-align="center">
-<div class="cell-output-display">
+<div class="column" style="width:46%;">
+<p><strong>Follow along:</strong></p>
+<ol type="1">
+<li class="fragment">Enter the planning SD <code>s</code> (B’s pilot <span class="math inline">\(\$0.3444\)</span>) and the target margin <code>E</code> in cells.</li>
+<li class="fragment"><code>=NORM.S.INV(0.975)</code> → the <span class="math inline">\(z\)</span> multiplier <span class="math inline">\(1.96\)</span>.</li>
+<li class="fragment"><code>=CEILING((NORM.S.INV(0.975)*s/E)^2, 1)</code> in one cell.</li>
+<li class="fragment">Set <span class="math inline">\(E = 0.10\)</span> → reads <strong>46 days</strong>; set <span class="math inline">\(E = 0.05\)</span> → reads <strong>183 days</strong>.</li>
+<li class="fragment"><code>CEILING(...,1)</code> rounds <strong>up</strong>: never round a day count down.</li>
+</ol>
+</div><div class="column" style="width:54%;">
 <div class="quarto-figure quarto-figure-center">
 <figure>
 <p><img data-src="figs/excel_sample_size.png" class="quarto-figure quarto-figure-center" style="width:100.0%"></p>
 </figure>
-</div>
-</div>
 </div>
 </div></div>
 </section>

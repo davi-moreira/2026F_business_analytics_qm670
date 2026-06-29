@@ -184,9 +184,11 @@ Professor<br>Davi Moreira<br>
 <ul>
 <li class="fragment">The big call you carry as Vungle’s <strong>manager</strong> is still <em>roll out algorithm B, or stay with A?</em> Today’s piece of it: <strong>what are the odds at each step of the funnel?</strong></li>
 </ul>
+<div class="fragment">
 <blockquote>
 <p>“What is the chance a <strong>random impression</strong> ends in an install? And if we already know it was <strong>clicked</strong>, how does that chance change? Finally, we just recorded <strong>one install</strong>: how likely is it that it came from algorithm <strong>B</strong>?”</p>
 </blockquote>
+</div>
 <p><br></p>
 <ul>
 <li class="fragment"><p>These three questions are the three pillars of probability: a <strong>marginal</strong> chance, a <strong>conditional</strong> chance, and a <strong>reverse</strong> (Bayes) chance.</p></li>
@@ -287,16 +289,6 @@ Professor<br>Davi Moreira<br>
 </table>
 </div>
 </section>
-<section id="a-question-that-often-comes-up" class="slide level2 center">
-<h2>A Question That Often Comes Up</h2>
-<div class="faq">
-<p><strong>A question that often comes up at this point:</strong></p>
-<p><span class="faq-q">The funnel has four steps, so why does the sample space list only four outcomes? Isn’t “clicked” both an outcome and a step?</span></p>
-<div class="fragment faq-a">
-<p><strong>Short answer:</strong> a step is a <em>checkpoint</em>; an outcome is <em>where a single impression finally stops</em>. One impression lands in exactly one of the four buckets (“no completion” through “install”), so those four are mutually exclusive and cover every case. “Clicked” is the checkpoint a few impressions pass; the install bucket is just the ones that kept going after it.</p>
-</div>
-</div>
-</section>
 <section id="what-a-probability-is" class="slide level2 center">
 <h2>What a Probability Is</h2>
 <p><br></p>
@@ -318,16 +310,6 @@ Professor<br>Davi Moreira<br>
 </ul></li>
 <li class="fragment"><p>Vungle is a <strong>relative-frequency</strong> shop: 30 days of counts give us all our probabilities.</p></li>
 </ul>
-</section>
-<section id="a-question-that-often-comes-up-1" class="slide level2 center">
-<h2>A Question That Often Comes Up</h2>
-<div class="faq">
-<p><strong>A question that often comes up at this point:</strong></p>
-<p><span class="faq-q">If our install probability is just installs over impressions from past data, is it a “real” probability or only a description of what already happened?</span></p>
-<div class="fragment faq-a">
-<p><strong>Short answer:</strong> both, and that is the bet we are making. The 0.40% is a description of June’s 236M impressions; we <em>use</em> it as the probability the next impression installs only if the process stays stable. Relative frequency turns a past count into a forward probability, which is exactly the leap inference (Topics 7 to 9) will make rigorous.</p>
-</div>
-</div>
 </section>
 <section id="basic-relationships-you-already-use" class="slide level2 center">
 <h2>Basic Relationships You Already Use</h2>
@@ -419,16 +401,6 @@ Professor<br>Davi Moreira<br>
 <li><strong>Addition law:</strong> <span class="math inline">\(P(\text{DVD or HDTV}) = 0.60 + 0.40 - 0.30 = 0.70\)</span>.</li>
 </ul>
 </div>
-</section>
-<section id="a-question-that-often-comes-up-2" class="slide level2 center">
-<h2>A Question That Often Comes Up</h2>
-<div class="faq">
-<p><strong>A question that often comes up at this point:</strong></p>
-<p><span class="faq-q">Why subtract the overlap in the addition law? If 60 bought a DVD and 40 bought an HDTV, isn’t “DVD or HDTV” just 100?</span></p>
-<div class="fragment faq-a">
-<p><strong>Short answer:</strong> the 30 customers who bought <em>both</em> sit inside both groups, so adding 60 and 40 counts them twice. Subtract the 30 once and you get 70, the number of distinct customers in “DVD or HDTV.” On the Vungle funnel the same rule applies: an impression that completes <em>and</em> clicks is one impression, not two.</p>
-</div>
-</div>
 </section></section>
 <section>
 <section id="conditional-probability-the-funnel-as-a-chain" class="title-slide slide level1 center" data-background-color="#cfb991">
@@ -452,7 +424,7 @@ P(A \mid B) = \frac{P(A \cap B)}{P(B)}
 <li class="fragment"><p>The whole Vungle funnel is <strong>nothing but a chain of conditional probabilities.</strong></p></li>
 </ul>
 </section>
-<section id="a-question-that-often-comes-up-3" class="slide level2 center">
+<section id="a-question-that-often-comes-up" class="slide level2 center">
 <h2>A Question That Often Comes Up</h2>
 <div class="faq">
 <p><strong>A question that often comes up at this point:</strong></p>
@@ -517,16 +489,6 @@ P(A \mid B) = \frac{P(A \cap B)}{P(B)}
 <li>Each branch is a conditional probability; multiply <strong>along a path</strong> to reach a leaf.</li>
 </ul>
 </section>
-<section id="a-question-that-often-comes-up-4" class="slide level2 center">
-<h2>A Question That Often Comes Up</h2>
-<div class="faq">
-<p><strong>A question that often comes up at this point:</strong></p>
-<p><span class="faq-q">If a clicked impression installs at 7.93%, twenty times the 0.40% marginal rate, why does Vungle even bother serving the ads that never get clicked?</span></p>
-<div class="fragment faq-a">
-<p><strong>Short answer:</strong> Vungle cannot choose to serve only the clickers; the click is revealed <em>after</em> the impression is shown. The 20-fold lift does not say “stop serving ads,” it says “spend the controllable effort earlier in the funnel, on getting completes and clicks,” because every install is conditioned on those steps. The marginal rate prices the average bet; the conditional rate tells you where to push.</p>
-</div>
-</div>
-</section>
 <section id="the-multiplication-law-chaining-the-steps" class="slide level2 center">
 <h2>The Multiplication Law: Chaining the Steps</h2>
 <p><br></p>
@@ -550,16 +512,6 @@ P(A \cap B) = P(B)\, P(A \mid B) = P(A)\, P(B \mid A)
 <li class="fragment"><span class="math inline">\(0.8928 \times 0.0568 \times 0.0793 = 0.004025\)</span>, exactly <span class="math inline">\(951{,}666 / 236{,}459{,}402\)</span>. The chain <strong>must</strong> reconcile with the raw counts; if it doesn’t, you mislabeled a step.</li>
 </ul>
 </section>
-<section id="a-question-that-often-comes-up-5" class="slide level2 center">
-<h2>A Question That Often Comes Up</h2>
-<div class="faq">
-<p><strong>A question that often comes up at this point:</strong></p>
-<p><span class="faq-q">Multiplying three conditional rates rebuilds the install rate exactly. So why not just compute installs over impressions and skip the funnel?</span></p>
-<div class="fragment faq-a">
-<p><strong>Short answer:</strong> the single ratio 0.40% tells you <em>that</em> the bet usually loses; it cannot tell you <em>where</em> it loses. Splitting it into 89.28% complete, 5.68% click, 7.93% install shows that the click step, not the complete step, is the bottleneck. The product is a consistency check; the three factors are the diagnosis the manager actually acts on.</p>
-</div>
-</div>
-</section>
 <section id="independence-when-given-changes-nothing" class="slide level2 center">
 <h2>Independence: When “Given” Changes Nothing</h2>
 <p><br></p>
@@ -576,7 +528,7 @@ P(A \mid B) = P(A) \quad\Longleftrightarrow\quad P(A \cap B) = P(A)\,P(B)
 <li class="fragment"><p><strong>Warning: do not confuse with mutually exclusive.</strong> Mutually exclusive events with nonzero probability are the <em>opposite</em> of independent: if one happens the other <em>cannot</em>, so knowing one is maximally informative.</p></li>
 </ul>
 </section>
-<section id="a-question-that-often-comes-up-6" class="slide level2 center">
+<section id="a-question-that-often-comes-up-1" class="slide level2 center">
 <h2>A Question That Often Comes Up</h2>
 <div class="faq">
 <p><strong>A question that often comes up at this point:</strong></p>
@@ -586,28 +538,41 @@ P(A \mid B) = P(A) \quad\Longleftrightarrow\quad P(A \cap B) = P(A)\,P(B)
 </div>
 </div>
 </section>
-<section id="excel-build-the-funnel-rates-from-the-raw-file" class="slide level2 center">
-<h2>Excel: Build the Funnel Rates from the Raw File</h2>
+<section id="do-it-in-excel-build-the-funnel-totals-sumif" class="slide level2 center">
+<h2>Do It in Excel: Build the Funnel Totals (SUMIF)</h2>
 <div class="columns">
-<div class="column" style="width:40%;">
-<p><br></p>
-<p><strong>No ToolPak tool needed:</strong> probabilities are just <strong>ratios</strong> of <code>SUMIF</code> totals.</p>
-<ul>
-<li><code>=SUMIF(algorithm,"A",impressions)</code> → <span class="math inline">\(n_A\)</span></li>
-<li><code>=SUMIF(algorithm,"A",installs)</code> → <span class="math inline">\(x_A\)</span></li>
-<li>Conditional rate = the right cell ÷ the right total.</li>
-</ul>
-<p><br></p>
-<p>This is the workhorse move of funnel analytics: every rate is a divided pair of cells.</p>
-</div><div class="column" style="width:60%;">
-<div class="cell" data-layout-align="center">
-<div class="cell-output-display">
+<div class="column" style="width:46%;">
+<p><strong>Follow along:</strong></p>
+<ol type="1">
+<li class="fragment">Open <code>vungle_daily.csv</code>; columns are <code>algorithm</code>, <code>impressions</code>, <code>completes</code>, <code>clicks</code>, <code>installs</code>.</li>
+<li class="fragment">One stage total per cell: <code>=SUMIF(algorithm,"A",impressions)</code> gives 236,459,402.</li>
+<li class="fragment">Repeat for A’s completes, clicks, installs (and the same four for “B”).</li>
+<li class="fragment">Name each total cell (<code>Impressions_A</code>, <code>Clicks_A</code>, …) so the next step reads cleanly.</li>
+</ol>
+</div><div class="column" style="width:54%;">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="figs/excel_sumif_funnel.png" class="quarto-figure quarto-figure-center" style="width:100.0%"></p>
+</figure>
+</div>
+</div></div>
+</section>
+<section id="do-it-in-excel-funnel-conditional-rates" class="slide level2 center">
+<h2>Do It in Excel: Funnel Conditional Rates</h2>
+<div class="columns">
+<div class="column" style="width:46%;">
+<p><strong>Follow along:</strong></p>
+<ol type="1">
+<li class="fragment">Each conditional rate = the <strong>later</strong> stage cell ÷ its <strong>previous</strong> stage cell.</li>
+<li class="fragment"><span class="math inline">\(P(\text{click}\mid\text{comp})\)</span>: <code>=Clicks_A/Completes_A</code> returns 5.68%.</li>
+<li class="fragment"><span class="math inline">\(P(\text{install}\mid\text{click})\)</span>: <code>=Installs_A/Clicks_A</code> returns 7.93%.</li>
+<li class="fragment">Check: the three rates multiplied equal <code>=Installs_A/Impressions_A</code> (0.4025%).</li>
+</ol>
+</div><div class="column" style="width:54%;">
 <div class="quarto-figure quarto-figure-center">
 <figure>
 <p><img data-src="figs/excel_conditional_cells.png" class="quarto-figure quarto-figure-center" style="width:100.0%"></p>
 </figure>
-</div>
-</div>
 </div>
 </div></div>
 </section></section>
@@ -635,7 +600,7 @@ P(A \mid B) = P(A) \quad\Longleftrightarrow\quad P(A \cap B) = P(A)\,P(B)
 \]</span></p>
 </div>
 </section>
-<section id="a-question-that-often-comes-up-7" class="slide level2 center">
+<section id="a-question-that-often-comes-up-2" class="slide level2 center">
 <h2>A Question That Often Comes Up</h2>
 <div class="faq">
 <p><strong>A question that often comes up at this point:</strong></p>
@@ -662,16 +627,6 @@ P(A_i \mid B) = \frac{P(A_i)\,P(B \mid A_i)}{\displaystyle\sum_{j=1}^{n} P(A_j)\
 <li class="fragment"><p>The <strong>denominator</strong> is <span class="math inline">\(P(B)\)</span>, the sum of <em>all</em> the joints, by the <strong>total probability</strong> rule.</p></li>
 <li class="fragment"><p>So Bayes is just: <strong>(this path’s joint) ÷ (total of all joints).</strong> A table does the bookkeeping.</p></li>
 </ul>
-</div>
-</section>
-<section id="a-question-that-often-comes-up-8" class="slide level2 center">
-<h2>A Question That Often Comes Up</h2>
-<div class="faq">
-<p><strong>A question that often comes up at this point:</strong></p>
-<p><span class="faq-q">The formula looks intimidating. Do I really need it, or can I just fill in a table?</span></p>
-<div class="fragment faq-a">
-<p><strong>Short answer:</strong> the table <em>is</em> the formula. Each row’s “joint” column is one numerator term, <span class="math inline">\(P(A_i)\,P(B\mid A_i)\)</span>; summing the joint column is the denominator, <span class="math inline">\(P(B)\)</span>; dividing a row’s joint by that sum is the posterior. For Vungle that is just two rows (A and B). Learn the table layout and you never have to memorize the symbols.</p>
-</div>
 </div>
 </section>
 <section id="anchor-example-a-test-market-decision" class="slide level2 center">
@@ -768,7 +723,7 @@ P(\text{install} \mid A) = 0.4025\% \qquad P(\text{install} \mid B) = 0.3541\%
 <li>Same machinery, reversed for a <strong>click</strong>: <span class="math inline">\(P(B \mid \text{click}) = 6.10\%\)</span>, a click is also mild evidence against B, but less so than an install.</li>
 </ul>
 </section>
-<section id="a-question-that-often-comes-up-9" class="slide level2 center">
+<section id="a-question-that-often-comes-up-3" class="slide level2 center">
 <h2>A Question That Often Comes Up</h2>
 <div class="faq">
 <p><strong>A question that often comes up at this point:</strong></p>
@@ -778,30 +733,22 @@ P(\text{install} \mid A) = 0.4025\% \qquad P(\text{install} \mid B) = 0.3541\%
 </div>
 </div>
 </section>
-<section id="excel-the-bayes-update-in-formula-cells" class="slide level2 center">
-<h2>Excel: The Bayes Update in Formula Cells</h2>
+<section id="do-it-in-excel-the-bayes-update" class="slide level2 center">
+<h2>Do It in Excel: The Bayes Update</h2>
 <div class="columns">
-<div class="column" style="width:40%;">
-<p><br></p>
-<p>The whole update is <strong>five formula cells</strong>:</p>
-<ul>
-<li>two <strong>priors</strong> (impression shares),</li>
-<li>two <strong>likelihoods</strong> (install rates),</li>
-<li>two <strong>joints</strong> (prior × likelihood),</li>
-<li>their <strong>sum</strong> = <span class="math inline">\(P(\text{install})\)</span>,</li>
-<li>posterior = B’s joint ÷ the sum.</li>
-</ul>
-<p><br></p>
-<p>Master this layout: it is <em>the</em> template for every Bayes problem.</p>
-</div><div class="column" style="width:60%;">
-<div class="cell" data-layout-align="center">
-<div class="cell-output-display">
+<div class="column" style="width:46%;">
+<p><strong>Follow along:</strong></p>
+<ol type="1">
+<li class="fragment">One row per algorithm (A, B); type the <strong>priors</strong> (impression shares: 0.9373, 0.0627).</li>
+<li class="fragment">Type the <strong>likelihoods</strong> next to them (install rates: 0.004025, 0.003541).</li>
+<li class="fragment"><strong>Joint</strong> column: <code>=prior*likelihood</code> for each row.</li>
+<li class="fragment"><code>=SUM(joint range)</code> gives <span class="math inline">\(P(\text{install})\)</span>; <strong>posterior</strong> = B’s joint ÷ that sum.</li>
+</ol>
+</div><div class="column" style="width:54%;">
 <div class="quarto-figure quarto-figure-center">
 <figure>
 <p><img data-src="figs/excel_bayes_cells.png" class="quarto-figure quarto-figure-center" style="width:100.0%"></p>
 </figure>
-</div>
-</div>
 </div>
 </div></div>
 </section></section>
@@ -848,7 +795,7 @@ P(\text{install} \mid A) = 0.4025\% \qquad P(\text{install} \mid B) = 0.3541\%
 <li class="fragment">Confusing these is the classic error: <em>“B has a lower install rate, so most installs come from A”</em> is true, but only because A serves 15× more traffic, <strong>not</strong> because A is the better algorithm. <strong>Rates and counts answer different questions.</strong></li>
 </ul>
 </section>
-<section id="a-question-that-often-comes-up-10" class="slide level2 center">
+<section id="a-question-that-often-comes-up-4" class="slide level2 center">
 <h2>A Question That Often Comes Up</h2>
 <div class="faq">
 <p><strong>A question that often comes up at this point:</strong></p>
