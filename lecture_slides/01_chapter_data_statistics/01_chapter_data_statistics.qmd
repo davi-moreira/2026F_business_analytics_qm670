@@ -187,15 +187,15 @@ The class **ends on the Team Sprint**, your group's graded submission. **Today i
 
 - This course puts **you in the decision-maker's seat**: the **manager** who has to act. You'll work in a **fixed group** (assigned this week), cracking real cases in class and judging the analysis behind every call.
 
-::: fragment
+::: {.fragment .nonincremental}
 - **① Vungle A/B (Topics 1–9, up first).** A mobile ad-tech startup asking *roll out algorithm B, or keep A?* You'll learn to **describe, quantify uncertainty, and test** so you can judge that claim before betting the company on it.
 :::
 
-::: fragment
+::: {.fragment .nonincremental}
 - **② Auto-parts retail (Topics 10–11).** A 45-store chain asking *where should the next dollar go?* You'll **evaluate the analyst's model** that predicts store sales, then decide where to invest.
 :::
 
-::: fragment
+::: {.fragment .nonincremental}
 - **Every class:** your group works in the in-class case and **submits its call before you leave** (graded).
 :::
 
@@ -236,11 +236,11 @@ The class **ends on the Team Sprint**, your group's graded submission. **Today i
 
 :::
 
-::: fragment
+::: {.fragment .nonincremental}
 - **Why split at random:** it balances everything else (same days, market, advertisers), so any gap in the metric points to the **version**, not to outside factors.
 :::
 
-::: fragment
+::: {.fragment .nonincremental}
 - So *"is B better than A?"* becomes testable: **does B's eRPM really differ from A's, or is any gap just noise?**
 :::
 
@@ -422,7 +422,7 @@ knitr::include_graphics("figs/variables_observations.png")
 | B | 2014-06-02 | 505,963 | 447,695 | 24,621 | 1,713 | 2.587 |
 :::
 
-::: fragment
+::: {.fragment .nonincremental}
 - **Element** = one algorithm-day (60 of them). **Variables** = the 7 columns. **One observation** = one row. Total values = **60 × 7 = 420**.
 :::
 
@@ -513,7 +513,7 @@ knitr::include_graphics("figs/scale_measurement.png")
 | `erpm` | Quantitative, continuous | Ratio | mean, SD, t-tests (the primary KPI) |
 :::
 
-::: fragment
+::: {.fragment .nonincremental}
 - Asking for the "average `algorithm`" is meaningless; asking for the "average `erpm`" is the whole point. **Scale sets your toolbox.**
 :::
 
@@ -670,11 +670,11 @@ $$
 $$
 :::
 
-::: fragment
+::: {.fragment .nonincremental}
 - Vungle's 30-day mean eRPM: **A = \$3.347**, **B = \$3.459**; B's center sits **\$0.11 higher**.
 :::
 
-::: fragment
+::: {.fragment .nonincremental}
 - That \$3.459 is a **point estimate** of B's *true* mean eRPM, the number we will later put to the test.
 :::
 
@@ -783,7 +783,7 @@ knitr::include_graphics("figs/inference.svg")
 :::
 
 ::::: {.column style="width: 50%; text-align: left; justify-content: center; align-items: center;"}
-:::: fragment
+:::: {.fragment .nonincremental}
 ::: r-fit-text
 -   **Population**: all elements of interest (every future impression).
 

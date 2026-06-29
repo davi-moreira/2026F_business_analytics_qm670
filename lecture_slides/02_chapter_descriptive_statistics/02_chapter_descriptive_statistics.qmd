@@ -82,7 +82,7 @@ The class **ends on the Team Sprint**, your group's graded submission: a decisio
 > "B's average daily eRPM ran about **\$0.11 higher** than A's. Before I act: is that edge **steady**, or does B just bounce around more? How confident am I in that one number?"
 :::
 
-::: fragment
+::: {.fragment .nonincremental}
 - The **mean is only half the story.** A center tells you *where* the data sit; it says nothing about how *spread out*, *lopsided*, or *risky* they are. Two algorithms can share the **same average** and behave completely differently day to day.
 :::
 
@@ -254,7 +254,7 @@ A purchasing manager compares delivery times (hours) from two carriers over five
 | **Carrier A** | 14 | 15 | 16 | 15 | 15 | **15** | 2 | 0.71 | **4.7%** |
 | **Carrier B** | 9 | 21 | 14 | 19 | 12 | **15** | 12 | 4.95 | **33.0%** |
 
-::: fragment
+::: {.fragment .nonincremental}
 - **Identical average (15 hrs)**, but A's range is 2 hours and B's is 12.
 - A's CV is 4.7%; B's is 33.0%. **A is the dependable carrier**; B is a gamble.
 - *The mean could not tell them apart; variability did.* This is the lesson we now take to Vungle.
@@ -277,7 +277,7 @@ Computing each measure on the 30 daily eRPM values, by algorithm:
 
 <br>
 
-::: fragment
+::: {.fragment .nonincremental}
 - **B earns more on average, and is markedly riskier.** Higher mean, higher spread.
 - That is the real headline for the manager: *"B's edge comes with more volatility."* The mean hid it; variability reveals it.
 :::
@@ -670,7 +670,7 @@ For Algorithm A's 30 days, with clicks and installs measured in thousands:
 
 <br>
 
-::: fragment
+::: {.fragment .nonincremental}
 - Covariance is **positive** → clicks and installs move together. But "163.7" means nothing on its own.
 - Correlation **+0.915** says the same direction *and* that the relationship is **strong**; check: $163.7 / (48.69 \times 3.67) \approx 0.915$.
 - **Managerial read:** days with more clicks reliably bring more installs; the funnel holds together.

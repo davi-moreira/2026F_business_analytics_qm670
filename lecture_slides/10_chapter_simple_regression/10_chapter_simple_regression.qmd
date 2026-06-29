@@ -70,15 +70,15 @@ html-math-method:
 
 - **The manager's big call (we land it across Topics 10–11):** *where should the next dollar go?* Every new lease commits capital, so the manager wants sales forecast before signing.
 
-::: fragment
+::: {.fragment .nonincremental}
 - **Today's question, Lecture 1:** *does one driver, a store's Yelp rating, predict its annual sales?*
 :::
 
-::: fragment
+::: {.fragment .nonincremental}
 - **Today's question, Lecture 2:** *is that slope real, and can we forecast a brand-new site?*
 :::
 
-::: fragment
+::: {.fragment .nonincremental}
 - **How the studio runs:** I demo each step on a textbook anchor (**Armand's Pizza**) and on the auto-parts data, then **your group** reproduces the model, stress-tests it, and makes the site call.
 :::
 

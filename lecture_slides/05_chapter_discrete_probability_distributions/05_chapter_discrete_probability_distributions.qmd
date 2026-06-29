@@ -207,7 +207,7 @@ $$
 
 - Three standard ways to assign the probabilities $f(x)$:
 
-::: fragment
+::: {.fragment .nonincremental}
   - **Classical:** equally likely outcomes (a fair die: each face $1/6$).
   - **Subjective:** informed judgment when there is no track record.
   - **Relative frequency:** the share of past observations, the route we take for JSL next. It gives an **empirical** distribution.
@@ -482,7 +482,7 @@ knitr::include_graphics("figs/bernoulli_to_binomial.png")
 
 A **Binomial experiment** requires all four:
 
-::: fragment
+::: {.fragment .nonincremental}
 1. A sequence of $n$ **identical** trials.
 2. Exactly **two** outcomes per trial: *success* and *failure*.
 3. The success probability $p$ is **constant** across trials (the *stationarity* assumption).
