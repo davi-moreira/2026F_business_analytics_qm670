@@ -357,6 +357,62 @@ Professor: Davi Moreira
 <li class="fragment"><p>We will use this one decision (<em>is B better than A?</em>) to motivate <strong>every</strong> tool in this course. The data is in <code>vungle_daily.csv</code>.</p></li>
 </ul>
 </section>
+<section id="what-is-an-ab-test" class="slide level2 center">
+<h2>What Is an A/B Test?</h2>
+<p><br></p>
+<ul>
+<li class="fragment"><p>An <strong>A/B test</strong> is a controlled experiment that compares <strong>two versions</strong> of one thing to see which performs better on a single metric fixed in advance. Tech companies run thousands a year to choose features, prices, and, here, <strong>ad algorithms</strong>.</p></li>
+<li class="fragment"><p>The anatomy is always the same:</p></li>
+</ul>
+<div class="fragment">
+<table class="caption-top">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Piece</th>
+<th>What it is</th>
+<th>At Vungle</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>Control (A)</strong></td>
+<td>the current version, the baseline</td>
+<td>the existing ad-serving algorithm</td>
+</tr>
+<tr class="even">
+<td><strong>Variant (B)</strong></td>
+<td>the one change being tested</td>
+<td>the new algorithm</td>
+</tr>
+<tr class="odd">
+<td><strong>Random split</strong></td>
+<td>each unit goes to A or B at random, at the same time</td>
+<td>every impression routed by a hash</td>
+</tr>
+<tr class="even">
+<td><strong>One metric</strong></td>
+<td>the number that decides, chosen up front</td>
+<td><strong>eRPM</strong></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="fragment">
+<ul>
+<li class="fragment"><strong>Why split at random:</strong> it balances everything else (same days, same market, same advertisers), so the comparison is fair: any gap in the metric points to the <strong>version</strong>, not to outside factors.</li>
+</ul>
+</div>
+<div class="fragment">
+<ul>
+<li class="fragment">So <em>“is B better than A?”</em> sharpens into a testable question: <strong>does B’s eRPM really differ from A’s, or is any gap just day-to-day noise?</strong> The next nine topics build the tools to answer it.</li>
+</ul>
+</div>
+</section>
 <section id="one-big-call-one-question-a-week" class="slide level2 center">
 <h2>One Big Call, One Question a Week</h2>
 <p><strong>Vungle’s call (we land it in Topic 9):</strong> <em>roll out B to all advertisers, or stay with A?</em> Each topic answers one piece of it.</p>
