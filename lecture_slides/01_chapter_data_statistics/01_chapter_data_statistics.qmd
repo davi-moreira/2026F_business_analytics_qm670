@@ -221,29 +221,27 @@ The class **ends on the Team Sprint**, your group's graded submission. **Today i
 
 ## What Is an A/B Test?
 
-<br>
-
-- An **A/B test** is a controlled experiment that compares **two versions** of one thing to see which performs better on a single metric fixed in advance. Tech companies run thousands a year to choose features, prices, and, here, **ad algorithms**.
+- An **A/B test** is a controlled experiment that compares **two versions** of one thing to see which wins on a single metric, fixed up front.
 
 - The anatomy is always the same:
 
-::: fragment
+::: {.fragment style="font-size: 88%;"}
 
 | Piece | What it is | At Vungle |
 |---|---|---|
-| **Control (A)** | the current version, the baseline | the existing ad-serving algorithm |
+| **Control (A)** | the current baseline version | the existing algorithm |
 | **Variant (B)** | the one change being tested | the new algorithm |
-| **Random split** | each unit goes to A or B at random, at the same time | every impression routed by a hash |
-| **One metric** | the number that decides, chosen up front | **eRPM** |
+| **Random split** | each unit assigned at random, same time | impressions routed by a hash |
+| **One metric** | the number that decides, fixed up front | **eRPM** |
 
 :::
 
 ::: fragment
-- **Why split at random:** it balances everything else (same days, same market, same advertisers), so the comparison is fair: any gap in the metric points to the **version**, not to outside factors.
+- **Why split at random:** it balances everything else (same days, market, advertisers), so any gap in the metric points to the **version**, not to outside factors.
 :::
 
 ::: fragment
-- So *"is B better than A?"* sharpens into a testable question: **does B's eRPM really differ from A's, or is any gap just day-to-day noise?** The next nine topics build the tools to answer it.
+- So *"is B better than A?"* becomes testable: **does B's eRPM really differ from A's, or is any gap just noise?**
 :::
 
 ## One Big Call, One Question a Week
