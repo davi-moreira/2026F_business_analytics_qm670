@@ -21,43 +21,48 @@ subtitle: "Mitch. Daniels School of Business, Purdue University"
 
 This course develops the quantitative and data-analysis skills managers need to make data-driven decisions. Coverage includes descriptive statistics, probability and probability distributions, decision analysis, sampling distributions and interval estimation, hypothesis testing, and applied regression analysis (simple and multiple).
 
-Our main goal is to instill the basic quantitative and data analysis skills needed by managers in modern business, where Business Analytics and Data Science have become essential. These skills will aid in data-driven decision-making, risk assessments, and policy formulation, and will enable managers to collaborate effectively with data analysis teams to enhance business performance.
+Our primary goal is to instill the quantitative and data-analysis skills essential in modern business, where Business Analytics and Data Science are increasingly important. These skills empower managers to make data-based decisions, perform risk assessments, develop policies, and collaborate effectively with analytics teams to improve business performance.
+
+The course uses an **active-learning** approach built around realistic business cases. In each class you take the **manager's seat**: you evaluate an analyst's work, reproduce it yourself, stress-test it, and make the call.
 
 The course is **Excel-first**: every method is demonstrated in **Microsoft Excel** with the **Analysis ToolPak**, the standard tool for the analyses we cover.
 
 **Course Website**: [https://davi-moreira.github.io/2026F_business_analytics_qm670/](https://davi-moreira.github.io/2026F_business_analytics_qm670/){target="_blank"}
 
+**Meets:** Fall 2026 · Section 003 · MWF, 4:30–6:00 pm · RAWL 3058.
+
 ### Instructor: [Professor Davi Moreira](https://davi-moreira.github.io)
 
--   Email: [dmoreira\@purdue.edu](mailto:dmoreira@purdue.edu)
--   Virtual Office hours: *Zoom link in your Course Brightspace Page*
--   Individual Appointments: *Book time with me through the link in the course syllabus on your Course Brightspace Page or by appointment.*
+-   Office: Young Hall 1019
+-   Email: [dcordeir\@purdue.edu](mailto:dcordeir@purdue.edu)
+-   Office hours: Fridays, 2:30–3:30 pm ET (*Zoom link in your Course Brightspace Page*)
+-   Individual Appointments: *Book time with me through the link in the course syllabus on your Course Brightspace Page, or by appointment.*
 
 ### Learning Outcomes
 
 By the end of this course, students will be able to:
 
-1.  Understand the basic statistical principles and their applications in the area of management and business.\
-2.  Understand fundamental issues in business and management.\
-3.  Describe and use the commonly used statistical techniques for analyzing business data.\
-4.  Be proficient in using Excel to carry out statistical and analytics methods covered in the course.
+1.  Understand basic statistical principles and their applications in management and business.\
+2.  Understand fundamental issues in business and management, and translate them into statistical questions.\
+3.  Describe and use commonly used statistical techniques for analyzing business data, and interpret the results for a decision-maker.\
+4.  Be proficient in using Excel to carry out the statistical and analytics methods covered in the course.
 
-### Prerequisite
+### Prerequisites
 
--   Admission to the MS in Business Analytics & Information Management (MSBAIM), or an equivalent background in introductory statistics.
+This is an entry-level graduate analytics course. **No prior statistics is assumed.** Comfort with basic spreadsheet use is helpful but not required; we build the analytical tools from the ground up.
 
 ### Course Materials
 
 -   **Textbook**:\
     Anderson, Sweeney, Williams, Camm, and Cochran.\
-    *Statistics for Business and Economics*, 14th Edition, Cengage Learning, Inc.
+    *Statistics for Business and Economics*, 14th Edition, Cengage Learning, Inc. (ISBN-13: 978-1337901062), referred to as **SBE**.
 
 -   **Handouts**:\
     Lecture Slides and Supplementary Materials (available on Brightspace).\
     The E-Book and handouts are located in Brightspace → Content → Table of Contents → …
 
 -   **Computing**:\
-    Quizzes will be administered in-person, and you will need to work on practice exercises in class. You should have access to a PC, Mac, or tablet.
+    Bring a laptop (PC, Mac, or tablet) to **every class** for in-class practice exercises and group cases.
 
 -   **Software**:\
     Microsoft Excel is used for in-class demonstrations. Ensure the “Data Analysis” ToolPak is enabled:
