@@ -16,6 +16,7 @@ format:
   .overflow-table {
     font-size: 0.85rem; /* Smaller font for compact display */
     width: 100%; /* Ensure the table fits within page width */
+    table-layout: fixed; /* Fixed widths so the two case tables align */
     line-height: 1.2; /* Tighter line spacing */
   }
   .overflow-table th, .overflow-table td {
@@ -24,22 +25,33 @@ format:
     word-wrap: break-word; /* Wrap long text within cells */
     vertical-align: top; /* Align cell content to the top */
   }
-  .overflow-table th:nth-child(1), .overflow-table td:nth-child(1) {
-    width: 2%; /* Week */
+  .overflow-table th:nth-child(1), .overflow-table td:nth-child(1) { width: 3%; }  /* Week */
+  .overflow-table th:nth-child(2), .overflow-table td:nth-child(2) { width: 3%; }  /* Day */
+  .overflow-table th:nth-child(3), .overflow-table td:nth-child(3) { width: 6%; }  /* Date */
+  .overflow-table th:nth-child(4), .overflow-table td:nth-child(4) { width: 16%; } /* Topic */
+  .overflow-table th:nth-child(5), .overflow-table td:nth-child(5) { width: 8%; }  /* Book Sections */
+  .overflow-table th:nth-child(6), .overflow-table td:nth-child(6) { width: 6%; }  /* Slides */
+  .overflow-table th:nth-child(7), .overflow-table td:nth-child(7) { width: 9%; }  /* Data */
+  .overflow-table th:nth-child(8), .overflow-table td:nth-child(8) { width: 14%; } /* Assignment */
+  .overflow-table th:nth-child(9), .overflow-table td:nth-child(9) { width: 35%; } /* Supplementary */
+  /* Business-case bands that group the topic blocks */
+  .caseband {
+    font-size: 0.92rem;
+    font-weight: 600;
+    padding: 0.55rem 0.9rem;
+    margin: 1.3rem 0 0 0;
+    border-radius: 7px 7px 0 0;
+    background: #CFB991; /* Purdue gold (Vungle A/B) */
+    color: #1a1a1a;
+    border-left: 7px solid #8E6F3E;
   }
-  .overflow-table th:nth-child(4), .overflow-table td:nth-child(4) {
-    width: 17%; /* Topic */
+  .caseband p { margin: 0; }
+  .caseband-auto {
+    background: #373A36; /* Purdue coal/steel (Auto-Parts) */
+    color: #ffffff;
+    border-left: 7px solid #CFB991;
   }
-  .overflow-table th:nth-child(6), .overflow-table td:nth-child(6) {
-    width: 6%; /* Slides */
-  }
-  .overflow-table th:nth-child(7), .overflow-table td:nth-child(7) {
-    width: 9%; /* Data: keep "all datasets (.zip)" from breaking mid-word */
-  }
-  .overflow-table th:nth-child(8), .overflow-table td:nth-child(8) {
-    width: 14%; /* Assignment */
-  }
-  /* Supplementary Materials (col 9) takes the remaining width */
+  .caseband .case-q { font-weight: 400; font-style: italic; opacity: 0.9; }
   .below-table {
     font-size: 0.85rem; /* Match the font size of the table */
     line-height: 1.2; /* Match line height */
@@ -49,6 +61,10 @@ format:
 ```
 
 <br>
+
+::: {.caseband}
+📱 **Case 1 · Vungle A/B** · Topics 1–9 (describe, then infer) · [Decision: should Vungle roll out ad variant B?]{.case-q}
+:::
 
 ::: overflow-table
 | **Week** | **Day** | **Date** | **Topic** | **Book Sections\*** | **Slides** | **Data** | **Assignment\*\*** | **Supplementary Materials** |
@@ -69,6 +85,15 @@ format:
 | **5** | **W** | Sep 23 | **T08 · Hypothesis Testing I** | Ch. 9 | [slides](/lecture_slides/08_chapter_hypothesis_tests/08_chapter_hypothesis_tests.html){target="_blank"} | [all datasets (.zip)](/data/qm6700_datasets.zip) | Group case (Brightspace) | \- [**Video**: Hypothesis Testing Fundamentals (OpenIntro)](https://www.youtube.com/watch?v=NVbPE1_Cbx8){target="_blank"}<br>- [**Video**: Hypothesis Testing and the Null Hypothesis (StatQuest)](https://www.youtube.com/watch?v=0oc49DyA3hU){target="_blank"}<br>- [**Video**: p-values and How to Interpret Them (StatQuest)](https://www.youtube.com/watch?v=vemZtEM63GY){target="_blank"} |
 | **5** | **F** | Sep 25 | **T08 · Hypothesis Testing I** | Ch. 9 | [slides](/lecture_slides/08_chapter_hypothesis_tests/08_chapter_hypothesis_tests.html){target="_blank"} | [all datasets (.zip)](/data/qm6700_datasets.zip) | Group case (Brightspace) | . |
 | **6** | **M** | Sep 28 | **T09 · Hypothesis Testing II — Two Populations** | Ch. 10 | [slides](/lecture_slides/09_chapter_hypothesis_tests_two_populations/09_chapter_hypothesis_tests_two_populations.html){target="_blank"} | [all datasets (.zip)](/data/qm6700_datasets.zip) | Group case (Brightspace) | \- [**Video**: Two-sample t-test for a Difference of Means (Khan Academy)](https://www.khanacademy.org/math/ap-statistics/xfb5d8e68:inference-quantitative-means/two-sample-t-test-means/v/two-sample-t-test-for-difference-of-means){target="_blank"}<br>- [**Video**: Hypotheses for Paired and Two-sample t-tests (Khan Academy)](https://www.khanacademy.org/math/ap-statistics/xfb5d8e68:inference-quantitative-means/two-sample-t-test-means/v/example-of-hypotheses-for-paired-and-2-sample-t-tests){target="_blank"}<br>- [**Video**: Test for a Difference in Two Proportions (Khan Academy)](https://www.khanacademy.org/math/ap-statistics/xfb5d8e68:inference-categorical-proportions/two-sample-z-test-proportions/v/hypothesis-test-for-difference-in-proportions){target="_blank"}<br>- [**Reading**: Inference for Comparing Paired Means (OpenIntro)](https://openintro-ims.netlify.app/inference-paired-means.html){target="_blank"} |
+:::
+
+::: {.caseband .caseband-auto}
+🔧 **Case 2 · Auto-Parts Retail** · Topics 10–11 (predict) · [Decision: which factors lift store sales?]{.case-q}
+:::
+
+::: overflow-table
+| **Week** | **Day** | **Date** | **Topic** | **Book Sections\*** | **Slides** | **Data** | **Assignment\*\*** | **Supplementary Materials** |
+|------|------|------|------|------|------|------|------|------|
 | **6** | **W** | Sep 30 | **T10 · Simple Regression** | Ch. 14 | [slides](/lecture_slides/10_chapter_simple_regression/10_chapter_simple_regression.html){target="_blank"} | [all datasets (.zip)](/data/qm6700_datasets.zip) | Group case (Brightspace) | \- [**Video**: Line Fitting, Residuals, and Correlation (OpenIntro)](https://www.youtube.com/watch?v=mPvtZhdPBhQ){target="_blank"}<br>- [**Video**: Linear Regression (StatQuest)](https://www.youtube.com/watch?v=7ArmBVF2dCs){target="_blank"}<br>- [**Reading**: Linear Regression with a Single Predictor (OpenIntro)](https://openintro-ims.netlify.app/model-slr){target="_blank"} |
 | **6** | **F** | Oct 02 | **T10 · Simple Regression** | Ch. 14 | [slides](/lecture_slides/10_chapter_simple_regression/10_chapter_simple_regression.html){target="_blank"} | [all datasets (.zip)](/data/qm6700_datasets.zip) | Group case (Brightspace) | . |
 | **7** | **M** | Oct 05 | **T11 · Multiple Regression** | Ch. 15 | [slides](/lecture_slides/11_chapter_multiple_regression/11_chapter_multiple_regression.html){target="_blank"} | [all datasets (.zip)](/data/qm6700_datasets.zip) | Group case (Brightspace) · **Homework 3 assigned** | \- [**Video**: Introduction to Multiple Regression (OpenIntro)](https://www.youtube.com/watch?v=sQpAuyfEYZg){target="_blank"}<br>- [**Video**: Multiple Regression (StatQuest)](https://www.youtube.com/watch?v=EkAQAi3a4js){target="_blank"}<br>- [**Video**: Dummy Variables in Multiple Regression (Brandon Foltz)](https://www.youtube.com/watch?v=fTfMdCQJz4s){target="_blank"}<br>- [**Reading**: Linear Regression with Multiple Predictors (OpenIntro)](https://openintro-ims.netlify.app/model-mlr){target="_blank"} |

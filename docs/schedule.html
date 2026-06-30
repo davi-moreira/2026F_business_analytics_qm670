@@ -175,6 +175,7 @@ ul.task-list li input[type="checkbox"] {
   .overflow-table {
     font-size: 0.85rem; /* Smaller font for compact display */
     width: 100%; /* Ensure the table fits within page width */
+    table-layout: fixed; /* Fixed widths so the two case tables align */
     line-height: 1.2; /* Tighter line spacing */
   }
   .overflow-table th, .overflow-table td {
@@ -183,22 +184,33 @@ ul.task-list li input[type="checkbox"] {
     word-wrap: break-word; /* Wrap long text within cells */
     vertical-align: top; /* Align cell content to the top */
   }
-  .overflow-table th:nth-child(1), .overflow-table td:nth-child(1) {
-    width: 2%; /* Week */
+  .overflow-table th:nth-child(1), .overflow-table td:nth-child(1) { width: 3%; }  /* Week */
+  .overflow-table th:nth-child(2), .overflow-table td:nth-child(2) { width: 3%; }  /* Day */
+  .overflow-table th:nth-child(3), .overflow-table td:nth-child(3) { width: 6%; }  /* Date */
+  .overflow-table th:nth-child(4), .overflow-table td:nth-child(4) { width: 16%; } /* Topic */
+  .overflow-table th:nth-child(5), .overflow-table td:nth-child(5) { width: 8%; }  /* Book Sections */
+  .overflow-table th:nth-child(6), .overflow-table td:nth-child(6) { width: 6%; }  /* Slides */
+  .overflow-table th:nth-child(7), .overflow-table td:nth-child(7) { width: 9%; }  /* Data */
+  .overflow-table th:nth-child(8), .overflow-table td:nth-child(8) { width: 14%; } /* Assignment */
+  .overflow-table th:nth-child(9), .overflow-table td:nth-child(9) { width: 35%; } /* Supplementary */
+  /* Business-case bands that group the topic blocks */
+  .caseband {
+    font-size: 0.92rem;
+    font-weight: 600;
+    padding: 0.55rem 0.9rem;
+    margin: 1.3rem 0 0 0;
+    border-radius: 7px 7px 0 0;
+    background: #CFB991; /* Purdue gold (Vungle A/B) */
+    color: #1a1a1a;
+    border-left: 7px solid #8E6F3E;
   }
-  .overflow-table th:nth-child(4), .overflow-table td:nth-child(4) {
-    width: 17%; /* Topic */
+  .caseband p { margin: 0; }
+  .caseband-auto {
+    background: #373A36; /* Purdue coal/steel (Auto-Parts) */
+    color: #ffffff;
+    border-left: 7px solid #CFB991;
   }
-  .overflow-table th:nth-child(6), .overflow-table td:nth-child(6) {
-    width: 6%; /* Slides */
-  }
-  .overflow-table th:nth-child(7), .overflow-table td:nth-child(7) {
-    width: 9%; /* Data: keep "all datasets (.zip)" from breaking mid-word */
-  }
-  .overflow-table th:nth-child(8), .overflow-table td:nth-child(8) {
-    width: 14%; /* Assignment */
-  }
-  /* Supplementary Materials (col 9) takes the remaining width */
+  .caseband .case-q { font-weight: 400; font-style: italic; opacity: 0.9; }
   .below-table {
     font-size: 0.85rem; /* Match the font size of the table */
     line-height: 1.2; /* Match line height */
@@ -206,6 +218,9 @@ ul.task-list li input[type="checkbox"] {
   }
 </style>
 <p><br></p>
+<div class="caseband">
+<p>📱 <strong>Case 1 · Vungle A/B</strong> · Topics 1–9 (describe, then infer) · <span class="case-q">Decision: should Vungle roll out ad variant B?</span></p>
+</div>
 <div class="overflow-table">
 <table class="caption-top table">
 <thead>
@@ -398,6 +413,28 @@ ul.task-list li input[type="checkbox"] {
 <td>Group case (Brightspace)</td>
 <td>- <a href="https://www.khanacademy.org/math/ap-statistics/xfb5d8e68:inference-quantitative-means/two-sample-t-test-means/v/two-sample-t-test-for-difference-of-means" target="_blank"><strong>Video</strong>: Two-sample t-test for a Difference of Means (Khan Academy)</a><br>- <a href="https://www.khanacademy.org/math/ap-statistics/xfb5d8e68:inference-quantitative-means/two-sample-t-test-means/v/example-of-hypotheses-for-paired-and-2-sample-t-tests" target="_blank"><strong>Video</strong>: Hypotheses for Paired and Two-sample t-tests (Khan Academy)</a><br>- <a href="https://www.khanacademy.org/math/ap-statistics/xfb5d8e68:inference-categorical-proportions/two-sample-z-test-proportions/v/hypothesis-test-for-difference-in-proportions" target="_blank"><strong>Video</strong>: Test for a Difference in Two Proportions (Khan Academy)</a><br>- <a href="https://openintro-ims.netlify.app/inference-paired-means.html" target="_blank"><strong>Reading</strong>: Inference for Comparing Paired Means (OpenIntro)</a></td>
 </tr>
+</tbody>
+</table>
+</div>
+<div class="caseband caseband-auto">
+<p>🔧 <strong>Case 2 · Auto-Parts Retail</strong> · Topics 10–11 (predict) · <span class="case-q">Decision: which factors lift store sales?</span></p>
+</div>
+<div class="overflow-table">
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th><strong>Week</strong></th>
+<th><strong>Day</strong></th>
+<th><strong>Date</strong></th>
+<th><strong>Topic</strong></th>
+<th><strong>Book Sections*</strong></th>
+<th><strong>Slides</strong></th>
+<th><strong>Data</strong></th>
+<th><strong>Assignment**</strong></th>
+<th><strong>Supplementary Materials</strong></th>
+</tr>
+</thead>
+<tbody>
 <tr class="odd">
 <td><strong>6</strong></td>
 <td><strong>W</strong></td>
