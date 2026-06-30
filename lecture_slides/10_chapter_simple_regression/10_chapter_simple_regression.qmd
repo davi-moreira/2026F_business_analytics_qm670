@@ -411,7 +411,6 @@ $$
 
 ## Do It in Excel: Run the Regression
 
-::::: nonincremental
 :::: columns
 ::: {.column width="44%"}
 **Follow along:**
@@ -433,7 +432,6 @@ knitr::include_graphics("figs/autoparts_reg_coef.png")
 ```
 :::
 ::::
-:::::
 
 ## The Manager's Takeaway (Lecture 1)
 
@@ -610,7 +608,6 @@ knitr::include_graphics("figs/armands_reg_coef.png")
 
 ## Do It in Excel: Read the Slope Test and CI
 
-::::: nonincremental
 :::: columns
 ::: {.column width="46%"}
 **Follow along (same Regression output):**
@@ -631,7 +628,6 @@ knitr::include_graphics("figs/autoparts_reg_anova.png")
 ```
 :::
 ::::
-:::::
 
 ## A Question That Often Comes Up
 
