@@ -330,7 +330,7 @@ $$
 ## Do It in Excel: Expected Value & Variance
 
 :::::: columns
-::: {.column .nonincremental width="46%"}
+:::: {.column width="46%"}
 **Follow along:**
 
 1. Lay out the $x$ values in column A and $f(x)$ in column B (the JSL table).
@@ -338,8 +338,10 @@ $$
 3. Column D: `=(A2-$E$1)^2*B2`, with $\mu$ parked in `E1`; $\sigma^2 =$ `=SUM(D2:D6)` $= 1.66$.
 4. $\sigma =$ `=SQRT(...)` $= 1.29$, back in plain TV units.
 
+::: fragment
 No ToolPak tool needed: this is the engine behind **every** discrete distribution; Binomial and Poisson just supply $f(x)$.
 :::
+::::
 ::: {.column width="54%"}
 ![](figs/excel_ev_var.png){.nostretch fig-align="center" width="100%"}
 :::
@@ -700,7 +702,7 @@ knitr::include_graphics("figs/binom_tail_vungle_B.png")
 ## Do It in Excel: The Vungle Burst (`BINOM.DIST`)
 
 :::::: columns
-::: {.column .nonincremental width="46%"}
+::: {.column width="46%"}
 **Follow along:**
 
 1. List the install counts $x = 0, 1, 2, \dots$ down column A.
@@ -949,7 +951,7 @@ knitr::include_graphics("figs/binom_vs_poisson.png")
 ## Do It in Excel: Binomial vs. Poisson Side by Side
 
 :::::: columns
-::: {.column .nonincremental width="46%"}
+:::: {.column width="46%"}
 **Follow along:**
 
 1. List the counts $x = 0, 1, 2, \dots$ in column A.
@@ -957,8 +959,10 @@ knitr::include_graphics("figs/binom_vs_poisson.png")
 3. Column C (Poisson): `=POISSON.DIST(A2, 3.5, FALSE)`.
 4. Column D: `=B2-C2` to see the gap; it stays under 0.001 at every $x$.
 
+::: fragment
 Poisson needs **one** input ($\mu = 3.5$); Binomial needs **two** ($n, p$); for rare events you often only know the rate.
 :::
+::::
 ::: {.column width="54%"}
 ![](figs/excel_binom_vs_poisson.png){.nostretch fig-align="center" width="100%"}
 :::

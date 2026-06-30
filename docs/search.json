@@ -2554,7 +2554,7 @@
     "href": "lecture_slides/05_chapter_discrete_probability_distributions/05_chapter_discrete_probability_distributions.html#do-it-in-excel-expected-value-variance",
     "title": " QM 6700: Business Analytics ",
     "section": "Do It in Excel: Expected Value & Variance",
-    "text": "Do It in Excel: Expected Value & Variance\n\n\nFollow along:\n\nLay out the \\(x\\) values in column A and \\(f(x)\\) in column B (the JSL table).\nColumn C: =A2*B2 (the \\(x\\,f(x)\\) terms); \\(E(X) =\\) =SUM(C2:C6) \\(= 1.20\\).\nColumn D: =(A2-$E$1)^2*B2, with \\(\\mu\\) parked in E1; \\(\\sigma^2 =\\) =SUM(D2:D6) \\(= 1.66\\).\n\\(\\sigma =\\) =SQRT(...) \\(= 1.29\\), back in plain TV units.\n\nNo ToolPak tool needed: this is the engine behind every discrete distribution; Binomial and Poisson just supply \\(f(x)\\)."
+    "text": "Do It in Excel: Expected Value & Variance\n\n\nFollow along:\n\nLay out the \\(x\\) values in column A and \\(f(x)\\) in column B (the JSL table).\nColumn C: =A2*B2 (the \\(x\\,f(x)\\) terms); \\(E(X) =\\) =SUM(C2:C6) \\(= 1.20\\).\nColumn D: =(A2-$E$1)^2*B2, with \\(\\mu\\) parked in E1; \\(\\sigma^2 =\\) =SUM(D2:D6) \\(= 1.66\\).\n\\(\\sigma =\\) =SQRT(...) \\(= 1.29\\), back in plain TV units.\n\n\nNo ToolPak tool needed: this is the engine behind every discrete distribution; Binomial and Poisson just supply \\(f(x)\\)."
   },
   {
     "objectID": "lecture_slides/05_chapter_discrete_probability_distributions/05_chapter_discrete_probability_distributions.html#why-managers-care-mean-and-risk-together",
@@ -2820,7 +2820,7 @@
     "href": "lecture_slides/05_chapter_discrete_probability_distributions/05_chapter_discrete_probability_distributions.html#do-it-in-excel-binomial-vs.-poisson-side-by-side",
     "title": " QM 6700: Business Analytics ",
     "section": "Do It in Excel: Binomial vs. Poisson Side by Side",
-    "text": "Do It in Excel: Binomial vs. Poisson Side by Side\n\n\nFollow along:\n\nList the counts \\(x = 0, 1, 2, \\dots\\) in column A.\nColumn B (Binomial): =BINOM.DIST(A2, 1000, 0.0035, FALSE).\nColumn C (Poisson): =POISSON.DIST(A2, 3.5, FALSE).\nColumn D: =B2-C2 to see the gap; it stays under 0.001 at every \\(x\\).\n\nPoisson needs one input (\\(\\mu = 3.5\\)); Binomial needs two (\\(n, p\\)); for rare events you often only know the rate."
+    "text": "Do It in Excel: Binomial vs. Poisson Side by Side\n\n\nFollow along:\n\nList the counts \\(x = 0, 1, 2, \\dots\\) in column A.\nColumn B (Binomial): =BINOM.DIST(A2, 1000, 0.0035, FALSE).\nColumn C (Poisson): =POISSON.DIST(A2, 3.5, FALSE).\nColumn D: =B2-C2 to see the gap; it stays under 0.001 at every \\(x\\).\n\n\nPoisson needs one input (\\(\\mu = 3.5\\)); Binomial needs two (\\(n, p\\)); for rare events you often only know the rate."
   },
   {
     "objectID": "lecture_slides/05_chapter_discrete_probability_distributions/05_chapter_discrete_probability_distributions.html#which-model-should-you-reach-for",
