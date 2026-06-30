@@ -54,7 +54,7 @@ html-math-method:
 
 <br>
 
-- [Vungle](https://liftoff.ai/) serves 15-second video ads inside other apps and earns revenue mainly when viewers **install** the advertised app.
+- **Vungle** serves 15-second video ads inside other apps and earns revenue mainly when viewers **install** the advertised app.
 
 - The metric that pays the bills is **eRPM**: effective revenue per 1,000 impressions. Algorithm **B** is the new ad-serving engine the team is evaluating.
 

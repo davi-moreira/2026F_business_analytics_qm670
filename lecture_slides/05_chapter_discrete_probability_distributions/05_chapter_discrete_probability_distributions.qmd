@@ -53,7 +53,7 @@ html-math-method:
 
 <br>
 
-- [Vungle](https://techcrunch.com/2019/07/15/blackstone-is-acquiring-mobile-ad-company-vungle/) (today part of Liftoff) is a mobile ad-tech startup: it serves 15-second video ads inside other apps and earns revenue mainly when a viewer **installs** the advertised app.
+- **Vungle** (today part of Liftoff) is a mobile ad-tech startup: it serves 15-second video ads inside other apps and earns revenue mainly when a viewer **installs** the advertised app.
 
 - Across June 2014, algorithm **A** served ~236M impressions and **B** served ~16M, side by side. The metric that pays the bills is **eRPM** (revenue per 1,000 impressions).
 

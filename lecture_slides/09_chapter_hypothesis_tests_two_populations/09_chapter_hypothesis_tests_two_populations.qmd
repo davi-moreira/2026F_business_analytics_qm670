@@ -52,7 +52,7 @@ html-math-method:
 
 <br>
 
-- [Vungle](https://techcrunch.com/2017/02/15/vungle-300-million/) is a mobile ad-tech startup: it serves 15-second video ads inside other companies' apps and earns revenue mainly when viewers **install** the advertised app (cost-per-install).
+- **Vungle** is a mobile ad-tech startup: it serves 15-second video ads inside other companies' apps and earns revenue mainly when viewers **install** the advertised app (cost-per-install).
 
 - Two Darden MBAs, **Andrew Kritzer** and **Hammond Guerin**, built a new ad-serving algorithm (**B**) and ran it head-to-head against the existing one (**A**) for the entire month of June 2014.
 
