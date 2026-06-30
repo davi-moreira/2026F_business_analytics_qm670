@@ -139,29 +139,11 @@ knitr::include_graphics("figs/sampling_methods.png")
 
 - A different random sample gives a different estimate, so a point estimate alone never tells us **how close** we are.
 
-## Anchor Example: St. Andrew's College
-
-<br>
-
-- St. Andrew's received **900 applications**. The Director wants the **mean SAT score** and the **proportion** wanting on-campus housing, *before* the full data are entered.
-
-- She draws a **simple random sample** of $n = 30$ applicants:
-
-::: fragment
-| Parameter | True value (later) | Sample estimate ($n=30$) |
-|---|---:|---:|
-| Mean SAT $\mu$ | 1697 | $\bar{x} = 1684$ |
-| SD $\sigma$ | 87.4 | $s = 85.2$ |
-| Proportion housing $p$ | 0.72 | $\bar{p} = 0.67$ |
-:::
-
-- Each estimate is **close but not exact**, and a *different* 30 applicants would have landed elsewhere. That variability is exactly what the sampling distribution describes.
-
 ## The Vungle Point Estimates
 
 <br>
 
-- Vungle's 30-day sample gives the same kind of best guesses:
+- Vungle's 30 days are a **sample**. Each number below is our single best guess at a *true* value we never observe directly:
 
 ::: fragment
 | Parameter (true, going forward) | Point estimate from 30 days |
@@ -171,7 +153,7 @@ knitr::include_graphics("figs/sampling_methods.png")
 | Mean daily conversion rate, B | $\bar{x} = 0.354\%$ |
 :::
 
-- These three numbers are our best single guesses. The rest of the topic builds the **interval** that quantifies how far off each guess might be.
+- These are our best single guesses, but a **different** 30 days would have landed elsewhere. That sample-to-sample wobble is exactly what the **sampling distribution** (next) describes, and what the **interval** later quantifies as "how far off might each guess be."
 
 ## Do It in Excel: Descriptive Statistics for B
 
@@ -253,16 +235,16 @@ $$
 
 - The standard error $\sigma/\sqrt{n}$ depends on the **sample size $n$**, *not* on how big the population is.
 
-- **This is the wonderful part:** to halve the wobble of your estimate you need **four times** the data ($\sqrt{n}$), and it does not matter whether the population is 900 applicants or billions of impressions.
+- **This is the wonderful part:** to halve the wobble of your estimate you need **four times** the data ($\sqrt{n}$), and it does not matter whether the population is a few thousand users or Vungle's billions of impressions.
 
 ::: fragment
-| St. Andrew's: $\sigma = 87.4$ | $\sigma_{\bar{x}} = 87.4/\sqrt{n}$ |
+| B's eRPM: $s = \$0.344$ | $\sigma_{\bar{x}} = 0.344/\sqrt{n}$ |
 |---|---:|
-| $n = 30$ | $15.96$ |
-| $n = 100$ | $8.74$ |
+| $n = 30$ days | $\$0.063$ |
+| $n = 120$ days | $\$0.031$ |
 :::
 
-- More than triple the sample → the standard error roughly **halves**. Precision is *bought* with sample size.
+- Quadruple the days ($30 \to 120$) → the standard error **halves** exactly ($\sqrt{4}=2$). Precision is *bought* with sample size.
 
 ## A Question That Often Comes Up
 
@@ -272,7 +254,7 @@ $$
 [Vungle serves billions of impressions. How can 30 days possibly say anything about a population that huge?]{.faq-q}
 
 ::: {.fragment .faq-a}
-**Short answer:** the standard error is $\sigma/\sqrt{n}$, and the population size $N$ is **nowhere in it**. A 30-day sample is exactly as precise whether the population is 900 St. Andrew's applicants or Vungle's billions of impressions. Precision rides on **how many days you sampled**, not on how big the world you sampled from is.
+**Short answer:** the standard error is $\sigma/\sqrt{n}$, and the population size $N$ is **nowhere in it**. A 30-day sample is exactly as precise whether B serves a few thousand impressions a day or a few billion. Precision rides on **how many days you sampled**, not on how big the world you sampled from is.
 :::
 ::::
 
@@ -405,7 +387,7 @@ $$
 
 :::
 
-- St. Andrew's: $n = 30$, $p = 0.72$ → $np = 21.6 \geq 5$ and $n(1-p) = 8.4 \geq 5$ ✓, so the normal approximation is acceptable.
+- **Vungle's conversion:** with $\bar{p} \approx 0.0035$ over B's 30 days of impressions, $n\bar{p} =$ installs $\approx 56{,}031 \geq 5$ and $n(1-\bar{p}) \approx 15.8\text{M} \geq 5$ ✓, so the Normal approximation is safe.
 
 ## Debrief: Lecture 1 Takeaway
 
@@ -614,34 +596,6 @@ Build a 95% interval the same way many times: about **19 of every 20** capture t
 :::
 ::::
 
-## Anchor Example: Apartment Rents
-
-::: r-fit-text
-A reporter samples $n = 16$ one-bedroom apartments near campus: $\bar{x} = \$750$/month, $s = \$55$. Population assumed roughly Normal; $\sigma$ unknown → **$t$-interval**, $df = 15$.
-
-::: fragment
-
-$$
-t_{0.025,\,15} = 2.131,
-\qquad
-\frac{s}{\sqrt{n}} = \frac{55}{\sqrt{16}} = 13.75,
-\qquad
-E = 2.131 \times 13.75 = 29.31
-$$
-
-:::
-
-::: fragment
-
-$$
-750 \pm 29.31 \;=\; (\$720.69,\; \$779.31)
-$$
-
-:::
-
-**Read it:** *we are 95% confident the true mean rent for one-bedroom apartments near campus is between \$721 and \$779.* In Excel: `=CONFIDENCE.T(0.05, 55, 16)` returns the margin \$29.31 directly.
-:::
-
 ## The Vungle eRPM Interval: the Five Steps
 
 ::: r-fit-text
@@ -736,32 +690,6 @@ $$
 **Short answer:** the $t$ exists to fix one specific problem: estimating a **separate** spread $s$ for a mean. A proportion has no separate spread; its variability is fixed by $p$ itself, so there is nothing extra to estimate and no fattened tails to correct. We plug $\bar{p}$ into the standard error and use $z$ straight away, after checking $n\bar{p} \geq 5$ and $n(1-\bar{p}) \geq 5$.
 :::
 ::::
-
-## Anchor Example: PSI Election Poll
-
-::: r-fit-text
-Political Science Inc. contacts $n = 500$ registered voters; **220** favor the candidate, so $\bar{p} = 220/500 = 0.44$. Build a 95% interval for the true share.
-
-::: fragment
-
-$$
-\sqrt{\frac{0.44(0.56)}{500}} = 0.0222,
-\qquad
-E = 1.96 \times 0.0222 = 0.0435
-$$
-
-:::
-
-::: fragment
-
-$$
-0.44 \pm 0.0435 \;=\; (0.3965,\; 0.4835)
-$$
-
-:::
-
-**Read it:** *PSI is 95% confident that between 39.6% and 48.4% of all voters favor the candidate.* The interval straddles 50% from below: too close to call a lead.
-:::
 
 ## Vungle Conversion Rate: a Proportion in Practice
 
@@ -931,7 +859,7 @@ $$
 
 - $p^*$ is a **planning value** for the proportion: a prior estimate, a pilot, or (if you know nothing) the **conservative $p^* = 0.5$**, which maximizes $p^*(1-p^*)$ and gives the largest (safest) $n$.
 
-- **PSI example:** for $E = 0.03$ at 99% ($z = 2.576$): with $p^* = 0.44$, $n = 1817$; with the conservative $p^* = 0.5$, $n = 1844$. When unsure, plan for the larger.
+- **Vungle's conversion:** B's rate is tiny ($p^* \approx 0.0035$), so the blind $p^* = 0.5$ wildly over-sizes. To pin the true rate within $E = 0.0003$ ($\pm 0.03$pt) at 95%: the pilot $p^* = 0.0035$ needs $n \approx 149{,}000$ impressions; the conservative $p^* = 0.5$ would demand $n \approx 10.7$ million. A good planning value saves enormous data when the event is rare.
 
 # Debrief: The Estimation Memo {background-color="#cfb991"}
 

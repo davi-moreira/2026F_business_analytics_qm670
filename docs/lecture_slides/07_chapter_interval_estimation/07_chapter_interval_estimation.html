@@ -10,7 +10,7 @@
   <meta name="generator" content="quarto-1.9.37">
 
   <meta name="author" content="Professor Davi Moreira ">
-  <title>QM 6700: Business Analytics –  QM 6700: Business Analytics </title>
+  <title>QM 67000: Business Analytics –  QM 6700: Business Analytics </title>
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
@@ -300,50 +300,11 @@ Professor<br>Davi Moreira<br>
 <li class="fragment"><p>A different random sample gives a different estimate, so a point estimate alone never tells us <strong>how close</strong> we are.</p></li>
 </ul>
 </section>
-<section id="anchor-example-st.-andrews-college" class="slide level2 center">
-<h2>Anchor Example: St.&nbsp;Andrew’s College</h2>
-<p><br></p>
-<ul>
-<li class="fragment"><p>St.&nbsp;Andrew’s received <strong>900 applications</strong>. The Director wants the <strong>mean SAT score</strong> and the <strong>proportion</strong> wanting on-campus housing, <em>before</em> the full data are entered.</p></li>
-<li class="fragment"><p>She draws a <strong>simple random sample</strong> of <span class="math inline">\(n = 30\)</span> applicants:</p></li>
-</ul>
-<div class="fragment">
-<table class="caption-top">
-<thead>
-<tr class="header">
-<th>Parameter</th>
-<th style="text-align: right;">True value (later)</th>
-<th style="text-align: right;">Sample estimate (<span class="math inline">\(n=30\)</span>)</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>Mean SAT <span class="math inline">\(\mu\)</span></td>
-<td style="text-align: right;">1697</td>
-<td style="text-align: right;"><span class="math inline">\(\bar{x} = 1684\)</span></td>
-</tr>
-<tr class="even">
-<td>SD <span class="math inline">\(\sigma\)</span></td>
-<td style="text-align: right;">87.4</td>
-<td style="text-align: right;"><span class="math inline">\(s = 85.2\)</span></td>
-</tr>
-<tr class="odd">
-<td>Proportion housing <span class="math inline">\(p\)</span></td>
-<td style="text-align: right;">0.72</td>
-<td style="text-align: right;"><span class="math inline">\(\bar{p} = 0.67\)</span></td>
-</tr>
-</tbody>
-</table>
-</div>
-<ul>
-<li class="fragment">Each estimate is <strong>close but not exact</strong>, and a <em>different</em> 30 applicants would have landed elsewhere. That variability is exactly what the sampling distribution describes.</li>
-</ul>
-</section>
 <section id="the-vungle-point-estimates" class="slide level2 center">
 <h2>The Vungle Point Estimates</h2>
 <p><br></p>
 <ul>
-<li class="fragment">Vungle’s 30-day sample gives the same kind of best guesses:</li>
+<li class="fragment">Vungle’s 30 days are a <strong>sample</strong>. Each number below is our single best guess at a <em>true</em> value we never observe directly:</li>
 </ul>
 <div class="fragment">
 <table class="caption-top">
@@ -370,7 +331,7 @@ Professor<br>Davi Moreira<br>
 </table>
 </div>
 <ul>
-<li class="fragment">These three numbers are our best single guesses. The rest of the topic builds the <strong>interval</strong> that quantifies how far off each guess might be.</li>
+<li class="fragment">These are our best single guesses, but a <strong>different</strong> 30 days would have landed elsewhere. That sample-to-sample wobble is exactly what the <strong>sampling distribution</strong> (next) describes, and what the <strong>interval</strong> later quantifies as “how far off might each guess be.”</li>
 </ul>
 </section>
 <section id="do-it-in-excel-descriptive-statistics-for-b" class="slide level2 center">
@@ -451,30 +412,30 @@ E(\bar{x}) = \mu
 <p><br></p>
 <ul>
 <li class="fragment"><p>The standard error <span class="math inline">\(\sigma/\sqrt{n}\)</span> depends on the <strong>sample size <span class="math inline">\(n\)</span></strong>, <em>not</em> on how big the population is.</p></li>
-<li class="fragment"><p><strong>This is the wonderful part:</strong> to halve the wobble of your estimate you need <strong>four times</strong> the data (<span class="math inline">\(\sqrt{n}\)</span>), and it does not matter whether the population is 900 applicants or billions of impressions.</p></li>
+<li class="fragment"><p><strong>This is the wonderful part:</strong> to halve the wobble of your estimate you need <strong>four times</strong> the data (<span class="math inline">\(\sqrt{n}\)</span>), and it does not matter whether the population is a few thousand users or Vungle’s billions of impressions.</p></li>
 </ul>
 <div class="fragment">
 <table class="caption-top">
 <thead>
 <tr class="header">
-<th>St.&nbsp;Andrew’s: <span class="math inline">\(\sigma = 87.4\)</span></th>
-<th style="text-align: right;"><span class="math inline">\(\sigma_{\bar{x}} = 87.4/\sqrt{n}\)</span></th>
+<th>B’s eRPM: <span class="math inline">\(s = \$0.344\)</span></th>
+<th style="text-align: right;"><span class="math inline">\(\sigma_{\bar{x}} = 0.344/\sqrt{n}\)</span></th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td><span class="math inline">\(n = 30\)</span></td>
-<td style="text-align: right;"><span class="math inline">\(15.96\)</span></td>
+<td><span class="math inline">\(n = 30\)</span> days</td>
+<td style="text-align: right;"><span class="math inline">\(\$0.063\)</span></td>
 </tr>
 <tr class="even">
-<td><span class="math inline">\(n = 100\)</span></td>
-<td style="text-align: right;"><span class="math inline">\(8.74\)</span></td>
+<td><span class="math inline">\(n = 120\)</span> days</td>
+<td style="text-align: right;"><span class="math inline">\(\$0.031\)</span></td>
 </tr>
 </tbody>
 </table>
 </div>
 <ul>
-<li class="fragment">More than triple the sample → the standard error roughly <strong>halves</strong>. Precision is <em>bought</em> with sample size.</li>
+<li class="fragment">Quadruple the days (<span class="math inline">\(30 \to 120\)</span>) → the standard error <strong>halves</strong> exactly (<span class="math inline">\(\sqrt{4}=2\)</span>). Precision is <em>bought</em> with sample size.</li>
 </ul>
 </section>
 <section id="a-question-that-often-comes-up-1" class="slide level2 center">
@@ -483,7 +444,7 @@ E(\bar{x}) = \mu
 <p><strong>A question that often comes up at this point:</strong></p>
 <p><span class="faq-q">Vungle serves billions of impressions. How can 30 days possibly say anything about a population that huge?</span></p>
 <div class="fragment faq-a">
-<p><strong>Short answer:</strong> the standard error is <span class="math inline">\(\sigma/\sqrt{n}\)</span>, and the population size <span class="math inline">\(N\)</span> is <strong>nowhere in it</strong>. A 30-day sample is exactly as precise whether the population is 900 St.&nbsp;Andrew’s applicants or Vungle’s billions of impressions. Precision rides on <strong>how many days you sampled</strong>, not on how big the world you sampled from is.</p>
+<p><strong>Short answer:</strong> the standard error is <span class="math inline">\(\sigma/\sqrt{n}\)</span>, and the population size <span class="math inline">\(N\)</span> is <strong>nowhere in it</strong>. A 30-day sample is exactly as precise whether B serves a few thousand impressions a day or a few billion. Precision rides on <strong>how many days you sampled</strong>, not on how big the world you sampled from is.</p>
 </div>
 </div>
 </section>
@@ -603,7 +564,7 @@ np \geq 5 \qquad \text{and} \qquad n(1-p) \geq 5
 \]</span></p>
 </div>
 <ul>
-<li class="fragment">St.&nbsp;Andrew’s: <span class="math inline">\(n = 30\)</span>, <span class="math inline">\(p = 0.72\)</span> → <span class="math inline">\(np = 21.6 \geq 5\)</span> and <span class="math inline">\(n(1-p) = 8.4 \geq 5\)</span> ✓, so the normal approximation is acceptable.</li>
+<li class="fragment"><strong>Vungle’s conversion:</strong> with <span class="math inline">\(\bar{p} \approx 0.0035\)</span> over B’s 30 days of impressions, <span class="math inline">\(n\bar{p} =\)</span> installs <span class="math inline">\(\approx 56{,}031 \geq 5\)</span> and <span class="math inline">\(n(1-\bar{p}) \approx 15.8\text{M} \geq 5\)</span> ✓, so the Normal approximation is safe.</li>
 </ul>
 </section>
 <section id="debrief-lecture-1-takeaway" class="slide level2 center">
@@ -821,27 +782,6 @@ E = (\text{a multiplier}) \times (\text{standard error})
 </div>
 </div>
 </section>
-<section id="anchor-example-apartment-rents" class="slide level2 center">
-<h2>Anchor Example: Apartment Rents</h2>
-<div class="r-fit-text">
-<p>A reporter samples <span class="math inline">\(n = 16\)</span> one-bedroom apartments near campus: <span class="math inline">\(\bar{x} = \$750\)</span>/month, <span class="math inline">\(s = \$55\)</span>. Population assumed roughly Normal; <span class="math inline">\(\sigma\)</span> unknown → <strong><span class="math inline">\(t\)</span>-interval</strong>, <span class="math inline">\(df = 15\)</span>.</p>
-<div class="fragment">
-<p><span class="math display">\[
-t_{0.025,\,15} = 2.131,
-\qquad
-\frac{s}{\sqrt{n}} = \frac{55}{\sqrt{16}} = 13.75,
-\qquad
-E = 2.131 \times 13.75 = 29.31
-\]</span></p>
-</div>
-<div class="fragment">
-<p><span class="math display">\[
-750 \pm 29.31 \;=\; (\$720.69,\; \$779.31)
-\]</span></p>
-</div>
-<p><strong>Read it:</strong> <em>we are 95% confident the true mean rent for one-bedroom apartments near campus is between $721 and $779.</em> In Excel: <code>=CONFIDENCE.T(0.05, 55, 16)</code> returns the margin $29.31 directly.</p>
-</div>
-</section>
 <section id="the-vungle-erpm-interval-the-five-steps" class="slide level2 center">
 <h2>The Vungle eRPM Interval: the Five Steps</h2>
 <div class="r-fit-text">
@@ -931,25 +871,6 @@ E = 2.045 \times 0.0629 = 0.1286
 <div class="fragment faq-a">
 <p><strong>Short answer:</strong> the <span class="math inline">\(t\)</span> exists to fix one specific problem: estimating a <strong>separate</strong> spread <span class="math inline">\(s\)</span> for a mean. A proportion has no separate spread; its variability is fixed by <span class="math inline">\(p\)</span> itself, so there is nothing extra to estimate and no fattened tails to correct. We plug <span class="math inline">\(\bar{p}\)</span> into the standard error and use <span class="math inline">\(z\)</span> straight away, after checking <span class="math inline">\(n\bar{p} \geq 5\)</span> and <span class="math inline">\(n(1-\bar{p}) \geq 5\)</span>.</p>
 </div>
-</div>
-</section>
-<section id="anchor-example-psi-election-poll" class="slide level2 center">
-<h2>Anchor Example: PSI Election Poll</h2>
-<div class="r-fit-text">
-<p>Political Science Inc.&nbsp;contacts <span class="math inline">\(n = 500\)</span> registered voters; <strong>220</strong> favor the candidate, so <span class="math inline">\(\bar{p} = 220/500 = 0.44\)</span>. Build a 95% interval for the true share.</p>
-<div class="fragment">
-<p><span class="math display">\[
-\sqrt{\frac{0.44(0.56)}{500}} = 0.0222,
-\qquad
-E = 1.96 \times 0.0222 = 0.0435
-\]</span></p>
-</div>
-<div class="fragment">
-<p><span class="math display">\[
-0.44 \pm 0.0435 \;=\; (0.3965,\; 0.4835)
-\]</span></p>
-</div>
-<p><strong>Read it:</strong> <em>PSI is 95% confident that between 39.6% and 48.4% of all voters favor the candidate.</em> The interval straddles 50% from below: too close to call a lead.</p>
 </div>
 </section>
 <section id="vungle-conversion-rate-a-proportion-in-practice" class="slide level2 center">
@@ -1189,7 +1110,7 @@ n = \frac{z_{\alpha/2}^{2}\,p^*(1-p^*)}{E^{2}}
 </div>
 <ul>
 <li class="fragment"><p><span class="math inline">\(p^*\)</span> is a <strong>planning value</strong> for the proportion: a prior estimate, a pilot, or (if you know nothing) the <strong>conservative <span class="math inline">\(p^* = 0.5\)</span></strong>, which maximizes <span class="math inline">\(p^*(1-p^*)\)</span> and gives the largest (safest) <span class="math inline">\(n\)</span>.</p></li>
-<li class="fragment"><p><strong>PSI example:</strong> for <span class="math inline">\(E = 0.03\)</span> at 99% (<span class="math inline">\(z = 2.576\)</span>): with <span class="math inline">\(p^* = 0.44\)</span>, <span class="math inline">\(n = 1817\)</span>; with the conservative <span class="math inline">\(p^* = 0.5\)</span>, <span class="math inline">\(n = 1844\)</span>. When unsure, plan for the larger.</p></li>
+<li class="fragment"><p><strong>Vungle’s conversion:</strong> B’s rate is tiny (<span class="math inline">\(p^* \approx 0.0035\)</span>), so the blind <span class="math inline">\(p^* = 0.5\)</span> wildly over-sizes. To pin the true rate within <span class="math inline">\(E = 0.0003\)</span> (<span class="math inline">\(\pm 0.03\)</span>pt) at 95%: the pilot <span class="math inline">\(p^* = 0.0035\)</span> needs <span class="math inline">\(n \approx 149{,}000\)</span> impressions; the conservative <span class="math inline">\(p^* = 0.5\)</span> would demand <span class="math inline">\(n \approx 10.7\)</span> million. A good planning value saves enormous data when the event is rare.</p></li>
 </ul>
 </section></section>
 <section>
