@@ -747,7 +747,7 @@ z_i = \frac{x_i - \bar{x}}{s}
 </div>
 <ul>
 <li class="fragment"><p><span class="math inline">\(z &lt; 0\)</span> → below the mean; <span class="math inline">\(z &gt; 0\)</span> → above; <span class="math inline">\(z = 0\)</span> → exactly at the mean. A <span class="math inline">\(z\)</span> of <span class="math inline">\(+2\)</span> means “two SDs above average.”</p></li>
-<li class="fragment"><p>It lets you compare positions <strong>across different scales</strong>: a $4.07 eRPM day and a 38,000-install day both become “how many SDs from typical?”</p></li>
+<li class="fragment"><p>It lets you compare positions <strong>across different scales</strong>: a $4.07 eRPM day (dollars) and a 38,000-install day (a raw count) both become “how many SDs from typical?”</p></li>
 <li class="fragment"><p><strong>Excel:</strong> <code>=STANDARDIZE(x, mean, standard_deviation)</code>.</p></li>
 </ul>
 </section>
@@ -902,9 +902,9 @@ z_i = \frac{x_i - \bar{x}}{s}
 <h2>A Question That Often Comes Up</h2>
 <div class="faq">
 <p><strong>A question that often comes up at this point:</strong></p>
-<p><span class="faq-q">The two rules disagree on June 2 and June 3. Which one is right, and should I drop those days?</span></p>
+<p><span class="faq-q">The boxplot flags June 2 and June 3 as low outliers. Should that change my call on B?</span></p>
 <div class="fragment faq-a">
-<p><strong>Short answer:</strong> neither is “right”: the 1.5×IQR rule is simply more sensitive in the tails than the |z| &gt; 3 rule. A flag is an invitation to investigate, not a delete button. Check whether June 2 and 3 were genuine slow days before you ever drop them.</p>
+<p><strong>Short answer:</strong> only if you learn <em>why</em> they were slow. If June 2-3 trace to a known, repeatable cause (a weekend dip, a tracking gap), they are real information about B’s bad days. If they were a one-off fluke, they are noise you should not over-weight. Either way the move is the same: find the cause before you drop a day or downgrade B; never delete a point just because a rule flagged it.</p>
 </div>
 </div>
 </section></section>
@@ -1239,7 +1239,6 @@ r_{xy} = \frac{s_{xy}}{s_x \, s_y}
 <li class="fragment"><p><strong>Center:</strong> B’s mean eRPM ($3.459) sits about <strong>$0.11 above</strong> A’s ($3.347); B’s edge is real <em>in this sample</em>.</p></li>
 <li class="fragment"><p><strong>Spread:</strong> B is <strong>markedly riskier</strong>: SD $0.344 vs.&nbsp;$0.217, CV 10.0% vs.&nbsp;6.5%, a wider IQR and a wider range. <strong>Higher reward comes with higher volatility.</strong></p></li>
 <li class="fragment"><p><strong>Shape:</strong> both are roughly symmetric (|skew| &lt; 0.5); no day is an outlier by the <span class="math inline">\(|z|&gt;3\)</span> rule, though B’s two slow days (June 2 &amp; June 3) fall past the boxplot’s lower fence.</p></li>
-<li class="fragment"><p><strong>The honest two-sentence read:</strong> <em>“Over 30 days, B averaged $0.11 more per 1,000 impressions than A, but with ~50% more day-to-day volatility. Whether that $0.11 edge is real signal or sampling noise is a question description alone cannot settle; that needs a hypothesis test.”</em></p></li>
 </ul>
 </section>
 <section id="todays-question-todays-answer" class="slide level2 center">

@@ -1655,7 +1655,7 @@
     "href": "lecture_slides/02_chapter_descriptive_statistics/02_chapter_descriptive_statistics.html#z-scores-how-unusual-is-one-day",
     "title": " QM 6700: Business Analytics ",
     "section": "z-Scores: How Unusual Is One Day?",
-    "text": "z-Scores: How Unusual Is One Day?\n\n\nA z-score (standardized value) reports how many standard deviations a value sits from the mean, a unit-free measure of relative location:\n\n\n\\[\nz_i = \\frac{x_i - \\bar{x}}{s}\n\\]\n\n\n\\(z &lt; 0\\) → below the mean; \\(z &gt; 0\\) → above; \\(z = 0\\) → exactly at the mean. A \\(z\\) of \\(+2\\) means “two SDs above average.”\nIt lets you compare positions across different scales: a $4.07 eRPM day and a 38,000-install day both become “how many SDs from typical?”\nExcel: =STANDARDIZE(x, mean, standard_deviation)."
+    "text": "z-Scores: How Unusual Is One Day?\n\n\nA z-score (standardized value) reports how many standard deviations a value sits from the mean, a unit-free measure of relative location:\n\n\n\\[\nz_i = \\frac{x_i - \\bar{x}}{s}\n\\]\n\n\n\\(z &lt; 0\\) → below the mean; \\(z &gt; 0\\) → above; \\(z = 0\\) → exactly at the mean. A \\(z\\) of \\(+2\\) means “two SDs above average.”\nIt lets you compare positions across different scales: a $4.07 eRPM day (dollars) and a 38,000-install day (a raw count) both become “how many SDs from typical?”\nExcel: =STANDARDIZE(x, mean, standard_deviation)."
   },
   {
     "objectID": "lecture_slides/02_chapter_descriptive_statistics/02_chapter_descriptive_statistics.html#the-empirical-rule-for-bell-shaped-data",
@@ -1704,7 +1704,7 @@
     "href": "lecture_slides/02_chapter_descriptive_statistics/02_chapter_descriptive_statistics.html#a-question-that-often-comes-up-3",
     "title": " QM 6700: Business Analytics ",
     "section": "A Question That Often Comes Up",
-    "text": "A Question That Often Comes Up\n\nA question that often comes up at this point:\nThe two rules disagree on June 2 and June 3. Which one is right, and should I drop those days?\n\nShort answer: neither is “right”: the 1.5×IQR rule is simply more sensitive in the tails than the |z| &gt; 3 rule. A flag is an invitation to investigate, not a delete button. Check whether June 2 and 3 were genuine slow days before you ever drop them."
+    "text": "A Question That Often Comes Up\n\nA question that often comes up at this point:\nThe boxplot flags June 2 and June 3 as low outliers. Should that change my call on B?\n\nShort answer: only if you learn why they were slow. If June 2-3 trace to a known, repeatable cause (a weekend dip, a tracking gap), they are real information about B’s bad days. If they were a one-off fluke, they are noise you should not over-weight. Either way the move is the same: find the cause before you drop a day or downgrade B; never delete a point just because a rule flagged it."
   },
   {
     "objectID": "lecture_slides/02_chapter_descriptive_statistics/02_chapter_descriptive_statistics.html#the-five-number-summary",
@@ -1802,7 +1802,7 @@
     "href": "lecture_slides/02_chapter_descriptive_statistics/02_chapter_descriptive_statistics.html#what-the-dashboard-says",
     "title": " QM 6700: Business Analytics ",
     "section": "What the Dashboard Says",
-    "text": "What the Dashboard Says\n\n\nCenter: B’s mean eRPM ($3.459) sits about $0.11 above A’s ($3.347); B’s edge is real in this sample.\nSpread: B is markedly riskier: SD $0.344 vs. $0.217, CV 10.0% vs. 6.5%, a wider IQR and a wider range. Higher reward comes with higher volatility.\nShape: both are roughly symmetric (|skew| &lt; 0.5); no day is an outlier by the \\(|z|&gt;3\\) rule, though B’s two slow days (June 2 & June 3) fall past the boxplot’s lower fence.\nThe honest two-sentence read: “Over 30 days, B averaged $0.11 more per 1,000 impressions than A, but with ~50% more day-to-day volatility. Whether that $0.11 edge is real signal or sampling noise is a question description alone cannot settle; that needs a hypothesis test.”"
+    "text": "What the Dashboard Says\n\n\nCenter: B’s mean eRPM ($3.459) sits about $0.11 above A’s ($3.347); B’s edge is real in this sample.\nSpread: B is markedly riskier: SD $0.344 vs. $0.217, CV 10.0% vs. 6.5%, a wider IQR and a wider range. Higher reward comes with higher volatility.\nShape: both are roughly symmetric (|skew| &lt; 0.5); no day is an outlier by the \\(|z|&gt;3\\) rule, though B’s two slow days (June 2 & June 3) fall past the boxplot’s lower fence."
   },
   {
     "objectID": "lecture_slides/02_chapter_descriptive_statistics/02_chapter_descriptive_statistics.html#todays-question-todays-answer",

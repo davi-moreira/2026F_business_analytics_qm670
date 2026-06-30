@@ -406,7 +406,7 @@ $$
 
 - $z < 0$ → below the mean; $z > 0$ → above; $z = 0$ → exactly at the mean. A $z$ of $+2$ means "two SDs above average."
 
-- It lets you compare positions **across different scales**: a \$4.07 eRPM day and a 38,000-install day both become "how many SDs from typical?"
+- It lets you compare positions **across different scales**: a \$4.07 eRPM day (dollars) and a 38,000-install day (a raw count) both become "how many SDs from typical?"
 
 - **Excel:** `=STANDARDIZE(x, mean, standard_deviation)`.
 
@@ -514,10 +514,10 @@ knitr::include_graphics("figs/zscores_B.png")
 :::: {.faq}
 **A question that often comes up at this point:**
 
-[The two rules disagree on June 2 and June 3. Which one is right, and should I drop those days?]{.faq-q}
+[The boxplot flags June 2 and June 3 as low outliers. Should that change my call on B?]{.faq-q}
 
 ::: {.fragment .faq-a}
-**Short answer:** neither is "right": the 1.5×IQR rule is simply more sensitive in the tails than the |z| > 3 rule. A flag is an invitation to investigate, not a delete button. Check whether June 2 and 3 were genuine slow days before you ever drop them.
+**Short answer:** only if you learn *why* they were slow. If June 2-3 trace to a known, repeatable cause (a weekend dip, a tracking gap), they are real information about B's bad days. If they were a one-off fluke, they are noise you should not over-weight. Either way the move is the same: find the cause before you drop a day or downgrade B; never delete a point just because a rule flagged it.
 :::
 ::::
 
@@ -766,8 +766,6 @@ knitr::include_graphics("figs/xkcd.png")
 - **Spread:** B is **markedly riskier**: SD \$0.344 vs. \$0.217, CV 10.0% vs. 6.5%, a wider IQR and a wider range. **Higher reward comes with higher volatility.**
 
 - **Shape:** both are roughly symmetric (|skew| < 0.5); no day is an outlier by the $|z|>3$ rule, though B's two slow days (June 2 & June 3) fall past the boxplot's lower fence.
-
-- **The honest two-sentence read:** *"Over 30 days, B averaged \$0.11 more per 1,000 impressions than A, but with ~50% more day-to-day volatility. Whether that \$0.11 edge is real signal or sampling noise is a question description alone cannot settle; that needs a hypothesis test."*
 
 ## Today's Question, Today's Answer
 
