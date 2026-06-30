@@ -50,11 +50,10 @@ Because modern data analysis relies heavily on computers and software, we emphas
 
 ### Instructor: [Professor Davi Moreira](https://davi-moreira.github.io)
 
--   Section 003 · MWF, 4:30–6:00 pm · RAWL 3058 · Fall 2026
 -   Office: Young Hall 1019
 -   Email: [dcordeir\@purdue.edu](mailto:dcordeir@purdue.edu)
--   Office hours: Fridays, 2:30–3:30 pm ET (Zoom link in your Course Brightspace Page)
--   Individual Appointments: Book time with me through the link in the course syllabus on your Course Brightspace Page, or by appointment.
+-   Office hours: Check the Course Brightspace page for details.
+-   Individual Appointments: Check the Course Brightspace page for details.
 
 ## Learning Outcomes
 
@@ -95,7 +94,7 @@ This is an entry-level graduate analytics course. **No prior statistics is assum
 
 ## Assessments and Grading
 
-The target grade distribution for master's core courses is approximately 35–40% A/A−, 50–55% B+/B, 5–10% B−, and 0–5% C+ or below, for an average GPA near **3.35** (A = 4.0, A− = 3.70, B+ = 3.30, B = 3.00, B− = 2.70, C+ = 2.30, and so on). To meet this policy, final letter grades are set by a curve applied to the class's final course percentages (see **Extra Credit Opportunities** for a possible exception). Your final percentage is the weighted total of the components below plus any extra credit. Brightspace will display your final percentage, but individual grades and grade thresholds will not be released before final grades are officially posted.
+The target grade distribution for master's core courses is approximately 35–40% A/A−, 50–55% B+/B, 5–10% B−, and 0–5% C+ or below, for an average GPA near **3.35** (A = 4.0, A− = 3.70, B+ = 3.30, B = 3.00, B− = 2.70, C+ = 2.30, and so on). To meet this policy, final letter grades are set by a curve applied to the class's final course percentages. Your final percentage is the weighted total of the components below plus any extra credit. Brightspace will display your final percentage, but individual grades and grade thresholds will not be released before final grades are officially posted.
 
 Below are the grading components and their respective weights:
 
@@ -104,7 +103,7 @@ Below are the grading components and their respective weights:
 | **Attendance**                          |     1%     |
 | **Participation**                       |     4%     |
 | **In-Class Group Cases**                |    20%     |
-| **Homework** (3 total, individual)      |    15%     |
+| **Homework** (3 total, group)           |    15%     |
 | **Midterm** (in-class)                  |    25%     |
 | **Final** (cumulative, in-class)        |    35%     |
 
@@ -125,15 +124,16 @@ Attendance is essential for success in this course. If you do not attend class r
 
 ### Homework
 
--   **Three** homework assignments, completed and submitted **individually**; **none** are dropped.\
--   Submit on Brightspace before the deadline as a **single PDF** named **HW_X_LastName** (X = homework number), with all relevant Excel (or other) outputs included and clearly referenced.\
+-   **Three** homework assignments, completed and submitted **as a group** (your assigned fixed group); **none** are dropped.\
+-   Submit on Brightspace before the deadline as a **single PDF** named **HW_X_Group_NN** (X = homework number, NN = your two-digit group number), with all relevant Excel (or other) outputs included and clearly referenced.\
+-   If a group member does not contribute, their name should not appear on the submission; that member may complete and submit the assignment separately.\
 -   No late homework or email submissions are accepted without prior permission.\
--   For each assignment, you are expected to understand the reason for choosing a particular technique, the mechanics of the solution, and the implications of the final recommendation.\
--   Homework is **individual work**: you may discuss concepts, but copying or duplicate submissions are considered cheating.
+-   For each assignment, your group is expected to understand the reason for choosing a particular technique, the mechanics of the solution, and the implications of the final recommendation.\
+-   Homework is **group work**: groups may not cooperate with other groups, and copying or duplicate submissions across groups are considered cheating.
 
 ### Midterm
 
--   **One** in-class midterm exam (25%).\
+-   **One** in-class midterm exam.\
 -   Exams test technical calculation skills and conceptual understanding similar to homework problems.\
 -   Calculators without internet or USB capabilities are allowed; cellphones, watches, and internet access are prohibited during the midterm and final.
 
