@@ -5,6 +5,10 @@ author: "Davi Moreira"
 # date: "2026-08-01"
 # date-format: "MMM D, YYYY"
 editor: visual
+format:
+  html:
+    page-layout: full
+    toc: false
 ---
 
 ```{=html}
@@ -21,14 +25,21 @@ editor: visual
     vertical-align: top; /* Align cell content to the top */
   }
   .overflow-table th:nth-child(1), .overflow-table td:nth-child(1) {
-    width: 0%; /* Increase width of the first column */
+    width: 2%; /* Week */
   }
   .overflow-table th:nth-child(4), .overflow-table td:nth-child(4) {
-    width: 25%; /* Increase width of the first column */
+    width: 17%; /* Topic */
   }
   .overflow-table th:nth-child(6), .overflow-table td:nth-child(6) {
-    width: 8%; /* Increase width of the first column */
+    width: 6%; /* Slides */
   }
+  .overflow-table th:nth-child(7), .overflow-table td:nth-child(7) {
+    width: 9%; /* Data: keep "all datasets (.zip)" from breaking mid-word */
+  }
+  .overflow-table th:nth-child(8), .overflow-table td:nth-child(8) {
+    width: 14%; /* Assignment */
+  }
+  /* Supplementary Materials (col 9) takes the remaining width */
   .below-table {
     font-size: 0.85rem; /* Match the font size of the table */
     line-height: 1.2; /* Match line height */

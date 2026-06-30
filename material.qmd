@@ -3,6 +3,10 @@ title: "Materials"
 author: "Davi Moreira"
 # title: "Materials: QM 6700: Business Analytics"
 # subtitle: "Mitch. Daniels School of Business, Purdue University"
+format:
+  html:
+    page-layout: full
+    toc: false
 ---
 
 ```{=html}
@@ -19,11 +23,15 @@ author: "Davi Moreira"
     vertical-align: top; /* Align cell content to the top */
   }
   .overflow-table th:nth-child(1), .overflow-table td:nth-child(1) {
-    width: 20%; /* Increase width of the first column */
+    width: 22%; /* Topic */
+  }
+  .overflow-table th:nth-child(2), .overflow-table td:nth-child(2) {
+    width: 7%; /* Slides */
   }
   .overflow-table th:nth-child(3), .overflow-table td:nth-child(3) {
-    width: 8%; /* Increase width of the first column */
+    width: 11%; /* Data: room for "all datasets (.zip)" */
   }
+  /* Supplementary Materials (col 4) takes the remaining width */
   .below-table {
     font-size: 0.85rem; /* Match the font size of the table */
     line-height: 1.2; /* Match line height */
@@ -31,12 +39,6 @@ author: "Davi Moreira"
   }
 </style>
 ```
-
-<center>
-
-*All 11 topics are built for QM 6700 in the active "Analytics Studio" format.*
-
-</center>
 
 **In-class group cases.** Every lecture runs an **in-class group case**, assigned and submitted on **Brightspace**. Your fixed group works that day's business case and turns in one graded deliverable before class ends.
 

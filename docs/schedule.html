@@ -94,7 +94,7 @@ ul.task-list li input[type="checkbox"] {
   </nav>
 </header>
 <!-- content -->
-<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-full">
 <!-- sidebar -->
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto">
     <div class="pt-lg-2 mt-2 text-center sidebar-header">
@@ -142,11 +142,9 @@ ul.task-list li input[type="checkbox"] {
 </nav>
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
-        
-    </div>
+    
 <!-- main -->
-<main class="content" id="quarto-document-content">
+<main class="content column-page-right" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
@@ -155,7 +153,7 @@ ul.task-list li input[type="checkbox"] {
 
 
 
-<div class="quarto-title-meta">
+<div class="quarto-title-meta column-page-right">
 
     <div>
     <div class="quarto-title-meta-heading">Author</div>
@@ -186,14 +184,21 @@ ul.task-list li input[type="checkbox"] {
     vertical-align: top; /* Align cell content to the top */
   }
   .overflow-table th:nth-child(1), .overflow-table td:nth-child(1) {
-    width: 0%; /* Increase width of the first column */
+    width: 2%; /* Week */
   }
   .overflow-table th:nth-child(4), .overflow-table td:nth-child(4) {
-    width: 25%; /* Increase width of the first column */
+    width: 17%; /* Topic */
   }
   .overflow-table th:nth-child(6), .overflow-table td:nth-child(6) {
-    width: 8%; /* Increase width of the first column */
+    width: 6%; /* Slides */
   }
+  .overflow-table th:nth-child(7), .overflow-table td:nth-child(7) {
+    width: 9%; /* Data: keep "all datasets (.zip)" from breaking mid-word */
+  }
+  .overflow-table th:nth-child(8), .overflow-table td:nth-child(8) {
+    width: 14%; /* Assignment */
+  }
+  /* Supplementary Materials (col 9) takes the remaining width */
   .below-table {
     font-size: 0.85rem; /* Match the font size of the table */
     line-height: 1.2; /* Match line height */
