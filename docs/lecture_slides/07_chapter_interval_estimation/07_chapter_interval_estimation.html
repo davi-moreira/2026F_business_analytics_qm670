@@ -542,23 +542,21 @@ E(\bar{x}) = \mu
 </iframe>
 </div></div>
 </section>
-<section id="using-the-clt-a-probability-question" class="slide level2 center">
-<h2>Using the CLT: A Probability Question</h2>
+<section id="using-the-clt-on-vungle-how-close-does-30-days-get-us" class="slide level2 center">
+<h2>Using the CLT on Vungle: How Close Does 30 Days Get Us?</h2>
 <div class="r-fit-text">
-<p><strong>St.&nbsp;Andrew’s:</strong> with <span class="math inline">\(\sigma = 87.4\)</span> and <span class="math inline">\(n = 30\)</span>, what is the probability the sample mean SAT lands <strong>within 10 points</strong> of the true <span class="math inline">\(\mu = 1697\)</span> (i.e., between 1687 and 1707)?</p>
+<p>The CLT says B’s 30-day mean <span class="math inline">\(\bar{x}_B\)</span> is approximately Normal, centered on B’s <strong>true</strong> mean <span class="math inline">\(\mu\)</span>, with standard error <span class="math inline">\(\sigma/\sqrt{n}\)</span>. We do not know <span class="math inline">\(\sigma\)</span>, so we estimate it with <span class="math inline">\(s_B = \$0.344\)</span>:</p>
 <div class="fragment">
 <p><span class="math display">\[
-\sigma_{\bar{x}} = \frac{87.4}{\sqrt{30}} = 15.96,
-\qquad
-z = \frac{10}{15.96} = 0.63
+\sigma_{\bar{x}} = \frac{s_B}{\sqrt{n}} = \frac{0.344}{\sqrt{30}} = \$0.063
 \]</span></p>
 </div>
 <div class="fragment">
 <p><span class="math display">\[
-P(1687 \le \bar{x} \le 1707) = P(-0.63 \le Z \le 0.63) = 0.4714
+P\big(\,|\bar{x}_B - \mu| \le 2\,\sigma_{\bar{x}}\,\big) \approx 0.95, \qquad 2\,\sigma_{\bar{x}} \approx \$0.13
 \]</span></p>
 </div>
-<p><strong>Read it:</strong> a single sample of 30 has only about a <strong>47% chance</strong> of landing within 10 SAT points of the truth: precision you can now <em>quantify</em>, and improve by raising <span class="math inline">\(n\)</span>. In Excel: <code>=NORM.S.DIST(0.63,TRUE)-NORM.S.DIST(-0.63,TRUE)</code>.</p>
+<p><strong>Read it:</strong> a single 30-day mean lands within about <strong>$0.13</strong> of B’s true eRPM roughly <strong>95%</strong> of the time (within $0.06 about 68%). We still cannot say <em>where</em> the truth sits, only how tightly our estimate clusters around it. Flipping that around, from the estimate back to the truth, is the <strong>confidence interval</strong>, next lecture. In Excel: <code>=0.344/SQRT(30)</code>.</p>
 </div>
 </section>
 <section id="a-question-that-often-comes-up-2" class="slide level2 center">

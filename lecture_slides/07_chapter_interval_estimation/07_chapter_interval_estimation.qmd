@@ -337,17 +337,15 @@ Seeing Theory (interactive)
 :::
 ::::
 
-## Using the CLT: A Probability Question
+## Using the CLT on Vungle: How Close Does 30 Days Get Us?
 
 ::: r-fit-text
-**St. Andrew's:** with $\sigma = 87.4$ and $n = 30$, what is the probability the sample mean SAT lands **within 10 points** of the true $\mu = 1697$ (i.e., between 1687 and 1707)?
+The CLT says B's 30-day mean $\bar{x}_B$ is approximately Normal, centered on B's **true** mean $\mu$, with standard error $\sigma/\sqrt{n}$. We do not know $\sigma$, so we estimate it with $s_B = \$0.344$:
 
 ::: fragment
 
 $$
-\sigma_{\bar{x}} = \frac{87.4}{\sqrt{30}} = 15.96,
-\qquad
-z = \frac{10}{15.96} = 0.63
+\sigma_{\bar{x}} = \frac{s_B}{\sqrt{n}} = \frac{0.344}{\sqrt{30}} = \$0.063
 $$
 
 :::
@@ -355,12 +353,12 @@ $$
 ::: fragment
 
 $$
-P(1687 \le \bar{x} \le 1707) = P(-0.63 \le Z \le 0.63) = 0.4714
+P\big(\,|\bar{x}_B - \mu| \le 2\,\sigma_{\bar{x}}\,\big) \approx 0.95, \qquad 2\,\sigma_{\bar{x}} \approx \$0.13
 $$
 
 :::
 
-**Read it:** a single sample of 30 has only about a **47% chance** of landing within 10 SAT points of the truth: precision you can now *quantify*, and improve by raising $n$. In Excel: `=NORM.S.DIST(0.63,TRUE)-NORM.S.DIST(-0.63,TRUE)`.
+**Read it:** a single 30-day mean lands within about **\$0.13** of B's true eRPM roughly **95%** of the time (within \$0.06 about 68%). We still cannot say *where* the truth sits, only how tightly our estimate clusters around it. Flipping that around, from the estimate back to the truth, is the **confidence interval**, next lecture. In Excel: `=0.344/SQRT(30)`.
 :::
 
 ## A Question That Often Comes Up
