@@ -74,7 +74,7 @@ The class **ends on the Team Sprint**, your group's graded submission: a decisio
 
 <br>
 
-- **The big call (we land it in Topic 9):** roll out algorithm B to all advertisers, or stay with A? Last time you saw B's average eRPM sits **\$0.11 higher**.
+- **The big call (we land it in Topic 9):** roll out algorithm B to all advertisers, or stay with A?
 
 - **Today's piece of that call:** *is B's edge steady, or just more volatile?* As Vungle's manager, you cannot bet the company on an average that hides wild day-to-day swings.
 
@@ -113,7 +113,7 @@ Each tool answers one question the manager will ask about Vungle's data:
 
 <br>
 
-- By the end, your team turns these into a **one-screen A-vs-B dashboard**, the manager's first honest read.
+- By the end, your team turns these into a **one-screen A-vs-B dashboard** the manager can act on.
 
 # Measures of Variability {background-color="#cfb991"}
 
@@ -137,6 +137,30 @@ Each tool answers one question the manager will ask about Vungle's data:
 | **Coefficient of variation** | spread *relative* to the mean (unit-free) |
 
 :::
+
+## Quartiles and Percentiles: Slicing the Data
+
+<br>
+
+- Sort B's 30 daily eRPM values low to high. The **p-th percentile** is the value with about **p%** of the days at or below it: a position marker, not an average.
+
+::: {.fragment .nonincremental}
+
+- **Quartiles** are the three percentiles that cut the sorted days into four equal quarters:
+
+| Quartile | Percentile | Reads as |
+|:---:|:---:|---|
+| $Q_1$ | 25th | a quarter of the days fall below it |
+| $Q_2$ | 50th | the **median**: half below, half above |
+| $Q_3$ | 75th | three-quarters of the days fall below it |
+
+:::
+
+::: {.fragment .nonincremental}
+- **Vungle read:** for B, $Q_1 =$ \$3.32 and $Q_3 =$ \$3.67, so the **middle half** of B's days sit in that \$0.35 band. That band is the spread we measure next.
+:::
+
+- **Excel:** `=QUARTILE.INC(rng, 1)` and `=QUARTILE.INC(rng, 3)`; `=PERCENTILE.INC(rng, 0.9)` for any percentile.
 
 ## Range and Interquartile Range (IQR)
 
@@ -683,9 +707,9 @@ For Algorithm A's 30 days, with clicks and installs measured in thousands:
 ::: {.column width="46%"}
 **Follow along:**
 
-1. Put A's daily `clicks` and `installs` in two columns
-2. `=COVARIANCE.S(clicks, installs)` returns **+163.7** (direction only)
-3. `=CORREL(clicks, installs)` returns **+0.915** (direction and strength, fixed -1 to +1)
+1. Put A's daily `clicks` and `installs`, rescaled to **thousands**, in two columns (`clicks_k`, `installs_k`)
+2. `=COVARIANCE.S(clicks_k, installs_k)` returns **+163.7** (direction only; the magnitude depends on the units)
+3. `=CORREL(clicks, installs)` returns **+0.915** (direction and strength, fixed -1 to +1; rescaling does not change it)
 4. For a full matrix: **Data -> Data Analysis -> Correlation**, select both columns
 :::
 ::: {.column width="54%"}

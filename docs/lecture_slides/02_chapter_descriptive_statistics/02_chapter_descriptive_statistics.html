@@ -196,7 +196,7 @@ Professor<br>Davi Moreira<br>
 <h2>The Brief: Today’s Manager Question</h2>
 <p><br></p>
 <ul>
-<li class="fragment"><p><strong>The big call (we land it in Topic 9):</strong> roll out algorithm B to all advertisers, or stay with A? Last time you saw B’s average eRPM sits <strong>$0.11 higher</strong>.</p></li>
+<li class="fragment"><p><strong>The big call (we land it in Topic 9):</strong> roll out algorithm B to all advertisers, or stay with A?</p></li>
 <li class="fragment"><p><strong>Today’s piece of that call:</strong> <em>is B’s edge steady, or just more volatile?</em> As Vungle’s manager, you cannot bet the company on an average that hides wild day-to-day swings.</p></li>
 </ul>
 <div class="fragment">
@@ -258,7 +258,7 @@ Professor<br>Davi Moreira<br>
 </table>
 <p><br></p>
 <ul>
-<li class="fragment">By the end, your team turns these into a <strong>one-screen A-vs-B dashboard</strong>, the manager’s first honest read.</li>
+<li class="fragment">By the end, your team turns these into a <strong>one-screen A-vs-B dashboard</strong> the manager can act on.</li>
 </ul>
 </section></section>
 <section>
@@ -306,6 +306,52 @@ Professor<br>Davi Moreira<br>
 </tbody>
 </table>
 </div>
+</section>
+<section id="quartiles-and-percentiles-slicing-the-data" class="slide level2 center">
+<h2>Quartiles and Percentiles: Slicing the Data</h2>
+<p><br></p>
+<ul>
+<li class="fragment">Sort B’s 30 daily eRPM values low to high. The <strong>p-th percentile</strong> is the value with about <strong>p%</strong> of the days at or below it: a position marker, not an average.</li>
+</ul>
+<div class="fragment">
+<ul>
+<li><strong>Quartiles</strong> are the three percentiles that cut the sorted days into four equal quarters:</li>
+</ul>
+<table class="caption-top">
+<thead>
+<tr class="header">
+<th style="text-align: center;">Quartile</th>
+<th style="text-align: center;">Percentile</th>
+<th>Reads as</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;"><span class="math inline">\(Q_1\)</span></td>
+<td style="text-align: center;">25th</td>
+<td>a quarter of the days fall below it</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;"><span class="math inline">\(Q_2\)</span></td>
+<td style="text-align: center;">50th</td>
+<td>the <strong>median</strong>: half below, half above</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;"><span class="math inline">\(Q_3\)</span></td>
+<td style="text-align: center;">75th</td>
+<td>three-quarters of the days fall below it</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="fragment">
+<ul>
+<li><strong>Vungle read:</strong> for B, <span class="math inline">\(Q_1 =\)</span> $3.32 and <span class="math inline">\(Q_3 =\)</span> $3.67, so the <strong>middle half</strong> of B’s days sit in that $0.35 band. That band is the spread we measure next.</li>
+</ul>
+</div>
+<ul>
+<li class="fragment"><strong>Excel:</strong> <code>=QUARTILE.INC(rng, 1)</code> and <code>=QUARTILE.INC(rng, 3)</code>; <code>=PERCENTILE.INC(rng, 0.9)</code> for any percentile.</li>
+</ul>
 </section>
 <section id="range-and-interquartile-range-iqr" class="slide level2 center">
 <h2>Range and Interquartile Range (IQR)</h2>
@@ -1133,9 +1179,9 @@ r_{xy} = \frac{s_{xy}}{s_x \, s_y}
 <div class="column" style="width:46%;">
 <p><strong>Follow along:</strong></p>
 <ol type="1">
-<li class="fragment">Put A’s daily <code>clicks</code> and <code>installs</code> in two columns</li>
-<li class="fragment"><code>=COVARIANCE.S(clicks, installs)</code> returns <strong>+163.7</strong> (direction only)</li>
-<li class="fragment"><code>=CORREL(clicks, installs)</code> returns <strong>+0.915</strong> (direction and strength, fixed -1 to +1)</li>
+<li class="fragment">Put A’s daily <code>clicks</code> and <code>installs</code>, rescaled to <strong>thousands</strong>, in two columns (<code>clicks_k</code>, <code>installs_k</code>)</li>
+<li class="fragment"><code>=COVARIANCE.S(clicks_k, installs_k)</code> returns <strong>+163.7</strong> (direction only; the magnitude depends on the units)</li>
+<li class="fragment"><code>=CORREL(clicks, installs)</code> returns <strong>+0.915</strong> (direction and strength, fixed -1 to +1; rescaling does not change it)</li>
 <li class="fragment">For a full matrix: <strong>Data -&gt; Data Analysis -&gt; Correlation</strong>, select both columns</li>
 </ol>
 </div><div class="column" style="width:54%;">

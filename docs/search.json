@@ -1543,7 +1543,7 @@
     "href": "lecture_slides/02_chapter_descriptive_statistics/02_chapter_descriptive_statistics.html#the-brief-todays-manager-question",
     "title": " QM 6700: Business Analytics ",
     "section": "The Brief: Today’s Manager Question",
-    "text": "The Brief: Today’s Manager Question\n\n\nThe big call (we land it in Topic 9): roll out algorithm B to all advertisers, or stay with A? Last time you saw B’s average eRPM sits $0.11 higher.\nToday’s piece of that call: is B’s edge steady, or just more volatile? As Vungle’s manager, you cannot bet the company on an average that hides wild day-to-day swings.\n\n\n\n“B’s average daily eRPM ran about $0.11 higher than A’s. Before I act: is that edge steady, or does B just bounce around more? How confident am I in that one number?”\n\n\n\n\nThe mean is only half the story. A center tells you where the data sit; it says nothing about how spread out, lopsided, or risky they are. Two algorithms can share the same average and behave completely differently day to day."
+    "text": "The Brief: Today’s Manager Question\n\n\nThe big call (we land it in Topic 9): roll out algorithm B to all advertisers, or stay with A?\nToday’s piece of that call: is B’s edge steady, or just more volatile? As Vungle’s manager, you cannot bet the company on an average that hides wild day-to-day swings.\n\n\n\n“B’s average daily eRPM ran about $0.11 higher than A’s. Before I act: is that edge steady, or does B just bounce around more? How confident am I in that one number?”\n\n\n\n\nThe mean is only half the story. A center tells you where the data sit; it says nothing about how spread out, lopsided, or risky they are. Two algorithms can share the same average and behave completely differently day to day."
   },
   {
     "objectID": "lecture_slides/02_chapter_descriptive_statistics/02_chapter_descriptive_statistics.html#why-the-mean-alone-misleads",
@@ -1557,7 +1557,7 @@
     "href": "lecture_slides/02_chapter_descriptive_statistics/02_chapter_descriptive_statistics.html#how-todays-tools-build-the-manager-brief",
     "title": " QM 6700: Business Analytics ",
     "section": "How Today’s Tools Build the Manager Brief",
-    "text": "How Today’s Tools Build the Manager Brief\n\nEach tool answers one question the manager will ask about Vungle’s data:\n\n\n\n\n\n\n\nThe manager asks…\nThe tool\n\n\n\n\n“How risky is each algorithm day to day?”\nRange, IQR, variance, SD, CV\n\n\n“Is the eRPM distribution lopsided?”\nSkewness\n\n\n“Was any day weirdly high or low?”\nz-scores, Empirical Rule, Chebyshev, outliers\n\n\n“Show me A vs. B at a glance.”\nFive-number summary + boxplot\n\n\n“Do clicks and installs move together?”\nCovariance & correlation\n\n\n\n\n\nBy the end, your team turns these into a one-screen A-vs-B dashboard, the manager’s first honest read."
+    "text": "How Today’s Tools Build the Manager Brief\n\nEach tool answers one question the manager will ask about Vungle’s data:\n\n\n\n\n\n\n\nThe manager asks…\nThe tool\n\n\n\n\n“How risky is each algorithm day to day?”\nRange, IQR, variance, SD, CV\n\n\n“Is the eRPM distribution lopsided?”\nSkewness\n\n\n“Was any day weirdly high or low?”\nz-scores, Empirical Rule, Chebyshev, outliers\n\n\n“Show me A vs. B at a glance.”\nFive-number summary + boxplot\n\n\n“Do clicks and installs move together?”\nCovariance & correlation\n\n\n\n\n\nBy the end, your team turns these into a one-screen A-vs-B dashboard the manager can act on."
   },
   {
     "objectID": "lecture_slides/02_chapter_descriptive_statistics/02_chapter_descriptive_statistics.html#why-spread-matters-as-much-as-center",
@@ -1781,7 +1781,7 @@
     "href": "lecture_slides/02_chapter_descriptive_statistics/02_chapter_descriptive_statistics.html#do-it-in-excel-covariance-correlation",
     "title": " QM 6700: Business Analytics ",
     "section": "Do It in Excel: Covariance & Correlation",
-    "text": "Do It in Excel: Covariance & Correlation\n\n\nFollow along:\n\nPut A’s daily clicks and installs in two columns\n=COVARIANCE.S(clicks, installs) returns +163.7 (direction only)\n=CORREL(clicks, installs) returns +0.915 (direction and strength, fixed -1 to +1)\nFor a full matrix: Data -&gt; Data Analysis -&gt; Correlation, select both columns"
+    "text": "Do It in Excel: Covariance & Correlation\n\n\nFollow along:\n\nPut A’s daily clicks and installs, rescaled to thousands, in two columns (clicks_k, installs_k)\n=COVARIANCE.S(clicks_k, installs_k) returns +163.7 (direction only; the magnitude depends on the units)\n=CORREL(clicks, installs) returns +0.915 (direction and strength, fixed -1 to +1; rescaling does not change it)\nFor a full matrix: Data -&gt; Data Analysis -&gt; Correlation, select both columns"
   },
   {
     "objectID": "lecture_slides/02_chapter_descriptive_statistics/02_chapter_descriptive_statistics.html#correlation-is-not-causation",
@@ -4140,5 +4140,12 @@
     "title": " QM 6700: Business Analytics ",
     "section": "What Is an A/B Test?",
     "text": "What Is an A/B Test?\n\nAn A/B test is a controlled experiment that compares two versions of one thing to see which wins on a single metric, fixed up front.\nThe anatomy is always the same:\n\n\n\n\n\n\n\n\n\n\nPiece\nWhat it is\nAt Vungle\n\n\n\n\nControl (A)\nthe current baseline version\nthe existing algorithm\n\n\nVariant (B)\nthe one change being tested\nthe new algorithm\n\n\nRandom split\neach unit assigned at random, same time\nimpressions routed by a hash\n\n\nOne metric\nthe number that decides, fixed up front\neRPM\n\n\n\n\n\n\nWhy split at random: it balances everything else (same days, market, advertisers), so any gap in the metric points to the version, not to outside factors.\n\n\n\n\nSo “is B better than A?” becomes testable: does B’s eRPM really differ from A’s, or is any gap just noise?"
+  },
+  {
+    "objectID": "lecture_slides/02_chapter_descriptive_statistics/02_chapter_descriptive_statistics.html#quartiles-and-percentiles-slicing-the-data",
+    "href": "lecture_slides/02_chapter_descriptive_statistics/02_chapter_descriptive_statistics.html#quartiles-and-percentiles-slicing-the-data",
+    "title": " QM 6700: Business Analytics ",
+    "section": "Quartiles and Percentiles: Slicing the Data",
+    "text": "Quartiles and Percentiles: Slicing the Data\n\n\nSort B’s 30 daily eRPM values low to high. The p-th percentile is the value with about p% of the days at or below it: a position marker, not an average.\n\n\n\nQuartiles are the three percentiles that cut the sorted days into four equal quarters:\n\n\n\n\nQuartile\nPercentile\nReads as\n\n\n\n\n\\(Q_1\\)\n25th\na quarter of the days fall below it\n\n\n\\(Q_2\\)\n50th\nthe median: half below, half above\n\n\n\\(Q_3\\)\n75th\nthree-quarters of the days fall below it\n\n\n\n\n\n\nVungle read: for B, \\(Q_1 =\\) $3.32 and \\(Q_3 =\\) $3.67, so the middle half of B’s days sit in that $0.35 band. That band is the spread we measure next.\n\n\n\nExcel: =QUARTILE.INC(rng, 1) and =QUARTILE.INC(rng, 3); =PERCENTILE.INC(rng, 0.9) for any percentile."
   }
 ]
