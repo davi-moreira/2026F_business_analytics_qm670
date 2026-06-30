@@ -4147,5 +4147,19 @@
     "title": " QM 6700: Business Analytics ",
     "section": "Quartiles and Percentiles: Slicing the Data",
     "text": "Quartiles and Percentiles: Slicing the Data\n\n\nSort B’s 30 daily eRPM values low to high. The p-th percentile is the value with about p% of the days at or below it: a position marker, not an average.\n\n\n\nQuartiles are the three percentiles that cut the sorted days into four equal quarters:\n\n\n\n\nQuartile\nPercentile\nReads as\n\n\n\n\n\\(Q_1\\)\n25th\na quarter of the days fall below it\n\n\n\\(Q_2\\)\n50th\nthe median: half below, half above\n\n\n\\(Q_3\\)\n75th\nthree-quarters of the days fall below it\n\n\n\n\n\n\nVungle read: for B, \\(Q_1 =\\) $3.32 and \\(Q_3 =\\) $3.67, so the middle half of B’s days sit in that $0.35 band. That band is the spread we measure next.\n\n\n\nExcel: =QUARTILE.INC(rng, 1) and =QUARTILE.INC(rng, 3); =PERCENTILE.INC(rng, 0.9) for any percentile."
+  },
+  {
+    "objectID": "lecture_slides/07_chapter_interval_estimation/07_chapter_interval_estimation.html#see-the-clt-in-action",
+    "href": "lecture_slides/07_chapter_interval_estimation/07_chapter_interval_estimation.html#see-the-clt-in-action",
+    "title": " QM 6700: Business Analytics ",
+    "section": "See the CLT in Action",
+    "text": "See the CLT in Action\n\nThe CLT is the engine behind every interval we build today: it is why B’s sample mean \\(\\bar{x}_B\\) stacks up in a Normal curve around the true \\(\\mu\\), even though B’s 30 daily eRPMs are not perfectly bell-shaped. Watch it happen, then move the sliders yourself.\n\n\n\n\nBunnies, Dragons and the ‘Normal’ World (NYT)\n\n\n\n\n\nSeeing Theory (interactive)"
+  },
+  {
+    "objectID": "lecture_slides/07_chapter_interval_estimation/07_chapter_interval_estimation.html#a-point-estimate-is-a-spear-an-interval-is-a-net",
+    "href": "lecture_slides/07_chapter_interval_estimation/07_chapter_interval_estimation.html#a-point-estimate-is-a-spear-an-interval-is-a-net",
+    "title": " QM 6700: Business Analytics ",
+    "section": "A Point Estimate Is a Spear; an Interval Is a Net",
+    "text": "A Point Estimate Is a Spear; an Interval Is a Net\n\n\n\nB’s 30 days give one point estimate, \\(\\bar{x}_B = \\$3.459\\): the manager’s single best guess at B’s true mean eRPM, but almost surely not the exact truth.\nQuoting only that one number is spear-fishing, a single throw at a moving target. A confidence interval is casting a net: a plausible range, \\(\\bar{x}_B \\pm\\) a margin of error, built to land on the true \\(\\mu\\) most of the time.\nThe net is what the manager can bank the rollout on. Sizing that margin of error is the rest of today’s work."
   }
 ]

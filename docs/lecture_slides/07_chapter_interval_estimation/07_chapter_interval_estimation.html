@@ -522,6 +522,26 @@ E(\bar{x}) = \mu
 <li>Start with a sharply <strong>right-skewed</strong> population (<span class="math inline">\(n = 1\)</span>). Average just a handful of values (<span class="math inline">\(n = 5\)</span>) and it already symmetrizes; by <span class="math inline">\(n = 30\)</span> the distribution of <span class="math inline">\(\bar{x}\)</span> is essentially <strong>Normal</strong>.</li>
 </ul>
 </section>
+<section id="see-the-clt-in-action" class="slide level2 center">
+<h2>See the CLT in Action</h2>
+<div style="font-size: 90%;">
+<p>The CLT is the engine behind every interval we build today: it is <em>why</em> B’s sample mean <span class="math inline">\(\bar{x}_B\)</span> stacks up in a Normal curve around the true <span class="math inline">\(\mu\)</span>, even though B’s 30 daily eRPMs are not perfectly bell-shaped. Watch it happen, then move the sliders yourself.</p>
+</div>
+<div class="columns">
+<div class="column" style="width:50%;">
+<div style="text-align:center; font-weight:bold; margin-bottom:0.3em;">
+<p>Bunnies, Dragons and the ‘Normal’ World (NYT)</p>
+</div>
+<iframe width="100%" height="400" src="https://www.youtube.com/embed/jvoxEYmQHNM" title="Central Limit Theorem | The New York Times" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen="">
+</iframe>
+</div><div class="column" style="width:50%;">
+<div style="text-align:center; font-weight:bold; margin-bottom:0.3em;">
+<p>Seeing Theory (interactive)</p>
+</div>
+<iframe src="https://seeing-theory.brown.edu/" width="100%" height="400" style="border:1px solid #ccc; border-radius:4px;">
+</iframe>
+</div></div>
+</section>
 <section id="using-the-clt-a-probability-question" class="slide level2 center">
 <h2>Using the CLT: A Probability Question</h2>
 <div class="r-fit-text">
@@ -640,6 +660,17 @@ np \geq 5 \qquad \text{and} \qquad n(1-p) \geq 5
 </figure>
 </div>
 <p>The class <strong>ends on the Team Sprint</strong>, your group’s graded submission: a decision plus your read of the analysis, one PDF before you leave.</p>
+</section>
+<section id="a-point-estimate-is-a-spear-an-interval-is-a-net" class="slide level2 center">
+<h2>A Point Estimate Is a Spear; an Interval Is a Net</h2>
+
+<img data-src="figs/point_interval_estimate.png" class="quarto-figure quarto-figure-center r-stretch" style="width:70.0%"><div style="font-size: 92%;">
+<ul>
+<li>B’s 30 days give one <strong>point estimate</strong>, <span class="math inline">\(\bar{x}_B = \$3.459\)</span>: the manager’s single best guess at B’s true mean eRPM, but almost surely not the exact truth.</li>
+<li>Quoting only that one number is <strong>spear-fishing</strong>, a single throw at a moving target. A <strong>confidence interval</strong> is <strong>casting a net</strong>: a plausible range, <span class="math inline">\(\bar{x}_B \pm\)</span> a <strong>margin of error</strong>, built to land on the true <span class="math inline">\(\mu\)</span> most of the time.</li>
+<li>The net is what the manager can bank the rollout on. Sizing that margin of error is the rest of today’s work.</li>
+</ul>
+</div>
 </section>
 <section id="from-standard-error-to-a-margin-of-error" class="slide level2 center">
 <h2>From Standard Error to a Margin of Error</h2>
