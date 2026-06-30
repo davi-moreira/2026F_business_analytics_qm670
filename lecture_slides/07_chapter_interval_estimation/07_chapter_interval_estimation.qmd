@@ -1,5 +1,5 @@
 ---
-title: "<span style = 'font-size: 100%;'> QM 6700: Business Analytics </span>"
+title: "<span style = 'font-size: 100%;'> QM 67000: Business Analytics </span>"
 subtitle: "<span style = 'font-size: 150%;'> Sampling Distributions & Interval Estimation </span>"
 author: "Professor<br>Davi Moreira<br>"
 # date: "2026-09-28"

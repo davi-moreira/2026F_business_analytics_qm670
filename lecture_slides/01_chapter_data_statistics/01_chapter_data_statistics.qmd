@@ -1,5 +1,5 @@
 ---
-title: "<span style = 'font-size: 100%;'> QM 6700: Business Analytics </span>"
+title: "<span style = 'font-size: 100%;'> QM 67000: Business Analytics </span>"
 subtitle: "<span style = 'font-size: 150%;'> Course Introduction & Descriptive Statistics I </span>"
 author: "Professor: Davi Moreira"
 #date: "2024-08-01"
