@@ -865,7 +865,7 @@ $$
 ## Do It in Excel: Two-Proportion $z$ (Formula Cells)
 
 :::::: columns
-::: {.column width="46%" .r-fit-text}
+:::: {.column width="46%" .r-fit-text}
 **Follow along (no ToolPak tool; five cells):**
 
 1. Enter $x_1, n_1$ (B installs, impressions) and $x_2, n_2$ (A).
@@ -874,8 +874,10 @@ $$
 4. Test statistic: `=(x1/n1 - x2/n2)/SE`.
 5. $p$-value: `=2*(1-NORM.S.DIST(ABS(z),TRUE))` → read $z = -29.56$, $p < 0.0001$.
 
+::: fragment
 Worth mastering: most A/B metrics (click-through, conversion, churn) are **proportions**.
 :::
+::::
 ::: {.column width="54%"}
 ![](figs/excel_prop_z.png){.nostretch fig-align="center" width="100%"}
 :::

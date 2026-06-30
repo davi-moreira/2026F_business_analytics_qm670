@@ -639,7 +639,7 @@ knitr::include_graphics("figs/vungle_pct90.png")
 :::
 ::::::
 
-::: nonincremental
+::: fragment
 Percentiles turn the distribution into **decision thresholds**: a \$3.69 day is "good," a \$3.90 day is "great." Same model, business-ready language.
 :::
 
@@ -785,7 +785,7 @@ $$
 :::
 ::::::
 
-::: nonincremental
+::: fragment
 This is the bridge from Topic 5's **counting** distributions to today's **continuous** Normal; at scale, the Binomial *becomes* a Normal.
 :::
 

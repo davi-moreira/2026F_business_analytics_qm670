@@ -1109,7 +1109,7 @@
     "href": "lecture_slides/06_chapter_continuous_probability_distributions/06_chapter_continuous_probability_distributions.html#do-it-in-excel-norm.inv-percentiles",
     "title": " QM 6700: Business Analytics ",
     "section": "Do It in Excel: NORM.INV Percentiles",
-    "text": "Do It in Excel: NORM.INV Percentiles\n\n\nFollow along:\n\nKeep mean 3.459 and sd 0.344 in cells.\nTop-10% day: =NORM.INV(0.90, 3.459, 0.344) = $3.90.\n“Good” day, 75th pct: =NORM.INV(0.75, 3.459, 0.344) = $3.69.\nMedian: =NORM.INV(0.50, 3.459, 0.344) = $3.46 (equals the mean).\nConfirm the inverse: =NORM.DIST(3.90, 3.459, 0.344, TRUE) returns 0.90.\n\n\n\n\n\n\n\n\nPercentiles turn the distribution into decision thresholds: a $3.69 day is “good,” a $3.90 day is “great.” Same model, business-ready language."
+    "text": "Do It in Excel: NORM.INV Percentiles\n\n\nFollow along:\n\nKeep mean 3.459 and sd 0.344 in cells.\nTop-10% day: =NORM.INV(0.90, 3.459, 0.344) = $3.90.\n“Good” day, 75th pct: =NORM.INV(0.75, 3.459, 0.344) = $3.69.\nMedian: =NORM.INV(0.50, 3.459, 0.344) = $3.46 (equals the mean).\nConfirm the inverse: =NORM.DIST(3.90, 3.459, 0.344, TRUE) returns 0.90.\n\n\n\n\n\n\n\n\n\nPercentiles turn the distribution into decision thresholds: a $3.69 day is “good,” a $3.90 day is “great.” Same model, business-ready language."
   },
   {
     "objectID": "lecture_slides/06_chapter_continuous_probability_distributions/06_chapter_continuous_probability_distributions.html#a-question-that-often-comes-up-5",
@@ -1172,7 +1172,7 @@
     "href": "lecture_slides/06_chapter_continuous_probability_distributions/06_chapter_continuous_probability_distributions.html#do-it-in-excel-normal-approximation-of-the-binomial",
     "title": " QM 6700: Business Analytics ",
     "section": "Do It in Excel: Normal Approximation of the Binomial",
-    "text": "Do It in Excel: Normal Approximation of the Binomial\n\n\nFollow along:\n\nEnter n = 527513 and p = 0.00354.\nCondition check: =n*p (1,867) and =n*(1-p) (525,646), both \\(\\ge 5\\).\nmu =n*p = 1,867; sigma =SQRT(n*p*(1-p)) = 43.1.\nTail with continuity correction: =1 - NORM.DIST(2000.5, 1867, 43.1, TRUE).\nRead it: 0.0010, about a 1-in-1,000 day above 2,000 installs.\n\n\n\n\n\n\n\n\nThis is the bridge from Topic 5’s counting distributions to today’s continuous Normal; at scale, the Binomial becomes a Normal."
+    "text": "Do It in Excel: Normal Approximation of the Binomial\n\n\nFollow along:\n\nEnter n = 527513 and p = 0.00354.\nCondition check: =n*p (1,867) and =n*(1-p) (525,646), both \\(\\ge 5\\).\nmu =n*p = 1,867; sigma =SQRT(n*p*(1-p)) = 43.1.\nTail with continuity correction: =1 - NORM.DIST(2000.5, 1867, 43.1, TRUE).\nRead it: 0.0010, about a 1-in-1,000 day above 2,000 installs.\n\n\n\n\n\n\n\n\n\nThis is the bridge from Topic 5’s counting distributions to today’s continuous Normal; at scale, the Binomial becomes a Normal."
   },
   {
     "objectID": "lecture_slides/06_chapter_continuous_probability_distributions/06_chapter_continuous_probability_distributions.html#a-question-that-often-comes-up-7",
@@ -3632,7 +3632,7 @@
     "href": "lecture_slides/09_chapter_hypothesis_tests_two_populations/09_chapter_hypothesis_tests_two_populations.html#do-it-in-excel-two-proportion-z-formula-cells",
     "title": " QM 6700: Business Analytics ",
     "section": "Do It in Excel: Two-Proportion \\(z\\) (Formula Cells)",
-    "text": "Do It in Excel: Two-Proportion \\(z\\) (Formula Cells)\n\n\nFollow along (no ToolPak tool; five cells):\n\nEnter \\(x_1, n_1\\) (B installs, impressions) and \\(x_2, n_2\\) (A).\nPooled rate: =(x1+x2)/(n1+n2).\nPooled SE: =SQRT(pbar*(1-pbar)*(1/n1+1/n2)).\nTest statistic: =(x1/n1 - x2/n2)/SE.\n\\(p\\)-value: =2*(1-NORM.S.DIST(ABS(z),TRUE)) → read \\(z = -29.56\\), \\(p &lt; 0.0001\\).\n\nWorth mastering: most A/B metrics (click-through, conversion, churn) are proportions."
+    "text": "Do It in Excel: Two-Proportion \\(z\\) (Formula Cells)\n\n\nFollow along (no ToolPak tool; five cells):\n\nEnter \\(x_1, n_1\\) (B installs, impressions) and \\(x_2, n_2\\) (A).\nPooled rate: =(x1+x2)/(n1+n2).\nPooled SE: =SQRT(pbar*(1-pbar)*(1/n1+1/n2)).\nTest statistic: =(x1/n1 - x2/n2)/SE.\n\\(p\\)-value: =2*(1-NORM.S.DIST(ABS(z),TRUE)) → read \\(z = -29.56\\), \\(p &lt; 0.0001\\).\n\n\nWorth mastering: most A/B metrics (click-through, conversion, churn) are proportions."
   },
   {
     "objectID": "lecture_slides/09_chapter_hypothesis_tests_two_populations/09_chapter_hypothesis_tests_two_populations.html#vungle-conversion-the-five-steps",
