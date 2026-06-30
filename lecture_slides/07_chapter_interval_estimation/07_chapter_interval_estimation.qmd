@@ -591,6 +591,14 @@ knitr::include_graphics("figs/ci_mechanics.png")
 - **Wrong:** *"there is a 95% chance $\mu$ is in this one interval."* Once computed, an interval either contains $\mu$ or it doesn't.
 :::
 
+## See "95% Confident" in Action
+
+::: {.nonincremental style="font-size: 90%;"}
+Build a 95% interval the same way many times: about **19 of every 20** capture the true mean and **1 misses**. The interval is what moves, the truth stays put. Drag the **confidence level** and **sample size** and watch the hit rate track them. The same logic sits behind B's eRPM interval.
+:::
+
+<iframe src="https://rpsychologist.com/d3/ci/" width="100%" height="560" style="border:1px solid #ccc; border-radius:4px;" title="Interpreting Confidence Intervals: an interactive simulation (Kristoffer Magnusson)"></iframe>
+
 ## A Question That Often Comes Up
 
 :::: {.faq}
