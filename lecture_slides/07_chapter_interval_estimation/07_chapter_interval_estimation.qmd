@@ -328,12 +328,14 @@ The CLT is the engine behind every interval we build today: it is *why* B's samp
 Bunnies, Dragons and the 'Normal' World (NYT)
 :::
 <iframe width="100%" height="400" src="https://www.youtube.com/embed/jvoxEYmQHNM" title="Central Limit Theorem | The New York Times" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+<div style="text-align:center; font-size:0.62em; margin-top:0.25em;"><a href="https://www.youtube.com/watch?v=jvoxEYmQHNM" target="_blank" rel="noopener noreferrer" data-preview-link="false">Open the video in a new tab ↗</a></div>
 :::
 ::: {.column width="50%"}
 ::: {style="text-align:center; font-weight:bold; margin-bottom:0.3em;"}
 Seeing Theory (interactive)
 :::
 <iframe src="https://seeing-theory.brown.edu/" width="100%" height="400" style="border:1px solid #ccc; border-radius:4px;"></iframe>
+<div style="text-align:center; font-size:0.62em; margin-top:0.25em;"><a href="https://seeing-theory.brown.edu/" target="_blank" rel="noopener noreferrer" data-preview-link="false">Open Seeing Theory in a new tab ↗</a></div>
 :::
 ::::
 
@@ -598,6 +600,7 @@ Build a 95% interval the same way many times: about **19 of every 20** capture t
 :::
 
 <iframe src="https://rpsychologist.com/d3/ci/" width="100%" height="560" style="border:1px solid #ccc; border-radius:4px;" title="Interpreting Confidence Intervals: an interactive simulation (Kristoffer Magnusson)"></iframe>
+<div style="text-align:center; font-size:0.62em; margin-top:0.25em;"><a href="https://rpsychologist.com/d3/ci/" target="_blank" rel="noopener noreferrer" data-preview-link="false">Open the simulation in a new tab ↗</a></div>
 
 ## A Question That Often Comes Up
 

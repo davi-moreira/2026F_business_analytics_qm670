@@ -4153,7 +4153,7 @@
     "href": "lecture_slides/07_chapter_interval_estimation/07_chapter_interval_estimation.html#see-the-clt-in-action",
     "title": " QM 6700: Business Analytics ",
     "section": "See the CLT in Action",
-    "text": "See the CLT in Action\n\nThe CLT is the engine behind every interval we build today: it is why B’s sample mean \\(\\bar{x}_B\\) stacks up in a Normal curve around the true \\(\\mu\\), even though B’s 30 daily eRPMs are not perfectly bell-shaped. Watch it happen, then move the sliders yourself.\n\n\n\n\nBunnies, Dragons and the ‘Normal’ World (NYT)\n\n\n\n\n\nSeeing Theory (interactive)"
+    "text": "See the CLT in Action\n\nThe CLT is the engine behind every interval we build today: it is why B’s sample mean \\(\\bar{x}_B\\) stacks up in a Normal curve around the true \\(\\mu\\), even though B’s 30 daily eRPMs are not perfectly bell-shaped. Watch it happen, then move the sliders yourself.\n\n\n\n\nBunnies, Dragons and the ‘Normal’ World (NYT)\n\n\n\n\nOpen the video in a new tab ↗\n\n\n\nSeeing Theory (interactive)\n\n\n\n\nOpen Seeing Theory in a new tab ↗"
   },
   {
     "objectID": "lecture_slides/07_chapter_interval_estimation/07_chapter_interval_estimation.html#a-point-estimate-is-a-spear-an-interval-is-a-net",
@@ -4194,6 +4194,6 @@
     "href": "lecture_slides/07_chapter_interval_estimation/07_chapter_interval_estimation.html#see-95-confident-in-action",
     "title": " QM 6700: Business Analytics ",
     "section": "See “95% Confident” in Action",
-    "text": "See “95% Confident” in Action\n\nBuild a 95% interval the same way many times: about 19 of every 20 capture the true mean and 1 misses. The interval is what moves, the truth stays put. Drag the confidence level and sample size and watch the hit rate track them. The same logic sits behind B’s eRPM interval."
+    "text": "See “95% Confident” in Action\n\nBuild a 95% interval the same way many times: about 19 of every 20 capture the true mean and 1 misses. The interval is what moves, the truth stays put. Drag the confidence level and sample size and watch the hit rate track them. The same logic sits behind B’s eRPM interval.\n\n\n\n\nOpen the simulation in a new tab ↗"
   }
 ]
