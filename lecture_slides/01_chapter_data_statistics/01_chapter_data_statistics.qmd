@@ -835,7 +835,7 @@ knitr::include_graphics("figs/inference.svg")
 The main points from this session:
 
 -   **Your seat all term:** you are the **decision-maker**. You run every method yourself, but to *judge* the analysis and make the call, not to be the analyst.
--   **Two cases drive the course:** Vungle A/B (describe → test, Topics 1–9) and auto-parts retail (predict, Topics 10–11). Each class your group also works a separate in-class case and submits it; individual homework drills the mechanics.
+-   **Two cases drive the course:** Vungle A/B (describe → test, Topics 1–9) and auto-parts retail (predict, Topics 10–11). Each class your group also works a separate in-class case and submits it; group homework drills the mechanics.
 -   **Statistics** turns data into defensible business decisions; it splits into **descriptive** (summarize) and **inferential** (generalize).
 -   **Data vocabulary:** elements, variables, observations; categorical vs. quantitative; the four scales of measurement, and the rule that **scale determines method**.
 -   **Study design:** Vungle ran a randomized **experiment**, which is what licenses *causal* claims.

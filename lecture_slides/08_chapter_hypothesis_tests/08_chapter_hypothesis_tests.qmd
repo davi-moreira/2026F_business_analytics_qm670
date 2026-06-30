@@ -553,7 +553,7 @@ $$
 
 - **One caveat:** the test says B beats the **\$3.30 line**, not that B beats **A**, and it assumes June is representative. Comparing B to A directly is Topic 9.
 
-- **Homework (individual):** today's one-sample $t$ is drilled on **HW3**, previous-edition problem sets on Brightspace. Run it yourself so you can check an analyst who uses it.
+- **Homework (group):** today's one-sample $t$ is drilled on **HW3**, previous-edition problem sets on Brightspace. Run it yourself so you can check an analyst who uses it.
 
 ## ⏱️ Team Sprint: Your Group Case (Lecture 1)
 
@@ -855,7 +855,7 @@ The same statistic, re-anchored to the Vungle eRPM mean test under different ben
 
 - **One caveat:** with 15.8M impressions, *significance was almost automatic*. The honest headline is the **effect size** (+0.0041 pts), not the $z$. Statistical significance $\neq$ practical importance.
 
-- **Homework (individual):** today's one-proportion $z$ is drilled on **HW3**, previous-edition problem sets on Brightspace. Run it yourself so you can check an analyst who uses it.
+- **Homework (group):** today's one-proportion $z$ is drilled on **HW3**, previous-edition problem sets on Brightspace. Run it yourself so you can check an analyst who uses it.
 
 ## ⏱️ Team Sprint: Your Group Case (Lecture 2)
 

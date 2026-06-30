@@ -1120,7 +1120,7 @@ The points to carry out of this session:
 - The **Poisson** counts rare arrivals from one rate $\mu$: $f(x) = \mu^x e^{-\mu}/x!$, with $\mu = \sigma^2$; for large $n$, small $p$ it equals Binomial($np$), the Vungle case.
 - **Capacity = a tail probability:** $P(X \geq N) = 1 - P(X \leq N-1)$, computed in one Excel cell.
 - **Next time:** we move from **discrete counts** to **continuous measurements**, the **Normal** distribution, and the question *"what is the probability eRPM exceeds \$3.50?"*
-- **Homework (individual):** the Binomial and Poisson models are drilled on **HW2**, posted on Brightspace; run them yourself so you can check an analyst who uses them.
+- **Homework (group):** the Binomial and Poisson models are drilled on **HW2**, posted on Brightspace; run them yourself so you can check an analyst who uses them.
 :::
 
 # Thank you! {background-color="#cfb991"}

@@ -873,7 +873,7 @@ Some key takeaways from this session:
 - In Excel: `NORM.DIST` for **probabilities** (tail areas), `NORM.INV` for **percentiles**; they are inverses.
 - **Check the assumption** with a QQ plot / Shapiro-Wilk before trusting a Normal probability.
 - At large $n$ with $np \ge 5$ and $n(1-p) \ge 5$, the **Binomial is well approximated by a Normal** ($\mu = np$, $\sigma = \sqrt{np(1-p)}$, with a $\pm 0.5$ continuity correction).
-- **Homework (individual):** HW2 drills the Normal model, z-scores, and percentiles (previous-edition problem sets on Brightspace).
+- **Homework (group):** HW2 drills the Normal model, z-scores, and percentiles (previous-edition problem sets on Brightspace).
 - **Next time:** we stop treating these 30 days as the whole story and recognize them as a **sample**, Sampling & Estimation: how to estimate the *true* eRPM, with a margin of error.
 :::
 

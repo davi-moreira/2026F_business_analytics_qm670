@@ -577,7 +577,7 @@ Some key takeaways from this session:
 - The **multiplication law** chains the steps into the end-to-end rate; **independence** is when conditioning changes nothing (the funnel steps are *not* independent).
 - **Bayes' theorem** reverses the conditioning (prior → posterior); base rates dominate, so one install is weak evidence about which algorithm served it.
 - **Marginal, conditional, and reverse probabilities are different numbers** for the same data; match the number to the manager's question.
-- **Next time:** probabilities become **decisions** in Decision Analysis (payoffs, expected value, value of information). Today's tools are also drilled on **HW1** (individual, on Brightspace).
+- **Next time:** probabilities become **decisions** in Decision Analysis (payoffs, expected value, value of information). Today's tools are also drilled on **HW1** (group, on Brightspace).
 :::
 
 # Thank you! {background-color="#cfb991"}
