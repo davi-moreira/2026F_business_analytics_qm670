@@ -3541,7 +3541,7 @@
     "href": "lecture_slides/09_chapter_hypothesis_tests_two_populations/09_chapter_hypothesis_tests_two_populations.html#case-3-sigma-unknown-not-assumed-equal-the-welch-t",
     "title": " QM 6700: Business Analytics ",
     "section": "Case 3, \\(\\sigma\\) Unknown, Not Assumed Equal: the Welch \\(t\\)",
-    "text": "Case 3, \\(\\sigma\\) Unknown, Not Assumed Equal: the Welch \\(t\\)\n\n\n\nDrop the equal-variance assumption; each sample keeps its own variance:\n\n\n\\[\nt = \\frac{(\\bar{x}_1 - \\bar{x}_2) - D_0}{\\sqrt{\\dfrac{s_1^2}{n_1} + \\dfrac{s_2^2}{n_2}}}\n\\]\n\n\nDegrees of freedom (Satterthwaite approximation; typically non-integer, so round down):\n\n\n\\[\ndf = \\frac{\\left(\\dfrac{s_1^2}{n_1} + \\dfrac{s_2^2}{n_2}\\right)^2}{\\dfrac{(s_1^2/n_1)^2}{n_1 - 1} + \\dfrac{(s_2^2/n_2)^2}{n_2 - 1}}\n\\]\n\n\nCI: \\((\\bar{x}_1 - \\bar{x}_2) \\pm t_{\\alpha/2,\\,df}\\sqrt{s_1^2/n_1 + s_2^2/n_2}\\)"
+    "text": "Case 3, \\(\\sigma\\) Unknown, Not Assumed Equal: the Welch \\(t\\)\n\n\n\nDrop the equal-variance assumption; each sample keeps its own variance:\n\n\n\\[\nt = \\frac{(\\bar{x}_1 - \\bar{x}_2) - D_0}{\\sqrt{\\dfrac{s_1^2}{n_1} + \\dfrac{s_2^2}{n_2}}}\n\\]\n\n\nDegrees of freedom (Satterthwaite approximation; non-integer, rounded to the nearest whole number, which is the df Excel’s ToolPak reports):\n\n\n\\[\ndf = \\frac{\\left(\\dfrac{s_1^2}{n_1} + \\dfrac{s_2^2}{n_2}\\right)^2}{\\dfrac{(s_1^2/n_1)^2}{n_1 - 1} + \\dfrac{(s_2^2/n_2)^2}{n_2 - 1}}\n\\]\n\n\nCI: \\((\\bar{x}_1 - \\bar{x}_2) \\pm t_{\\alpha/2,\\,df}\\sqrt{s_1^2/n_1 + s_2^2/n_2}\\)"
   },
   {
     "objectID": "lecture_slides/09_chapter_hypothesis_tests_two_populations/09_chapter_hypothesis_tests_two_populations.html#practical-guidance-default-to-welch",

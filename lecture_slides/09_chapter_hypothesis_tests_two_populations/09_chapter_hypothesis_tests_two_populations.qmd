@@ -624,7 +624,7 @@ $$
 
 :::
 
-- Degrees of freedom (Satterthwaite approximation; typically non-integer, so round **down**):
+- Degrees of freedom (Satterthwaite approximation; non-integer, rounded to the **nearest** whole number, which is the `df` Excel's ToolPak reports):
 
 ::: fragment
 
