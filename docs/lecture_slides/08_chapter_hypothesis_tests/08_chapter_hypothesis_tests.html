@@ -327,13 +327,25 @@ H_0: \mu \leq 3.30 \qquad \text{vs.} \qquad H_a: \mu &gt; 3.30
 </section>
 <section id="you-control-alpha-beta-follows" class="slide level2 center">
 <h2>You Control <span class="math inline">\(\alpha\)</span>; <span class="math inline">\(\beta\)</span> Follows</h2>
-<p><br></p>
+<div class="columns">
+<div class="column" style="width:55%;">
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="figs/alpha_beta_tradeoff_vungle.png" class="quarto-figure quarto-figure-center" style="width:100.0%"></p>
+</figure>
+</div>
+</div>
+</div>
+</div><div class="column" style="width:45%;">
 <ul>
-<li class="fragment"><p>The <strong>level of significance</strong> <span class="math inline">\(\alpha\)</span> = the probability of a <strong>Type I error</strong> you are willing to tolerate. You set it <strong>before</strong> seeing the data; usually <span class="math inline">\(\alpha = 0.05\)</span> (sometimes <span class="math inline">\(0.01\)</span> or <span class="math inline">\(0.10\)</span>).</p></li>
-<li class="fragment"><p><span class="math inline">\(\beta\)</span> = the probability of a <strong>Type II error</strong>. You do <strong>not</strong> set it directly; it follows from <span class="math inline">\(\alpha\)</span>, the sample size, and how far the truth is from <span class="math inline">\(H_0\)</span>.</p></li>
-<li class="fragment"><p><strong>The trade-off:</strong> for a fixed sample, lowering <span class="math inline">\(\alpha\)</span> (fewer false alarms) <strong>raises</strong> <span class="math inline">\(\beta\)</span> (more missed effects). The only way to shrink both is a <strong>larger sample</strong>.</p></li>
-<li class="fragment"><p><strong>Language rule:</strong> when the evidence is weak we say <em>“fail to reject <span class="math inline">\(H_0\)</span>,”</em> never <em>“accept <span class="math inline">\(H_0\)</span>.”</em> Absence of proof is not proof of absence; we just did not gather enough evidence to overturn the skeptic.</p></li>
+<li class="fragment"><p><span class="math inline">\(\alpha\)</span> = the <strong>Type I</strong> risk (a false “fund it”) you agree to tolerate. You <strong>set it before</strong> the data; usually <span class="math inline">\(0.05\)</span>.</p></li>
+<li class="fragment"><p><span class="math inline">\(\beta\)</span> = the <strong>Type II</strong> risk (miss a real winner). You do <strong>not</strong> set it: it follows from <span class="math inline">\(\alpha\)</span>, the sample size, and how far the truth sits from <span class="math inline">\(H_0\)</span>.</p></li>
+<li class="fragment"><p><strong>The trade-off:</strong> slide the cutoff right and <span class="math inline">\(\alpha\)</span> falls but <span class="math inline">\(\beta\)</span> climbs. At <span class="math inline">\(\alpha = 0.05\)</span> the picture leaves <span class="math inline">\(\beta \approx 0.19\)</span> (power <span class="math inline">\(\approx 0.81\)</span>); only a <strong>bigger sample</strong> shrinks both.</p></li>
+<li class="fragment"><p><strong>Language rule:</strong> weak evidence means <em>“fail to reject <span class="math inline">\(H_0\)</span>,”</em> never <em>“accept <span class="math inline">\(H_0\)</span>.”</em></p></li>
 </ul>
+</div></div>
 </section>
 <section id="why-the-asymmetry-matters-for-vungle" class="slide level2 center">
 <h2>Why the Asymmetry Matters for Vungle</h2>
@@ -375,7 +387,7 @@ H_0: \mu \leq 3.30 \qquad \text{vs.} \qquad H_a: \mu &gt; 3.30 \qquad \alpha = 0
 </div>
 <ul>
 <li class="fragment"><p><span class="math inline">\(\mu\)</span> = the <strong>true</strong> mean daily eRPM B would deliver across <em>all</em> future traffic; the 30 June days are our sample.</p></li>
-<li class="fragment"><p><strong>Today’s plan:</strong> demo the mechanics on a textbook airport-rating case, then a good analyst’s work on Vungle goes up for you to reproduce and stress-test.</p></li>
+<li class="fragment"><p><strong>Today’s plan:</strong> a good analyst runs the five-step test on B’s eRPM; you reproduce it, stress-test it, and make the funding call.</p></li>
 </ul>
 </section>
 <section id="how-every-class-runs" class="slide level2 center">
@@ -487,35 +499,22 @@ z = \frac{\bar{x} - \mu_0}{\sigma / \sqrt{n}}
 </div>
 </div>
 </section>
-<section id="anchor-example-heathrow-superior-service-rating" class="slide level2 center">
-<h2>Anchor Example: Heathrow Superior-Service Rating</h2>
-<p><br></p>
-<p>A travel magazine rates airports 0–10; an airport is labeled <strong>“superior service”</strong> only if its <strong>true mean</strong> rating exceeds <strong>7</strong>. A sample of <strong>60</strong> business travelers at London Heathrow gives <span class="math inline">\(\bar{x} = 7.25\)</span>, <span class="math inline">\(s = 1.052\)</span>.</p>
-<p><br></p>
-<ul>
-<li class="fragment">We want evidence that the mean <strong>exceeds 7</strong> <span class="math inline">\(\rightarrow\)</span> upper-tail, <span class="math inline">\(\sigma\)</span> unknown <span class="math inline">\(\rightarrow\)</span> one-sample <span class="math inline">\(t\)</span>.</li>
-</ul>
+<section id="the-five-step-test-on-bs-erpm" class="slide level2 center">
+<h2>The Five-Step Test, on B’s eRPM</h2>
+<p>We run <strong>one procedure</strong> every time. Here it is on B’s mean eRPM:</p>
+<ol type="1">
+<li class="fragment"><strong>Business context:</strong> fund B only if its true mean eRPM beats the $3.30 viability benchmark.</li>
+<li class="fragment"><strong>Hypotheses</strong> (upper-tail): <span class="math inline">\(H_0: \mu \leq 3.30\)</span> vs.&nbsp;<span class="math inline">\(H_a: \mu &gt; 3.30\)</span>, at <span class="math inline">\(\alpha = 0.05\)</span>.</li>
+<li class="fragment"><strong>Test statistic:</strong> <span class="math inline">\(\sigma\)</span> is unknown, so estimate it with <span class="math inline">\(s\)</span> and use a one-sample <span class="math inline">\(t\)</span>, <span class="math inline">\(df = n - 1\)</span>.</li>
+<li class="fragment"><strong>Decision:</strong> compare <span class="math inline">\(t\)</span> to its critical value, or the <span class="math inline">\(p\)</span>-value to <span class="math inline">\(\alpha\)</span>: two roads, one verdict.</li>
+<li class="fragment"><strong>Manager’s translation:</strong> turn the verdict back into the funding call.</li>
+</ol>
 <div class="fragment">
-<p><span class="math display">\[
-H_0: \mu \leq 7 \qquad H_a: \mu &gt; 7 \qquad \alpha = 0.05
-\]</span></p>
+<p>The next slides run these five steps on June’s 30 days, in Excel.</p>
 </div>
 </section>
-<section id="heathrow-the-five-steps" class="slide level2 center">
-<h2>Heathrow: the Five Steps</h2>
-<div class="r-fit-text">
-<p><strong>1. Business context.</strong> Classify the airport; only a true mean above 7 earns the “superior service” badge.</p>
-<p><strong>2. Hypotheses</strong> (upper-tail): <span class="math inline">\(H_0: \mu \leq 7\)</span> vs.&nbsp;<span class="math inline">\(H_a: \mu &gt; 7\)</span>, <span class="math inline">\(\alpha = 0.05\)</span>.</p>
-<p><strong>3. Test statistic.</strong></p>
-<p><span class="math display">\[
-t = \frac{\bar{x} - \mu_0}{s/\sqrt{n}} = \frac{7.25 - 7}{1.052/\sqrt{60}} = \frac{0.25}{0.1358} = 1.84, \qquad df = 59
-\]</span></p>
-<p><strong>4. Decision.</strong> Critical value: <span class="math inline">\(t_{0.05,\,59} = 1.671\)</span>; since <span class="math inline">\(1.84 \geq 1.671\)</span> <span class="math inline">\(\rightarrow\)</span> <strong>reject <span class="math inline">\(H_0\)</span></strong>. Equivalently, <span class="math inline">\(p\text{-value} = 0.035 \leq 0.05\)</span> <span class="math inline">\(\rightarrow\)</span> <strong>reject <span class="math inline">\(H_0\)</span></strong>.</p>
-<p><strong>5. Manager’s Translation.</strong> <em>The data give us at least 95% confidence that Heathrow’s mean traveler rating tops 7, so classify it “superior service.” The evidence is strong but not overwhelming (<span class="math inline">\(p \approx 0.035\)</span>).</em></p>
-</div>
-</section>
-<section id="now-the-spine-case-bs-erpm-in-numbers" class="slide level2 center">
-<h2>Now the Spine Case: B’s eRPM in Numbers</h2>
+<section id="the-data-bs-erpm-against-the-benchmark" class="slide level2 center">
+<h2>The Data: B’s eRPM Against the Benchmark</h2>
 
 <img data-src="figs/erpm_B_vs_benchmark.png" class="quarto-figure quarto-figure-center r-stretch" style="width:80.0%"><ul>
 <li>23 of 30 days clear the $3.30 line, and the sample mean sits well above it, but a noisy 30-day sample <em>could</em> land here even if the true mean were exactly $3.30. The test settles it.</li>
@@ -821,40 +820,22 @@ z = \frac{\bar{p} - p_0}{\sigma_{\bar{p}}}
 <li class="fragment"><p>For a two-tailed test, <strong>double</strong> the single-tail area to get the <span class="math inline">\(p\)</span>-value, and split <span class="math inline">\(\alpha\)</span> into <span class="math inline">\(\alpha/2\)</span> per tail for the two critical values.</p></li>
 </ul>
 </section>
-<section id="anchor-example-pine-creek-golf-course" class="slide level2 center">
-<h2>Anchor Example: Pine Creek Golf Course</h2>
-<p><br></p>
-<p>Last year <strong>20%</strong> of Pine Creek’s players were women. After a promotion to attract women golfers, the manager wants evidence the proportion <strong>increased</strong>. A sample of <strong>400</strong> players includes <strong>100</strong> women (<span class="math inline">\(\bar{p} = 0.25\)</span>), <span class="math inline">\(\alpha = 0.05\)</span>.</p>
+<section id="the-five-step-test-on-bs-conversion" class="slide level2 center">
+<h2>The Five-Step Test, on B’s Conversion</h2>
+<p>Same five steps as the mean test; only the standard error and the reference curve change:</p>
+<ol type="1">
+<li class="fragment"><strong>Business context:</strong> keep B only if its true conversion clears the 0.35% viability target.</li>
+<li class="fragment"><strong>Hypotheses</strong> (upper-tail): <span class="math inline">\(H_0: p \leq 0.0035\)</span> vs.&nbsp;<span class="math inline">\(H_a: p &gt; 0.0035\)</span>, at <span class="math inline">\(\alpha = 0.05\)</span>.</li>
+<li class="fragment"><strong>Test statistic:</strong> a <span class="math inline">\(z\)</span>, with the standard error built <strong>under <span class="math inline">\(H_0\)</span></strong> from <span class="math inline">\(p_0\)</span>, not <span class="math inline">\(\bar p\)</span>.</li>
+<li class="fragment"><strong>Decision:</strong> compare <span class="math inline">\(z\)</span> to its critical value, or the <span class="math inline">\(p\)</span>-value to <span class="math inline">\(\alpha\)</span>.</li>
+<li class="fragment"><strong>Manager’s translation:</strong> turn the verdict back into the keep-or-kill call.</li>
+</ol>
 <div class="fragment">
-<p><span class="math display">\[
-H_0: p \leq 0.20 \qquad H_a: p &gt; 0.20 \qquad \text{(upper-tail)}
-\]</span></p>
-</div>
-<div class="fragment">
-<p><span class="math display">\[
-\sigma_{\bar{p}} = \sqrt{\frac{0.20(0.80)}{400}} = 0.02, \qquad
-z = \frac{0.25 - 0.20}{0.02} = 2.50
-\]</span></p>
+<p>Now the numbers: 15.8 million impressions, a rate a hair above target.</p>
 </div>
 </section>
-<section id="pine-creek-decision" class="slide level2 center">
-<h2>Pine Creek: Decision</h2>
-<p><br></p>
-<ul>
-<li class="fragment"><p><strong>Critical value:</strong> <span class="math inline">\(z_{0.05} = 1.645\)</span>. Since <span class="math inline">\(z = 2.50 \geq 1.645\)</span> <span class="math inline">\(\rightarrow\)</span> <strong>reject <span class="math inline">\(H_0\)</span></strong>.</p></li>
-<li class="fragment"><p><strong><span class="math inline">\(p\)</span>-value:</strong> <span class="math inline">\(1 - \text{NORM.S.DIST}(2.50) = 1 - 0.9938 = 0.0062 \leq 0.05\)</span> <span class="math inline">\(\rightarrow\)</span> <strong>reject <span class="math inline">\(H_0\)</span></strong>.</p></li>
-</ul>
-<div class="fragment">
-<blockquote>
-<p><em>Strong, in fact overwhelming, evidence that the promotion raised the proportion of women players above 20%.</em></p>
-</blockquote>
-</div>
-<ul>
-<li class="fragment">Notice the parallel to the airport case: same five steps, same two roads; only the standard error formula and the reference distribution (normal vs.&nbsp;<span class="math inline">\(t\)</span>) changed.</li>
-</ul>
-</section>
-<section id="now-the-spine-case-bs-conversion-in-numbers" class="slide level2 center">
-<h2>Now the Spine Case: B’s Conversion in Numbers</h2>
+<section id="bs-conversion-in-numbers" class="slide level2 center">
+<h2>B’s Conversion in Numbers</h2>
 <p><br></p>
 <ul>
 <li class="fragment">Plugging B’s June totals into the proportion test, with <span class="math inline">\(p_0 = 0.0035\)</span>:</li>

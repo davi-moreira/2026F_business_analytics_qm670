@@ -191,15 +191,23 @@ knitr::include_graphics("figs/type_I_II_errors_studio.png")
 
 ## You Control $\alpha$; $\beta$ Follows
 
-<br>
+:::::: columns
+::: {.column width="55%"}
+```{r echo=FALSE, out.width="100%", fig.align="center"}
+knitr::include_graphics("figs/alpha_beta_tradeoff_vungle.png")
+```
+:::
 
-- The **level of significance** $\alpha$ = the probability of a **Type I error** you are willing to tolerate. You set it **before** seeing the data; usually $\alpha = 0.05$ (sometimes $0.01$ or $0.10$).
+::: {.column width="45%"}
+- $\alpha$ = the **Type I** risk (a false "fund it") you agree to tolerate. You **set it before** the data; usually $0.05$.
 
-- $\beta$ = the probability of a **Type II error**. You do **not** set it directly; it follows from $\alpha$, the sample size, and how far the truth is from $H_0$.
+- $\beta$ = the **Type II** risk (miss a real winner). You do **not** set it: it follows from $\alpha$, the sample size, and how far the truth sits from $H_0$.
 
-- **The trade-off:** for a fixed sample, lowering $\alpha$ (fewer false alarms) **raises** $\beta$ (more missed effects). The only way to shrink both is a **larger sample**.
+- **The trade-off:** slide the cutoff right and $\alpha$ falls but $\beta$ climbs. At $\alpha = 0.05$ the picture leaves $\beta \approx 0.19$ (power $\approx 0.81$); only a **bigger sample** shrinks both.
 
-- **Language rule:** when the evidence is weak we say *"fail to reject $H_0$,"* never *"accept $H_0$."* Absence of proof is not proof of absence; we just did not gather enough evidence to overturn the skeptic.
+- **Language rule:** weak evidence means *"fail to reject $H_0$,"* never *"accept $H_0$."*
+:::
+::::::
 
 ## Why the Asymmetry Matters for Vungle
 
@@ -247,7 +255,7 @@ $$
 
 - $\mu$ = the **true** mean daily eRPM B would deliver across *all* future traffic; the 30 June days are our sample.
 
-- **Today's plan:** demo the mechanics on a textbook airport-rating case, then a good analyst's work on Vungle goes up for you to reproduce and stress-test.
+- **Today's plan:** a good analyst runs the five-step test on B's eRPM; you reproduce it, stress-test it, and make the funding call.
 
 ## How Every Class Runs
 
@@ -350,43 +358,21 @@ $$
 :::
 ::::
 
-## Anchor Example: Heathrow Superior-Service Rating
+## The Five-Step Test, on B's eRPM
 
-<br>
+We run **one procedure** every time. Here it is on B's mean eRPM:
 
-A travel magazine rates airports 0–10; an airport is labeled **"superior service"** only if its **true mean** rating exceeds **7**. A sample of **60** business travelers at London Heathrow gives $\bar{x} = 7.25$, $s = 1.052$.
-
-<br>
-
-- We want evidence that the mean **exceeds 7** $\rightarrow$ upper-tail, $\sigma$ unknown $\rightarrow$ one-sample $t$.
+1. **Business context:** fund B only if its true mean eRPM beats the \$3.30 viability benchmark.
+2. **Hypotheses** (upper-tail): $H_0: \mu \leq 3.30$ vs. $H_a: \mu > 3.30$, at $\alpha = 0.05$.
+3. **Test statistic:** $\sigma$ is unknown, so estimate it with $s$ and use a one-sample $t$, $df = n - 1$.
+4. **Decision:** compare $t$ to its critical value, or the $p$-value to $\alpha$: two roads, one verdict.
+5. **Manager's translation:** turn the verdict back into the funding call.
 
 ::: fragment
-
-$$
-H_0: \mu \leq 7 \qquad H_a: \mu > 7 \qquad \alpha = 0.05
-$$
-
+The next slides run these five steps on June's 30 days, in Excel.
 :::
 
-## Heathrow: the Five Steps
-
-::: r-fit-text
-**1. Business context.** Classify the airport; only a true mean above 7 earns the "superior service" badge.
-
-**2. Hypotheses** (upper-tail): $H_0: \mu \leq 7$ vs. $H_a: \mu > 7$, $\alpha = 0.05$.
-
-**3. Test statistic.**
-
-$$
-t = \frac{\bar{x} - \mu_0}{s/\sqrt{n}} = \frac{7.25 - 7}{1.052/\sqrt{60}} = \frac{0.25}{0.1358} = 1.84, \qquad df = 59
-$$
-
-**4. Decision.** Critical value: $t_{0.05,\,59} = 1.671$; since $1.84 \geq 1.671$ $\rightarrow$ **reject $H_0$**. Equivalently, $p\text{-value} = 0.035 \leq 0.05$ $\rightarrow$ **reject $H_0$**.
-
-**5. Manager's Translation.** *The data give us at least 95% confidence that Heathrow's mean traveler rating tops 7, so classify it "superior service." The evidence is strong but not overwhelming ($p \approx 0.035$).*
-:::
-
-## Now the Spine Case: B's eRPM in Numbers
+## The Data: B's eRPM Against the Benchmark
 
 ```{r  echo=FALSE, out.width = "80%",fig.align="center"}
 knitr::include_graphics("figs/erpm_B_vs_benchmark.png")
@@ -677,46 +663,21 @@ $$
 
 - For a two-tailed test, **double** the single-tail area to get the $p$-value, and split $\alpha$ into $\alpha/2$ per tail for the two critical values.
 
-## Anchor Example: Pine Creek Golf Course
+## The Five-Step Test, on B's Conversion
 
-<br>
+Same five steps as the mean test; only the standard error and the reference curve change:
 
-Last year **20%** of Pine Creek's players were women. After a promotion to attract women golfers, the manager wants evidence the proportion **increased**. A sample of **400** players includes **100** women ($\bar{p} = 0.25$), $\alpha = 0.05$.
-
-::: fragment
-
-$$
-H_0: p \leq 0.20 \qquad H_a: p > 0.20 \qquad \text{(upper-tail)}
-$$
-
-:::
+1. **Business context:** keep B only if its true conversion clears the 0.35% viability target.
+2. **Hypotheses** (upper-tail): $H_0: p \leq 0.0035$ vs. $H_a: p > 0.0035$, at $\alpha = 0.05$.
+3. **Test statistic:** a $z$, with the standard error built **under $H_0$** from $p_0$, not $\bar p$.
+4. **Decision:** compare $z$ to its critical value, or the $p$-value to $\alpha$.
+5. **Manager's translation:** turn the verdict back into the keep-or-kill call.
 
 ::: fragment
-
-$$
-\sigma_{\bar{p}} = \sqrt{\frac{0.20(0.80)}{400}} = 0.02, \qquad
-z = \frac{0.25 - 0.20}{0.02} = 2.50
-$$
-
+Now the numbers: 15.8 million impressions, a rate a hair above target.
 :::
 
-## Pine Creek: Decision
-
-<br>
-
-- **Critical value:** $z_{0.05} = 1.645$. Since $z = 2.50 \geq 1.645$ $\rightarrow$ **reject $H_0$**.
-
-- **$p$-value:** $1 - \text{NORM.S.DIST}(2.50) = 1 - 0.9938 = 0.0062 \leq 0.05$ $\rightarrow$ **reject $H_0$**.
-
-::: fragment
-
-> *Strong, in fact overwhelming, evidence that the promotion raised the proportion of women players above 20%.*
-
-:::
-
-- Notice the parallel to the airport case: same five steps, same two roads; only the standard error formula and the reference distribution (normal vs. $t$) changed.
-
-## Now the Spine Case: B's Conversion in Numbers
+## B's Conversion in Numbers
 
 <br>
 
