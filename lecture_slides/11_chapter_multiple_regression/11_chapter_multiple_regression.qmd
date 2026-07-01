@@ -61,7 +61,7 @@ html-math-method:
 
 <br>
 
-- You own a regional **auto-parts retail chain**: 45 stores, deciding where to put the next dollar.
+- You are the **manager** of a regional **auto-parts retail chain**: 45 stores, deciding where to put the next dollar.
 
 - Last time we found a single strong predictor of a store's annual sales: its **Yelp rating**. Each extra star was worth roughly **+\$758K** a year. A clean simple-regression story.
 
@@ -99,11 +99,11 @@ html-math-method:
 
 - **Two lectures, two halves of the decision:**
 
-  - **Lecture 1, build & read the model.** Fit sales on all four drivers; interpret each **partial** coefficient ("holding the others constant"); judge overall fit with $R^2$ and adjusted $R^2$. Anchor: **Butler Trucking**.
+  - **Lecture 1, build & read the model.** Fit sales on all four drivers; interpret each **partial** coefficient ("holding the others constant"); judge overall fit with $R^2$ and adjusted $R^2$.
 
   - **Lecture 2, test & decide.** Which drivers are *real* ($F$-test vs. $t$-tests)? Put a **dollar value on an endcap** with a dummy variable; check the predictors don't overlap (multicollinearity); make the investment call.
 
-- A good analyst demos each idea on a small textbook anchor; **your team reproduces it on the auto-parts data**, then we debrief the recommendation together.
+- A good analyst builds the model on the auto-parts data; **your team reproduces and interrogates it**, then we debrief the recommendation together.
 
 - By the end, **you** decide where to invest, with the regression to back the call.
 
@@ -217,6 +217,24 @@ $$
 
 - This is why a predictor can look important alone yet vanish in the full model: its apparent effect was the work of a variable it travels with. (We will watch exactly this happen to population and income.)
 
+## Watch "Holding Constant" Change the Story
+
+:::::: columns
+::: {.column width="52%"}
+![](figs/animation_control.gif){.nostretch fig-align="center" width="78%"}
+
+::: {style="font-size: 50%;"}
+Source: [Nick Huntington-Klein, animated causal plots](https://nickchk.com/causalgraphs.html)
+:::
+:::
+::: {.column width="48%"}
+- The raw cloud tilts one way: a single **pooled** correlation that ignores a lurking variable (here, the two colors).
+- Split by that variable and the relationship **within each group** can flatten, steepen, or even **flip**.
+- A **partial coefficient** reads exactly that within-group story: the effect of one driver among stores that match on the others.
+- Hold this picture for the auto-parts surprise: population *looks* like it lifts sales, until we hold service and merchandising constant.
+:::
+::::::
+
 ## A Question That Often Comes Up
 
 :::: {.faq}
@@ -229,71 +247,71 @@ $$
 :::
 ::::
 
-# Anchor Example: Butler Trucking {background-color="#cfb991"}
+# Warm-Up: Two Drivers on the Spine {background-color="#cfb991"}
 
-## Butler Trucking: Two Predictors of Travel Time
+## Two Drivers First: Yelp and Endcap
 
 <br>
 
-- Managers at **Butler Trucking** want better driver schedules. They believe a driver's **total daily travel time** ($y$, hours) depends on two things about the route:
-
-  - $x_1$ = **miles** traveled
-  - $x_2$ = number of **deliveries** made
-
-- Ten driving assignments were recorded. The proposed model:
+- Before all four, we fit a **smaller** model on the same 45 stores: sales on just the **Yelp rating** and the **endcap** dummy. Two predictors keep the output table easy to read.
 
 ::: fragment
 
 $$
-y = \beta_0 + \beta_1 x_1 + \beta_2 x_2 + \varepsilon \qquad (n = 10,\; p = 2)
+\widehat{\text{sales}} = b_0 + b_1\,\text{yelp} + b_2\,\text{endcap} \qquad (n = 45,\; p = 2)
 $$
 
 :::
 
-- A small, clean example: it teaches you to read the output table before we scale up to 45 stores and four predictors.
+- Same machine as before: least squares tilts a **plane** over the 45 stores, and each $b$ is a **partial** coefficient, read "holding the other driver constant."
 
-## Do It in Excel: Multiple Regression (Butler)
+- Read the output, interpret the two partial effects, predict one store: then we add the two location drivers.
+
+## Do It in Excel: Fit Sales on Two Drivers
 
 :::::: columns
 ::: {.column width="46%"}
 **Follow along:**
 
-1. Lay miles and deliveries in **two side-by-side columns**.
+1. `yelp_rating` and `endcap` already sit **side by side** (columns **E:F**).
 2. **Data → Data Analysis → Regression**.
-3. Input Y Range: the travel-time column; Input X Range: **both** predictor columns together.
+3. Input Y Range: `sales2012_k` (column **B**); Input X Range: **E:F** together.
 4. Check **Labels** and **Confidence Level 95%**; click OK.
-5. Read the **Coefficients** column: $b_0 = -0.869$, $b_1 = 0.0611$, $b_2 = 0.923$.
+5. Read the **Coefficients** column: $b_0 = 295.3$, $b_1 = 648.7$, $b_2 = 740.4$.
 :::
 ::: {.column width="54%"}
-![](figs/excel_reg_butler_coefs.png){.nostretch fig-align="center" width="100%"}
+![](figs/excel_reg_2drv_coefs.png){.nostretch fig-align="center" width="100%"}
 
 ::: {.fragment}
 $$
-\hat{y} = -0.869 + 0.0611\,x_1 + 0.923\,x_2
+\widehat{\text{sales}} = 295.3 + 648.7\,\text{yelp} + 740.4\,\text{endcap}
 $$
 :::
 :::
 ::::::
 
-## Butler: Reading the Partial Coefficients
+## Reading the Two Partial Coefficients
 
 <br>
 
-- $b_1 = +0.0611$ (miles): each **additional mile** adds about **0.061 hour** (\~3.7 min) to travel time, **holding the number of deliveries constant.**
+- $b_1 = +648.7$ (Yelp): each **extra star** predicts about **+\$649K** in annual sales, **holding endcap placement constant.**
 
-- $b_2 = +0.923$ (deliveries): each **additional delivery** adds about **0.92 hour**, **holding miles constant.**
+- $b_2 = +740.4$ (endcap): an **endcap** predicts about **+\$740K**, **holding the Yelp rating constant.**
 
-- **Predict** assignment #1 ($x_1=100$, $x_2=4$):
+- **Predict** store #5 (Yelp $=5.0$, endcap $=1$), stacked against the simpler options:
 
 ::: fragment
 
-$$
-\hat{y} = -0.869 + 0.0611(100) + 0.923(4) = 8.94 \text{ hours}
-$$
+| Prediction for store #5 | Sales |
+|---|---:|
+| Null (guess the average) | \$2,706K |
+| Simple, Yelp only (Topic 10) | \$4,120K |
+| **Two drivers (Yelp + endcap)** | **\$4,279K** |
+| Actual | \$4,677K |
 
 :::
 
-- Actual was $9.3$, so the **residual** is $9.3 - 8.94 = +0.36$ hour: this route took slightly longer than the model expects.
+- Each step lands closer to the \$4,677K actual; the two-driver **residual** is $4677 - 4279 = +\$398\text{K}$. Still short: maybe location is helping. That is what the next two drivers test.
 
 # How Well Does the Model Fit? {background-color="#cfb991"}
 
@@ -321,7 +339,7 @@ $$
 
 :::
 
-- For Butler: $R^2 = 21.60 / 23.90 = 0.904$: miles and deliveries together explain about **90%** of the variation in travel time.
+- For the two-driver warm-up: $R^2 = 51{,}797{,}905 / 55{,}840{,}034 = 0.928$: Yelp and endcap together explain about **93%** of the variation in store sales.
 
 ## The $R^2$ Trap: It Can Only Go Up
 
@@ -345,19 +363,19 @@ $$
 ::: fragment
 
 $$
-R^2_a = 1 - \frac{SSE/(n - p - 1)}{SST/(n - 1)} = 1 - (1 - R^2)\,\frac{n - 1}{n - p - 1}
+\text{adjusted } R^2 = 1 - \frac{SSE/(n - p - 1)}{SST/(n - 1)} = 1 - (1 - R^2)\,\frac{n - 1}{n - p - 1}
 $$
 
 :::
 
 - The penalty rises with $p$ (more predictors) and eases with $n$ (more data). Two consequences:
 
-  - $R^2_a \le R^2$ **always**, and the gap widens as you add predictors.
-  - $R^2_a$ goes **up only if a new predictor reduces the error variance $s^2$ (= MSE) more than the penalty costs.**
+  - Adjusted $R^2 \le R^2$ **always**, and the gap widens as you add predictors.
+  - Adjusted $R^2$ goes **up only if a new predictor reduces the error variance $s^2$ (= MSE) more than the penalty costs.**
 
-- That makes $R^2_a$ a real **model-building criterion**: compare candidate models, prefer the higher $R^2_a$.
+- That makes adjusted $R^2$ a real **model-building criterion**: compare candidate models, prefer the higher one.
 
-- Butler: $R^2 = 0.904$ but $R^2_a = 0.876$; the gap is the fee for using two predictors on only ten observations.
+- Two-driver warm-up: $R^2 = 0.9276$ but adjusted $R^2 = 0.9242$; on 45 stores the fee for two predictors is small, and next we watch whether two *more* drivers can clear it.
 :::
 
 ## A Question That Often Comes Up
@@ -368,7 +386,7 @@ $$
 [If adjusted $R^2$ is the honest measure, why does Excel report plain $R^2$ at all, and which one do I quote to the chain?]{.faq-q}
 
 ::: {.fragment .faq-a}
-**Short answer:** quote **both**, and let the gap tell the story. Plain $R^2$ answers "how much variation did this model explain?" (a description of these 45 stores); adjusted $R^2$ answers "would this fit survive a fair charge for the predictors I used?" (the model-building question). For auto-parts they are close, $0.932$ vs $0.925$: a small gap means the four predictors are earning their keep, not padding the fit.
+**Short answer:** quote **both**, and let the gap tell the story. Plain $R^2$ answers "how much variation did this model explain?" (a description of these 45 stores); adjusted $R^2$ answers "would this fit survive a fair charge for the predictors I used?" (the model-building question). For the two-driver warm-up they are close, $0.9276$ vs $0.9242$: a small gap means both predictors are earning their keep, not padding the fit.
 :::
 ::::
 
@@ -380,9 +398,9 @@ $$
 ::: {.column width="46%"}
 **Follow along:**
 
-1. Put the **four predictor columns contiguous** (`population_3mi`, `income_3mi`, `yelp_rating`, `endcap`).
+1. The **four predictors already sit side by side** in columns **C:F** (`population_3mi`, `income_3mi`, `yelp_rating`, `endcap`).
 2. **Data → Data Analysis → Regression**.
-3. Input Y Range: `sales2012_k`; Input X Range: all **four** columns selected together.
+3. Input Y Range: `sales2012_k` (column **B**); Input X Range: **C:F**, all four together.
 4. Check **Labels** and **Confidence Level 95%**; click OK.
 5. Read the top block: **R Square**, **Adjusted R Square**, **Standard Error** ($s$).
 :::
@@ -417,6 +435,26 @@ $$
 
 - Now the interpretation, and the surprise.
 
+## How Much Better Than Guessing, or Than One Driver?
+
+<br>
+
+- A model earns its complexity only if it beats the simpler options. Stack three, all on the same 45 stores:
+
+::: fragment
+
+| Model | What it uses | $R^2$ | Typical miss |
+|---|---|---:|---:|
+| Null (no model) | guess the average \$2,706K every time | 0.000 | \~\$1,114K |
+| Simple (Topic 10) | Yelp rating alone | 0.834 | \~\$453K |
+| **Multiple (today)** | **all four drivers** | **0.932** | **\~\$291K** |
+
+:::
+
+- Each rung **cuts the typical miss**: \$1,114K with no model, \$453K with one driver, \$291K with four. Yelp did the heavy lifting; the other three still shave off another third of the error.
+
+- The payoff of the topic is not only *which* drivers matter, but a **sharper sales prediction** for the next store.
+
 ## Reading the Partial Effects
 
 ```{r  echo=FALSE, out.width = "82%",fig.align="center"}
@@ -441,7 +479,7 @@ knitr::include_graphics("figs/autoparts_coef_effects.png")
 
 - Meanwhile **service** (Yelp) and **merchandising** (endcap) carry the model.
 
-- **Why the intuition fails:** in simple regression a market-size variable can look strong because it travels with the variables that *really* matter. Once those are in the model, "holding the others constant" strips the borrowed credit away. We will confirm this with formal tests in Lecture 2.
+- **Why the intuition fails:** in simple regression a market-size variable can look strong because it travels with the variables that **actually drive sales**. Once those are in the model, "holding the others constant" strips the borrowed credit away. We will confirm this with formal tests in Lecture 2.
 
 ## A Question That Often Comes Up
 
@@ -570,7 +608,7 @@ $$
 4. Read **Significance F**: that is the overall p-value; reject $H_0$ when it is $\le \alpha$.
 :::
 ::: {.column width="54%"}
-![](figs/excel_reg_butler_anova.png){.nostretch fig-align="center" width="100%"}
+![](figs/excel_reg_full_stats.png){.nostretch fig-align="center" width="100%"}
 :::
 ::::::
 
@@ -753,6 +791,8 @@ knitr::include_graphics("figs/autoparts_endcap_dummy.png")
 
 ## Putting a Defensible Number on the Decision
 
+::: {style="font-size: 88%;"}
+
 - **Scenario:** the chain plans a new store with `population_3mi = 120,000`, `income_3mi = 55,000`, `yelp_rating = 4.0`. Should it pay for endcap placement?
 
 - Plug into the fitted equation, once with `endcap = 0` and once with `endcap = 1`:
@@ -761,15 +801,21 @@ knitr::include_graphics("figs/autoparts_endcap_dummy.png")
 
 | Configuration | Predicted annual sales |
 |---|---:|
-| Without endcap | **\$2,816K** |
-| With endcap | **\$3,632K** |
+| Null (average store) | \$2,706K |
+| Simple, Yelp only (Topic 10) | \$3,363K |
+| Multiple, **without** endcap | **\$2,816K** |
+| Multiple, **with** endcap | **\$3,632K** |
 | **Lift from the endcap** | **+\$816K / year** |
 
 :::
 
-- **The decision rule:** negotiate for the endcap **if its annual cost is below \~\$816K.** If the placement leases for, say, \$150K/year, that is a clear yes. The dummy turned a vague "merchandising matters" into a number you can put in a budget.
+- The Yelp-only model guesses **\$3,363K** here: it **over-credits** Yelp, which in Topic 10 absorbed the endcap effect the four-driver model now separates out.
 
-- These are **point** predictions. As in simple regression, the model also yields a **confidence interval** for the mean sales of *all* such stores and a wider **prediction interval** for this *one* store; the multiple-regression formulas are beyond our scope, so read both straight from the software.
+- **The decision rule:** buy the endcap **if its annual lease is below \~\$816K** (a \$150K placement is a clear yes): the dummy turns a vague "merchandising matters" into a budget number.
+
+- These are **point** predictions; the software also gives a **confidence interval** (mean of all such stores) and a wider **prediction interval** (this one store), read straight off the output.
+
+:::
 
 
 ## A Note on Categories with More Than Two Levels
@@ -873,6 +919,22 @@ knitr::include_graphics("figs/autoparts_predictor_corr.png")
 
 # One Last Check: Residual Analysis {background-color="#cfb991"}
 
+## Precision vs. Accuracy: Why the Assumptions Matter
+
+:::::: columns
+::: {.column width="58%"}
+![](figs/precision_accuracy.png){.nostretch fig-align="center" width="90%"}
+:::
+::: {.column width="42%"}
+::: {style="font-size: 90%;"}
+- **Precision:** the predictions are **consistent**, a tight spread when you repeat.
+- **Accuracy:** the predictions are **unbiased**, centered on the truth, not systematically high or low.
+- A regression can have one without the other. What buys you **both** is meeting the error assumptions: zero-mean, constant-variance, independent, roughly normal.
+- The residual plot is how we **check** them before trusting the \$816K endcap number.
+:::
+:::
+::::::
+
 ## Validating the Model: Plot the Residuals Against $\hat{y}$
 
 <br>
@@ -948,7 +1010,7 @@ Model: $R^2 = 0.932$, adjusted $R^2 = 0.925$, overall $F = 136.7$ (p $< 10^{-22}
 
 - **One caveat:** the model *describes* 45 existing stores; it does not *prove* that buying an endcap will *cause* +\$816K at a brand-new store. Correlation control is the best we can do with observational data: pilot it, then re-estimate.
 
-- **Practice with the real data:** `data/autoparts.csv` + Excel Regression → reproduce $R^2 = 0.932$, $F = 136.7$, the four coefficients, and the prediction. Worked solutions: `data/autoparts_regression.xlsx`.
+- **Practice with the real data:** `data/autoparts.csv` (in the datasets zip) + Excel Regression → reproduce $R^2 = 0.932$, $F = 136.7$, the four coefficients, and the endcap prediction yourself.
 
 ## Today's Question, Today's Answer
 
@@ -981,7 +1043,7 @@ Model: $R^2 = 0.932$, adjusted $R^2 = 0.925$, overall $F = 136.7$ (p $< 10^{-22}
 ## Summary
 
 ::: nonincremental
-Some key takeaways from this topic:
+What the auto-parts model taught us:
 
 - **Multiple regression** estimates the effect of each predictor **holding the others constant**: observational data's closest move to a controlled comparison.
 - A **partial coefficient** can differ wildly from its simple-regression cousin: population and income looked plausible but added nothing once Yelp and endcap were in.
