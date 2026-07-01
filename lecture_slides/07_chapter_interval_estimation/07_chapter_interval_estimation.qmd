@@ -161,7 +161,7 @@ knitr::include_graphics("figs/sampling_methods.png")
 ::: {.column width="46%"}
 **Follow along:**
 
-1. Select B's 30 daily eRPMs (`erpm_B`).
+1. Open `vungle_estimation.xlsx` (sheet `eRPM_by_day`); select B's 30 daily eRPMs (`erpm_B`).
 2. **Data -> Data Analysis -> Descriptive Statistics**.
 3. Set Input Range; check **Summary statistics** and **Confidence Level for Mean (95%)**.
 4. Click OK; read **Mean** ($\bar{x}_B = \$3.459$) and **Standard Deviation** ($s = \$0.344$).
@@ -540,7 +540,7 @@ knitr::include_graphics("figs/t_vs_z.png")
 [At $df = 29$ the $t$ multiplier 2.045 is barely above $z$'s 1.96. For Vungle's 30 days, is the difference even worth the trouble?]{.faq-q}
 
 ::: {.fragment .faq-a}
-**Short answer:** here it is small but not zero: using 2.045 instead of 1.96 widens B's eRPM margin from about \$0.124 to \$0.129, the honest cost of not knowing $\sigma$. The habit matters more than this one case. With a small sample, say $n = 10$, the gap is large, and "always use $t$ when $\sigma$ is unknown" keeps you correct without having to decide each time whether $n$ is "big enough."
+**Short answer:** here it is small but not zero: using 2.045 instead of 1.96 widens B's eRPM margin from about \$0.123 to \$0.129, the honest cost of not knowing $\sigma$. The habit matters more than this one case. With a small sample, say $n = 10$, the gap is large, and "always use $t$ when $\sigma$ is unknown" keeps you correct without having to decide each time whether $n$ is "big enough."
 :::
 ::::
 
@@ -634,7 +634,7 @@ knitr::include_graphics("figs/vungle_erpm_ci.png")
 ::: {.column width="46%"}
 **Follow along:**
 
-1. Select B's 30 daily eRPMs (`erpm_B`).
+1. Open `vungle_estimation.xlsx` (sheet `eRPM_by_day`); select B's 30 daily eRPMs (`erpm_B`).
 2. `=AVERAGE(range)` → $\bar{x}_B$; `=STDEV.S(range)` → $s$.
 3. `=T.INV.2T(0.05, 29)` → the multiplier $2.045$.
 4. `=CONFIDENCE.T(0.05, s, 30)` → the margin $E = \$0.129$ in one cell.
@@ -707,7 +707,7 @@ $$
 | **95% CI** | $(0.345\%,\; 0.362\%)$ |
 :::
 
-- **Read it:** we are 95% confident B converts between **0.345% and 0.362%** of impressions to installs, a tight interval because day-to-day conversion is very stable.
+- **Read it:** we are 95% confident B converts between **0.345% and 0.362%** of impressions to installs, a tight interval because day-to-day conversion is stable.
 
 ## Do It in Excel: the Conversion-Rate Interval
 
@@ -715,16 +715,36 @@ $$
 ::: {.column width="46%"}
 **Follow along:**
 
-1. Select B's daily conversion column (`conv_B_pct`).
+1. In `vungle_estimation.xlsx` (sheet `eRPM_by_day`), select B's daily conversion column (`conv_B_pct`); it is in percentage points, so `0.354` means 0.354%.
 2. `=AVERAGE` → $0.354\%$; `=STDEV.S` → $s = 0.023\%$.
 3. `=CONFIDENCE.T(0.05, s, 30)` → margin $E = 0.0086\%$.
 4. Read $\bar{x} \pm E$: $(0.345\%,\ 0.362\%)$.
-5. Note how tiny $s$ is: stable days give a very tight interval.
+5. Note how tiny $s$ is: stable days give a tight interval.
 :::
 ::: {.column width="54%"}
 ![](figs/excel_ci_prop.png){.nostretch fig-align="center" width="100%"}
 :::
 ::::::
+
+## Conversion as a True Proportion: the $z$-Interval
+
+<br>
+
+- The interval above treated B's **30 daily percentages** as the sample. The textbook proportion interval works on the **raw impressions** instead: each of B's 15.8M impressions is one yes/no trial (install or not).
+
+- Setup: $\bar{p} = 56{,}031 / 15{,}825{,}376 = 0.354\%$, and $n\bar{p}$ and $n(1-\bar{p})$ are both far above 5, so $z$ is safe.
+
+::: fragment
+
+$$
+\bar{p} \pm z_{\alpha/2}\sqrt{\frac{\bar{p}(1-\bar{p})}{n}}
+= 0.00354 \pm 1.96\sqrt{\frac{0.00354\,(1-0.00354)}{15{,}825{,}376}}
+= (0.351\%,\; 0.357\%)
+$$
+
+:::
+
+- **The contrast:** this $z$-interval is **tighter** than the daily-rate one $(0.345\%,\, 0.362\%)$, because $n$ jumps from **30 days** to **15.8M impressions**, and precision rides on $n$. We still report the per-day version in the memo, to keep the unit the **day**, parallel to eRPM. **Excel:** $\bar{p}$ `=SUM(installs)/SUM(impressions)` on `Raw_Data`; `=NORM.S.INV(0.975)` for $z$.
 
 # Margin of Error & Sample Size {background-color="#cfb991"}
 
@@ -870,7 +890,7 @@ $$
 | Quantity | Point estimate | 95% interval | Read |
 |---|---:|---:|---|
 | Mean eRPM (B) | \$3.459 | (\$3.330, \$3.588) | true earning power, $\pm\$0.13$ |
-| Conversion rate (B) | 0.354% | (0.345%, 0.362%) | very stable, $\pm 0.009$pt |
+| Conversion rate (B) | 0.354% | (0.345%, 0.362%) | stable, $\pm 0.009$pt |
 | Days for $\pm\$0.05$ eRPM | (n/a) | $n = 183$ | six months to halve the margin |
 
 <br>

@@ -340,7 +340,7 @@ Professor<br>Davi Moreira<br>
 <div class="column" style="width:46%;">
 <p><strong>Follow along:</strong></p>
 <ol type="1">
-<li class="fragment">Select B’s 30 daily eRPMs (<code>erpm_B</code>).</li>
+<li class="fragment">Open <code>vungle_estimation.xlsx</code> (sheet <code>eRPM_by_day</code>); select B’s 30 daily eRPMs (<code>erpm_B</code>).</li>
 <li class="fragment"><strong>Data -&gt; Data Analysis -&gt; Descriptive Statistics</strong>.</li>
 <li class="fragment">Set Input Range; check <strong>Summary statistics</strong> and <strong>Confidence Level for Mean (95%)</strong>.</li>
 <li class="fragment">Click OK; read <strong>Mean</strong> (<span class="math inline">\(\bar{x}_B = \$3.459\)</span>) and <strong>Standard Deviation</strong> (<span class="math inline">\(s = \$0.344\)</span>).</li>
@@ -728,7 +728,7 @@ E = (\text{a multiplier}) \times (\text{standard error})
 <p><strong>A question that often comes up at this point:</strong></p>
 <p><span class="faq-q">At <span class="math inline">\(df = 29\)</span> the <span class="math inline">\(t\)</span> multiplier 2.045 is barely above <span class="math inline">\(z\)</span>’s 1.96. For Vungle’s 30 days, is the difference even worth the trouble?</span></p>
 <div class="fragment faq-a">
-<p><strong>Short answer:</strong> here it is small but not zero: using 2.045 instead of 1.96 widens B’s eRPM margin from about $0.124 to $0.129, the honest cost of not knowing <span class="math inline">\(\sigma\)</span>. The habit matters more than this one case. With a small sample, say <span class="math inline">\(n = 10\)</span>, the gap is large, and “always use <span class="math inline">\(t\)</span> when <span class="math inline">\(\sigma\)</span> is unknown” keeps you correct without having to decide each time whether <span class="math inline">\(n\)</span> is “big enough.”</p>
+<p><strong>Short answer:</strong> here it is small but not zero: using 2.045 instead of 1.96 widens B’s eRPM margin from about $0.123 to $0.129, the honest cost of not knowing <span class="math inline">\(\sigma\)</span>. The habit matters more than this one case. With a small sample, say <span class="math inline">\(n = 10\)</span>, the gap is large, and “always use <span class="math inline">\(t\)</span> when <span class="math inline">\(\sigma\)</span> is unknown” keeps you correct without having to decide each time whether <span class="math inline">\(n\)</span> is “big enough.”</p>
 </div>
 </div>
 </section></section>
@@ -812,7 +812,7 @@ E = 2.045 \times 0.0629 = 0.1286
 <div class="column" style="width:46%;">
 <p><strong>Follow along:</strong></p>
 <ol type="1">
-<li class="fragment">Select B’s 30 daily eRPMs (<code>erpm_B</code>).</li>
+<li class="fragment">Open <code>vungle_estimation.xlsx</code> (sheet <code>eRPM_by_day</code>); select B’s 30 daily eRPMs (<code>erpm_B</code>).</li>
 <li class="fragment"><code>=AVERAGE(range)</code> → <span class="math inline">\(\bar{x}_B\)</span>; <code>=STDEV.S(range)</code> → <span class="math inline">\(s\)</span>.</li>
 <li class="fragment"><code>=T.INV.2T(0.05, 29)</code> → the multiplier <span class="math inline">\(2.045\)</span>.</li>
 <li class="fragment"><code>=CONFIDENCE.T(0.05, s, 30)</code> → the margin <span class="math inline">\(E = \$0.129\)</span> in one cell.</li>
@@ -912,7 +912,7 @@ E = 2.045 \times 0.0629 = 0.1286
 </table>
 </div>
 <ul>
-<li class="fragment"><strong>Read it:</strong> we are 95% confident B converts between <strong>0.345% and 0.362%</strong> of impressions to installs, a tight interval because day-to-day conversion is very stable.</li>
+<li class="fragment"><strong>Read it:</strong> we are 95% confident B converts between <strong>0.345% and 0.362%</strong> of impressions to installs, a tight interval because day-to-day conversion is stable.</li>
 </ul>
 </section>
 <section id="do-it-in-excel-the-conversion-rate-interval" class="slide level2 center">
@@ -921,11 +921,11 @@ E = 2.045 \times 0.0629 = 0.1286
 <div class="column" style="width:46%;">
 <p><strong>Follow along:</strong></p>
 <ol type="1">
-<li class="fragment">Select B’s daily conversion column (<code>conv_B_pct</code>).</li>
+<li class="fragment">In <code>vungle_estimation.xlsx</code> (sheet <code>eRPM_by_day</code>), select B’s daily conversion column (<code>conv_B_pct</code>); it is in percentage points, so <code>0.354</code> means 0.354%.</li>
 <li class="fragment"><code>=AVERAGE</code> → <span class="math inline">\(0.354\%\)</span>; <code>=STDEV.S</code> → <span class="math inline">\(s = 0.023\%\)</span>.</li>
 <li class="fragment"><code>=CONFIDENCE.T(0.05, s, 30)</code> → margin <span class="math inline">\(E = 0.0086\%\)</span>.</li>
 <li class="fragment">Read <span class="math inline">\(\bar{x} \pm E\)</span>: <span class="math inline">\((0.345\%,\ 0.362\%)\)</span>.</li>
-<li class="fragment">Note how tiny <span class="math inline">\(s\)</span> is: stable days give a very tight interval.</li>
+<li class="fragment">Note how tiny <span class="math inline">\(s\)</span> is: stable days give a tight interval.</li>
 </ol>
 </div><div class="column" style="width:54%;">
 <div class="quarto-figure quarto-figure-center">
@@ -934,6 +934,24 @@ E = 2.045 \times 0.0629 = 0.1286
 </figure>
 </div>
 </div></div>
+</section>
+<section id="conversion-as-a-true-proportion-the-z-interval" class="slide level2 center">
+<h2>Conversion as a True Proportion: the <span class="math inline">\(z\)</span>-Interval</h2>
+<p><br></p>
+<ul>
+<li class="fragment"><p>The interval above treated B’s <strong>30 daily percentages</strong> as the sample. The textbook proportion interval works on the <strong>raw impressions</strong> instead: each of B’s 15.8M impressions is one yes/no trial (install or not).</p></li>
+<li class="fragment"><p>Setup: <span class="math inline">\(\bar{p} = 56{,}031 / 15{,}825{,}376 = 0.354\%\)</span>, and <span class="math inline">\(n\bar{p}\)</span> and <span class="math inline">\(n(1-\bar{p})\)</span> are both far above 5, so <span class="math inline">\(z\)</span> is safe.</p></li>
+</ul>
+<div class="fragment">
+<p><span class="math display">\[
+\bar{p} \pm z_{\alpha/2}\sqrt{\frac{\bar{p}(1-\bar{p})}{n}}
+= 0.00354 \pm 1.96\sqrt{\frac{0.00354\,(1-0.00354)}{15{,}825{,}376}}
+= (0.351\%,\; 0.357\%)
+\]</span></p>
+</div>
+<ul>
+<li class="fragment"><strong>The contrast:</strong> this <span class="math inline">\(z\)</span>-interval is <strong>tighter</strong> than the daily-rate one <span class="math inline">\((0.345\%,\, 0.362\%)\)</span>, because <span class="math inline">\(n\)</span> jumps from <strong>30 days</strong> to <strong>15.8M impressions</strong>, and precision rides on <span class="math inline">\(n\)</span>. We still report the per-day version in the memo, to keep the unit the <strong>day</strong>, parallel to eRPM. <strong>Excel:</strong> <span class="math inline">\(\bar{p}\)</span> <code>=SUM(installs)/SUM(impressions)</code> on <code>Raw_Data</code>; <code>=NORM.S.INV(0.975)</code> for <span class="math inline">\(z\)</span>.</li>
+</ul>
 </section></section>
 <section>
 <section id="margin-of-error-sample-size" class="title-slide slide level1 center" data-background-color="#cfb991">
@@ -1147,7 +1165,7 @@ n = \frac{z_{\alpha/2}^{2}\,p^*(1-p^*)}{E^{2}}
 <td>Conversion rate (B)</td>
 <td style="text-align: right;">0.354%</td>
 <td style="text-align: right;">(0.345%, 0.362%)</td>
-<td>very stable, <span class="math inline">\(\pm 0.009\)</span>pt</td>
+<td>stable, <span class="math inline">\(\pm 0.009\)</span>pt</td>
 </tr>
 <tr class="odd">
 <td>Days for <span class="math inline">\(\pm\$0.05\)</span> eRPM</td>
