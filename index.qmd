@@ -49,7 +49,7 @@ By the end of this course, students will be able to:
 
 ### Prerequisites
 
-This is an entry-level graduate analytics course. **No prior statistics is assumed.** Comfort with basic spreadsheet use is helpful but not required; we build the analytical tools from the ground up.
+This is an entry-level graduate analytics course. Comfort with basic spreadsheet use is helpful but not required; we build the analytical tools from the ground up.
 
 ### Course Materials
 
