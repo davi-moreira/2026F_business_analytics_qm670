@@ -122,7 +122,7 @@
     "href": "lecture_slides/10_chapter_simple_regression/10_chapter_simple_regression.html#the-brief-lecture-1",
     "title": " QM 67000: Business Analytics ",
     "section": "The Brief: Lecture 1",
-    "text": "The Brief: Lecture 1\n\n\n“Does one driver, a store’s Yelp rating, predict its annual sales? Fit a straight line to sales ~ yelp_rating: what does the slope mean in dollars, and how much of the store-to-store sales gap does Yelp rating explain?”\n\n\n\nBy the end of Lecture 1 your group will have a fitted equation, a dollars-per-star interpretation, and an \\(R^2\\): the raw material for a site score.\nThe manager’s decision it feeds: rank prospective sites by predicted sales."
+    "text": "The Brief: Lecture 1\n\n\n“Does one driver, a store’s Yelp rating, predict its annual sales? Fit a straight line to sales ~ yelp_rating: what does the slope mean in dollars, and how much of the store-to-store sales gap does Yelp rating explain?”\n\n\n\nBy the end of Lecture 1 you will have a fitted equation, a dollars-per-star interpretation, and an \\(R^2\\): the raw material for a site score.\nThe manager’s decision it feeds: rank prospective sites by predicted sales."
   },
   {
     "objectID": "lecture_slides/10_chapter_simple_regression/10_chapter_simple_regression.html#how-every-class-runs",
@@ -227,7 +227,7 @@
     "href": "lecture_slides/10_chapter_simple_regression/10_chapter_simple_regression.html#r2-how-much-does-the-line-explain",
     "title": " QM 67000: Business Analytics ",
     "section": "\\(R^2\\): How Much Does the Line Explain?",
-    "text": "\\(R^2\\): How Much Does the Line Explain?\n\n\nTotal variation in sales splits into what the line explains and what it leaves as error:\n\n\n\\[\n\\underbrace{\\text{SST}}_{\\sum (y_i - \\bar{y})^2} \\;=\\; \\underbrace{\\text{SSR}}_{\\sum (\\hat{y}_i - \\bar{y})^2} \\;+\\; \\underbrace{\\text{SSE}}_{\\sum (y_i - \\hat{y}_i)^2}\n\\]\n\n\nThe coefficient of determination is the explained share:\n\n\n\\[\nR^2 = \\frac{\\text{SSR}}{\\text{SST}} = 1 - \\frac{\\text{SSE}}{\\text{SST}}, \\qquad 0 \\le R^2 \\le 1\n\\]\n\n\n\\(R^2 = 0\\): the line explains nothing. \\(R^2 = 1\\): every point sits exactly on the line."
+    "text": "\\(R^2\\): How Much Does the Line Explain?\n\n\nTotal variation in sales splits into what the line explains and what it leaves as error:\n\n\n\\[\n\\underbrace{\\text{SST}}_{\\sum (y_i - \\bar{y})^2} \\;=\\; \\underbrace{\\text{SSR}}_{\\sum (\\hat{y}_i - \\bar{y})^2} \\;+\\; \\underbrace{\\text{SSE}}_{\\sum (y_i - \\hat{y}_i)^2}\n\\]\n\n\nThe coefficient of determination is the explained share:\n\n\n\\[\nR^2 = \\frac{\\text{SSR}}{\\text{SST}} = 1 - \\frac{\\text{SSE}}{\\text{SST}}, \\qquad 0 \\le R^2 \\le 1\n\\]\n\n\n\\(R^2 = 0\\): the line explains nothing, no better than just guessing the average \\(\\bar{y}\\). \\(R^2 = 1\\): every point sits exactly on the line."
   },
   {
     "objectID": "lecture_slides/10_chapter_simple_regression/10_chapter_simple_regression.html#r2-for-the-auto-parts-model",
@@ -4327,5 +4327,26 @@
     "title": " QM 67000: Business Analytics ",
     "section": "The Manager’s Takeaway: The Whole Topic",
     "text": "The Manager’s Takeaway: The Whole Topic\n\n\nOne sentence: Yelp rating predicts auto-parts store sales strongly and significantly (about $758K per star, explaining 83% of the sales gap), so the real-estate team can use it to score and forecast sites.\nOne number to remember: \\(b_1 = 757.5\\), and where it came from: \\(\\sum(x-\\bar{x})(y-\\bar{y}) / \\sum(x-\\bar{x})^2\\).\nOne caveat: regression forecasts and quantifies; it does not prove causation, and 17% of sales is still unexplained; a single predictor is a start, not the answer.\nPractice with the real data: data/autoparts.csv + Regression tool → reproduce \\(b_1 = 757.5\\), \\(R^2 = 0.834\\), \\(t = 14.7\\) yourself."
+  },
+  {
+    "objectID": "lecture_slides/10_chapter_simple_regression/10_chapter_simple_regression.html#the-brief-which-sites-will-sell",
+    "href": "lecture_slides/10_chapter_simple_regression/10_chapter_simple_regression.html#the-brief-which-sites-will-sell",
+    "title": " QM 67000: Business Analytics ",
+    "section": "The Brief: Which Sites Will Sell?",
+    "text": "The Brief: Which Sites Will Sell?\n\n\nThe manager’s big call (we land it across Topics 10–11): where should the next store go? Every new lease commits capital, so the manager wants a sales forecast before signing.\n\n\n\nLecture 1: does one driver, a store’s Yelp rating, predict its annual sales?\n\n\n\n\nLecture 2: is that slope real, and can we forecast a brand-new site?\n\n\n\n\nHow the studio runs: I demo each step live on the auto-parts data, then your group reproduces the model, stress-tests it, and makes the site call."
+  },
+  {
+    "objectID": "lecture_slides/10_chapter_simple_regression/10_chapter_simple_regression.html#what-is-a-model",
+    "href": "lecture_slides/10_chapter_simple_regression/10_chapter_simple_regression.html#what-is-a-model",
+    "title": " QM 67000: Business Analytics ",
+    "section": "What Is a Model?",
+    "text": "What Is a Model?\n\n\n“All models are wrong, but some are useful.” (George Box)\n\n\n\nA model is a deliberate simplification. A subway map throws away the streets and still gets you across town; our line throws away everything about a store except its Yelp rating, and is still useful for the call.\nModeling data serves two goals, and it pays to know which one you are after:\n\n\n\n\n\n\n\n\n\n\nGoal\nThe question it answers\nThis topic\n\n\n\n\nPrediction\nUse \\(x\\) to forecast \\(y\\) for a new case\nOur focus: forecast a site’s sales\n\n\nExplanation\nDoes \\(x\\) actually drive \\(y\\)?\nHandle with care (the causation caveats)\n\n\n\n\n\nWe build the line to predict store sales; we stay honest about whether it also explains them."
+  },
+  {
+    "objectID": "lecture_slides/10_chapter_simple_regression/10_chapter_simple_regression.html#r2-compares-the-line-to-guessing-the-average",
+    "href": "lecture_slides/10_chapter_simple_regression/10_chapter_simple_regression.html#r2-compares-the-line-to-guessing-the-average",
+    "title": " QM 67000: Business Analytics ",
+    "section": "\\(R^2\\) Compares the Line to Guessing the Average",
+    "text": "\\(R^2\\) Compares the Line to Guessing the Average\n\n\nThe baseline (no model): with no line, your best single guess for any store is the overall average, \\(\\bar{y} = \\$2{,}706\\text{K}\\). The squared error that baseline leaves is exactly SST.\nThe line’s leftover error is SSE, so \\(R^2 = 1 - \\text{SSE}/\\text{SST}\\) is the share of the baseline’s error the line removes.\n\n\n\n\n\nPredict every store with…\nTypical miss (RMSE)\n\n\n\n\nthe average \\(\\bar{y}\\) (no model)\n\\(\\approx \\$1{,}114\\text{K}\\)\n\n\nthe Yelp-rating line\n\\(\\approx \\$453\\text{K}\\)\n\n\n\n\n\nSo \\(R^2 = 0\\) means the line is no better than the average (SSE = SST, a flat line at \\(\\bar{y}\\)); \\(R^2 = 1\\) means every store sits on the line. Auto-parts lands at 0.834: the line erases 83% of the error you would make by guessing the average."
   }
 ]

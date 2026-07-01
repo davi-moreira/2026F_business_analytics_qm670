@@ -183,25 +183,25 @@ Professor<br>Davi Moreira<br>
 <li class="fragment"><p>Until now we <em>compared</em> two groups. Now we <em>predict</em> a number, and that is what <strong>regression</strong> does.</p></li>
 </ul>
 </section>
-<section id="the-brief-where-should-the-next-dollar-go" class="slide level2 center">
-<h2>The Brief: Where Should the Next Dollar Go?</h2>
+<section id="the-brief-which-sites-will-sell" class="slide level2 center">
+<h2>The Brief: Which Sites Will Sell?</h2>
 <p><br></p>
 <ul>
-<li class="fragment"><strong>The manager’s big call (we land it across Topics 10–11):</strong> <em>where should the next dollar go?</em> Every new lease commits capital, so the manager wants sales forecast before signing.</li>
+<li class="fragment"><strong>The manager’s big call (we land it across Topics 10–11):</strong> <em>where should the next store go?</em> Every new lease commits capital, so the manager wants a sales forecast before signing.</li>
 </ul>
 <div class="fragment">
 <ul>
-<li><strong>Today’s question, Lecture 1:</strong> <em>does one driver, a store’s Yelp rating, predict its annual sales?</em></li>
-</ul>
-</div>
-<div class="fragment">
-<ul>
-<li><strong>Today’s question, Lecture 2:</strong> <em>is that slope real, and can we forecast a brand-new site?</em></li>
+<li><strong>Lecture 1:</strong> <em>does one driver, a store’s Yelp rating, predict its annual sales?</em></li>
 </ul>
 </div>
 <div class="fragment">
 <ul>
-<li><strong>How the studio runs:</strong> I demo each step on a textbook anchor (<strong>Armand’s Pizza</strong>) and on the auto-parts data, then <strong>your group</strong> reproduces the model, stress-tests it, and makes the site call.</li>
+<li><strong>Lecture 2:</strong> <em>is that slope real, and can we forecast a brand-new site?</em></li>
+</ul>
+</div>
+<div class="fragment">
+<ul>
+<li><strong>How the studio runs:</strong> I demo each step live on the auto-parts data, then <strong>your group</strong> reproduces the model, stress-tests it, and makes the site call.</li>
 </ul>
 </div>
 </section>
@@ -239,6 +239,49 @@ Professor<br>Davi Moreira<br>
 <li class="fragment"><p>Regression develops an <strong>equation</strong> showing how a <strong>dependent variable</strong> <span class="math inline">\(y\)</span> (what we predict, sales) relates to an <strong>independent variable</strong> <span class="math inline">\(x\)</span> (the predictor, Yelp rating).</p></li>
 <li class="fragment"><p><strong>Simple</strong> linear regression uses <strong>one</strong> predictor; the relationship is approximated by a <strong>straight line</strong>. (More predictors → multiple regression, next topic.)</p></li>
 </ul>
+</section>
+<section id="what-is-a-model" class="slide level2 center">
+<h2>What Is a Model?</h2>
+<p><br></p>
+<blockquote>
+<p>“All models are wrong, but some are useful.” (George Box)</p>
+</blockquote>
+<p><br></p>
+<ul>
+<li class="fragment"><p>A model is a deliberate <strong>simplification</strong>. A subway map throws away the streets and still gets you across town; our line throws away everything about a store except its Yelp rating, and is still useful for the call.</p></li>
+<li class="fragment"><p>Modeling data serves two goals, and it pays to know which one you are after:</p></li>
+</ul>
+<div class="fragment">
+<table class="caption-top">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Goal</th>
+<th>The question it answers</th>
+<th>This topic</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>Prediction</strong></td>
+<td>Use <span class="math inline">\(x\)</span> to forecast <span class="math inline">\(y\)</span> for a new case</td>
+<td><strong>Our focus:</strong> forecast a site’s sales</td>
+</tr>
+<tr class="even">
+<td><strong>Explanation</strong></td>
+<td>Does <span class="math inline">\(x\)</span> actually <em>drive</em> <span class="math inline">\(y\)</span>?</td>
+<td>Handle with care (the causation caveats)</td>
+</tr>
+</tbody>
+</table>
+</div>
+<ul>
+<li class="fragment">We build the line to <strong>predict</strong> store sales; we stay honest about whether it also <strong>explains</strong> them.</li>
+</ul>
 </section></section>
 <section>
 <section id="lecture-1-the-model-least-squares-and-r2" class="title-slide slide level1 center" data-background-color="#cfb991">
@@ -253,7 +296,7 @@ Professor<br>Davi Moreira<br>
 </blockquote>
 <p><br></p>
 <ul>
-<li class="fragment"><p>By the end of Lecture 1 <strong>your group</strong> will have a fitted equation, a dollars-per-star interpretation, and an <span class="math inline">\(R^2\)</span>: the raw material for a site score.</p></li>
+<li class="fragment"><p>By the end of Lecture 1 <strong>you</strong> will have a fitted equation, a dollars-per-star interpretation, and an <span class="math inline">\(R^2\)</span>: the raw material for a site score.</p></li>
 <li class="fragment"><p>The manager’s decision it feeds: <strong>rank prospective sites</strong> by predicted sales.</p></li>
 </ul>
 </section>
@@ -386,55 +429,6 @@ b_0 = \bar{y} - b_1 \bar{x}
 <li>Each grey segment is one residual <span class="math inline">\(e_i\)</span>. Least squares is the unique line that makes the <strong>sum of those squared lengths</strong> as small as possible.</li>
 </ul>
 </section>
-<section id="anchor-example-armands-pizza-parlors" class="slide level2 center">
-<h2>Anchor Example: Armand’s Pizza Parlors</h2>
-<div class="r-fit-text">
-<p>A classic: <strong>Armand’s Pizza</strong> has 10 restaurants near college campuses. Sales clearly depend on how many students live nearby. <span class="math inline">\(x\)</span> = student population in the trade area (1,000s); <span class="math inline">\(y\)</span> = quarterly sales ($1,000s).</p>
-<table class="caption-top">
-<thead>
-<tr class="header">
-<th></th>
-<th style="text-align: right;">Student population <span class="math inline">\(x\)</span> (000s)</th>
-<th style="text-align: right;">Quarterly sales <span class="math inline">\(y\)</span> ($000s)</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>Restaurant 1</td>
-<td style="text-align: right;">2</td>
-<td style="text-align: right;">58</td>
-</tr>
-<tr class="even">
-<td>Restaurant 2</td>
-<td style="text-align: right;">6</td>
-<td style="text-align: right;">105</td>
-</tr>
-<tr class="odd">
-<td><span class="math inline">\(\vdots\)</span></td>
-<td style="text-align: right;"><span class="math inline">\(\vdots\)</span></td>
-<td style="text-align: right;"><span class="math inline">\(\vdots\)</span></td>
-</tr>
-<tr class="even">
-<td>Restaurant 10</td>
-<td style="text-align: right;">26</td>
-<td style="text-align: right;">202</td>
-</tr>
-</tbody>
-</table>
-<p><strong>Least-squares fit:</strong> <span class="math inline">\(\bar{x} = 14\)</span>, <span class="math inline">\(\bar{y} = 130\)</span>, and the slope/intercept formulas give</p>
-<p><span class="math display">\[
-b_1 = 5, \qquad b_0 = 60 \qquad\Rightarrow\qquad \hat{y} = 60 + 5x
-\]</span></p>
-</div>
-</section>
-<section id="armands-reading-the-line" class="slide level2 center">
-<h2>Armand’s: Reading the Line</h2>
-
-<img data-src="figs/armands_fit.png" class="quarto-figure quarto-figure-center r-stretch" style="width:58.0%"><ul>
-<li><strong>Slope <span class="math inline">\(b_1 = 5\)</span>:</strong> each additional <strong>1,000 students</strong> in the trade area is associated with <strong>$5,000</strong> more quarterly sales.</li>
-<li><strong>Intercept <span class="math inline">\(b_0 = 60\)</span>:</strong> the line’s height at <span class="math inline">\(x = 0\)</span>, outside the data range, so read it as a fitting constant, not “sales with zero students.”</li>
-</ul>
-</section>
 <section id="the-auto-parts-fit" class="slide level2 center">
 <h2>The Auto-Parts Fit</h2>
 
@@ -484,7 +478,7 @@ R^2 = \frac{\text{SSR}}{\text{SST}} = 1 - \frac{\text{SSE}}{\text{SST}}, \qquad 
 \]</span></p>
 </div>
 <ul>
-<li class="fragment"><span class="math inline">\(R^2 = 0\)</span>: the line explains nothing. <span class="math inline">\(R^2 = 1\)</span>: every point sits exactly on the line.</li>
+<li class="fragment"><span class="math inline">\(R^2 = 0\)</span>: the line explains nothing, no better than just guessing the average <span class="math inline">\(\bar{y}\)</span>. <span class="math inline">\(R^2 = 1\)</span>: every point sits exactly on the line.</li>
 </ul>
 </section>
 <section id="r2-for-the-auto-parts-model" class="slide level2 center">
@@ -525,6 +519,37 @@ R^2 = \frac{\text{SSR}}{\text{SST}} = 1 - \frac{\text{SSE}}{\text{SST}}, \qquad 
 <li class="fragment"><p><strong>Interpretation:</strong> Yelp rating alone explains <strong>83.4%</strong> of the store-to-store variation in annual sales, strong for a single predictor.</p></li>
 <li class="fragment"><p>The remaining <strong>16.6%</strong> is everything else (location, merchandising, competition). <em>That gap is exactly what motivates adding more predictors next topic.</em></p></li>
 <li class="fragment"><p>In Excel: <code>=RSQ(sales, yelp)</code> or read <strong>R Square</strong> off the Regression output.</p></li>
+</ul>
+</section>
+<section id="r2-compares-the-line-to-guessing-the-average" class="slide level2 center">
+<h2><span class="math inline">\(R^2\)</span> Compares the Line to Guessing the Average</h2>
+<p><br></p>
+<ul>
+<li class="fragment"><p><strong>The baseline (no model):</strong> with no line, your best single guess for any store is the overall average, <span class="math inline">\(\bar{y} = \$2{,}706\text{K}\)</span>. The squared error that baseline leaves is exactly <strong>SST</strong>.</p></li>
+<li class="fragment"><p>The line’s leftover error is <strong>SSE</strong>, so <span class="math inline">\(R^2 = 1 - \text{SSE}/\text{SST}\)</span> is the <strong>share of the baseline’s error the line removes</strong>.</p></li>
+</ul>
+<div class="fragment">
+<table class="caption-top">
+<thead>
+<tr class="header">
+<th>Predict every store with…</th>
+<th style="text-align: right;">Typical miss (RMSE)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>the average <span class="math inline">\(\bar{y}\)</span> (no model)</td>
+<td style="text-align: right;"><span class="math inline">\(\approx \$1{,}114\text{K}\)</span></td>
+</tr>
+<tr class="even">
+<td>the Yelp-rating line</td>
+<td style="text-align: right;"><span class="math inline">\(\approx \$453\text{K}\)</span></td>
+</tr>
+</tbody>
+</table>
+</div>
+<ul>
+<li class="fragment">So <strong><span class="math inline">\(R^2 = 0\)</span></strong> means the line is <strong>no better than the average</strong> (SSE = SST, a flat line at <span class="math inline">\(\bar{y}\)</span>); <strong><span class="math inline">\(R^2 = 1\)</span></strong> means every store sits on the line. Auto-parts lands at <strong>0.834</strong>: the line erases <strong>83%</strong> of the error you would make by guessing the average.</li>
 </ul>
 </section>
 <section id="r2-and-correlation-are-the-same-story" class="slide level2 center">
@@ -703,30 +728,6 @@ t = \frac{b_1 - 0}{s_{b_1}}, \qquad s_{b_1} = \frac{s}{\sqrt{\sum (x_i - \bar{x}
 <ul>
 <li class="fragment">Same logic as every test since Topic 8: a statistic, a <span class="math inline">\(t\)</span> distribution, a <span class="math inline">\(p\)</span>-value, a decision.</li>
 </ul>
-</section>
-<section id="anchor-armands-slope-is-significant" class="slide level2 center">
-<h2>Anchor: Armand’s Slope Is Significant</h2>
-<div class="columns">
-<div class="column" style="width:40%;">
-<p><br></p>
-<p>For Armand’s Pizza:</p>
-<p><span class="math display">\[
-t = \frac{5}{0.580} = 8.62, \quad df = 8
-\]</span></p>
-<p><span class="math inline">\(p\text{-value} \approx 0.000 \le 0.05\)</span> → <strong>reject <span class="math inline">\(H_0\)</span></strong>.</p>
-<p><br></p>
-<p>Student population is a <strong>significant</strong> predictor of restaurant sales: the slope is not zero.</p>
-</div><div class="column" style="width:60%;">
-<div class="cell" data-layout-align="center">
-<div class="cell-output-display">
-<div class="quarto-figure quarto-figure-center">
-<figure>
-<p><img data-src="figs/armands_reg_coef.png" class="quarto-figure quarto-figure-center" style="width:100.0%"></p>
-</figure>
-</div>
-</div>
-</div>
-</div></div>
 </section>
 <section id="the-auto-parts-slope-test" class="slide level2 center">
 <h2>The Auto-Parts Slope Test</h2>

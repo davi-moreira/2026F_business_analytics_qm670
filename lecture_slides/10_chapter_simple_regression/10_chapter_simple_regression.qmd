@@ -73,22 +73,22 @@ html-math-method:
 
 - Until now we *compared* two groups. Now we *predict* a number, and that is what **regression** does.
 
-## The Brief: Where Should the Next Dollar Go?
+## The Brief: Which Sites Will Sell?
 
 <br>
 
-- **The manager's big call (we land it across Topics 10–11):** *where should the next dollar go?* Every new lease commits capital, so the manager wants sales forecast before signing.
+- **The manager's big call (we land it across Topics 10–11):** *where should the next store go?* Every new lease commits capital, so the manager wants a sales forecast before signing.
 
 ::: {.fragment .nonincremental}
-- **Today's question, Lecture 1:** *does one driver, a store's Yelp rating, predict its annual sales?*
+- **Lecture 1:** *does one driver, a store's Yelp rating, predict its annual sales?*
 :::
 
 ::: {.fragment .nonincremental}
-- **Today's question, Lecture 2:** *is that slope real, and can we forecast a brand-new site?*
+- **Lecture 2:** *is that slope real, and can we forecast a brand-new site?*
 :::
 
 ::: {.fragment .nonincremental}
-- **How the studio runs:** I demo each step on a textbook anchor (**Armand's Pizza**) and on the auto-parts data, then **your group** reproduces the model, stress-tests it, and makes the site call.
+- **How the studio runs:** I demo each step live on the auto-parts data, then **your group** reproduces the model, stress-tests it, and makes the site call.
 :::
 
 ## From Comparing to Predicting
@@ -107,6 +107,27 @@ html-math-method:
 
 - **Simple** linear regression uses **one** predictor; the relationship is approximated by a **straight line**. (More predictors → multiple regression, next topic.)
 
+## What Is a Model?
+
+<br>
+
+> "All models are wrong, but some are useful." (George Box)
+
+<br>
+
+- A model is a deliberate **simplification**. A subway map throws away the streets and still gets you across town; our line throws away everything about a store except its Yelp rating, and is still useful for the call.
+
+- Modeling data serves two goals, and it pays to know which one you are after:
+
+::: fragment
+| Goal | The question it answers | This topic |
+|---|---|---|
+| **Prediction** | Use $x$ to forecast $y$ for a new case | **Our focus:** forecast a site's sales |
+| **Explanation** | Does $x$ actually *drive* $y$? | Handle with care (the causation caveats) |
+:::
+
+- We build the line to **predict** store sales; we stay honest about whether it also **explains** them.
+
 # Lecture 1: The Model, Least Squares, and $R^2$ {background-color="#cfb991"}
 
 ## The Brief: Lecture 1
@@ -117,7 +138,7 @@ html-math-method:
 
 <br>
 
-- By the end of Lecture 1 **your group** will have a fitted equation, a dollars-per-star interpretation, and an $R^2$: the raw material for a site score.
+- By the end of Lecture 1 **you** will have a fitted equation, a dollars-per-star interpretation, and an $R^2$: the raw material for a site score.
 
 - The manager's decision it feeds: **rank prospective sites** by predicted sales.
 
@@ -269,38 +290,6 @@ knitr::include_graphics("figs/autoparts_residual_concept.png")
 - Each grey segment is one residual $e_i$. Least squares is the unique line that makes the **sum of those squared lengths** as small as possible.
 :::
 
-## Anchor Example: Armand's Pizza Parlors
-
-:::: nonincremental
-::: r-fit-text
-A classic: **Armand's Pizza** has 10 restaurants near college campuses. Sales clearly depend on how many students live nearby. $x$ = student population in the trade area (1,000s); $y$ = quarterly sales (\$1,000s).
-
-| | Student population $x$ (000s) | Quarterly sales $y$ (\$000s) |
-|---|---:|---:|
-| Restaurant 1 | 2 | 58 |
-| Restaurant 2 | 6 | 105 |
-| $\vdots$ | $\vdots$ | $\vdots$ |
-| Restaurant 10 | 26 | 202 |
-
-**Least-squares fit:** $\bar{x} = 14$, $\bar{y} = 130$, and the slope/intercept formulas give
-
-$$
-b_1 = 5, \qquad b_0 = 60 \qquad\Rightarrow\qquad \hat{y} = 60 + 5x
-$$
-:::
-::::
-
-## Armand's: Reading the Line
-
-```{r  echo=FALSE, out.width = "58%",fig.align="center"}
-knitr::include_graphics("figs/armands_fit.png")
-```
-
-::: nonincremental
-- **Slope $b_1 = 5$:** each additional **1,000 students** in the trade area is associated with **\$5,000** more quarterly sales.
-- **Intercept $b_0 = 60$:** the line's height at $x = 0$, outside the data range, so read it as a fitting constant, not "sales with zero students."
-:::
-
 ## The Auto-Parts Fit
 
 ```{r  echo=FALSE, out.width = "70%",fig.align="center"}
@@ -363,7 +352,7 @@ $$
 
 :::
 
-- $R^2 = 0$: the line explains nothing. $R^2 = 1$: every point sits exactly on the line.
+- $R^2 = 0$: the line explains nothing, no better than just guessing the average $\bar{y}$. $R^2 = 1$: every point sits exactly on the line.
 
 ## $R^2$ for the Auto-Parts Model
 
@@ -387,6 +376,23 @@ $$
 - The remaining **16.6%** is everything else (location, merchandising, competition). *That gap is exactly what motivates adding more predictors next topic.*
 
 - In Excel: `=RSQ(sales, yelp)` or read **R Square** off the Regression output.
+
+## $R^2$ Compares the Line to Guessing the Average
+
+<br>
+
+- **The baseline (no model):** with no line, your best single guess for any store is the overall average, $\bar{y} = \$2{,}706\text{K}$. The squared error that baseline leaves is exactly **SST**.
+
+- The line's leftover error is **SSE**, so $R^2 = 1 - \text{SSE}/\text{SST}$ is the **share of the baseline's error the line removes**.
+
+::: fragment
+| Predict every store with... | Typical miss (RMSE) |
+|---|---:|
+| the average $\bar{y}$ (no model) | $\approx \$1{,}114\text{K}$ |
+| the Yelp-rating line | $\approx \$453\text{K}$ |
+:::
+
+- So **$R^2 = 0$** means the line is **no better than the average** (SSE = SST, a flat line at $\bar{y}$); **$R^2 = 1$** means every store sits on the line. Auto-parts lands at **0.834**: the line erases **83%** of the error you would make by guessing the average.
 
 ## $R^2$ and Correlation Are the Same Story
 
@@ -564,34 +570,6 @@ $$
 :::
 
 - Same logic as every test since Topic 8: a statistic, a $t$ distribution, a $p$-value, a decision.
-
-## Anchor: Armand's Slope Is Significant
-
-::::: nonincremental
-:::: columns
-::: {.column width="40%"}
-<br>
-
-For Armand's Pizza:
-
-$$
-t = \frac{5}{0.580} = 8.62, \quad df = 8
-$$
-
-$p\text{-value} \approx 0.000 \le 0.05$ → **reject $H_0$**.
-
-<br>
-
-Student population is a **significant** predictor of restaurant sales: the slope is not zero.
-:::
-
-::: {.column width="60%"}
-```{r  echo=FALSE, out.width = "100%",fig.align="center"}
-knitr::include_graphics("figs/armands_reg_coef.png")
-```
-:::
-::::
-:::::
 
 ## The Auto-Parts Slope Test
 
