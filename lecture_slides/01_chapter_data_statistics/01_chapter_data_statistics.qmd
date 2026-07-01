@@ -19,6 +19,15 @@ format:
     #logo: images/quarto.png
     footer: "Business Analytics"
     theme: [simple,custom.scss]
+    menu:
+      custom:
+        - title: "Search"
+          icon: '<i class="fas fa-magnifying-glass"></i>'
+          content: |
+            <ul class="slide-menu-items">
+              <li class="slide-tool-item"><a href="#" onclick="event.preventDefault(); Reveal.getPlugin('menu').closeMenu(); setTimeout(function(){ Reveal.getPlugin('search').open(); }, 30); return false;">Search slides</a></li>
+            </ul>
+            <p style="padding:0 1em; opacity:.7; font-size:.7em;">Tip: press Ctrl / Cmd + Shift + F anytime.</p>
 html-math-method:
   method: mathjax
   url: "https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"
