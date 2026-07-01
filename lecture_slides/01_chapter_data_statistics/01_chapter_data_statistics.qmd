@@ -22,7 +22,7 @@ format:
     menu:
       custom:
         - title: "Search"
-          icon: '<i class="fas fa-magnifying-glass"></i>'
+          icon: '<i class="fas fa-search"></i>'
           content: |
             <ul class="slide-menu-items">
               <li class="slide-tool-item"><a href="#" onclick="event.preventDefault(); Reveal.getPlugin('menu').closeMenu(); setTimeout(function(){ Reveal.getPlugin('search').open(); }, 30); return false;">Search slides</a></li>
