@@ -134,3 +134,13 @@ code {
 /* the answer: black + italic (crisp like the question; italic sets the answer apart from the bold question) */
 .reveal .faq .faq-a, .reveal .faq .faq-a strong { color: #000; }
 .reveal .faq .faq-a { font-style: italic; }
+
+/* Left-menu "Search" tab icon.
+   Quarto paints the menu toolbar icons as Bootstrap-icon SVG background-images and
+   only ships fa-images (Slides), fa-gear (Tools), fa-times (Close). Our custom
+   "Search" panel uses fa-search, which has no image, so the tab rendered with no
+   glyph. Supply the Bootstrap "search" SVG (same white fill / size) so the Search
+   tab matches the others. */
+.slide-menu-wrapper .slide-menu-toolbar .fa-search::before {
+  background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="white" class="bi bi-search" viewBox="0 0 16 16"><path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001q.044.06.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1 1 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0"/></svg>');
+}
