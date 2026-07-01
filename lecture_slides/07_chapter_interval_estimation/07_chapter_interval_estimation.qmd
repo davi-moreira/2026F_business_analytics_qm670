@@ -342,7 +342,9 @@ $$
 
 :::
 
+::: fragment
 **Read it:** a single 30-day mean lands within about **\$0.13** of B's true eRPM roughly **95%** of the time (within \$0.06 about 68%). We still cannot say *where* the truth sits, only how tightly our estimate clusters around it. Flipping that around, from the estimate back to the truth, is the **confidence interval**, next lecture. In Excel: `=0.344/SQRT(30)`.
+:::
 :::
 
 ## A Question That Often Comes Up
