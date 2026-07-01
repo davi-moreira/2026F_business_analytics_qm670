@@ -804,7 +804,8 @@ $$
 
 ## How Many Days Does Vungle Need?
 
-::: r-fit-text
+<br>
+
 **Question:** how many test-days for the mean eRPM margin to hit $\pm\$0.10$? $\pm\$0.05$? (planning $s = 0.3444$, 95% confidence, $z = 1.96$)
 
 ::: fragment
@@ -823,6 +824,7 @@ $$
 
 :::
 
+::: fragment
 **The lesson:** halving the margin ($\$0.10 \rightarrow \$0.05$) takes **four times** the days ($46 \rightarrow 183$). Precision is expensive, and the manager must decide whether \$0.05 of precision is worth six months of testing.
 :::
 
