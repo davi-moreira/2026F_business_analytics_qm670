@@ -241,7 +241,7 @@
     "href": "lecture_slides/10_chapter_simple_regression/10_chapter_simple_regression.html#r2-and-correlation-are-the-same-story",
     "title": " QM 67000: Business Analytics ",
     "section": "\\(R^2\\) and Correlation Are the Same Story",
-    "text": "\\(R^2\\) and Correlation Are the Same Story\n\n\nThe sample correlation \\(r\\) and \\(R^2\\) are tightly linked in simple regression:\n\n\n\\[\nr = (\\text{sign of } b_1)\\sqrt{R^2}\n\\]\n\n\nHere \\(b_1 &gt; 0\\) and \\(R^2 = 0.834\\), so \\(r = +\\sqrt{0.834} = +0.913\\), a strong positive correlation, the same fact \\(R^2\\) reports.\nCorrelation measures the tightness and direction of the linear association; \\(R^2\\) measures the share of variation explained. Same coin, two faces."
+    "text": "\\(R^2\\) and Correlation Are the Same Story\n\n\nThe sample correlation \\(r\\) and \\(R^2\\) are tightly linked in simple regression:\n\n\n\\[\nr = (\\text{sign of } b_1)\\sqrt{R^2}\n\\]\n\n\nHere \\(b_1 &gt; 0\\) and \\(R^2 = 0.834\\), so \\(r = +\\sqrt{0.834} = +0.913\\), a strong positive correlation, the same fact \\(R^2\\) reports.\nCorrelation measures the tightness and direction of the linear association; \\(R^2\\) measures the share of variation explained: here \\(r = +0.913\\) and \\(R^2 = 0.834\\) report the identical fit."
   },
   {
     "objectID": "lecture_slides/10_chapter_simple_regression/10_chapter_simple_regression.html#a-question-that-often-comes-up-3",
@@ -332,7 +332,7 @@
     "href": "lecture_slides/10_chapter_simple_regression/10_chapter_simple_regression.html#do-it-in-excel-read-the-slope-test-and-ci",
     "title": " QM 67000: Business Analytics ",
     "section": "Do It in Excel: Read the Slope Test and CI",
-    "text": "Do It in Excel: Read the Slope Test and CI\n\n\nFollow along (same Regression output):\n\nIn the coefficients table, find the yelp_rating row.\nRead t Stat and P-value to test \\(H_0: \\beta_1 = 0\\).\nRead Lower 95% and Upper 95% for the slope CI; if both share a sign, zero is excluded.\nIn the ANOVA block, read Significance F (the same \\(p\\)-value; \\(F = t^2\\))."
+    "text": "Do It in Excel: Read the Slope Test and CI\n\n\nFollow along (same Regression output):\n\nIn the coefficients table, find the yelp_rating row.\nRead t Stat and P-value to test \\(H_0: \\beta_1 = 0\\).\nRead Lower 95% and Upper 95% for the slope CI; if both share a sign, zero is excluded.\nIn the ANOVA block, read F = 216.7 (\\(= t^2\\), the same slope test); its \\(p\\)-value (Excel’s Significance F) matches the coefficients P-value, \\(&lt; 0.0001\\)."
   },
   {
     "objectID": "lecture_slides/10_chapter_simple_regression/10_chapter_simple_regression.html#a-question-that-often-comes-up-4",
@@ -353,7 +353,7 @@
     "href": "lecture_slides/10_chapter_simple_regression/10_chapter_simple_regression.html#a-note-on-the-f-test",
     "title": " QM 67000: Business Analytics ",
     "section": "A Note on the F Test",
-    "text": "A Note on the F Test\n\n\nThe Regression output also reports an F test (the ANOVA block): \\(F = \\text{MSR}/\\text{MSE}\\), testing the same \\(H_0: \\beta_1 = 0\\).\nIn simple regression (one predictor) the \\(F\\) and \\(t\\) tests are equivalent; in fact \\(F = t^2\\):\n\n\n\\[\nF = 216.7 = t^2 \\quad (t = 14.7)\n\\]\n\n\nSame conclusion, same \\(p\\)-value. (When we add predictors next topic, \\(F\\) tests the model as a whole while each \\(t\\) tests one variable, and then they differ.)"
+    "text": "A Note on the F Test\n\n\nThe Regression output also reports an F test (the ANOVA block): \\(F = \\text{MSR}/\\text{MSE}\\), testing the same \\(H_0: \\beta_1 = 0\\).\nIn simple regression (one predictor) the \\(F\\) and \\(t\\) tests are equivalent; in fact \\(F = t^2\\):\n\n\n\\[\nF = 216.7 = t^2 \\quad (t = 14.72)\n\\]\n\n\nSame conclusion, same \\(p\\)-value. (When we add predictors next topic, \\(F\\) tests the model as a whole while each \\(t\\) tests one variable, and then they differ.)"
   },
   {
     "objectID": "lecture_slides/10_chapter_simple_regression/10_chapter_simple_regression.html#significance-is-not-causation",
@@ -549,7 +549,7 @@
     "href": "lecture_slides/08_chapter_hypothesis_tests/08_chapter_hypothesis_tests.html#you-control-alpha-beta-follows",
     "title": " QM 67000: Business Analytics ",
     "section": "You Control \\(\\alpha\\); \\(\\beta\\) Follows",
-    "text": "You Control \\(\\alpha\\); \\(\\beta\\) Follows\n\n\nThe level of significance \\(\\alpha\\) = the probability of a Type I error you are willing to tolerate. You set it before seeing the data; usually \\(\\alpha = 0.05\\) (sometimes \\(0.01\\) or \\(0.10\\)).\n\\(\\beta\\) = the probability of a Type II error. You do not set it directly; it follows from \\(\\alpha\\), the sample size, and how far the truth is from \\(H_0\\).\nThe trade-off: for a fixed sample, lowering \\(\\alpha\\) (fewer false alarms) raises \\(\\beta\\) (more missed effects). The only way to shrink both is a larger sample.\nLanguage rule: when the evidence is weak we say “fail to reject \\(H_0\\),” never “accept \\(H_0\\).” Absence of proof is not proof of absence; we just did not gather enough evidence to overturn the skeptic."
+    "text": "You Control \\(\\alpha\\); \\(\\beta\\) Follows\n\n\n\n\n\n\n\n\n\n\n\n\n\n\\(\\alpha\\) = the Type I risk (a false “fund it”) you agree to tolerate. You set it before the data; usually \\(0.05\\).\n\\(\\beta\\) = the Type II risk (miss a real winner). You do not set it: it follows from \\(\\alpha\\), the sample size, and how far the truth sits from \\(H_0\\).\nThe trade-off: slide the cutoff right and \\(\\alpha\\) falls but \\(\\beta\\) climbs. At \\(\\alpha = 0.05\\) the picture leaves \\(\\beta \\approx 0.19\\) (power \\(\\approx 0.81\\)); only a bigger sample shrinks both.\nLanguage rule: weak evidence means “fail to reject \\(H_0\\),” never “accept \\(H_0\\).”"
   },
   {
     "objectID": "lecture_slides/08_chapter_hypothesis_tests/08_chapter_hypothesis_tests.html#why-the-asymmetry-matters-for-vungle",
@@ -570,7 +570,7 @@
     "href": "lecture_slides/08_chapter_hypothesis_tests/08_chapter_hypothesis_tests.html#the-brief-is-the-mean-really-above-the-benchmark",
     "title": " QM 67000: Business Analytics ",
     "section": "The Brief: Is the Mean Really Above the Benchmark?",
-    "text": "The Brief: Is the Mean Really Above the Benchmark?\n\n\nThe big call is roll out B, or stay with A? Lecture 1’s piece: is B’s mean eRPM really above the $3.30 benchmark, or could a noisy 30-day sample land there by luck?\nWe do not know the true population standard deviation \\(\\sigma\\) of B’s daily eRPM, so we estimate it from the sample with \\(s\\) and use the \\(t\\)-distribution.\nThe decision is asymmetric (fund only if better), so it is an upper-tail test:\n\n\n\\[\nH_0: \\mu \\leq 3.30 \\qquad \\text{vs.} \\qquad H_a: \\mu &gt; 3.30 \\qquad \\alpha = 0.05\n\\]\n\n\n\\(\\mu\\) = the true mean daily eRPM B would deliver across all future traffic; the 30 June days are our sample.\nToday’s plan: demo the mechanics on a textbook airport-rating case, then a good analyst’s work on Vungle goes up for you to reproduce and stress-test."
+    "text": "The Brief: Is the Mean Really Above the Benchmark?\n\n\nThe big call is roll out B, or stay with A? Lecture 1’s piece: is B’s mean eRPM really above the $3.30 benchmark, or could a noisy 30-day sample land there by luck?\nWe do not know the true population standard deviation \\(\\sigma\\) of B’s daily eRPM, so we estimate it from the sample with \\(s\\) and use the \\(t\\)-distribution.\nThe decision is asymmetric (fund only if better), so it is an upper-tail test:\n\n\n\\[\nH_0: \\mu \\leq 3.30 \\qquad \\text{vs.} \\qquad H_a: \\mu &gt; 3.30 \\qquad \\alpha = 0.05\n\\]\n\n\n\\(\\mu\\) = the true mean daily eRPM B would deliver across all future traffic; the 30 June days are our sample.\nToday’s plan: a good analyst runs the five-step test on B’s eRPM; you reproduce it, stress-test it, and make the funding call."
   },
   {
     "objectID": "lecture_slides/08_chapter_hypothesis_tests/08_chapter_hypothesis_tests.html#how-every-class-runs",
@@ -4292,5 +4292,40 @@
     "title": " QM 67000: Business Analytics ",
     "section": "Conversion as a True Proportion: the \\(z\\)-Interval",
     "text": "Conversion as a True Proportion: the \\(z\\)-Interval\n\n\nThe interval above treated B’s 30 daily percentages as the sample. The textbook proportion interval works on the raw impressions instead: each of B’s 15.8M impressions is one yes/no trial (install or not).\nSetup: \\(\\bar{p} = 56{,}031 / 15{,}825{,}376 = 0.354\\%\\), and \\(n\\bar{p}\\) and \\(n(1-\\bar{p})\\) are both far above 5, so \\(z\\) is safe.\n\n\n\\[\n\\bar{p} \\pm z_{\\alpha/2}\\sqrt{\\frac{\\bar{p}(1-\\bar{p})}{n}}\n= 0.00354 \\pm 1.96\\sqrt{\\frac{0.00354\\,(1-0.00354)}{15{,}825{,}376}}\n= (0.351\\%,\\; 0.357\\%)\n\\]\n\n\nThe contrast: this \\(z\\)-interval is tighter than the daily-rate one \\((0.345\\%,\\, 0.362\\%)\\), because \\(n\\) jumps from 30 days to 15.8M impressions, and precision rides on \\(n\\). We still report the per-day version in the memo, to keep the unit the day, parallel to eRPM. Excel: \\(\\bar{p}\\) =SUM(installs)/SUM(impressions) on Raw_Data; =NORM.S.INV(0.975) for \\(z\\)."
+  },
+  {
+    "objectID": "lecture_slides/08_chapter_hypothesis_tests/08_chapter_hypothesis_tests.html#the-five-step-test-on-bs-erpm",
+    "href": "lecture_slides/08_chapter_hypothesis_tests/08_chapter_hypothesis_tests.html#the-five-step-test-on-bs-erpm",
+    "title": " QM 67000: Business Analytics ",
+    "section": "The Five-Step Test, on B’s eRPM",
+    "text": "The Five-Step Test, on B’s eRPM\nWe run one procedure every time. Here it is on B’s mean eRPM:\n\nBusiness context: fund B only if its true mean eRPM beats the $3.30 viability benchmark.\nHypotheses (upper-tail): \\(H_0: \\mu \\leq 3.30\\) vs. \\(H_a: \\mu &gt; 3.30\\), at \\(\\alpha = 0.05\\).\nTest statistic: \\(\\sigma\\) is unknown, so estimate it with \\(s\\) and use a one-sample \\(t\\), \\(df = n - 1\\).\nDecision: compare \\(t\\) to its critical value, or the \\(p\\)-value to \\(\\alpha\\): two roads, one verdict.\nManager’s translation: turn the verdict back into the funding call.\n\n\nThe next slides run these five steps on June’s 30 days, in Excel."
+  },
+  {
+    "objectID": "lecture_slides/08_chapter_hypothesis_tests/08_chapter_hypothesis_tests.html#the-data-bs-erpm-against-the-benchmark",
+    "href": "lecture_slides/08_chapter_hypothesis_tests/08_chapter_hypothesis_tests.html#the-data-bs-erpm-against-the-benchmark",
+    "title": " QM 67000: Business Analytics ",
+    "section": "The Data: B’s eRPM Against the Benchmark",
+    "text": "The Data: B’s eRPM Against the Benchmark\n\n\n23 of 30 days clear the $3.30 line, and the sample mean sits well above it, but a noisy 30-day sample could land here even if the true mean were exactly $3.30. The test settles it."
+  },
+  {
+    "objectID": "lecture_slides/08_chapter_hypothesis_tests/08_chapter_hypothesis_tests.html#the-five-step-test-on-bs-conversion",
+    "href": "lecture_slides/08_chapter_hypothesis_tests/08_chapter_hypothesis_tests.html#the-five-step-test-on-bs-conversion",
+    "title": " QM 67000: Business Analytics ",
+    "section": "The Five-Step Test, on B’s Conversion",
+    "text": "The Five-Step Test, on B’s Conversion\nSame five steps as the mean test; only the standard error and the reference curve change:\n\nBusiness context: keep B only if its true conversion clears the 0.35% viability target.\nHypotheses (upper-tail): \\(H_0: p \\leq 0.0035\\) vs. \\(H_a: p &gt; 0.0035\\), at \\(\\alpha = 0.05\\).\nTest statistic: a \\(z\\), with the standard error built under \\(H_0\\) from \\(p_0\\), not \\(\\bar p\\).\nDecision: compare \\(z\\) to its critical value, or the \\(p\\)-value to \\(\\alpha\\).\nManager’s translation: turn the verdict back into the keep-or-kill call.\n\n\nNow the numbers: 15.8 million impressions, a rate a hair above target."
+  },
+  {
+    "objectID": "lecture_slides/08_chapter_hypothesis_tests/08_chapter_hypothesis_tests.html#bs-conversion-in-numbers",
+    "href": "lecture_slides/08_chapter_hypothesis_tests/08_chapter_hypothesis_tests.html#bs-conversion-in-numbers",
+    "title": " QM 67000: Business Analytics ",
+    "section": "B’s Conversion in Numbers",
+    "text": "B’s Conversion in Numbers\n\n\nPlugging B’s June totals into the proportion test, with \\(p_0 = 0.0035\\):\n\n\n\\[\n\\sigma_{\\bar{p}} = \\sqrt{\\frac{0.0035(1-0.0035)}{15{,}825{,}376}} = 1.485 \\times 10^{-5}\n\\]\n\n\n\\[\nz = \\frac{0.003541 - 0.003500}{1.485 \\times 10^{-5}} = 2.733\n\\]\n\n\n\\(\\bar p\\) sits just 0.0041 percentage points above the target (a tiny gap), yet with 15.8M impressions even a tiny gap is many standard errors out."
+  },
+  {
+    "objectID": "lecture_slides/10_chapter_simple_regression/10_chapter_simple_regression.html#the-managers-takeaway-the-whole-topic",
+    "href": "lecture_slides/10_chapter_simple_regression/10_chapter_simple_regression.html#the-managers-takeaway-the-whole-topic",
+    "title": " QM 67000: Business Analytics ",
+    "section": "The Manager’s Takeaway: The Whole Topic",
+    "text": "The Manager’s Takeaway: The Whole Topic\n\n\nOne sentence: Yelp rating predicts auto-parts store sales strongly and significantly (about $758K per star, explaining 83% of the sales gap), so the real-estate team can use it to score and forecast sites.\nOne number to remember: \\(b_1 = 757.5\\), and where it came from: \\(\\sum(x-\\bar{x})(y-\\bar{y}) / \\sum(x-\\bar{x})^2\\).\nOne caveat: regression forecasts and quantifies; it does not prove causation, and 17% of sales is still unexplained; a single predictor is a start, not the answer.\nPractice with the real data: data/autoparts.csv + Regression tool → reproduce \\(b_1 = 757.5\\), \\(R^2 = 0.834\\), \\(t = 14.7\\) yourself."
   }
 ]

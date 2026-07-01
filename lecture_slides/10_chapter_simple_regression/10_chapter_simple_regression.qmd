@@ -395,7 +395,7 @@ $$
 
 - Here $b_1 > 0$ and $R^2 = 0.834$, so $r = +\sqrt{0.834} = +0.913$, a strong positive correlation, the same fact $R^2$ reports.
 
-- **Correlation** measures the *tightness and direction* of the linear association; **$R^2$** measures the *share of variation explained*. Same coin, two faces.
+- **Correlation** measures the *tightness and direction* of the linear association; **$R^2$** measures the *share of variation explained*: here $r = +0.913$ and $R^2 = 0.834$ report the identical fit.
 
 ## A Question That Often Comes Up
 
@@ -615,7 +615,7 @@ knitr::include_graphics("figs/armands_reg_coef.png")
 1. In the coefficients table, find the `yelp_rating` row.
 2. Read **t Stat** and **P-value** to test $H_0: \beta_1 = 0$.
 3. Read **Lower 95%** and **Upper 95%** for the slope CI; if both share a sign, zero is excluded.
-4. In the **ANOVA** block, read **Significance F** (the same $p$-value; $F = t^2$).
+4. In the **ANOVA** block, read **F = 216.7** ($= t^2$, the same slope test); its $p$-value (Excel's **Significance F**) matches the coefficients **P-value**, $< 0.0001$.
 :::
 
 ::: {.column width="54%"}
@@ -672,7 +672,7 @@ $$
 ::: fragment
 
 $$
-F = 216.7 = t^2 \quad (t = 14.7)
+F = 216.7 = t^2 \quad (t = 14.72)
 $$
 
 :::
@@ -860,7 +860,7 @@ knitr::include_graphics("figs/autoparts_pred_band.png")
 | Forecast | What will a new site sell? | Point + PI | \$3.74M; PI (\$2.79M, \$4.70M) at 4.5 stars |
 :::
 
-## The Manager's Takeaway
+## The Manager's Takeaway: The Whole Topic
 
 <br>
 
@@ -870,7 +870,7 @@ knitr::include_graphics("figs/autoparts_pred_band.png")
 
 - **One caveat:** regression forecasts and quantifies; it does **not** prove causation, and 17% of sales is still unexplained; a single predictor is a start, not the answer.
 
-- **Practice with the real data:** `data/autoparts.csv` + Regression tool → reproduce $b_1 = 757.5$, $R^2 = 0.834$, $t = 14.7$ (worked solutions in `data/autoparts_regression.xlsx`).
+- **Practice with the real data:** `data/autoparts.csv` + Regression tool → reproduce $b_1 = 757.5$, $R^2 = 0.834$, $t = 14.7$ yourself.
 
 ## Today's Question, Today's Answer
 

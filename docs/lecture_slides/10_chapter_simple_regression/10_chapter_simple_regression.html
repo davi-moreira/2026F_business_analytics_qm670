@@ -540,7 +540,7 @@ r = (\text{sign of } b_1)\sqrt{R^2}
 </div>
 <ul>
 <li class="fragment"><p>Here <span class="math inline">\(b_1 &gt; 0\)</span> and <span class="math inline">\(R^2 = 0.834\)</span>, so <span class="math inline">\(r = +\sqrt{0.834} = +0.913\)</span>, a strong positive correlation, the same fact <span class="math inline">\(R^2\)</span> reports.</p></li>
-<li class="fragment"><p><strong>Correlation</strong> measures the <em>tightness and direction</em> of the linear association; <strong><span class="math inline">\(R^2\)</span></strong> measures the <em>share of variation explained</em>. Same coin, two faces.</p></li>
+<li class="fragment"><p><strong>Correlation</strong> measures the <em>tightness and direction</em> of the linear association; <strong><span class="math inline">\(R^2\)</span></strong> measures the <em>share of variation explained</em>: here <span class="math inline">\(r = +0.913\)</span> and <span class="math inline">\(R^2 = 0.834\)</span> report the identical fit.</p></li>
 </ul>
 </section>
 <section id="a-question-that-often-comes-up-3" class="slide level2 center">
@@ -780,7 +780,7 @@ t = \frac{5}{0.580} = 8.62, \quad df = 8
 <li class="fragment">In the coefficients table, find the <code>yelp_rating</code> row.</li>
 <li class="fragment">Read <strong>t Stat</strong> and <strong>P-value</strong> to test <span class="math inline">\(H_0: \beta_1 = 0\)</span>.</li>
 <li class="fragment">Read <strong>Lower 95%</strong> and <strong>Upper 95%</strong> for the slope CI; if both share a sign, zero is excluded.</li>
-<li class="fragment">In the <strong>ANOVA</strong> block, read <strong>Significance F</strong> (the same <span class="math inline">\(p\)</span>-value; <span class="math inline">\(F = t^2\)</span>).</li>
+<li class="fragment">In the <strong>ANOVA</strong> block, read <strong>F = 216.7</strong> (<span class="math inline">\(= t^2\)</span>, the same slope test); its <span class="math inline">\(p\)</span>-value (Excel’s <strong>Significance F</strong>) matches the coefficients <strong>P-value</strong>, <span class="math inline">\(&lt; 0.0001\)</span>.</li>
 </ol>
 </div><div class="column" style="width:54%;">
 <div class="cell" data-layout-align="center">
@@ -839,7 +839,7 @@ b_1 \pm t_{\alpha/2,\,n-2}\; s_{b_1} = 757.5 \pm 2.02 \times 51.46 = (\$653.7\te
 </ul>
 <div class="fragment">
 <p><span class="math display">\[
-F = 216.7 = t^2 \quad (t = 14.7)
+F = 216.7 = t^2 \quad (t = 14.72)
 \]</span></p>
 </div>
 <ul>
@@ -1067,14 +1067,14 @@ F = 216.7 = t^2 \quad (t = 14.7)
 </table>
 </div>
 </section>
-<section id="the-managers-takeaway" class="slide level2 center">
-<h2>The Manager’s Takeaway</h2>
+<section id="the-managers-takeaway-the-whole-topic" class="slide level2 center">
+<h2>The Manager’s Takeaway: The Whole Topic</h2>
 <p><br></p>
 <ul>
 <li class="fragment"><p><strong>One sentence:</strong> Yelp rating predicts auto-parts store sales strongly and significantly (about <strong>$758K per star</strong>, explaining <strong>83%</strong> of the sales gap), so the real-estate team can use it to score and forecast sites.</p></li>
 <li class="fragment"><p><strong>One number to remember:</strong> <span class="math inline">\(b_1 = 757.5\)</span>, and where it came from: <span class="math inline">\(\sum(x-\bar{x})(y-\bar{y}) / \sum(x-\bar{x})^2\)</span>.</p></li>
 <li class="fragment"><p><strong>One caveat:</strong> regression forecasts and quantifies; it does <strong>not</strong> prove causation, and 17% of sales is still unexplained; a single predictor is a start, not the answer.</p></li>
-<li class="fragment"><p><strong>Practice with the real data:</strong> <code>data/autoparts.csv</code> + Regression tool → reproduce <span class="math inline">\(b_1 = 757.5\)</span>, <span class="math inline">\(R^2 = 0.834\)</span>, <span class="math inline">\(t = 14.7\)</span> (worked solutions in <code>data/autoparts_regression.xlsx</code>).</p></li>
+<li class="fragment"><p><strong>Practice with the real data:</strong> <code>data/autoparts.csv</code> + Regression tool → reproduce <span class="math inline">\(b_1 = 757.5\)</span>, <span class="math inline">\(R^2 = 0.834\)</span>, <span class="math inline">\(t = 14.7\)</span> yourself.</p></li>
 </ul>
 </section>
 <section id="todays-question-todays-answer-1" class="slide level2 center">
