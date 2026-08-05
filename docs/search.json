@@ -3737,7 +3737,7 @@
     "href": "lecture_slides/11_chapter_multiple_regression/11_chapter_multiple_regression.html#last-topic-we-predicted-with-one-variable.-now-we-have-four.",
     "title": " QM 67000: Business Analytics ",
     "section": "Last Topic We Predicted with One Variable. Now We Have Four.",
-    "text": "Last Topic We Predicted with One Variable. Now We Have Four.\n\n\nYou own a regional auto-parts retail chain: 45 stores, deciding where to put the next dollar.\nLast time we found a single strong predictor of a store’s annual sales: its Yelp rating. Each extra star was worth roughly +$758K a year. A clean simple-regression story.\nBut a Yelp rating is a symptom, not a lever you can pull directly. Your real question as the manager is sharper:\n\n\n\n“We can invest in location (open stores in bigger, richer markets), in service (raise the customer experience), or in merchandising (pay for premium endcap shelf placement). Which actually drives sales, and where should the money go?”\n\n\n\nAnswering that needs several predictors at once, plus a way to isolate the effect of each one. That is today’s tool: multiple regression."
+    "text": "Last Topic We Predicted with One Variable. Now We Have Four.\n\n\nYou are the manager of a regional auto-parts retail chain: 45 stores, deciding where to put the next dollar.\nLast time we found a single strong predictor of a store’s annual sales: its Yelp rating. Each extra star was worth roughly +$758K a year. A clean simple-regression story.\nBut a Yelp rating is a symptom, not a lever you can pull directly. Your real question as the manager is sharper:\n\n\n\n“We can invest in location (open stores in bigger, richer markets), in service (raise the customer experience), or in merchandising (pay for premium endcap shelf placement). Which actually drives sales, and where should the money go?”\n\n\n\nAnswering that needs several predictors at once, plus a way to isolate the effect of each one. That is today’s tool: multiple regression."
   },
   {
     "objectID": "lecture_slides/11_chapter_multiple_regression/11_chapter_multiple_regression.html#the-data-45-stores-four-candidate-drivers",
@@ -3751,7 +3751,7 @@
     "href": "lecture_slides/11_chapter_multiple_regression/11_chapter_multiple_regression.html#how-todays-studio-runs",
     "title": " QM 67000: Business Analytics ",
     "section": "How Today’s Studio Runs",
-    "text": "How Today’s Studio Runs\n\n\nTwo lectures, two halves of the decision:\n\nLecture 1, build & read the model. Fit sales on all four drivers; interpret each partial coefficient (“holding the others constant”); judge overall fit with \\(R^2\\) and adjusted \\(R^2\\). Anchor: Butler Trucking.\nLecture 2, test & decide. Which drivers are real (\\(F\\)-test vs. \\(t\\)-tests)? Put a dollar value on an endcap with a dummy variable; check the predictors don’t overlap (multicollinearity); make the investment call.\n\nA good analyst demos each idea on a small textbook anchor; your team reproduces it on the auto-parts data, then we debrief the recommendation together.\nBy the end, you decide where to invest, with the regression to back the call."
+    "text": "How Today’s Studio Runs\n\n\nTwo lectures, two halves of the decision:\n\nLecture 1, build & read the model. Fit sales on all four drivers; interpret each partial coefficient (“holding the others constant”); judge overall fit with \\(R^2\\) and adjusted \\(R^2\\).\nLecture 2, test & decide. Which drivers are real (\\(F\\)-test vs. \\(t\\)-tests)? Put a dollar value on an endcap with a dummy variable; check the predictors don’t overlap (multicollinearity); make the investment call.\n\nA good analyst builds the model on the auto-parts data; your team reproduces and interrogates it, then we debrief the recommendation together.\nBy the end, you decide where to invest, with the regression to back the call."
   },
   {
     "objectID": "lecture_slides/11_chapter_multiple_regression/11_chapter_multiple_regression.html#the-brief-lecture-1",
@@ -3828,7 +3828,7 @@
     "href": "lecture_slides/11_chapter_multiple_regression/11_chapter_multiple_regression.html#partitioning-the-variation-sst-ssr-sse",
     "title": " QM 67000: Business Analytics ",
     "section": "Partitioning the Variation: SST = SSR + SSE",
-    "text": "Partitioning the Variation: SST = SSR + SSE\n\n\nExactly as in simple regression, total variation in \\(y\\) splits into explained + unexplained:\n\n\n\\[\n\\underbrace{\\sum (y_i - \\bar{y})^2}_{SST \\;(\\text{total})} \\;=\\; \\underbrace{\\sum (\\hat{y}_i - \\bar{y})^2}_{SSR \\;(\\text{explained})} \\;+\\; \\underbrace{\\sum (y_i - \\hat{y}_i)^2}_{SSE \\;(\\text{unexplained})}\n\\]\n\n\nThe multiple coefficient of determination is the explained share:\n\n\n\\[\nR^2 = \\frac{SSR}{SST} = 1 - \\frac{SSE}{SST}\n\\]\n\n\nFor Butler: \\(R^2 = 21.60 / 23.90 = 0.904\\): miles and deliveries together explain about 90% of the variation in travel time."
+    "text": "Partitioning the Variation: SST = SSR + SSE\n\n\nExactly as in simple regression, total variation in \\(y\\) splits into explained + unexplained:\n\n\n\\[\n\\underbrace{\\sum (y_i - \\bar{y})^2}_{SST \\;(\\text{total})} \\;=\\; \\underbrace{\\sum (\\hat{y}_i - \\bar{y})^2}_{SSR \\;(\\text{explained})} \\;+\\; \\underbrace{\\sum (y_i - \\hat{y}_i)^2}_{SSE \\;(\\text{unexplained})}\n\\]\n\n\nThe multiple coefficient of determination is the explained share:\n\n\n\\[\nR^2 = \\frac{SSR}{SST} = 1 - \\frac{SSE}{SST}\n\\]\n\n\nFor the two-driver warm-up: \\(R^2 = 51{,}797{,}905 / 55{,}840{,}034 = 0.928\\): Yelp and endcap together explain about 93% of the variation in store sales."
   },
   {
     "objectID": "lecture_slides/11_chapter_multiple_regression/11_chapter_multiple_regression.html#the-r2-trap-it-can-only-go-up",
@@ -3842,21 +3842,21 @@
     "href": "lecture_slides/11_chapter_multiple_regression/11_chapter_multiple_regression.html#adjusted-r2-pay-a-fee-per-predictor",
     "title": " QM 67000: Business Analytics ",
     "section": "Adjusted \\(R^2\\): Pay a Fee per Predictor",
-    "text": "Adjusted \\(R^2\\): Pay a Fee per Predictor\n\n\nAdjusted \\(R^2\\) replaces the raw sums of squares with their per-degree-of-freedom versions:\n\n\n\\[\nR^2_a = 1 - \\frac{SSE/(n - p - 1)}{SST/(n - 1)} = 1 - (1 - R^2)\\,\\frac{n - 1}{n - p - 1}\n\\]\n\n\nThe penalty rises with \\(p\\) (more predictors) and eases with \\(n\\) (more data). Two consequences:\n\n\\(R^2_a \\le R^2\\) always, and the gap widens as you add predictors.\n\\(R^2_a\\) goes up only if a new predictor reduces the error variance \\(s^2\\) (= MSE) more than the penalty costs.\n\nThat makes \\(R^2_a\\) a real model-building criterion: compare candidate models, prefer the higher \\(R^2_a\\).\nButler: \\(R^2 = 0.904\\) but \\(R^2_a = 0.876\\); the gap is the fee for using two predictors on only ten observations."
+    "text": "Adjusted \\(R^2\\): Pay a Fee per Predictor\n\n\nAdjusted \\(R^2\\) replaces the raw sums of squares with their per-degree-of-freedom versions:\n\n\n\\[\n\\text{adjusted } R^2 = 1 - \\frac{SSE/(n - p - 1)}{SST/(n - 1)} = 1 - (1 - R^2)\\,\\frac{n - 1}{n - p - 1}\n\\]\n\n\nThe penalty rises with \\(p\\) (more predictors) and eases with \\(n\\) (more data). Two consequences:\n\nAdjusted \\(R^2 \\le R^2\\) always, and the gap widens as you add predictors.\nAdjusted \\(R^2\\) goes up only if a new predictor reduces the error variance \\(s^2\\) (= MSE) more than the penalty costs.\n\nThat makes adjusted \\(R^2\\) a real model-building criterion: compare candidate models, prefer the higher one.\nTwo-driver warm-up: \\(R^2 = 0.9276\\) but adjusted \\(R^2 = 0.9242\\); on 45 stores the fee for two predictors is small, and next we watch whether two more drivers can clear it."
   },
   {
     "objectID": "lecture_slides/11_chapter_multiple_regression/11_chapter_multiple_regression.html#a-question-that-often-comes-up-1",
     "href": "lecture_slides/11_chapter_multiple_regression/11_chapter_multiple_regression.html#a-question-that-often-comes-up-1",
     "title": " QM 67000: Business Analytics ",
     "section": "A Question That Often Comes Up",
-    "text": "A Question That Often Comes Up\n\nA question that often comes up at this point:\nIf adjusted \\(R^2\\) is the honest measure, why does Excel report plain \\(R^2\\) at all, and which one do I quote to the chain?\n\nShort answer: quote both, and let the gap tell the story. Plain \\(R^2\\) answers “how much variation did this model explain?” (a description of these 45 stores); adjusted \\(R^2\\) answers “would this fit survive a fair charge for the predictors I used?” (the model-building question). For auto-parts they are close, \\(0.932\\) vs \\(0.925\\): a small gap means the four predictors are earning their keep, not padding the fit."
+    "text": "A Question That Often Comes Up\n\nA question that often comes up at this point:\nIf adjusted \\(R^2\\) is the honest measure, why does Excel report plain \\(R^2\\) at all, and which one do I quote to the chain?\n\nShort answer: quote both, and let the gap tell the story. Plain \\(R^2\\) answers “how much variation did this model explain?” (a description of these 45 stores); adjusted \\(R^2\\) answers “would this fit survive a fair charge for the predictors I used?” (the model-building question). For the two-driver warm-up they are close, \\(0.9276\\) vs \\(0.9242\\): a small gap means both predictors are earning their keep, not padding the fit."
   },
   {
     "objectID": "lecture_slides/11_chapter_multiple_regression/11_chapter_multiple_regression.html#do-it-in-excel-fit-sales-on-all-four-drivers",
     "href": "lecture_slides/11_chapter_multiple_regression/11_chapter_multiple_regression.html#do-it-in-excel-fit-sales-on-all-four-drivers",
     "title": " QM 67000: Business Analytics ",
     "section": "Do It in Excel: Fit Sales on All Four Drivers",
-    "text": "Do It in Excel: Fit Sales on All Four Drivers\n\n\nFollow along:\n\nPut the four predictor columns contiguous (population_3mi, income_3mi, yelp_rating, endcap).\nData → Data Analysis → Regression.\nInput Y Range: sales2012_k; Input X Range: all four columns selected together.\nCheck Labels and Confidence Level 95%; click OK.\nRead the top block: R Square, Adjusted R Square, Standard Error (\\(s\\)).\n\n\n\n\n\n\n\n\nThe top block reports overall fit; we read it now and test it in Lecture 2."
+    "text": "Do It in Excel: Fit Sales on All Four Drivers\n\n\nFollow along:\n\nThe four predictors already sit side by side in columns C:F (population_3mi, income_3mi, yelp_rating, endcap).\nData → Data Analysis → Regression.\nInput Y Range: sales2012_k (column B); Input X Range: C:F, all four together.\nCheck Labels and Confidence Level 95%; click OK.\nRead the top block: R Square, Adjusted R Square, Standard Error (\\(s\\)).\n\n\n\n\n\n\n\n\nThe top block reports overall fit; we read it now and test it in Lecture 2."
   },
   {
     "objectID": "lecture_slides/11_chapter_multiple_regression/11_chapter_multiple_regression.html#the-estimated-equation-for-store-sales",
@@ -3877,7 +3877,7 @@
     "href": "lecture_slides/11_chapter_multiple_regression/11_chapter_multiple_regression.html#the-surprise-bigger-market-more-sales",
     "title": " QM 67000: Business Analytics ",
     "section": "The Surprise: Bigger Market ≠ More Sales",
-    "text": "The Surprise: Bigger Market ≠ More Sales\n\n\nIntuition says population and income should dominate: more people, more money, more sales.\nBut the partial coefficients say otherwise:\n\nPopulation: \\(+0.00035\\) → about +$0.35K per extra 1,000 residents. Flat.\nIncome: \\(+0.0047\\) → about +$4.7K per extra $1,000 of median income. Small.\n\nMeanwhile service (Yelp) and merchandising (endcap) carry the model.\nWhy the intuition fails: in simple regression a market-size variable can look strong because it travels with the variables that really matter. Once those are in the model, “holding the others constant” strips the borrowed credit away. We will confirm this with formal tests in Lecture 2."
+    "text": "The Surprise: Bigger Market ≠ More Sales\n\n\nIntuition says population and income should dominate: more people, more money, more sales.\nBut the partial coefficients say otherwise:\n\nPopulation: \\(+0.00035\\) → about +$0.35K per extra 1,000 residents. Flat.\nIncome: \\(+0.0047\\) → about +$4.7K per extra $1,000 of median income. Small.\n\nMeanwhile service (Yelp) and merchandising (endcap) carry the model.\nWhy the intuition fails: in simple regression a market-size variable can look strong because it travels with the variables that actually drive sales. Once those are in the model, “holding the others constant” strips the borrowed credit away. We will confirm this with formal tests in Lecture 2."
   },
   {
     "objectID": "lecture_slides/11_chapter_multiple_regression/11_chapter_multiple_regression.html#a-question-that-often-comes-up-2",
@@ -4017,7 +4017,7 @@
     "href": "lecture_slides/11_chapter_multiple_regression/11_chapter_multiple_regression.html#putting-a-defensible-number-on-the-decision",
     "title": " QM 67000: Business Analytics ",
     "section": "Putting a Defensible Number on the Decision",
-    "text": "Putting a Defensible Number on the Decision\n\nScenario: the chain plans a new store with population_3mi = 120,000, income_3mi = 55,000, yelp_rating = 4.0. Should it pay for endcap placement?\nPlug into the fitted equation, once with endcap = 0 and once with endcap = 1:\n\n\n\n\n\nConfiguration\nPredicted annual sales\n\n\n\n\nWithout endcap\n$2,816K\n\n\nWith endcap\n$3,632K\n\n\nLift from the endcap\n+$816K / year\n\n\n\n\n\nThe decision rule: negotiate for the endcap if its annual cost is below ~$816K. If the placement leases for, say, $150K/year, that is a clear yes. The dummy turned a vague “merchandising matters” into a number you can put in a budget.\nThese are point predictions. As in simple regression, the model also yields a confidence interval for the mean sales of all such stores and a wider prediction interval for this one store; the multiple-regression formulas are beyond our scope, so read both straight from the software."
+    "text": "Putting a Defensible Number on the Decision\n\n\nScenario: the chain plans a new store with population_3mi = 120,000, income_3mi = 55,000, yelp_rating = 4.0. Should it pay for endcap placement?\nPlug into the fitted equation, once with endcap = 0 and once with endcap = 1:\n\n\n\n\n\nConfiguration\nPredicted annual sales\n\n\n\n\nNull (average store)\n$2,706K\n\n\nSimple, Yelp only (Topic 10)\n$3,363K\n\n\nMultiple, without endcap\n$2,816K\n\n\nMultiple, with endcap\n$3,632K\n\n\nLift from the endcap\n+$816K / year\n\n\n\n\n\nThe Yelp-only model guesses $3,363K here: it over-credits Yelp, which in Topic 10 absorbed the endcap effect the four-driver model now separates out.\nThe decision rule: buy the endcap if its annual lease is below ~$816K (a $150K placement is a clear yes): the dummy turns a vague “merchandising matters” into a budget number.\nThese are point predictions; the software also gives a confidence interval (mean of all such stores) and a wider prediction interval (this one store), read straight off the output."
   },
   {
     "objectID": "lecture_slides/11_chapter_multiple_regression/11_chapter_multiple_regression.html#a-note-on-categories-with-more-than-two-levels",
@@ -4101,7 +4101,7 @@
     "href": "lecture_slides/11_chapter_multiple_regression/11_chapter_multiple_regression.html#the-managers-takeaway",
     "title": " QM 67000: Business Analytics ",
     "section": "The Manager’s Takeaway",
-    "text": "The Manager’s Takeaway\n\n\nOne sentence: for this 45-store chain, service and merchandising drive sales, not location demographics, so invest in Yelp rating (+$642K/star) and endcap placement (+$816K), each statistically decisive.\nOne number to remember: $816K, the value of an endcap, read straight off a dummy variable’s coefficient, holding everything else constant.\nOne caveat: the model describes 45 existing stores; it does not prove that buying an endcap will cause +$816K at a brand-new store. Correlation control is the best we can do with observational data: pilot it, then re-estimate.\nPractice with the real data: data/autoparts.csv + Excel Regression → reproduce \\(R^2 = 0.932\\), \\(F = 136.7\\), the four coefficients, and the prediction. Worked solutions: data/autoparts_regression.xlsx."
+    "text": "The Manager’s Takeaway\n\n\nOne sentence: for this 45-store chain, service and merchandising drive sales, not location demographics, so invest in Yelp rating (+$642K/star) and endcap placement (+$816K), each statistically decisive.\nOne number to remember: $816K, the value of an endcap, read straight off a dummy variable’s coefficient, holding everything else constant.\nOne caveat: the model describes 45 existing stores; it does not prove that buying an endcap will cause +$816K at a brand-new store. Correlation control is the best we can do with observational data: pilot it, then re-estimate.\nPractice with the real data: data/autoparts.csv (in the datasets zip) + Excel Regression → reproduce \\(R^2 = 0.932\\), \\(F = 136.7\\), the four coefficients, and the endcap prediction yourself."
   },
   {
     "objectID": "lecture_slides/11_chapter_multiple_regression/11_chapter_multiple_regression.html#todays-question-todays-answer-1",
@@ -4122,7 +4122,7 @@
     "href": "lecture_slides/11_chapter_multiple_regression/11_chapter_multiple_regression.html#summary",
     "title": " QM 67000: Business Analytics ",
     "section": "Summary",
-    "text": "Summary\nSome key takeaways from this topic:\n\nMultiple regression estimates the effect of each predictor holding the others constant: observational data’s closest move to a controlled comparison.\nA partial coefficient can differ wildly from its simple-regression cousin: population and income looked plausible but added nothing once Yelp and endcap were in.\n\\(R^2\\) only ever rises when you add predictors → judge model size with adjusted \\(R^2\\), which charges a fee per predictor.\n\\(F\\) first, then \\(t\\): \\(F\\) asks “is the model useful at all?”; the \\(t\\)-tests ask “which predictors carry their weight?” A significant \\(F\\) does not bless every coefficient.\nA dummy variable (0/1) prices a category: the endcap coefficient is the dollar value of an endcap; \\(k\\) levels need \\(k-1\\) dummies.\nMulticollinearity (overlapping predictors; check VIF &gt; 5) muddies interpretation; here every VIF &lt; 1.7, so the verdict holds.\nThis closes the prediction arc: from comparing two groups, to predicting with one driver, to isolating many drivers at once (today)."
+    "text": "Summary\nWhat the auto-parts model taught us:\n\nMultiple regression estimates the effect of each predictor holding the others constant: observational data’s closest move to a controlled comparison.\nA partial coefficient can differ wildly from its simple-regression cousin: population and income looked plausible but added nothing once Yelp and endcap were in.\n\\(R^2\\) only ever rises when you add predictors → judge model size with adjusted \\(R^2\\), which charges a fee per predictor.\n\\(F\\) first, then \\(t\\): \\(F\\) asks “is the model useful at all?”; the \\(t\\)-tests ask “which predictors carry their weight?” A significant \\(F\\) does not bless every coefficient.\nA dummy variable (0/1) prices a category: the endcap coefficient is the dollar value of an endcap; \\(k\\) levels need \\(k-1\\) dummies.\nMulticollinearity (overlapping predictors; check VIF &gt; 5) muddies interpretation; here every VIF &lt; 1.7, so the verdict holds.\nThis closes the prediction arc: from comparing two groups, to predicting with one driver, to isolating many drivers at once (today)."
   },
   {
     "objectID": "schedule.html",
@@ -4348,5 +4348,47 @@
     "title": " QM 67000: Business Analytics ",
     "section": "\\(R^2\\) Compares the Line to Guessing the Average",
     "text": "\\(R^2\\) Compares the Line to Guessing the Average\n\n\nThe baseline (no model): with no line, your best single guess for any store is the overall average, \\(\\bar{y} = \\$2{,}706\\text{K}\\). The squared error that baseline leaves is exactly SST.\nThe line’s leftover error is SSE, so \\(R^2 = 1 - \\text{SSE}/\\text{SST}\\) is the share of the baseline’s error the line removes.\n\n\n\n\n\nPredict every store with…\nTypical miss (RMSE)\n\n\n\n\nthe average \\(\\bar{y}\\) (no model)\n\\(\\approx \\$1{,}114\\text{K}\\)\n\n\nthe Yelp-rating line\n\\(\\approx \\$453\\text{K}\\)\n\n\n\n\n\nSo \\(R^2 = 0\\) means the line is no better than the average (SSE = SST, a flat line at \\(\\bar{y}\\)); \\(R^2 = 1\\) means every store sits on the line. Auto-parts lands at 0.834: the line erases 83% of the error you would make by guessing the average."
+  },
+  {
+    "objectID": "lecture_slides/11_chapter_multiple_regression/11_chapter_multiple_regression.html#watch-holding-constant-change-the-story",
+    "href": "lecture_slides/11_chapter_multiple_regression/11_chapter_multiple_regression.html#watch-holding-constant-change-the-story",
+    "title": " QM 67000: Business Analytics ",
+    "section": "Watch “Holding Constant” Change the Story",
+    "text": "Watch “Holding Constant” Change the Story\n\n\n\n\n\n\n\n\nSource: Nick Huntington-Klein, animated causal plots\n\n\n\nThe raw cloud tilts one way: a single pooled correlation that ignores a lurking variable (here, the two colors).\nSplit by that variable and the relationship within each group can flatten, steepen, or even flip.\nA partial coefficient reads exactly that within-group story: the effect of one driver among stores that match on the others.\nHold this picture for the auto-parts surprise: population looks like it lifts sales, until we hold service and merchandising constant."
+  },
+  {
+    "objectID": "lecture_slides/11_chapter_multiple_regression/11_chapter_multiple_regression.html#two-drivers-first-yelp-and-endcap",
+    "href": "lecture_slides/11_chapter_multiple_regression/11_chapter_multiple_regression.html#two-drivers-first-yelp-and-endcap",
+    "title": " QM 67000: Business Analytics ",
+    "section": "Two Drivers First: Yelp and Endcap",
+    "text": "Two Drivers First: Yelp and Endcap\n\n\nBefore all four, we fit a smaller model on the same 45 stores: sales on just the Yelp rating and the endcap dummy. Two predictors keep the output table easy to read.\n\n\n\\[\n\\widehat{\\text{sales}} = b_0 + b_1\\,\\text{yelp} + b_2\\,\\text{endcap} \\qquad (n = 45,\\; p = 2)\n\\]\n\n\nSame machine as before: least squares tilts a plane over the 45 stores, and each \\(b\\) is a partial coefficient, read “holding the other driver constant.”\nRead the output, interpret the two partial effects, predict one store: then we add the two location drivers."
+  },
+  {
+    "objectID": "lecture_slides/11_chapter_multiple_regression/11_chapter_multiple_regression.html#do-it-in-excel-fit-sales-on-two-drivers",
+    "href": "lecture_slides/11_chapter_multiple_regression/11_chapter_multiple_regression.html#do-it-in-excel-fit-sales-on-two-drivers",
+    "title": " QM 67000: Business Analytics ",
+    "section": "Do It in Excel: Fit Sales on Two Drivers",
+    "text": "Do It in Excel: Fit Sales on Two Drivers\n\n\nFollow along:\n\nyelp_rating and endcap already sit side by side (columns E:F).\nData → Data Analysis → Regression.\nInput Y Range: sales2012_k (column B); Input X Range: E:F together.\nCheck Labels and Confidence Level 95%; click OK.\nRead the Coefficients column: \\(b_0 = 295.3\\), \\(b_1 = 648.7\\), \\(b_2 = 740.4\\).\n\n\n\n\n\n\n\n\n\\[\n\\widehat{\\text{sales}} = 295.3 + 648.7\\,\\text{yelp} + 740.4\\,\\text{endcap}\n\\]"
+  },
+  {
+    "objectID": "lecture_slides/11_chapter_multiple_regression/11_chapter_multiple_regression.html#reading-the-two-partial-coefficients",
+    "href": "lecture_slides/11_chapter_multiple_regression/11_chapter_multiple_regression.html#reading-the-two-partial-coefficients",
+    "title": " QM 67000: Business Analytics ",
+    "section": "Reading the Two Partial Coefficients",
+    "text": "Reading the Two Partial Coefficients\n\n\n\\(b_1 = +648.7\\) (Yelp): each extra star predicts about +$649K in annual sales, holding endcap placement constant.\n\\(b_2 = +740.4\\) (endcap): an endcap predicts about +$740K, holding the Yelp rating constant.\nPredict store #5 (Yelp \\(=5.0\\), endcap \\(=1\\)), stacked against the simpler options:\n\n\n\n\n\nPrediction for store #5\nSales\n\n\n\n\nNull (guess the average)\n$2,706K\n\n\nSimple, Yelp only (Topic 10)\n$4,120K\n\n\nTwo drivers (Yelp + endcap)\n$4,279K\n\n\nActual\n$4,677K\n\n\n\n\n\nEach step lands closer to the $4,677K actual; the two-driver residual is \\(4677 - 4279 = +\\$398\\text{K}\\). Still short: maybe location is helping. That is what the next two drivers test."
+  },
+  {
+    "objectID": "lecture_slides/11_chapter_multiple_regression/11_chapter_multiple_regression.html#how-much-better-than-guessing-or-than-one-driver",
+    "href": "lecture_slides/11_chapter_multiple_regression/11_chapter_multiple_regression.html#how-much-better-than-guessing-or-than-one-driver",
+    "title": " QM 67000: Business Analytics ",
+    "section": "How Much Better Than Guessing, or Than One Driver?",
+    "text": "How Much Better Than Guessing, or Than One Driver?\n\n\nA model earns its complexity only if it beats the simpler options. Stack three, all on the same 45 stores:\n\n\n\n\n\n\n\n\n\n\n\nModel\nWhat it uses\n\\(R^2\\)\nTypical miss\n\n\n\n\nNull (no model)\nguess the average $2,706K every time\n0.000\n~$1,114K\n\n\nSimple (Topic 10)\nYelp rating alone\n0.834\n~$453K\n\n\nMultiple (today)\nall four drivers\n0.932\n~$291K\n\n\n\n\n\nEach rung cuts the typical miss: $1,114K with no model, $453K with one driver, $291K with four. Yelp did the heavy lifting; the other three still shave off another third of the error.\nThe payoff of the topic is not only which drivers matter, but a sharper sales prediction for the next store."
+  },
+  {
+    "objectID": "lecture_slides/11_chapter_multiple_regression/11_chapter_multiple_regression.html#precision-vs.-accuracy-why-the-assumptions-matter",
+    "href": "lecture_slides/11_chapter_multiple_regression/11_chapter_multiple_regression.html#precision-vs.-accuracy-why-the-assumptions-matter",
+    "title": " QM 67000: Business Analytics ",
+    "section": "Precision vs. Accuracy: Why the Assumptions Matter",
+    "text": "Precision vs. Accuracy: Why the Assumptions Matter\n\n\n\n\n\n\n\n\n\n\nPrecision: the predictions are consistent, a tight spread when you repeat.\nAccuracy: the predictions are unbiased, centered on the truth, not systematically high or low.\nA regression can have one without the other. What buys you both is meeting the error assumptions: zero-mean, constant-variance, independent, roughly normal.\nThe residual plot is how we check them before trusting the $816K endcap number."
   }
 ]
