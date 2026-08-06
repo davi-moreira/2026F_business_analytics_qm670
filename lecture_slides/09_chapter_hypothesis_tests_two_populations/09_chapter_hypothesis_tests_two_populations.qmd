@@ -727,7 +727,9 @@ $$
 3. Variable 1 = Bankrupt, Variable 2 = Non-bankrupt; Hypothesized Mean Difference `0`; Alpha `0.05`.
 4. Click OK; read `t Stat = -1.96`, `df = 26`, `P(T<=t) two-tail = 0.061` $> 0.05$ → fail to reject $H_0$.
 
+::: fragment
 **"Fail to reject" ≠ "the means are equal."** With $n = 15$ per group the test has **low power**; a \$2K average gap may be economically real yet statistically undetectable here. (Equal $n$: pooled $t$ gives the same statistic with $df = 28$, same conclusion.)
+:::
 :::
 ::: {.column width="54%"}
 ![](figs/excel_equity_welch.png){.nostretch fig-align="center" width="100%"}
@@ -747,7 +749,9 @@ $$
 3. Variable 1 = `erpm_B`, Variable 2 = `erpm_A` (same order, so $t$ is positive); Alpha `0.05`.
 4. Click OK; read `t Stat = 1.51`, `P(T<=t) two-tail = 0.138` $> 0.05$ → fail to reject.
 
+::: fragment
 **The \$0.11 lift "disappears."** Same numbers ($\bar{x}_A = 3.347$, $\bar{x}_B = 3.459$), wrong design, opposite call.
+:::
 :::
 ::: {.column width="54%"}
 ![](figs/excel_welch_vungle.png){.nostretch fig-align="center" width="100%"}
