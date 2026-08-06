@@ -1,7 +1,7 @@
 ---
 title: "<span style = 'font-size: 100%;'> QM 67000: Business Analytics </span>"
 subtitle: "<span style = 'font-size: 150%;'> Course Introduction & Descriptive Statistics I </span>"
-author: "Professor: Davi Moreira"
+author: "Professors<br>Davi Moreira<br>Thanh Nguyen<br>"
 #date: "2024-08-01"
 #date-format: "MMMM DD, YYYY"
 format:
@@ -58,7 +58,7 @@ html-math-method:
 
 # Introductions
 
-## Instructor
+## Instructor: Davi Moreira
 
 ::::: columns
 ::: {.column style="width: 40%; text-align: center; justify-content: center; align-items: center;"}
@@ -66,7 +66,7 @@ html-math-method:
 knitr::include_graphics("figs/davi_moreira_photo.JPG")
 ```
 
-[dcordeir\@purdue.edu](dcordeir@purdue.edu)
+[dcordeir\@purdue.edu](mailto:dcordeir@purdue.edu)
 
 <https://davi-moreira.github.io/>
 :::
@@ -84,7 +84,33 @@ knitr::include_graphics("figs/davi_moreira_photo.JPG")
 :::
 :::::
 
-## Instructor's Passions
+## Instructor: Thanh Nguyen
+
+::::: columns
+::: {.column style="width: 40%; text-align: center; justify-content: center; align-items: center;"}
+```{r  echo=FALSE, out.width = "40%",fig.align="center"}
+knitr::include_graphics("figs/thanh.jpg")
+```
+
+[nguye161\@purdue.edu](mailto:nguye161@purdue.edu)
+
+<https://sites.google.com/view/thanh-n>
+:::
+
+::: {.column style="width: 60%; text-align: center; justify-content: center; align-items: center;"}
+-   Lewis B. Cullman Rising Star Professor and Head of the Quantitative Methods Department at Purdue University;
+
+<br>
+
+-   His research covers market design, network economics, and computational social choice, with support from the National Science Foundation and DARPA.
+
+<br>
+
+-   Ph.D. from Cornell University. He teaches QM 67000 and co-developed this course material.
+:::
+:::::
+
+## Davi's Passions
 
 ```{r  echo=FALSE, out.width = "15%", fig.align="center"}
 knitr::include_graphics("figs/palmeiras_logo.png")
@@ -106,7 +132,7 @@ knitr::include_graphics("figs/palmeiras_stadium.jpg")
 
 <br>
 
-## Instructor's Passions
+## Davi's Passions
 
 ```{r  echo=FALSE, out.width = "25%", fig.align="center"}
 knitr::include_graphics("figs/carnaval_olinda.jpg")

@@ -1850,27 +1850,6 @@
     "text": "Overview\n\n\n\nIntroductions, logistics & your group\nThe semester roadmap: two cases, one job\nCase Spotlight: A/B Testing at Vungle\nWhat is statistics? Where is it used?\nThe map: descriptive vs. inferential\n\n\n\nData, variables & observations: the Vungle dataset\nData types & scales of measurement\nStudy design: why Vungle ran an experiment\nA first look at the data in Excel (Excel4stats)"
   },
   {
-    "objectID": "lecture_slides/01_chapter_data_statistics/01_chapter_data_statistics.html#instructor",
-    "href": "lecture_slides/01_chapter_data_statistics/01_chapter_data_statistics.html#instructor",
-    "title": " QM 67000: Business Analytics ",
-    "section": "Instructor",
-    "text": "Instructor\n\n\n\n\n\n\n\n\n\n\n\ndcordeir@purdue.edu\nhttps://davi-moreira.github.io/\n\n\nClinical Assistant Professor in the Management Department at Purdue University;\n\n\n\nMy academic work addresses Political Communication, Data Science, Text as Data, Artificial Intelligence, and Comparative Politics.\n\n\n\nM&E Specialist consultant - World Bank (Brazil, Mozambique, Angola, and DRC)"
-  },
-  {
-    "objectID": "lecture_slides/01_chapter_data_statistics/01_chapter_data_statistics.html#instructors-passions",
-    "href": "lecture_slides/01_chapter_data_statistics/01_chapter_data_statistics.html#instructors-passions",
-    "title": " QM 67000: Business Analytics ",
-    "section": "Instructor’s Passions",
-    "text": "Instructor’s Passions\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nThe Most Exciting Game in History"
-  },
-  {
-    "objectID": "lecture_slides/01_chapter_data_statistics/01_chapter_data_statistics.html#instructors-passions-1",
-    "href": "lecture_slides/01_chapter_data_statistics/01_chapter_data_statistics.html#instructors-passions-1",
-    "title": " QM 67000: Business Analytics ",
-    "section": "Instructor’s Passions",
-    "text": "Instructor’s Passions\n\n\nNYT - How John Travolta Became the Star of Carnival-Video."
-  },
-  {
     "objectID": "lecture_slides/01_chapter_data_statistics/01_chapter_data_statistics.html#find-your-group-meet-your-team",
     "href": "lecture_slides/01_chapter_data_statistics/01_chapter_data_statistics.html#find-your-group-meet-your-team",
     "title": " QM 67000: Business Analytics ",
@@ -4390,5 +4369,33 @@
     "title": " QM 67000: Business Analytics ",
     "section": "Precision vs. Accuracy: Why the Assumptions Matter",
     "text": "Precision vs. Accuracy: Why the Assumptions Matter\n\n\n\n\n\n\n\n\n\n\nPrecision: the predictions are consistent, a tight spread when you repeat.\nAccuracy: the predictions are unbiased, centered on the truth, not systematically high or low.\nA regression can have one without the other. What buys you both is meeting the error assumptions: zero-mean, constant-variance, independent, roughly normal.\nThe residual plot is how we check them before trusting the $816K endcap number."
+  },
+  {
+    "objectID": "lecture_slides/01_chapter_data_statistics/01_chapter_data_statistics.html#instructor-davi-moreira",
+    "href": "lecture_slides/01_chapter_data_statistics/01_chapter_data_statistics.html#instructor-davi-moreira",
+    "title": " QM 67000: Business Analytics ",
+    "section": "Instructor: Davi Moreira",
+    "text": "Instructor: Davi Moreira\n\n\n\n\n\n\n\n\n\n\n\ndcordeir@purdue.edu\nhttps://davi-moreira.github.io/\n\n\nClinical Assistant Professor in the Management Department at Purdue University;\n\n\n\nMy academic work addresses Political Communication, Data Science, Text as Data, Artificial Intelligence, and Comparative Politics.\n\n\n\nM&E Specialist consultant - World Bank (Brazil, Mozambique, Angola, and DRC)"
+  },
+  {
+    "objectID": "lecture_slides/01_chapter_data_statistics/01_chapter_data_statistics.html#instructor-thanh-nguyen",
+    "href": "lecture_slides/01_chapter_data_statistics/01_chapter_data_statistics.html#instructor-thanh-nguyen",
+    "title": " QM 67000: Business Analytics ",
+    "section": "Instructor: Thanh Nguyen",
+    "text": "Instructor: Thanh Nguyen\n\n\n\n\n\n\n\n\n\n\n\nnguye161@purdue.edu\nhttps://sites.google.com/view/thanh-n\n\n\nLewis B. Cullman Rising Star Professor and Head of the Quantitative Methods Department at Purdue University;\n\n\n\nHis research covers market design, network economics, and computational social choice, with support from the National Science Foundation and DARPA.\n\n\n\nPh.D. from Cornell University. He teaches QM 67000 and co-developed this course material."
+  },
+  {
+    "objectID": "lecture_slides/01_chapter_data_statistics/01_chapter_data_statistics.html#davis-passions",
+    "href": "lecture_slides/01_chapter_data_statistics/01_chapter_data_statistics.html#davis-passions",
+    "title": " QM 67000: Business Analytics ",
+    "section": "Davi’s Passions",
+    "text": "Davi’s Passions\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nThe Most Exciting Game in History"
+  },
+  {
+    "objectID": "lecture_slides/01_chapter_data_statistics/01_chapter_data_statistics.html#davis-passions-1",
+    "href": "lecture_slides/01_chapter_data_statistics/01_chapter_data_statistics.html#davis-passions-1",
+    "title": " QM 67000: Business Analytics ",
+    "section": "Davi’s Passions",
+    "text": "Davi’s Passions\n\n\nNYT - How John Travolta Became the Star of Carnival-Video."
   }
 ]

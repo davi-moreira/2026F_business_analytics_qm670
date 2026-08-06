@@ -1,7 +1,7 @@
 ---
 title: "<span style = 'font-size: 100%;'> QM 67000: Business Analytics </span>"
 subtitle: "<span style = 'font-size: 150%;'> Discrete Probability Distributions </span>"
-author: "Professor<br>Davi Moreira<br>"
+author: "Professors<br>Davi Moreira<br>Thanh Nguyen<br>"
 # date: "2026-09-02"
 # date-format: "MMMM DD, YYYY"
 format:
