@@ -922,10 +922,10 @@ knitr::include_graphics("figs/autoparts_predictor_corr.png")
 ## Precision vs. Accuracy: Why the Assumptions Matter
 
 :::::: columns
-::: {.column width="58%"}
-![](figs/precision_accuracy.png){.nostretch fig-align="center" width="90%"}
+::: {.column width="40%"}
+![](figs/precision_accuracy.png){.nostretch fig-align="center" width="95%"}
 :::
-::: {.column width="42%"}
+::: {.column width="60%"}
 ::: {style="font-size: 90%;"}
 - **Precision:** the predictions are **consistent**, a tight spread when you repeat.
 - **Accuracy:** the predictions are **unbiased**, centered on the truth, not systematically high or low.
