@@ -126,6 +126,7 @@ Attendance is essential for success in this course. If you do not attend class r
 ### Homework
 
 -   **Three** homework assignments, completed and submitted **as a group** (your assigned fixed group); **none** are dropped.\
+-   Each homework is due on a **Sunday at 11:59 pm**; the three dates are on the [Schedule](schedule.qmd) page.\
 -   Submit on Brightspace before the deadline as a **single PDF** named **group_NN_hw_X** (NN = your two-digit group number, X = homework number).\
 -   If a group member does not contribute, their name should not appear on the submission; that member may complete and submit the assignment separately.\
 -   For each assignment, your group is expected to understand the reason for choosing a particular technique, the mechanics of the solution, and the implications of the final recommendation.\
