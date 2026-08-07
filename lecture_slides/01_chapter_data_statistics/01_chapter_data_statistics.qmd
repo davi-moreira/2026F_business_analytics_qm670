@@ -1,7 +1,7 @@
 ---
 title: "<span style = 'font-size: 100%;'> QM 67000: Business Analytics </span>"
 subtitle: "<span style = 'font-size: 150%;'> Course Introduction & Descriptive Statistics I </span>"
-author: "Professors<br>Davi Moreira<br>Thanh Nguyen<br>"
+author: "Professors<br>Thanh Nguyen<br>Davi Moreira<br>"
 #date: "2024-08-01"
 #date-format: "MMMM DD, YYYY"
 format:
@@ -58,32 +58,6 @@ html-math-method:
 
 # Introductions
 
-## Instructor: Davi Moreira
-
-::::: columns
-::: {.column style="width: 40%; text-align: center; justify-content: center; align-items: center;"}
-```{r  echo=FALSE, out.width = "60%",fig.align="center"}
-knitr::include_graphics("figs/davi_moreira_photo.JPG")
-```
-
-[dcordeir\@purdue.edu](mailto:dcordeir@purdue.edu)
-
-<https://davi-moreira.github.io/>
-:::
-
-::: {.column style="width: 60%; text-align: center; justify-content: center; align-items: center;"}
--   Clinical Assistant Professor in the Management Department at Purdue University;
-
-<br>
-
--   My academic work addresses Political Communication, Data Science, Text as Data, Artificial Intelligence, and Comparative Politics.
-
-<br>
-
--   [M&E Specialist consultant - World Bank (Brazil, Mozambique, Angola, and DRC)](https://blogs.worldbank.org/opendata/improving-how-we-measure-progress-community-biodiversity-conservation-projects-mozambique)
-:::
-:::::
-
 ## Instructor: Thanh Nguyen
 
 ::::: columns
@@ -107,6 +81,32 @@ knitr::include_graphics("figs/thanh.jpg")
 <br>
 
 -   Ph.D. from Cornell University. He teaches QM 67000 and co-developed this course material.
+:::
+:::::
+
+## Instructor: Davi Moreira
+
+::::: columns
+::: {.column style="width: 40%; text-align: center; justify-content: center; align-items: center;"}
+```{r  echo=FALSE, out.width = "60%",fig.align="center"}
+knitr::include_graphics("figs/davi_moreira_photo.JPG")
+```
+
+[dcordeir\@purdue.edu](mailto:dcordeir@purdue.edu)
+
+<https://davi-moreira.github.io/>
+:::
+
+::: {.column style="width: 60%; text-align: center; justify-content: center; align-items: center;"}
+-   Clinical Assistant Professor in the Management Department at Purdue University;
+
+<br>
+
+-   My academic work addresses Political Communication, Data Science, Text as Data, Artificial Intelligence, and Comparative Politics.
+
+<br>
+
+-   [M&E Specialist consultant - World Bank (Brazil, Mozambique, Angola, and DRC)](https://blogs.worldbank.org/opendata/improving-how-we-measure-progress-community-biodiversity-conservation-projects-mozambique)
 :::
 :::::
 
@@ -160,9 +160,9 @@ knitr::include_graphics("figs/carnaval_olinda.jpg")
 ## Course Overview and Logistics
 
 ::: nonincremental
-- **Course webpage** ([link](https://davi-moreira.github.io/2026F_business_analytics_qm670){target="_blank"}): the **syllabus**, the **schedule**, every topic's **slides**, and the **datasets** to download.
+- **Brightspace is your one channel.** The **syllabus** and **schedule**, every topic's **slides**, the **datasets** to download, announcements, your **group**, the **in-class group cases**, the **three group homeworks**, the exams, and your grades all live there.
 
-- **Brightspace** (your official channel): announcements, your **group**, the **in-class group cases**, the **three homeworks**, the exams, and your grades.
+- Nothing you need for this course is anywhere else: if you cannot find it on Brightspace, email us.
 
 - **Excel + the Analysis ToolPak:** install it this week; we use it every class.
 
@@ -200,7 +200,7 @@ Anderson · Sweeney · Williams · Camm · Cochran · Cengage, 2020 · ISBN-13 9
 
 - **Keep up every week.** Statistics builds on itself: today's vocabulary becomes next week's formulas. Falling behind compounds.
 
-- **Work with your group.** In-class cases are solved and submitted together; homework you do on your own. Explaining a method to a groupmate is the fastest way to learn it.
+- **Work with your group.** In-class cases and the three homeworks are both solved and submitted together, one file per group. Explaining a method to a groupmate is the fastest way to learn it.
 
 - **You're the decision-maker.** Every method we learn answers a call *you* have to make. Learn each one well enough to check an analyst's work, and always ask: *what decision does this number support, and would I stake money on it?*
 
