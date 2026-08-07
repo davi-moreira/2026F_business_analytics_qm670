@@ -13,6 +13,17 @@ project:
   # are kept out of the public site).
   resources:
     - "data/**"
+  # Fail-closed gate on the Instructor page. This step encrypts docs/instructor.html
+  # in place with the instructor password (read from the gitignored file
+  # _adm/_instructor_page/page_password.txt) so the published page is unreadable
+  # without it. If the password is missing or encryption fails, the script exits
+  # non-zero and aborts the render: the Instructor page is NEVER published in the
+  # clear. (A missing docs/instructor.html is a no-op, exit 0: there is nothing to
+  # publish.) The same step prunes docs/search.json so the public search box stops
+  # surfacing the gated page and the topic slides; the slides themselves stay
+  # published at their current URLs for students who get the link from Brightspace.
+  post-render:
+    - _adm/_redesign/scripts/postrender.sh
 
 
 website:
@@ -36,6 +47,8 @@ website:
         text: Material
       - href: schedule.qmd
         text: Schedule
+      - href: instructor.qmd
+        text: Instructor
 #      #- href: problemset.qmd
 #      #  text: Problem Sets
 #      # - href: finalproject.qmd

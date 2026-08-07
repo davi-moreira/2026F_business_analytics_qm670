@@ -97,3 +97,18 @@ submissions/
 # students get raw datasets from the root data/ folder, linked on Material/Schedule.
 docs/lecture_slides/*/data/
 docs/lecture_slides/_parked/
+
+# >>> Instructor page (password-gated) >>>
+# instructor.qmd is the PLAINTEXT source of the gated Instructor page: it carries the
+# real slide links, dataset links, and the links to homework/midterm/final files and
+# their solutions. It must NEVER be readable in this public repo. Its backup copy lives
+# in the private companion repo (named in the instructor-only notes under _adm/).
+/instructor.qmd
+# Local clone of that private companion repo (working copy, never public).
+# No trailing slash on purpose: the rule then matches even before the clone
+# exists, so `git check-ignore -v _instructor_repo` confirms the guard is live.
+_instructor_repo
+# NOTE (do not "fix" this): docs/instructor.html is deliberately NOT ignored. That file
+# is the ENCRYPTED build output produced by the post-render step, and publishing it is
+# the whole point. Ignoring it would silently take the Instructor page off the site.
+# <<< Instructor page (password-gated) <<<
