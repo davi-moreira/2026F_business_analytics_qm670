@@ -802,7 +802,7 @@ knitr::include_graphics("figs/xkcd.png")
 
 - **One caveat:** description **summarizes the 30 days we have**; it **cannot** tell us whether B's \$0.11 edge generalizes to all future traffic. *Is the edge real or noise?* is an **inference** question, the heart of Topics 7–9.
 
-- **Practice with the real data:** `data/vungle_daily.csv` + the Analysis ToolPak, then reproduce the A-vs-B dashboard. Worked solutions: `data/vungle_descriptive.xlsx`.
+- **Practice with the real data:** `data/vungle_daily.csv` + the Analysis ToolPak, then reproduce the A-vs-B dashboard. Sort by `algorithm` first so B's 30 rows sit together, then run Descriptive Statistics on each block: B lands at \$3.459 (SD \$0.344), A at \$3.347 (SD \$0.217).
 
 ## ⏱️ Team Sprint: Your Group Case
 

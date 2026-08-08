@@ -865,7 +865,7 @@ The same statistic, re-anchored to the Vungle eRPM mean test under different ben
 
 - **Practice with the real data:**
   - `data/vungle_daily.csv` + formula cells $\rightarrow$ reproduce $t = 2.53$ (eRPM) and $z = 2.73$ (conversion).
-  - Worked solutions: `data/vungle_one_sample_tests.xlsx`.
+  - Sort by `algorithm` first so B's 30 rows are contiguous before you set any input range.
 
 ## Summary
 

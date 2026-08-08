@@ -562,7 +562,7 @@ knitr::include_graphics("figs/bayes_prior_posterior.png")
 
 - **One caveat:** an install is *weak* evidence about which algorithm served it ($P(B\mid\text{install}) = 5.56\%$ vs. a $6.27\%$ prior); base rates dominate, so never read a posterior off the likelihood alone.
 
-- **Practice with the real data:** `data/vungle_daily.csv` + `SUMIF` → reproduce the funnel rates; `data/vungle_probability.xlsx` holds the worked funnel and Bayes tables.
+- **Practice with the real data:** `data/vungle_daily.csv` + `SUMIF` → reproduce the funnel rates. Total each stage per algorithm (`=SUMIF(A:A,"B",C:C)` for impressions, `F:F` for installs), then divide stage by stage; B's install rate lands at 0.354%.
 
 ## ⏱️ Team Sprint: Your Group Case
 

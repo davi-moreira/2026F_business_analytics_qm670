@@ -708,7 +708,7 @@ $$
 **3. Test statistic.**
 
 $$
-t = \frac{(5.73 - 7.87) - 0}{\sqrt{\dfrac{3.33^2}{15} + \dfrac{2.61^2}{15}}} = \frac{-2.14}{1.093} = -1.96, \qquad df \approx 26
+t = \frac{(5.73 - 7.87) - 0}{\sqrt{\dfrac{3.33^2}{15} + \dfrac{2.61^2}{15}}} = \frac{-2.14}{1.092} = -1.96, \qquad df \approx 26
 $$
 
 **4. Decision.** $p$-value (two-tail) $\approx 0.061 > \alpha = 0.05$ → **fail to reject $H_0$**. 95% CI for $\mu_1 - \mu_2$: $(-4.4,\; 0.1)$, which barely includes zero.
@@ -1059,7 +1059,7 @@ The metric that matches the business model wins, not the bigger number. We resol
 - **Practice with the real data:**
   - `data/vungle_erpm_paired.csv` + ToolPak → reproduce $t = 3.325$ (paired) and $t = 1.51$ (unequal variances).
   - `data/vungle_daily.csv` + five formula cells → reproduce $z = -29.56$.
-  - Worked solutions: `data/vungle_ab_analysis.xlsx`.
+  - Build the $z$ from `SUMIF` totals per algorithm: installs over impressions, pooled $\bar{p}$, then the standard error.
 
 ## ⏱️ Team Sprint: Your Group Case
 

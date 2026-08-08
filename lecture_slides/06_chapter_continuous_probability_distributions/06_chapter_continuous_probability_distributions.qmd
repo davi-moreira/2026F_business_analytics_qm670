@@ -567,7 +567,7 @@ knitr::include_graphics("figs/vungle_pgt350.png")
 1. Type the model in cells: mean `3.459`, sd `0.344`, and the bar `3.50`.
 2. Left area: `=NORM.DIST(3.50, 3.459, 0.344, TRUE)` returns **0.547**.
 3. Right tail "tops \$3.50": `=1 - NORM.DIST(3.50, 3.459, 0.344, TRUE)` = **0.4526**.
-4. Check the z-route: `=1 - NORM.S.DIST(0.12, TRUE)` gives the **same** 0.4526.
+4. Check the z-route: `=1 - NORM.S.DIST((3.50-3.459)/0.344, TRUE)` gives the **same** 0.4526. Type a rounded `0.12` instead and you get 0.4522: round the $z$, lose the fourth decimal.
 :::
 ::: {.column width="54%"}
 ![](figs/excel_normdist_vungle.png){.nostretch fig-align="center" width="100%"}
@@ -840,8 +840,8 @@ This is the bridge from Topic 5's **counting** distributions to today's **contin
 - **Today's call:** the Normal is a fair working model for B's eRPM, and it says a \$3.50 day is roughly a coin flip; the roll-out call still waits for the inference tests in Topics 7–9.
 
 - **Practice with the real data:**
-  - `data/vungle_daily.csv` (filter B) + `NORM.DIST` / `NORM.INV` to reproduce $P(>3.50) = 0.453$ and the \$3.90 percentile.
-  - Worked solutions: `data/vungle_normal_analysis.xlsx`.
+  - `data/vungle_daily.csv` (sort by `algorithm`, then take B's 30 rows) + `NORM.DIST` / `NORM.INV` to reproduce $P(>3.50) = 0.453$ and the \$3.90 percentile.
+  - Feed `NORM.DIST` the mean and SD you computed yourself (3.459 and 0.344), not the rounded $z$.
 
 ## Today's Question, Today's Answer
 

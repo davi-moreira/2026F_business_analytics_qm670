@@ -1106,7 +1106,7 @@ $$
 
 - **One caveat:** both models assume a **constant, independent** rate; real traffic spikes (viral campaigns) cluster arrivals and fatten the tail, so re-estimate the rate and watch for over-dispersion.
 
-- **Practice with the real data:** `data/vungle_daily.csv` → estimate $p$; `data/vungle_discrete.xlsx` → reproduce the PMF/CDF tables with `BINOM.DIST` and `POISSON.DIST`.
+- **Practice with the real data:** `data/vungle_daily.csv` → estimate $p$ as total installs over total impressions (0.0035 for B, 0.0040 for A), then build the PMF/CDF tables yourself with `BINOM.DIST` and `POISSON.DIST`.
 
 ## ⏱️ Team Sprint: Your Group Case (Lecture 2)
 
