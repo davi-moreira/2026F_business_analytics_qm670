@@ -1021,7 +1021,7 @@ X_A \sim \text{Binomial}(1000,\, 0.0040) \qquad\qquad X_B \sim \text{Binomial}(1
 <h2>⏱️ Team Sprint: Your Group Case (Lecture 1)</h2>
 <div class="sprint">
 <p><strong>Now it’s your group’s turn.</strong> Today’s in-class group case is posted on <strong>Brightspace</strong> (<em>Topic 05 Group Case, Lecture 1</em>): a separate business decision you make with today’s tools.</p>
-<p><strong>What you’ll use:</strong> the <strong>Binomial</strong> model, <span class="math inline">\(E(X)=np\)</span>, <span class="math inline">\(\sigma=\sqrt{np(1-p)}\)</span>, and the tail <span class="math inline">\(P(X \geq N)\)</span>. <strong>Excel:</strong> Analysis ToolPak with <code>BINOM.DIST(x, n, p, FALSE/TRUE)</code>.</p>
+<p><strong>What you’ll use:</strong> the <strong>Binomial</strong> model, <span class="math inline">\(E(X)=np\)</span>, <span class="math inline">\(\sigma=\sqrt{np(1-p)}\)</span>, and the tail <span class="math inline">\(P(X \geq N)\)</span>. <strong>Excel:</strong> the worksheet function <code>BINOM.DIST(x, n, p, FALSE/TRUE)</code> (no ToolPak tool needed).</p>
 <p><strong>Submit one PDF per group before you leave:</strong> your decision plus the numbers behind it.</p>
 </div>
 </section></section>
@@ -1474,14 +1474,14 @@ f(4) = \frac{3^4 e^{-3}}{4!} = \frac{81 \times 0.0498}{24} = 0.1680
 <li class="fragment"><p><strong>One sentence:</strong> a conversion rate plus a count structure (fixed <span class="math inline">\(n\)</span> → <strong>Binomial</strong>; rare arrivals → <strong>Poisson</strong>) gives the <strong>full probability distribution</strong> of installs, and every capacity question is a <strong>tail probability</strong>.</p></li>
 <li class="fragment"><p><strong>One number to remember:</strong> <span class="math inline">\(P(X \geq 8) \approx\)</span> <strong>0.051</strong> for Algorithm A bursts (about 1 in 20): the number that sizes the overflow buffer.</p></li>
 <li class="fragment"><p><strong>One caveat:</strong> both models assume a <strong>constant, independent</strong> rate; real traffic spikes (viral campaigns) cluster arrivals and fatten the tail, so re-estimate the rate and watch for over-dispersion.</p></li>
-<li class="fragment"><p><strong>Practice with the real data:</strong> <code>data/vungle_daily.csv</code> → estimate <span class="math inline">\(p\)</span>; <code>data/vungle_discrete.xlsx</code> → reproduce the PMF/CDF tables with <code>BINOM.DIST</code> and <code>POISSON.DIST</code>.</p></li>
+<li class="fragment"><p><strong>Practice with the real data:</strong> <code>data/vungle_daily.csv</code> → estimate <span class="math inline">\(p\)</span> as total installs over total impressions (0.0035 for B, 0.0040 for A), then build the PMF/CDF tables yourself with <code>BINOM.DIST</code> and <code>POISSON.DIST</code>.</p></li>
 </ul>
 </section>
 <section id="team-sprint-your-group-case-lecture-2" class="slide level2 center">
 <h2>⏱️ Team Sprint: Your Group Case (Lecture 2)</h2>
 <div class="sprint">
 <p><strong>Now it’s your group’s turn.</strong> Today’s in-class group case is posted on <strong>Brightspace</strong> (<em>Topic 05 Group Case, Lecture 2</em>): a separate business decision you make with today’s tools.</p>
-<p><strong>What you’ll use:</strong> the <strong>Poisson</strong> model, <span class="math inline">\(E(X)=\text{Var}(X)=\mu\)</span>, and the capacity tail <span class="math inline">\(P(X \geq N)\)</span>. <strong>Excel:</strong> Analysis ToolPak with <code>POISSON.DIST(x, mean, FALSE/TRUE)</code>.</p>
+<p><strong>What you’ll use:</strong> the <strong>Poisson</strong> model, <span class="math inline">\(E(X)=\text{Var}(X)=\mu\)</span>, and the capacity tail <span class="math inline">\(P(X \geq N)\)</span>. <strong>Excel:</strong> the worksheet function <code>POISSON.DIST(x, mean, FALSE/TRUE)</code> (no ToolPak tool needed).</p>
 <p><strong>Submit one PDF per group before you leave:</strong> your decision plus the numbers behind it.</p>
 </div>
 </section>

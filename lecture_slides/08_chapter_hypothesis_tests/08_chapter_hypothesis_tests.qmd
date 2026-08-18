@@ -555,7 +555,7 @@ $$
 ::: {.sprint .nonincremental}
 **Now it's your group's turn.** Today's in-class group case is posted on **Brightspace** (*Topic 08 Group Case, Lecture 1*): a separate business decision you make with today's tools.
 
-**What you'll use:** a one-sample $t$-test about a **mean**. **Excel:** Analysis ToolPak → Descriptive Statistics, then formula cells for $SE$, $t$, and the upper-tail $p$ (`=T.DIST.RT`).
+**What you'll use:** a one-sample $t$-test about a **mean**. **Excel:** Analysis ToolPak → Descriptive Statistics, then formula cells for $SE$, $t$, and the lower-tail $p$ (`=T.DIST`).
 
 **Submit one PDF per group before you leave:** your decision plus the numbers behind it.
 :::

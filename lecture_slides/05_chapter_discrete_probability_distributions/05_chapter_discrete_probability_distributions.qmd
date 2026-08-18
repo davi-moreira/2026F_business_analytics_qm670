@@ -755,7 +755,7 @@ knitr::include_graphics("figs/binom_tail_vungle_B.png")
 ::: {.sprint .nonincremental}
 **Now it's your group's turn.** Today's in-class group case is posted on **Brightspace** (*Topic 05 Group Case, Lecture 1*): a separate business decision you make with today's tools.
 
-**What you'll use:** the **Binomial** model, $E(X)=np$, $\sigma=\sqrt{np(1-p)}$, and the tail $P(X \geq N)$. **Excel:** Analysis ToolPak with `BINOM.DIST(x, n, p, FALSE/TRUE)`.
+**What you'll use:** the **Binomial** model, $E(X)=np$, $\sigma=\sqrt{np(1-p)}$, and the tail $P(X \geq N)$. **Excel:** the worksheet function `BINOM.DIST(x, n, p, FALSE/TRUE)` (no ToolPak tool needed).
 
 **Submit one PDF per group before you leave:** your decision plus the numbers behind it.
 :::
@@ -1113,7 +1113,7 @@ $$
 ::: {.sprint .nonincremental}
 **Now it's your group's turn.** Today's in-class group case is posted on **Brightspace** (*Topic 05 Group Case, Lecture 2*): a separate business decision you make with today's tools.
 
-**What you'll use:** the **Poisson** model, $E(X)=\text{Var}(X)=\mu$, and the capacity tail $P(X \geq N)$. **Excel:** Analysis ToolPak with `POISSON.DIST(x, mean, FALSE/TRUE)`.
+**What you'll use:** the **Poisson** model, $E(X)=\text{Var}(X)=\mu$, and the capacity tail $P(X \geq N)$. **Excel:** the worksheet function `POISSON.DIST(x, mean, FALSE/TRUE)` (no ToolPak tool needed).
 
 **Submit one PDF per group before you leave:** your decision plus the numbers behind it.
 :::
