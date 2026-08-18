@@ -144,7 +144,7 @@ Because the in-class group cases and the homework are group work, a confidential
 ### Midterm
 
 -   **One** in-class midterm exam.\
--   Exams test technical calculation skills and conceptual understanding similar to homework problems.\
+-   Exams test technical calculation skills and conceptual understanding similar to the homework, the graded in-class group cases, and the sample exams released at each review session.\
 -   Calculators without internet or USB capabilities are allowed; cellphones, watches, and internet access are prohibited during the midterm and final.
 
 ### Final

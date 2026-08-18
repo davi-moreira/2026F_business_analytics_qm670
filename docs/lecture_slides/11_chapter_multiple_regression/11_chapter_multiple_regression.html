@@ -542,7 +542,7 @@ R^2 = \frac{SSR}{SST} = 1 - \frac{SSE}{SST}
 <p><strong>A question that often comes up at this point:</strong></p>
 <p><span class="faq-q">If adjusted <span class="math inline">\(R^2\)</span> is the honest measure, why does Excel report plain <span class="math inline">\(R^2\)</span> at all, and which one do I quote to the chain?</span></p>
 <div class="fragment faq-a">
-<p><strong>Short answer:</strong> quote <strong>both</strong>, and let the gap tell the story. Plain <span class="math inline">\(R^2\)</span> answers “how much variation did this model explain?” (a description of these 45 stores); adjusted <span class="math inline">\(R^2\)</span> answers “would this fit survive a fair charge for the predictors I used?” (the model-building question). For the two-driver warm-up they are close, <span class="math inline">\(0.9276\)</span> vs <span class="math inline">\(0.9242\)</span>: a small gap means both predictors are earning their keep, not padding the fit.</p>
+<p><strong>Short answer:</strong> quote <strong>both</strong>, and let the gap tell the story. Plain <span class="math inline">\(R^2\)</span> answers “how much variation did this model explain?” (a description of these 45 stores); adjusted <span class="math inline">\(R^2\)</span> answers “would this fit survive a fair charge for the predictors I used?” (the model-building question). For the two-driver warm-up they are close, <span class="math inline">\(0.9276\)</span> vs <span class="math inline">\(0.9242\)</span>: the penalty is small because two predictors is cheap against 45 stores. Careful, though: the size of that gap says nothing about whether any <em>particular</em> predictor earns its place. It scales with how many predictors you used relative to <span class="math inline">\(n\)</span>, not with how useful each one is. To decide whether a specific driver belongs, look at its own <span class="math inline">\(t\)</span>-test, or refit without it and compare adjusted <span class="math inline">\(R^2\)</span> head to head.</p>
 </div>
 </div>
 </section></section>
@@ -676,7 +676,7 @@ R^2 = \frac{SSR}{SST} = 1 - \frac{SSE}{SST}
 <p><br></p>
 <ul>
 <li class="fragment"><p><strong>One sentence:</strong> four drivers explain <strong>93%</strong> of store-sales variation, and the effects that matter are <strong>service (Yelp, +$642K/star)</strong> and <strong>merchandising (endcap, +$816K)</strong>, <em>not</em> the market-size variables you might bet on.</p></li>
-<li class="fragment"><p><strong>One number:</strong> <strong>adjusted <span class="math inline">\(R^2 = 0.925\)</span></strong>: high fit that <em>survives</em> the penalty for using four predictors, so the model isn’t just padded with noise.</p></li>
+<li class="fragment"><p><strong>One number:</strong> <strong>adjusted <span class="math inline">\(R^2 = 0.925\)</span></strong>: the fit <em>survives</em> a fair charge for using four predictors. Read it as in-sample fit on these 45 stores, not as proof the model would predict a new store this well, and not as proof that all four drivers earn their place: that is a per-predictor question the <span class="math inline">\(t\)</span>-tests answer.</p></li>
 <li class="fragment"><p><strong>One caveat:</strong> “holding the others constant” is doing heavy lifting. A coefficient near zero (population, income) doesn’t prove the variable is irrelevant in the world, only that it adds little <strong>once the others are in.</strong> Next lecture we make that rigorous with the <span class="math inline">\(F\)</span>- and <span class="math inline">\(t\)</span>-tests, and put a defensible dollar value on an endcap.</p></li>
 </ul>
 </section>
@@ -1218,7 +1218,7 @@ VIF_j = \frac{1}{1 - R_j^2}
 <ul>
 <li class="fragment">So in multiple regression we plot residuals against the <strong>fitted value <span class="math inline">\(\hat{y}\)</span></strong>, the one number that combines all four drivers.</li>
 </ul></li>
-<li class="fragment"><p>We use the <strong>standardized</strong> residual (each residual divided by its own standard error), on a <span class="math inline">\(z\)</span>-like scale, so the <strong><span class="math inline">\(|z| &gt; 2\)</span> outlier rule</strong> applies directly. Excel’s Regression tool prints these in its Residual Output; computing them by hand across four predictors is impractical.</p></li>
+<li class="fragment"><p>We use the <strong>standardized</strong> residual: each residual divided by the <strong>standard deviation of the residuals</strong>, putting them on a <span class="math inline">\(z\)</span>-like scale so the <strong><span class="math inline">\(|z| &gt; 2\)</span> outlier rule</strong> applies directly. Excel’s Regression tool prints exactly this in its Residual Output, under <strong>Standard Residuals</strong> (it is a separate checkbox from Residuals). Computing them by hand across four predictors is impractical. Statistical software often reports a <em>studentized</em> residual instead, which also adjusts for how far a point sits from the centre of the predictors; it is a close cousin, not the same number, so quote the column Excel gives you.</p></li>
 </ul>
 </section>
 <section id="the-auto-parts-residual-plot" class="slide level2 center">

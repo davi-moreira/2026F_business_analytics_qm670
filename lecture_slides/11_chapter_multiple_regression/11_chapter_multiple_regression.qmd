@@ -386,7 +386,7 @@ $$
 [If adjusted $R^2$ is the honest measure, why does Excel report plain $R^2$ at all, and which one do I quote to the chain?]{.faq-q}
 
 ::: {.fragment .faq-a}
-**Short answer:** quote **both**, and let the gap tell the story. Plain $R^2$ answers "how much variation did this model explain?" (a description of these 45 stores); adjusted $R^2$ answers "would this fit survive a fair charge for the predictors I used?" (the model-building question). For the two-driver warm-up they are close, $0.9276$ vs $0.9242$: a small gap means both predictors are earning their keep, not padding the fit.
+**Short answer:** quote **both**, and let the gap tell the story. Plain $R^2$ answers "how much variation did this model explain?" (a description of these 45 stores); adjusted $R^2$ answers "would this fit survive a fair charge for the predictors I used?" (the model-building question). For the two-driver warm-up they are close, $0.9276$ vs $0.9242$: the penalty is small because two predictors is cheap against 45 stores. Careful, though: the size of that gap says nothing about whether any *particular* predictor earns its place. It scales with how many predictors you used relative to $n$, not with how useful each one is. To decide whether a specific driver belongs, look at its own $t$-test, or refit without it and compare adjusted $R^2$ head to head.
 :::
 ::::
 
@@ -499,7 +499,7 @@ knitr::include_graphics("figs/autoparts_coef_effects.png")
 
 - **One sentence:** four drivers explain **93%** of store-sales variation, and the effects that matter are **service (Yelp, +\$642K/star)** and **merchandising (endcap, +\$816K)**, *not* the market-size variables you might bet on.
 
-- **One number:** **adjusted $R^2 = 0.925$**: high fit that *survives* the penalty for using four predictors, so the model isn't just padded with noise.
+- **One number:** **adjusted $R^2 = 0.925$**: the fit *survives* a fair charge for using four predictors. Read it as in-sample fit on these 45 stores, not as proof the model would predict a new store this well, and not as proof that all four drivers earn their place: that is a per-predictor question the $t$-tests answer.
 
 - **One caveat:** "holding the others constant" is doing heavy lifting. A coefficient near zero (population, income) doesn't prove the variable is irrelevant in the world, only that it adds little **once the others are in.** Next lecture we make that rigorous with the $F$- and $t$-tests, and put a defensible dollar value on an endcap.
 
@@ -945,7 +945,7 @@ knitr::include_graphics("figs/autoparts_predictor_corr.png")
 
   - So in multiple regression we plot residuals against the **fitted value $\hat{y}$**, the one number that combines all four drivers.
 
-- We use the **standardized** residual (each residual divided by its own standard error), on a $z$-like scale, so the **$|z| > 2$ outlier rule** applies directly. Excel's Regression tool prints these in its Residual Output; computing them by hand across four predictors is impractical.
+- We use the **standardized** residual: each residual divided by the **standard deviation of the residuals**, putting them on a $z$-like scale so the **$|z| > 2$ outlier rule** applies directly. Excel's Regression tool prints exactly this in its Residual Output, under **Standard Residuals** (it is a separate checkbox from Residuals). Computing them by hand across four predictors is impractical. Statistical software often reports a *studentized* residual instead, which also adjusts for how far a point sits from the centre of the predictors; it is a close cousin, not the same number, so quote the column Excel gives you.
 
 ## The Auto-Parts Residual Plot
 
