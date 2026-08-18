@@ -919,7 +919,7 @@ df = \frac{\left(\dfrac{s_1^2}{n_1} + \dfrac{s_2^2}{n_2}\right)^2}{\dfrac{(s_1^2
 <p><strong>2. Hypotheses</strong> (two-tailed): <span class="math inline">\(H_0: \mu_1 - \mu_2 = 0\)</span> vs.&nbsp;<span class="math inline">\(H_a: \mu_1 - \mu_2 \neq 0\)</span>, <span class="math inline">\(\alpha = 0.05\)</span>. Independent samples, <span class="math inline">\(\sigma\)</span> unknown, no reason to assume equal variances → <strong>Welch <span class="math inline">\(t\)</span></strong>.</p>
 <p><strong>3. Test statistic.</strong></p>
 <p><span class="math display">\[
-t = \frac{(5.73 - 7.87) - 0}{\sqrt{\dfrac{3.33^2}{15} + \dfrac{2.61^2}{15}}} = \frac{-2.14}{1.093} = -1.96, \qquad df \approx 26
+t = \frac{(5.73 - 7.87) - 0}{\sqrt{\dfrac{3.33^2}{15} + \dfrac{2.61^2}{15}}} = \frac{-2.14}{1.092} = -1.96, \qquad df \approx 26
 \]</span></p>
 <p><strong>4. Decision.</strong> <span class="math inline">\(p\)</span>-value (two-tail) <span class="math inline">\(\approx 0.061 &gt; \alpha = 0.05\)</span> → <strong>fail to reject <span class="math inline">\(H_0\)</span></strong>. 95% CI for <span class="math inline">\(\mu_1 - \mu_2\)</span>: <span class="math inline">\((-4.4,\; 0.1)\)</span>, which barely includes zero.</p>
 <p><strong>5. The Manager’s Translation.</strong> <em>Bankrupt firms started with about $2.1K less equity on average, but with only 15 firms per group we cannot rule out chance at the 5% level. A borderline result, worth a bigger sample before building lending policy on it.</em></p>
@@ -1383,7 +1383,7 @@ z = \frac{0.003541 - 0.004025}{0.0000164} = \mathbf{-29.56}
 <ul>
 <li class="fragment"><code>data/vungle_erpm_paired.csv</code> + ToolPak → reproduce <span class="math inline">\(t = 3.325\)</span> (paired) and <span class="math inline">\(t = 1.51\)</span> (unequal variances).</li>
 <li class="fragment"><code>data/vungle_daily.csv</code> + five formula cells → reproduce <span class="math inline">\(z = -29.56\)</span>.</li>
-<li class="fragment">Worked solutions: <code>data/vungle_ab_analysis.xlsx</code>.</li>
+<li class="fragment">Build the <span class="math inline">\(z\)</span> from <code>SUMIF</code> totals per algorithm: installs over impressions, pooled <span class="math inline">\(\bar{p}\)</span>, then the standard error.</li>
 </ul></li>
 </ul>
 </section>

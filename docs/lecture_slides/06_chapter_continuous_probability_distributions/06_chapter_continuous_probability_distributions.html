@@ -682,7 +682,7 @@ z = \frac{3.50 - 3.459}{0.344} = 0.12 \qquad P(\text{eRPM} &gt; 3.50) = P(Z &gt;
 <li class="fragment">Type the model in cells: mean <code>3.459</code>, sd <code>0.344</code>, and the bar <code>3.50</code>.</li>
 <li class="fragment">Left area: <code>=NORM.DIST(3.50, 3.459, 0.344, TRUE)</code> returns <strong>0.547</strong>.</li>
 <li class="fragment">Right tail “tops $3.50”: <code>=1 - NORM.DIST(3.50, 3.459, 0.344, TRUE)</code> = <strong>0.4526</strong>.</li>
-<li class="fragment">Check the z-route: <code>=1 - NORM.S.DIST(0.12, TRUE)</code> gives the <strong>same</strong> 0.4526.</li>
+<li class="fragment">Check the z-route: <code>=1 - NORM.S.DIST((3.50-3.459)/0.344, TRUE)</code> gives the <strong>same</strong> 0.4526. Type a rounded <code>0.12</code> instead and you get 0.4522: round the <span class="math inline">\(z\)</span>, lose the fourth decimal.</li>
 </ol>
 </div><div class="column" style="width:54%;">
 <div class="quarto-figure quarto-figure-center">
@@ -961,8 +961,8 @@ z = \frac{2000.5 - 1867}{43.1} = 3.10 \qquad P(\text{installs} &gt; 2000) = \tex
 <li class="fragment"><p><strong>Today’s call:</strong> the Normal is a fair working model for B’s eRPM, and it says a $3.50 day is roughly a coin flip; the roll-out call still waits for the inference tests in Topics 7–9.</p></li>
 <li class="fragment"><p><strong>Practice with the real data:</strong></p>
 <ul>
-<li class="fragment"><code>data/vungle_daily.csv</code> (filter B) + <code>NORM.DIST</code> / <code>NORM.INV</code> to reproduce <span class="math inline">\(P(&gt;3.50) = 0.453\)</span> and the $3.90 percentile.</li>
-<li class="fragment">Worked solutions: <code>data/vungle_normal_analysis.xlsx</code>.</li>
+<li class="fragment"><code>data/vungle_daily.csv</code> (sort by <code>algorithm</code>, then take B’s 30 rows) + <code>NORM.DIST</code> / <code>NORM.INV</code> to reproduce <span class="math inline">\(P(&gt;3.50) = 0.453\)</span> and the $3.90 percentile.</li>
+<li class="fragment">Feed <code>NORM.DIST</code> the mean and SD you computed yourself (3.459 and 0.344), not the rounded <span class="math inline">\(z\)</span>.</li>
 </ul></li>
 </ul>
 </section>
