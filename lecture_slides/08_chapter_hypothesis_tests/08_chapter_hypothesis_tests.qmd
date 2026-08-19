@@ -271,7 +271,7 @@ $$
 ![](figs/lecture_dynamic.png){.nostretch fig-align="center" width="90%"}
 
 ::: nonincremental
-The class **ends on the Team Sprint**, your group's graded submission: a decision plus your read of the analysis, one PDF before you leave.
+The class **ends on the Team Sprint**: your group works the case together, then each of you answers the graded Brightspace quiz before you leave.
 :::
 
 ## The Test Statistic: How Many Standard Errors Above the Line?
@@ -557,7 +557,7 @@ $$
 
 **What you'll use:** a one-sample $t$-test about a **mean**. **Excel:** Analysis ToolPak → Descriptive Statistics, then formula cells for $SE$, $t$, and the lower-tail $p$ (`=T.DIST`).
 
-**Submit one PDF per group before you leave:** your decision plus the numbers behind it.
+**Work it with your group, then each of you answers the Brightspace quiz before you leave:** 10 questions, 2 points each.
 :::
 
 # Lecture 2: One-Sample Test About a Proportion {background-color="#cfb991"}
@@ -587,7 +587,7 @@ $$
 ![](figs/lecture_dynamic.png){.nostretch fig-align="center" width="90%"}
 
 ::: nonincremental
-The class **ends on the Team Sprint**, your group's graded submission: a decision plus your read of the analysis, one PDF before you leave.
+The class **ends on the Team Sprint**: your group works the case together, then each of you answers the graded Brightspace quiz before you leave.
 :::
 
 ## The Unit of Observation Just Changed
@@ -834,7 +834,7 @@ The same statistic, re-anchored to the Vungle eRPM mean test under different ben
 
 **What you'll use:** a one-proportion $z$-test. **Excel:** Analysis ToolPak for any summaries, then formula cells for $SE$, $z$, and the upper-tail $p$ (`=1-NORM.S.DIST`).
 
-**Submit one PDF per group before you leave:** your decision plus the numbers behind it.
+**Work it with your group, then each of you answers the Brightspace quiz before you leave:** 10 questions, 2 points each.
 :::
 
 # Wrap-up {background-color="#cfb991"}

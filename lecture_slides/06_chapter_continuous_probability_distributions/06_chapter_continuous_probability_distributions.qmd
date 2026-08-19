@@ -132,7 +132,7 @@ Every tool today maps onto the Vungle eRPM data:
 ![](figs/lecture_dynamic.png){.nostretch fig-align="center" width="90%"}
 
 ::: nonincremental
-The class **ends on the Team Sprint**, your group's graded submission: a decision plus your read of the analysis, one PDF before you leave.
+The class **ends on the Team Sprint**: your group works the case together, then each of you answers the graded Brightspace quiz before you leave.
 :::
 
 # Continuous Random Variables {background-color="#cfb991"}
@@ -490,7 +490,7 @@ $$
 
 **What you'll use:** the **Normal model**, the **empirical rule**, and a **z-score** ($z = (x - \bar{x})/s$) to place a value. **Excel:** Analysis ToolPak → Descriptive Statistics for $\bar{x}$ and $s$.
 
-**Submit one PDF per group before you leave:** your decision plus the numbers behind it.
+**Work it with your group, then each of you answers the Brightspace quiz before you leave:** 10 questions, 2 points each.
 :::
 
 # Lecture 2: Normal Applications & the Normal Approximation {background-color="#cfb991"}
@@ -516,7 +516,7 @@ $$
 ![](figs/lecture_dynamic.png){.nostretch fig-align="center" width="90%"}
 
 ::: nonincremental
-The class **ends on the Team Sprint**, your group's graded submission: a decision plus your read of the analysis, one PDF before you leave.
+The class **ends on the Team Sprint**: your group works the case together, then each of you answers the graded Brightspace quiz before you leave.
 :::
 
 # Normal Probabilities: Tails {background-color="#cfb991"}
@@ -866,7 +866,7 @@ This is the bridge from Topic 5's **counting** distributions to today's **contin
 
 **What you'll use:** the **Normal model**, **z-scores** / Normal probabilities (`NORM.DIST`), **percentiles** (`NORM.INV`), and a **normality check** (QQ plot / Shapiro-Wilk). **Excel:** Analysis ToolPak → Descriptive Statistics for $\bar{x}$ and $s$.
 
-**Submit one PDF per group before you leave:** your decision plus the numbers behind it.
+**Work it with your group, then each of you answers the Brightspace quiz before you leave:** 10 questions, 2 points each.
 :::
 
 # Wrap-up {background-color="#cfb991"}

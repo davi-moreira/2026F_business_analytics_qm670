@@ -132,7 +132,7 @@ html-math-method:
 ![](figs/lecture_dynamic.png){.nostretch fig-align="center" width="90%"}
 
 ::: nonincremental
-The class **ends on the Team Sprint**, your group's graded submission: a decision plus your read of the analysis, one PDF before you leave.
+The class **ends on the Team Sprint**: your group works the case together, then each of you answers the graded Brightspace quiz before you leave.
 :::
 
 # From One Predictor to Many {background-color="#cfb991"}
@@ -526,7 +526,7 @@ knitr::include_graphics("figs/autoparts_coef_effects.png")
 
 **What you'll use:** the multiple regression equation and its **partial** coefficients ("holding the others constant"), plus $R^2$ vs. adjusted $R^2$. **Excel:** Analysis ToolPak → Regression.
 
-**Submit one PDF per group before you leave:** your decision plus the numbers behind it.
+**Work it with your group, then each of you answers the Brightspace quiz before you leave:** 10 questions, 2 points each.
 :::
 
 # Lecture 2: Testing & the Investment Call {background-color="#cfb991"}
@@ -552,7 +552,7 @@ knitr::include_graphics("figs/autoparts_coef_effects.png")
 ![](figs/lecture_dynamic.png){.nostretch fig-align="center" width="90%"}
 
 ::: nonincremental
-The class **ends on the Team Sprint**, your group's graded submission: a decision plus your read of the analysis, one PDF before you leave.
+The class **ends on the Team Sprint**: your group works the case together, then each of you answers the graded Brightspace quiz before you leave.
 :::
 
 # Is the Model Useful? The Overall $F$-Test {background-color="#cfb991"}
@@ -1035,7 +1035,7 @@ Model: $R^2 = 0.932$, adjusted $R^2 = 0.925$, overall $F = 136.7$ (p $< 10^{-22}
 
 **What you'll use:** the overall **$F$-test** vs. the individual **$t$-tests**, a **dummy** variable, and a **VIF** check, then translate the coefficients into a budget call. **Excel:** Analysis ToolPak → Regression.
 
-**Submit one PDF per group before you leave:** your decision plus the numbers behind it.
+**Work it with your group, then each of you answers the Brightspace quiz before you leave:** 10 questions, 2 points each.
 :::
 
 # Wrap-up {background-color="#cfb991"}

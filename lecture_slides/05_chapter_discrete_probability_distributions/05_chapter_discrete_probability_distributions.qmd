@@ -128,7 +128,7 @@ Every tool today maps onto the Vungle install count:
 ![](figs/lecture_dynamic.png){.nostretch fig-align="center" width="90%"}
 
 ::: nonincremental
-The class **ends on the Team Sprint**, your group's graded submission: a decision plus your read of the analysis, one PDF before you leave.
+The class **ends on the Team Sprint**: your group works the case together, then each of you answers the graded Brightspace quiz before you leave.
 :::
 
 # Random Variables {background-color="#cfb991"}
@@ -757,7 +757,7 @@ knitr::include_graphics("figs/binom_tail_vungle_B.png")
 
 **What you'll use:** the **Binomial** model, $E(X)=np$, $\sigma=\sqrt{np(1-p)}$, and the tail $P(X \geq N)$. **Excel:** the worksheet function `BINOM.DIST(x, n, p, FALSE/TRUE)` (no ToolPak tool needed).
 
-**Submit one PDF per group before you leave:** your decision plus the numbers behind it.
+**Work it with your group, then each of you answers the Brightspace quiz before you leave:** 10 questions, 2 points each.
 :::
 
 # Lecture 2: The Poisson Distribution {background-color="#cfb991"}
@@ -783,7 +783,7 @@ knitr::include_graphics("figs/binom_tail_vungle_B.png")
 ![](figs/lecture_dynamic.png){.nostretch fig-align="center" width="90%"}
 
 ::: nonincremental
-The class **ends on the Team Sprint**, your group's graded submission: a decision plus your read of the analysis, one PDF before you leave.
+The class **ends on the Team Sprint**: your group works the case together, then each of you answers the graded Brightspace quiz before you leave.
 :::
 
 # Poisson: Rare Events Over an Interval {background-color="#cfb991"}
@@ -1115,7 +1115,7 @@ $$
 
 **What you'll use:** the **Poisson** model, $E(X)=\text{Var}(X)=\mu$, and the capacity tail $P(X \geq N)$. **Excel:** the worksheet function `POISSON.DIST(x, mean, FALSE/TRUE)` (no ToolPak tool needed).
 
-**Submit one PDF per group before you leave:** your decision plus the numbers behind it.
+**Work it with your group, then each of you answers the Brightspace quiz before you leave:** 10 questions, 2 points each.
 :::
 
 ## Summary

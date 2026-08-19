@@ -60,7 +60,7 @@ html-math-method:
 ![](figs/lecture_dynamic.png){.nostretch fig-align="center" width="90%"}
 
 ::: nonincremental
-The class **ends on the Team Sprint**, your group's graded submission: a decision plus your read of the analysis, one PDF before you leave.
+The class **ends on the Team Sprint**: your group works the case together, then each of you answers the graded Brightspace quiz before you leave.
 :::
 
 # Case Spotlight: A/B Testing at Vungle {background-color="#cfb991"}
@@ -811,7 +811,7 @@ knitr::include_graphics("figs/xkcd.png")
 
 **What you'll use:** center, spread, shape, boxplots, and correlation. **Excel:** Analysis ToolPak, then Descriptive Statistics and a Box & Whisker chart.
 
-**Submit one PDF per group before you leave:** your decision plus the numbers behind it.
+**Work it with your group, then each of you answers the Brightspace quiz before you leave:** 10 questions, 2 points each.
 :::
 
 # Wrap-up {background-color="#cfb991"}

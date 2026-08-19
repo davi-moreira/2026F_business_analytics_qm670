@@ -85,7 +85,7 @@ html-math-method:
 
 - In Topic 8 we tested **one** population against a benchmark ("is B's mean eRPM above \$3.30?"). Today's question is the one that decides the rollout: **is B really better than A?**, comparing **two** populations.
 
-- **How today's studio runs:** I demo each test on a textbook example, then on the Vungle data; you debrief the rollout call; then your group runs a fresh case and submits its own call.
+- **How today's studio runs:** I demo each test on a textbook example, then on the Vungle data; you debrief the rollout call; then your group runs a fresh case and each of you answers its quiz.
 
 - By the end of class you, the manager, will have the recommendation, with the statistics to back it up.
 
@@ -94,7 +94,7 @@ html-math-method:
 ![](figs/lecture_dynamic.png){.nostretch fig-align="center" width="90%"}
 
 ::: nonincremental
-The class **ends on the Team Sprint**, your group's graded submission: a decision plus your read of the analysis, one PDF before you leave.
+The class **ends on the Team Sprint**: your group works the case together, then each of you answers the graded Brightspace quiz before you leave.
 :::
 
 ## How Today's Tools Answer It
@@ -1068,7 +1068,7 @@ The metric that matches the business model wins, not the bigger number. We resol
 
 **What you'll use:** two-sample tests (paired $t$, Welch $t$, two-proportion $z$). **Excel:** Analysis ToolPak → the matching *t-Test* tool, or formula cells for the proportion test.
 
-**Submit one PDF per group before you leave:** your decision plus the numbers behind it.
+**Work it with your group, then each of you answers the Brightspace quiz before you leave:** 10 questions, 2 points each.
 :::
 
 # Wrap-up {background-color="#cfb991"}

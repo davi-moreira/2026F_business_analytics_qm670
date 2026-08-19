@@ -106,7 +106,7 @@ Every probability concept today maps onto the funnel:
 ![](figs/lecture_dynamic.png){.nostretch fig-align="center" width="90%"}
 
 ::: nonincremental
-The class **ends on the Team Sprint**, your group's graded submission: a decision plus your read of the analysis, one PDF before you leave.
+The class **ends on the Team Sprint**: your group works the case together, then each of you answers the graded Brightspace quiz before you leave.
 :::
 
 # Experiments, Events, and Probability {background-color="#cfb991"}
@@ -571,7 +571,7 @@ knitr::include_graphics("figs/bayes_prior_posterior.png")
 
 **What you'll use:** probability rules, conditional probability, and **Bayes**. **Excel:** Analysis ToolPak (probabilities are `SUMIF` ratios and a small Bayes table).
 
-**Submit one PDF per group before you leave:** your decision plus the numbers behind it.
+**Work it with your group, then each of you answers the Brightspace quiz before you leave:** 10 questions, 2 points each.
 :::
 
 # Wrap-up {background-color="#cfb991"}

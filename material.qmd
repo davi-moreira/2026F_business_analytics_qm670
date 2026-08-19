@@ -53,7 +53,7 @@ format:
 </style>
 ```
 
-**In-class group cases.** Every lecture runs an **in-class group case**, assigned and submitted on **Brightspace**. Your fixed group works that day's business case and turns in one graded deliverable before class ends. The **lecture slides** and the **course datasets (.zip)** are posted on the **Course Brightspace** page.
+**In-class group cases.** Every lecture runs an **in-class group case**, posted on **Brightspace** with its graded quiz. Your fixed group works that day's business case together, and then **each of you answers the case quiz on Brightspace before class ends**: 10 questions, 2 points each, and no file to upload. The **lecture slides** and the **course datasets (.zip)** are posted on the **Course Brightspace** page.
 
 <br>
 

@@ -118,9 +118,10 @@ Attendance is essential for success in this course. If you do not attend class r
 
 ### In-Class Group Cases
 
--   You will be randomly assigned to a **fixed group** in the first week of the course. **Every class is a problem-solve** on that day's business case and dataset; your group works it together and **submits one deliverable on Brightspace before the end of class**.\
--   Submissions are graded by the course grader against a rubric. The first case (day one) is short because of course logistics; later cases grow in length and difficulty with the material.\
--   Bring a laptop with **Excel + the Analysis ToolPak**. A group member who does not contribute should not be listed on that day's submission.\
+-   You will be randomly assigned to a **fixed group** in the first week of the course. **Every class is a problem-solve** on that day's business case and dataset; your group works it together, and then **each of you answers that case's quiz on Brightspace before the end of class**.\
+-   **The quiz is submitted individually**, because Brightspace does not accept one quiz submission per group: every student enters their own answers. It is **10 questions worth 2 points each (20 points)**, and there is **no file to upload**.\
+-   The first case (day one) is short because of course logistics; later cases grow in length and difficulty with the material.\
+-   Bring a laptop with **Excel + the Analysis ToolPak**; you need it to work the case and to answer the quiz.\
 -   Of this 20%, **5% is an individual peer evaluation** of your contribution to the group's work (see **Peer Evaluation** below).
 
 ### Homework
@@ -134,10 +135,10 @@ Attendance is essential for success in this course. If you do not attend class r
 
 ### Peer Evaluation
 
-Because the in-class group cases and the homework are group work, a confidential **peer evaluation** sets the individual portion of those two grades: **5 of the 20 points** for In-Class Group Cases and **3 of the 15 points** for Homework. You complete it near the end of the term through a short Microsoft Forms survey (link on Brightspace), submitting it **once for each teammate** (you do not evaluate yourself).
+Because the in-class group cases and the homework are group work, a confidential **peer evaluation** sets the individual portion of those two grades: **5 of the 20 percentage points** the In-Class Group Cases component is worth, and **3 of the 15 percentage points** the Homework component is worth (these are shares of your course grade, not points on a quiz). You complete it near the end of the term through a short Microsoft Forms survey (link on Brightspace), submitting it **once for each teammate** (you do not evaluate yourself).
 
 -   **Full marks are the default.** If your teammates report that you contributed your fair share, you keep the entire peer-evaluation portion on both components. It is reduced *only* for a member whose contribution, as reported by teammates, falls clearly below the group.\
--   **It never changes the group's grade.** Your group's case and homework scores are graded separately; peer evaluation adjusts each member's *own* individual portion, and it can hold steady or go down (a free-rider can lose those points).\
+-   **It never changes a score your group earns together.** Homework is graded once for the whole group, and peer evaluation leaves that group score alone. The in-class cases work differently: your group solves the case together, but the graded score is your *own* Brightspace quiz, so teammates who worked the same case can still end up with different case scores. On both components, peer evaluation moves only your own individual portion, and it can hold steady or go down (a free-rider can lose those points).\
 -   **Rate honestly; inflation cancels out.** The scoring uses each rater's *relative* split across teammates, so rating everyone high treats them as equal (everyone keeps full marks) and carries no penalty or advantage.\
 -   **Missing evaluations count in your favor.** Completing it is not mandatory; a teammate who does not evaluate you gives you full credit, and if no one evaluates you, you receive full marks.
 

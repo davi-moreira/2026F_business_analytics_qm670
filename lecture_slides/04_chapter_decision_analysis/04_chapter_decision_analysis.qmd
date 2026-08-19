@@ -90,7 +90,7 @@ html-math-method:
 ![](figs/lecture_dynamic.png){.nostretch fig-align="center" width="90%"}
 
 ::: nonincremental
-The class **ends on the Team Sprint**, your group's graded submission: a decision plus your read of the analysis, one PDF before you leave.
+The class **ends on the Team Sprint**: your group works the case together, then each of you answers the graded Brightspace quiz before you leave.
 :::
 
 ## How Today's Tools Answer It
@@ -712,7 +712,7 @@ $$
 
 **What you'll use:** payoff tables, decision trees, **EV**, and **EVPI / EVSI**. **Excel:** Analysis ToolPak → `=SUMPRODUCT` for EV, `=MAX` per state for EVPI.
 
-**Submit one PDF per group before you leave:** your decision plus the numbers behind it.
+**Work it with your group, then each of you answers the Brightspace quiz before you leave:** 10 questions, 2 points each.
 :::
 
 # Wrap-up {background-color="#cfb991"}

@@ -75,7 +75,7 @@ html-math-method:
 
 <br>
 
-- This is a **two-lecture** topic. Each lecture runs the same loop: **the Brief (your decision) → Method Studio (I demo on Vungle) → Debrief (we land the call) → Team Sprint (your group case, submitted before you leave).**
+- This is a **two-lecture** topic. Each lecture runs the same loop: **the Brief (your decision) → Method Studio (I demo on Vungle) → Debrief (we land the call) → Team Sprint (your group case, its quiz answered before you leave).**
 
 ::: fragment
 | Lecture | The question | The tool |
@@ -103,7 +103,7 @@ html-math-method:
 ![](figs/lecture_dynamic.png){.nostretch fig-align="center" width="90%"}
 
 ::: nonincremental
-The class **ends on the Team Sprint**, your group's graded submission: a decision plus your read of the analysis, one PDF before you leave.
+The class **ends on the Team Sprint**: your group works the case together, then each of you answers the graded Brightspace quiz before you leave.
 :::
 
 ## Population, Sample, Inference
@@ -433,7 +433,7 @@ $$
 
 **What you'll use:** the **standard error** $s/\sqrt{n}$ and the **sampling distribution** of $\bar{x}$ (CLT, $n \geq 30$). **Excel:** Analysis ToolPak → Descriptive Statistics.
 
-**Submit one PDF per group before you leave:** your decision plus the numbers behind it.
+**Work it with your group, then each of you answers the Brightspace quiz before you leave:** 10 questions, 2 points each.
 :::
 
 # Lecture 2: The Interval Estimate {background-color="#cfb991"}
@@ -457,7 +457,7 @@ $$
 ![](figs/lecture_dynamic.png){.nostretch fig-align="center" width="90%"}
 
 ::: nonincremental
-The class **ends on the Team Sprint**, your group's graded submission: a decision plus your read of the analysis, one PDF before you leave.
+The class **ends on the Team Sprint**: your group works the case together, then each of you answers the graded Brightspace quiz before you leave.
 :::
 
 ## A Point Estimate Is a Spear; an Interval Is a Net
@@ -953,7 +953,7 @@ $$
 
 **What you'll use:** **confidence intervals** for a mean ($t$) and a proportion ($z$), the **margin of error**, and **sample size** planning. **Excel:** Analysis ToolPak, plus `=CONFIDENCE.T` and `=CEILING`.
 
-**Submit one PDF per group before you leave:** your decision plus the numbers behind it.
+**Work it with your group, then each of you answers the Brightspace quiz before you leave:** 10 questions, 2 points each.
 :::
 
 # Wrap-up {background-color="#cfb991"}

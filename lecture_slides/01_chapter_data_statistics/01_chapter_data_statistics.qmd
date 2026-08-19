@@ -200,7 +200,7 @@ Anderson · Sweeney · Williams · Camm · Cochran · Cengage, 2020 · ISBN-13 9
 
 - **Keep up every week.** Statistics builds on itself: today's vocabulary becomes next week's formulas. Falling behind compounds.
 
-- **Work with your group.** In-class cases and the three homeworks are both solved and submitted together, one file per group. Explaining a method to a groupmate is the fastest way to learn it.
+- **Work with your group.** You solve the in-class case together and each of you answers its quiz; the three homeworks are solved and submitted as one file per group. Explaining a method to a groupmate is the fastest way to learn it.
 
 - **You're the decision-maker.** Every method we learn answers a call *you* have to make. Learn each one well enough to check an analyst's work, and always ask: *what decision does this number support, and would I stake money on it?*
 
@@ -211,7 +211,7 @@ Anderson · Sweeney · Williams · Camm · Cochran · Cengage, 2020 · ISBN-13 9
 ![](figs/lecture_dynamic.png){.nostretch fig-align="center" width="90%"}
 
 ::: nonincremental
-The class **ends on the Team Sprint**, your group's graded submission. **Today is the exception:** introductions and logistics come first, so the group case is short.
+The class **ends on the Team Sprint**: your group works the case together, then each of you answers the graded Brightspace quiz before you leave. **Today is the exception:** introductions and logistics come first, so the group case is short.
 :::
 
 # Your Semester: Two Cases, One Job {background-color="#cfb991"}
@@ -231,7 +231,7 @@ The class **ends on the Team Sprint**, your group's graded submission. **Today i
 :::
 
 ::: {.fragment .nonincremental}
-- **Every class:** your group works in the in-class case and **submits its call before you leave** (graded).
+- **Every class:** your group works the in-class case and **each of you answers the graded quiz before you leave**.
 :::
 
 ## The Roadmap
@@ -859,7 +859,7 @@ knitr::include_graphics("figs/inference.svg")
 
 **What you'll use:** data **types and scales**, and the **mean, median, and mode**. **Excel:** Analysis ToolPak → Descriptive Statistics.
 
-**Submit one PDF per group before you leave:** your decision plus the numbers behind it.
+**Work it with your group, then each of you answers the Brightspace quiz before you leave:** 10 questions, 2 points each.
 :::
 
 # Wrap-up {background-color="#cfb991"}
@@ -870,7 +870,7 @@ knitr::include_graphics("figs/inference.svg")
 The main points from this session:
 
 -   **Your seat all term:** you are the **decision-maker**. You run every method yourself, but to *judge* the analysis and make the call, not to be the analyst.
--   **Two cases drive the course:** Vungle A/B (describe → test, Topics 1–9) and auto-parts retail (predict, Topics 10–11). Each class your group also works a separate in-class case and submits it; group homework drills the mechanics.
+-   **Two cases drive the course:** Vungle A/B (describe → test, Topics 1–9) and auto-parts retail (predict, Topics 10–11). Each class your group also works a separate in-class case and each of you answers its quiz; group homework drills the mechanics.
 -   **Statistics** turns data into defensible business decisions; it splits into **descriptive** (summarize) and **inferential** (generalize).
 -   **Data vocabulary:** elements, variables, observations; categorical vs. quantitative; the four scales of measurement, and the rule that **scale determines method**.
 -   **Study design:** Vungle ran a randomized **experiment**, which is what licenses *causal* claims.

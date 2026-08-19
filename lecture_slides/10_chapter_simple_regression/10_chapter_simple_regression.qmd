@@ -147,7 +147,7 @@ html-math-method:
 ![](figs/lecture_dynamic.png){.nostretch fig-align="center" width="90%"}
 
 ::: nonincremental
-The class **ends on the Team Sprint**, your group's graded submission: a decision plus your read of the analysis, one PDF before you leave.
+The class **ends on the Team Sprint**: your group works the case together, then each of you answers the graded Brightspace quiz before you leave.
 :::
 
 ## The Simple Linear Regression Model
@@ -481,7 +481,7 @@ knitr::include_graphics("figs/autoparts_reg_coef.png")
 
 **What you'll use:** simple linear regression (fit the line, interpret the slope in business units, and read $R^2$). **Excel:** Analysis ToolPak → Regression.
 
-**Submit one PDF per group before you leave:** your decision plus the numbers behind it.
+**Work it with your group, then each of you answers the Brightspace quiz before you leave:** 10 questions, 2 points each.
 :::
 
 # Lecture 2: Inference, Assumptions, and Prediction {background-color="#cfb991"}
@@ -503,7 +503,7 @@ knitr::include_graphics("figs/autoparts_reg_coef.png")
 ![](figs/lecture_dynamic.png){.nostretch fig-align="center" width="90%"}
 
 ::: nonincremental
-The class **ends on the Team Sprint**, your group's graded submission: a decision plus your read of the analysis, one PDF before you leave.
+The class **ends on the Team Sprint**: your group works the case together, then each of you answers the graded Brightspace quiz before you leave.
 :::
 
 ## The Assumptions Behind the Line
@@ -882,7 +882,7 @@ knitr::include_graphics("figs/autoparts_pred_band.png")
 
 **What you'll use:** testing the slope (the $t$-test and 95% CI), a residual check, and a prediction interval for a new case. **Excel:** Analysis ToolPak → Regression.
 
-**Submit one PDF per group before you leave:** your decision plus the numbers behind it.
+**Work it with your group, then each of you answers the Brightspace quiz before you leave:** 10 questions, 2 points each.
 :::
 
 # Wrap-up {background-color="#cfb991"}
