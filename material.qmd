@@ -34,13 +34,13 @@ format:
     padding: 0.55rem 0.9rem;
     margin: 1.3rem 0 0 0;
     border-radius: 7px 7px 0 0;
-    background: #CFB991; /* Purdue gold (Vungle A/B) */
+    background: #CFB991; /* Purdue gold (Case 1) */
     color: #1a1a1a;
     border-left: 7px solid #8E6F3E;
   }
   .caseband p { margin: 0; }
-  .caseband-auto {
-    background: #373A36; /* Purdue coal/steel (Auto-Parts) */
+  .caseband-case2 {
+    background: #373A36; /* Purdue coal/steel (Case 2) */
     color: #ffffff;
     border-left: 7px solid #CFB991;
   }
@@ -58,7 +58,7 @@ format:
 <br>
 
 ::: {.caseband}
-📱 **Case 1 · Vungle A/B** · Topics 1–9 (describe, then infer) · [Decision: should Vungle roll out ad variant B?]{.case-q}
+📱 **Case 1** · Topics 1–9 (describe, then infer) · [Decision: should we roll out ad variant B?]{.case-q}
 :::
 
 ::: overflow-table
@@ -75,8 +75,8 @@ format:
 | **T09 · Hypothesis Testing II — Two Populations** | Course Brightspace | Course Brightspace | \- [**Video**: Two-sample t-test for a Difference of Means (Khan Academy)](https://www.khanacademy.org/math/ap-statistics/xfb5d8e68:inference-quantitative-means/two-sample-t-test-means/v/two-sample-t-test-for-difference-of-means){target="_blank"}<br>- [**Video**: Hypotheses for Paired and Two-sample t-tests (Khan Academy)](https://www.khanacademy.org/math/ap-statistics/xfb5d8e68:inference-quantitative-means/two-sample-t-test-means/v/example-of-hypotheses-for-paired-and-2-sample-t-tests){target="_blank"}<br>- [**Video**: Test for a Difference in Two Proportions (Khan Academy)](https://www.khanacademy.org/math/ap-statistics/xfb5d8e68:inference-categorical-proportions/two-sample-z-test-proportions/v/hypothesis-test-for-difference-in-proportions){target="_blank"}<br>- [**Reading**: Inference for Comparing Paired Means (OpenIntro)](https://openintro-ims.netlify.app/inference-paired-means.html){target="_blank"} |
 :::
 
-::: {.caseband .caseband-auto}
-🔧 **Case 2 · Auto-Parts Retail** · Topics 10–11 (predict) · [Decision: which factors lift store sales?]{.case-q}
+::: {.caseband .caseband-case2}
+🔧 **Case 2** · Topics 10–11 (predict) · [Decision: which factors lift store sales?]{.case-q}
 :::
 
 ::: overflow-table
