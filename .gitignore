@@ -37,6 +37,10 @@ lecture_guide/
 _lecture_guide/
 .claude/settings.local.json
 .claude/hooks/
+# Local agent tooling (Codex plugin hooks, agent skill definitions). Machine-local
+# configuration, not course material — never belongs on the public course site.
+.agents/
+.codex/
 
 # Instructor/assessment content — NEVER public (answer keys, exam security, book-derived material).
 # Student-facing parts are distributed via Brightspace, not the public git site.
