@@ -567,14 +567,15 @@ EV(\text{Keep A}) = 0.60(0) + 0.40(0) = \mathbf{\$0}
 <li class="fragment"><p>EVPI is an <strong>upper bound</strong> on the value of <em>any</em> study, survey, or test: no information can beat perfect information.</p></li>
 </ul>
 </section>
-<section id="evpi-the-three-steps-vungle" class="slide level2 center">
-<h2>EVPI: the Three Steps (Vungle)</h2>
-<div class="r-fit-text">
-<p><strong>Step 1, best payoff in each state</strong> (look down each column of the payoff table):</p>
+<section id="evpi-step-1-what-would-you-do-if-you-knew" class="slide level2 center">
+<h2>EVPI Step 1: What Would You Do If You Knew?</h2>
+<p><br></p>
+<p>Take the states one at a time and ask what Vungle would choose knowing that state for sure. That means reading <strong>down</strong> a column of the payoff table and keeping the best number in it:</p>
+<div class="fragment">
 <table class="caption-top">
 <thead>
 <tr class="header">
-<th>State</th>
+<th>State of nature (prior)</th>
 <th>Best choice if you knew</th>
 <th style="text-align: right;">Best payoff</th>
 </tr>
@@ -583,20 +584,33 @@ EV(\text{Keep A}) = 0.60(0) + 0.40(0) = \mathbf{\$0}
 <tr class="odd">
 <td><span class="math inline">\(s_1\)</span>: B truly better (0.60)</td>
 <td>Roll out B</td>
-<td style="text-align: right;">+$318K</td>
+<td style="text-align: right;"><strong>+$318K</strong></td>
 </tr>
 <tr class="even">
 <td><span class="math inline">\(s_2\)</span>: B not better (0.40)</td>
 <td>Keep A</td>
-<td style="text-align: right;">$0</td>
+<td style="text-align: right;"><strong>$0</strong></td>
 </tr>
 </tbody>
 </table>
-<p><strong>Step 2, expected value of those best returns:</strong></p>
+</div>
+<p><br></p>
+<ul>
+<li class="fragment">The oracle’s answer <strong>changes</strong> across the two states. Deciding blind, Vungle has to commit to one row and take whichever column shows up; that gap is what EVPI puts a price on.</li>
+</ul>
+</section>
+<section id="evpi-steps-2-and-3-what-the-oracle-is-worth" class="slide level2 center">
+<h2>EVPI Steps 2 and 3: What the Oracle Is Worth</h2>
+<p><br></p>
+<p>Those two best payoffs are what an oracle would hand Vungle. Two lines of arithmetic turn them into a dollar ceiling:</p>
+<div class="fragment">
+<p><strong>Step 2, the expected value <em>with</em> perfect information:</strong> weight the best payoffs by the priors.</p>
 <p><span class="math display">\[
 \text{EVwPI} = 0.60(318) + 0.40(0) = \$190.8\text{K}
 \]</span></p>
-<p><strong>Step 3, subtract the best EV without information:</strong></p>
+</div>
+<div class="fragment">
+<p><strong>Step 3, subtract what Vungle can expect deciding blind</strong> ($126.8K, the EV of rolling out B):</p>
 <p><span class="math display">\[
 \text{EVPI} = 190.8 - 126.8 = \mathbf{\$64K}
 \]</span></p>

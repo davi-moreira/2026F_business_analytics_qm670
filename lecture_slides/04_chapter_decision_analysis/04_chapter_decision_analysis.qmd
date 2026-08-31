@@ -386,27 +386,49 @@ $$
 
 - EVPI is an **upper bound** on the value of *any* study, survey, or test: no information can beat perfect information.
 
-## EVPI: the Three Steps (Vungle)
+## EVPI Step 1: What Would You Do If You Knew?
 
-::: r-fit-text
-**Step 1, best payoff in each state** (look down each column of the payoff table):
+<br>
 
-| State | Best choice if you knew | Best payoff |
+Take the states one at a time and ask what Vungle would choose knowing that state for sure. That means reading **down** a column of the payoff table and keeping the best number in it:
+
+::: fragment
+
+| State of nature (prior) | Best choice if you knew | Best payoff |
 |---|---|---:|
-| $s_1$: B truly better (0.60) | Roll out B | +\$318K |
-| $s_2$: B not better (0.40) | Keep A | \$0 |
+| $s_1$: B truly better (0.60) | Roll out B | **+\$318K** |
+| $s_2$: B not better (0.40) | Keep A | **\$0** |
 
-**Step 2, expected value of those best returns:**
+:::
+
+<br>
+
+- The oracle's answer **changes** across the two states. Deciding blind, Vungle has to commit to one row and take whichever column shows up; that gap is what EVPI puts a price on.
+
+## EVPI Steps 2 and 3: What the Oracle Is Worth
+
+<br>
+
+Those two best payoffs are what an oracle would hand Vungle. Two lines of arithmetic turn them into a dollar ceiling:
+
+::: fragment
+
+**Step 2, the expected value *with* perfect information:** weight the best payoffs by the priors.
 
 $$
 \text{EVwPI} = 0.60(318) + 0.40(0) = \$190.8\text{K}
 $$
 
-**Step 3, subtract the best EV without information:**
+:::
+
+::: fragment
+
+**Step 3, subtract what Vungle can expect deciding blind** (\$126.8K, the EV of rolling out B):
 
 $$
 \text{EVPI} = 190.8 - 126.8 = \mathbf{\$64K}
 $$
+
 :::
 
 ## What EVPI Tells the Manager
