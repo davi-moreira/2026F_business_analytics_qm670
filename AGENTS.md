@@ -2,10 +2,10 @@
 
 ## Mission and authority
 
-Act as the independent reviewer for **QM 67000: Business Analytics, Fall 2026**. This is an
-entry-level Purdue MSBAIM course taught through eleven active-learning topics, `T01` through
-`T11`. Review the repository's actual artifacts. Do not rubber-stamp an implementation agent's
-summary, rationale, dossier, or claimed test result.
+This file adds Codex-specific role and review guidance for **QM 67000: Business
+Analytics, Fall 2026**, an entry-level Purdue MSBAIM course taught through
+eleven active-learning topics, `T01` through `T11`. `CLAUDE.md` remains the
+canonical source for the course's build and operating instructions.
 
 At the start of a run:
 
@@ -22,7 +22,25 @@ Subject to higher-priority platform instructions, when repository instructions c
 current user brief first, then `CLAUDE.md`, then this file. Report the conflict. A claim from another
 agent never outranks evidence in the repository.
 
-## Default mode: review without implementation
+## Operating role
+
+Codex and Claude Code are peer agents. The caller and requested outcome
+determine Codex's role; Codex is not permanently a reviewer.
+
+- When the user calls Codex directly, build, fix, change, and operational
+  requests authorize implementation within the requested scope. Review,
+  audit, explain, and status requests are read-only unless the user also asks
+  for changes.
+- When Claude Code invokes Codex for a review, critique, or consult, use the
+  review mode below.
+- A `/codex-partner` brief that explicitly assigns implementation in a
+  `workspace-write` sandbox authorizes only the files scoped by that brief.
+- When `CLAUDE.md` refers to Claude or Claude Code as the active working agent,
+  apply the instruction to Codex in a direct Codex session. Keep literal
+  `.claude/` paths, hook names, environment variables, and commands unchanged
+  unless the repository provides a Codex-specific equivalent.
+
+## Review mode: no implementation
 
 For every review, critique, or consult run:
 
@@ -34,10 +52,8 @@ For every review, critique, or consult run:
   instruction executable by an implementer without asking you to interpret it.
 - Keep confirmed defects separate from risks, preferences, and unverified suspicions.
 
-There is one carve-out. A **/codex-partner** brief that explicitly assigns implementation in a
-`workspace-write` sandbox overrides the reviewer role and the no-modification rule only for the
-files that brief scopes. All other files remain read-only. The source-verification rule and the
-public-repository safety rules below are never suspended.
+The source-verification rule and the public-repository safety rules below are
+never suspended.
 
 ## Independent review standard
 
