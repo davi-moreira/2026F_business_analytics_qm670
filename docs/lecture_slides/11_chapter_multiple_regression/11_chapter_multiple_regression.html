@@ -158,6 +158,7 @@ Professors<br>Davi Moreira<br>Thanh Nguyen<br>
 <ul>
 <li>Is the model useful? The overall <strong><span class="math inline">\(F\)</span>-test</strong></li>
 <li>Which predictors matter? The individual <strong><span class="math inline">\(t\)</span>-tests</strong></li>
+<li>Does a <strong>group</strong> of predictors matter? The <strong>partial <span class="math inline">\(F\)</span>-test</strong></li>
 <li>A switch on or off: the <strong>dummy</strong> (indicator) variable</li>
 <li>When predictors overlap: <strong>multicollinearity</strong></li>
 <li>The investment call: demographics or service &amp; merchandising?</li>
@@ -245,7 +246,7 @@ Professors<br>Davi Moreira<br>Thanh Nguyen<br>
 <li class="fragment"><p><strong>Two lectures, two halves of the decision:</strong></p>
 <ul>
 <li class="fragment"><p><strong>Lecture 1, build &amp; read the model.</strong> Fit sales on all four drivers; interpret each <strong>partial</strong> coefficient (“holding the others constant”); judge overall fit with <span class="math inline">\(R^2\)</span> and adjusted <span class="math inline">\(R^2\)</span>.</p></li>
-<li class="fragment"><p><strong>Lecture 2, test &amp; decide.</strong> Which drivers are <em>real</em> (<span class="math inline">\(F\)</span>-test vs.&nbsp;<span class="math inline">\(t\)</span>-tests)? Put a <strong>dollar value on an endcap</strong> with a dummy variable; check the predictors don’t overlap (multicollinearity); make the investment call.</p></li>
+<li class="fragment"><p><strong>Lecture 2, test &amp; decide.</strong> Which drivers are <em>real</em> (<span class="math inline">\(F\)</span>-test vs.&nbsp;<span class="math inline">\(t\)</span>-tests, then a partial <span class="math inline">\(F\)</span>-test on the location pair)? Put a <strong>dollar value on an endcap</strong> with a dummy variable; check the predictors don’t overlap (multicollinearity); make the investment call.</p></li>
 </ul></li>
 <li class="fragment"><p>A good analyst builds the model on the auto-parts data; <strong>your team reproduces and interrogates it</strong>, then we debrief the recommendation together.</p></li>
 <li class="fragment"><p>By the end, <strong>you</strong> decide where to invest, with the regression to back the call.</p></li>
@@ -722,7 +723,7 @@ R^2 = \frac{SSR}{SST} = 1 - \frac{SSE}{SST}
 <p><br></p>
 <ul>
 <li class="fragment"><p>A high <span class="math inline">\(R^2\)</span> tells us the model predicts well <strong>in aggregate</strong>. It does <strong>not</strong> tell us which individual coefficients we can trust.</p></li>
-<li class="fragment"><p>Today we add the inference layer: an <strong>overall</strong> test (is the model useful at all?), <strong>individual</strong> tests (which predictors carry their weight?), the <strong>dummy variable</strong> that turns “has an endcap” into a dollar amount, and a <strong>multicollinearity</strong> check so we don’t get fooled by overlapping predictors.</p></li>
+<li class="fragment"><p>Today we add the inference layer: an <strong>overall</strong> test (is the model useful at all?), <strong>individual</strong> tests (which predictors carry their weight?), a <strong>partial <span class="math inline">\(F\)</span>-test</strong> (can a whole group of predictors go?), the <strong>dummy variable</strong> that turns “has an endcap” into a dollar amount, and a <strong>multicollinearity</strong> check so we don’t get fooled by overlapping predictors.</p></li>
 </ul>
 </section>
 <section id="how-every-class-runs-1" class="slide level2 center">
@@ -969,6 +970,125 @@ H_0: \beta_j = 0 \qquad H_a: \beta_j \neq 0 \qquad t = \frac{b_j}{s_{b_j}}, \qua
 </div></div>
 </section></section>
 <section>
+<section id="does-a-group-of-predictors-matter-the-partial-f-test" class="title-slide slide level1 center" data-background-color="#cfb991">
+<h1>Does a Group of Predictors Matter? The Partial <span class="math inline">\(F\)</span>-Test</h1>
+
+</section>
+<section id="two-weak-ts-are-not-a-joint-verdict" class="slide level2 center">
+<h2>Two Weak <span class="math inline">\(t\)</span>’s Are Not a Joint Verdict</h2>
+<p><br></p>
+<ul>
+<li class="fragment"><p>Population (<span class="math inline">\(p = 0.39\)</span>) and income (<span class="math inline">\(p = 0.14\)</span>) each fail their <span class="math inline">\(t\)</span>-test. But each <span class="math inline">\(t\)</span> asks about one driver <strong>with the other still in the model</strong>.</p></li>
+<li class="fragment"><p>If the two overlapped (bigger markets also tend to be richer), each could hide behind the other: both <span class="math inline">\(t\)</span>’s weak, while the <strong>pair</strong> still carries real information.</p></li>
+<li class="fragment"><p>Your question as the manager is about the pair: <em>can we drop <strong>location</strong> from the model, both variables at once?</em></p></li>
+</ul>
+<div class="fragment">
+<p><span class="math display">\[
+H_0: \beta_{\text{pop}} = \beta_{\text{inc}} = 0 \qquad H_a: \text{at least one of } \beta_{\text{pop}}, \beta_{\text{inc}} \neq 0
+\]</span></p>
+</div>
+<ul>
+<li class="fragment">The test for a <strong>group</strong> of predictors is the <strong>partial <span class="math inline">\(F\)</span>-test</strong>.</li>
+</ul>
+</section>
+<section id="the-partial-f-test-full-vs.-reduced-model" class="slide level2 center">
+<h2>The Partial <span class="math inline">\(F\)</span>-Test: Full vs.&nbsp;Reduced Model</h2>
+<p><br></p>
+<ul>
+<li class="fragment"><p>Fit two models on the <strong>same 45 stores</strong>: the <strong>full</strong> model (all <span class="math inline">\(p = 4\)</span> drivers) and the <strong>reduced</strong> model (the <span class="math inline">\(q = 2\)</span> tested drivers removed).</p></li>
+<li class="fragment"><p>Removing predictors can only raise SSE. The test asks whether SSE rises <strong>more than noise alone would push it</strong>:</p></li>
+</ul>
+<div class="fragment">
+<p><span class="math display">\[
+F = \frac{\big[\,SSE(\text{reduced}) - SSE(\text{full})\,\big] / q}{SSE(\text{full}) / (n - p - 1)} \;\sim\; F_{q,\; n-p-1} \text{ under } H_0
+\]</span></p>
+</div>
+<ul>
+<li class="fragment"><p><strong>Numerator:</strong> the extra unexplained variation, per dropped predictor. <strong>Denominator:</strong> the <strong>full</strong> model’s MSE.</p></li>
+<li class="fragment"><p>Reject <span class="math inline">\(H_0\)</span> when the p-value <span class="math inline">\(\le \alpha\)</span> (equivalently, <span class="math inline">\(F\)</span> above the critical value): the group earns its place in the model.</p></li>
+</ul>
+</section>
+<section id="do-it-in-excel-run-the-partial-f-test" class="slide level2 center">
+<h2>Do It in Excel: Run the Partial <span class="math inline">\(F\)</span>-Test</h2>
+<div class="columns">
+<div class="column" style="width:46%;">
+<p><strong>Follow along:</strong></p>
+<ol type="1">
+<li class="fragment">From the <strong>full</strong> model output (all four drivers), note the <strong>Residual SS</strong> (3,806,649) and its <strong>df</strong> (40).</li>
+<li class="fragment">Run <strong>Regression</strong> again with X = <code>yelp_rating</code> + <code>endcap</code> only: the <strong>reduced</strong> model. Note its <strong>Residual SS</strong> (4,042,129).</li>
+<li class="fragment">In a blank cell (say G2): <code>=((4042129-3806649)/2)/(3806649/40)</code> → the partial <span class="math inline">\(F\)</span>.</li>
+<li class="fragment">p-value: <code>=F.DIST.RT(G2, 2, 40)</code>; 5% critical value: <code>=F.INV.RT(0.05, 2, 40)</code>.</li>
+</ol>
+</div><div class="column" style="width:54%;">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="figs/excel_reg_2drv_stats.png" class="quarto-figure quarto-figure-center" style="width:100.0%"></p>
+</figure>
+</div>
+<div class="fragment">
+<p>The <strong>reduced</strong> model (Yelp + endcap): its Residual SS is the only new number the test needs.</p>
+</div>
+</div></div>
+</section>
+<section id="the-partial-f-test-on-the-auto-parts-model" class="slide level2 center">
+<h2>The Partial <span class="math inline">\(F\)</span>-Test on the Auto-Parts Model</h2>
+<p><br></p>
+<div class="fragment">
+<table class="caption-top">
+<thead>
+<tr class="header">
+<th>Model</th>
+<th>Predictors</th>
+<th style="text-align: right;">SSE</th>
+<th style="text-align: right;">df</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Full</td>
+<td>population, income, Yelp, endcap</td>
+<td style="text-align: right;">3,806,649</td>
+<td style="text-align: right;">40</td>
+</tr>
+<tr class="even">
+<td>Reduced</td>
+<td>Yelp, endcap</td>
+<td style="text-align: right;">4,042,129</td>
+<td style="text-align: right;">42</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="fragment">
+<p><span class="math display">\[
+F = \frac{(4{,}042{,}129 - 3{,}806{,}649)/2}{3{,}806{,}649/40} = \frac{117{,}740}{95{,}166} = 1.24, \qquad F_{0.05;\,2,\,40} = 3.23, \quad p = 0.30
+\]</span></p>
+</div>
+<ul>
+<li class="fragment"><p><span class="math inline">\(1.24 &lt; 3.23\)</span> → <strong>fail to reject <span class="math inline">\(H_0\)</span></strong>: even taken <strong>together</strong>, population and income add nothing detectable once Yelp and endcap are in.</p></li>
+<li class="fragment"><p>The “drop location” call now rests on a <strong>formal joint test</strong>, not on two weak <span class="math inline">\(t\)</span>’s and a glance at adjusted <span class="math inline">\(R^2\)</span>.</p></li>
+</ul>
+</section>
+<section id="one-predictor-the-partial-f-is-t2" class="slide level2 center">
+<h2>One Predictor: The Partial <span class="math inline">\(F\)</span> Is <span class="math inline">\(t^2\)</span></h2>
+<p><br></p>
+<ul>
+<li class="fragment"><p>Drop <strong>only</strong> income (<span class="math inline">\(q = 1\)</span>) and run the same test: partial <span class="math inline">\(F = 2.26 = (1.50)^2\)</span>, with the <strong>same</strong> p-value, <span class="math inline">\(0.14\)</span>.</p></li>
+<li class="fragment"><p>So every <span class="math inline">\(t\)</span>-test in the coefficient table <strong>is</strong> a partial <span class="math inline">\(F\)</span>-test for dropping that single predictor, the others held in the model.</p></li>
+<li class="fragment"><p><strong>The rule:</strong> one predictor → read its <span class="math inline">\(t\)</span> (identical to its partial <span class="math inline">\(F\)</span>); a <strong>group</strong> of predictors → run the partial <span class="math inline">\(F\)</span>-test.</p></li>
+</ul>
+</section>
+<section id="a-question-that-often-comes-up-4" class="slide level2 center">
+<h2>A Question That Often Comes Up</h2>
+<div class="faq">
+<p><strong>A question that often comes up at this point:</strong></p>
+<p><span class="faq-q">Both <span class="math inline">\(t\)</span>-tests already said “not significant.” Why run a partial <span class="math inline">\(F\)</span>-test on population and income at all?</span></p>
+<div class="fragment faq-a">
+<p><strong>Short answer:</strong> because two weak <span class="math inline">\(t\)</span>’s can hide a strong pair. Each <span class="math inline">\(t\)</span> asks whether a driver adds anything <strong>beyond the other one</strong>; if bigger markets were also the richer ones, each would look useless while location as a whole mattered. Here the pair also fails (<span class="math inline">\(F = 1.24\)</span>, <span class="math inline">\(p = 0.30\)</span>), so dropping both is safe. Had the joint test rejected, the right move would be to keep location and accept that the data cannot split its effect between size and wealth.</p>
+</div>
+</div>
+</section></section>
+<section>
 <section id="the-dummy-variable-pricing-an-endcap" class="title-slide slide level1 center" data-background-color="#cfb991">
 <h1>The Dummy Variable: Pricing an Endcap</h1>
 
@@ -1013,7 +1133,7 @@ H_0: \beta_j = 0 \qquad H_a: \beta_j \neq 0 \qquad t = \frac{b_j}{s_{b_j}}, \qua
 <li><span class="math inline">\(t = 6.98\)</span>, p &lt; 0.0001 → this gap is <strong>not</strong> noise. An endcap is a real, sizeable lever.</li>
 </ul>
 </section>
-<section id="a-question-that-often-comes-up-4" class="slide level2 center">
+<section id="a-question-that-often-comes-up-5" class="slide level2 center">
 <h2>A Question That Often Comes Up</h2>
 <div class="faq">
 <p><strong>A question that often comes up at this point:</strong></p>
@@ -1081,7 +1201,7 @@ H_0: \beta_j = 0 \qquad H_a: \beta_j \neq 0 \qquad t = \frac{b_j}{s_{b_j}}, \qua
 <li class="fragment"><p><strong>Do not</strong> encode categories as a single 1/2/3 number; that would falsely force the levels to be evenly spaced and ordered. Always use separate 0/1 columns.</p></li>
 </ul>
 </section>
-<section id="a-question-that-often-comes-up-5" class="slide level2 center">
+<section id="a-question-that-often-comes-up-6" class="slide level2 center">
 <h2>A Question That Often Comes Up</h2>
 <div class="faq">
 <p><strong>A question that often comes up at this point:</strong></p>
@@ -1174,7 +1294,7 @@ VIF_j = \frac{1}{1 - R_j^2}
 <li class="fragment"><p><em>Contrast:</em> had population and income been highly correlated, we’d have to be cautious; their small <span class="math inline">\(t\)</span>’s could have been an overlap symptom rather than true irrelevance.</p></li>
 </ul>
 </section>
-<section id="a-question-that-often-comes-up-6" class="slide level2 center">
+<section id="a-question-that-often-comes-up-7" class="slide level2 center">
 <h2>A Question That Often Comes Up</h2>
 <div class="faq">
 <p><strong>A question that often comes up at this point:</strong></p>
@@ -1229,7 +1349,7 @@ VIF_j = \frac{1}{1 - R_j^2}
 <li>Only <strong>3 of 45 stores</strong> sit just past <span class="math inline">\(\pm 2\)</span> (about the 5% you expect by chance), none wildly so. Flag them to investigate, not to delete: these are the real stores the four drivers still miss.</li>
 </ul>
 </section>
-<section id="a-question-that-often-comes-up-7" class="slide level2 center">
+<section id="a-question-that-often-comes-up-8" class="slide level2 center">
 <h2>A Question That Often Comes Up</h2>
 <div class="faq">
 <p><strong>A question that often comes up at this point:</strong></p>
@@ -1309,6 +1429,7 @@ VIF_j = \frac{1}{1 - R_j^2}
 <ul>
 <li class="fragment"><span class="math inline">\(F\)</span> said the model <strong>as a whole</strong> is useful, but that alone could have tempted us to keep all four variables.</li>
 <li class="fragment">The <span class="math inline">\(t\)</span>-tests revealed that <strong>half the predictors were dead weight</strong>, steering the budget toward the two that actually pay.</li>
+<li class="fragment">The <strong>partial <span class="math inline">\(F\)</span>-test</strong> confirmed that the two dead-weight predictors are dead weight <strong>together</strong> (<span class="math inline">\(F = 1.24\)</span>, <span class="math inline">\(p = 0.30\)</span>), so location can leave the model as a group.</li>
 </ul></li>
 <li class="fragment"><p><strong>Significance is conditional.</strong> Every coefficient and every <span class="math inline">\(t\)</span> here means “…<em>holding the other three constant.</em>” Change the set of predictors and the story can change.</p></li>
 <li class="fragment"><p><strong>Significance ≠ importance.</strong> With huge samples trivial effects turn “significant”; with small samples real effects can hide. Always pair the test with the <strong>dollar size</strong> of the effect: that is the number you decide on as the manager.</p></li>
@@ -1335,7 +1456,7 @@ VIF_j = \frac{1}{1 - R_j^2}
 <p><br></p>
 <p><strong>The answer we reached today:</strong></p>
 <blockquote>
-<p>The model is decisively useful (<span class="math inline">\(F = 136.7\)</span>), but only <strong>two</strong> drivers survive their individual <span class="math inline">\(t\)</span>-test: <strong>Yelp</strong> (<span class="math inline">\(t = 16.5\)</span>, +$642K/star) and <strong>endcap</strong> (<span class="math inline">\(t = 6.98\)</span>, +$816K); population and income are insignificant (<span class="math inline">\(t = 0.88\)</span>, <span class="math inline">\(1.50\)</span>), and every VIF <span class="math inline">\(&lt; 1.7\)</span> so the verdict is honest, not an overlap artifact. <strong>Invest in service and merchandising, not location:</strong> buy the endcap whenever its lease runs below <strong>$816K/year</strong>.</p>
+<p>The model is decisively useful (<span class="math inline">\(F = 136.7\)</span>), but only <strong>two</strong> drivers survive their individual <span class="math inline">\(t\)</span>-test: <strong>Yelp</strong> (<span class="math inline">\(t = 16.5\)</span>, +$642K/star) and <strong>endcap</strong> (<span class="math inline">\(t = 6.98\)</span>, +$816K); population and income are insignificant (<span class="math inline">\(t = 0.88\)</span>, <span class="math inline">\(1.50\)</span>) and jointly add nothing (partial <span class="math inline">\(F = 1.24\)</span>, <span class="math inline">\(p = 0.30\)</span>), and every VIF <span class="math inline">\(&lt; 1.7\)</span> so the verdict is honest, not an overlap artifact. <strong>Invest in service and merchandising, not location:</strong> buy the endcap whenever its lease runs below <strong>$816K/year</strong>.</p>
 </blockquote>
 </div>
 </section>
@@ -1360,6 +1481,7 @@ VIF_j = \frac{1}{1 - R_j^2}
 <li>A <strong>partial coefficient</strong> can differ wildly from its simple-regression cousin: population and income looked plausible but added nothing once Yelp and endcap were in.</li>
 <li><strong><span class="math inline">\(R^2\)</span> only ever rises</strong> when you add predictors → judge model size with <strong>adjusted <span class="math inline">\(R^2\)</span></strong>, which charges a fee per predictor.</li>
 <li><strong><span class="math inline">\(F\)</span> first, then <span class="math inline">\(t\)</span>:</strong> <span class="math inline">\(F\)</span> asks “is the model useful at all?”; the <span class="math inline">\(t\)</span>-tests ask “which predictors carry their weight?” A significant <span class="math inline">\(F\)</span> does not bless every coefficient.</li>
+<li>The <strong>partial <span class="math inline">\(F\)</span>-test</strong> compares a full and a reduced model to ask whether a <strong>group</strong> of predictors can go; for a single predictor it equals <span class="math inline">\(t^2\)</span>.</li>
 <li>A <strong>dummy variable</strong> (0/1) prices a category: the endcap coefficient <em>is</em> the dollar value of an endcap; <span class="math inline">\(k\)</span> levels need <span class="math inline">\(k-1\)</span> dummies.</li>
 <li><strong>Multicollinearity</strong> (overlapping predictors; check VIF &gt; 5) muddies interpretation; here every VIF &lt; 1.7, so the verdict holds.</li>
 <li><strong>This closes the prediction arc:</strong> from <em>comparing</em> two groups, to <em>predicting</em> with one driver, to <em>isolating many drivers at once</em> (today).</li>

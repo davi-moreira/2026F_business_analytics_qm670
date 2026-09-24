@@ -48,6 +48,7 @@ html-math-method:
 ::: {.column style="width: 50%; text-align: center; justify-content: center; align-items: center;"}
 - Is the model useful? The overall **$F$-test**
 - Which predictors matter? The individual **$t$-tests**
+- Does a **group** of predictors matter? The **partial $F$-test**
 - A switch on or off: the **dummy** (indicator) variable
 - When predictors overlap: **multicollinearity**
 - The investment call: demographics or service & merchandising?
@@ -101,7 +102,7 @@ html-math-method:
 
   - **Lecture 1, build & read the model.** Fit sales on all four drivers; interpret each **partial** coefficient ("holding the others constant"); judge overall fit with $R^2$ and adjusted $R^2$.
 
-  - **Lecture 2, test & decide.** Which drivers are *real* ($F$-test vs. $t$-tests)? Put a **dollar value on an endcap** with a dummy variable; check the predictors don't overlap (multicollinearity); make the investment call.
+  - **Lecture 2, test & decide.** Which drivers are *real* ($F$-test vs. $t$-tests, then a partial $F$-test on the location pair)? Put a **dollar value on an endcap** with a dummy variable; check the predictors don't overlap (multicollinearity); make the investment call.
 
 - A good analyst builds the model on the auto-parts data; **your team reproduces and interrogates it**, then we debrief the recommendation together.
 
@@ -545,7 +546,7 @@ knitr::include_graphics("figs/autoparts_coef_effects.png")
 
 - A high $R^2$ tells us the model predicts well **in aggregate**. It does **not** tell us which individual coefficients we can trust.
 
-- Today we add the inference layer: an **overall** test (is the model useful at all?), **individual** tests (which predictors carry their weight?), the **dummy variable** that turns "has an endcap" into a dollar amount, and a **multicollinearity** check so we don't get fooled by overlapping predictors.
+- Today we add the inference layer: an **overall** test (is the model useful at all?), **individual** tests (which predictors carry their weight?), a **partial $F$-test** (can a whole group of predictors go?), the **dummy variable** that turns "has an endcap" into a dollar amount, and a **multicollinearity** check so we don't get fooled by overlapping predictors.
 
 ## How Every Class Runs
 
@@ -727,6 +728,115 @@ The location variables you would buy first are the ones that move the model **le
 :::
 :::
 ::::::
+
+# Does a Group of Predictors Matter? The Partial $F$-Test {background-color="#cfb991"}
+
+## Two Weak $t$'s Are Not a Joint Verdict
+
+<br>
+
+- Population ($p = 0.39$) and income ($p = 0.14$) each fail their $t$-test. But each $t$ asks about one driver **with the other still in the model**.
+
+- If the two overlapped (bigger markets also tend to be richer), each could hide behind the other: both $t$'s weak, while the **pair** still carries real information.
+
+- Your question as the manager is about the pair: *can we drop **location** from the model, both variables at once?*
+
+::: fragment
+
+$$
+H_0: \beta_{\text{pop}} = \beta_{\text{inc}} = 0 \qquad H_a: \text{at least one of } \beta_{\text{pop}}, \beta_{\text{inc}} \neq 0
+$$
+
+:::
+
+- The test for a **group** of predictors is the **partial $F$-test**.
+
+## The Partial $F$-Test: Full vs. Reduced Model
+
+<br>
+
+- Fit two models on the **same 45 stores**: the **full** model (all $p = 4$ drivers) and the **reduced** model (the $q = 2$ tested drivers removed).
+
+- Removing predictors can only raise SSE. The test asks whether SSE rises **more than noise alone would push it**:
+
+::: fragment
+
+$$
+F = \frac{\big[\,SSE(\text{reduced}) - SSE(\text{full})\,\big] / q}{SSE(\text{full}) / (n - p - 1)} \;\sim\; F_{q,\; n-p-1} \text{ under } H_0
+$$
+
+:::
+
+- **Numerator:** the extra unexplained variation, per dropped predictor. **Denominator:** the **full** model's MSE.
+
+- Reject $H_0$ when the p-value $\le \alpha$ (equivalently, $F$ above the critical value): the group earns its place in the model.
+
+## Do It in Excel: Run the Partial $F$-Test
+
+:::::: columns
+::: {.column width="46%"}
+**Follow along:**
+
+1. From the **full** model output (all four drivers), note the **Residual SS** (3,806,649) and its **df** (40).
+2. Run **Regression** again with X = `yelp_rating` + `endcap` only: the **reduced** model. Note its **Residual SS** (4,042,129).
+3. In a blank cell (say G2): `=((4042129-3806649)/2)/(3806649/40)` → the partial $F$.
+4. p-value: `=F.DIST.RT(G2, 2, 40)`; 5% critical value: `=F.INV.RT(0.05, 2, 40)`.
+:::
+::: {.column width="54%"}
+![](figs/excel_reg_2drv_stats.png){.nostretch fig-align="center" width="100%"}
+
+::: {.fragment}
+The **reduced** model (Yelp + endcap): its Residual SS is the only new number the test needs.
+:::
+:::
+::::::
+
+## The Partial $F$-Test on the Auto-Parts Model
+
+<br>
+
+::: fragment
+
+| Model | Predictors | SSE | df |
+|---|---|---:|---:|
+| Full | population, income, Yelp, endcap | 3,806,649 | 40 |
+| Reduced | Yelp, endcap | 4,042,129 | 42 |
+
+:::
+
+::: fragment
+
+$$
+F = \frac{(4{,}042{,}129 - 3{,}806{,}649)/2}{3{,}806{,}649/40} = \frac{117{,}740}{95{,}166} = 1.24, \qquad F_{0.05;\,2,\,40} = 3.23, \quad p = 0.30
+$$
+
+:::
+
+- $1.24 < 3.23$ → **fail to reject $H_0$**: even taken **together**, population and income add nothing detectable once Yelp and endcap are in.
+
+- The "drop location" call now rests on a **formal joint test**, not on two weak $t$'s and a glance at adjusted $R^2$.
+
+## One Predictor: The Partial $F$ Is $t^2$
+
+<br>
+
+- Drop **only** income ($q = 1$) and run the same test: partial $F = 2.26 = (1.50)^2$, with the **same** p-value, $0.14$.
+
+- So every $t$-test in the coefficient table **is** a partial $F$-test for dropping that single predictor, the others held in the model.
+
+- **The rule:** one predictor → read its $t$ (identical to its partial $F$); a **group** of predictors → run the partial $F$-test.
+
+## A Question That Often Comes Up
+
+:::: {.faq}
+**A question that often comes up at this point:**
+
+[Both $t$-tests already said "not significant." Why run a partial $F$-test on population and income at all?]{.faq-q}
+
+::: {.fragment .faq-a}
+**Short answer:** because two weak $t$'s can hide a strong pair. Each $t$ asks whether a driver adds anything **beyond the other one**; if bigger markets were also the richer ones, each would look useless while location as a whole mattered. Here the pair also fails ($F = 1.24$, $p = 0.30$), so dropping both is safe. Had the joint test rejected, the right move would be to keep location and accept that the data cannot split its effect between size and wealth.
+:::
+::::
 
 # The Dummy Variable: Pricing an Endcap {background-color="#cfb991"}
 
@@ -995,6 +1105,7 @@ Model: $R^2 = 0.932$, adjusted $R^2 = 0.925$, overall $F = 136.7$ (p $< 10^{-22}
 
   - $F$ said the model **as a whole** is useful, but that alone could have tempted us to keep all four variables.
   - The $t$-tests revealed that **half the predictors were dead weight**, steering the budget toward the two that actually pay.
+  - The **partial $F$-test** confirmed that the two dead-weight predictors are dead weight **together** ($F = 1.24$, $p = 0.30$), so location can leave the model as a group.
 
 - **Significance is conditional.** Every coefficient and every $t$ here means "…*holding the other three constant.*" Change the set of predictors and the story can change.
 
@@ -1025,7 +1136,7 @@ Model: $R^2 = 0.932$, adjusted $R^2 = 0.925$, overall $F = 136.7$ (p $< 10^{-22}
 
 **The answer we reached today:**
 
-> The model is decisively useful ($F = 136.7$), but only **two** drivers survive their individual $t$-test: **Yelp** ($t = 16.5$, +\$642K/star) and **endcap** ($t = 6.98$, +\$816K); population and income are insignificant ($t = 0.88$, $1.50$), and every VIF $< 1.7$ so the verdict is honest, not an overlap artifact. **Invest in service and merchandising, not location:** buy the endcap whenever its lease runs below **\$816K/year**.
+> The model is decisively useful ($F = 136.7$), but only **two** drivers survive their individual $t$-test: **Yelp** ($t = 16.5$, +\$642K/star) and **endcap** ($t = 6.98$, +\$816K); population and income are insignificant ($t = 0.88$, $1.50$) and jointly add nothing (partial $F = 1.24$, $p = 0.30$), and every VIF $< 1.7$ so the verdict is honest, not an overlap artifact. **Invest in service and merchandising, not location:** buy the endcap whenever its lease runs below **\$816K/year**.
 :::
 
 ## ⏱️ Team Sprint: Your Group Case (Lecture 2)
@@ -1049,6 +1160,7 @@ What the auto-parts model taught us:
 - A **partial coefficient** can differ wildly from its simple-regression cousin: population and income looked plausible but added nothing once Yelp and endcap were in.
 - **$R^2$ only ever rises** when you add predictors → judge model size with **adjusted $R^2$**, which charges a fee per predictor.
 - **$F$ first, then $t$:** $F$ asks "is the model useful at all?"; the $t$-tests ask "which predictors carry their weight?" A significant $F$ does not bless every coefficient.
+- The **partial $F$-test** compares a full and a reduced model to ask whether a **group** of predictors can go; for a single predictor it equals $t^2$.
 - A **dummy variable** (0/1) prices a category: the endcap coefficient *is* the dollar value of an endcap; $k$ levels need $k-1$ dummies.
 - **Multicollinearity** (overlapping predictors; check VIF > 5) muddies interpretation; here every VIF < 1.7, so the verdict holds.
 - **This closes the prediction arc:** from *comparing* two groups, to *predicting* with one driver, to *isolating many drivers at once* (today).
