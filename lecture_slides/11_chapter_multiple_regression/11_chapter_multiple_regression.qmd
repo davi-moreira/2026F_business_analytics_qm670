@@ -1155,7 +1155,7 @@ Model: $R^2 = 0.932$, adjusted $R^2 = 0.925$, overall $F = 136.7$ (p $< 10^{-22}
 ::: {.sprint .nonincremental}
 **Now it's your group's turn.** Today's in-class group case is posted on **Brightspace** (*Topic 11 Group Case: Lecture 2*): a separate business decision you make with today's tools.
 
-**What you'll use:** the overall **$F$-test** vs. the individual **$t$-tests**, a **dummy** variable, and a **VIF** check, then translate the coefficients into a budget call. **Excel:** Analysis ToolPak → Regression.
+**What you'll use:** the overall **$F$-test** vs. the individual **$t$-tests**, a **VIF** check, a **partial $F$-test** on an overlapping pair, and a **dummy** variable, then translate the coefficients into a budget call. **Excel:** Analysis ToolPak → Regression.
 
 **Work it with your group, then each of you answers the Brightspace quiz before you leave:** 10 questions, 2 points each.
 :::
