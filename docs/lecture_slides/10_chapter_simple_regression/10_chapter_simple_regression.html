@@ -179,7 +179,7 @@ Professors<br>Davi Moreira<br>Thanh Nguyen<br>
 <li class="fragment"><p>We close the Vungle engagement and open a new one. <strong>You are now the manager</strong> of a regional <strong>auto-parts retailer</strong> with <strong>45 stores</strong> and capital to open more.</p></li>
 <li class="fragment"><p>The real-estate team scores prospective sites on demographics (population, income) and on the store’s <strong>Yelp rating</strong> (a proxy for service quality once a store is open).</p></li>
 <li class="fragment"><p>The question on the table: <strong>which sites will sell?</strong> As the manager you want every new lease backed by a sales forecast, not a hunch.</p></li>
-<li class="fragment"><p>We have one dataset, <code>data/autoparts_revised_teaching.csv</code> (a teaching version of the chain’s store data): for each of the 45 existing stores, its <strong>2012 annual sales</strong> ($K), trade-area <strong>population</strong> and <strong>income</strong>, an <strong>end-cap</strong> placement flag, and its <strong>Yelp rating</strong>.</p></li>
+<li class="fragment"><p>We have one dataset, <code>data/autoparts_revised_teaching.csv</code> (a teaching version of the chain’s store data, with sales adjusted for teaching; the original <code>autoparts.csv</code> is also in the zip): for each of the 45 existing stores, its <strong>2012 annual sales</strong> ($K), trade-area <strong>population</strong> and <strong>income</strong>, an <strong>end-cap</strong> placement flag, and its <strong>Yelp rating</strong>.</p></li>
 <li class="fragment"><p>Until now we <em>compared</em> two groups. Now we <em>predict</em> a number, and that is what <strong>regression</strong> does.</p></li>
 </ul>
 </section>
@@ -549,7 +549,7 @@ R^2 = \frac{\text{SSR}}{\text{SST}} = 1 - \frac{\text{SSE}}{\text{SST}}, \qquad 
 </table>
 </div>
 <ul>
-<li class="fragment">So <strong><span class="math inline">\(R^2 = 0\)</span></strong> means the line is <strong>no better than the average</strong> (SSE = SST, a flat line at <span class="math inline">\(\bar{y}\)</span>); <strong><span class="math inline">\(R^2 = 1\)</span></strong> means every store sits on the line. Auto-parts lands at <strong>0.858</strong>: the line erases <strong>86%</strong> of the error you would make by guessing the average.</li>
+<li class="fragment">So <strong><span class="math inline">\(R^2 = 0\)</span></strong> means the line is <strong>no better than the average</strong> (SSE = SST, a flat line at <span class="math inline">\(\bar{y}\)</span>); <strong><span class="math inline">\(R^2 = 1\)</span></strong> means every store sits on the line. Auto-parts lands at <strong>0.858</strong>: the line erases <strong>86%</strong> of the squared error you would make by guessing the average.</li>
 </ul>
 </section>
 <section id="r2-and-correlation-are-the-same-story" class="slide level2 center">
@@ -585,8 +585,8 @@ r = (\text{sign of } b_1)\sqrt{R^2}
 <p><strong>Follow along:</strong></p>
 <ol type="1">
 <li class="fragment"><strong>Data → Data Analysis → Regression</strong>.</li>
-<li class="fragment">Input Y Range: the <code>sales2012_k</code> column; Input X Range: the <code>yelp_rating</code> column.</li>
-<li class="fragment">Check <strong>Labels</strong>, <strong>Residuals</strong>, and <strong>Residual Plots</strong>; click OK.</li>
+<li class="fragment">Input Y Range: the <code>sales2012_k</code> column (<code>B1:B46</code>); Input X Range: the <code>yelp_rating</code> column (<code>E1:E46</code>).</li>
+<li class="fragment">Check <strong>Labels</strong>, <strong>Residuals</strong>, <strong>Standardized Residuals</strong>, and <strong>Residual Plots</strong>; click OK.</li>
 <li class="fragment">Top block (<strong>Regression Statistics</strong>): read <strong>R Square</strong> and <strong>Standard Error</strong>.</li>
 <li class="fragment">Coefficients table: read <strong>Intercept</strong> (<span class="math inline">\(b_0\)</span>) and the <code>yelp_rating</code> row (<span class="math inline">\(b_1\)</span>).</li>
 </ol>
@@ -822,7 +822,7 @@ t = \frac{b_1 - 0}{s_{b_1}}, \qquad s_{b_1} = \frac{s}{\sqrt{\sum (x_i - \bar{x}
 </ul>
 <div class="fragment">
 <p><span class="math display">\[
-b_1 \pm t_{\alpha/2,\,n-2}\; s_{b_1} = 751.9 \pm 2.02 \times 46.66 = (\$657.8\text{K},\; \$846.0\text{K})
+b_1 \pm t_{\alpha/2,\,n-2}\; s_{b_1} = 751.9 \pm 2.017 \times 46.66 = (\$657.8\text{K},\; \$846.0\text{K})
 \]</span></p>
 </div>
 <ul>
@@ -904,7 +904,7 @@ F = 259.7 = t^2 \quad (t = 16.114)
 <li class="fragment"><strong>Store 23 (2.0 stars) over-performs:</strong> $2.79M in sales against the $1.86M its rating predicts.</li>
 <li class="fragment"><strong>Store 26 (5.0 stars) under-performs:</strong> $3.14M against the $4.12M its rating predicts.</li>
 </ul></li>
-<li class="fragment"><p>These are <strong>not data errors</strong>; they are real stores the model can’t fully explain with rating alone.</p></li>
+<li class="fragment"><p>These are <strong>not data errors</strong>; they are stores the model can’t fully explain with rating alone.</p></li>
 <li class="fragment"><p><em>What might separate them?</em> Store 23 has end-cap placement and store 26 does not; their population and income differ too. <strong>That is the teaser for multiple regression:</strong> adding the variables that explain the residuals.</p></li>
 </ul>
 </section>
@@ -1056,7 +1056,7 @@ F = 259.7 = t^2 \quad (t = 16.114)
 <td>Validate</td>
 <td>Do assumptions hold?</td>
 <td>Residual plot</td>
-<td>Horizontal band → OK (2 outliers)</td>
+<td>Horizontal, even band (2 outliers)</td>
 </tr>
 <tr class="odd">
 <td>Forecast</td>
@@ -1075,7 +1075,7 @@ F = 259.7 = t^2 \quad (t = 16.114)
 <li class="fragment"><p><strong>One sentence:</strong> Yelp rating predicts auto-parts store sales strongly and significantly (about <strong>$752K per star</strong>, explaining <strong>86%</strong> of the sales gap), so the real-estate team can use it to score and forecast sites.</p></li>
 <li class="fragment"><p><strong>One number to remember:</strong> <span class="math inline">\(b_1 = 751.9\)</span>, and where it came from: <span class="math inline">\(\sum(x-\bar{x})(y-\bar{y}) / \sum(x-\bar{x})^2\)</span>.</p></li>
 <li class="fragment"><p><strong>One caveat:</strong> regression forecasts and quantifies; it does <strong>not</strong> prove causation, and 14% of sales is still unexplained; a single predictor is a start, not the answer.</p></li>
-<li class="fragment"><p><strong>Practice with the real data:</strong> <code>data/autoparts_revised_teaching.csv</code> + Regression tool → reproduce <span class="math inline">\(b_1 = 751.9\)</span>, <span class="math inline">\(R^2 = 0.858\)</span>, <span class="math inline">\(t = 16.1\)</span> yourself.</p></li>
+<li class="fragment"><p><strong>Practice with the teaching data:</strong> <code>data/autoparts_revised_teaching.csv</code> + Regression tool → reproduce <span class="math inline">\(b_1 = 751.9\)</span>, <span class="math inline">\(R^2 = 0.858\)</span>, <span class="math inline">\(t = 16.1\)</span> yourself.</p></li>
 </ul>
 </section>
 <section id="todays-question-todays-answer-1" class="slide level2 center">
@@ -1089,7 +1089,7 @@ F = 259.7 = t^2 \quad (t = 16.114)
 <p><br></p>
 <p><strong>The answer we reached today:</strong></p>
 <blockquote>
-<p><strong>Real and forecastable.</strong> The slope test gives <span class="math inline">\(t = \textbf{16.1}\)</span>, <span class="math inline">\(p &lt; 0.0001\)</span>, so we reject <span class="math inline">\(H_0: \beta_1 = 0\)</span>; the 95% CI is <strong>($658K, $846K)</strong> per star. The residual band is horizontal (assumptions hold, two off-trend stores aside). A 4.5-star site forecasts at <strong>$3.74M</strong>, and for <em>one</em> lease we quote the prediction interval <strong>($2.87M, $4.61M)</strong>.</p>
+<p><strong>Real and forecastable.</strong> The slope test gives <span class="math inline">\(t = \textbf{16.1}\)</span>, <span class="math inline">\(p &lt; 0.0001\)</span>, so we reject <span class="math inline">\(H_0: \beta_1 = 0\)</span>; the 95% CI is <strong>($658K, $846K)</strong> per star. The residual band is horizontal with even spread (no curve, no fan; two off-trend stores to investigate). A 4.5-star site forecasts at <strong>$3.74M</strong>, and for <em>one</em> lease we quote the prediction interval <strong>($2.87M, $4.61M)</strong>.</p>
 </blockquote>
 </div>
 </section>
@@ -1115,7 +1115,7 @@ F = 259.7 = t^2 \quad (t = 16.114)
 <li><strong>Least squares</strong> picks the line that minimizes <span class="math inline">\(\sum (y_i - \hat{y}_i)^2\)</span>; the <strong>slope</strong> is the business number ($751.9K per Yelp star), the <strong>intercept</strong> just anchors the line.</li>
 <li><strong><span class="math inline">\(R^2 = \text{SSR}/\text{SST}\)</span></strong> is the share of variation the line explains (0.858 here); <span class="math inline">\(r = (\text{sign } b_1)\sqrt{R^2}\)</span> ties it to correlation.</li>
 <li><strong>Inference</strong> asks if the slope is real: <span class="math inline">\(t = b_1/s_{b_1}\)</span> with <span class="math inline">\(df = n-2\)</span> (and <span class="math inline">\(F = t^2\)</span>); the 95% CI gives the plausible magnitude.</li>
-<li><strong>Residual plots</strong> validate the assumptions: a horizontal band is fine; a curve means nonlinearity, a fan means non-constant variance.</li>
+<li><strong>Residual plots</strong> check linearity and constant variance: a horizontal band is fine; a curve means nonlinearity, a fan means non-constant variance.</li>
 <li><strong>Prediction</strong> needs the right interval: a <strong>CI</strong> for the mean response, a <strong>wider PI</strong> for one new store; both widen as <span class="math inline">\(x^*\)</span> leaves <span class="math inline">\(\bar{x}\)</span>.</li>
 <li><strong>Next topic, Multiple Regression</strong> on the same data: add population, income, and end-cap, and learn what “holding everything else constant” means.</li>
 </ul>

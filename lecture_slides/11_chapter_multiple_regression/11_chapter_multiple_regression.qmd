@@ -64,7 +64,7 @@ html-math-method:
 
 - You are the **manager** of a regional **auto-parts retail chain**: 45 stores, deciding where to put the next dollar.
 
-- Last time we found a single strong predictor of a store's annual sales: its **Yelp rating**. Each extra star was worth roughly **+\$752K** a year. A clean simple-regression story.
+- Last time we found a single strong predictor of a store's annual sales: its **Yelp rating**. Each extra star was worth roughly **+\$752K** a year (on the revised teaching data; the Topic 10 slides are updated). A clean simple-regression story.
 
 - But a Yelp rating is a *symptom*, not a lever you can pull directly. Your real question as the manager is sharper:
 
@@ -90,9 +90,9 @@ html-math-method:
 
 <br>
 
-- Data: `data/autoparts_revised_teaching.csv` (the teaching version from Topic 10), 45 rows, one per store. `endcap` is already coded **0/1**.
+- Data: `data/autoparts_revised_teaching.csv`, 45 rows, one per store: a teaching version of the chain's data (same stores and drivers as the original `autoparts.csv`, sales adjusted for teaching). `endcap` is already coded **0/1**.
 
-- **The trap we will spring today:** the two drivers you might *expect* to dominate (population and income) turn out **not** to matter once service and merchandising are in the model.
+- **Before we fit anything:** rank the four drivers by how much you expect each to move sales. Keep your ranking; we will hold it up against the model.
 
 ## How Today's Studio Runs
 
@@ -371,8 +371,8 @@ $$
 
 - The penalty rises with $p$ (more predictors) and eases with $n$ (more data). Two consequences:
 
-  - Adjusted $R^2 \le R^2$ **always**, and the gap widens as you add predictors.
-  - Adjusted $R^2$ goes **up only if a new predictor reduces the error variance $s^2$ (= MSE) more than the penalty costs.**
+  - Adjusted $R^2 \le R^2$ **always**. The gap grows with the number of predictors but shrinks as the model explains more, so a strong new predictor can even narrow it.
+  - Adjusted $R^2$ goes **up exactly when a new predictor lowers the error variance $s^2$ (= MSE)**: MSE divides SSE by $n - p - 1$, so the fee is already built in.
 
 - That makes adjusted $R^2$ a real **model-building criterion**: compare candidate models, prefer the higher one.
 
@@ -387,7 +387,7 @@ $$
 [If adjusted $R^2$ is the honest measure, why does Excel report plain $R^2$ at all, and which one do I quote to the chain?]{.faq-q}
 
 ::: {.fragment .faq-a}
-**Short answer:** quote **both**, and let the gap tell the story. Plain $R^2$ answers "how much variation did this model explain?" (a description of these 45 stores); adjusted $R^2$ answers "would this fit survive a fair charge for the predictors I used?" (the model-building question). For the two-driver warm-up they are close, $0.9535$ vs $0.9513$: the penalty is small because two predictors is cheap against 45 stores. Careful, though: the size of that gap says nothing about whether any *particular* predictor earns its place. It scales with how many predictors you used relative to $n$, not with how useful each one is. To decide whether a specific driver belongs, look at its own $t$-test, or refit without it and compare adjusted $R^2$ head to head.
+**Short answer:** quote **both**, and let the gap tell the story. Plain $R^2$ answers "how much variation did this model explain?" (a description of these 45 stores); adjusted $R^2$ answers "would this fit survive a fair charge for the predictors I used?" (the model-building question). For the two-driver warm-up they are close, $0.9535$ vs $0.9513$: the penalty is small because two predictors is cheap against 45 stores. Careful, though: the size of that gap says nothing about whether any *particular* predictor earns its place. It grows with the number of predictors relative to $n$ and shrinks as unexplained variation falls, so it cannot single out one driver. To decide whether a specific driver belongs, look at its own $t$-test, or refit without it and compare adjusted $R^2$ head to head.
 :::
 ::::
 
@@ -440,7 +440,7 @@ $$
 
 <br>
 
-- A model earns its complexity only if it beats the simpler options. Stack three, all on the same 45 stores:
+- A model earns its complexity only if it beats the simpler options. Stack four, all on the same 45 stores:
 
 ::: fragment
 
@@ -448,13 +448,14 @@ $$
 |---|---|---:|---:|
 | Null (no model) | guess the average \$2,712K every time | 0.000 | \~\$1,090K |
 | Simple (Topic 10) | Yelp rating alone | 0.858 | \~\$411K |
+| Two drivers | Yelp rating + endcap | 0.954 | \~\$235K |
 | **Multiple (today)** | **all four drivers** | **0.956** | **\~\$228K** |
 
 :::
 
-- Each rung **cuts the typical miss**: \$1,090K with no model, \$411K with one driver, \$228K with four. Yelp did the heavy lifting; the other three still cut the remaining miss by almost half.
+- Each rung **cuts the typical miss**: \$1,090K with no model, \$411K with Yelp alone, \$235K once endcap joins, \$228K with all four. Yelp did the heavy lifting and endcap most of the rest; population and income shave off another \$7K, and Lecture 2 tests whether that is more than noise.
 
-- The payoff of the topic is not only *which* drivers matter, but a **sharper sales prediction** for the next store.
+- The payoff is not only *which* drivers matter but a **sharper sales prediction** for the next store. (These misses are measured on the 45 stores we fit; expect a new store to miss by somewhat more.)
 
 ## Reading the Partial Effects
 
@@ -480,7 +481,7 @@ knitr::include_graphics("figs/autoparts_coef_effects.png")
 
 - Meanwhile **service** (Yelp) and **merchandising** (endcap) carry the model.
 
-- **Why the intuition fails here:** our 45 stores range from 15,000 to 528,000 residents, yet sales barely track market size, alone (correlations with sales of $-0.07$ for population and $-0.12$ for income) or with the others held constant. We will confirm this with formal tests in Lecture 2.
+- **Why the intuition fails here:** our 45 stores range from 15,000 to 528,000 residents, yet sales barely track market size or income, alone (correlations with sales of $-0.07$ for population and $-0.12$ for income) or with the others held constant. We will confirm this with formal tests in Lecture 2.
 
 ## A Question That Often Comes Up
 
@@ -861,7 +862,7 @@ $$
 
   - $b_{\text{endcap}}$ = the **average difference in sales between an endcap store and a non-endcap store, holding the other predictors constant.**
 
-- In other words, the dummy coefficient is the **dollar value of an endcap**: exactly what you asked your analyst to find.
+- In other words, the dummy coefficient is the endcap's **sales premium in dollars**: exactly what you asked your analyst to find.
 
 - For the endcap comparison that follows we keep the **full four-driver model**, so population and income stay controlled for. Its endcap coefficient is **+\$791.1K**; refitting without location gives **+\$734.2K**, a reminder that a coefficient depends on which predictors stay in.
 
@@ -926,15 +927,15 @@ knitr::include_graphics("figs/autoparts_endcap_dummy.png")
 | Simple, Yelp only (Topic 10) | \$3,363K |
 | Multiple, **without** endcap | **\$2,837K** |
 | Multiple, **with** endcap | **\$3,628K** |
-| **Lift from the endcap** | **+\$791K / year** |
+| **Sales lift from the endcap** | **+\$791K / year** |
 
 :::
 
 - The Yelp-only model guesses **\$3,363K** here: it **over-credits** Yelp, which in Topic 10 absorbed the endcap effect the four-driver model now separates out.
 
-- **The decision rule:** buy the endcap **if its annual lease is below \~\$791K** (a \$150K placement is a clear yes): the dummy turns a vague "merchandising matters" into a budget number.
+- **The decision rule:** the \$791K is extra **sales**, not profit. A \$150K lease breaks even at a margin of $150/791 \approx 19\%$ on those sales; at any higher margin the endcap pays. The dummy turns a vague "merchandising matters" into a budget number.
 
-- These are **point** predictions; the software also gives a **confidence interval** (mean of all such stores) and a wider **prediction interval** (this one store), read straight off the output.
+- These are **point** predictions for the average such store. One new store varies around them (Topic 10's wider prediction interval); Excel's ToolPak does not print that interval for new inputs.
 
 :::
 
@@ -981,23 +982,25 @@ knitr::include_graphics("figs/autoparts_endcap_dummy.png")
 
 ## Detecting It: Correlations and VIF
 
-::::: nonincremental
-:::: columns
-::: {.column width="46%"}
+::::: columns
+:::: {.column width="46%"}
 <br>
 
 - **Quick look:** the predictor **correlation matrix** (Data Analysis → Correlation). Flag any pair with $|r| > 0.7$.
 
 - **Formal measure:** the **Variance Inflation Factor**,
 
+::: fragment
 $$
 VIF_j = \frac{1}{1 - R_j^2}
 $$
 
 where $R_j^2$ is from regressing $x_j$ on all the other predictors. **Rule of thumb: investigate when VIF > 5.**
 :::
+::::
 
-::: {.column width="54%"}
+:::: {.column width="54%"}
+::: fragment
 ```{r  echo=FALSE, out.width = "100%",fig.align="center"}
 knitr::include_graphics("figs/autoparts_predictor_corr.png")
 ```
@@ -1022,7 +1025,7 @@ knitr::include_graphics("figs/autoparts_predictor_corr.png")
 
 :::
 
-- So population and income are insignificant for an **honest** reason: they genuinely add little once service and merchandising are in the model. This is **not** a multicollinearity artifact; the verdict is trustworthy.
+- So the weak location tests are **not** a multicollinearity artifact: population and income add little detectable information once service and merchandising are in the model. (Low VIFs rule out overlap; they do not prove the location effects are exactly zero.)
 
 - *Contrast:* had population and income been highly correlated, we'd have to be cautious; their small $t$'s could have been an overlap symptom rather than true irrelevance.
 
@@ -1051,7 +1054,7 @@ knitr::include_graphics("figs/autoparts_predictor_corr.png")
 - **Precision:** the predictions are **consistent**, a tight spread when you repeat.
 - **Accuracy:** the predictions are **unbiased**, centered on the truth, not systematically high or low.
 - A regression can have one without the other. What buys you **both** is meeting the error assumptions: zero-mean, constant-variance, independent, roughly normal.
-- The residual plot is how we **check** them before trusting the \$791K endcap number.
+- The residual plot is how we **check** the zero-mean and constant-variance pieces before trusting the \$791K endcap number.
 :::
 :::
 ::::::
@@ -1075,8 +1078,8 @@ knitr::include_graphics("figs/autoparts_std_residual_plot.png")
 ```
 
 ::: nonincremental
-- The band is roughly **flat and centered at zero**, no fan and no curve across the \$0.9M to \$4.4M range of $\hat{y}$: the constant-variance and linearity assumptions hold, so the coefficient verdicts are safe to read.
-- Only **3 of 45 stores** sit just past $\pm 2$ (about the 5% you expect by chance), none wildly so. Flag them to investigate, not to delete: these are the real stores the four drivers still miss.
+- The band is roughly **flat and centered at zero**, no fan and no curve across the \$0.9M to \$4.4M range of $\hat{y}$: the linearity and constant-variance assumptions look reasonable, so the coefficient verdicts can be read with confidence.
+- Only **3 of 45 stores** sit just past $\pm 2$ (about the 5% you expect by chance), none wildly so. Flag them to investigate, not to delete: these are the stores the four drivers still miss.
 :::
 
 ## A Question That Often Comes Up
@@ -1084,10 +1087,10 @@ knitr::include_graphics("figs/autoparts_std_residual_plot.png")
 :::: {.faq}
 **A question that often comes up at this point:**
 
-[In simple regression we plotted residuals against $x$. Why switch to plotting against $\hat{y}$ now?]{.faq-q}
+[What happened to Topic 10's two off-trend stores, 23 and 26?]{.faq-q}
 
 ::: {.fragment .faq-a}
-**Short answer:** because there is no single $x$ anymore. With four drivers you would need four separate residual plots, and each would miss the patterns the others create. The fitted value $\hat{y}$ rolls all four predictors into one axis, so a single plot shows whether the model misses systematically (a curve), whether the spread fans out (non-constant variance), or whether a store sits far off ($|z| > 2$). For the auto-parts model the band is clean, which is the green light to act on the coefficients.
+**Short answer:** both are back inside $\pm 2$. With Yelp alone, store 23 (2 stars, endcap) sat \$930K above the line and store 26 (5 stars, no endcap) sat \$976K below it. With all four drivers their misses shrink to $+\$326$K and $-\$398$K, mostly because the model now accounts for store 23's endcap and store 26's lack of one. Both rows stayed in the data: that is why we investigate an outlier instead of deleting it.
 :::
 ::::
 
@@ -1106,7 +1109,7 @@ knitr::include_graphics("figs/autoparts_std_residual_plot.png")
 Model: $R^2 = 0.956$, adjusted $R^2 = 0.952$, overall $F = 219.1$ (p $< 10^{-25}$), $s = \$241.6$K, all VIF $< 1.7$.
 :::
 
-- **Your recommendation as the manager:** stop chasing big, rich markets; **location demographics don't move sales** in this chain. The money belongs in **service quality** (every Yelp star ≈ +\$640K/yr) and in **endcap merchandising** (≈ +\$791K/yr, well worth a sub-\$791K lease). Both effects are statistically rock-solid and not a multicollinearity mirage.
+- **Your recommendation as the manager:** stop chasing big, rich markets; in this chain's data **location demographics add little** once service and endcap are known. The money belongs in **service quality** (every Yelp star ≈ +\$640K/yr in sales) and in **endcap merchandising** (≈ +\$791K/yr in sales; a \$150K lease pays if the margin on that tops 19%). Both effects are statistically rock-solid and not a multicollinearity mirage.
 
 ## $F$ vs. $t$: the Lesson That Travels
 
@@ -1115,7 +1118,7 @@ Model: $R^2 = 0.956$, adjusted $R^2 = 0.952$, overall $F = 219.1$ (p $< 10^{-25}
 - **The $F$-test and the $t$-tests answer different questions, and you need both:**
 
   - $F$ said the model **as a whole** is useful, but that alone could have tempted us to keep all four variables.
-  - The $t$-tests revealed that **half the predictors were dead weight**, steering the budget toward the two that actually pay.
+  - The $t$-tests revealed that **half the predictors added little detectable information**, steering the budget toward the two that actually pay.
   - The **partial $F$-test** found no statistically detectable contribution from the location pair beyond Yelp and endcap ($F = 1.29$, p-value $= 0.29$). It did not prove that their effects are zero.
 
 - **Significance is conditional.** Every coefficient and every $t$ here means "…*holding the other three constant.*" Change the set of predictors and the story can change.
@@ -1126,13 +1129,13 @@ Model: $R^2 = 0.956$, adjusted $R^2 = 0.952$, overall $F = 219.1$ (p $< 10^{-25}
 
 <br>
 
-- **One sentence:** for this 45-store chain, **service and merchandising drive sales, not location demographics**, so invest in Yelp rating (+\$640K/star) and endcap placement (+\$791K), each statistically decisive.
+- **One sentence:** for this 45-store chain, **sales move with service and merchandising, not with location demographics**, so invest in Yelp rating (+\$640K/star) and endcap placement (+\$791K), each statistically decisive.
 
-- **One number to remember:** **\$791K**, the value of an endcap, read straight off a dummy variable's coefficient, holding everything else constant.
+- **One number to remember:** **\$791K**, an endcap's sales premium, read straight off a dummy variable's coefficient, holding everything else constant.
 
 - **One caveat:** the model *describes* 45 existing stores; it does not *prove* that buying an endcap will *cause* +\$791K at a brand-new store. Correlation control is the best we can do with observational data: pilot it, then re-estimate.
 
-- **Practice with the real data:** `data/autoparts_revised_teaching.csv` (in the datasets zip) + Excel Regression → reproduce $R^2 = 0.956$, $F = 219.1$, the four coefficients, and the endcap prediction yourself.
+- **Practice with the teaching data:** `data/autoparts_revised_teaching.csv` (in the datasets zip) + Excel Regression → reproduce $R^2 = 0.956$, $F = 219.1$, the four coefficients, and the endcap prediction yourself.
 
 ## Today's Question, Today's Answer
 
@@ -1147,7 +1150,7 @@ Model: $R^2 = 0.956$, adjusted $R^2 = 0.952$, overall $F = 219.1$ (p $< 10^{-25}
 
 **The answer we reached today:**
 
-> The model is decisively useful ($F = 219.1$), but only **two** drivers survive their individual $t$-test: **Yelp** ($t = 21.0$, +\$640K/star) and **endcap** ($t = 8.63$, +\$791K); population and income are insignificant ($t = 1.00$, $1.49$), and their joint test also fails to reject (partial $F = 1.29$, p-value $= 0.29$); every VIF $< 1.7$ so the verdict is honest, not an overlap artifact. **Invest in service and merchandising, not location:** buy the endcap whenever its lease runs below **\$791K/year**.
+> The model is decisively useful ($F = 219.1$), but only **two** drivers survive their individual $t$-test: **Yelp** ($t = 21.0$, +\$640K/star) and **endcap** ($t = 8.63$, +\$791K); population and income are insignificant ($t = 1.00$, $1.49$), and their joint test also fails to reject (partial $F = 1.29$, p-value $= 0.29$); every VIF $< 1.7$, so the weak location tests are not an overlap artifact. **Invest in service and merchandising, not location:** the endcap adds about **\$791K/year in sales**, so a \$150K lease pays whenever the margin on those sales tops about 19%.
 :::
 
 ## ⏱️ Team Sprint: Your Group Case (Lecture 2)
@@ -1172,7 +1175,7 @@ What the auto-parts model taught us:
 - **$R^2$ only ever rises** when you add predictors → judge model size with **adjusted $R^2$**, which charges a fee per predictor.
 - **$F$ first, then $t$:** $F$ asks "is the model useful at all?"; the $t$-tests ask "which predictors carry their weight?" A significant $F$ does not bless every coefficient.
 - The **partial $F$-test** compares a full and a reduced model to ask whether a **group** of predictors can go; for a single predictor it equals $t^2$.
-- A **dummy variable** (0/1) prices a category: the endcap coefficient *is* the dollar value of an endcap; $k$ levels need $k-1$ dummies.
+- A **dummy variable** (0/1) prices a category: the endcap coefficient *is* the endcap's sales premium; $k$ levels need $k-1$ dummies.
 - **Multicollinearity** (overlapping predictors; check VIF > 5) muddies interpretation; here every VIF < 1.7, so the verdict holds.
 - **This closes the prediction arc:** from *comparing* two groups, to *predicting* with one driver, to *isolating many drivers at once* (today).
 :::

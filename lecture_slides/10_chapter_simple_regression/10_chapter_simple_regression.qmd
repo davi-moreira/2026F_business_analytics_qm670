@@ -69,7 +69,7 @@ html-math-method:
 
 - The question on the table: **which sites will sell?** As the manager you want every new lease backed by a sales forecast, not a hunch.
 
-- We have one dataset, `data/autoparts_revised_teaching.csv` (a teaching version of the chain's store data): for each of the 45 existing stores, its **2012 annual sales** (\$K), trade-area **population** and **income**, an **end-cap** placement flag, and its **Yelp rating**.
+- We have one dataset, `data/autoparts_revised_teaching.csv` (a teaching version of the chain's store data, with sales adjusted for teaching; the original `autoparts.csv` is also in the zip): for each of the 45 existing stores, its **2012 annual sales** (\$K), trade-area **population** and **income**, an **end-cap** placement flag, and its **Yelp rating**.
 
 - Until now we *compared* two groups. Now we *predict* a number, and that is what **regression** does.
 
@@ -392,7 +392,7 @@ $$
 | the Yelp-rating line | $\approx \$411\text{K}$ |
 :::
 
-- So **$R^2 = 0$** means the line is **no better than the average** (SSE = SST, a flat line at $\bar{y}$); **$R^2 = 1$** means every store sits on the line. Auto-parts lands at **0.858**: the line erases **86%** of the error you would make by guessing the average.
+- So **$R^2 = 0$** means the line is **no better than the average** (SSE = SST, a flat line at $\bar{y}$); **$R^2 = 1$** means every store sits on the line. Auto-parts lands at **0.858**: the line erases **86%** of the squared error you would make by guessing the average.
 
 ## $R^2$ and Correlation Are the Same Story
 
@@ -431,8 +431,8 @@ $$
 **Follow along:**
 
 1. **Data → Data Analysis → Regression**.
-2. Input Y Range: the `sales2012_k` column; Input X Range: the `yelp_rating` column.
-3. Check **Labels**, **Residuals**, and **Residual Plots**; click OK.
+2. Input Y Range: the `sales2012_k` column (`B1:B46`); Input X Range: the `yelp_rating` column (`E1:E46`).
+3. Check **Labels**, **Residuals**, **Standardized Residuals**, and **Residual Plots**; click OK.
 4. Top block (**Regression Statistics**): read **R Square** and **Standard Error**.
 5. Coefficients table: read **Intercept** ($b_0$) and the `yelp_rating` row ($b_1$).
 :::
@@ -637,7 +637,7 @@ knitr::include_graphics("figs/autoparts_reg_anova.png")
 ::: fragment
 
 $$
-b_1 \pm t_{\alpha/2,\,n-2}\; s_{b_1} = 751.9 \pm 2.02 \times 46.66 = (\$657.8\text{K},\; \$846.0\text{K})
+b_1 \pm t_{\alpha/2,\,n-2}\; s_{b_1} = 751.9 \pm 2.017 \times 46.66 = (\$657.8\text{K},\; \$846.0\text{K})
 $$
 
 :::
@@ -724,7 +724,7 @@ knitr::include_graphics("figs/autoparts_std_residual_plot.png")
   - **Store 23 (2.0 stars) over-performs:** \$2.79M in sales against the \$1.86M its rating predicts.
   - **Store 26 (5.0 stars) under-performs:** \$3.14M against the \$4.12M its rating predicts.
 
-- These are **not data errors**; they are real stores the model can't fully explain with rating alone.
+- These are **not data errors**; they are stores the model can't fully explain with rating alone.
 
 - *What might separate them?* Store 23 has end-cap placement and store 26 does not; their population and income differ too. **That is the teaser for multiple regression:** adding the variables that explain the residuals.
 
@@ -843,7 +843,7 @@ knitr::include_graphics("figs/autoparts_pred_band.png")
 | Explain | How good is the fit? | $R^2$ | **0.858** (86% of sales variation) |
 | Test | Is it real? | $t$ test on slope | $t = 16.1$, $p < .0001$ → reject $H_0$ |
 | Quantify | How big, plausibly? | 95% CI for slope | (\$658K, \$846K) per star |
-| Validate | Do assumptions hold? | Residual plot | Horizontal band → OK (2 outliers) |
+| Validate | Do assumptions hold? | Residual plot | Horizontal, even band (2 outliers) |
 | Forecast | What will a new site sell? | Point + PI | \$3.74M; PI (\$2.87M, \$4.61M) at 4.5 stars |
 :::
 
@@ -857,7 +857,7 @@ knitr::include_graphics("figs/autoparts_pred_band.png")
 
 - **One caveat:** regression forecasts and quantifies; it does **not** prove causation, and 14% of sales is still unexplained; a single predictor is a start, not the answer.
 
-- **Practice with the real data:** `data/autoparts_revised_teaching.csv` + Regression tool → reproduce $b_1 = 751.9$, $R^2 = 0.858$, $t = 16.1$ yourself.
+- **Practice with the teaching data:** `data/autoparts_revised_teaching.csv` + Regression tool → reproduce $b_1 = 751.9$, $R^2 = 0.858$, $t = 16.1$ yourself.
 
 ## Today's Question, Today's Answer
 
@@ -872,7 +872,7 @@ knitr::include_graphics("figs/autoparts_pred_band.png")
 
 **The answer we reached today:**
 
-> **Real and forecastable.** The slope test gives $t = \textbf{16.1}$, $p < 0.0001$, so we reject $H_0: \beta_1 = 0$; the 95% CI is **(\$658K, \$846K)** per star. The residual band is horizontal (assumptions hold, two off-trend stores aside). A 4.5-star site forecasts at **\$3.74M**, and for *one* lease we quote the prediction interval **(\$2.87M, \$4.61M)**.
+> **Real and forecastable.** The slope test gives $t = \textbf{16.1}$, $p < 0.0001$, so we reject $H_0: \beta_1 = 0$; the 95% CI is **(\$658K, \$846K)** per star. The residual band is horizontal with even spread (no curve, no fan; two off-trend stores to investigate). A 4.5-star site forecasts at **\$3.74M**, and for *one* lease we quote the prediction interval **(\$2.87M, \$4.61M)**.
 :::
 
 ## ⏱️ Team Sprint: Your Group Case (Lecture 2)
@@ -896,7 +896,7 @@ The main points from this session:
 - **Least squares** picks the line that minimizes $\sum (y_i - \hat{y}_i)^2$; the **slope** is the business number (\$751.9K per Yelp star), the **intercept** just anchors the line.
 - **$R^2 = \text{SSR}/\text{SST}$** is the share of variation the line explains (0.858 here); $r = (\text{sign } b_1)\sqrt{R^2}$ ties it to correlation.
 - **Inference** asks if the slope is real: $t = b_1/s_{b_1}$ with $df = n-2$ (and $F = t^2$); the 95% CI gives the plausible magnitude.
-- **Residual plots** validate the assumptions: a horizontal band is fine; a curve means nonlinearity, a fan means non-constant variance.
+- **Residual plots** check linearity and constant variance: a horizontal band is fine; a curve means nonlinearity, a fan means non-constant variance.
 - **Prediction** needs the right interval: a **CI** for the mean response, a **wider PI** for one new store; both widen as $x^*$ leaves $\bar{x}$.
 - **Next topic, Multiple Regression** on the same data: add population, income, and end-cap, and learn what "holding everything else constant" means.
 :::
