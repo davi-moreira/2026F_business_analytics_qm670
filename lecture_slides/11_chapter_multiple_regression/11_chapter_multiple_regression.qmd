@@ -1000,11 +1000,9 @@ where $R_j^2$ is from regressing $x_j$ on all the other predictors. **Rule of th
 ::::
 
 :::: {.column width="54%"}
-::: fragment
 ```{r  echo=FALSE, out.width = "100%",fig.align="center"}
 knitr::include_graphics("figs/autoparts_predictor_corr.png")
 ```
-:::
 ::::
 :::::
 
