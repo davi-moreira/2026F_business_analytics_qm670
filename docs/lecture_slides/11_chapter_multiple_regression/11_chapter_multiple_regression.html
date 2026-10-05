@@ -175,7 +175,7 @@ Professors<br>Davi Moreira<br>Thanh Nguyen<br>
 <p><br></p>
 <ul>
 <li class="fragment"><p>You are the <strong>manager</strong> of a regional <strong>auto-parts retail chain</strong>: 45 stores, deciding where to put the next dollar.</p></li>
-<li class="fragment"><p>Last time we found a single strong predictor of a store’s annual sales: its <strong>Yelp rating</strong>. Each extra star was worth roughly <strong>+$758K</strong> a year. A clean simple-regression story.</p></li>
+<li class="fragment"><p>Last time we found a single strong predictor of a store’s annual sales: its <strong>Yelp rating</strong>. Each extra star was worth roughly <strong>+$752K</strong> a year. A clean simple-regression story.</p></li>
 <li class="fragment"><p>But a Yelp rating is a <em>symptom</em>, not a lever you can pull directly. Your real question as the manager is sharper:</p></li>
 </ul>
 <div class="fragment">
@@ -235,7 +235,7 @@ Professors<br>Davi Moreira<br>Thanh Nguyen<br>
 </div>
 <p><br></p>
 <ul>
-<li class="fragment"><p>Data: <code>data/autoparts.csv</code>, 45 rows, one per store. <code>endcap</code> is already coded <strong>0/1</strong>.</p></li>
+<li class="fragment"><p>Data: <code>data/autoparts_revised_teaching.csv</code> (the teaching version from Topic 10), 45 rows, one per store. <code>endcap</code> is already coded <strong>0/1</strong>.</p></li>
 <li class="fragment"><p><strong>The trap we will spring today:</strong> the two drivers you might <em>expect</em> to dominate (population and income) turn out <strong>not</strong> to matter once service and merchandising are in the model.</p></li>
 </ul>
 </section>
@@ -270,7 +270,7 @@ Professors<br>Davi Moreira<br>Thanh Nguyen<br>
 </div>
 <p><br></p>
 <ul>
-<li class="fragment"><p>Simple regression answered “does Yelp predict sales?” in isolation. But stores with high Yelp ratings might also sit in richer markets, so the simple slope can <strong>mix two effects together</strong>.</p></li>
+<li class="fragment"><p>Simple regression answered “does Yelp predict sales?” in isolation. But high-rated stores also tend to have endcap placement (3.7 stars on average vs.&nbsp;2.6 without), so the simple slope can <strong>mix two effects together</strong>.</p></li>
 <li class="fragment"><p>Multiple regression estimates the effect of <strong>each</strong> driver <strong>while statistically holding the others constant</strong>: the closest thing we have to a controlled comparison from observational data.</p></li>
 <li class="fragment"><p>First we build the machine and learn to read its output. Testing and the dollar decision come in Lecture 2.</p></li>
 </ul>
@@ -354,7 +354,7 @@ E(y) = \beta_0 + \beta_1 x_1 + \beta_2 x_2 + \cdots + \beta_p x_p
 <ul>
 <li class="fragment">“<span class="math inline">\(b_j\)</span> = the predicted change in <span class="math inline">\(y\)</span> for a one-unit increase in <span class="math inline">\(x_j\)</span>, <strong>holding all other variables constant.</strong>”</li>
 </ul></li>
-<li class="fragment"><p>This is why a predictor can look important alone yet vanish in the full model: its apparent effect was the work of a variable it travels with. (We will watch exactly this happen to population and income.)</p></li>
+<li class="fragment"><p>This is why a coefficient can shrink, grow, or even flip sign in the full model: alone, a predictor also collects credit for the variables it travels with. (We will watch Yelp’s slope shrink once endcap enters.)</p></li>
 </ul>
 </section>
 <section id="watch-holding-constant-change-the-story" class="slide level2 center">
@@ -374,7 +374,7 @@ E(y) = \beta_0 + \beta_1 x_1 + \beta_2 x_2 + \cdots + \beta_p x_p
 <li class="fragment">The raw cloud tilts one way: a single <strong>pooled</strong> correlation that ignores a lurking variable (here, the two colors).</li>
 <li class="fragment">Split by that variable and the relationship <strong>within each group</strong> can flatten, steepen, or even <strong>flip</strong>.</li>
 <li class="fragment">A <strong>partial coefficient</strong> reads exactly that within-group story: the effect of one driver among stores that match on the others.</li>
-<li class="fragment">Hold this picture for the auto-parts surprise: population <em>looks</em> like it lifts sales, until we hold service and merchandising constant.</li>
+<li class="fragment">Hold this picture for the auto-parts data: the two colors are endcap and non-endcap stores, and Yelp’s slope changes once we compare stores within each group.</li>
 </ul>
 </div></div>
 </section>
@@ -419,7 +419,7 @@ E(y) = \beta_0 + \beta_1 x_1 + \beta_2 x_2 + \cdots + \beta_p x_p
 <li class="fragment"><strong>Data → Data Analysis → Regression</strong>.</li>
 <li class="fragment">Input Y Range: <code>sales2012_k</code> (column <strong>B</strong>); Input X Range: <strong>E:F</strong> together.</li>
 <li class="fragment">Check <strong>Labels</strong> and <strong>Confidence Level 95%</strong>; click OK.</li>
-<li class="fragment">Read the <strong>Coefficients</strong> column: <span class="math inline">\(b_0 = 295.3\)</span>, <span class="math inline">\(b_1 = 648.7\)</span>, <span class="math inline">\(b_2 = 740.4\)</span>.</li>
+<li class="fragment">Read the <strong>Coefficients</strong> column: <span class="math inline">\(b_0 = 318.4\)</span>, <span class="math inline">\(b_1 = 644.0\)</span>, <span class="math inline">\(b_2 = 734.2\)</span>.</li>
 </ol>
 </div><div class="column" style="width:54%;">
 <div class="quarto-figure quarto-figure-center">
@@ -429,7 +429,7 @@ E(y) = \beta_0 + \beta_1 x_1 + \beta_2 x_2 + \cdots + \beta_p x_p
 </div>
 <div class="fragment">
 <p><span class="math display">\[
-\widehat{\text{sales}} = 295.3 + 648.7\,\text{yelp} + 740.4\,\text{endcap}
+\widehat{\text{sales}} = 318.4 + 644.0\,\text{yelp} + 734.2\,\text{endcap}
 \]</span></p>
 </div>
 </div></div>
@@ -438,8 +438,8 @@ E(y) = \beta_0 + \beta_1 x_1 + \beta_2 x_2 + \cdots + \beta_p x_p
 <h2>Reading the Two Partial Coefficients</h2>
 <p><br></p>
 <ul>
-<li class="fragment"><p><span class="math inline">\(b_1 = +648.7\)</span> (Yelp): each <strong>extra star</strong> predicts about <strong>+$649K</strong> in annual sales, <strong>holding endcap placement constant.</strong></p></li>
-<li class="fragment"><p><span class="math inline">\(b_2 = +740.4\)</span> (endcap): an <strong>endcap</strong> predicts about <strong>+$740K</strong>, <strong>holding the Yelp rating constant.</strong></p></li>
+<li class="fragment"><p><span class="math inline">\(b_1 = +644.0\)</span> (Yelp): each <strong>extra star</strong> predicts about <strong>+$644K</strong> in annual sales, <strong>holding endcap placement constant.</strong></p></li>
+<li class="fragment"><p><span class="math inline">\(b_2 = +734.2\)</span> (endcap): an <strong>endcap</strong> predicts about <strong>+$734K</strong>, <strong>holding the Yelp rating constant.</strong></p></li>
 <li class="fragment"><p><strong>Predict</strong> store #5 (Yelp <span class="math inline">\(=5.0\)</span>, endcap <span class="math inline">\(=1\)</span>), stacked against the simpler options:</p></li>
 </ul>
 <div class="fragment">
@@ -453,25 +453,25 @@ E(y) = \beta_0 + \beta_1 x_1 + \beta_2 x_2 + \cdots + \beta_p x_p
 <tbody>
 <tr class="odd">
 <td>Null (guess the average)</td>
-<td style="text-align: right;">$2,706K</td>
+<td style="text-align: right;">$2,712K</td>
 </tr>
 <tr class="even">
 <td>Simple, Yelp only (Topic 10)</td>
-<td style="text-align: right;">$4,120K</td>
+<td style="text-align: right;">$4,115K</td>
 </tr>
 <tr class="odd">
 <td><strong>Two drivers (Yelp + endcap)</strong></td>
-<td style="text-align: right;"><strong>$4,279K</strong></td>
+<td style="text-align: right;"><strong>$4,273K</strong></td>
 </tr>
 <tr class="even">
 <td>Actual</td>
-<td style="text-align: right;">$4,677K</td>
+<td style="text-align: right;">$4,458K</td>
 </tr>
 </tbody>
 </table>
 </div>
 <ul>
-<li class="fragment">Each step lands closer to the $4,677K actual; the two-driver <strong>residual</strong> is <span class="math inline">\(4677 - 4279 = +\$398\text{K}\)</span>. Still short: maybe location is helping. That is what the next two drivers test.</li>
+<li class="fragment">Each step lands closer to the $4,458K actual; the two-driver <strong>residual</strong> is <span class="math inline">\(4458 - 4273 = +\$185\text{K}\)</span>. Still short: maybe location is helping. That is what the next two drivers test.</li>
 </ul>
 </section></section>
 <section>
@@ -499,7 +499,7 @@ R^2 = \frac{SSR}{SST} = 1 - \frac{SSE}{SST}
 \]</span></p>
 </div>
 <ul>
-<li class="fragment">For the two-driver warm-up: <span class="math inline">\(R^2 = 51{,}797{,}905 / 55{,}840{,}034 = 0.928\)</span>: Yelp and endcap together explain about <strong>93%</strong> of the variation in store sales.</li>
+<li class="fragment">For the two-driver warm-up: <span class="math inline">\(R^2 = 51{,}020{,}204 / 53{,}506{,}159 = 0.954\)</span>: Yelp and endcap together explain about <strong>95%</strong> of the variation in store sales.</li>
 </ul>
 </section>
 <section id="the-r2-trap-it-can-only-go-up" class="slide level2 center">
@@ -533,7 +533,7 @@ R^2 = \frac{SSR}{SST} = 1 - \frac{SSE}{SST}
 <li class="fragment">Adjusted <span class="math inline">\(R^2\)</span> goes <strong>up only if a new predictor reduces the error variance <span class="math inline">\(s^2\)</span> (= MSE) more than the penalty costs.</strong></li>
 </ul></li>
 <li class="fragment"><p>That makes adjusted <span class="math inline">\(R^2\)</span> a real <strong>model-building criterion</strong>: compare candidate models, prefer the higher one.</p></li>
-<li class="fragment"><p>Two-driver warm-up: <span class="math inline">\(R^2 = 0.9276\)</span> but adjusted <span class="math inline">\(R^2 = 0.9242\)</span>; on 45 stores the fee for two predictors is small, and next we watch whether two <em>more</em> drivers can clear it.</p></li>
+<li class="fragment"><p>Two-driver warm-up: <span class="math inline">\(R^2 = 0.9535\)</span> but adjusted <span class="math inline">\(R^2 = 0.9513\)</span>; on 45 stores the fee for two predictors is small, and next we watch whether two <em>more</em> drivers can clear it.</p></li>
 </ul>
 </div>
 </section>
@@ -543,7 +543,7 @@ R^2 = \frac{SSR}{SST} = 1 - \frac{SSE}{SST}
 <p><strong>A question that often comes up at this point:</strong></p>
 <p><span class="faq-q">If adjusted <span class="math inline">\(R^2\)</span> is the honest measure, why does Excel report plain <span class="math inline">\(R^2\)</span> at all, and which one do I quote to the chain?</span></p>
 <div class="fragment faq-a">
-<p><strong>Short answer:</strong> quote <strong>both</strong>, and let the gap tell the story. Plain <span class="math inline">\(R^2\)</span> answers “how much variation did this model explain?” (a description of these 45 stores); adjusted <span class="math inline">\(R^2\)</span> answers “would this fit survive a fair charge for the predictors I used?” (the model-building question). For the two-driver warm-up they are close, <span class="math inline">\(0.9276\)</span> vs <span class="math inline">\(0.9242\)</span>: the penalty is small because two predictors is cheap against 45 stores. Careful, though: the size of that gap says nothing about whether any <em>particular</em> predictor earns its place. It scales with how many predictors you used relative to <span class="math inline">\(n\)</span>, not with how useful each one is. To decide whether a specific driver belongs, look at its own <span class="math inline">\(t\)</span>-test, or refit without it and compare adjusted <span class="math inline">\(R^2\)</span> head to head.</p>
+<p><strong>Short answer:</strong> quote <strong>both</strong>, and let the gap tell the story. Plain <span class="math inline">\(R^2\)</span> answers “how much variation did this model explain?” (a description of these 45 stores); adjusted <span class="math inline">\(R^2\)</span> answers “would this fit survive a fair charge for the predictors I used?” (the model-building question). For the two-driver warm-up they are close, <span class="math inline">\(0.9535\)</span> vs <span class="math inline">\(0.9513\)</span>: the penalty is small because two predictors is cheap against 45 stores. Careful, though: the size of that gap says nothing about whether any <em>particular</em> predictor earns its place. It scales with how many predictors you used relative to <span class="math inline">\(n\)</span>, not with how useful each one is. To decide whether a specific driver belongs, look at its own <span class="math inline">\(t\)</span>-test, or refit without it and compare adjusted <span class="math inline">\(R^2\)</span> head to head.</p>
 </div>
 </div>
 </section></section>
@@ -581,13 +581,13 @@ R^2 = \frac{SSR}{SST} = 1 - \frac{SSE}{SST}
 <p>From the <strong>Coefficients</strong> column of the output:</p>
 <div class="fragment">
 <p><span class="math display">\[
-\widehat{\text{sales}} = -52.1 + 0.00035\,\text{pop} + 0.0047\,\text{income} + 642.3\,\text{yelp} + 816.5\,\text{endcap}
+\widehat{\text{sales}} = 40.2 + 0.00032\,\text{pop} + 0.0036\,\text{income} + 639.9\,\text{yelp} + 791.1\,\text{endcap}
 \]</span></p>
 </div>
 <p><br></p>
 <ul>
-<li class="fragment"><p><strong>Fit:</strong> <span class="math inline">\(R^2 = 0.932\)</span>, adjusted <span class="math inline">\(R^2 = 0.925\)</span>: the four drivers together explain about <strong>93%</strong> of the variation in store sales, and that holds up after the per-predictor penalty.</p></li>
-<li class="fragment"><p>Standard error <span class="math inline">\(s = \$308.5\text{K}\)</span>: a rough “typical miss” of the model’s sales prediction.</p></li>
+<li class="fragment"><p><strong>Fit:</strong> <span class="math inline">\(R^2 = 0.956\)</span>, adjusted <span class="math inline">\(R^2 = 0.952\)</span>: the four drivers together explain about <strong>96%</strong> of the variation in store sales, and that holds up after the per-predictor penalty.</p></li>
+<li class="fragment"><p>Standard error <span class="math inline">\(s = \$241.6\text{K}\)</span>: a rough “typical miss” of the model’s sales prediction.</p></li>
 <li class="fragment"><p>Now the interpretation, and the surprise.</p></li>
 </ul>
 </section>
@@ -616,27 +616,27 @@ R^2 = \frac{SSR}{SST} = 1 - \frac{SSE}{SST}
 <tbody>
 <tr class="odd">
 <td>Null (no model)</td>
-<td>guess the average $2,706K every time</td>
+<td>guess the average $2,712K every time</td>
 <td style="text-align: right;">0.000</td>
-<td style="text-align: right;">~$1,114K</td>
+<td style="text-align: right;">~$1,090K</td>
 </tr>
 <tr class="even">
 <td>Simple (Topic 10)</td>
 <td>Yelp rating alone</td>
-<td style="text-align: right;">0.834</td>
-<td style="text-align: right;">~$453K</td>
+<td style="text-align: right;">0.858</td>
+<td style="text-align: right;">~$411K</td>
 </tr>
 <tr class="odd">
 <td><strong>Multiple (today)</strong></td>
 <td><strong>all four drivers</strong></td>
-<td style="text-align: right;"><strong>0.932</strong></td>
-<td style="text-align: right;"><strong>~$291K</strong></td>
+<td style="text-align: right;"><strong>0.956</strong></td>
+<td style="text-align: right;"><strong>~$228K</strong></td>
 </tr>
 </tbody>
 </table>
 </div>
 <ul>
-<li class="fragment"><p>Each rung <strong>cuts the typical miss</strong>: $1,114K with no model, $453K with one driver, $291K with four. Yelp did the heavy lifting; the other three still shave off another third of the error.</p></li>
+<li class="fragment"><p>Each rung <strong>cuts the typical miss</strong>: $1,090K with no model, $411K with one driver, $228K with four. Yelp did the heavy lifting; the other three still cut the remaining miss by almost half.</p></li>
 <li class="fragment"><p>The payoff of the topic is not only <em>which</em> drivers matter, but a <strong>sharper sales prediction</strong> for the next store.</p></li>
 </ul>
 </section>
@@ -644,7 +644,7 @@ R^2 = \frac{SSR}{SST} = 1 - \frac{SSE}{SST}
 <h2>Reading the Partial Effects</h2>
 
 <img data-src="figs/autoparts_coef_effects.png" class="quarto-figure quarto-figure-center r-stretch" style="width:82.0%"><ul>
-<li>Each <strong>Yelp star</strong> predicts <strong>+$642K</strong> in annual sales, holding location and merchandising fixed. An <strong>endcap</strong> predicts <strong>+$816K</strong>, holding everything else fixed.</li>
+<li>Each <strong>Yelp star</strong> predicts <strong>+$640K</strong> in annual sales, holding location and merchandising fixed. An <strong>endcap</strong> predicts <strong>+$791K</strong>, holding everything else fixed.</li>
 <li>The two location drivers (population, income) move the needle far less; we will test whether they matter at all next lecture.</li>
 </ul>
 </section>
@@ -655,11 +655,11 @@ R^2 = \frac{SSR}{SST} = 1 - \frac{SSE}{SST}
 <li class="fragment"><p>Intuition says <strong>population</strong> and <strong>income</strong> should dominate: more people, more money, more sales.</p></li>
 <li class="fragment"><p>But the partial coefficients say otherwise:</p>
 <ul>
-<li class="fragment"><strong>Population:</strong> <span class="math inline">\(+0.00035\)</span> → about <strong>+$0.35K per extra 1,000 residents</strong>. Flat.</li>
-<li class="fragment"><strong>Income:</strong> <span class="math inline">\(+0.0047\)</span> → about <strong>+$4.7K per extra $1,000 of median income</strong>. Small.</li>
+<li class="fragment"><strong>Population:</strong> <span class="math inline">\(+0.00032\)</span> → about <strong>+$0.32K per extra 1,000 residents</strong>. Flat.</li>
+<li class="fragment"><strong>Income:</strong> <span class="math inline">\(+0.0036\)</span> → about <strong>+$3.6K per extra $1,000 of median income</strong>. Small.</li>
 </ul></li>
 <li class="fragment"><p>Meanwhile <strong>service</strong> (Yelp) and <strong>merchandising</strong> (endcap) carry the model.</p></li>
-<li class="fragment"><p><strong>Why the intuition fails:</strong> in simple regression a market-size variable can look strong because it travels with the variables that <strong>actually drive sales</strong>. Once those are in the model, “holding the others constant” strips the borrowed credit away. We will confirm this with formal tests in Lecture 2.</p></li>
+<li class="fragment"><p><strong>Why the intuition fails here:</strong> our 45 stores range from 15,000 to 528,000 residents, yet sales barely track market size, alone (correlations with sales of <span class="math inline">\(-0.07\)</span> for population and <span class="math inline">\(-0.12\)</span> for income) or with the others held constant. We will confirm this with formal tests in Lecture 2.</p></li>
 </ul>
 </section>
 <section id="a-question-that-often-comes-up-2" class="slide level2 center">
@@ -668,7 +668,7 @@ R^2 = \frac{SSR}{SST} = 1 - \frac{SSE}{SST}
 <p><strong>A question that often comes up at this point:</strong></p>
 <p><span class="faq-q">Does a near-zero coefficient on population mean a chain should <em>never</em> care about market size?</span></p>
 <div class="fragment faq-a">
-<p><strong>Short answer:</strong> no, and this is the trap a manager must not fall into. The <span class="math inline">\(+0.00035\)</span> on population says only that <em>among our 45 stores</em>, once Yelp and endcap are accounted for, market size adds almost nothing extra. It does not say population is irrelevant in the world. Our stores may already sit in reasonable markets, so size has little room left to explain. The coefficient is a statement about <em>this model and this data</em>, not a universal law of retail.</p>
+<p><strong>Short answer:</strong> no, and this is the trap a manager must not fall into. The <span class="math inline">\(+0.00032\)</span> on population says only that <em>among our 45 stores</em>, once Yelp and endcap are accounted for, market size adds almost nothing extra. It does not say population is irrelevant in the world. Our stores may already sit in reasonable markets, so size has little room left to explain. The coefficient is a statement about <em>this model and this data</em>, not a universal law of retail.</p>
 </div>
 </div>
 </section>
@@ -676,8 +676,8 @@ R^2 = \frac{SSR}{SST} = 1 - \frac{SSE}{SST}
 <h2>The Manager’s Takeaway (Lecture 1)</h2>
 <p><br></p>
 <ul>
-<li class="fragment"><p><strong>One sentence:</strong> four drivers explain <strong>93%</strong> of store-sales variation, and the effects that matter are <strong>service (Yelp, +$642K/star)</strong> and <strong>merchandising (endcap, +$816K)</strong>, <em>not</em> the market-size variables you might bet on.</p></li>
-<li class="fragment"><p><strong>One number:</strong> <strong>adjusted <span class="math inline">\(R^2 = 0.925\)</span></strong>: the fit <em>survives</em> a fair charge for using four predictors. Read it as in-sample fit on these 45 stores, not as proof the model would predict a new store this well, and not as proof that all four drivers earn their place: that is a per-predictor question the <span class="math inline">\(t\)</span>-tests answer.</p></li>
+<li class="fragment"><p><strong>One sentence:</strong> four drivers explain <strong>96%</strong> of store-sales variation, and the effects that matter are <strong>service (Yelp, +$640K/star)</strong> and <strong>merchandising (endcap, +$791K)</strong>, <em>not</em> the market-size variables you might bet on.</p></li>
+<li class="fragment"><p><strong>One number:</strong> <strong>adjusted <span class="math inline">\(R^2 = 0.952\)</span></strong>: the fit <em>survives</em> a fair charge for using four predictors. Read it as in-sample fit on these 45 stores, not as proof the model would predict a new store this well, and not as proof that all four drivers earn their place: that is a per-predictor question the <span class="math inline">\(t\)</span>-tests answer.</p></li>
 <li class="fragment"><p><strong>One caveat:</strong> “holding the others constant” is doing heavy lifting. A coefficient near zero (population, income) doesn’t prove the variable is irrelevant in the world, only that it adds little <strong>once the others are in.</strong> Next lecture we make that rigorous with the <span class="math inline">\(F\)</span>- and <span class="math inline">\(t\)</span>-tests, and put a defensible dollar value on an endcap.</p></li>
 </ul>
 </section>
@@ -692,7 +692,7 @@ R^2 = \frac{SSR}{SST} = 1 - \frac{SSE}{SST}
 <p><br></p>
 <p><strong>The answer we reached today:</strong></p>
 <blockquote>
-<p>The four-driver model explains <strong>93%</strong> of sales variation (adjusted <span class="math inline">\(R^2 = 0.925\)</span>), and the partial effects that carry it are <strong>service (Yelp, +$642K/star)</strong> and <strong>merchandising (endcap, +$816K)</strong>, <em>not</em> population (+$0.35K/1,000 residents) or income (+$4.7K/$1,000). Whether each effect is <em>real</em> or noise is the <strong>testing</strong> question, settled in Lecture 2.</p>
+<p>The four-driver model explains <strong>96%</strong> of sales variation (adjusted <span class="math inline">\(R^2 = 0.952\)</span>), and the partial effects that carry it are <strong>service (Yelp, +$640K/star)</strong> and <strong>merchandising (endcap, +$791K)</strong>, <em>not</em> population (+$0.32K/1,000 residents) or income (+$3.6K/$1,000). Whether each effect is <em>real</em> or noise is the <strong>testing</strong> question, settled in Lecture 2.</p>
 </blockquote>
 </div>
 </section>
@@ -814,21 +814,21 @@ F = \frac{MSR}{MSE} = \frac{SSR/p}{SSE/(n - p - 1)} \;\sim\; F_{p,\; n-p-1} \tex
 <tr class="odd">
 <td>Regression</td>
 <td style="text-align: right;">4</td>
-<td style="text-align: right;">52,033,385</td>
-<td style="text-align: right;">13,008,346</td>
-<td style="text-align: right;"><strong>136.7</strong></td>
+<td style="text-align: right;">51,170,799</td>
+<td style="text-align: right;">12,792,700</td>
+<td style="text-align: right;"><strong>219.1</strong></td>
 </tr>
 <tr class="even">
 <td>Residual</td>
 <td style="text-align: right;">40</td>
-<td style="text-align: right;">3,806,649</td>
-<td style="text-align: right;">95,166</td>
+<td style="text-align: right;">2,335,360</td>
+<td style="text-align: right;">58,384</td>
 <td style="text-align: right;"></td>
 </tr>
 <tr class="odd">
 <td>Total</td>
 <td style="text-align: right;">44</td>
-<td style="text-align: right;">55,840,034</td>
+<td style="text-align: right;">53,506,159</td>
 <td style="text-align: right;"></td>
 <td style="text-align: right;"></td>
 </tr>
@@ -837,11 +837,11 @@ F = \frac{MSR}{MSE} = \frac{SSR/p}{SSE/(n - p - 1)} \;\sim\; F_{p,\; n-p-1} \tex
 </div>
 <div class="fragment">
 <p><span class="math display">\[
-F = \frac{MSR}{MSE} = \frac{13{,}008{,}346}{95{,}166} = 136.7, \qquad \text{Significance } F \approx 9.2\times10^{-23}
+F = \frac{MSR}{MSE} = \frac{12{,}792{,}700}{58{,}384} = 219.1, \qquad \text{Significance } F \approx 1.3\times10^{-26}
 \]</span></p>
 </div>
 <ul>
-<li class="fragment"><span class="math inline">\(F = 136.7\)</span> with p-value far below any <span class="math inline">\(\alpha\)</span> → <strong>reject <span class="math inline">\(H_0\)</span></strong>: the model is decisively useful, so <strong>at least one</strong> driver carries real information. Now, <em>which ones?</em></li>
+<li class="fragment"><span class="math inline">\(F = 219.1\)</span> with p-value far below any <span class="math inline">\(\alpha\)</span> → <strong>reject <span class="math inline">\(H_0\)</span></strong>: the model is decisively useful, so <strong>at least one</strong> driver carries real information. Now, <em>which ones?</em></li>
 </ul>
 </section></section>
 <section>
@@ -902,29 +902,29 @@ H_0: \beta_j = 0 \qquad H_a: \beta_j \neq 0 \qquad t = \frac{b_j}{s_{b_j}}, \qua
 <tbody>
 <tr class="odd">
 <td>Population</td>
-<td style="text-align: right;">+0.00035</td>
-<td style="text-align: right;">0.88</td>
-<td style="text-align: right;">0.39</td>
+<td style="text-align: right;">+0.00032</td>
+<td style="text-align: right;">1.00</td>
+<td style="text-align: right;">0.32</td>
 <td><strong>No</strong></td>
 </tr>
 <tr class="even">
 <td>Income</td>
-<td style="text-align: right;">+0.0047</td>
-<td style="text-align: right;">1.50</td>
+<td style="text-align: right;">+0.0036</td>
+<td style="text-align: right;">1.49</td>
 <td style="text-align: right;">0.14</td>
 <td><strong>No</strong></td>
 </tr>
 <tr class="odd">
 <td>Yelp rating</td>
-<td style="text-align: right;"><strong>+642.3</strong></td>
-<td style="text-align: right;"><strong>16.5</strong></td>
+<td style="text-align: right;"><strong>+639.9</strong></td>
+<td style="text-align: right;"><strong>21.0</strong></td>
 <td style="text-align: right;">&lt; 0.0001</td>
 <td><strong>Yes</strong></td>
 </tr>
 <tr class="even">
 <td>Endcap</td>
-<td style="text-align: right;"><strong>+816.5</strong></td>
-<td style="text-align: right;"><strong>6.98</strong></td>
+<td style="text-align: right;"><strong>+791.1</strong></td>
+<td style="text-align: right;"><strong>8.63</strong></td>
 <td style="text-align: right;">&lt; 0.0001</td>
 <td><strong>Yes</strong></td>
 </tr>
@@ -932,7 +932,7 @@ H_0: \beta_j = 0 \qquad H_a: \beta_j \neq 0 \qquad t = \frac{b_j}{s_{b_j}}, \qua
 </table>
 </div>
 <ul>
-<li class="fragment"><p>The model is highly significant overall (<span class="math inline">\(F = 136.7\)</span>), yet <strong>two of its four predictors are individually insignificant.</strong></p></li>
+<li class="fragment"><p>The model is highly significant overall (<span class="math inline">\(F = 219.1\)</span>), yet <strong>two of its four predictors are individually insignificant.</strong></p></li>
 <li class="fragment"><p><strong>The lesson:</strong> a significant <span class="math inline">\(F\)</span> does <strong>not</strong> mean every variable matters. Here all the explanatory power comes from <strong>service (Yelp)</strong> and <strong>merchandising (endcap)</strong>; the location variables are statistical passengers.</p></li>
 <li class="fragment"><p><em>Significance ≠ importance, and importance ≠ significance.</em> Judge each on its own evidence.</p></li>
 </ul>
@@ -979,7 +979,7 @@ H_0: \beta_j = 0 \qquad H_a: \beta_j \neq 0 \qquad t = \frac{b_j}{s_{b_j}}, \qua
 <p><br></p>
 <ul>
 <li class="fragment"><p>Lecture 1’s <strong>warm-up model</strong> used Yelp and endcap. The <strong>four-driver model</strong> added population and income. As the manager, should you keep those two location variables?</p></li>
-<li class="fragment"><p>Population’s p-value is <strong>0.39</strong> and income’s is <strong>0.14</strong>, but each <span class="math inline">\(t\)</span>-test keeps the other three predictors in the model. Neither one tests removing the location <strong>pair</strong> together.</p></li>
+<li class="fragment"><p>Population’s p-value is <strong>0.32</strong> and income’s is <strong>0.14</strong>, but each <span class="math inline">\(t\)</span>-test keeps the other three predictors in the model. Neither one tests removing the location <strong>pair</strong> together.</p></li>
 <li class="fragment"><p>The <strong>partial <span class="math inline">\(F\)</span>-test</strong> compares the two models while Yelp and endcap stay in both. In the full model, we test:</p></li>
 </ul>
 <div class="fragment">
@@ -1017,9 +1017,9 @@ F = \frac{\big[\,SSE(\text{reduced}) - SSE(\text{full})\,\big] / q}{SSE(\text{fu
 <div class="column" style="width:46%;">
 <p><strong>Follow along:</strong></p>
 <ol type="1">
-<li class="fragment">On the data sheet, put the <strong>full model’s Residual SS</strong> (3,806,649) in <code>G2</code>; its residual df is <strong>40</strong>.</li>
+<li class="fragment">On the data sheet, put the <strong>full model’s Residual SS</strong> (2,335,360) in <code>G2</code>; its residual df is <strong>40</strong>.</li>
 <li class="fragment"><strong>Data → Data Analysis → Regression</strong>: Y <code>B1:B46</code>, X <code>E1:F46</code> (<code>yelp_rating</code>, <code>endcap</code>); check <strong>Labels</strong>, leave <strong>Constant is Zero</strong> unchecked, output to a new worksheet.</li>
-<li class="fragment">Copy the reduced model’s <strong>Residual SS</strong> (4,042,129) to <code>G3</code> on the data sheet.</li>
+<li class="fragment">Copy the reduced model’s <strong>Residual SS</strong> (2,485,955) to <code>G3</code> on the data sheet.</li>
 <li class="fragment">In <code>G4</code>: <code>=((G3-G2)/2)/(G2/40)</code> → the partial <span class="math inline">\(F\)</span>.</li>
 <li class="fragment">p-value: <code>=F.DIST.RT(G4,2,40)</code>; 5% critical value: <code>=F.INV.RT(0.05,2,40)</code>.</li>
 </ol>
@@ -1030,7 +1030,7 @@ F = \frac{\big[\,SSE(\text{reduced}) - SSE(\text{full})\,\big] / q}{SSE(\text{fu
 </figure>
 </div>
 <div class="fragment">
-<p>Use the <strong>Residual SS</strong> row. The pictured <strong>F = 269.10</strong> tests Yelp and endcap against an intercept-only model; our partial test compares the reduced model with all four drivers.</p>
+<p>Use the <strong>Residual SS</strong> row. The pictured <strong>F = 430.99</strong> tests Yelp and endcap against an intercept-only model; our partial test compares the reduced model with all four drivers.</p>
 </div>
 </div></div>
 </section>
@@ -1051,13 +1051,13 @@ F = \frac{\big[\,SSE(\text{reduced}) - SSE(\text{full})\,\big] / q}{SSE(\text{fu
 <tr class="odd">
 <td>Full</td>
 <td>population, income, Yelp, endcap</td>
-<td style="text-align: right;">3,806,649</td>
+<td style="text-align: right;">2,335,360</td>
 <td style="text-align: right;">40</td>
 </tr>
 <tr class="even">
 <td>Reduced</td>
 <td>Yelp, endcap</td>
-<td style="text-align: right;">4,042,129</td>
+<td style="text-align: right;">2,485,955</td>
 <td style="text-align: right;">42</td>
 </tr>
 </tbody>
@@ -1065,12 +1065,12 @@ F = \frac{\big[\,SSE(\text{reduced}) - SSE(\text{full})\,\big] / q}{SSE(\text{fu
 </div>
 <div class="fragment">
 <p><span class="math display">\[
-F = \frac{(4{,}042{,}129-3{,}806{,}649)/2}{3{,}806{,}649/40} \approx 1.24
+F = \frac{(2{,}485{,}955-2{,}335{,}360)/2}{2{,}335{,}360/40} \approx 1.29
 \]</span></p>
 </div>
 <ul>
-<li class="fragment"><p>With degrees of freedom <span class="math inline">\((2, 40)\)</span>, the <strong>5% critical value is 3.23</strong> and the <strong>p-value is 0.30</strong>.</p></li>
-<li class="fragment"><p><span class="math inline">\(1.24 &lt; 3.23\)</span> → <strong>fail to reject <span class="math inline">\(H_0\)</span></strong>: the 45 stores give no statistically detectable evidence that the location pair adds information beyond Yelp and endcap.</p></li>
+<li class="fragment"><p>With degrees of freedom <span class="math inline">\((2, 40)\)</span>, the <strong>5% critical value is 3.23</strong> and the <strong>p-value is 0.29</strong>.</p></li>
+<li class="fragment"><p><span class="math inline">\(1.29 &lt; 3.23\)</span> → <strong>fail to reject <span class="math inline">\(H_0\)</span></strong>: the 45 stores give no statistically detectable evidence that the location pair adds information beyond Yelp and endcap.</p></li>
 <li class="fragment"><p>Yelp + endcap is a <strong>simpler candidate model</strong>. Before adopting it, check how removing location changes the predictions and the coefficients the manager’s decision needs.</p></li>
 </ul>
 </section>
@@ -1079,7 +1079,7 @@ F = \frac{(4{,}042{,}129-3{,}806{,}649)/2}{3{,}806{,}649/40} \approx 1.24
 <p><br></p>
 <ul>
 <li class="fragment"><p>Remove <strong>income only</strong> (<span class="math inline">\(q = 1\)</span>); keep population, Yelp, and endcap. Compare this reduced model with the same four-driver full model.</p></li>
-<li class="fragment"><p>Income’s unrounded statistic is <span class="math inline">\(t = 1.5036\)</span>, so <span class="math inline">\(F = t^2 = 2.26\)</span>. (Squaring the displayed <span class="math inline">\(1.50\)</span> gives <span class="math inline">\(2.25\)</span>, only because it was rounded first.)</p></li>
+<li class="fragment"><p>Income’s unrounded statistic is <span class="math inline">\(t = 1.4919\)</span>, so <span class="math inline">\(F = t^2 = 2.23\)</span>. (Squaring the displayed <span class="math inline">\(1.49\)</span> gives <span class="math inline">\(2.22\)</span>, only because it was rounded first.)</p></li>
 <li class="fragment"><p>The partial <span class="math inline">\(F\)</span>-test and the <strong>two-sided</strong> <span class="math inline">\(t\)</span>-test of <span class="math inline">\(H_0:\beta_{\text{inc}}=0\)</span> share the same p-value, about <strong>0.14</strong>, and the same decision.</p></li>
 <li class="fragment"><p><strong>One coefficient:</strong> read its two-sided <span class="math inline">\(t\)</span>-test. <strong>Several coefficients together:</strong> use the partial <span class="math inline">\(F\)</span>-test.</p></li>
 </ul>
@@ -1088,7 +1088,7 @@ F = \frac{(4{,}042{,}129-3{,}806{,}649)/2}{3{,}806{,}649/40} \approx 1.24
 <h2>A Question That Often Comes Up</h2>
 <div class="faq">
 <p><strong>A question that often comes up at this point:</strong></p>
-<p><span class="faq-q">Does <span class="math inline">\(p = 0.30\)</span> prove that population and income can be removed without losing anything?</span></p>
+<p><span class="faq-q">Does <span class="math inline">\(p = 0.29\)</span> prove that population and income can be removed without losing anything?</span></p>
 <div class="fragment faq-a">
 <p><strong>Short answer:</strong> no. These 45 stores provide insufficient evidence that the location pair adds information beyond Yelp and endcap. The smaller model is a reasonable candidate, but the test does not prove zero effects or unchanged predictions. Had the joint test rejected, we would keep the pair together; that still would not say which of the two matters, or explain why their individual <span class="math inline">\(t\)</span>-tests were weak. Predictor overlap gets its own check later in the lecture (VIF).</p>
 </div>
@@ -1110,7 +1110,7 @@ F = \frac{(4{,}042{,}129-3{,}806{,}649)/2}{3{,}806{,}649/40} \approx 1.24
 <li class="fragment"><span class="math inline">\(b_{\text{endcap}}\)</span> = the <strong>average difference in sales between an endcap store and a non-endcap store, holding the other predictors constant.</strong></li>
 </ul></li>
 <li class="fragment"><p>In other words, the dummy coefficient is the <strong>dollar value of an endcap</strong>: exactly what you asked your analyst to find.</p></li>
-<li class="fragment"><p>For the endcap comparison that follows we keep the <strong>full four-driver model</strong>, so population and income stay controlled for. Its endcap coefficient is <strong>+$816.5K</strong>; refitting without location gives <strong>+$740.4K</strong>, a reminder that a coefficient depends on which predictors stay in.</p></li>
+<li class="fragment"><p>For the endcap comparison that follows we keep the <strong>full four-driver model</strong>, so population and income stay controlled for. Its endcap coefficient is <strong>+$791.1K</strong>; refitting without location gives <strong>+$734.2K</strong>, a reminder that a coefficient depends on which predictors stay in.</p></li>
 </ul>
 </section>
 <section id="what-the-dummy-does-to-the-equation" class="slide level2 center">
@@ -1121,14 +1121,14 @@ F = \frac{(4{,}042{,}129-3{,}806{,}649)/2}{3{,}806{,}649/40} \approx 1.24
 </ul>
 <div class="fragment">
 <p><span class="math display">\[
-\text{No endcap } (x=0): \quad \widehat{\text{sales}} = (b_0 + \cdots) + 642.3\,\text{yelp}
+\text{No endcap } (x=0): \quad \widehat{\text{sales}} = (b_0 + \cdots) + 639.9\,\text{yelp}
 \]</span></p>
 <p><span class="math display">\[
-\text{Endcap } (x=1): \quad \widehat{\text{sales}} = (b_0 + 816.5 + \cdots) + 642.3\,\text{yelp}
+\text{Endcap } (x=1): \quad \widehat{\text{sales}} = (b_0 + 791.1 + \cdots) + 639.9\,\text{yelp}
 \]</span></p>
 </div>
 <ul>
-<li class="fragment"><p>Same slope on every other variable; only the <strong>intercept shifts up by $816.5K.</strong></p></li>
+<li class="fragment"><p>Same slope on every other variable; only the <strong>intercept shifts up by $791.1K.</strong></p></li>
 <li class="fragment"><p>A dummy gives the two groups <strong>parallel lines</strong>: identical response to Yelp, location, income, but a fixed <strong>level gap</strong> between them.</p></li>
 </ul>
 </section>
@@ -1136,8 +1136,8 @@ F = \frac{(4{,}042{,}129-3{,}806{,}649)/2}{3{,}806{,}649/40} \approx 1.24
 <h2>The Endcap Gap, Drawn</h2>
 
 <img data-src="figs/autoparts_endcap_dummy.png" class="quarto-figure quarto-figure-center r-stretch" style="width:74.0%"><ul>
-<li>Two parallel lines, separated by a constant <strong>$816K</strong>: the endcap premium, holding population, income, and Yelp fixed.</li>
-<li><span class="math inline">\(t = 6.98\)</span>, p &lt; 0.0001 → this gap is <strong>not</strong> noise. An endcap is a real, sizeable lever.</li>
+<li>Two parallel lines, separated by a constant <strong>$791K</strong>: the endcap premium, holding population, income, and Yelp fixed.</li>
+<li><span class="math inline">\(t = 8.63\)</span>, p &lt; 0.0001 → this gap is <strong>not</strong> noise. An endcap is a real, sizeable lever.</li>
 </ul>
 </section>
 <section id="a-question-that-often-comes-up-5" class="slide level2 center">
@@ -1146,7 +1146,7 @@ F = \frac{(4{,}042{,}129-3{,}806{,}649)/2}{3{,}806{,}649/40} \approx 1.24
 <p><strong>A question that often comes up at this point:</strong></p>
 <p><span class="faq-q">Why force the two groups onto <em>parallel</em> lines? Why not just split the data and run a separate regression for endcap and non-endcap stores?</span></p>
 <div class="fragment faq-a">
-<p><strong>Short answer:</strong> you could, but the dummy gives you more for less. With one 0/1 column the endcap and non-endcap stores <strong>pool</strong> their data to estimate the slopes on Yelp, population, and income, so each slope rests on all 45 stores instead of two smaller, noisier subsets, and the coefficient on the dummy is exactly the $816K gap you want to defend. The parallel-lines assumption says “an endcap adds the same dollar amount regardless of Yelp.” If you suspect the endcap <em>changes</em> the Yelp slope, that is an interaction, a refinement beyond today’s model.</p>
+<p><strong>Short answer:</strong> you could, but the dummy gives you more for less. With one 0/1 column the endcap and non-endcap stores <strong>pool</strong> their data to estimate the slopes on Yelp, population, and income, so each slope rests on all 45 stores instead of two smaller, noisier subsets, and the coefficient on the dummy is exactly the $791K gap you want to defend. The parallel-lines assumption says “an endcap adds the same dollar amount regardless of Yelp.” If you suspect the endcap <em>changes</em> the Yelp slope, that is an interaction, a refinement beyond today’s model.</p>
 </div>
 </div>
 </section>
@@ -1168,7 +1168,7 @@ F = \frac{(4{,}042{,}129-3{,}806{,}649)/2}{3{,}806{,}649/40} \approx 1.24
 <tbody>
 <tr class="odd">
 <td>Null (average store)</td>
-<td style="text-align: right;">$2,706K</td>
+<td style="text-align: right;">$2,712K</td>
 </tr>
 <tr class="even">
 <td>Simple, Yelp only (Topic 10)</td>
@@ -1176,22 +1176,22 @@ F = \frac{(4{,}042{,}129-3{,}806{,}649)/2}{3{,}806{,}649/40} \approx 1.24
 </tr>
 <tr class="odd">
 <td>Multiple, <strong>without</strong> endcap</td>
-<td style="text-align: right;"><strong>$2,816K</strong></td>
+<td style="text-align: right;"><strong>$2,837K</strong></td>
 </tr>
 <tr class="even">
 <td>Multiple, <strong>with</strong> endcap</td>
-<td style="text-align: right;"><strong>$3,632K</strong></td>
+<td style="text-align: right;"><strong>$3,628K</strong></td>
 </tr>
 <tr class="odd">
 <td><strong>Lift from the endcap</strong></td>
-<td style="text-align: right;"><strong>+$816K / year</strong></td>
+<td style="text-align: right;"><strong>+$791K / year</strong></td>
 </tr>
 </tbody>
 </table>
 </div>
 <ul>
 <li class="fragment"><p>The Yelp-only model guesses <strong>$3,363K</strong> here: it <strong>over-credits</strong> Yelp, which in Topic 10 absorbed the endcap effect the four-driver model now separates out.</p></li>
-<li class="fragment"><p><strong>The decision rule:</strong> buy the endcap <strong>if its annual lease is below ~$816K</strong> (a $150K placement is a clear yes): the dummy turns a vague “merchandising matters” into a budget number.</p></li>
+<li class="fragment"><p><strong>The decision rule:</strong> buy the endcap <strong>if its annual lease is below ~$791K</strong> (a $150K placement is a clear yes): the dummy turns a vague “merchandising matters” into a budget number.</p></li>
 <li class="fragment"><p>These are <strong>point</strong> predictions; the software also gives a <strong>confidence interval</strong> (mean of all such stores) and a wider <strong>prediction interval</strong> (this one store), read straight off the output.</p></li>
 </ul>
 </div>
@@ -1331,7 +1331,7 @@ VIF_j = \frac{1}{1 - R_j^2}
 <li class="fragment"><strong>Precision:</strong> the predictions are <strong>consistent</strong>, a tight spread when you repeat.</li>
 <li class="fragment"><strong>Accuracy:</strong> the predictions are <strong>unbiased</strong>, centered on the truth, not systematically high or low.</li>
 <li class="fragment">A regression can have one without the other. What buys you <strong>both</strong> is meeting the error assumptions: zero-mean, constant-variance, independent, roughly normal.</li>
-<li class="fragment">The residual plot is how we <strong>check</strong> them before trusting the $816K endcap number.</li>
+<li class="fragment">The residual plot is how we <strong>check</strong> them before trusting the $791K endcap number.</li>
 </ul>
 </div>
 </div></div>
@@ -1352,7 +1352,7 @@ VIF_j = \frac{1}{1 - R_j^2}
 <h2>The Auto-Parts Residual Plot</h2>
 
 <img data-src="figs/autoparts_std_residual_plot.png" class="quarto-figure quarto-figure-center r-stretch" style="width:70.0%"><ul>
-<li>The band is roughly <strong>flat and centered at zero</strong>, no fan and no curve across the $1M to $4M range of <span class="math inline">\(\hat{y}\)</span>: the constant-variance and linearity assumptions hold, so the coefficient verdicts are safe to read.</li>
+<li>The band is roughly <strong>flat and centered at zero</strong>, no fan and no curve across the $0.9M to $4.4M range of <span class="math inline">\(\hat{y}\)</span>: the constant-variance and linearity assumptions hold, so the coefficient verdicts are safe to read.</li>
 <li>Only <strong>3 of 45 stores</strong> sit just past <span class="math inline">\(\pm 2\)</span> (about the 5% you expect by chance), none wildly so. Flag them to investigate, not to delete: these are the real stores the four drivers still miss.</li>
 </ul>
 </section>
@@ -1394,38 +1394,38 @@ VIF_j = \frac{1}{1 - R_j^2}
 <tbody>
 <tr class="odd">
 <td>Population (3 mi)</td>
-<td style="text-align: right;">+$0.35K / 1,000 residents</td>
-<td style="text-align: right;">0.88</td>
+<td style="text-align: right;">+$0.32K / 1,000 residents</td>
+<td style="text-align: right;">1.00</td>
 <td>not significant</td>
 <td>bigger market ≠ more sales here</td>
 </tr>
 <tr class="even">
 <td>Income (3 mi)</td>
-<td style="text-align: right;">+$4.7K / $1,000 income</td>
-<td style="text-align: right;">1.50</td>
+<td style="text-align: right;">+$3.6K / $1,000 income</td>
+<td style="text-align: right;">1.49</td>
 <td>not significant</td>
 <td>richer market ≠ more sales here</td>
 </tr>
 <tr class="odd">
 <td><strong>Yelp rating</strong></td>
-<td style="text-align: right;"><strong>+$642K / star</strong></td>
-<td style="text-align: right;"><strong>16.5</strong></td>
+<td style="text-align: right;"><strong>+$640K / star</strong></td>
+<td style="text-align: right;"><strong>21.0</strong></td>
 <td><strong>significant</strong></td>
 <td><strong>invest in service / experience</strong></td>
 </tr>
 <tr class="even">
 <td><strong>Endcap</strong></td>
-<td style="text-align: right;"><strong>+$816K</strong></td>
-<td style="text-align: right;"><strong>6.98</strong></td>
+<td style="text-align: right;"><strong>+$791K</strong></td>
+<td style="text-align: right;"><strong>8.63</strong></td>
 <td><strong>significant</strong></td>
 <td><strong>buy the endcap placement</strong></td>
 </tr>
 </tbody>
 </table>
-<p>Model: <span class="math inline">\(R^2 = 0.932\)</span>, adjusted <span class="math inline">\(R^2 = 0.925\)</span>, overall <span class="math inline">\(F = 136.7\)</span> (p <span class="math inline">\(&lt; 10^{-22}\)</span>), <span class="math inline">\(s = \$308.5\)</span>K, all VIF <span class="math inline">\(&lt; 1.7\)</span>.</p>
+<p>Model: <span class="math inline">\(R^2 = 0.956\)</span>, adjusted <span class="math inline">\(R^2 = 0.952\)</span>, overall <span class="math inline">\(F = 219.1\)</span> (p <span class="math inline">\(&lt; 10^{-25}\)</span>), <span class="math inline">\(s = \$241.6\)</span>K, all VIF <span class="math inline">\(&lt; 1.7\)</span>.</p>
 </div>
 <ul>
-<li class="fragment"><strong>Your recommendation as the manager:</strong> stop chasing big, rich markets; <strong>location demographics don’t move sales</strong> in this chain. The money belongs in <strong>service quality</strong> (every Yelp star ≈ +$642K/yr) and in <strong>endcap merchandising</strong> (≈ +$816K/yr, well worth a sub-$816K lease). Both effects are statistically rock-solid and not a multicollinearity mirage.</li>
+<li class="fragment"><strong>Your recommendation as the manager:</strong> stop chasing big, rich markets; <strong>location demographics don’t move sales</strong> in this chain. The money belongs in <strong>service quality</strong> (every Yelp star ≈ +$640K/yr) and in <strong>endcap merchandising</strong> (≈ +$791K/yr, well worth a sub-$791K lease). Both effects are statistically rock-solid and not a multicollinearity mirage.</li>
 </ul>
 </section>
 <section id="f-vs.-t-the-lesson-that-travels" class="slide level2 center">
@@ -1436,7 +1436,7 @@ VIF_j = \frac{1}{1 - R_j^2}
 <ul>
 <li class="fragment"><span class="math inline">\(F\)</span> said the model <strong>as a whole</strong> is useful, but that alone could have tempted us to keep all four variables.</li>
 <li class="fragment">The <span class="math inline">\(t\)</span>-tests revealed that <strong>half the predictors were dead weight</strong>, steering the budget toward the two that actually pay.</li>
-<li class="fragment">The <strong>partial <span class="math inline">\(F\)</span>-test</strong> found no statistically detectable contribution from the location pair beyond Yelp and endcap (<span class="math inline">\(F = 1.24\)</span>, p-value <span class="math inline">\(= 0.30\)</span>). It did not prove that their effects are zero.</li>
+<li class="fragment">The <strong>partial <span class="math inline">\(F\)</span>-test</strong> found no statistically detectable contribution from the location pair beyond Yelp and endcap (<span class="math inline">\(F = 1.29\)</span>, p-value <span class="math inline">\(= 0.29\)</span>). It did not prove that their effects are zero.</li>
 </ul></li>
 <li class="fragment"><p><strong>Significance is conditional.</strong> Every coefficient and every <span class="math inline">\(t\)</span> here means “…<em>holding the other three constant.</em>” Change the set of predictors and the story can change.</p></li>
 <li class="fragment"><p><strong>Significance ≠ importance.</strong> With huge samples trivial effects turn “significant”; with small samples real effects can hide. Always pair the test with the <strong>dollar size</strong> of the effect: that is the number you decide on as the manager.</p></li>
@@ -1446,10 +1446,10 @@ VIF_j = \frac{1}{1 - R_j^2}
 <h2>The Manager’s Takeaway</h2>
 <p><br></p>
 <ul>
-<li class="fragment"><p><strong>One sentence:</strong> for this 45-store chain, <strong>service and merchandising drive sales, not location demographics</strong>, so invest in Yelp rating (+$642K/star) and endcap placement (+$816K), each statistically decisive.</p></li>
-<li class="fragment"><p><strong>One number to remember:</strong> <strong>$816K</strong>, the value of an endcap, read straight off a dummy variable’s coefficient, holding everything else constant.</p></li>
-<li class="fragment"><p><strong>One caveat:</strong> the model <em>describes</em> 45 existing stores; it does not <em>prove</em> that buying an endcap will <em>cause</em> +$816K at a brand-new store. Correlation control is the best we can do with observational data: pilot it, then re-estimate.</p></li>
-<li class="fragment"><p><strong>Practice with the real data:</strong> <code>data/autoparts.csv</code> (in the datasets zip) + Excel Regression → reproduce <span class="math inline">\(R^2 = 0.932\)</span>, <span class="math inline">\(F = 136.7\)</span>, the four coefficients, and the endcap prediction yourself.</p></li>
+<li class="fragment"><p><strong>One sentence:</strong> for this 45-store chain, <strong>service and merchandising drive sales, not location demographics</strong>, so invest in Yelp rating (+$640K/star) and endcap placement (+$791K), each statistically decisive.</p></li>
+<li class="fragment"><p><strong>One number to remember:</strong> <strong>$791K</strong>, the value of an endcap, read straight off a dummy variable’s coefficient, holding everything else constant.</p></li>
+<li class="fragment"><p><strong>One caveat:</strong> the model <em>describes</em> 45 existing stores; it does not <em>prove</em> that buying an endcap will <em>cause</em> +$791K at a brand-new store. Correlation control is the best we can do with observational data: pilot it, then re-estimate.</p></li>
+<li class="fragment"><p><strong>Practice with the real data:</strong> <code>data/autoparts_revised_teaching.csv</code> (in the datasets zip) + Excel Regression → reproduce <span class="math inline">\(R^2 = 0.956\)</span>, <span class="math inline">\(F = 219.1\)</span>, the four coefficients, and the endcap prediction yourself.</p></li>
 </ul>
 </section>
 <section id="todays-question-todays-answer-1" class="slide level2 center">
@@ -1463,7 +1463,7 @@ VIF_j = \frac{1}{1 - R_j^2}
 <p><br></p>
 <p><strong>The answer we reached today:</strong></p>
 <blockquote>
-<p>The model is decisively useful (<span class="math inline">\(F = 136.7\)</span>), but only <strong>two</strong> drivers survive their individual <span class="math inline">\(t\)</span>-test: <strong>Yelp</strong> (<span class="math inline">\(t = 16.5\)</span>, +$642K/star) and <strong>endcap</strong> (<span class="math inline">\(t = 6.98\)</span>, +$816K); population and income are insignificant (<span class="math inline">\(t = 0.88\)</span>, <span class="math inline">\(1.50\)</span>), and their joint test also fails to reject (partial <span class="math inline">\(F = 1.24\)</span>, p-value <span class="math inline">\(= 0.30\)</span>); every VIF <span class="math inline">\(&lt; 1.7\)</span> so the verdict is honest, not an overlap artifact. <strong>Invest in service and merchandising, not location:</strong> buy the endcap whenever its lease runs below <strong>$816K/year</strong>.</p>
+<p>The model is decisively useful (<span class="math inline">\(F = 219.1\)</span>), but only <strong>two</strong> drivers survive their individual <span class="math inline">\(t\)</span>-test: <strong>Yelp</strong> (<span class="math inline">\(t = 21.0\)</span>, +$640K/star) and <strong>endcap</strong> (<span class="math inline">\(t = 8.63\)</span>, +$791K); population and income are insignificant (<span class="math inline">\(t = 1.00\)</span>, <span class="math inline">\(1.49\)</span>), and their joint test also fails to reject (partial <span class="math inline">\(F = 1.29\)</span>, p-value <span class="math inline">\(= 0.29\)</span>); every VIF <span class="math inline">\(&lt; 1.7\)</span> so the verdict is honest, not an overlap artifact. <strong>Invest in service and merchandising, not location:</strong> buy the endcap whenever its lease runs below <strong>$791K/year</strong>.</p>
 </blockquote>
 </div>
 </section>
@@ -1486,7 +1486,7 @@ VIF_j = \frac{1}{1 - R_j^2}
 <p>What the auto-parts model taught us:</p>
 <ul>
 <li><strong>Multiple regression</strong> estimates the effect of each predictor <strong>holding the others constant</strong>: observational data’s closest move to a controlled comparison.</li>
-<li>A <strong>partial coefficient</strong> can differ wildly from its simple-regression cousin: population and income looked plausible but added nothing once Yelp and endcap were in.</li>
+<li>A <strong>partial coefficient</strong> can differ from its simple-regression cousin: Yelp’s slope fell from $752K to $640K per star once endcap and location were held constant; population and income added little either way.</li>
 <li><strong><span class="math inline">\(R^2\)</span> only ever rises</strong> when you add predictors → judge model size with <strong>adjusted <span class="math inline">\(R^2\)</span></strong>, which charges a fee per predictor.</li>
 <li><strong><span class="math inline">\(F\)</span> first, then <span class="math inline">\(t\)</span>:</strong> <span class="math inline">\(F\)</span> asks “is the model useful at all?”; the <span class="math inline">\(t\)</span>-tests ask “which predictors carry their weight?” A significant <span class="math inline">\(F\)</span> does not bless every coefficient.</li>
 <li>The <strong>partial <span class="math inline">\(F\)</span>-test</strong> compares a full and a reduced model to ask whether a <strong>group</strong> of predictors can go; for a single predictor it equals <span class="math inline">\(t^2\)</span>.</li>

@@ -69,7 +69,7 @@ html-math-method:
 
 - The question on the table: **which sites will sell?** As the manager you want every new lease backed by a sales forecast, not a hunch.
 
-- We have one dataset, `data/autoparts.csv`: for each of the 45 existing stores, its **2012 annual sales** (\$K), trade-area **population** and **income**, an **end-cap** placement flag, and its **Yelp rating**.
+- We have one dataset, `data/autoparts_revised_teaching.csv` (a teaching version of the chain's store data): for each of the 45 existing stores, its **2012 annual sales** (\$K), trade-area **population** and **income**, an **end-cap** placement flag, and its **Yelp rating**.
 
 - Until now we *compared* two groups. Now we *predict* a number, and that is what **regression** does.
 
@@ -299,7 +299,7 @@ knitr::include_graphics("figs/autoparts_fit.png")
 ::: fragment
 
 $$
-\widehat{\text{sales}} = 332.8 + 757.5 \times (\text{Yelp rating})
+\widehat{\text{sales}} = 355.6 + 751.9 \times (\text{Yelp rating})
 $$
 
 :::
@@ -308,9 +308,9 @@ $$
 
 <br>
 
-- **Slope $b_1 = +757.5$:** each additional **Yelp star** is associated with about **\$757.5K** more in annual sales. *This is the number the real-estate team can use to score sites.*
+- **Slope $b_1 = +751.9$:** each additional **Yelp star** is associated with about **\$751.9K** more in annual sales. *This is the number the real-estate team can use to score sites.*
 
-- **Intercept $b_0 = +332.8$:** the line's height at a rating of zero. No store has a zero rating, so do **not** interpret it as "sales of a zero-star store"; it just anchors the line.
+- **Intercept $b_0 = +355.6$:** the line's height at a rating of zero. No store has a zero rating, so do **not** interpret it as "sales of a zero-star store"; it just anchors the line.
 
 - **The manager's translation:** *Moving a store from a 3.0 to a 4.0 Yelp rating is worth roughly three-quarters of a million dollars in predicted annual sales.*
 
@@ -321,7 +321,7 @@ $$
 :::: {.faq}
 **A question that often comes up at this point:**
 
-[If each star is worth \$757.5K, can the real-estate team just plug in any rating, say a planned flagship aiming for 6.0 stars, and read off the predicted sales?]{.faq-q}
+[If each star is worth \$751.9K, can the real-estate team just plug in any rating, say a planned flagship aiming for 6.0 stars, and read off the predicted sales?]{.faq-q}
 
 ::: {.fragment .faq-a}
 **Short answer:** only inside the range we actually observed. Our 45 stores span 1 to 5 stars, and Yelp caps at 5.0, so a 6.0 is impossible: the line was never tested out there. Plugging in an $x$ outside the data is **extrapolation**, and nothing guarantees the relationship stays straight past the edge of the cloud. Score sites in the 1-to-5 rating range your existing stores cover.
@@ -364,16 +364,16 @@ $$
 
 | Quantity | Value |
 |---|---:|
-| SST (total variation) | 55,840,034 |
-| SSR (explained by line) | 46,594,785 |
-| SSE (left as error) | 9,245,249 |
-| $R^2 = \text{SSR}/\text{SST}$ | **0.834** |
+| SST (total variation) | 53,506,159 |
+| SSR (explained by line) | 45,904,688 |
+| SSE (left as error) | 7,601,471 |
+| $R^2 = \text{SSR}/\text{SST}$ | **0.858** |
 
 :::
 
-- **Interpretation:** Yelp rating alone explains **83.4%** of the store-to-store variation in annual sales, strong for a single predictor.
+- **Interpretation:** Yelp rating alone explains **85.8%** of the store-to-store variation in annual sales, strong for a single predictor.
 
-- The remaining **16.6%** is everything else (location, merchandising, competition). *That gap is exactly what motivates adding more predictors next topic.*
+- The remaining **14.2%** is everything else (location, merchandising, competition). *That gap is exactly what motivates adding more predictors next topic.*
 
 - In Excel: `=RSQ(sales, yelp)` or read **R Square** off the Regression output.
 
@@ -381,18 +381,18 @@ $$
 
 <br>
 
-- **The baseline (no model):** with no line, your best single guess for any store is the overall average, $\bar{y} = \$2{,}706\text{K}$. The squared error that baseline leaves is exactly **SST**.
+- **The baseline (no model):** with no line, your best single guess for any store is the overall average, $\bar{y} = \$2{,}712\text{K}$. The squared error that baseline leaves is exactly **SST**.
 
 - The line's leftover error is **SSE**, so $R^2 = 1 - \text{SSE}/\text{SST}$ is the **share of the baseline's error the line removes**.
 
 ::: fragment
 | Predict every store with... | Typical miss (RMSE) |
 |---|---:|
-| the average $\bar{y}$ (no model) | $\approx \$1{,}114\text{K}$ |
-| the Yelp-rating line | $\approx \$453\text{K}$ |
+| the average $\bar{y}$ (no model) | $\approx \$1{,}090\text{K}$ |
+| the Yelp-rating line | $\approx \$411\text{K}$ |
 :::
 
-- So **$R^2 = 0$** means the line is **no better than the average** (SSE = SST, a flat line at $\bar{y}$); **$R^2 = 1$** means every store sits on the line. Auto-parts lands at **0.834**: the line erases **83%** of the error you would make by guessing the average.
+- So **$R^2 = 0$** means the line is **no better than the average** (SSE = SST, a flat line at $\bar{y}$); **$R^2 = 1$** means every store sits on the line. Auto-parts lands at **0.858**: the line erases **86%** of the error you would make by guessing the average.
 
 ## $R^2$ and Correlation Are the Same Story
 
@@ -408,19 +408,19 @@ $$
 
 :::
 
-- Here $b_1 > 0$ and $R^2 = 0.834$, so $r = +\sqrt{0.834} = +0.913$, a strong positive correlation, the same fact $R^2$ reports.
+- Here $b_1 > 0$ and $R^2 = 0.858$, so $r = +\sqrt{0.858} = +0.926$, a strong positive correlation, the same fact $R^2$ reports.
 
-- **Correlation** measures the *tightness and direction* of the linear association; **$R^2$** measures the *share of variation explained*: here $r = +0.913$ and $R^2 = 0.834$ report the identical fit.
+- **Correlation** measures the *tightness and direction* of the linear association; **$R^2$** measures the *share of variation explained*: here $r = +0.926$ and $R^2 = 0.858$ report the identical fit.
 
 ## A Question That Often Comes Up
 
 :::: {.faq}
 **A question that often comes up at this point:**
 
-[Is $R^2 = 0.834$ "good"? What is the cutoff a manager should require before trusting a regression?]{.faq-q}
+[Is $R^2 = 0.858$ "good"? What is the cutoff a manager should require before trusting a regression?]{.faq-q}
 
 ::: {.fragment .faq-a}
-**Short answer:** there is no universal cutoff; "good" depends on the field and the decision. For one predictor against messy store-level sales, 0.834 is strong. But a high $R^2$ does not make the line *correct*: a curved relationship can still post a high $R^2$, and a significant slope can come with a modest one. So we never stop at $R^2$. Lecture 2 tests whether the slope is real and checks the residuals before the manager signs anything.
+**Short answer:** there is no universal cutoff; "good" depends on the field and the decision. For one predictor against messy store-level sales, 0.858 is strong. But a high $R^2$ does not make the line *correct*: a curved relationship can still post a high $R^2$, and a significant slope can come with a modest one. So we never stop at $R^2$. Lecture 2 tests whether the slope is real and checks the residuals before the manager signs anything.
 :::
 ::::
 
@@ -452,11 +452,11 @@ knitr::include_graphics("figs/autoparts_reg_coef.png")
 
 <br>
 
-- **One sentence:** Yelp rating is a strong predictor of store sales: each star is worth about **\$757K** in predicted annual sales.
+- **One sentence:** Yelp rating is a strong predictor of store sales: each star is worth about **\$752K** in predicted annual sales.
 
-- **One number:** $R^2 = 0.834$: Yelp rating alone explains **83%** of the sales differences across stores.
+- **One number:** $R^2 = 0.858$: Yelp rating alone explains **86%** of the sales differences across stores.
 
-- **One caveat:** "explains" is **association, not cause**, and 17% is still unexplained; one variable is rarely the whole story. We have a *fitted* line, but we have not yet asked whether it is **statistically real** or whether the model's **assumptions** hold. That is Lecture 2.
+- **One caveat:** "explains" is **association, not cause**, and 14% is still unexplained; one variable is rarely the whole story. We have a *fitted* line, but we have not yet asked whether it is **statistically real** or whether the model's **assumptions** hold. That is Lecture 2.
 
 ## Today's Question, Today's Answer
 
@@ -471,7 +471,7 @@ knitr::include_graphics("figs/autoparts_reg_coef.png")
 
 **The answer we reached today:**
 
-> **Yes.** Least squares fits $\widehat{\text{sales}} = 332.8 + 757.5 \times (\text{Yelp rating})$: each star is worth about **\$757.5K** in predicted annual sales, and $R^2 = \textbf{0.834}$, so Yelp rating alone explains **83%** of the store-to-store sales gap. Whether that slope is *statistically real* is the Lecture 2 question.
+> **Yes.** Least squares fits $\widehat{\text{sales}} = 355.6 + 751.9 \times (\text{Yelp rating})$: each star is worth about **\$751.9K** in predicted annual sales, and $R^2 = \textbf{0.858}$, so Yelp rating alone explains **86%** of the store-to-store sales gap. Whether that slope is *statistically real* is the Lecture 2 question.
 :::
 
 ## ⏱️ Team Sprint: Your Group Case (Lecture 1)
@@ -490,7 +490,7 @@ knitr::include_graphics("figs/autoparts_reg_coef.png")
 
 <br>
 
-> "Is the slope **real**, and can we **forecast** a new site? The fitted slope is +757.5 \$K per star, but our 45 stores are a **sample**. Is the Yelp–sales relationship real, do the model's assumptions hold, and what sales should we forecast for a specific new site?"
+> "Is the slope **real**, and can we **forecast** a new site? The fitted slope is +751.9 \$K per star, but our 45 stores are a **sample**. Is the Yelp–sales relationship real, do the model's assumptions hold, and what sales should we forecast for a specific new site?"
 
 <br>
 
@@ -517,7 +517,7 @@ The class **ends on the Team Sprint**: your group works the case together, then 
   3. **Independence:** the errors for different stores are independent.
   4. **Normality:** $\varepsilon$ is normally distributed.
 
-- If these are badly violated, the $p$-values and intervals can mislead. We will **check** them with residual plots after we test, but they are the foundation, so flag them first.
+- If these are badly violated, the $p$-values and intervals can mislead. We will **check** them with residual plots after we test (independence is the exception: it comes from how the 45 stores were sampled, not from a plot), but they are the foundation, so flag them first.
 
 ## Estimating $\sigma$: the Standard Error of the Estimate
 
@@ -538,7 +538,7 @@ $$
 ::: fragment
 
 $$
-s = \sqrt{\frac{\text{SSE}}{n-2}} = \sqrt{\frac{9{,}245{,}249}{43}} \approx \$464\text{K}
+s = \sqrt{\frac{\text{SSE}}{n-2}} = \sqrt{\frac{7{,}601{,}471}{43}} \approx \$420\text{K}
 $$
 
 :::
@@ -581,15 +581,15 @@ $$
 
 | Quantity | Value |
 |---|---:|
-| $b_1$ (slope) | 757.5 |
-| $s_{b_1}$ (std. error of slope) | 51.46 |
-| $t = b_1 / s_{b_1}$ | **14.7** |
+| $b_1$ (slope) | 751.9 |
+| $s_{b_1}$ (std. error of slope) | 46.66 |
+| $t = b_1 / s_{b_1}$ | **16.1** |
 | $df = n - 2$ | 43 |
 | $p$-value | $< 0.0001$ |
 
 :::
 
-- $|t| = 14.7$ is enormous against $t_{0.025, 43} = 2.02$ → **reject $H_0$** decisively.
+- $|t| = 16.1$ is enormous against $t_{0.025, 43} = 2.02$ → **reject $H_0$** decisively.
 
 - **Translation:** the Yelp–sales relationship is *not* a fluke of these 45 stores. There is overwhelming evidence the true slope is positive.
 
@@ -602,7 +602,7 @@ $$
 1. In the coefficients table, find the `yelp_rating` row.
 2. Read **t Stat** and **P-value** to test $H_0: \beta_1 = 0$.
 3. Read **Lower 95%** and **Upper 95%** for the slope CI; if both share a sign, zero is excluded.
-4. In the **ANOVA** block, read **F = 216.7** ($= t^2$, the same slope test); its $p$-value (Excel's **Significance F**) matches the coefficients **P-value**, $< 0.0001$.
+4. In the **ANOVA** block, read **F = 259.7** ($= t^2$, the same slope test); its $p$-value (Excel's **Significance F**) matches the coefficients **P-value**, $< 0.0001$.
 :::
 
 ::: {.column width="54%"}
@@ -621,10 +621,10 @@ knitr::include_graphics("figs/autoparts_reg_anova.png")
 :::: {.faq}
 **A question that often comes up at this point:**
 
-[A $t$ of 14.7 and $p < 0.0001$ sound spectacular. Does that mean Yelp rating is a *huge* driver of sales?]{.faq-q}
+[A $t$ of 16.1 and $p < 0.0001$ sound spectacular. Does that mean Yelp rating is a *huge* driver of sales?]{.faq-q}
 
 ::: {.fragment .faq-a}
-**Short answer:** no, those two readings answer different questions. The $t$-test and $p$-value only say the slope is **not zero**: the relationship is real, not noise. *How big* the effect is comes from the slope itself (\$757.5K per star) and the CI around it; *how much it explains* comes from $R^2$ (0.834). A predictor can be highly significant yet small, or significant yet leave most variation unexplained. Read all three, not just the $p$-value.
+**Short answer:** no, those two readings answer different questions. The $t$-test and $p$-value only say the slope is **not zero**: the relationship is real, not noise. *How big* the effect is comes from the slope itself (\$751.9K per star) and the CI around it; *how much it explains* comes from $R^2$ (0.858). A predictor can be highly significant yet small, or significant yet leave most variation unexplained. Read all three, not just the $p$-value.
 :::
 ::::
 
@@ -637,12 +637,12 @@ knitr::include_graphics("figs/autoparts_reg_anova.png")
 ::: fragment
 
 $$
-b_1 \pm t_{\alpha/2,\,n-2}\; s_{b_1} = 757.5 \pm 2.02 \times 51.46 = (\$653.7\text{K},\; \$861.3\text{K})
+b_1 \pm t_{\alpha/2,\,n-2}\; s_{b_1} = 751.9 \pm 2.02 \times 46.66 = (\$657.8\text{K},\; \$846.0\text{K})
 $$
 
 :::
 
-- We are 95% confident each Yelp star is worth between **\$654K and \$861K** in annual sales.
+- We are 95% confident each Yelp star is worth between **\$658K and \$846K** in annual sales.
 
 - The interval is **entirely above zero**: the same conclusion as the test (reject $H_0$), now with a magnitude the manager can plan around.
 
@@ -659,7 +659,7 @@ $$
 ::: fragment
 
 $$
-F = 216.7 = t^2 \quad (t = 14.72)
+F = 259.7 = t^2 \quad (t = 16.114)
 $$
 
 :::
@@ -698,12 +698,12 @@ knitr::include_graphics("figs/autoparts_residual_plot.png")
 ```
 
 ::: nonincremental
-- Roughly horizontal, centered at zero, no fan and no curve → the **linearity** and **constant-variance** assumptions look reasonable. The straight-line model is defensible.
+- Roughly horizontal and centered at zero, with about the same spread at 1 star as at 5 stars: no fan and no curve → the **linearity** and **constant-variance** assumptions look reasonable. The straight-line model is defensible.
 :::
 
 ## Standardized Residuals and Outliers
 
-- Dividing each residual by its standard deviation gives a **standardized residual**, on a $z$-like scale.
+- Dividing each residual by the standard deviation of the residuals gives a **standardized residual**, on a $z$-like scale (Excel's **Standard Residuals** column).
 
 - **Rule of thumb:** a standardized residual with $|z| > 2$ flags an **outlier**, a store that performs far off-trend for its rating. Investigate; don't auto-delete.
 
@@ -719,14 +719,14 @@ knitr::include_graphics("figs/autoparts_std_residual_plot.png")
 
 <br>
 
-- Two stores sit just past $\pm 2$, both rated **5.0 stars**:
+- 43 of 45 stores sit inside $\pm 2$, about the 95% that normal errors would produce. Two sit just past it:
 
-  - One **under-performs** badly (sales far below the \$4.1M its rating predicts).
-  - One **over-performs** (sales well above the line).
+  - **Store 23 (2.0 stars) over-performs:** \$2.79M in sales against the \$1.86M its rating predicts.
+  - **Store 26 (5.0 stars) under-performs:** \$3.14M against the \$4.12M its rating predicts.
 
 - These are **not data errors**; they are real stores the model can't fully explain with rating alone.
 
-- *What might separate two 5-star stores?* End-cap placement, local income, population. **That is the teaser for multiple regression:** adding the variables that explain the residuals.
+- *What might separate them?* Store 23 has end-cap placement and store 26 does not; their population and income differ too. **That is the teaser for multiple regression:** adding the variables that explain the residuals.
 
 ## A Question That Often Comes Up
 
@@ -736,7 +736,7 @@ knitr::include_graphics("figs/autoparts_std_residual_plot.png")
 [Those two off-trend stores drag the line around. Should we just delete them so the model fits better?]{.faq-q}
 
 ::: {.fragment .faq-a}
-**Short answer:** no, not on sight. A point past $\pm 2$ flags a store to **investigate**, not to erase. Delete it only if you find a genuine error (a sales figure keyed wrong, a store mislabeled). If the store is real, dropping it just hides information: here the two 5-star outliers are the clue that rating alone misses something. The honest move is to keep them, report them, and add the predictors that explain them, which is the next topic.
+**Short answer:** no, not on sight. A point past $\pm 2$ flags a store to **investigate**, not to erase. Delete it only if you find a genuine error (a sales figure keyed wrong, a store mislabeled). If the store is real, dropping it just hides information: here the two off-trend stores are the clue that rating alone misses something. The honest move is to keep them, report them, and add the predictors that explain them, which is the next topic.
 :::
 ::::
 
@@ -749,7 +749,7 @@ knitr::include_graphics("figs/autoparts_std_residual_plot.png")
 ::: fragment
 
 $$
-\hat{y} = 332.8 + 757.5 \times 4.5 = \$3{,}742\text{K} \;\approx\; \$3.74\text{M}
+\hat{y} = 355.6 + 751.9 \times 4.5 = \$3{,}739\text{K} \;\approx\; \$3.74\text{M}
 $$
 
 :::
@@ -794,7 +794,7 @@ knitr::include_graphics("figs/autoparts_pred_band.png")
 ```
 
 ::: nonincremental
-- At Yelp = 4.5: point \$3.74M; **CI** $(\$3{,}543\text{K},\; \$3{,}940\text{K})$ for the average such store; **PI** $(\$2{,}786\text{K},\; \$4{,}698\text{K})$ for one specific new store.
+- At Yelp = 4.5: point \$3.74M; **CI** $(\$3{,}559\text{K},\; \$3{,}919\text{K})$ for the average such store; **PI** $(\$2{,}872\text{K},\; \$4{,}606\text{K})$ for one specific new store.
 - Both bands are **narrowest near $\bar{x}$** and flare out at the edges; forecasts far from the data are less certain.
 :::
 
@@ -806,7 +806,7 @@ knitr::include_graphics("figs/autoparts_pred_band.png")
 [We are deciding on one specific lease. Which interval does the manager quote, the tight CI or the wide PI?]{.faq-q}
 
 ::: {.fragment .faq-a}
-**Short answer:** the **prediction interval**, (\$2.79M, \$4.70M). The CI, (\$3.54M, \$3.94M), is for the *average* of all 4.5-star stores; it would matter if you were opening dozens at once. A lease commits you to *one* store, which carries its own scatter on top of the line's uncertainty, so the honest range is the wider PI. Quoting the narrow CI for a single site would understate the risk on the one decision capital is riding on.
+**Short answer:** the **prediction interval**, (\$2.87M, \$4.61M). The CI, (\$3.56M, \$3.92M), is for the *average* of all 4.5-star stores; it would matter if you were opening dozens at once. A lease commits you to *one* store, which carries its own scatter on top of the line's uncertainty, so the honest range is the wider PI. Quoting the narrow CI for a single site would understate the risk on the one decision capital is riding on.
 :::
 ::::
 
@@ -827,37 +827,37 @@ knitr::include_graphics("figs/autoparts_pred_band.png")
 
 <br>
 
-- **One sentence:** the Yelp–sales slope is overwhelmingly significant ($t = 14.7$, $p < 0.0001$); a 4.5-star site is forecast at **\$3.74M**, and for *one* lease we quote the **prediction interval** $(\$2.79\text{M}, \$4.70\text{M})$.
+- **One sentence:** the Yelp–sales slope is overwhelmingly significant ($t = 16.1$, $p < 0.0001$); a 4.5-star site is forecast at **\$3.74M**, and for *one* lease we quote the **prediction interval** $(\$2.87\text{M}, \$4.61\text{M})$.
 
-- **One number:** 95% CI for the slope = **(\$654K, \$861K)** per star: the magnitude the real-estate team plans around.
+- **One number:** 95% CI for the slope = **(\$658K, \$846K)** per star: the magnitude the real-estate team plans around.
 
-- **One caveat:** the model assumes the new site behaves like our 45 stores; the two off-trend 5-star outliers warn that rating alone misses something, which is exactly why we add predictors next.
+- **One caveat:** the model assumes the new site behaves like our 45 stores; the two off-trend stores (23 and 26) warn that rating alone misses something, which is exactly why we add predictors next.
 
 ## The Whole Engagement on One Page
 
 ::: r-fit-text
 | Step | Question | Tool | Auto-parts result |
 |---|---|---|---|
-| Fit | What's the line? | Least squares | $\hat{y} = 332.8 + 757.5\,x$ |
-| Interpret | What's a star worth? | Slope $b_1$ | **+\$757.5K** per Yelp star |
-| Explain | How good is the fit? | $R^2$ | **0.834** (83% of sales variation) |
-| Test | Is it real? | $t$ test on slope | $t = 14.7$, $p < .0001$ → reject $H_0$ |
-| Quantify | How big, plausibly? | 95% CI for slope | (\$654K, \$861K) per star |
+| Fit | What's the line? | Least squares | $\hat{y} = 355.6 + 751.9\,x$ |
+| Interpret | What's a star worth? | Slope $b_1$ | **+\$751.9K** per Yelp star |
+| Explain | How good is the fit? | $R^2$ | **0.858** (86% of sales variation) |
+| Test | Is it real? | $t$ test on slope | $t = 16.1$, $p < .0001$ → reject $H_0$ |
+| Quantify | How big, plausibly? | 95% CI for slope | (\$658K, \$846K) per star |
 | Validate | Do assumptions hold? | Residual plot | Horizontal band → OK (2 outliers) |
-| Forecast | What will a new site sell? | Point + PI | \$3.74M; PI (\$2.79M, \$4.70M) at 4.5 stars |
+| Forecast | What will a new site sell? | Point + PI | \$3.74M; PI (\$2.87M, \$4.61M) at 4.5 stars |
 :::
 
 ## The Manager's Takeaway: The Whole Topic
 
 <br>
 
-- **One sentence:** Yelp rating predicts auto-parts store sales strongly and significantly (about **\$758K per star**, explaining **83%** of the sales gap), so the real-estate team can use it to score and forecast sites.
+- **One sentence:** Yelp rating predicts auto-parts store sales strongly and significantly (about **\$752K per star**, explaining **86%** of the sales gap), so the real-estate team can use it to score and forecast sites.
 
-- **One number to remember:** $b_1 = 757.5$, and where it came from: $\sum(x-\bar{x})(y-\bar{y}) / \sum(x-\bar{x})^2$.
+- **One number to remember:** $b_1 = 751.9$, and where it came from: $\sum(x-\bar{x})(y-\bar{y}) / \sum(x-\bar{x})^2$.
 
-- **One caveat:** regression forecasts and quantifies; it does **not** prove causation, and 17% of sales is still unexplained; a single predictor is a start, not the answer.
+- **One caveat:** regression forecasts and quantifies; it does **not** prove causation, and 14% of sales is still unexplained; a single predictor is a start, not the answer.
 
-- **Practice with the real data:** `data/autoparts.csv` + Regression tool → reproduce $b_1 = 757.5$, $R^2 = 0.834$, $t = 14.7$ yourself.
+- **Practice with the real data:** `data/autoparts_revised_teaching.csv` + Regression tool → reproduce $b_1 = 751.9$, $R^2 = 0.858$, $t = 16.1$ yourself.
 
 ## Today's Question, Today's Answer
 
@@ -872,7 +872,7 @@ knitr::include_graphics("figs/autoparts_pred_band.png")
 
 **The answer we reached today:**
 
-> **Real and forecastable.** The slope test gives $t = \textbf{14.7}$, $p < 0.0001$, so we reject $H_0: \beta_1 = 0$; the 95% CI is **(\$654K, \$861K)** per star. The residual band is horizontal (assumptions hold, two 5-star outliers aside). A 4.5-star site forecasts at **\$3.74M**, and for *one* lease we quote the prediction interval **(\$2.79M, \$4.70M)**.
+> **Real and forecastable.** The slope test gives $t = \textbf{16.1}$, $p < 0.0001$, so we reject $H_0: \beta_1 = 0$; the 95% CI is **(\$658K, \$846K)** per star. The residual band is horizontal (assumptions hold, two off-trend stores aside). A 4.5-star site forecasts at **\$3.74M**, and for *one* lease we quote the prediction interval **(\$2.87M, \$4.61M)**.
 :::
 
 ## ⏱️ Team Sprint: Your Group Case (Lecture 2)
@@ -893,8 +893,8 @@ knitr::include_graphics("figs/autoparts_pred_band.png")
 The main points from this session:
 
 - **Regression predicts** where comparison only contrasts: the line $\hat{y} = b_0 + b_1 x$ turns a relationship into a forecast.
-- **Least squares** picks the line that minimizes $\sum (y_i - \hat{y}_i)^2$; the **slope** is the business number (\$757.5K per Yelp star), the **intercept** just anchors the line.
-- **$R^2 = \text{SSR}/\text{SST}$** is the share of variation the line explains (0.834 here); $r = (\text{sign } b_1)\sqrt{R^2}$ ties it to correlation.
+- **Least squares** picks the line that minimizes $\sum (y_i - \hat{y}_i)^2$; the **slope** is the business number (\$751.9K per Yelp star), the **intercept** just anchors the line.
+- **$R^2 = \text{SSR}/\text{SST}$** is the share of variation the line explains (0.858 here); $r = (\text{sign } b_1)\sqrt{R^2}$ ties it to correlation.
 - **Inference** asks if the slope is real: $t = b_1/s_{b_1}$ with $df = n-2$ (and $F = t^2$); the 95% CI gives the plausible magnitude.
 - **Residual plots** validate the assumptions: a horizontal band is fine; a curve means nonlinearity, a fan means non-constant variance.
 - **Prediction** needs the right interval: a **CI** for the mean response, a **wider PI** for one new store; both widen as $x^*$ leaves $\bar{x}$.
